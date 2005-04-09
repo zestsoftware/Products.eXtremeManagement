@@ -1,6 +1,6 @@
 from Products.Archetypes.public import *
 
-CustomerSchema = Schema((
-
-))
+#CustomerSchema = Schema((
+#
+#))
 

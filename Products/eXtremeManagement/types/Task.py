@@ -6,16 +6,16 @@ from Products.eXtremeManagement.config import *
 
 schema = BaseFolderSchema 
 
-class Customer(BaseFolder):
-    """A simple folderish archetype"""
+class Task(BaseContent):
+    """A simple archetype"""
     schema                = schema
-    content_icon          = 'folder_icon.gif'
-    meta_type             = 'Customer'
-    archetype_name        = 'Customer'
-    product_meta_type     = 'Customer'
-    immediate_view        = 'customer_view'
-    default_view          = 'customer_view'
-    allowed_content_types = (['ProjectMember',])
+    content_icon          = 'document_icon.gif'
+    meta_type             = 'Task'
+    archetype_name        = 'Task'
+    product_meta_type     = 'Task'
+    immediate_view        = 'task_view'
+    default_view          = 'task_view'
+    allowed_content_types = ([])
     global_allow          = 0
     typeDescription       = ''
     typeDescMsgId         = ''
@@ -25,12 +25,12 @@ class Customer(BaseFolder):
                {
                 'id': 'view',
                 'name': 'View',
-                'action': 'string:${object_url}/customer_view',
+                'action': 'string:${object_url}/task_view',
                 'permissions': (CMFCorePermissions.View,),
                 'category': 'object'
                },
               )
 
-registerType(Customer, PROJECTNAME)
+registerType(Task, PROJECTNAME)
 
 

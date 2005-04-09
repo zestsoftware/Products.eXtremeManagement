@@ -39,7 +39,7 @@ def install(self):
     out.write("Successfully installed %s." % PROJECTNAME)
 
     print >> out, "Customize the portal"
-    customizePortal( self )
+    setUpSkin( self )
 
     return out.getvalue()
 
