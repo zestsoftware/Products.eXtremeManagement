@@ -1,4 +1,5 @@
 from Products.Archetypes.public import *
+from Products.eXtremeManagement.relations import CustomerProjectRelation
 
 # show description as attribute instead of Metadata, just like CMF
 DescriptionSchema = BaseFolderSchema.copy()
@@ -81,7 +82,7 @@ CustomerSchema = Schema((
     TextField('email',
                index='FieldIndex',
                required = 0,
-               widget=StringWidget(description = "Enter an email address",
+               widget=StringWidget(description = "Enter an email address.",
                                    description_msgid = "desc_email",
                                    label = "E-mail",
                                    label_msgid = "label_email",
@@ -200,4 +201,20 @@ TaskSchema = Schema((
                 ),
 
 ))
+
+ProjectSchema = Schema((
+
+    ReferenceField('customer_project_refenrence',
+                    relationship = CustomerProjectRelation.relationship,
+                    referenceClass = CustomerProjectRelation,
+                    multiValued = 1,
+                    allowed_types = ('Customer',),
+                    widget = ReferenceWidget(label="Customers",
+                                             label_msgid="label_customers",
+                                             description="Reference to a customer.",
+                                             description_msgid = "description_customer",
+                                             ),
+                  )
+))
+
 

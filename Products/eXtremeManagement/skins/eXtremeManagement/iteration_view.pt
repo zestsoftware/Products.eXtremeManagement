@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      i18n:domain="plone"
+      metal:use-macro="here/main_template/macros/master">
+
+  <head>
+      <metal:block fill-slot="top_slot">
+        <span tal:replace="nothing"
+              tal:define="dummy python:request.set('enable_border', 1)" />
+      </metal:block>
+  </head>
+
+  <body>
+
+    <div metal:fill-slot="main">
+        <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+          Title or id
+        </h1>
+
+        <div class="stx" tal:content="here/Description">
+            description
+        </div>
+
+        <h1 class="" i18n:translate="heading-stories">Stories</h1>
+
+        <div class="stories"><strong>
+          <a href="#">Story 1</a><br/>
+          <a href="#">Story 2</a><br/>
+          <a href="#">Story 3</a><br/>
+          <a href="#">Story 4</a><br/>
+          <a href="#">Story 5</a><br/></strong>
+        </div>
+
+
+
+
+
+    </div>
+  </body>
+</html>

@@ -18,8 +18,8 @@ class Iteration(OrderedBaseFolder):
     meta_type             = 'Iteration'
     archetype_name        = 'Iteration'
     product_meta_type     = 'Iteration'
-    immediate_view        = 'base_view'
-    default_view          = 'base_view'
+    immediate_view        = 'iteration_view'
+    default_view          = 'iteration_view'
     allowed_content_types = (['Story',])
     global_allow          = 0
     typeDescription       = ''
@@ -30,7 +30,7 @@ class Iteration(OrderedBaseFolder):
                {
                 'id': 'view',
                 'name': 'View',
-                'action': 'string:${object_url}/base_view',
+                'action': 'string:${object_url}/iteration_view',
                 'permissions': (CMFCorePermissions.View,),
                 'category': 'object'
                },
