@@ -4,17 +4,22 @@ from AccessControl import ClassSecurityInfo
 from Products.eXtremeManagement.schemata import *
 from Products.eXtremeManagement.config import *
 
-schema = BaseFolderSchema
+from Products.Archetypes.BaseFolder import BaseFolder
+from Products.Archetypes.interfaces.orderedfolder import IOrderedFolder
+from Products.Archetypes import OrderedBaseFolder
+from Products.Archetypes.OrderedBaseFolder import OrderedBaseFolder
 
-class Iteration(BaseFolder):
+schema = BaseFolderSchema + DescriptionSchema
+
+class Iteration(OrderedBaseFolder):
     """A simple folderish archetype"""
     schema                = schema
     content_icon          = 'folder_icon.gif'
     meta_type             = 'Iteration'
     archetype_name        = 'Iteration'
     product_meta_type     = 'Iteration'
-    immediate_view        = 'iteration_view'
-    default_view          = 'iteration_view'
+    immediate_view        = 'base_view'
+    default_view          = 'base_view'
     allowed_content_types = (['Story',])
     global_allow          = 0
     typeDescription       = ''
@@ -25,7 +30,7 @@ class Iteration(BaseFolder):
                {
                 'id': 'view',
                 'name': 'View',
-                'action': 'string:${object_url}/iteration_view',
+                'action': 'string:${object_url}/base_view',
                 'permissions': (CMFCorePermissions.View,),
                 'category': 'object'
                },

@@ -4,7 +4,7 @@ from AccessControl import ClassSecurityInfo
 from Products.eXtremeManagement.schemata import *
 from Products.eXtremeManagement.config import *
 
-schema = BaseFolderSchema
+schema = BaseFolderSchema + DescriptionSchema
 
 class Story(BaseFolder):
     """A simple folderish archetype"""
@@ -13,8 +13,8 @@ class Story(BaseFolder):
     meta_type             = 'Story'
     archetype_name        = 'Story'
     product_meta_type     = 'Story'
-    immediate_view        = 'story_view'
-    default_view          = 'story_view'
+    immediate_view        = 'base_view'
+    default_view          = 'base_view'
     allowed_content_types = (['Task',])
     global_allow          = 0
     typeDescription       = ''
@@ -25,7 +25,7 @@ class Story(BaseFolder):
                {
                 'id': 'view',
                 'name': 'View',
-                'action': 'string:${object_url}/task_view',
+                'action': 'string:${object_url}/base_view',
                 'permissions': (CMFCorePermissions.View,),
                 'category': 'object'
                },

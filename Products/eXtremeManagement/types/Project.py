@@ -4,9 +4,14 @@ from AccessControl import ClassSecurityInfo
 from Products.eXtremeManagement.schemata import *
 from Products.eXtremeManagement.config import *
 
-schema = BaseFolderSchema
+from Products.Archetypes.BaseFolder import BaseFolder
+from Products.Archetypes.interfaces.orderedfolder import IOrderedFolder
+from Products.Archetypes import OrderedBaseFolder
+from Products.Archetypes.OrderedBaseFolder import OrderedBaseFolder
 
-class Project(BaseFolder):
+schema = BaseFolderSchema + DescriptionSchema
+
+class Project(OrderedBaseFolder):
     """A simple folderish archetype"""
     schema                = schema
     content_icon          = 'folder_icon.gif'

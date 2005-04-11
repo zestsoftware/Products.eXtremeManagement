@@ -4,15 +4,15 @@ from AccessControl import ClassSecurityInfo
 from Products.eXtremeManagement.schemata import *
 from Products.eXtremeManagement.config import *
 
-schema = BaseFolderSchema
+schema = BaseFolderSchema + DescriptionSchema
 
 class ProjectFolder(BaseFolder):
     """A simple folderish archetype"""
     schema                = schema
     content_icon          = 'folder_icon.gif'
-    meta_type             = 'ProjectFolder'
-    archetype_name        = 'ProjectFolder'
-    product_meta_type     = 'ProjectFolder'
+    meta_type             = 'Project Folder'
+    archetype_name        = 'Project Folder'
+    product_meta_type     = 'Project Folder'
     immediate_view        = 'folder_listing'
     default_view          = 'folder_listing'
     allowed_content_types = (['Project',])

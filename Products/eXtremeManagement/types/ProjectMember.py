@@ -4,17 +4,17 @@ from AccessControl import ClassSecurityInfo
 from Products.eXtremeManagement.schemata import *
 from Products.eXtremeManagement.config import *
 
-schema = BaseFolderSchema 
+schema = BaseFolderSchema + ProjectMemberSchema 
 
 class ProjectMember(BaseContent):
     """A simple archetype"""
     schema                = schema
     content_icon          = 'user.gif'
-    meta_type             = 'ProjectMember'
-    archetype_name        = 'ProjectMember'
-    product_meta_type     = 'ProjectMember'
-    immediate_view        = 'project_member_view'
-    default_view          = 'project_member_view'
+    meta_type             = 'Project Member'
+    archetype_name        = 'Project Member'
+    product_meta_type     = 'Project Member'
+    immediate_view        = 'base_view'
+    default_view          = 'base_view'
     allowed_content_types = ([])
     global_allow          = 0
     typeDescription       = ''
@@ -25,7 +25,7 @@ class ProjectMember(BaseContent):
                {
                 'id': 'view',
                 'name': 'View',
-                'action': 'string:${object_url}/project_member_view',
+                'action': 'string:${object_url}/base_view',
                 'permissions': (CMFCorePermissions.View,),
                 'category': 'object'
                },
