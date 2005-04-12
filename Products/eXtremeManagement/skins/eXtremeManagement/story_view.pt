@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en"
-      i18n:domain="plone"
+      i18n:domain="rXtremeManagement"
       metal:use-macro="here/main_template/macros/master">
 
   <head>
@@ -21,24 +21,51 @@
             description
         </div>
 
-        <h1 class="" i18n:translate="heading-tasks">Tasks</h1>
+        <tal:block tal:condition="python:here.contentValues('Task')">
+          <h1 class="" i18n:translate="heading-tasks">Tasks</h1>
+          <table id="sortable"
+                 class="listing"
+                 border="1"
+                 cellpadding="0" cellspacing="0">
 
-        <table id="sortable"
-               class="listing"
-               cellpadding="0" cellspacing="0">
+             <thead>
+               <tr>
+                 <th i18n:translate="listingheader_desc">Description</th>
+                 <th i18n:translate="listingheader_estimate">Estimate</th>                  
+                 <th i18n:translate="listingheader_actual">Actual</th>
+                 <th i18n:translate="listingheader_diff">Difference</th>
+                 <th i18n:translate="listingheader_state">Status</th>
+               </tr>
+             </thead>
 
-           <thead>
-             <tr>
-               <th i18n:translate="listingheader_desc">Description</th>
-               <th i18n:translate="listingheader_estimate">Estimate</th>                  
-               <th i18n:translate="listingheader_actual">Actual</th>
-               <th i18n:translate="listingheader_diff">Difference</th>
-             </tr>
-           </thead>
+               <tr tal:define="items python:here.contentValues('Task')"
+                   tal:repeat="item items">
+                 <td>
+                   <a href=""
+                      tal:attributes="href string:${item/absolute_url}">
+                      <span tal:content="item/task">Task</span></a></td>
+                 <td tal:content="item/estimate">Estimate</td>
+                 <td tal:content="item/actual">Actual</td>
+                 <td tal:content="python: item.estimate - item.actual">Difference</td>
+                 <td tal:define="wtool here/portal_workflow;
+                                 review_state python:wtool.getInfoFor(item, 'review_state')"
+                     tal:content="review_state">Status</td>
+               </tr>
+               
+               <tr>
+                 <td i18n:translate="total">Total</td>
+                 <td>total estimate</td>
+                 <td>total actual</td>
+                 <td>total diff</td>
+                 <td>&nbsp;</td>  
+               </tr>
 
-
-
-        </table>   
+          </table>
+        </tal:block>
+    
+        <div class="discreet"
+             tal:condition="python: not here.contentValues('Task')"
+             i18n:translate="no_tasks_defined">No tasks defined yet.</div>
 
     </div>
   </body>

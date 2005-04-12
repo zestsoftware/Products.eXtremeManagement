@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en"
-      i18n:domain="plone"
+      i18n:domain="eXtremeManagement"
       metal:use-macro="here/main_template/macros/master">
 
   <head>
@@ -21,19 +21,22 @@
             description
         </div>
 
-        <h1 class="" i18n:translate="heading-stories">Stories</h1>
-
-        <div class="stories"><strong>
-          <a href="#">Story 1</a><br/>
-          <a href="#">Story 2</a><br/>
-          <a href="#">Story 3</a><br/>
-          <a href="#">Story 4</a><br/>
-          <a href="#">Story 5</a><br/></strong>
-        </div>
-
-
-
-
+        <tal:block tal:condition="python:here.contentValues('Story')">
+          <h1 class="" i18n:translate="heading-stories">Stories</h1>
+          <div class="stories">
+            <a href=""
+               tal:repeat="link python:here.contentValues('Story')"
+               tal:attributes="href string:${link/absolute_url}">
+              <img src="#"
+                   tal:attributes="src string:${here/portal_url}/${link/getIcon}"/>
+                <span tal:replace="link/Title">Title</span><br />
+            </a>
+          </div>
+        </tal:block>
+ 
+        <div class="discreet" 
+             tal:condition="python: not here.contentValues('Story')"
+             i18n:translate="no_stories_published">No stories published yet.</div>
 
     </div>
   </body>
