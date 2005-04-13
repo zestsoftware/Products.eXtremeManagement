@@ -1,0 +1,43 @@
+/*
+ *  This is the file where you put your CSS changes. 
+ *  You should preferrably use this and override the 
+ *  relevant properties you want to change here instead 
+ *  of customizing plone.css to survive upgrades. Writing
+ *  your own plone.css only makes sense for very heavy 
+ *  customizations. Useful variables from Plone are 
+ *  documented at the bottom of this file.
+ *
+ *  -- Alexander Limi, http://www.plonesolutions.com
+ */
+ 
+/* <dtml-var "enableHTTPCompression(request=REQUEST, debug=1, css=1)"> (this is for http compression) */
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+#total {
+    font-weight: bold;
+}
+#total-estimate {
+    text-align: center;
+}
+#total-actual {
+    text-align: center;
+}
+#total-diff {
+    text-align: center;
+}
+#td-estimate {
+    text-align: center;
+}
+#td-actual {
+    text-align: center;
+}
+#td-diff {
+    text-align: center;
+}
+
+
+
+
+/* </dtml-with> */
+

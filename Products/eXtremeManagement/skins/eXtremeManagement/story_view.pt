@@ -12,7 +12,10 @@
 
   <body>
 
-    <div metal:fill-slot="main">
+    <div metal:fill-slot="main"
+         tal:define="totalActual python:here.getTotalActual();
+                     totalEstimate python:here.getTotalEstimate()">
+
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
           Title or id
         </h1>
@@ -44,19 +47,22 @@
                    <a href=""
                       tal:attributes="href string:${item/absolute_url}">
                       <span tal:content="item/task">Task</span></a></td>
-                 <td tal:content="item/estimate">Estimate</td>
-                 <td tal:content="item/actual">Actual</td>
-                 <td tal:content="python: item.estimate - item.actual">Difference</td>
+                 <td id="td-estimate" tal:content="item/estimate">Estimate</td>
+                 <td id="td-actual" tal:content="item/actual">Actual</td>
+                 <td id="td-diff" tal:content="python: item.estimate - item.actual">Difference</td>
                  <td tal:define="wtool here/portal_workflow;
                                  review_state python:wtool.getInfoFor(item, 'review_state')"
                      tal:content="review_state">Status</td>
                </tr>
                
-               <tr>
-                 <td i18n:translate="total">Total</td>
-                 <td>total estimate</td>
-                 <td>total actual</td>
-                 <td>total diff</td>
+               <tr class="totalTasks">
+                 <td id="total" i18n:translate="total">Total</td>
+                 <td id="total-estimate"
+                     tal:content="totalEstimate">total estimate</td>
+                 <td id="total-actual" 
+                     tal:content="totalActual">total actual</td>
+                 <td id="total-diff" 
+                     tal:content="python: totalEstimate - totalActual">total diff</td>
                  <td>&nbsp;</td>  
                </tr>
 

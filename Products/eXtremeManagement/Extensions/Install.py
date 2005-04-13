@@ -9,8 +9,17 @@ from StringIO import StringIO
 from Products.eXtremeManagement.config import PROJECTNAME, GLOBALS
 from Products.eXtremeManagement.config import *
 
+def setupProps(portal):
+    # Add eXtreme Props
+    if not hasattr(portal.portal_properties, 'extreme_properties'):
+        portal.portal_properties.addPropertySheet('extreme_properties', 'eXtreme Properties')
+        props = portal.portal_properties.extreme_properties
+        props._setProperty('hours', ['01', '02', '03', '04', '05', '06', '07', 
+                                     '08', '09', '10', '11', '12', '13', '14', '15'], 'lines')
+        props._setProperty('minutes', ['0', '15', '30', '45'], 'lines')
 
-def setUpSkin(portal):
+
+def setupSkin(portal):
     # Set up the skins
     _dirs = ( 'eXtremeManagement', )
     sk_tool = getToolByName(portal, 'portal_skins')
@@ -37,9 +46,12 @@ def install(self):
     install_subskin(self, out, GLOBALS)
 
     out.write("Successfully installed %s." % PROJECTNAME)
+   
+    print >> out, "Adding eXtreme properties"
+    setupProps(self)
 
     print >> out, "Customize the portal"
-    setUpSkin( self )
+    setupSkin(self)
 
     return out.getvalue()
 
