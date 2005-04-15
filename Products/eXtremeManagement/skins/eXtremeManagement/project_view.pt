@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+    <div metal:fill-slot="main" 
+         tal:define="iterations python:here.portal_catalog.searchResults(portal_type='Iteration', 
+                                                                         path=here.getPhysicalPath());
+                     storiesss python:here.portal_catalog.searchResults(portal_type='Story')">
+
+        <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+            Title or id
+        </h1>
+	
+        <div class="documentDescription" tal:content="here/Description">
+            description
+        </div>
+
+        <tal:block tal:condition="iterations">
+          <h1 class="">Iterations</h1>
+
+          <div class="iterations" tal:repeat="iteration iterations">
+            <table id="sortable"
+                   class="listing"
+                   border="1"
+                   width="60%"
+                   cellpadding="0" cellspacing="0">
+              <tr>
+                <td>
+                  <a href=""
+                     tal:attributes="href string:${iteration/absolute_url}">
+                    <img src="#"
+                         tal:attributes="src string:${here/portal_url}/${iteration/getIcon}"/>
+                      <span tal:replace="iteration/Title">Title</span><br />
+                  </a>
+                </td>
+                <td id="iteration-state" 
+                    colspan="3">status: <span tal:content="iteration/review_state">Status</span></td> 
+              </tr>
+
+
+              <tr>
+                 <th>story</th>
+                 <th>progress</th>
+                 <th>tasks open</th>
+                 <th>tasks completed</th>
+              </tr>
+
+              <tr tal:define="obj iteration/getObject;
+                               stories python:obj.contentValues('Story')"
+                   tal:condition="stories"
+                   tal:repeat="story stories">
+
+                 <td tal:content="story/Title">Title</td>
+                 <td>progress</td>
+                 <td>tasks open</td>
+                 <td>tasks completed</td>
+              </tr>
+
+            </table> <p>&nbsp;</p>
+          </div>
+
+        </tal:block>
+
+    </div>
+</body>
+</html>

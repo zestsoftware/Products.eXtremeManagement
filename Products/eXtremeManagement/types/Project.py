@@ -18,9 +18,9 @@ class Project(OrderedBaseFolder):
     meta_type             = 'Project'
     archetype_name        = 'Project'
     product_meta_type     = 'Project'
-    immediate_view        = 'folder_listing'
-    default_view          = 'folder_listing'
-    allowed_content_types = (['Iteration',])
+    immediate_view        = 'project_view'
+    default_view          = 'project_view'
+    allowed_content_types = (['Iteration', 'Story'])
     global_allow          = 0
     typeDescription       = ''
     typeDescMsgId         = ''
@@ -30,7 +30,7 @@ class Project(OrderedBaseFolder):
                {
                 'id': 'view',
                 'name': 'View',
-                'action': 'string:${object_url}/folder_listing',
+                'action': 'string:${object_url}/project_view',
                 'permissions': (CMFCorePermissions.View,),
                 'category': 'object'
                },
