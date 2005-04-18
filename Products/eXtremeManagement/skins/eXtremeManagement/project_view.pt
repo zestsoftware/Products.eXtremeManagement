@@ -81,53 +81,71 @@ function setFromState(prefix) {
         </div>
 
 
-
-
         <tal:block tal:condition="iterations">
           <h1 class="">Iterations</h1>
 
           <div class="iterations" 
                tal:repeat="iteration iterations"> 
-
+<!--
             <button onclick="javascript:toggleRows('hideRow');">Toggle rows</button>
+-->
+           <div tal:define="obj iteration/getObject;">
 
             <table id="sortable"
                    class="listing"
                    border="1"
                    width="60%"
-                   cellpadding="0" cellspacing="0"
-                   tal:define="obj iteration/getObject;">
+                   cellpadding="0" cellspacing="0">
 
               <tr>
-                <th>
+                <td>
                   <a href=""
                      tal:attributes="href string:${obj/absolute_url}">
                     <img src="#"
                          tal:attributes="src string:${here/portal_url}/${obj/getIcon}"/>
                       <span tal:replace="obj/Title">Title</span>
                   </a>
-                </th>
-                <th id="iteration-state" 
-                    colspan="3">status: <span tal:content="iteration/review_state">Status</span></th> 
+                </td>
+                <td id="iteration-state" colspan="3">status: 
+                    <span tal:content="iteration/review_state">Status</span></td> 
+              </tr>
+              <tr>
+                 <td colspan="5" 
+                     tal:content="obj/Description">Description </td>
               </tr>
 
-              <div tal:define="iteration_path python:'/'.join(obj.getPhysicalPath());
-                               stories python:here.portal_catalog.searchResults(portal_type='Story',
-                                                                                path=iteration_path);"
-                   tal:condition="stories"
-                   tal:repeat="story stories">
 
-                <tr id="hideRow0">
-                   <td> 
-                      <a href="" 
-                         tal:attributes="href string:${story/absolute_url}">
-                         <span tal:content="story/Title">Title</span></a></td>
-                   <td>progress</td>
-                   <td>tasks open</td>
-                   <td>tasks completed</td>
-                </tr> </div>
-            </table> 
 
+              <tr tal:condition="python:obj.contentValues('Story')">
+                <th>Title</th>
+                <th>Progress</th>
+                <th>Tasks open</th>
+                <th>Tasks completed</th>
+              </tr>
+ 
+              <tr tal:define="iteration_path python:'/'.join(obj.getPhysicalPath());
+                              stories python:here.portal_catalog.searchResults(portal_type='Story',
+                                                                               path=iteration_path);"
+                  tal:condition="stories"
+                  tal:repeat="story stories" id="hideRow">
+
+
+                <div tal:define="storyObj story/getObject;">
+
+                  <td> 
+                    <a href="" 
+                       tal:attributes="href string:${storyObj/absolute_url}">
+                       <span tal:content="storyObj/Title">Title</span></a></td>
+                  <td>progress</td>
+                  <td tal:define="getOpenTasks python:here.aa()" 
+                      tal:content="getOpenTasks">tasks open</td>
+                  <td>tasks completed</td>
+ 
+                </div>                 
+              </tr>
+            </table>
+
+           </div>
           </div>
         </tal:block>
 

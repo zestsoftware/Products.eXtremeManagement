@@ -15,7 +15,7 @@ class Story(BaseFolder):
     product_meta_type     = 'Story'
     immediate_view        = 'story_view'
     default_view          = 'story_view'
-    allowed_content_types = (['Task',])
+    allowed_content_types = (['Task', 'Document',])
     global_allow          = 0
     typeDescription       = ''
     typeDescMsgId         = ''
