@@ -3,12 +3,74 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="plone">
 
-<body>
+<head>
+<script>
 
-    <div metal:fill-slot="main" 
-         tal:define="iterations python:here.portal_catalog.searchResults(portal_type='Iteration', 
-                                                                         path=here.getPhysicalPath());
-                     storiesss python:here.portal_catalog.searchResults(portal_type='Story')">
+//cookie functions from http://www.webmasterbase.com/static/popjs.php
+function getCookieVal (offset) {
+var endstr = document.cookie.indexOf (";", offset);
+if (endstr == -1)
+endstr = document.cookie.length;
+return unescape(document.cookie.substring(offset, endstr));
+}
+
+function GetCookie (name) {
+var arg = name + "=";
+var alen = arg.length;
+var clen = document.cookie.length;
+var i = 0;
+while (i < clen) {
+var j = i + alen;
+if (document.cookie.substring(i, j) == arg)
+return getCookieVal (j);
+i = document.cookie.indexOf(" ", i) + 1;
+if (i == 0)
+break;
+}
+return null;
+}
+
+function SetCookie (name, value) {
+var argv = SetCookie.arguments;
+var argc = SetCookie.arguments.length;
+var expires = (2 < argc) ? argv[2] : null;
+var path = (3 < argc) ? argv[3] : null;
+var domain = (4 < argc) ? argv[4] : null;
+var secure = (5 < argc) ? argv[5] : false;
+document.cookie = name + "=" + escape (value) +
+((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
+((path == null) ? "" : ("; path=" + path)) +
+((domain == null) ? "" : ("; domain=" + domain)) +
+((secure == true) ? "; secure" : "");
+}
+
+var rowShow=(document.all?'block':'table-row');
+
+function toggleRows(prefix) {
+    var el,i,state;
+    for (i=0; el=document.getElementById(prefix+i); i++) {
+        state=('none'==el.style.display?1:0);
+        el.style.display=(state?rowShow:'none');
+    }
+    SetCookie('rowShowState'+prefix, state);
+}
+
+function setFromState(prefix) {
+    var el,i,state=GetCookie('rowShowState'+prefix)*1;
+    for (i=0; el=document.getElementById(prefix+i); i++) {
+        el.style.display=(state?rowShow:'none');
+    }
+}
+</script>
+</head>
+
+
+<body onload="javascript:setFromState('hideRow');">
+
+    <div metal:fill-slot="main"
+         tal:define="physical_path python: '/'.join(context.getPhysicalPath());
+                     iterations python:here.portal_catalog.searchResults(portal_type='Iteration', 
+                                                                         path=physical_path);">
 
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
             Title or id
@@ -18,50 +80,55 @@
             description
         </div>
 
+
+
+
         <tal:block tal:condition="iterations">
           <h1 class="">Iterations</h1>
 
-          <div class="iterations" tal:repeat="iteration iterations">
+          <div class="iterations" 
+               tal:repeat="iteration iterations"> 
+
+            <button onclick="javascript:toggleRows('hideRow');">Toggle rows</button>
+
             <table id="sortable"
                    class="listing"
                    border="1"
                    width="60%"
-                   cellpadding="0" cellspacing="0">
+                   cellpadding="0" cellspacing="0"
+                   tal:define="obj iteration/getObject;">
+
               <tr>
-                <td>
+                <th>
                   <a href=""
-                     tal:attributes="href string:${iteration/absolute_url}">
+                     tal:attributes="href string:${obj/absolute_url}">
                     <img src="#"
-                         tal:attributes="src string:${here/portal_url}/${iteration/getIcon}"/>
-                      <span tal:replace="iteration/Title">Title</span><br />
+                         tal:attributes="src string:${here/portal_url}/${obj/getIcon}"/>
+                      <span tal:replace="obj/Title">Title</span>
                   </a>
-                </td>
-                <td id="iteration-state" 
-                    colspan="3">status: <span tal:content="iteration/review_state">Status</span></td> 
+                </th>
+                <th id="iteration-state" 
+                    colspan="3">status: <span tal:content="iteration/review_state">Status</span></th> 
               </tr>
 
-
-              <tr>
-                 <th>story</th>
-                 <th>progress</th>
-                 <th>tasks open</th>
-                 <th>tasks completed</th>
-              </tr>
-
-              <tr tal:define="obj iteration/getObject;
-                               stories python:obj.contentValues('Story')"
+              <div tal:define="iteration_path python:'/'.join(obj.getPhysicalPath());
+                               stories python:here.portal_catalog.searchResults(portal_type='Story',
+                                                                                path=iteration_path);"
                    tal:condition="stories"
                    tal:repeat="story stories">
 
-                 <td tal:content="story/Title">Title</td>
-                 <td>progress</td>
-                 <td>tasks open</td>
-                 <td>tasks completed</td>
-              </tr>
+                <tr id="hideRow0">
+                   <td> 
+                      <a href="" 
+                         tal:attributes="href string:${story/absolute_url}">
+                         <span tal:content="story/Title">Title</span></a></td>
+                   <td>progress</td>
+                   <td>tasks open</td>
+                   <td>tasks completed</td>
+                </tr> </div>
+            </table> 
 
-            </table> <p>&nbsp;</p>
           </div>
-
         </tal:block>
 
     </div>
