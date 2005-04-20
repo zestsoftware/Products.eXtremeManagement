@@ -20,14 +20,19 @@
           Title or id
         </h1>
 
-        <div class="stx" tal:content="here/Description">
-            description
+        <div class="documentDescription" 
+             tal:condition="here/Description" 
+             tal:content="here/Description">description
         </div>
+
+        <div class="stx" tal:replace="structure here/CookedBody">
+            body text
+        </div>
+
 
         <tal:block tal:condition="python:here.contentValues('Task')">
           <h1 class="" i18n:translate="heading-tasks">Tasks</h1>
-          <table id="sortable"
-                 class="listing"
+          <table class="listing"
                  border="1"
                  cellpadding="0" cellspacing="0">
 
@@ -38,6 +43,7 @@
                  <th i18n:translate="listingheader_actual">Actual</th>
                  <th i18n:translate="listingheader_diff">Difference</th>
                  <th i18n:translate="listingheader_state">Status</th>
+                 <th i18n:translate="listingheader_assignee">Assignee(s)</th>
                </tr>
              </thead>
 
@@ -53,6 +59,7 @@
                  <td tal:define="wtool here/portal_workflow;
                                  review_state python:wtool.getInfoFor(item, 'review_state')"
                      tal:content="review_state">Status</td>
+                 <td tal:content="item/assignee">Assignee</td>
                </tr>
                
                <tr class="totalTasks">
@@ -63,6 +70,7 @@
                      tal:content="totalActual">total actual</td>
                  <td id="total-diff" 
                      tal:content="python: totalEstimate - totalActual">total diff</td>
+                 <td>&nbsp;</td>  
                  <td>&nbsp;</td>  
                </tr>
 

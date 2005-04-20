@@ -114,26 +114,26 @@ CustomerSchema = Schema((
 
 ProjectMemberSchema = Schema((
 
-    TextField('firstname',
+    TextField('Fullname',
                index='FieldIndex',
                required=1,
-               widget=StringWidget(description="Enter name, eg. John.",
-                                   description_msgid="desc_firstname",
+               widget=StringWidget(description="Enter a name, eg. John Smith.",
+                                   description_msgid="desc_fullname",
                                    label="Name",
-                                   label_msgid="label_firstname",
+                                   label_msgid="label_fullname",
                                    i18n_domain="eXtremeManagement",
                                    size=30),
              ),
-    TextField('surname',
-               index='FieldIndex',
-               required=1,
-               widget=StringWidget(description="Enter surname, eg. Smith.",
-                                   description_msgid="desc_lastname",
-                                   label="Surname",
-                                   label_msgid="label_surname",
-                                   i18n_domain="eXtremeManagement",
-                                   size=30),
-             ),
+#    TextField('surname',
+#               index='FieldIndex',
+#               required=1,
+#               widget=StringWidget(description="Enter surname, eg. Smith.",
+#                                   description_msgid="desc_lastname",
+#                                   label="Surname",
+#                                   label_msgid="label_surname",
+#                                   i18n_domain="eXtremeManagement",
+#                                   size=30),
+#             ),
     IntegerField('phone',
                   index='FieldIndex',
                   required=1,
@@ -154,7 +154,6 @@ ProjectMemberSchema = Schema((
                                    i18n_domain="eXtremeManagement",
                                    size=30),
              ),
-
     TextField('comment',
                required=0,
                widget=TextAreaWidget(description="Enter some comments.",
@@ -199,6 +198,17 @@ TaskSchema = Schema((
                                        i18n_domain="eXtremeManagement",
                                        size=15),
                 ),
+#    StringField('assignees',
+#                 index='FieldIndex', 
+#                 required=0,
+#                 vocabulary='_get_assignees',
+#                 widget=MultiSelectionWidget(description="Select the member(s) to assign this task to.",
+#                                             description_msgid="desc_assignees", 
+#                                             label="Select Assignees",
+#                                             label_msgid="label_assignees",
+#                                             i18n_domain="eXtremeManagement"),
+#          
+#               ),
 
 ))
 
@@ -212,9 +222,31 @@ ProjectSchema = Schema((
                     widget=ReferenceWidget(label="Customers",
                                            label_msgid="label_customers",
                                            description="Reference to a customer.",
-                                           description_msgid="description_customer",
-                                          ),
-                  )
+                                           description_msgid="description_customer",),
+                  ),
+    StringField('project_members',
+                 index='FieldIndex',
+                 required=0,
+                 vocabulary='_get_project_members',
+                 widget=MultiSelectionWidget(description="Select the member(s) for this project.",
+                                             description_msgid="desc_project_memeber",
+                                             label="Select project members",
+                                             label_msgid="label_project_members",
+                                             i18n_domain="eXtremeManagement"),
+
+               ),
 ))
 
+StorySchema = Schema((
 
+    TextField('mainText',
+               required=1,
+               widget=RichWidget(description="Enter the main description for this object.",
+                                 description_msgid="desc_mainText",
+                                 label="Body text",
+                                 label_msgid="label_mainText",
+                                 i18n_domain="eXtremeManagement",
+                                 rows=5),
+             ),
+
+))

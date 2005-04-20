@@ -4,71 +4,17 @@
       i18n:domain="plone">
 
 <head>
-<script>
-
-//cookie functions from http://www.webmasterbase.com/static/popjs.php
-function getCookieVal (offset) {
-var endstr = document.cookie.indexOf (";", offset);
-if (endstr == -1)
-endstr = document.cookie.length;
-return unescape(document.cookie.substring(offset, endstr));
-}
-
-function GetCookie (name) {
-var arg = name + "=";
-var alen = arg.length;
-var clen = document.cookie.length;
-var i = 0;
-while (i < clen) {
-var j = i + alen;
-if (document.cookie.substring(i, j) == arg)
-return getCookieVal (j);
-i = document.cookie.indexOf(" ", i) + 1;
-if (i == 0)
-break;
-}
-return null;
-}
-
-function SetCookie (name, value) {
-var argv = SetCookie.arguments;
-var argc = SetCookie.arguments.length;
-var expires = (2 < argc) ? argv[2] : null;
-var path = (3 < argc) ? argv[3] : null;
-var domain = (4 < argc) ? argv[4] : null;
-var secure = (5 < argc) ? argv[5] : false;
-document.cookie = name + "=" + escape (value) +
-((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
-((path == null) ? "" : ("; path=" + path)) +
-((domain == null) ? "" : ("; domain=" + domain)) +
-((secure == true) ? "; secure" : "");
-}
-
-var rowShow=(document.all?'block':'table-row');
-
-function toggleRows(prefix) {
-    var el,i,state;
-    for (i=0; el=document.getElementById(prefix+i); i++) {
-        state=('none'==el.style.display?1:0);
-        el.style.display=(state?rowShow:'none');
-    }
-    SetCookie('rowShowState'+prefix, state);
-}
-
-function setFromState(prefix) {
-    var el,i,state=GetCookie('rowShowState'+prefix)*1;
-    for (i=0; el=document.getElementById(prefix+i); i++) {
-        el.style.display=(state?rowShow:'none');
-    }
-}
-</script>
+      <metal:block metal:fill-slot="javascript_head_slot">
+        <script type="text/javascript"
+          tal:attributes="src string:$portal_url/project.js"></script>
+      </metal:block>
 </head>
 
-
-<body onload="javascript:setFromState('hideRow');">
+<body onload="javascript:setFromState('hideRow0');">
 
     <div metal:fill-slot="main"
-         tal:define="physical_path python: '/'.join(context.getPhysicalPath());
+         tal:define="idIndex python:Iterator(pos=-1);
+                     physical_path python: '/'.join(context.getPhysicalPath());
                      iterations python:here.portal_catalog.searchResults(portal_type='Iteration', 
                                                                          path=physical_path);">
 
@@ -86,19 +32,22 @@ function setFromState(prefix) {
 
           <div class="iterations" 
                tal:repeat="iteration iterations"> 
-<!--
-            <button onclick="javascript:toggleRows('hideRow');">Toggle rows</button>
--->
-           <div tal:define="obj iteration/getObject;">
+
+           <div tal:define="obj iteration/getObject;
+                            idx idIndex/next;">
 
             <table id="sortable"
                    class="listing"
                    border="1"
-                   width="60%"
-                   cellpadding="0" cellspacing="0">
+                   width="65%"
+                   cellpadding="0" cellspacing="0"
+                   tal:attributes="onload string:javascript:setFromState('hideTable${idx}');">
 
               <tr>
-                <td>
+                <td>        
+                  <img src="treeCollapsed.gif"
+                       tal:attributes="onclick string:javascript:toggleId('hideTable${idx}');" />
+
                   <a href=""
                      tal:attributes="href string:${obj/absolute_url}">
                     <img src="#"
@@ -110,40 +59,49 @@ function setFromState(prefix) {
                     <span tal:content="iteration/review_state">Status</span></td> 
               </tr>
               <tr>
-                 <td colspan="5" 
+                 <td colspan="4" 
                      tal:content="obj/Description">Description </td>
               </tr>
+            </table>
+              
 
-
+            <table class="listing" width="65%" border="1"
+                   tal:attributes="id string:hideTable${idx};">
 
               <tr tal:condition="python:obj.contentValues('Story')">
                 <th>Title</th>
-                <th>Progress</th>
+                <th colspan="2">Progress</th>
                 <th>Tasks open</th>
                 <th>Tasks completed</th>
               </tr>
  
               <tr tal:define="iteration_path python:'/'.join(obj.getPhysicalPath());
                               stories python:here.portal_catalog.searchResults(portal_type='Story',
+                                                                               sort_order='traverse',
                                                                                path=iteration_path);"
                   tal:condition="stories"
-                  tal:repeat="story stories" id="hideRow">
+                  tal:repeat="story stories">
 
 
-                <div tal:define="storyObj story/getObject;">
+                <div tal:define="storyObj story/getObject;
+                                 progress python:here.getProgress();
+                                 getOpenTasks python:here.getOpenTasks(storyObj);
+                                 getCompletedTasks python:here.getCompletedTasks(storyObj)">
 
                   <td> 
                     <a href="" 
                        tal:attributes="href string:${storyObj/absolute_url}">
                        <span tal:content="storyObj/Title">Title</span></a></td>
-                  <td>progress</td>
-                  <td tal:define="getOpenTasks python:here.aa()" 
-                      tal:content="getOpenTasks">tasks open</td>
-                  <td>tasks completed</td>
- 
+                  <td tal:content="python:str(progress) + '%' ">&nbsp; </td>
+                  <td>
+                    <img src="progress.gif" height="12" width="" 
+                                                        tal:attributes="width progress"/>&nbsp;</td>
+                  <td tal:content="getOpenTasks">tasks open</td>
+                  <td tal:content="getCompletedTasks">tasks completed</td>
+                       
                 </div>                 
               </tr>
-            </table>
+            </table> <p>&nbsp;</p>
 
            </div>
           </div>

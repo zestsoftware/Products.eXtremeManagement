@@ -4,7 +4,7 @@ from AccessControl import ClassSecurityInfo
 from Products.eXtremeManagement.schemata import *
 from Products.eXtremeManagement.config import *
 
-schema = BaseFolderSchema + DescriptionSchema
+schema = BaseFolderSchema + DescriptionSchema + StorySchema
 
 class Story(BaseFolder):
     """A simple folderish archetype"""
@@ -20,6 +20,12 @@ class Story(BaseFolder):
     typeDescription       = ''
     typeDescMsgId         = ''
     security              = ClassSecurityInfo()
+
+
+    def CookedBody(self):
+        """Dummy attribute to allow drop-in replacement of Document"""
+        return self.getMainText()
+
 
     actions = (
                {
