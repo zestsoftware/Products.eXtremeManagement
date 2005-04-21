@@ -9,7 +9,7 @@
 ##
 
 story_path = '/'.join(storyObj.getPhysicalPath())
-items = context.portal_catalog.searchResults(portal_type="Task",
+items = context.portal_catalog.searchResults(portal_type='Task',
                                              path=story_path)
 
 estimate = []

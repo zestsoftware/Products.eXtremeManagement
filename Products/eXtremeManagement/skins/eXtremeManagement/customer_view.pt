@@ -1,0 +1,111 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      i18n:domain="rXtremeManagement"
+      metal:use-macro="here/main_template/macros/master">
+
+  <head>
+      <metal:block fill-slot="top_slot">
+        <span tal:replace="nothing"
+              tal:define="dummy python:request.set('enable_border', 1)" />
+      </metal:block>
+  </head>
+
+  <body>
+
+    <div metal:fill-slot="main">
+
+        <h1 class="documentFirstHeading" i18n:translate="header_customers">
+          Customer info
+        </h1>
+
+        <div class="documentDescription"
+             tal:condition="here/Description"
+             tal:content="here/Description">description
+        </div>
+
+          <table class="listing"
+                 border="1" 
+                 width="65%"
+                 cellpadding="0" cellspacing="0">
+
+             <tr>
+               <th i18n:translate="listingheader_name">Fullname</th> 
+               <td tal:content="here/name">Fullname</td>
+             </tr>
+             <tr>
+               <th i18n:translate="listingheader_address">Address</th>
+               <td tal:content="here/address">Address</td>
+             </tr>
+             <tr>
+               <th i18n:translate="listingheader_zipCode">Zip code</th>
+               <td tal:content="here/zipCode">Zip code</td>
+             </tr>
+             <tr>
+               <th i18n:translate="listingheader_city">City</th>
+               <td tal:content="here/city">City</td>
+             </tr>
+             <tr>
+               <th i18n:translate="listingheader_country">Country</th>
+               <td tal:content="here/country">Country</td>
+             </tr>
+             <tr>
+               <th i18n:translate="listingheader_phone">Phone</th>
+               <td tal:content="here/phone">Phone</td>
+             </tr>
+             <tr>
+               <th i18n:translate="listingheader_fax">Fax</th>
+               <td tal:content="here/fax">Fax</td>
+             </tr>
+             <tr>
+               <th i18n:translate="listingheader_email">E-mail</th>
+               <td tal:content="here/email">E-mail</td>
+             </tr>
+             <tr>
+               <th i18n:translate="listingheader_website">Website</th>
+               <td tal:content="here/website">Website</td>
+             </tr>
+             <tr>
+               <th i18n:translate="listingheader_comments">Comments</th>
+               <td tal:content="here/comments">Comments</td>
+             </tr>
+          </table>
+
+
+          <div tal:define="projMembers python:here.contentValues('Project Member')" 
+               tal:condition="projMembers">
+
+            <h1 i18n:translate="header_project_members">Project members</h1>
+
+            <table class="listing"
+                   cellspacing="0" cellpadding="0"
+                   width="80%"
+                   border="1">
+
+              <thead>
+                <tr>
+                  <th>name</th>
+                  <th>phone</th>
+                  <th>email</th>
+                  <th>comments</th>
+                </tr>
+              </thead>
+ 
+              <tbody>
+                <tr tal:repeat="member projMembers">
+                  <td>
+                    <a href=""
+                       tal:attributes="href string:${member/absolute_url}">
+                       <img src="user.gif" /> <span tal:content="member/fullname">Name</span></a></td>
+                  <td tal:content="member/phone">Phone</td>
+                  <td tal:content="member/email">Email</td>
+                  <td tal:content="member/comments">comments</td>
+                </tr>
+              </tbody>
+            </table>
+   
+          </div>
+
+    </div>
+  </body>
+</html>
+

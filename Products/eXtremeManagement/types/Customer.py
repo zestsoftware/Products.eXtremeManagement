@@ -13,8 +13,8 @@ class Customer(BaseFolder):
     meta_type             = 'Customer'
     archetype_name        = 'Customer'
     product_meta_type     = 'Customer'
-    immediate_view        = 'base_view'
-    default_view          = 'base_view'
+    immediate_view        = 'customer_view'
+    default_view          = 'customer_view'
     allowed_content_types = (['ProjectMember',])
     global_allow          = 0
     typeDescription       = ''
@@ -22,13 +22,11 @@ class Customer(BaseFolder):
     security              = ClassSecurityInfo()
 
     actions = (
-               {
-                'id': 'view',
+               {'id': 'view',
                 'name': 'View',
-                'action': 'string:${object_url}/base_view',
+                'action': 'string:${object_url}/customer_view',
                 'permissions': (CMFCorePermissions.View,),
-                'category': 'object'
-               },
+                'category': 'object'},
               )
 
 registerType(Customer, PROJECTNAME)

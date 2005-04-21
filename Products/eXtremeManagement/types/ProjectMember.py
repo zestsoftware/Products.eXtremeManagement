@@ -13,8 +13,8 @@ class ProjectMember(BaseContent):
     meta_type             = 'Project Member'
     archetype_name        = 'Project Member'
     product_meta_type     = 'Project Member'
-    immediate_view        = 'base_view'
-    default_view          = 'base_view'
+    immediate_view        = 'project_member_view'
+    default_view          = 'project_member_view'
     allowed_content_types = ([])
     global_allow          = 0
     typeDescription       = ''
@@ -22,13 +22,11 @@ class ProjectMember(BaseContent):
     security              = ClassSecurityInfo()
 
     actions = (
-               {
-                'id': 'view',
+               {'id': 'view',
                 'name': 'View',
-                'action': 'string:${object_url}/base_view',
+                'action': 'string:${object_url}/project_member_view',
                 'permissions': (CMFCorePermissions.View,),
-                'category': 'object'
-               },
+                'category': 'object'},
               )
 
 registerType(ProjectMember, PROJECTNAME)

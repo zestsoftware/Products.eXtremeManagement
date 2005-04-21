@@ -49,10 +49,6 @@ class Project(OrderedBaseFolder):
                     list1.append((id, name))
         return list1
 
-    def _get_project_members(self):
-        """ returns a list of team members """      
-        return DisplayList((self.getMembers()))
-
     def getProject(self):
         """ 
         returns self - useful while doing aquisition many levels down the tree 

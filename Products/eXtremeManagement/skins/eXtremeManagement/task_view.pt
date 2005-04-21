@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      i18n:domain="rXtremeManagement"
+      metal:use-macro="here/main_template/macros/master">
+
+  <head>
+      <metal:block fill-slot="top_slot">
+        <span tal:replace="nothing"
+              tal:define="dummy python:request.set('enable_border', 1)" />
+      </metal:block>
+  </head>
+
+  <body>
+
+    <div metal:fill-slot="main">
+
+        <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+          Title or id
+        </h1>
+
+        <div class="documentDescription"
+             tal:condition="here/Description"
+             tal:content="here/Description">description
+        </div>
+
+          <table class="listing"
+                 border="1" 
+                 width="65%"
+                 cellpadding="0" cellspacing="0">
+
+             <tr>
+               <th i18n:translate="listingheader_task_desc">Task Description</th> 
+               <td tal:content="here/task">Task description</td>
+             </tr>
+             <tr>
+               <th i18n:translate="listingheader_estimate">Estimate</th>
+               <td tal:content="here/estimate">Estimate</td>
+             </tr>
+             <tr tal:condition="here/actual">
+               <th i18n:translate="listingheader_actual">Actual</th>
+               <td tal:content="here/actual">Actual</td>
+             </tr>
+             <tr>
+               <th i18n:translate="listingheader_status">Status</th>
+               <td tal:define="wtool here/portal_workflow;
+                               review_state python:wtool.getInfoFor(here, 'review_state')"
+                   tal:content="review_state">Status</td>
+             </tr>
+             <tr>
+               <th i18n:translate="listingheader_assignee">Assignee(s)</th>
+               <td >Assignee</td>
+             </tr>
+          </table>
+
+    </div>
+  </body>
+</html>
+

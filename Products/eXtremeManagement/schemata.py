@@ -114,7 +114,7 @@ CustomerSchema = Schema((
 
 ProjectMemberSchema = Schema((
 
-    TextField('Fullname',
+    TextField('fullname',
                index='FieldIndex',
                required=1,
                widget=StringWidget(description="Enter a name, eg. John Smith.",
@@ -154,7 +154,7 @@ ProjectMemberSchema = Schema((
                                    i18n_domain="eXtremeManagement",
                                    size=30),
              ),
-    TextField('comment',
+    TextField('comments',
                required=0,
                widget=TextAreaWidget(description="Enter some comments.",
                                      description_msgid="desc_comments",
@@ -224,17 +224,17 @@ ProjectSchema = Schema((
                                            description="Reference to a customer.",
                                            description_msgid="description_customer",),
                   ),
-    StringField('project_members',
-                 index='FieldIndex',
-                 required=0,
-                 vocabulary='_get_project_members',
-                 widget=MultiSelectionWidget(description="Select the member(s) for this project.",
-                                             description_msgid="desc_project_memeber",
-                                             label="Select project members",
-                                             label_msgid="label_project_members",
-                                             i18n_domain="eXtremeManagement"),
-
-               ),
+#    StringField('project_members',
+#                 index='FieldIndex',
+#                 required=0,
+#                 vocabulary='_get_project_members',
+#                 widget=MultiSelectionWidget(description="Select the member(s) for this project.",
+#                                             description_msgid="desc_project_memeber",
+#                                             label="Select project members",
+#                                             label_msgid="label_project_members",
+#                                             i18n_domain="eXtremeManagement"),
+#
+#               ),
 ))
 
 StorySchema = Schema((

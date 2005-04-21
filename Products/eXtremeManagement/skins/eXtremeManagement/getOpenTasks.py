@@ -9,8 +9,8 @@
 ##
 
 story_path = '/'.join(storyObj.getPhysicalPath())
-items = context.portal_catalog.searchResults(portal_type="Task", 
-                                             review_state="open", 
+items = context.portal_catalog.searchResults(portal_type='Task', 
+                                             review_state='open', 
                                              path=story_path)
 list = []
 for item in items:
