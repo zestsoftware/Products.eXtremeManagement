@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="eXtremeManagement">
 
 <head>
       <metal:block metal:fill-slot="javascript_head_slot">
@@ -28,7 +28,7 @@
 
 
         <tal:block tal:condition="iterations">
-          <h1 class="">Iterations</h1>
+         <h1 class="">Iterations</h1>
 
           <div class="iterations" 
                tal:repeat="iteration iterations"> 
@@ -39,12 +39,13 @@
             <table id="sortable"
                    class="listing"
                    border="1"
-                   width="65%"
-                   cellpadding="0" cellspacing="0"
+                   width="70%"
+                   cellpadding="0" 
+                   cellspacing="0"
                    tal:attributes="onload string:javascript:setFromState('hideTable${idx}');">
-
+            
               <tr>
-                <td>        
+                <th width="60%">        
                   <img src="treeCollapsed.gif"
                        tal:attributes="onclick string:javascript:toggleId('hideTable${idx}');" />
 
@@ -54,25 +55,29 @@
                          tal:attributes="src string:${here/portal_url}/${obj/getIcon}"/>
                       <span tal:replace="obj/Title">Title</span>
                   </a>
-                </td>
-                <td id="iteration-state" colspan="3">status: 
-                    <span tal:content="iteration/review_state">Status</span></td> 
+                </th>
+                <th width="40%" id="iteration-state">status: 
+                    <span tal:content="iteration/review_state">Status</span>
+                </th> 
               </tr>
               <tr>
-                 <td colspan="4" 
+                 <td colspan="2" 
                      tal:content="obj/Description">Description </td>
               </tr>
             </table>
               
-
-            <table class="listing" width="65%" border="1"
+            <table class="listing" 
+                   width="70%" 
+                   border="1"
+                   cellpadding="0" 
+                   cellspacing="0"
                    tal:attributes="id string:hideTable${idx};">
 
               <tr tal:condition="python:obj.contentValues('Story')">
-                <th>Title</th>
-                <th colspan="2">Progress</th>
-                <th>Tasks open</th>
-                <th>Tasks completed</th>
+                <th i18n:translate="">Title</th>
+                <th i18n:translate="">Progress</th>
+                <th i18n:translate="">Tasks open</th>
+                <th i18n:translate="">Tasks completed</th>
               </tr>
  
               <tr tal:define="iteration_path python:'/'.join(obj.getPhysicalPath());
@@ -82,26 +87,32 @@
                   tal:condition="stories"
                   tal:repeat="story stories">
 
-
                 <div tal:define="storyObj story/getObject;
-                                 progress python:here.getProgress();
+                                 progress python:here.getProgress(storyObj);
                                  getOpenTasks python:here.getOpenTasks(storyObj);
                                  getCompletedTasks python:here.getCompletedTasks(storyObj)">
 
-                  <td> 
+                  <td width="30%"> 
                     <a href="" 
                        tal:attributes="href string:${storyObj/absolute_url}">
                        <span tal:content="storyObj/Title">Title</span></a></td>
-                  <td tal:content="python:str(progress) + '%' ">&nbsp; </td>
-                  <td>
-                    <img src="progress.gif" height="12" width="" 
-                                                        tal:attributes="width progress"/>&nbsp;</td>
-                  <td tal:content="getOpenTasks">tasks open</td>
-                  <td tal:content="getCompletedTasks">tasks completed</td>
+
+                  <td id="progress_details" width="150">
+                   <span id="progress_percentage" 
+                         tal:content="python:str(progress) + '%'">&nbsp;</span><br />
+                    <div id="progress_bar"> 
+                       <img src="progress.gif" 
+                            height="10" 
+                            width="" 
+                            tal:attributes="width progress"/></div></td> 
+                  <td id="open_tasks" 
+                      tal:content="getOpenTasks">tasks open</td>
+                  <td id="completed_tasks" 
+                      tal:content="getCompletedTasks">tasks completed</td>
                        
                 </div>                 
               </tr>
-            </table> <p>&nbsp;</p>
+            </table> 
 
            </div>
           </div>

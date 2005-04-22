@@ -8,10 +8,9 @@
 ##title=Get progress
 ##
 
-story_path = '/'.join(storyObj.getPhysicalPath())
+story_path = '/'.join(context.getPhysicalPath())
 items = context.portal_catalog.searchResults(portal_type='Task',
                                              path=story_path)
-
 estimate = []
 actual = []
 for item in items:

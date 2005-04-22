@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en"
-      i18n:domain="rXtremeManagement"
+      i18n:domain="eXtremeManagement"
       metal:use-macro="here/main_template/macros/master">
 
   <head>
@@ -14,7 +14,10 @@
 
     <div metal:fill-slot="main"
          tal:define="totalActual python:here.getTotalActual();
-                     totalEstimate python:here.getTotalEstimate()">
+                     totalEstimate python:here.getTotalEstimate();
+                     item_path python:'/'.join(context.getPhysicalPath());
+                     items python:here.portal_catalog.searchResults(portal_type='Task', 
+                                                                    path=item_path);">
 
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
           Title or id
@@ -29,9 +32,12 @@
             body text
         </div>
 
+        <div tal:condition="python:portal.portal_membership.getAuthenticatedMember().has_role('Manager',)">
+        <tal:block tal:condition="items">
 
-        <tal:block tal:condition="python:here.contentValues('Task')">
-          <h1 class="" i18n:translate="heading-tasks">Tasks</h1>
+          <h1 class="documentFirstHeading" 
+              i18n:translate="heading-tasks">Tasks</h1>
+
           <table class="listing"
                  border="1"
                  cellpadding="0" cellspacing="0">
@@ -43,25 +49,31 @@
                  <th i18n:translate="listingheader_actual">Actual</th>
                  <th i18n:translate="listingheader_diff">Difference</th>
                  <th i18n:translate="listingheader_state">Status</th>
-                 <th i18n:translate="listingheader_assignee">Assignee(s)</th>
+                 <th i18n:translate="listingheader_assignees">Assignee(s)</th>
                </tr>
              </thead>
 
-               <tr tal:define="items python:here.contentValues('Task')"
-                   tal:repeat="item items">
+               <tr tal:repeat="item items">
+                <div tal:define="obj item/getObject;">
                  <td>
                    <a href=""
-                      tal:attributes="href string:${item/absolute_url}">
-                      <span tal:content="item/task">Task</span></a></td>
-                 <td id="td-estimate" tal:content="item/estimate">Estimate</td>
-                 <td id="td-actual" tal:content="item/actual">Actual</td>
-                 <td id="td-diff" tal:content="python: item.estimate - item.actual">Difference</td>
+                      tal:attributes="href string:${obj/absolute_url}">
+                      <span tal:content="obj/task">Task</span></a></td>
+                 <td id="td-estimate" tal:content="obj/estimate">Estimate</td>
+                 <td id="td-actual" tal:content="obj/getActual">Actual</td>
+                 <td id="td-diff" tal:content="python: obj.estimate - obj.actual">Difference</td>
                  <td tal:define="wtool here/portal_workflow;
-                                 review_state python:wtool.getInfoFor(item, 'review_state')"
+                                 review_state python:wtool.getInfoFor(obj, 'review_state')"
                      tal:content="review_state">Status</td>
-                 <td tal:content="item/assignee">Assignee</td>
+                 <td>
+                   <span tal:omit-tag="" tal:repeat="newItem obj/getAssignees">
+                     <img src="user.gif"/>
+                     <span tal:omit-tag="" tal:content="newItem">Assignee</span><br />
+                     </span>
+                 </td>
+                </div>
                </tr>
-               
+
                <tr class="totalTasks">
                  <td id="total" i18n:translate="total">Total</td>
                  <td id="total-estimate"
@@ -76,9 +88,10 @@
 
           </table>
         </tal:block>
-    
+        </div> 
+   
         <div class="discreet"
-             tal:condition="python: not here.contentValues('Task')"
+             tal:condition="python: not items"
              i18n:translate="no_tasks_defined">No tasks defined yet.</div>
 
     </div>

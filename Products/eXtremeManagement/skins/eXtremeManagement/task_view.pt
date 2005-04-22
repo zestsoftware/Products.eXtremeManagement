@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en"
-      i18n:domain="rXtremeManagement"
+      i18n:domain="eXtremeManagement"
       metal:use-macro="here/main_template/macros/master">
 
   <head>
@@ -41,14 +41,19 @@
                <td tal:content="here/actual">Actual</td>
              </tr>
              <tr>
-               <th i18n:translate="listingheader_status">Status</th>
+               <th i18n:translate="listingheader_state">Status</th>
                <td tal:define="wtool here/portal_workflow;
                                review_state python:wtool.getInfoFor(here, 'review_state')"
                    tal:content="review_state">Status</td>
              </tr>
              <tr>
-               <th i18n:translate="listingheader_assignee">Assignee(s)</th>
-               <td >Assignee</td>
+               <th i18n:translate="listingheader_assignees">Assignee(s)</th>
+               <td>
+                 <span tal:omit-tag="" tal:repeat="item here/getAssignees">
+                   <img src="user.gif"/>
+                        <span tal:omit-tag="" tal:content="item">Assignee</span><br />
+                   </span>
+               </td>
              </tr>
           </table>
 

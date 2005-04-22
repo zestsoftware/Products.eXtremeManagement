@@ -4,7 +4,7 @@ from AccessControl import ClassSecurityInfo
 from Products.eXtremeManagement.schemata import *
 from Products.eXtremeManagement.config import *
 
-schema = BaseSchema + CustomerSchema 
+schema = BaseSchema + DescriptionSchema + CustomerSchema 
 
 class Customer(BaseFolder):
     """A simple folderish archetype"""

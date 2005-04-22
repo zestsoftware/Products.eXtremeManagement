@@ -14,6 +14,22 @@
 /* <dtml-with base_properties> (do not remove this :) */
 /* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
 
+#progress_details {
+    text-align: center;
+    padding: 5px;
+}
+#progress_bar{
+    border: 1px solid #8CACBB;
+    width: 100px;
+    height: 10px;
+    text-align: left;
+}
+#open_tasks {
+    text-align: center;
+}
+#completed_tasks {
+    text-align: center;
+}
 #iteration-state {
     text-align: right;
 }
@@ -22,12 +38,15 @@
 }
 #total-estimate {
     text-align: center;
+    font-weight: bold;
 }
 #total-actual {
     text-align: center;
+    font-weight: bold;
 }
 #total-diff {
     text-align: center;
+    font-weight: bold;
 }
 #td-estimate {
     text-align: center;

@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en"
-      i18n:domain="rXtremeManagement"
+      i18n:domain="eXtremeManagement"
       metal:use-macro="here/main_template/macros/master">
 
   <head>
@@ -15,7 +15,7 @@
     <div metal:fill-slot="main">
 
         <h1 class="documentFirstHeading" i18n:translate="header_memberinfo">
-          Member info
+          Project member info
         </h1>
 
         <div class="documentDescription"
@@ -38,7 +38,13 @@
              </tr>
              <tr>
                <th i18n:translate="listingheader_email">E-mail</th>
-               <td tal:content="here/email">E-mail</td>
+               <td tal:define="emailaddress python:here.email">
+                 <a href="#"
+                    class="link-plain"
+                    tal:attributes="href string:mailto:${emailaddress}"
+                    title="Send a mail to this user"
+                    i18n:attributes="title">
+                    <img src="mail_icon.gif"/> <span tal:content="emailaddress">Email</span></a></td>
              </tr>
              <tr>
                <th i18n:translate="listingheader_comments">Comments</th>
