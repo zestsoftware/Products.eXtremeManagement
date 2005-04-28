@@ -311,6 +311,106 @@
         </form>
       </tal:block>
 
+      <tal:groupshares define="grouplist gtool/listGroups"
+                       condition="grouplist">
+
+          <h1 i18n:translate="heading_group_shares">Add sharing permissions to groups</h1>
+
+          <p i18n:translate="description_group_shares">
+            Groups are a convenient way to share items to a common set of
+            users. Select one or more groups, and a role to assign.
+          </p>
+
+          <form method="post"
+                name="change_type_group"
+                action="folder_localrole_edit"
+                tal:attributes="action string:$here_url/folder_localrole_edit">
+
+            <fieldset>
+
+                    <legend i18n:translate="legend_available_groups">
+                        Available Groups
+                    </legend>
+
+                    <input type="hidden" name="change_type" value="add" />
+
+                    <table class="listing" summary="Available groups">
+                    <thead>
+                        <tr>
+                        <th>
+                            <input type="checkbox"
+                               onclick="javascript:toggleSelect(this, 'member_ids:list', false, 'change_type_group');"
+                               name="alr_toggle"
+                               value="#"
+                               id="alr_toggle"
+                               class="noborder"
+                               tabindex=""
+                               tal:attributes="tabindex tabindex/next;"/>
+                        </th>
+                        <th i18n:translate="listingheader_name">Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr tal:repeat="group grouplist">
+                        <td tal:define="global group_name group/getUserName">
+                            <label class="hiddenLabel" for="member_ids:list"
+                                   i18n:translate="label_select_group">
+                                select group <span tal:content="group_name" i18n:name="name"/>
+                            </label>
+                            <input class="formSelection"
+                                type="checkbox"
+                                name="member_ids:list"
+                                id="#"
+                                value=""
+                                tabindex=""
+                                tal:attributes="value group_name;
+                                                tabindex tabindex/next;"/>
+                        </td>
+                        <td tal:content="group/getUserNameWithoutGroupPrefix">
+                            groupname
+                        </td>
+                        </tr>
+                    </tbody>
+                    </table>
+
+                    <div class="field">
+
+                        <label for="group_member_role" i18n:translate="label_localrole_to_assign">
+                            Role to assign
+                        </label>
+
+                        <select name="member_role:list"
+                                id="group_member_role"
+                                multiple="multiple"
+                                tabindex=""
+                                tal:attributes="tabindex tabindex/next;">
+                            <option tal:repeat="lroles python:mtool.getCandidateLocalRoles(here)"
+                                    tal:attributes="value lroles"
+                                    tal:content="lroles"
+                                    i18n:translate="">
+                                Role name
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="submit">
+                        <input class="context"
+                            type="submit"
+                            value="Assign Local Role to Selected Group(s)"
+                            i18n:attributes="value"
+                            tabindex=""
+                            tal:attributes="tabindex tabindex/next;"
+                            />
+                    </div>
+
+                </fieldset>
+
+            </form>
+
+        </tal:groupshares>
+
+
+
     </div>
 
   </div>

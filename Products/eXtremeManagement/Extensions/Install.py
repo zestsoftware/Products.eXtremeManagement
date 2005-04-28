@@ -113,9 +113,6 @@ def install(self):
 
     out.write("Successfully installed %s." % PROJECTNAME)
    
-#    print >> out, "Adding eXtreme properties"
-#    setupProps(self)
-
     print >> out, "Customize the portal"
     setupSkin(self)
  
@@ -125,9 +122,7 @@ def install(self):
     print >> out, "Configuring workflows"
     configureWorkflow(self)
 
-
     return out.getvalue()
-
 
 def uninstall(self):
     out = StringIO()

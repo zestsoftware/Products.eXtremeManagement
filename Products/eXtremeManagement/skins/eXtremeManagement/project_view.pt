@@ -89,8 +89,8 @@
 
                 <div tal:define="storyObj story/getObject;
                                  progress python:here.getProgress(storyObj);
-                                 getOpenTasks python:here.getOpenTasks(storyObj);
-                                 getCompletedTasks python:here.getCompletedTasks(storyObj)">
+                                 openTasks python:here.getOpenTasks(storyObj);
+                                 completedTasks python:here.getCompletedTasks(storyObj)">
 
                   <td width="30%"> 
                     <a href="" 
@@ -106,9 +106,9 @@
                             width="" 
                             tal:attributes="width progress"/></div></td> 
                   <td id="open_tasks" 
-                      tal:content="getOpenTasks">tasks open</td>
+                      tal:content="openTasks">tasks open</td>
                   <td id="completed_tasks" 
-                      tal:content="getCompletedTasks">tasks completed</td>
+                      tal:content="completedTasks">tasks completed</td>
                        
                 </div>                 
               </tr>

@@ -65,6 +65,13 @@ class Project(OrderedBaseFolder):
                 'permissions': (CMFCorePermissions.View,),
                 'category': 'object'
                },
+               {
+                'id': 'team',
+                'name': 'Project team',
+                'action': 'string:${object_url}/project_team',
+                'permissions': (CMFCorePermissions.View,),
+                'category': 'object'
+               },
               )
 
 registerType(Project, PROJECTNAME)
