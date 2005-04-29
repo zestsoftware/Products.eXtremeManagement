@@ -1,6 +1,7 @@
 from Products.Archetypes.public import *
 from Products.CMFCore import CMFCorePermissions
 from AccessControl import ClassSecurityInfo
+from Products.CMFCore.utils import getToolByName
 from Products.eXtremeManagement.schemata import *
 from Products.eXtremeManagement.config import *
 
@@ -9,7 +10,7 @@ from Products.Archetypes.interfaces.orderedfolder import IOrderedFolder
 from Products.Archetypes import OrderedBaseFolder
 from Products.Archetypes.OrderedBaseFolder import OrderedBaseFolder
 
-schema = BaseFolderSchema + DescriptionSchema
+schema = BaseFolderSchema + DescriptionSchema + IterationSchema
 
 class Iteration(OrderedBaseFolder):
     """A simple folderish archetype"""
@@ -25,6 +26,18 @@ class Iteration(OrderedBaseFolder):
     typeDescription       = ''
     typeDescMsgId         = ''
     security              = ClassSecurityInfo()
+
+
+    def _get_stories(self):
+        """ returns a list of the unassigned stories """
+        catalog_tool = getToolByName(self, 'portal_catalog')
+        stories = catalog_tool.searchResults(portal_type='Story')
+        list = []
+        for story in stories:
+            list.append(story.Title)
+
+        return list
+
 
     actions = (
                {

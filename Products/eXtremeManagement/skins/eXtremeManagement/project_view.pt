@@ -15,7 +15,8 @@
     <div metal:fill-slot="main"
          tal:define="idIndex python:Iterator(pos=-1);
                      physical_path python: '/'.join(context.getPhysicalPath());
-                     iterations python:here.portal_catalog.searchResults(portal_type='Iteration', 
+                     iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
+                                                                         review_state=['completed', 'in-progress'], 
                                                                          path=physical_path);">
 
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
@@ -83,6 +84,7 @@
               <tr tal:define="iteration_path python:'/'.join(obj.getPhysicalPath());
                               stories python:here.portal_catalog.searchResults(portal_type='Story',
                                                                                sort_order='traverse',
+                                                                               review_state=['completed', 'in-progress', 'assigned'],
                                                                                path=iteration_path);"
                   tal:condition="stories"
                   tal:repeat="story stories">
@@ -117,6 +119,74 @@
            </div>
           </div>
         </tal:block>
+
+        <table class="listing" 
+               border="1" 
+               tal:define="stories python:here.portal_catalog.searchResults(portal_type='Story',
+                                                                            review_state=['open', 'estimated'],);
+                           iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
+                                                                               review_state='open')">
+          <tr>
+            <th>stories</th>
+            <th>buttons</th>
+            <th>iterations</th>
+          </tr>
+         
+          <tr>
+            <td>
+               <select name="stories:list"
+                       id="stories"
+                       multiple="multiple"
+                       tabindex=""
+                       tal:attributes="tabindex tabindex/next;">
+                  <option tal:repeat="story stories"
+                          tal:attributes="value story"
+                          tal:content="story/Title"
+                          i18n:translate="">
+                          Story name
+                  </option>
+               </select>
+            </td>
+   
+            <td> >> <br /><br /> << </td>
+            <td>               
+               <select name="iterations:list"
+                       id="iterations"
+                       multiple="multiple"
+                       tabindex=""
+                       tal:attributes="tabindex tabindex/next;">
+                  <option tal:repeat="iteration iterations"
+                          tal:attributes="value iteration"
+                          tal:content="iteration/Title"
+                          i18n:translate="">
+                          Iteration name
+                  </option>
+
+                  <optgroup label="Iteration" tal:define="objects python:here.contentValues()">  
+                     <option tal:repeat="obj objects"
+                             tal:attributes="value obj"
+                             tal:content="obj/Title"> Story name
+                     </option>
+                  </optgroup>
+                  
+               </select>
+            </td>
+          </tr>
+        </table>
+
+        <tal:block tal:define="stories python:here.portal_catalog.searchResults(portal_type='Story', 
+                                                                                review_state='open',)"
+                   tal:condition="stories">
+          <h1 i18n:translate="">Stories to be estimated</h1>
+          <div tal:repeat="story stories">
+              <a href="" 
+                 tal:attributes="href story/getURL" 
+                 tal:content="story/Title">
+              </a>
+          </div>
+        </tal:block>
+            
+
 
     </div>
 </body>

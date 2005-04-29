@@ -240,3 +240,19 @@ StorySchema = Schema((
              ),
 
 ))
+
+IterationSchema = Schema((
+
+    LinesField('story_iteration',
+               required=0,
+               vocabulary='_get_stories',
+               widget=InAndOutWidget(label="Stories",
+                                     label_msgid="label_stories",
+                                     description="Select the stories for this iteration.",
+                                     description_msgid="description_stories",
+                                     i18n_domain="eXtremeManagement",),
+                  ),
+))
+
+
+

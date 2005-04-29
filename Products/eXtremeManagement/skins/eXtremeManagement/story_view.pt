@@ -33,7 +33,7 @@
         </div>
 
         <div>
-        <tal:block tal:condition="items">
+        <tal:block tal:condition="python:items and portal.portal_membership.getAuthenticatedMember().has_role(['Manager', 'Employee'])">
 
           <h1 class="documentFirstHeading" 
               i18n:translate="heading-tasks">Tasks</h1>
