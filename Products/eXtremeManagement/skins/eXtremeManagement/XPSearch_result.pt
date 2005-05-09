@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/prefs_main_template/macros/master"
+      i18n:domain="eXtremeManagement">
+
+<tal:block metal:fill-slot="head_slot">
+    <tal:block tal:define="dummy python:request.set('disable_border',1)" />
+</tal:block>
+
+<body>
+
+    <div metal:fill-slot="prefs_configlet_main">
+
+      <metal:block tal:define="results python:here.queryCatalog();
+                               Batch python:modules['Products.CMFPlone'].Batch;
+                               b_start python:request.get('b_start',0);">
+
+         <div tal:condition="results">
+           <table class="listing" 
+                  border="1"
+                  cellpadding="0" cellspacing="0">
+     
+             <thead>
+               <tr>
+                 <th>test</th>
+                 <th>test 2</th>
+               </tr>
+             </thead>
+
+             <tbody>
+               <tr>
+                 <td>test</td>
+                 <td>test 2</td>
+             </tbody> 
+           </table>
+         </div>
+
+        <div tal:condition="not: results">No results were found.</div>
+        
+       </metal:block>
+    </div>
+  </body>
+</html>
+

@@ -16,7 +16,6 @@ from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from Products.CMFDefault.PropertiesTool import PropertiesTool
 
 
-
 def configureRoles(portal):
     # add new roles
     defined_roles = getattr(portal, '__ac_roles__', ())
@@ -40,6 +39,14 @@ def configureRoles(portal):
 #                permissions.add( perm['name'] )
 #	portal.manage_role(role, permissions)
 
+
+def configureConfiglets(portal):
+    # add configlets to portal control panel
+    configTool = getToolByName(portal, 'portal_controlpanel', None)
+    if configTool:
+        for conf in configlets:
+            configTool.registerConfiglet(**conf)
+            #out.write('Added configlet %s\n' % conf['id'])
 
 def configureWorkflow(portal):
     # set the workflow for the new content types (Iteration, Story, Task)
@@ -122,10 +129,21 @@ def install(self):
     print >> out, "Configuring workflows"
     configureWorkflow(self)
 
+    print >> out, "Registering configlets"
+    configureConfiglets(self)
+ 
     return out.getvalue()
 
 def uninstall(self):
     out = StringIO()
 
+    # remove the configlets from the portal control panel
+    configTool = getToolByName(self, 'portal_controlpanel', None)
+    if configTool:
+        for conf in configlets:
+            configTool.unregisterConfiglet(conf['id'])
+            out.write('Removed configlet %s\n' % conf['id'])
+
     return out.getvalue()
+
  

@@ -15,7 +15,7 @@ schema = BaseFolderSchema + DescriptionSchema + IterationSchema
 class Iteration(OrderedBaseFolder):
     """A simple folderish archetype"""
     schema                = schema
-    content_icon          = 'folder_icon.gif'
+    content_icon          = 'iteration_icon.gif'
     meta_type             = 'Iteration'
     archetype_name        = 'Iteration'
     product_meta_type     = 'Iteration'
