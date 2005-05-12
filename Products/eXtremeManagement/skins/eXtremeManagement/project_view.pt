@@ -102,7 +102,8 @@
                   </a>
                 </th>
                 <th width="40%" id="iteration-state">status: 
-                    <span tal:content="iteration/review_state">Status</span>
+                    <!-- <span tal:content="iteration/review_state">Status</span> -->
+                    <img src="#" tal:attributes="src string:${iteration/review_state}.gif" />
                 </th> 
               </tr>
               <tr>
@@ -170,7 +171,8 @@
 
          <p i18n:translate="">
            Here you can assign stories to an iteration. 
-           Left are the stories and right the iterations. <br />Just drag a story and drop it under the iteration.
+           Left are the stories and right the iterations. <br />
+           Just drag a story and drop it under the iteration.
            A story can be assigned to 1 iteration only.
          </p>
 
