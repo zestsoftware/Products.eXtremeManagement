@@ -39,6 +39,24 @@ def configureRoles(portal):
 #                permissions.add( perm['name'] )
 #	portal.manage_role(role, permissions)
 
+def configureUserActions(portal):
+    # add an action to the persnal bar for project management
+    actionTool = getToolByName(portal, 'portal_membership', None)
+    actionTool_actions = actionTool._cloneActions()
+    actionDefined=0
+    for a in actionTool_actions: 
+        if a.id in ['eXtremeProjectMangement',]:
+            a.visible = 1
+            actionDefined = 1
+        actionTool._actions = actionTool_actions
+    if actionDefined == 0:
+        actionTool.addAction('eXtremeProjectManagement', 
+                             'eXtreme Project Mangement',
+                             'string:${portal_url}/prefs_project_management',
+                             '',
+                             'ManagePortal',
+                             'user'
+                            )
 
 def configureConfiglets(portal):
     # add configlets to portal control panel
@@ -129,8 +147,8 @@ def install(self):
     print >> out, "Configuring workflows"
     configureWorkflow(self)
 
-    print >> out, "Registering configlets"
-    configureConfiglets(self)
+    print >> out, "Registering user actions"
+    configureUserActions(self)
  
     return out.getvalue()
 
@@ -138,11 +156,11 @@ def uninstall(self):
     out = StringIO()
 
     # remove the configlets from the portal control panel
-    configTool = getToolByName(self, 'portal_controlpanel', None)
-    if configTool:
-        for conf in configlets:
-            configTool.unregisterConfiglet(conf['id'])
-            out.write('Removed configlet %s\n' % conf['id'])
+    #configTool = getToolByName(self, 'portal_controlpanel', None)
+    #if configTool:
+    #    for conf in configlets:
+    #        configTool.unregisterConfiglet(conf['id'])
+    #        out.write('Removed configlet %s\n' % conf['id'])
 
     return out.getvalue()
 
