@@ -10,7 +10,7 @@ schema = BaseFolderSchema + TaskSchema
 class Task(BaseContent):
     """A simple archetype"""
     schema                = schema
-    content_icon          = 'document_icon.gif'
+    content_icon          = 'task_icon.gif'
     meta_type             = 'Task'
     archetype_name        = 'Task'
     product_meta_type     = 'Task'

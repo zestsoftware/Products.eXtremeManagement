@@ -9,7 +9,7 @@ schema = BaseSchema + DescriptionSchema + CustomerSchema
 class Customer(BaseFolder):
     """A simple folderish archetype"""
     schema                = schema
-    content_icon          = 'folder_icon.gif'
+    content_icon          = 'group_icon.gif'
     meta_type             = 'Customer'
     archetype_name        = 'Customer'
     product_meta_type     = 'Customer'
