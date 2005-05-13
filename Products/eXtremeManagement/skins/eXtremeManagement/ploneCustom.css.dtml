@@ -77,6 +77,17 @@
     padding-left: 5px;
 }
 
+#input_field_center{
+    text-align: center;
+}
+#actual {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: center;
+}
+#estimate {
+    text-align: center;
+}
 
 ul.sortable li {
 	position: relative;

@@ -10,7 +10,7 @@ from Products.eXtremeManagement.config import PROJECTNAME, GLOBALS
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.workflows import eXtreme_iteration_workflow, \
                                                  eXtreme_story_workflow, eXtreme_task_workflow
-from Products.eXtremeManagement.permissions import eXtremeManagementRols 
+from Products.eXtremeManagement.permissions import eXtremeManagementRoles 
 
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from Products.CMFDefault.PropertiesTool import PropertiesTool
@@ -53,18 +53,20 @@ def configureUserActions(portal):
         actionTool.addAction('eXtremeProjectManagement', 
                              'eXtreme Project Mangement',
                              'string:${portal_url}/prefs_project_management',
-                             '',
-                             'ManagePortal',
+                             'member',
+                             'View',
                              'user'
                             )
 
-def configureConfiglets(portal):
-    # add configlets to portal control panel
-    configTool = getToolByName(portal, 'portal_controlpanel', None)
-    if configTool:
-        for conf in configlets:
-            configTool.registerConfiglet(**conf)
-            #out.write('Added configlet %s\n' % conf['id'])
+
+def configurePortalProps(portal):
+    # customize portal props (slots)
+    left_slots = portal.getProperty('left_slots', None)
+    newSlot = ('here/portlet_tasks/macros/portlet',)
+    for a in newSlot:
+        if a not in left_slots:
+            portal._updateProperty('left_slots', tuple(left_slots) + tuple(newSlot)) 
+
 
 def configureWorkflow(portal):
     # set the workflow for the new content types (Iteration, Story, Task)
@@ -144,6 +146,9 @@ def install(self):
 #    print >> out, "Configuring new roles"
 #    configureRoles(self)
 
+    print >> out, "Customizing portal properties"
+    configurePortalProps(self)
+ 
     print >> out, "Configuring workflows"
     configureWorkflow(self)
 
@@ -155,12 +160,13 @@ def install(self):
 def uninstall(self):
     out = StringIO()
 
-    # remove the configlets from the portal control panel
-    #configTool = getToolByName(self, 'portal_controlpanel', None)
-    #if configTool:
-    #    for conf in configlets:
-    #        configTool.unregisterConfiglet(conf['id'])
-    #        out.write('Removed configlet %s\n' % conf['id'])
+    # disable action in persnal bar for project management
+    actionTool = getToolByName(self, 'portal_membership', None)
+    actionTool_actions = actionTool._cloneActions()
+    actionDefined=0
+    for a in actionTool_actions:
+        if a.id in ['eXtremeProjectMangement',]:
+            a.visible = 0
 
     return out.getvalue()
 

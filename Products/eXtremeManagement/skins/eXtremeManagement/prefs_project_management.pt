@@ -1,138 +1,87 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      metal:use-macro="here/main_template/macros/master"
-      i18n:domain="eXtremeManagement">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      i18n:domain="eXtremeManagement"
+      metal:use-macro="here/main_template/macros/master">
 
-<metal:head fill-slot="top_slot"
-            tal:define="dummy python:request.set('disable_border',1)" />
+  <head>
+      <metal:block fill-slot="top_slot"
+                   tal:define="dummy python:request.set('disable_border', 1)" />
+  </head>
 
-<div metal:fill-slot="main">
+  <body>
 
-    <form action="XPSearch_result"
-          method="get"
-          name="form"
-          tal:define="open_tasks python:here.portal_catalog.searchResults(portal_type='Task',
-                                                                          review_state='open',);
-                      closed_tasks python:here.portal_catalog.searchResults(portal_type='Task',
-                                                                            review_state='completed',);
-                      projects python:here.portal_catalog.searchResults(portal_type='Project',);">
-
-        <fieldset>
-
-            <legend i18n:translate="legend_search_terms">Search Terms</legend>
+    <div metal:fill-slot="main"
+         tal:define="tasks python:here.portal_catalog.searchResults(portal_type='Task', 
+                                                                    review_state=['open', 'in-progress'])">
 
 
-          <div class="field">
-            <label i18n:translate="label_project">Select project</label>
-              <div i18n:translate="help_project_creation"
-                   class="formHelp">
-                Select a project.
-              </div>
+       <tal:block tal:condition="tasks">
+          <h1 i18n:translate="" class="documentFirstHeading">
+            Project Management
+          </h1>
+        
+          <p i18n:translate="">
+             Update the form below ...blablabla
+          </p>
 
-                <select tal:attributes="tabindex tabindex/next;">
-                   <option value="" selected="selected" i18n:translate="select_project">Select project</option>
-                   <tal:block tal:repeat="project projects">
-                     <option value="None"
-                             tal:attributes="value project"
-                             tal:content="project/Title">
-                     </option>
-                   </tal:block>
-                </select>
-          </div>
+        <form action=""
+              name="update_actual_time"
+              method="post"
+              tal:attributes="action here/absolute_url">
 
-          <div class="field">
-            <label i18n:translate="label_task">Select task</label>
-              <div i18n:translate="help_task_creation"
-                   class="formHelp">
-                Select the tasks. You can choose from open or completed tasks.
-              </div>
+          <table class="listing"
+                 border="1" 
+                 width="65%"
+                 cellpadding="0" 
+                 cellspacing="0">
 
-                <select tal:attributes="tabindex tabindex/next;">
-                   <option value="" selected="selected" i18n:translate="select_task">Select task</option>
-                   <tal:block tal:repeat="task open_tasks">
-                     <option value="None"
-                             tal:attributes="value task"
-                             tal:content="task/Title">
-                     </option>
-                   </tal:block>
-                </select>
-          </div>
+             <tr>
+               <th i18n:translate="listingheader_task_desc">Task Description</th> 
+               <th i18n:translate="listingheader_state">Status</th>
+               <th i18n:translate="listingheader_estimate">Estimate</th>
+               <th i18n:translate="listingheader_actual">Actual</th>
+             </tr>
 
-          <div class="field">
-            <label i18n:translate="label_assignee">Select assignee</label>
-              <div i18n:translate="help_assignee_creation"
-                   class="formHelp">
-                Select an assignee.
-              </div>
-
-                <select tal:attributes="tabindex tabindex/next;">
-                   <option value="" selected="selected" i18n:translate="select_assignee">Select assignee</option>
-                </select>
-          </div>
-
-<!--
-             <table class="listing">
-               <tr>
-                 <th i18n:translate="label_projects">Projects</th>
-                 <th i18n:translate="label_tasks">Tasks</th>
-                 <th i18n:translate="label_assignees">Assignees</th>
-               </tr>
-              
-               <tr>
-                 <td>                    
-                   <select tal:attributes="tabindex tabindex/next;">
-                      <option value="" selected="selected" i18n:translate="select_project">Select project</option>
-                      <tal:block tal:repeat="project projects">
-                        <option value="None"
-                                tal:attributes="value project"
-                                tal:content="project/Title">
-                        </option>
-                      </tal:block>
-                   </select>
-                 </td>
+             <tr tal:repeat="task tasks">
+               <div tal:define="obj python:task.getObject()">
                  <td>
-                   <select tal:attributes="tabindex tabindex/next;">
-                      <option value="" selected="selected" i18n:translate="select_task">Select task</option>
-                      <tal:block tal:repeat="task open_tasks">
-                        <option value="None"
-                                tal:attributes="value task"
-                                tal:content="task/Title">
-                        </option>
-                      </tal:block>
-                   </select>
+                   <a href=""
+                      tal:attributes="href task/getURL">
+                      <img src="task_icon.gif" /> 
+                      <span tal:content="task/Title">Task</span></a></td>
+
+                 <td tal:content="task/review_state">Status</td>
+                 <td id="estimate" 
+                     tal:content="python:obj.estimate">Estimate</td>
+
+                 <td id="actual" 
+                     tal:define="actual python:obj.actual">
+                     <input type="text"
+                            size="5"
+                            value=""
+                            id="input_field_center"
+                            tal:attributes="value actual" />
+                     <input type="hidden"
+                            tal:attributes="value actual" />
                  </td>
-                 <td>
-                   <select tal:attributes="tabindex tabindex/next;">
-                      <option value="" selected="selected" i18n:translate="select_assignee">Select assingnee</option>
-                      <tal:block tal:repeat="task open_tasks">
-                        <option value="None"
-                                tal:attributes="value task"
-                                tal:content="task/Title">
-                        </option>
-                      </tal:block>
-                   </select>
-                 </td>
-               </tr>             
-              </table>
--->
 
-                <input type="hidden" name="created_usage" value="range:min" />
+               </div>
+             </tr>
+          </table>
 
-            <div class="formControls">
-            <input type="hidden" name="portal_type" value="Task" />
-            <input type="hidden" name="portal_type" value="Project" />
-                <input class="context"
-                       tabindex=""
-                       type="submit"
-                       name="submit"
-                       value="Search"
-                       i18n:attributes="value"
-                       tal:attributes="tabindex tabindex/next;"/>
-            </div>
-        </fieldset>
-    </form>
+          <input class="context"
+                 tabindex=""
+		 type="submit"
+		 name="prefs_users_manage:method"
+		 value="Apply Changes"
+		 i18n:attributes="value"
+		 tal:attributes="tabindex tabindex/next;" />
+       </form>
 
-</div>
+      </tal:block>
+
+    </div>
+  </body>
 </html>
-
 
 

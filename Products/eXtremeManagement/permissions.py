@@ -8,7 +8,7 @@ from Products.GroupUserFolder import GroupsToolPermissions as GRUFPerms
 #from utils import ContentPermMap
 
 # Roles
-eXtremeManagementRols = ['Employee', 'Customer',]
+eXtremeManagementRoles = ['Employee', 'Customer',]
 
 
 # Role -> Permission Mapping
