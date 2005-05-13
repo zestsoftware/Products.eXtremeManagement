@@ -43,7 +43,6 @@
              </tr>
 
              <tr tal:repeat="task tasks">
-               <div tal:define="obj python:task.getObject()">
                  <td>
                    <a href=""
                       tal:attributes="href task/getURL">
@@ -52,20 +51,23 @@
 
                  <td tal:content="task/review_state">Status</td>
                  <td id="estimate" 
-                     tal:content="python:obj.estimate">Estimate</td>
+                     tal:content="task/getEstimate">Estimate</td>
 
-                 <td id="actual" 
-                     tal:define="actual python:obj.actual">
+                 <td id="actual">
                      <input type="text"
                             size="5"
                             value=""
                             id="input_field_center"
-                            tal:attributes="value actual" />
-                     <input type="hidden"
-                            tal:attributes="value actual" />
-                 </td>
+                            tal:attributes="name string:entered-actual-${task/id};
+                                            value task/getActual" />
+               <input type="hidden"
+                      tal:attributes="name string:original-actual-${task/id};
+                                      value task/getActual" />
+               <input type="hidden"
+                      tal:attributes="name string:uid-${task/id};
+                                      value task/UID" />
 
-               </div>
+                 </td>
              </tr>
           </table>
 
