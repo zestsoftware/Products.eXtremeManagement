@@ -14,10 +14,6 @@
                tal:content="string: @import url($portal_url/eXtreme.css);">
         </style>
       </metal:block>
-
-<link href="eXtreme.css" type=text/css rel=stylesheet>
-<script language="JavaScript" type="text/javascript" src="project.js"></script>
-
 </head>
 
 <body onload="javascript:setFromState('hideRow0');">
@@ -233,7 +229,10 @@
                                                                                         review_state='open')"
                    tal:condition="iterations">
            <h1 i18n:translate="">New iterations</h1>
-  
+           <p i18n:translate="">
+              place description here ....... blablabla...
+           </p> 
+ 
            <table class="listing" width="70%">
              <tr>
                <th>New</th>
