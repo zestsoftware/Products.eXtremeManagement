@@ -3,8 +3,16 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="plone">
 
-<metal:block fill-slot="top_slot"
-             tal:define="dummy python:request.set('enable_border',1)" />
+<head>
+     <metal:block fill-slot="top_slot"
+                  tal:define="dummy python:request.set('enable_border',1)" />
+
+     <metal:block fill-slot="css_slot">
+       <style type="text/css" media="screen"
+              tal:content="string: @import url($portal_url/eXtreme.css);">
+       </style>
+     </metal:block>
+</head>
 
 <body>
 

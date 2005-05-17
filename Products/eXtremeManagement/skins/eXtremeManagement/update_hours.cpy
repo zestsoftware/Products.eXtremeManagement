@@ -8,6 +8,8 @@
 ##title=Update the actual hours on open tasks
 ##
 
+REQUEST = context.REQUEST
+
 originals = {}
 entered   = {}
 

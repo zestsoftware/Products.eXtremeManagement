@@ -52,7 +52,7 @@ def configureUserActions(portal):
     if actionDefined == 0:
         actionTool.addAction('eXtremeProjectManagement', 
                              'eXtreme Project Mangement',
-                             'string:${portal_url}/prefs_project_management',
+                             'string:${portal_url}/update_hours_form',
                              'member',
                              'View',
                              'user'

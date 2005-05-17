@@ -6,6 +6,12 @@
   <head>
       <metal:block fill-slot="top_slot"
                    tal:define="dummy python:request.set('disable_border', 1)" />
+
+      <metal:block fill-slot="css_slot">
+        <style type="text/css" media="screen"
+               tal:content="string: @import url($portal_url/eXtreme.css);">
+        </style>
+     </metal:block>
   </head>
 
   <body>

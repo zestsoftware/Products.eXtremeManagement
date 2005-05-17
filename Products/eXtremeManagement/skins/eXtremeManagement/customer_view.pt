@@ -8,9 +8,21 @@
         <span tal:replace="nothing"
               tal:define="dummy python:request.set('enable_border', 1)" />
       </metal:block>
-  </head>
 
+      <metal:block fill-slot="css_slot">
+        <style type="text/css" media="screen"
+               tal:content="string: @import url($portal_url/eXtreme.css);">
+        </style>
+      </metal:block>
+  </head>
+ 
   <body>
+
+    <metal:block fill-slot="css_slot">
+      <style type="text/css" media="screen"
+             tal:content="string: @import url($portal_url/eXtreme.css);">
+      </style>
+    </metal:block>
 
     <div metal:fill-slot="main">
 
