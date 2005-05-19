@@ -1,0 +1,211 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <ahadi@zestsoftware.nl>, 2005.
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0beta\n"
+"POT-Creation-Date: 2005-05-19 21:13+0000\n"
+"PO-Revision-Date: 2005-05-19 13:15 +GMT+1\n"
+"Last-Translator: Ahmad Hadi <ahadi@zopeworks.nl>\n"
+"Language-Team: Nederlands <service@zopeworks.nl>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: nl\n"
+"Language-Name: Nederlands\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"Domain: eXtremeManagement\n"
+
+### customer_view template ###
+msgid "header_customers"
+msgstr ""
+
+msgid "listingheader_name"
+msgstr ""
+
+msgid "listingheader_address"
+msgstr ""
+
+msgid "listingheader_zipCode"
+msgstr ""
+
+msgid "listingheader_city"
+msgstr ""
+
+msgid "listingheader_country"
+msgstr ""
+
+msgid "listingheader_phone"
+msgstr ""
+
+msgid "listingheader_fax"
+msgstr ""
+
+msgid "listingheader_email"
+msgstr ""
+
+msgid "listingheader_comments"
+msgstr ""
+
+msgid "header_project_members"
+msgstr ""
+
+
+### iteration_view template ###
+msgid "listingheader_title"
+msgstr ""
+
+
+msgid "listingheader_state"
+msgstr ""
+
+
+### portlet_tasks template ###
+msgid "box_open_tasks"
+msgstr ""
+
+
+### story_view template ###
+msgid "heading_tasks"
+msgstr ""
+
+msgid "listingheader_desc"
+msgstr ""
+
+msgid "listingheader_estimate"
+msgstr ""
+
+msgid "listingheader_actueel"
+msgstr ""
+
+msgid "listingheader_diff"
+msgstr ""
+
+msgid "listingheader_assignees"
+msgstr ""
+
+msgid "total"
+msgstr ""
+
+
+### project_view template ###
+msgid "heading_iterations"
+msgstr ""
+
+msgid "listingheader_story"
+msgstr ""
+
+msgid "listingheader_progress"
+msgstr ""
+
+msgid "listingheader_tasks_open"
+msgstr ""
+
+msgid "listingheader_tasks_completed"
+msgstr ""
+
+msgid "iteration-state"
+msgstr ""
+
+
+### CT-Customer ###
+msgid "label_name"
+msgstr ""
+
+msgid "desc_name"
+msgstr ""
+
+msgid "label_address"
+msgstr ""
+
+msgid "desc_address"
+msgstr ""
+
+msgid "label_zipCode"
+msgstr ""
+
+msgid "desc_zipCode"
+msgstr ""
+
+msgid "label_city"
+msgstr ""
+
+msgid "desc_city"
+msgstr ""
+
+msgid "label_country"
+msgstr ""
+
+msgid "desc_country"
+msgstr ""
+
+msgid "label_phone"
+msgstr ""
+
+msgid "desc_phone"
+msgstr ""
+
+msgid "label_fax"
+msgstr ""
+
+msgid "desc_fax"
+msgstr ""
+
+msgid "label_email"
+msgstr ""
+
+msgid "desc_email"
+msgstr ""
+
+msgid "label_website"
+msgstr ""
+
+msgid "desc_website"
+msgstr ""
+
+msgid "label_comments"
+msgstr ""
+
+msgid "desc_comments"
+msgstr ""
+
+
+### CT-ProjectMember ###
+msgid "label_fullname"
+msgstr ""
+
+
+### CT-Task ###
+msgid "label_task"
+msgstr ""
+
+msgid "desc_task"
+msgstr ""
+
+msgid "label_estimate"
+msgstr ""
+
+msgid "desc_estimate"
+msgstr ""
+
+msgid "label_actual"
+msgstr ""
+
+msgid "desc_actual"
+msgstr ""
+
+msgid "label_assignees"
+msgstr ""
+
+msgid "desc_assignees"
+msgstr ""
+
+
+### CT-Story ###
+msgid "label_mainText"
+msgstr ""
+
+msgid "desc_mainText"
+msgstr ""
+

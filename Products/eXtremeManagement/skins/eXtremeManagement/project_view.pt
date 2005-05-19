@@ -40,7 +40,7 @@
 
 
         <tal:block tal:condition="iterations">
-         <h1 class="" i18n:translate="iterations">Iterations</h1>
+         <h1 class="" i18n:translate="heading_iterations">Iterations</h1>
 
           <div class="iterations" 
                tal:repeat="iteration iterations"> 
@@ -85,10 +85,10 @@
                    tal:attributes="id string:hideTable${idx};">
 
               <tr tal:condition="python:obj.contentValues('Story')">
-                <th i18n:translate="">Story</th>
-                <th i18n:translate="">Progress</th>
-                <th i18n:translate="">Tasks open</th>
-                <th i18n:translate="">Tasks completed</th>
+                <th i18n:translate="listingheader_story">Story</th>
+                <th i18n:translate="listingheader_progress">Progress</th>
+                <th i18n:translate="listingheader_tasks_open">Tasks open</th>
+                <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
               </tr>
  
               <tr tal:define="iteration_path python:'/'.join(obj.getPhysicalPath());
@@ -177,10 +177,10 @@
                    tal:attributes="id string:hideTable${idx};">
 
               <tr tal:condition="python:obj.contentValues('Story')">
-                <th i18n:translate="">Story</th>
-                <th i18n:translate="">Progress</th>
-                <th i18n:translate="">Tasks open</th>
-                <th i18n:translate="">Tasks completed</th>
+                <th i18n:translate="listingheader_story">Story</th>
+                <th i18n:translate="listingheader_progress">Progress</th>
+                <th i18n:translate="listingheader_tasks_open">Tasks open</th>
+                <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
               </tr>
 
               <tr tal:define="iteration_path python:'/'.join(obj.getPhysicalPath());
@@ -250,7 +250,7 @@
                         tal:content="iteration/Title">Title
                      </a>
 
-                     <div class="list_iterations"
+                     <div style="display:normal;" class="list_iterations"
                           tal:define="stories python:iteration.getObject().contentValues('Story')">
                        <div tal:repeat="story stories">
                          <img src=""
@@ -261,6 +261,7 @@
                          </a>
                        </div>
                      </div>
+
                    </div>
                  </div>
                </td>
@@ -299,7 +300,7 @@
        
            <table class="listing">
              <tr>
-               <th>title</th>
+               <th>Stories</th>
              </tr>
 
              <tr tal:repeat="story stories">
