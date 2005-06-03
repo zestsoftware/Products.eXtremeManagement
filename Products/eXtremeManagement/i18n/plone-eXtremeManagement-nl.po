@@ -1,6 +1,6 @@
 # --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
 # SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <ahadi@zestsoftware.nl>, 2005.
+# FIRST AUTHOR Ahmad Hadi <ahadi@zestsoftware.nl>, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0beta\n"
@@ -17,4 +17,54 @@ msgstr ""
 "Preferred-Encodings: latin1 utf-8\n"
 "Domain: plone\n"
 
+msgid "completed"
+msgstr "Voltooid"
+
+msgid "open"
+msgstr "Open"
+
+msgid "in-progress"
+msgstr "In behandeling"
+
+msgid "Activate"
+msgstr "Activeren"
+
+msgid "Complete"
+msgstr "Afronden"
+
+msgid "estimated"
+msgstr "Geschat"
+
+msgid "assigned"
+msgstr "Toegekend"
+
+msgid "CustomerFolder"
+msgstr "Klantenmap"
+
+msgid "ProjectFolder"
+msgstr "Projectenmap"
+
+msgid "Customer"
+msgstr "Klant"
+
+msgid "ProjectMember"
+msgstr "Projectlid"
+
+msgid "Project"
+msgstr "Project"
+
+msgid "Iteration"
+msgstr "Iteratie"
+
+msgid "Story"
+msgstr "Story"
+
+msgid "Task"
+msgstr "Taak"
+
+msgid "Customer Folder"
+msgstr "Klantenmap"
+
+msgid "Project Folder"
+msgstr "Projectenmap"
 
