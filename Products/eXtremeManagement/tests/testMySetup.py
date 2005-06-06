@@ -53,14 +53,33 @@ class TestSetup(eXtremeManagementTestCase):
         ids = self.portal.portal_skins.objectIds()
         self.failUnless('eXtremeManagement' in ids)
 
-    def testTypes(self):
+    def testCustomer(self):
         ids = self.portal.portal_types.objectIds()
         self.failUnless('Customer' in ids)
+
+    def testCustomerFolder(self):
+        ids = self.portal.portal_types.objectIds()
         self.failUnless('CustomerFolder' in ids)
+
+    def testStory(self):
+        ids = self.portal.portal_types.objectIds()
         self.failUnless('Story' in ids)
+ 
+    def testProjectFolder(self):
+        ids = self.portal.portal_types.objectIds()
         self.failUnless('ProjectFolder' in ids)
+
+    def testProject(self):
+        ids = self.portal.portal_types.objectIds()
         self.failUnless('Project' in ids)
+  
+    def testTask(self):
+        ids = self.portal.portal_types.objectIds()
         self.failUnless('Task' in ids)
+
+    def testIteration(self):
+        ids = self.portal.portal_types.objectIds()
+        self.failUnless('Iteration' in ids)
 
     def testWorkflows(self):
         ids = self.portal.portal_workflow.objectIds()
@@ -74,6 +93,47 @@ class TestSetup(eXtremeManagementTestCase):
         self.failUnless('eXtreme_story_workflow' in getChain('Story'))
         self.failUnless('eXtreme_iteration_workflow' in getChain('Iteration'))
 
+    def test_callCustomerFolder(self):
+        """ Test that you can add and call a CustomerFolder item
+        """
+        self.setRoles(['Manager'])
+        self.portal.invokeFactory('CustomerFolder', id='testCustomerFolder')
+        result = self.portal.testCustomerFolder.view()
+
+    def test_callProjectFolder(self):
+        """ Test that you can add and call a ProjectFolder item
+        """
+        self.setRoles(['Manager'])
+        self.portal.invokeFactory('ProjectFolder', id='testProject')
+        result = self.portal.testProject.view()
+
+    def test_callProject(self):
+        """ Test that you can add and call a Project item
+        """
+        self.setRoles(['Manager'])
+        self.portal.invokeFactory('ProjectFolder', id='testProjectFolder')
+        self.portal.testProjectFolder.invokeFactory('Project', id='testproject01')
+        result = self.portal.testProjectFolder.testproject01.view()
+
+    def test_callIteration(self):
+        """ Test that you can add and call an Iteration
+        """
+        self.setRoles(['Manager'])
+        self.portal.invokeFactory('ProjectFolder', id='testProjectFolder')
+        self.portal.testProjectFolder.invokeFactory('Project', id='testproject01')
+        self.portal.testProjectFolder.testproject01.invokeFactory('Iteration', id='testIteration')
+        result = self.portal.testProjectFolder.testproject01.testIteration.view()
+
+    def test_callStory(self):
+        """ Test that you can add and call a Story item
+        """
+        self.setRoles(['Manager'])
+        self.portal.invokeFactory('ProjectFolder', id='testProjectFolder')
+        self.portal.testProjectFolder.invokeFactory('Project', id='testproject01')
+        self.portal.testProjectFolder.testproject01.invokeFactory('Iteration', id='testIteration')
+        self.portal.testProjectFolder.testproject01.testIteration.invokeFactory('Story', id='testStory')
+        result = self.portal.testProjectFolder.testproject01.testIteration.testStory.view()
+       
 
 def test_suite():
     from unittest import TestSuite, makeSuite
