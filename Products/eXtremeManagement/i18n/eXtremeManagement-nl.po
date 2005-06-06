@@ -19,7 +19,7 @@ msgstr ""
 
 ### customer_view template ###
 msgid "header_customers"
-msgstr "Klant informatie"
+msgstr "Klantinformatie"
 
 msgid "listingheader_name"
 msgstr "Naam"
@@ -49,7 +49,7 @@ msgid "listingheader_comments"
 msgstr "Opmerking(en)"
 
 msgid "header_project_members"
-msgstr "Project leden"
+msgstr "Projectleden"
 
 ### iteration_view template ###
 msgid "listingheader_title"
@@ -74,7 +74,7 @@ msgstr "Omschrijving"
 msgid "listingheader_estimate"
 msgstr "Geschat"
 
-msgid "listingheader_actueel"
+msgid "listingheader_actual"
 msgstr "Daadwerkelijk"
 
 msgid "listingheader_diff"
@@ -205,4 +205,29 @@ msgstr "Hoofdtekst"
 
 msgid "desc_mainText"
 msgstr "Vul de hoofdtekst in."
+
+msgid "header_memberinfo"
+msgstr "Projectlid"
+
+msgid "completed"
+msgstr "Voltooid"
+
+msgid "open"
+msgstr "Open"
+
+msgid "in-progress"
+msgstr "In behandeling"
+
+msgid "Activate"
+msgstr "Activeren"
+
+msgid "Complete"
+msgstr "Afronden"
+
+msgid "estimated"
+msgstr "Geschat"
+
+msgid "assigned"
+msgstr "Toegekend"
+
 

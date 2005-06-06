@@ -50,7 +50,7 @@
 
             <table class="listing"
                    border="1"
-                   width="70%"
+                   width="100%"
                    cellpadding="0" 
                    cellspacing="0"
                    tal:attributes="onload string:javascript:setFromState('hideTable${idx}');">
@@ -61,6 +61,7 @@
                        tal:attributes="onclick string:javascript:toggleId('hideTable${idx}');" />
 
                   <a href=""
+                     id="header_iteration_project_overview"
                      tal:attributes="href string:${obj/absolute_url}">
                     <img src="#"
                          tal:attributes="src string:${here/portal_url}/${obj/getIcon}"/>
@@ -78,7 +79,7 @@
             </table>
               
             <table class="listing" 
-                   width="70%" 
+                   width="100%" 
                    border="0"
                    cellpadding="0" 
                    cellspacing="0"
@@ -108,6 +109,7 @@
 
                   <td width="30%"> 
                     <a href="" 
+                       id="storyTitle_project_overview"
                        tal:attributes="href string:${storyObj/absolute_url}">
                        <span tal:content="storyObj/Title">Title</span></a></td>
 
@@ -141,8 +143,8 @@
                             idx idIndex/next;">
 
             <table class="listing"
-                   border="1"
-                   width="70%"
+                   border="0"
+                   width="100%"
                    cellpadding="0"
                    cellspacing="0"
                    tal:attributes="onload string:javascript:setFromState('hideTable${idx}');">
@@ -153,6 +155,7 @@
                        tal:attributes="onclick string:javascript:toggleId('hideTable${idx}');" />
 
                   <a href=""
+                     id="header_iteration_project_overview"
                      tal:attributes="href string:${obj/absolute_url}">
                     <img src="#"
                          tal:attributes="src string:${here/portal_url}/${obj/getIcon}"/>
@@ -170,8 +173,8 @@
             </table>
 
             <table class="listing"
-                   width="70%"
-                   border="1"
+                   width="100%"
+                   border="0"
                    cellpadding="0"
                    cellspacing="0"
                    tal:attributes="id string:hideTable${idx};">
@@ -200,6 +203,7 @@
 
                   <td width="30%">
                     <a href=""
+                       id="storyTitle_project_overview"
                        tal:attributes="href string:${storyObj/absolute_url}">
                        <span tal:content="storyObj/Title">Title</span></a></td>
 
@@ -230,13 +234,15 @@
                    tal:condition="iterations">
            <h1 i18n:translate="">New iterations</h1>
            <p i18n:translate="">
-              place description here ....... blablabla...
+              Here are 2 lists of iterations. Left you see new iterations and the stories in that iteration.
+              Right you see a list of iterations ready to work in. When de current iteration is completed, 
+              the first one will then the current one.
            </p> 
  
            <table class="listing" width="70%">
              <tr>
-               <th>New</th>
-               <th>Ready</th>
+               <th>New iterations</th>
+               <th>Iterations ready for work</th>
              </tr>
 
              <tr>
@@ -287,10 +293,15 @@
         </tal:block>
 
 
-        <tal:block tal:define="stories python:here.portal_catalog.searchResults(portal_type='Story', 
-                                                                                review_state='open',)"
-                   tal:condition="stories">
-           <h1 i18n:translate="">Stories not estimated</h1>
+        <tal:block tal:define="project_path python:'/'.join(here.getPhysicalPath());
+                               stories python:here.portal_catalog.searchResults(portal_type='Story', 
+                                                                                review_state='open',
+                                                                                path=project_path);
+                               stories_estimated python:here.portal_catalog.searchResults(portal_type='Story',
+                                                                                          review_state='estimated',
+                                                                                          path=project_path)"
+                   tal:condition="python:stories or stories_estimated">
+           <h1 i18n:translate="">Stories (not) estimated</h1>
           
            <p i18n:translate="">
               These stories are not estimated yet. 
@@ -300,24 +311,37 @@
        
            <table class="listing">
              <tr>
-               <th>Stories</th>
+               <th tal:condition="stories" 
+                   i18n:translate="stories_not_estimated">Stories not estimated</th>
+               <th tal:condition="stories_estimated" 
+                   i18n:translate="stories_estimated">Stories estimated</th>
              </tr>
 
-             <tr tal:repeat="story stories">
-               <td>
-                 <img src=""
-                      tal:attributes="src story/getIcon" />
-                 <a href=""
-                    tal:attributes="href story/getURL"
-                    tal:content="story/Title">Title
-                 </a>
+             <tr>
+               <td tal:condition="stories">
+                 <div tal:repeat="story stories">
+                   <img src=""
+                        tal:attributes="src story/getIcon" />
+                   <a href=""
+                      tal:attributes="href story/getURL"
+                      tal:content="story/Title">Title
+                   </a>
+                 </div>
+               </td>
+              
+               <td tal:condition="stories_estimated">
+                 <div tal:repeat="story_es stories_estimated">
+                   <img src=""
+                        tal:attributes="src story_es/getIcon" />
+                   <a href=""
+                      tal:attributes="href story_es/getURL"
+                      tal:content="story_es/Title">Title
+                   </a>
+                 </div>
                </td>
              </tr>
-
           </table>
-
         </tal:block>
-            
 
     </div>
 </body>

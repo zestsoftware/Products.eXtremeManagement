@@ -50,7 +50,7 @@
                <th i18n:translate="listingheader_state">Status</th>
                <td tal:define="wtool here/portal_workflow;
                                review_state python:wtool.getInfoFor(here, 'review_state')"
-                   tal:content="review_state">Status</td>
+                   tal:content="review_state" i18n:translate="">Status</td>
              </tr>
              <tr>
                <th i18n:translate="listingheader_assignees">Assignee(s)</th>
