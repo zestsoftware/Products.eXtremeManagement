@@ -232,7 +232,7 @@
         <tal:block tal:define="open_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
                                                                                         review_state='open')"
                    tal:condition="iterations">
-           <h1 i18n:translate="">New iterations</h1>
+           <h1 i18n:translate="header_new_iterations">New iterations</h1>
            <p i18n:translate="">
               Here are 2 lists of iterations. Left you see new iterations and the stories in that iteration.
               Right you see a list of iterations ready to work in. When de current iteration is completed, 
@@ -241,8 +241,8 @@
  
            <table class="listing" width="70%">
              <tr>
-               <th>New iterations</th>
-               <th>Iterations ready for work</th>
+               <th i18n:translate="headerlisting_new_iterations">New iterations</th>
+               <th i18n:translate="headerlisting_iterations_activated">Iteration activated</th>
              </tr>
 
              <tr>
@@ -273,7 +273,7 @@
                </td>
                <td width="30%"
                    tal:define="iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
-                                                                                   review_state='in-progress',
+                                                                                   review_state='activated',
                                                                                    sort_on='created',
                                                                                    sort_order='normal')"
                    tal:condition="iterations">
@@ -301,7 +301,7 @@
                                                                                           review_state='estimated',
                                                                                           path=project_path)"
                    tal:condition="python:stories or stories_estimated">
-           <h1 i18n:translate="">Stories (not) estimated</h1>
+           <h1 i18n:translate="header_stories_(not)_estimated">Stories (not) estimated</h1>
           
            <p i18n:translate="">
               These stories are not estimated yet. 
@@ -309,7 +309,7 @@
               and will be visible in the list above to be assigned to an iteration.
            </p>
        
-           <table class="listing">
+           <table class="listing" width="60%">
              <tr>
                <th tal:condition="stories" 
                    i18n:translate="stories_not_estimated">Stories not estimated</th>

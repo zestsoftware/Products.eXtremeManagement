@@ -91,7 +91,7 @@ msgid "heading_iterations"
 msgstr "Iteraties"
 
 msgid "listingheader_story"
-msgstr "Story"
+msgstr "Stories"
 
 msgid "listingheader_progress"
 msgstr "Voortgang"
@@ -229,5 +229,23 @@ msgstr "Geschat"
 
 msgid "assigned"
 msgstr "Toegekend"
+
+msgid "headerlisting_new_iterations"
+msgstr "Nieuwe iteraties"
+
+msgid "headerlisting_iterations_activated"
+msgstr "Geactiveerde iteraties"
+
+msgid "stories_not_estimated"
+msgstr "Stories niet geschat"
+
+msgid "stories_estimated"
+msgstr "Stories geschat"
+
+msgid "header_new_iterations"
+msgstr "Nieuwe iteraties"
+
+msgid "header_stories_(not)_estimated"
+msgstr "Stories (niet) geschat"
 
 

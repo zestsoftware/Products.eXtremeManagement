@@ -38,6 +38,12 @@ msgstr "Geschat"
 msgid "assigned"
 msgstr "Toegekend"
 
+msgid "activated"
+msgstr "Geactiveerd"
+
+msgid "Accept"
+msgstr "Accepteer"
+
 msgid "CustomerFolder"
 msgstr "Klantenmap"
 
