@@ -248,4 +248,10 @@ msgstr "Nieuwe iteraties"
 msgid "header_stories_(not)_estimated"
 msgstr "Stories (niet) geschat"
 
+msgid "description_stories_not_estimated"
+msgstr "Hieronder worden 2 lijsten weergegeven met de stories die aangemaakt zijn. In de linkerlijst worden alle stories weergegeven die nog niet geschat zijn op het aantal uren. In de rechterlijst worden stories weergegeven die wel voorzien zijn van een schatting."
+
+msgid "description_new_iterations" 
+msgstr "Hieronder worden 2 lijsten weergegeven. In de linkerlijst worden de openstaande iteraties weergegeven met daarin de stories die toegevoegd zijn. In de rechterlijst worden alle ge-activeerde iteraties getoond. Deze zijn voorzien van stories en een schatting."
+
 

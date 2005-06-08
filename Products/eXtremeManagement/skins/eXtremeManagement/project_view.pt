@@ -233,7 +233,8 @@
                                                                                         review_state='open')"
                    tal:condition="iterations">
            <h1 i18n:translate="header_new_iterations">New iterations</h1>
-           <p i18n:translate="">
+           <p class="discreet" 
+              i18n:translate="description_new_iterations">
               Here are 2 lists of iterations. Left you see new iterations and the stories in that iteration.
               Right you see a list of iterations ready to work in. When de current iteration is completed, 
               the first one will then the current one.
@@ -303,7 +304,8 @@
                    tal:condition="python:stories or stories_estimated">
            <h1 i18n:translate="header_stories_(not)_estimated">Stories (not) estimated</h1>
           
-           <p i18n:translate="">
+           <p class="discreet" 
+              i18n:translate="description_stories_not_estimated">
               These stories are not estimated yet. 
               After estimating these stories, they get the status "estimated" <br />
               and will be visible in the list above to be assigned to an iteration.
