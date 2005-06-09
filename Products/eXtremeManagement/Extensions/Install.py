@@ -8,7 +8,7 @@ from StringIO import StringIO
 
 from Products.eXtremeManagement.config import PROJECTNAME, GLOBALS
 from Products.eXtremeManagement.config import *
-from Products.eXtremeManagement.workflows import eXtreme_iteration_workflow, \
+from Products.eXtremeManagement.workflows import eXtreme_iteration_workflow, eXtreme_default_workflow \
                                                  eXtreme_story_workflow, eXtreme_task_workflow
 from Products.eXtremeManagement.permissions import eXtremeManagementRoles 
 
@@ -78,29 +78,44 @@ def configureWorkflow(portal):
     wf_tool.setChainForPortalTypes(('Iteration',), 'eXtreme_iteration_workflow')
     wf_tool.setChainForPortalTypes(('Story',), 'eXtreme_story_workflow')
     wf_tool.setChainForPortalTypes(('Task',), 'eXtreme_task_workflow')
+    wf_tool.setChainForPortalTypes(('CustomerFolder', 
+                                    'Customer', 
+                                    'ProjectFolder', 
+                                    'Project', 
+                                    'ProjectMember'), 'eXtreme_default_workflow')
     wf_tool.updateRoleMappings()
 
     eiwf = 'eXtreme_iteration_workflow'
-    #eXtreme_iteration_workflow.createEXtreme_iteration_workflow(eiwf)
+    eXtreme_iteration_workflow.createExtreme_iteration_workflow(eiwf)
     wf_tool = getToolByName(portal, 'portal_workflow')
     if not eiwf in wf_tool.objectIds():
         wf_tool.manage_addWorkflow('eXtreme_iteration_workflow (eXtreme Iteration Workflow)', eiwf)
     wf_tool.setChainForPortalTypes( ('Iteration',), eiwf)
 
     eswf = 'eXtreme_story_workflow'
-    #eXtreme_story_workflow.createEXtreme_story_workflow(eswf)
+    eXtreme_story_workflow.createExtreme_story_workflow(eswf)
     wf_tool = getToolByName(portal, 'portal_workflow')
     if not eswf in wf_tool.objectIds():
         wf_tool.manage_addWorkflow('eXtreme_story_workflow (eXtreme Story Workflow)', eswf)
     wf_tool.setChainForPortalTypes( ('Story',), eswf)
 
     etwf = 'eXtreme_task_workflow'
-    #eXtreme_task_workflow.createEXtreme_task_workflow(etwf)
+    eXtreme_task_workflow.createExtreme_task_workflow(etwf)
     wf_tool = getToolByName(portal, 'portal_workflow')
     if not etwf in wf_tool.objectIds():
         wf_tool.manage_addWorkflow('eXtreme_task_workflow (eXtreme Task Workflow)', etwf)
     wf_tool.setChainForPortalTypes( ('Task',), etwf)
 
+    edwf = 'eXtreme_default_workflow'
+    eXtreme_default_workflow.createEXtreme_default_workflow(edwf)
+    wf_tool = getToolByName(portal, 'portal_workflow')
+    if not edwf in wf_tool.objectIds():
+        wf_tool.manage_addWorkflow('eXtreme_default_workflow (eXtreme Default Workflow)', edwf)
+    wf_tool.setChainForPortalTypes( ('Customer', 
+                                     'CustomerFolder', 
+                                     'ProjectFolder', 
+                                     'Project', 
+                                     'ProjectMember',), edwf)
 
 #def setupProps(portal):
 #    # Add eXtreme Props
