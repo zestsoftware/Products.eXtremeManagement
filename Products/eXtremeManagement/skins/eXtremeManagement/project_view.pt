@@ -56,7 +56,7 @@
                    tal:attributes="onload string:javascript:setFromState('hideTable${idx}');">
             
               <tr>
-                <th width="60%" height="30">        
+                <th width="60%" height="30" align="left" id="header_iteration">        
                   <img src="treeCollapsed.gif"
                        tal:attributes="onclick string:javascript:toggleId('hideTable${idx}');" />
 
@@ -132,7 +132,7 @@
 
            </div>
           </div>
-        </tal:block>
+        </tal:block> <br />
 
 
         <tal:block tal:condition="current_iterations">
@@ -150,7 +150,7 @@
                    tal:attributes="onload string:javascript:setFromState('hideTable${idx}');">
 
               <tr>
-                <th width="60%" height="30">
+                <th width="60%" height="30" align="left" id="header_iteration">
                   <img src="treeCollapsed.gif"
                        tal:attributes="onclick string:javascript:toggleId('hideTable${idx}');" />
 

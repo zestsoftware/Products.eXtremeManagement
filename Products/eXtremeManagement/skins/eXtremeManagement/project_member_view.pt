@@ -35,15 +35,18 @@
                  cellpadding="0" cellspacing="0">
 
              <tr>
-               <th i18n:translate="listingheader_name">Name</th>
+               <th id="projectmemeber_info_header" 
+                   i18n:translate="listingheader_name">Name</th>
                <td tal:content="here/fullname">Name</td>
              </tr>
              <tr>
-               <th i18n:translate="listingheader_phone">Phone</th>
+               <th id="projectmemeber_info_header" 
+                   i18n:translate="listingheader_phone">Phone</th>
                <td tal:content="here/phone">Phone</td>
              </tr>
              <tr>
-               <th i18n:translate="listingheader_email">E-mail</th>
+               <th id="projectmemeber_info_header" 
+                   i18n:translate="listingheader_email">E-mail</th>
                <td tal:define="emailaddress python:here.email">
                  <a href="#"
                     class="link-plain"
@@ -53,7 +56,8 @@
                     <img src="mail_icon.gif"/> <span tal:content="emailaddress">Email</span></a></td>
              </tr>
              <tr>
-               <th i18n:translate="listingheader_comments">Comments</th>
+               <th id="projectmemeber_info_header" 
+                   i18n:translate="listingheader_comments">Comments</th>
                <td tal:content="here/comments">Comments</td>
              </tr>
           </table>

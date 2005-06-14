@@ -44,35 +44,43 @@
                  cellpadding="0" cellspacing="0">
 
              <tr>
-               <th i18n:translate="listingheader_name">Fullname</th> 
+               <th id="customer_info_header" 
+                   i18n:translate="listingheader_name">Fullname</th> 
                <td tal:content="here/name">Fullname</td>
              </tr>
              <tr>
-               <th i18n:translate="listingheader_address">Address</th>
+               <th id="customer_info_header" 
+                   i18n:translate="listingheader_address">Address</th>
                <td tal:content="here/address">Address</td>
              </tr>
              <tr>
-               <th i18n:translate="listingheader_zipCode">Zip code</th>
+               <th id="customer_info_header" 
+                   i18n:translate="listingheader_zipCode">Zip code</th>
                <td tal:content="here/zipCode">Zip code</td>
              </tr>
              <tr>
-               <th i18n:translate="listingheader_city">City</th>
+               <th id="customer_info_header" 
+                   i18n:translate="listingheader_city">City</th>
                <td tal:content="here/city">City</td>
              </tr>
              <tr>
-               <th i18n:translate="listingheader_country">Country</th>
+               <th id="customer_info_header" 
+                   i18n:translate="listingheader_country">Country</th>
                <td tal:content="here/country">Country</td>
              </tr>
              <tr>
-               <th i18n:translate="listingheader_phone">Phone</th>
+               <th id="customer_info_header" 
+                   i18n:translate="listingheader_phone">Phone</th>
                <td tal:content="here/phone">Phone</td>
              </tr>
              <tr>
-               <th i18n:translate="listingheader_fax">Fax</th>
+               <th id="customer_info_header" 
+                   i18n:translate="listingheader_fax">Fax</th>
                <td tal:content="here/fax">Fax</td>
              </tr>
              <tr>
-               <th i18n:translate="listingheader_email">E-mail</th>
+               <th id="customer_info_header" 
+                   i18n:translate="listingheader_email">E-mail</th>
                <td tal:define="emailaddress python:here.email">
                  <a href="#"
                     class="link-plain"
@@ -82,7 +90,8 @@
                     <img src="mail_icon.gif"/> <span tal:content="emailaddress">Email</span></a></td>
              </tr>
              <tr>
-               <th i18n:translate="listingheader_website">Website</th>
+               <th id="customer_info_header" 
+                   i18n:translate="listingheader_website">Website</th>
                <td tal:define="siteaddress python:here.website">
                  <a href=""
                     tal:attributes="href siteaddress"
@@ -92,7 +101,8 @@
                     </a></td>
              </tr>
              <tr>
-               <th i18n:translate="listingheader_comments">Comments</th>
+               <th id="customer_info_header" 
+                   i18n:translate="listingheader_comments">Comments</th>
                <td tal:content="here/comments">Comments</td>
              </tr>
           </table>
@@ -110,10 +120,14 @@
 
               <thead>
                 <tr>
-                  <th i18n:translate="listingheader_name">name</th>
-                  <th i18n:translate="listingheader_phone">phone</th>
-                  <th i18n:translate="listingheader_email">email</th>
-                  <th i18n:translate="listingheader_comments">comments</th>
+                  <th id="header_projectmemeber_listing" 
+                      i18n:translate="listingheader_name">name</th>
+                  <th id="header_projectmemeber_listing" 
+                      i18n:translate="listingheader_phone">phone</th>
+                  <th id="header_projectmemeber_listing" 
+                      i18n:translate="listingheader_email">email</th>
+                  <th id="header_projectmemeber_listing" 
+                      i18n:translate="listingheader_comments">comments</th>
                 </tr>
               </thead>
  

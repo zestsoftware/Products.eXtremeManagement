@@ -20,6 +20,10 @@
 }
 #header_iteration_project_overview{
     font-weight: bold;
+    font-size: 15px;
+}
+#header_iteration {
+    border-right: none;
 }
 #storyTitle_project_overview{
     font-weight: bold;
@@ -46,6 +50,7 @@
 }
 #iteration-state {
     text-align: right;
+    border-left: none;
 }
 #total {
     font-weight: bold;
@@ -91,6 +96,22 @@
     margin: 0.5em 0 0 1.5em;
     padding: 0;
 }
+#customer_info_header{
+   text-align: right;
+   font-weight: bold;
+}
+#projectmemeber_info_header{
+   text-align: right;
+   font-weight: bold;
+}
+
+/*
+#header_projectmemeber_listing{
+   font-weight: bold;
+}*/
+
+
+
 
 
 /* </dtml-with> */
