@@ -9,7 +9,7 @@ from StringIO import StringIO
 from Products.eXtremeManagement.config import PROJECTNAME, GLOBALS
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.workflows import eXtreme_iteration_workflow, \
-                                                 eXtreme_story_workflow, eXtreme_task_workflow, eXtreme_default_workflow
+                                                 eXtreme_story_workflow, eXtreme_task_workflow, eXtreme_default_workflow, eXtreme_folder_workflow
 from Products.eXtremeManagement.permissions import eXtremeManagementRoles 
 
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
@@ -82,7 +82,7 @@ def configureWorkflow(portal):
                                     'Customer', 
                                     'ProjectFolder', 
                                     'Project', 
-                                    'ProjectMember'), 'eXtreme_default_workflow')
+                                    'ProjectMember'), 'eXtreme_folder_workflow')
     wf_tool.updateRoleMappings()
 
     eiwf = 'eXtreme_iteration_workflow'
@@ -106,16 +106,16 @@ def configureWorkflow(portal):
         wf_tool.manage_addWorkflow('eXtreme_task_workflow (eXtreme Task Workflow)', etwf)
     wf_tool.setChainForPortalTypes( ('Task',), etwf)
 
-    edwf = 'eXtreme_default_workflow'
-    eXtreme_default_workflow.createEXtreme_default_workflow(edwf)
+    efwf = 'eXtreme_folder_workflow'
+    eXtreme_folder_workflow.createExtreme_folder_workflow(efwf)
     wf_tool = getToolByName(portal, 'portal_workflow')
-    if not edwf in wf_tool.objectIds():
-        wf_tool.manage_addWorkflow('eXtreme_default_workflow (eXtreme Default Workflow)', edwf)
+    if not efwf in wf_tool.objectIds():
+        wf_tool.manage_addWorkflow('eXtreme_folder_workflow (eXtreme Folder Workflow)', efwf)
     wf_tool.setChainForPortalTypes( ('Customer', 
                                      'CustomerFolder', 
                                      'ProjectFolder', 
                                      'Project', 
-                                     'ProjectMember',), edwf)
+                                     'ProjectMember',), efwf)
 
 #def setupProps(portal):
 #    # Add eXtreme Props
