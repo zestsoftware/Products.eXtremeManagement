@@ -9,7 +9,7 @@ from StringIO import StringIO
 from Products.eXtremeManagement.config import PROJECTNAME, GLOBALS
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.workflows import eXtreme_iteration_workflow, \
-                                                 eXtreme_story_workflow, eXtreme_task_workflow, eXtreme_default_workflow, eXtreme_folder_workflow
+                                                 eXtreme_story_workflow, eXtreme_task_workflow, eXtreme_folder_workflow
 from Products.eXtremeManagement.permissions import eXtremeManagementRoles 
 
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
