@@ -15,5 +15,14 @@ class eXtremeManagementPolicy(DefaultCustomizationPolicy):
 
 
 
+        # add new roles
+        newRoles = ['Employee', 'Customer']
+        defined_roles = getattr(portal, '__acl_roles__', ())
+
+        for role in newRoles:
+            if not role in defined_roles:
+                portal._addRole(role)
+
+
 def register(context, app_state):
     addPolicy('eXtremeManagement', eXtremeManagementPolicy())

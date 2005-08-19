@@ -35,6 +35,9 @@ msgstr "Afronden"
 msgid "estimated"
 msgstr "Geschat"
 
+msgid "draft"
+msgstr "Concept"
+
 msgid "assigned"
 msgstr "Toegekend"
 
@@ -52,6 +55,9 @@ msgstr "Projectenmap"
 
 msgid "Customer"
 msgstr "Klant"
+
+msgid "Employee"
+msgstr "Medewerker"
 
 msgid "ProjectMember"
 msgstr "Projectlid"
@@ -73,4 +79,8 @@ msgstr "Klantenmap"
 
 msgid "Project Folder"
 msgstr "Projectenmap"
+
+msgid "Hours registration"
+msgstr "Uren registratie"
+
 

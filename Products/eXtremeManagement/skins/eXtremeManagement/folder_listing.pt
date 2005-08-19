@@ -28,7 +28,9 @@
         Up one level
         </a>
 
-        <div class="documentDescription" tal:content="here/Description">
+        <div class="documentDescription"
+             tal:condition="here/Description" 
+             tal:content="here/Description">
             description
         </div>
 

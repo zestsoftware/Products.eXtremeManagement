@@ -10,7 +10,7 @@ from Products.eXtremeManagement.config import PROJECTNAME, GLOBALS
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.workflows import eXtreme_iteration_workflow, \
                                                  eXtreme_story_workflow, eXtreme_task_workflow, eXtreme_folder_workflow
-from Products.eXtremeManagement.permissions import eXtremeManagementRoles 
+#from Products.eXtremeManagement.permissions import eXtremeManagementRoles 
 
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from Products.CMFDefault.PropertiesTool import PropertiesTool
@@ -18,26 +18,13 @@ from Products.CMFDefault.PropertiesTool import PropertiesTool
 
 def configureRoles(portal):
     # add new roles
-    defined_roles = getattr(portal, '__ac_roles__', ())
-    if defined_roles is None:
-        defined_roles = []
-    else:
-        defined_roles = list(defined_roles)
-    
-    defined_roles = Set(defined_roles)
- 
-    for role in eXtremeManagementRoles:
-        defined_roles.add(role)
+    newRoles = ['Employee', 'Customer']
+    defined_roles = getattr(portal, '__acl_roles__', ())
 
-    portal.__ac_roles__ = tuple(defined_roles)
+    for role in newRoles:
+        if not role in defined_roles:
+            portal._addRole(role)
 
-#    for role, permissions in RolePermissionMap.items():
-#        existing_permissions = portal.permissionsOfRole(role)
-#        permissions = Set(permissions)
-#	for perm in existing_permissions:
-#            if perm['selected']:
-#                permissions.add( perm['name'] )
-#	portal.manage_role(role, permissions)
 
 def configureUserActions(portal):
     # add an action to the persnal bar for project management
@@ -45,13 +32,13 @@ def configureUserActions(portal):
     actionTool_actions = actionTool._cloneActions()
     actionDefined=0
     for a in actionTool_actions: 
-        if a.id in ['eXtremeProjectMangement',]:
+        if a.id in ['hours_registration',]:
             a.visible = 1
             actionDefined = 1
         actionTool._actions = actionTool_actions
     if actionDefined == 0:
-        actionTool.addAction('eXtremeProjectManagement', 
-                             'eXtreme Project Mangement',
+        actionTool.addAction('hours_registration', 
+                             'Hours registration',
                              'string:${portal_url}/update_hours_form',
                              'member',
                              'View',
@@ -158,8 +145,8 @@ def install(self):
     print >> out, "Customize the portal"
     setupSkin(self)
  
-#    print >> out, "Configuring new roles"
-#    configureRoles(self)
+    print >> out, "Configuring new roles"
+    configureRoles(self)
 
     print >> out, "Customizing portal properties"
     configurePortalProps(self)
@@ -180,7 +167,7 @@ def uninstall(self):
     actionTool_actions = actionTool._cloneActions()
     actionDefined=0
     for a in actionTool_actions:
-        if a.id in ['eXtremeProjectMangement',]:
+        if a.id in ['hours_registration',]:
             a.visible = 0
 
     return out.getvalue()

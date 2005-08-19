@@ -28,6 +28,12 @@ class Project(OrderedBaseFolder):
     typeDescMsgId         = ''
     security              = ClassSecurityInfo()
 
+
+    def getProject(self):
+        """
+        returns self - useful while doing aquisition many levels down the tree
+        """
+        return self
      
     def getMembers(self, role='Member'):
         grp = getToolByName(self, 'portal_groups')
@@ -48,13 +54,8 @@ class Project(OrderedBaseFolder):
                     else:
                         id = name = user
                     list1.append((id, name))
-        return list1
 
-    def getProject(self):
-        """ 
-        returns self - useful while doing aquisition many levels down the tree 
-        """
-        return self
+        return list1
 
 
     actions = (
@@ -65,6 +66,7 @@ class Project(OrderedBaseFolder):
                 'permissions': (CMFCorePermissions.View,),
                 'category': 'object'
                },
+
                {
                 'id': 'team',
                 'name': 'Project team',

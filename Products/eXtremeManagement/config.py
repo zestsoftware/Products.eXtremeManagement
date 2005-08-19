@@ -7,14 +7,4 @@ SKINS_DIR = 'skins'
 
 GLOBALS = globals()
 
-configlets = (
-              {'id': 'XPProjectManagement',
-               'appId': 'eXtremeMangement',
-               'name': 'eXtreme Project Mangement',
-               'action': 'string:$portal_url/prefs_project_management',
-               'category': 'Products',
-               'permission': ManagePortal,
-               'imageUrl': 'folder_icon.gif'
-              },
-             )
 

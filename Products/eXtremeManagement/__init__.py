@@ -10,14 +10,14 @@ from Products.Archetypes.public import process_types, listTypes
 import os, os.path
 
 from Products.eXtremeManagement.config import *
-#from Products.eXtremeManagement import CustomizationPolicy
+from Products.eXtremeManagement import CustomizationPolicy
 from Products.eXtremeManagement import eXtremeManagement
 
 
 registerDirectory(SKINS_DIR, GLOBALS)
 
 def initialize(context):
-    #CustomizationPolicy.register(context, globals())
+    CustomizationPolicy.register(context, globals())
     listOfTypes = listTypes(PROJECTNAME)
     content_types, constructors, ftis = process_types(
         listOfTypes,

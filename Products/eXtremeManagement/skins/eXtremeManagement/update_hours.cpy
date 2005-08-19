@@ -10,17 +10,21 @@
 
 REQUEST = context.REQUEST
 
-originals = {}
-entered   = {}
+for uid in REQUEST.form.keys():
+    if uid == 'submit':
+        continue
 
-for key in REQUEST.keys():
-    if key.startswith('actual-'):
-        actual=REQUEST[key]
-        if key.startswith('actual-original-'):
-            id=key[len('actual-original-'):]
-            originals[id]=actual
-        if key.startswith('actual-entered-'):
-            id=key[len('actual-entered-'):]
-            entered[id]=actual
+    value = REQUEST.form[uid]
+    brain = context.uid_catalog(UID=uid)
 
-return originals 
+    try:
+        task = brain[0].getObject()
+
+    except IndexError:
+        raise "Couldn't find UID %s in the catalog" % uid
+
+    task.setActual(value)
+#    print "%s's actual is set to %s" % (task.Title(), task.getActual())
+
+return state.set(portal_status_message='Je uren zijn bijgewerkt!')
+

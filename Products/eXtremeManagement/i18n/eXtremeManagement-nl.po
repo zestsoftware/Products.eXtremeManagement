@@ -254,4 +254,16 @@ msgstr "Hieronder worden 2 lijsten weergegeven met de stories die aangemaakt zij
 msgid "description_new_iterations" 
 msgstr "Hieronder worden 2 lijsten weergegeven. In de linkerlijst worden de openstaande iteraties weergegeven met daarin de stories die toegevoegd zijn. In de rechterlijst worden alle ge-activeerde iteraties getoond. Deze zijn voorzien van stories en een schatting."
 
+msgid "Send"
+msgstr "Versturen"
+
+msgid "no_tasks_assigned"
+msgstr "Er zijn geen taken toegekend aan jou!"
+
+msgid "header_time_registration"
+msgstr "Uren Registratie"
+
+msgid "description_time_registration"
+msgstr "Om je uren te boeken, maak gebruik van dit formulier and klik op 'Versturen'."
+
 

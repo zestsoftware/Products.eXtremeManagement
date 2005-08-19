@@ -20,12 +20,11 @@
         <div class="portletBody">
             <tal:block repeat="item results">
             <div tal:define="oddrow repeat/item/odd;"
-
                  tal:attributes="class python:test(oddrow, 'portletContent odd', 'portletContent even')">
 
                     <a href="#"
                        class="marker"
-                       tal:attributes="href item/getURL"> 
+                       tal:attributes="href item/absolute_url"> 
 
                         <img src="" alt="" height="16" width="16"
                              tal:attributes="src string:${here/portal_url}/${item/getIcon};" />

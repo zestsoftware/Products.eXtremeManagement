@@ -17,26 +17,27 @@
   <body>
 
     <div metal:fill-slot="main"
-         tal:define="tasks python:here.portal_catalog.searchResults(portal_type='Task', 
-                                                                    review_state=['open', 'in-progress'])">
+         tal:define="tasks python:here.getOwnTasks();">
 
+       <h1 i18n:translate="header_time_registration" 
+           class="documentFirstHeading">
+         Time registration
+       </h1>
 
        <tal:block tal:condition="tasks">
-          <h1 i18n:translate="" class="documentFirstHeading">
-            Project Management
-          </h1>
         
-          <p i18n:translate="">
-             Update the form below ...blablabla
+          <p class="discreet" 
+             i18n:translate="description_time_registration"> 
+          To register your time (hours), use the form below and press 'Send'.
           </p>
 
         <form tal:define="errors options/state/getErrors"
               tal:attributes="action string:${here/absolute_url}/${template/id};"
-             method="post">
+              method="post">
 
           <table class="listing"
                  border="1" 
-                 width="65%"
+                 width="80%"
                  cellpadding="0" 
                  cellspacing="0">
 
@@ -50,38 +51,44 @@
              <tr tal:repeat="task tasks">
                  <td>
                    <a href=""
-                      tal:attributes="href task/getURL">
+                      tal:attributes="href task/absolute_url">
                       <img src="task_icon.gif" /> 
                       <span tal:content="task/Title">Task</span></a></td>
 
-                 <td tal:content="task/review_state">Status</td>
+                 <td tal:define="wtool here/portal_workflow;
+                                 review_state python:wtool.getInfoFor(task, 'review_state')"
+                   tal:content="review_state">Status</td>
                  <td id="estimate" 
                      tal:content="task/getEstimate">Estimate</td>
 
-                 <td id="actual">
+                 <td id="actual" 
+                     tal:define="actualValue python:task.getActual();">
                      <input type="text"
                             size="5"
                             value=""
                             id="input_field_center"
-                            tal:attributes="name string:actual-entered-${task/id};
-                                            value task/getActual" />
-               <input type="hidden"
-                      tal:attributes="name string:actual-original-${task/id};
-                                      value task/getActual" />
-               <input type="hidden"
-                      tal:attributes="name string:uid-${task/id};
-                                      value task/UID" />
-
+                            tal:attributes="name task/UID;
+                                            value actualValue" />
                  </td>
              </tr>
           </table>
 
-          <input type="submit" name="submit" value="submit" />
+          <input class="context"
+                 tabindex=""
+                 type="submit"
+                 name="submit"
+                 value="Send"
+                 i18n:attributes="value"
+                 tal:attributes="tabindex tabindex/next;"/>
           <input type="hidden" name="form.submitted" value="1" />
 
        </form>
 
       </tal:block>
+
+      <div tal:condition="not:tasks" class="discreet">
+        <p i18n:translate="no_tasks_assigned">No tasks are assigned to you!</p>
+      </div>
 
     </div>
   </body>

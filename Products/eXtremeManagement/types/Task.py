@@ -23,14 +23,6 @@ class Task(BaseContent):
     security              = ClassSecurityInfo()
 
 
-    def _get_hours_vocab(self):
-        props = self.portal_properties.extreme_properties
-        return props.getProperty('hours')
-
-    def _get_minutes_vocab(self):
-        props = self.portal_properties.extreme_properties
-        return props.getProperty('minutes')
-
     def _get_assignees(self):
         """ returns a list of team members """
         return DisplayList((self.getProject().getMembers()))
