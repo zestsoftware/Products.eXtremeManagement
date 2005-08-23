@@ -10,7 +10,7 @@ from Products.eXtremeManagement.config import PROJECTNAME, GLOBALS
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.workflows import eXtreme_iteration_workflow, \
                                                  eXtreme_story_workflow, eXtreme_task_workflow, eXtreme_folder_workflow
-#from Products.eXtremeManagement.permissions import eXtremeManagementRoles 
+from Products.eXtremeManagement.permissions import eXtremeManagementRoles 
 
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from Products.CMFDefault.PropertiesTool import PropertiesTool
@@ -18,10 +18,9 @@ from Products.CMFDefault.PropertiesTool import PropertiesTool
 
 def configureRoles(portal):
     # add new roles
-    newRoles = ['Employee', 'Customer']
     defined_roles = getattr(portal, '__acl_roles__', ())
 
-    for role in newRoles:
+    for role in eXtremeManagementRoles:
         if not role in defined_roles:
             portal._addRole(role)
 

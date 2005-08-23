@@ -12,7 +12,7 @@ import os, os.path
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement import CustomizationPolicy
 from Products.eXtremeManagement import eXtremeManagement
-
+from Products.eXtremeManagement.permissions import *
 
 registerDirectory(SKINS_DIR, GLOBALS)
 
@@ -30,4 +30,35 @@ def initialize(context):
         extra_constructors = constructors,
         fti                = ftis,
         ).initialize(context)
+
+
+#def initialize(context):
+#
+#    broker_types = atapi.listTypes(config.PROJECTNAME)
+#    content_types, constructors, ftis = atapi.process_types( broker_types,
+#                                                             config.PROJECTNAME)
+#    # separate out the content types so we can register them in groups
+#    # based on permissions
+#
+#    type_map = utils.separateTypesByPerm(
+#        broker_types,
+#        content_types,
+#        constructors,
+#        permissions.ContentPermissionMap
+#        )
+#
+#    for permission in type_map:
+#        factory_info = type_map[ permission ]
+#        content_types = tuple([fi[0] for fi in factory_info])
+#        constructors  = tuple([fi[1] for fi in factory_info])
+#
+#        cmf_utils.ContentInit(
+#            config.PROJECTNAME + ' Content',
+#            content_types      = content_types,
+#            permission         = permission,
+#            extra_constructors = constructors,
+#            fti                = ftis,
+#            ).initialize(context)
+#
+
 

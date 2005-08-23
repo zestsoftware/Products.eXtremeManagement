@@ -297,7 +297,7 @@
 
         <tal:block tal:define="project_path python:'/'.join(here.getPhysicalPath());
                                stories python:here.portal_catalog.searchResults(portal_type='Story', 
-                                                                                review_state='open',
+                                                                                review_state='draft',
                                                                                 path=project_path);
                                stories_estimated python:here.portal_catalog.searchResults(portal_type='Story',
                                                                                           review_state='estimated',
