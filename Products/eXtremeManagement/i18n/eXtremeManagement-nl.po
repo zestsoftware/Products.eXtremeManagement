@@ -258,12 +258,15 @@ msgid "Send"
 msgstr "Versturen"
 
 msgid "no_tasks_assigned"
-msgstr "Er zijn geen taken toegekend aan jou!"
+msgstr "Op dit moment heb jij geen taken!"
 
 msgid "header_time_registration"
 msgstr "Uren Registratie"
 
 msgid "description_time_registration"
-msgstr "Om je uren te boeken, maak gebruik van dit formulier and klik op 'Versturen'."
+msgstr "Om je uren te boeken, maak je gebruik van onderstaand formulier. Vul de velden 'daadwerkelijk' in en klik op <strong>versturen</strong>. Je uren worden dan automatisch bijgewerkt."
+
+msgid "no_stories_published"
+msgstr "Er zijn op dit moment geen stories gedefinieerd!"
 
 

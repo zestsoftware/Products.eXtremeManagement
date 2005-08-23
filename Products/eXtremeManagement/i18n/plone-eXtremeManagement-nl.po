@@ -80,7 +80,7 @@ msgstr "Klantenmap"
 msgid "Project Folder"
 msgstr "Projectenmap"
 
-msgid "Hours registration"
+msgid "Time registration"
 msgstr "Uren registratie"
 
 

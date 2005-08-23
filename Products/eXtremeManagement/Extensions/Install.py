@@ -37,8 +37,8 @@ def configureUserActions(portal):
             actionDefined = 1
         actionTool._actions = actionTool_actions
     if actionDefined == 0:
-        actionTool.addAction('hours_registration', 
-                             'Hours registration',
+        actionTool.addAction('time_registration', 
+                             'Time registration',
                              'string:${portal_url}/update_hours_form',
                              'member',
                              'View',
@@ -167,7 +167,7 @@ def uninstall(self):
     actionTool_actions = actionTool._cloneActions()
     actionDefined=0
     for a in actionTool_actions:
-        if a.id in ['hours_registration',]:
+        if a.id in ['time_registration',]:
             a.visible = 0
 
     return out.getvalue()

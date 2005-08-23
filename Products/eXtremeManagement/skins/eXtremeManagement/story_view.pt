@@ -66,9 +66,12 @@
                    <a href=""
                       tal:attributes="href string:${obj/absolute_url}">
                       <span tal:content="obj/task">Task</span></a></td>
-                 <td id="td-estimate" tal:content="obj/estimate">Estimate</td>
-                 <td id="td-actual" tal:content="obj/getActual">Actual</td>
-                 <td id="td-diff" tal:content="python: obj.estimate - obj.actual">Difference</td>
+                 <td id="td-estimate" 
+                     tal:content="obj/estimate">Estimate</td>
+                 <td id="td-actual" 
+                     tal:content="obj/getActual">Actual</td>
+                 <td id="td-diff" 
+                     tal:content="python: obj.estimate - obj.actual">Difference</td>
                  <td tal:define="wtool here/portal_workflow;
                                  review_state python:wtool.getInfoFor(obj, 'review_state')"
                      tal:content="review_state" i18n:translate="">Status</td>
@@ -85,7 +88,7 @@
                  <td id="total" i18n:translate="total">Total</td>
                  <td id="total-estimate"
                      tal:content="totalEstimate">total estimate</td>
-                 <td id="total-actual" 
+                 <td id="total-actual"
                      tal:content="totalActual">total actual</td>
                  <td id="total-diff" 
                      tal:content="python: totalEstimate - totalActual">total diff</td>
@@ -97,9 +100,10 @@
         </tal:block>
         </div> 
    
-        <div class="discreet"
-             tal:condition="python: not items"
-             i18n:translate="no_tasks_defined">No tasks defined yet.</div>
+        <p class="discreet"
+           tal:condition="python: not items"
+           i18n:translate="no_tasks_defined">No tasks defined yet.
+        </p>
 
     </div>
   </body>

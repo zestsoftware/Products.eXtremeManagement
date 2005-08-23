@@ -104,12 +104,10 @@
    text-align: right;
    font-weight: bold;
 }
-
-/*
-#header_projectmemeber_listing{
-   font-weight: bold;
-}*/
-
+#iteration-description{
+    color: &dtml-discreetColor;;
+    font-weight: normal;
+}
 
 
 

@@ -76,34 +76,49 @@
              <tr>
                <th id="customer_info_header" 
                    i18n:translate="listingheader_fax">Fax</th>
-               <td tal:content="here/fax">Fax</td>
+               <td>
+                 <span tal:condition="python:here.fax" 
+                       tal:content="here/fax">Fax</span>
+                 <span tal:condition="not: here/email">....</span>
+               </td>
              </tr>
              <tr>
                <th id="customer_info_header" 
                    i18n:translate="listingheader_email">E-mail</th>
                <td tal:define="emailaddress python:here.email">
                  <a href="#"
+                    tal:condition="python:here.email"
                     class="link-plain"
                     tal:attributes="href string:mailto:${emailaddress}"
                     title="Send a mail to this user"
                     i18n:attributes="title">
-                    <img src="mail_icon.gif"/> <span tal:content="emailaddress">Email</span></a></td>
+                    <img src="mail_icon.gif"/> 
+                    <span tal:content="emailaddress">Email</span>
+                 </a>
+                 <span tal:condition="not: here/email">....</span>
+               </td>
              </tr>
              <tr>
                <th id="customer_info_header" 
                    i18n:translate="listingheader_website">Website</th>
                <td tal:define="siteaddress python:here.website">
                  <a href=""
+                    tal:condition="python:here.website"
                     tal:attributes="href siteaddress"
                     tal:content="siteaddress"
                     title="Visit the website"
                     i18n:translate="title">
-                    </a></td>
+                 </a>
+                 <span tal:condition="not: here/website">....</span>
+               </td>
              </tr>
              <tr>
                <th id="customer_info_header" 
                    i18n:translate="listingheader_comments">Comments</th>
-               <td tal:content="here/comments">Comments</td>
+               <td>
+                 <span tal:condition="python:here.comments" 
+                       tal:content="here/comments">Comments</span>
+                 <span tal:condition="not: here/comments">....</span>
              </tr>
           </table>
 
@@ -139,14 +154,21 @@
                        <img src="user.gif" /> <span tal:content="member/fullname">Name</span></a></td>
                   <td tal:content="member/phone">Phone</td>
                   <td tal:define="email python:member.email">
-                    <a href="#"
+                    <a href=""
                        class="link-plain"
                        tal:attributes="href string:mailto:${email}"
                        title="Send a mail to this user"
                        i18n:attributes="title">
-                       <img src="mail_icon.gif"/> <span tal:content="email">Email</span></a></td>
+                       <img src="mail_icon.gif"/> 
+                       <span tal:content="email">Email</span>
+                    </a>
+                  </td>
 
-                  <td tal:content="member/comments">comments</td>
+                  <td>
+                    <span tal:condition="python:here.comments" 
+                          tal:content="member/comments">comments</span>
+                    <span tal:condition="not: here/comments">....</span>
+                  </td>
                 </tr>
               </tbody>
             </table>

@@ -45,8 +45,8 @@
           <div class="iterations" 
                tal:repeat="iteration iterations"> 
 
-           <div tal:define="obj iteration/getObject;
-                            idx idIndex/next;">
+            <div tal:define="obj iteration/getObject;
+                             idx idIndex/next;">
 
             <table class="listing"
                    border="1"
@@ -73,7 +73,8 @@
                 </th> 
               </tr>
               <tr>
-                 <td colspan="2" 
+                 <td colspan="2"
+                     id="iteration-description"
                      tal:content="obj/Description">Description </td>
               </tr>
             </table>
@@ -168,6 +169,7 @@
               </tr>
               <tr>
                  <td colspan="2"
+                     id="iteration-description"
                      tal:content="obj/Description">Description </td>
               </tr>
             </table>
@@ -236,8 +238,7 @@
            <p class="discreet" 
               i18n:translate="description_new_iterations">
               Here are 2 lists of iterations. Left you see new iterations and the stories in that iteration.
-              Right you see a list of iterations ready to work in. When de current iteration is completed, 
-              the first one will then the current one.
+              Right you see a list of iterations ready to work on.
            </p> 
  
            <table class="listing" width="70%">

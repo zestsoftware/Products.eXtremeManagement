@@ -29,8 +29,8 @@
           Title or id
         </h1>
 
-        <div class="stx" tal:content="here/Description">
-            description
+        <div class="discreet" 
+             tal:content="here/Description">Description
         </div>
 
         <tal:block tal:condition="stories">
@@ -64,9 +64,9 @@
             </table>
         </tal:block>
 
-        <div class="discreet" 
-             tal:condition="python: not stories"
-             i18n:translate="no_stories_published">No stories published yet.</div>
+        <p class="discreet" 
+           tal:condition="python: not stories"
+           i18n:translate="no_stories_published">No stories published yet!</p>
 
     </div>
   </body>
