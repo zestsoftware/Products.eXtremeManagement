@@ -303,6 +303,7 @@
                                                                                           review_state='estimated',
                                                                                           path=project_path)"
                    tal:condition="python:stories or stories_estimated">
+
            <h1 i18n:translate="header_stories_(not)_estimated">Stories (not) estimated</h1>
           
            <p class="discreet" 

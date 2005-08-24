@@ -5,24 +5,51 @@ from Products.Archetypes.Extensions.utils import installTypes, install_subskin
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.CMFCorePermissions import ManagePortal
 from StringIO import StringIO
-
-from Products.eXtremeManagement.config import PROJECTNAME, GLOBALS
-from Products.eXtremeManagement.config import *
-from Products.eXtremeManagement.workflows import eXtreme_iteration_workflow, \
-                                                 eXtreme_story_workflow, eXtreme_task_workflow, eXtreme_folder_workflow
-from Products.eXtremeManagement.permissions import eXtremeManagementRoles 
+from sets import Set
 
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from Products.CMFDefault.PropertiesTool import PropertiesTool
 
+#from Products.eXtremeManagement.config import PROJECTNAME, GLOBALS
+from Products.eXtremeManagement.config import *
+from Products.eXtremeManagement.workflows import eXtreme_iteration_workflow, \
+     eXtreme_story_workflow, eXtreme_task_workflow, eXtreme_folder_workflow
+
+from Products.eXtremeManagement.permissions import * 
+
+
+#def configureRoles(portal):
+#    # add new roles
+#    defined_roles = getattr(portal, '__acl_roles__', ())
+#
+#    for role in eXtremeManagementRoles:
+#        if not role in defined_roles:
+#            portal._addRole(role)
 
 def configureRoles(portal):
-    # add new roles
-    defined_roles = getattr(portal, '__acl_roles__', ())
+    defined_roles = getattr( portal, '__ac_roles__', ())
+
+    if defined_roles is None:
+        defined_roles = []
+    else:
+        defined_roles = list(defined_roles)
+
+    defined_roles = Set(defined_roles)
 
     for role in eXtremeManagementRoles:
-        if not role in defined_roles:
-            portal._addRole(role)
+        defined_roles.add(role)
+
+    portal.__ac_roles__ = tuple(defined_roles)
+
+    from Products.eXtremeManagement.permissions import RolePermissionMap
+
+    for role, permissions in RolePermissionMap.items():
+        existing_permissions = portal.permissionsOfRole(role)
+        permissions = Set(permissions)
+        for perm in existing_permissions:
+            if perm['selected']:
+                permissions.add(perm['name'])
+        portal.manage_role(role, permissions)
 
 
 def configureUserActions(portal):
@@ -48,7 +75,8 @@ def configureUserActions(portal):
 def configurePortalProps(portal):
     # customize portal props (slots)
     left_slots = portal.getProperty('left_slots', None)
-    newSlot = ('here/portlet_tasks/macros/portlet',)
+    newSlot = ('here/portlet_tasks/macros/portlet', 
+               'here/portlet_stories/macros/portlet',)
     for a in newSlot:
         if a not in left_slots:
             portal._updateProperty('left_slots', tuple(left_slots) + tuple(newSlot)) 
