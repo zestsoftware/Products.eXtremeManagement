@@ -232,8 +232,12 @@
 
 
         <tal:block tal:define="open_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
-                                                                                        review_state='open')"
-                   tal:condition="iterations">
+                                                                                        review_state='open');
+                               act_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
+                                                                                       review_state='activated',
+                                                                                       sort_on='created',
+                                                                                       sort_order='normal')"
+                   tal:condition="python:open_iterations or act_iterations">
            <h1 i18n:translate="header_new_iterations">New iterations</h1>
            <p class="discreet" 
               i18n:translate="description_new_iterations">
@@ -241,14 +245,17 @@
               Right you see a list of iterations ready to work on.
            </p> 
  
-           <table class="listing" width="70%">
+           <table class="listing" width="80%">
              <tr>
-               <th i18n:translate="headerlisting_new_iterations">New iterations</th>
-               <th i18n:translate="headerlisting_iterations_activated">Iteration activated</th>
+               <th i18n:translate="headerlisting_new_iterations" 
+                   tal:condition="open_iterations">New iterations</th>
+
+               <th i18n:translate="headerlisting_iterations_activated"
+                   tal:condition="act_iterations">Iteration activated</th>
              </tr>
 
              <tr>
-               <td>
+               <td width="60%">
                  <div class="list_iterations">
                    <div tal:repeat="iteration open_iterations">
                      <img src=""
@@ -273,14 +280,9 @@
                    </div>
                  </div>
                </td>
-               <td width="30%"
-                   tal:define="iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
-                                                                                   review_state='activated',
-                                                                                   sort_on='created',
-                                                                                   sort_order='normal')"
-                   tal:condition="iterations">
+               <td width="40%" tal:condition="act_iterations">
                   <div class="list_iterations">
-                     <div tal:repeat="iteration iterations">
+                     <div tal:repeat="iteration act_iterations">
                         <img src="" 
                              tal:attributes="src iteration/getIcon" /> 
                         <a href=""

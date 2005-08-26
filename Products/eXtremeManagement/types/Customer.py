@@ -3,11 +3,15 @@ from Products.CMFCore import CMFCorePermissions
 from AccessControl import ClassSecurityInfo
 from Products.eXtremeManagement.schemata import *
 from Products.eXtremeManagement.config import *
+from Products.Archetypes.OrderedBaseFolder import OrderedBaseFolder
 
-schema = BaseSchema + DescriptionSchema + CustomerSchema 
+#schema = BaseSchema + DescriptionSchema + CustomerSchema 
 
-class Customer(BaseFolder):
+schema = OrderedBaseFolderSchema + DescriptionSchema + CustomerSchema 
+
+class Customer(OrderedBaseFolder):
     """A simple folderish archetype"""
+
     schema                = schema
     content_icon          = 'group_icon.gif'
     meta_type             = 'Customer'
@@ -27,6 +31,12 @@ class Customer(BaseFolder):
                 'action': 'string:${object_url}/customer_view',
                 'permissions': (CMFCorePermissions.View,),
                 'category': 'object'},
+
+               {'id': 'local_roles',
+                'name': 'Sharing',
+                'action': 'string:${folder_url}/folder_localrole_form',
+                'permissions': (CMFCorePermissions.ManageProperties,),
+                'category': 'folder'},
               )
 
 registerType(Customer, PROJECTNAME)

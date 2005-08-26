@@ -13,7 +13,7 @@ from Products.CMFDefault.PropertiesTool import PropertiesTool
 #from Products.eXtremeManagement.config import PROJECTNAME, GLOBALS
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.workflows import eXtreme_iteration_workflow, \
-     eXtreme_story_workflow, eXtreme_task_workflow, eXtreme_folder_workflow
+     eXtreme_story_workflow, eXtreme_task_workflow, eXtreme_folder_workflow, eXtreme_default_workflow
 
 from Products.eXtremeManagement.permissions import * 
 
@@ -33,12 +33,10 @@ def configureRoles(portal):
         defined_roles = []
     else:
         defined_roles = list(defined_roles)
-
     defined_roles = Set(defined_roles)
 
     for role in eXtremeManagementRoles:
         defined_roles.add(role)
-
     portal.__ac_roles__ = tuple(defined_roles)
 
     from Products.eXtremeManagement.permissions import RolePermissionMap
@@ -58,7 +56,7 @@ def configureUserActions(portal):
     actionTool_actions = actionTool._cloneActions()
     actionDefined=0
     for a in actionTool_actions: 
-        if a.id in ['hours_registration',]:
+        if a.id in ['time_registration',]:
             a.visible = 1
             actionDefined = 1
         actionTool._actions = actionTool_actions
@@ -66,7 +64,7 @@ def configureUserActions(portal):
         actionTool.addAction('time_registration', 
                              'Time registration',
                              'string:${portal_url}/update_hours_form',
-                             'member',
+                             "python:portal.portal_membership.getAuthenticatedMember().has_role('Member')",
                              'View',
                              'user'
                             )
@@ -81,6 +79,14 @@ def configurePortalProps(portal):
         if a not in left_slots:
             portal._updateProperty('left_slots', tuple(left_slots) + tuple(newSlot)) 
 
+    # update navtree_props
+    props_tool = getToolByName(portal, 'portal_properties')
+    rolesSeeUnpublishedContent = props_tool.navtree_properties.getProperty('rolesSeeUnpublishedContent', None)
+    roles = ('Customer',)
+    for role in roles:
+        if role not in rolesSeeUnpublishedContent:
+            props_tool.navtree_properties._updateProperty('rolesSeeUnpublishedContent', tuple(rolesSeeUnpublishedContent) + tuple(roles))
+
 
 def configureWorkflow(portal):
     # set the workflow for the new content types (Iteration, Story, Task)
@@ -92,11 +98,8 @@ def configureWorkflow(portal):
     wf_tool.setChainForPortalTypes(('Iteration',), 'eXtreme_iteration_workflow')
     wf_tool.setChainForPortalTypes(('Story',), 'eXtreme_story_workflow')
     wf_tool.setChainForPortalTypes(('Task',), 'eXtreme_task_workflow')
-    wf_tool.setChainForPortalTypes(('CustomerFolder', 
-                                    'Customer', 
-                                    'ProjectFolder', 
-                                    'Project', 
-                                    'ProjectMember'), 'eXtreme_folder_workflow')
+    wf_tool.setChainForPortalTypes(('CustomerFolder', 'ProjectFolder'), 'eXtreme_folder_workflow')
+    wf_tool.setChainForPortalTypes(('Customer', 'Project', 'ProjectMember'), 'eXtreme_default_workflow')
     wf_tool.updateRoleMappings()
 
     eiwf = 'eXtreme_iteration_workflow'
@@ -125,20 +128,14 @@ def configureWorkflow(portal):
     wf_tool = getToolByName(portal, 'portal_workflow')
     if not efwf in wf_tool.objectIds():
         wf_tool.manage_addWorkflow('eXtreme_folder_workflow (eXtreme Folder Workflow)', efwf)
-    wf_tool.setChainForPortalTypes( ('Customer', 
-                                     'CustomerFolder', 
-                                     'ProjectFolder', 
-                                     'Project', 
-                                     'ProjectMember',), efwf)
+    wf_tool.setChainForPortalTypes( ('CustomerFolder', 'ProjectFolder'), efwf)
 
-#def setupProps(portal):
-#    # Add eXtreme Props
-#    if not hasattr(portal.portal_properties, 'extreme_properties'):
-#        portal.portal_properties.addPropertySheet('extreme_properties', 'eXtreme Properties')
-#        props = portal.portal_properties.extreme_properties
-#        props._setProperty('hours', ['01', '02', '03', '04', '05', '06', '07', 
-#                                     '08', '09', '10', '11', '12', '13', '14', '15'], 'lines')
-#        props._setProperty('minutes', ['0', '15', '30', '45'], 'lines')
+    edwf = 'eXtreme_default_workflow'
+    eXtreme_default_workflow.createExtreme_default_workflow(edwf)
+    wf_tool = getToolByName(portal, 'portal_workflow')
+    if not edwf in wf_tool.objectIds():
+        wf_tool.manage_addWorkflow('eXtreme_default_workflow (eXtreme Default Workflow)', edwf)
+    wf_tool.setChainForPortalTypes( ('Customer', 'Project', 'ProjectMember',), edwf)
 
 
 def setupSkin(portal):
@@ -196,6 +193,7 @@ def uninstall(self):
     for a in actionTool_actions:
         if a.id in ['time_registration',]:
             a.visible = 0
+        actionTool._actions = actionTool_actions
 
     return out.getvalue()
 

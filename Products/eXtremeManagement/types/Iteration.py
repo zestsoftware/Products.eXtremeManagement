@@ -14,6 +14,7 @@ schema = BaseFolderSchema + DescriptionSchema
 
 class Iteration(OrderedBaseFolder):
     """A simple folderish archetype"""
+
     schema                = schema
     content_icon          = 'iteration_icon.gif'
     meta_type             = 'Iteration'
@@ -48,6 +49,7 @@ class Iteration(OrderedBaseFolder):
                 'category': 'object'
                },
               )
+
 
 registerType(Iteration, PROJECTNAME)
 

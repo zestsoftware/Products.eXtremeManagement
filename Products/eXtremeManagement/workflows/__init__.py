@@ -6,3 +6,5 @@ import eXtreme_iteration_workflow
 import eXtreme_story_workflow
 import eXtreme_task_workflow
 import eXtreme_folder_workflow
+import eXtreme_default_workflow
+

@@ -47,6 +47,15 @@ msgstr "Geactiveerd"
 msgid "Accept"
 msgstr "Accepteer"
 
+msgid "Assign"
+msgstr "Toekennen"
+
+msgid "Unassign"
+msgstr ""
+
+msgid "Estimate"
+msgstr "Schatten"
+
 msgid "CustomerFolder"
 msgstr "Klantenmap"
 
