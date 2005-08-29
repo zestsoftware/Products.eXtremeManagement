@@ -10,7 +10,7 @@
      tal:define="results python:here.portal_catalog.searchResults(portal_type='Story', 
                                                                   review_state='pending');
                  member python:portal.portal_membership.getAuthenticatedMember()"
-     tal:condition="python:results and member.has_role('Employee') or member.has_role('Manager')">
+     tal:condition="python:results and member.has_role('Employee', 'Manager')">
 
     <div class="portlet" id="portlet-stories">
         <h5 i18n:translate="box_stories">Stories</h5>

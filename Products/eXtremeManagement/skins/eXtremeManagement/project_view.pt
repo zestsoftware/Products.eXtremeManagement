@@ -255,7 +255,7 @@
              </tr>
 
              <tr>
-               <td width="60%">
+               <td width="60%" tal:condition="open_iterations">
                  <div class="list_iterations">
                    <div tal:repeat="iteration open_iterations">
                      <img src=""
