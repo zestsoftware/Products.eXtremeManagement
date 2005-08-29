@@ -99,6 +99,7 @@
 #customer_info_header{
    text-align: right;
    font-weight: bold;
+   width: 40%;
 }
 #projectmemeber_info_header{
    text-align: right;
