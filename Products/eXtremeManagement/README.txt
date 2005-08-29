@@ -4,9 +4,6 @@ Dependencies
 
  * Archetypes 1.3.x (used 1.3.2)
 
- * TeamSpaces
-
- * CMFMember
 
 Additional dependencies for development
 

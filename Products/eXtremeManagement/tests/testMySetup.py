@@ -93,11 +93,11 @@ class TestSetup(eXtremeManagementTestCase):
         self.failUnless('eXtreme_task_workflow' in getChain('Task'))
         self.failUnless('eXtreme_story_workflow' in getChain('Story'))
         self.failUnless('eXtreme_iteration_workflow' in getChain('Iteration'))
-        self.failUnless('eXtreme_folder_workflow' in getChain('Customer'))
         self.failUnless('eXtreme_folder_workflow' in getChain('CustomerFolder'))
-        self.failUnless('eXtreme_folder_workflow' in getChain('Project'))
         self.failUnless('eXtreme_folder_workflow' in getChain('ProjectFolder'))
-        self.failUnless('eXtreme_folder_workflow' in getChain('ProjectMember'))
+        self.failUnless('eXtreme_default_workflow' in getChain('Customer'))
+        self.failUnless('eXtreme_default_workflow' in getChain('Project'))
+        self.failUnless('eXtreme_default_workflow' in getChain('ProjectMember'))
 
     def test_callCustomerFolder(self):
         """ Test that you can add and call a CustomerFolder item
