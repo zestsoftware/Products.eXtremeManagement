@@ -3,8 +3,12 @@ from Products.CMFCore import CMFCorePermissions
 from AccessControl import ClassSecurityInfo
 from Products.eXtremeManagement.schemata import *
 from Products.eXtremeManagement.config import *
+import string
 
-schema = BaseFolderSchema + ProjectMemberSchema 
+testSchema = BaseSchema.copy()
+testSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+
+schema = testSchema + ProjectMemberSchema 
 
 class ProjectMember(BaseContent):
     """A simple archetype"""

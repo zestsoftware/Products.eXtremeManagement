@@ -4,14 +4,10 @@ from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import getToolByName
 from Products.eXtremeManagement.schemata import *
 from Products.eXtremeManagement.config import *
-
-from Products.Archetypes.BaseFolder import BaseFolder
-from Products.Archetypes.interfaces.orderedfolder import IOrderedFolder
-from Products.Archetypes import OrderedBaseFolder
-from Products.Archetypes.OrderedBaseFolder import OrderedBaseFolder
+from Products.eXtremeManagement.schemata import DescriptionSchema
 import string
 
-schema = BaseFolderSchema + DescriptionSchema + ProjectSchema
+schema = DescriptionSchema + ProjectSchema
 
 class Project(OrderedBaseFolder):
     """A simple folderish archetype"""

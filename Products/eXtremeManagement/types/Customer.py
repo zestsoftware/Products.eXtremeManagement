@@ -5,9 +5,10 @@ from Products.eXtremeManagement.schemata import *
 from Products.eXtremeManagement.config import *
 from Products.Archetypes.OrderedBaseFolder import OrderedBaseFolder
 
-#schema = BaseSchema + DescriptionSchema + CustomerSchema 
+DescriptionSchemaNew = DescriptionSchema.copy()
+DescriptionSchemaNew['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 
-schema = OrderedBaseFolderSchema + DescriptionSchema + CustomerSchema 
+schema = DescriptionSchemaNew + CustomerSchema 
 
 class Customer(OrderedBaseFolder):
     """A simple folderish archetype"""

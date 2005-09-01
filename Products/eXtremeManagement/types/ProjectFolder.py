@@ -3,10 +3,12 @@ from Products.CMFCore import CMFCorePermissions
 from AccessControl import ClassSecurityInfo
 from Products.eXtremeManagement.schemata import *
 from Products.eXtremeManagement.config import *
+from Products.eXtremeManagement.schemata import DescriptionSchema
+import string
 
-schema = BaseFolderSchema + DescriptionSchema
+schema = DescriptionSchema
 
-class ProjectFolder(BaseFolder):
+class ProjectFolder(OrderedBaseFolder):
     """A simple folderish archetype"""
     schema                = schema
     content_icon          = 'project_icon.gif'

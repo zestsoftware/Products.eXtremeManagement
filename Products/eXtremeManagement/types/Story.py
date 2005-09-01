@@ -4,9 +4,17 @@ from AccessControl import ClassSecurityInfo
 from Products.eXtremeManagement.schemata import *
 from Products.eXtremeManagement.config import *
 
-schema = BaseFolderSchema + DescriptionSchema + StorySchema
+from Products.Archetypes.BaseFolder import BaseFolder
+from Products.Archetypes.interfaces.orderedfolder import IOrderedFolder
+from Products.Archetypes import OrderedBaseFolder
+from Products.Archetypes.OrderedBaseFolder import OrderedBaseFolder
 
-class Story(BaseFolder):
+DescriptionSchemaNew = DescriptionSchema.copy()
+DescriptionSchemaNew['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+
+schema = DescriptionSchemaNew + StorySchema
+
+class Story(OrderedBaseFolder):
     """A simple folderish archetype"""
     schema                = schema
     content_icon          = 'story_icon.gif'

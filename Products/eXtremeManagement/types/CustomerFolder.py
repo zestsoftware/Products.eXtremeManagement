@@ -9,7 +9,7 @@ from Products.Archetypes.interfaces.orderedfolder import IOrderedFolder
 from Products.Archetypes import OrderedBaseFolder
 from Products.Archetypes.OrderedBaseFolder import OrderedBaseFolder
 
-schema = OrderedBaseFolderSchema + DescriptionSchema
+schema = DescriptionSchema
 
 class CustomerFolder(OrderedBaseFolder):
     """A simple folderish archetype"""

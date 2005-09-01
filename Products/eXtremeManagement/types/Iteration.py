@@ -10,7 +10,10 @@ from Products.Archetypes.interfaces.orderedfolder import IOrderedFolder
 from Products.Archetypes import OrderedBaseFolder
 from Products.Archetypes.OrderedBaseFolder import OrderedBaseFolder
 
-schema = BaseFolderSchema + DescriptionSchema
+DescriptionSchemaNew = DescriptionSchema.copy()
+DescriptionSchemaNew['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+
+schema = DescriptionSchemaNew
 
 class Iteration(OrderedBaseFolder):
     """A simple folderish archetype"""

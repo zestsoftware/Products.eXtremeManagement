@@ -2,7 +2,7 @@ from Products.Archetypes.public import *
 from Products.eXtremeManagement.relations import CustomerProjectRelation
 
 # show description as attribute instead of Metadata, just like CMF
-DescriptionSchema = BaseFolderSchema.copy()
+DescriptionSchema = OrderedBaseFolderSchema.copy()
 DescriptionSchema['description'].isMetadata = False
 DescriptionSchema['description'].schemata = 'default'
 
@@ -243,18 +243,7 @@ StorySchema = Schema((
 
 ))
 
-IterationSchema = Schema((
 
-    LinesField('story_iteration',
-               required=0,
-               vocabulary='_get_stories',
-               widget=InAndOutWidget(label="Stories",
-                                     label_msgid="label_stories",
-                                     description="Select the stories for this iteration.",
-                                     description_msgid="description_stories",
-                                     i18n_domain="eXtremeManagement",),
-                  ),
-))
 
 
 

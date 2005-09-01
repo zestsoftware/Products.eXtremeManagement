@@ -35,7 +35,7 @@ RolePermissionMap={'Employee':(AddProjectFolder, AddProject, AddIteration, AddSt
                                CMFPerms.ManageProperties, CMFPerms.AddPortalContent, CMFPerms.View, 
                                CMFPerms.ModifyPortalContent, CMFPerms.ListFolderContents),
                    'Customer':(AddIteration, AddStory, AddProjectMember, 
-                               CMFPerms.View, CMFPerms.ListFolderContents),
+                               CMFPerms.ListFolderContents, CMFPerms.View),
                   } 
 
 # Default Permissions Role Map
