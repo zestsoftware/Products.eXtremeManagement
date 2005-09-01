@@ -104,7 +104,26 @@
            tal:condition="python: not items"
            i18n:translate="no_tasks_defined">No tasks defined yet.
         </p>
+        
+        <div tal:define="content_items python:here.contentValues('Document')"
+             tal:condition="content_items">
+           <h1 i18n:translate="heading-contents" 
+               class="documentFirstHeading">Contents
+           </h1>
+           
+           <tal:block tal:repeat="item content_items"><strong>
+              <a href=""
+                 tal:attributes="href string:${item/absolute_url}">
+                 <span tal:content="item/title_or_id">Title</span>
+              </a></strong>
 
+              <div class="discreet"
+                   tal:condition="here/Description" 
+                   tal:content="item/Description">description
+              </div><br />
+           </tal:block>
+        </div>
+        
     </div>
   </body>
 </html>
