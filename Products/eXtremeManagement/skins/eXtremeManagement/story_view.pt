@@ -104,7 +104,8 @@
            tal:condition="python: not items"
            i18n:translate="no_tasks_defined">No tasks defined yet.
         </p>
-        
+
+        <br />
         <div tal:define="content_items python:here.contentValues('Document')"
              tal:condition="content_items">
            <h1 i18n:translate="heading-contents" 
