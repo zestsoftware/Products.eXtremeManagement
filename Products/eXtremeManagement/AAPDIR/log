@@ -2,28 +2,59 @@ extra:	Reading recipe "main.aap"
 extra:	Finished reading recipe "main.aap"
 depend:	Adding default dependency for "clean"
 depend:	Adding default dependency for "cleanmore"
-depend:	Building targets specified on command line
-depend:	1 - updating target "gen"
-depend:	2 - Using dependency "gen : "
-depend:	1 - Updating "gen" from "": no old signature for "buildcheck"
-extra:	Shell commands for updating "gen":
-system:	cd ..; python ArchGenXML/ArchGenXML.py -c eXtremeManagement/model/generate.conf eXtremeManagement/model/eXtremeManagement.zuml
-log:	WARNING Didn't find option 'creation-permission' (from the config file) in the list of allowable options. Run ArchGenXML.py with the --help option for information on allowable options.
-WARNING Didn't find option 'no-rcs-id' (from the config file) in the list of allowable options. Run ArchGenXML.py with the --help option for information on allowable options.
-ArchGenXML 1.4.0-beta2 devel
-(c) 2003-2005 BlueDynamics KEG, under GNU General Public License 2.0 or later
-INFO  Parsing...
-WARNING Master Object not found for aggregation relation id='I4cdac8m103219cab14mm7f4f'.
-INFO  Directory in which we're generating the files: 'eXtremeManagement'.
-INFO  Generating...
-WARNING Can't strip html from doc-strings. Module 'stripogram' not found.
-INFO  Starting new Product: 'eXtremeManagement'.
-INFO      Generating class 'Customer'.
-INFO      Generating class 'Project'.
-INFO      Generating class 'Iteration'.
-INFO      Generating class 'Story'.
-INFO      Generating class 'Task'.
-INFO      Generating class 'CustomerFolder'.
-INFO      Generating class 'ProjectMember'.
-INFO      Generating class 'ProjectFolder'.
+depend:	Building the "all" target
+depend:	1 - updating target "all"
+depend:	2 - Using dependency "all : version.txt i18n/eXtremeManagement-nl.po test"
+depend:	3 - updating target "version.txt"
+depend:	4 - Using dependency "version.txt : model/eXtremeManagement.zuml model/generate.conf"
+depend:	5 - updating target "model/eXtremeManagement.zuml"
+depend:	5 - Target has no build commands and exists: "model/eXtremeManagement.zuml"
+depend:	5 - Unknown type of file, no dependency check for "model/eXtremeManagement.zuml"
+depend:	5 - updating target "model/generate.conf"
+depend:	5 - Target has no build commands and exists: "model/generate.conf"
+depend:	5 - Unknown type of file, no dependency check for "model/generate.conf"
+depend:	3 - Target "version.txt" is up-to-date
+depend:	3 - updating target "i18n/eXtremeManagement-nl.po"
+depend:	3 - Target has no build commands and exists: "i18n/eXtremeManagement-nl.po"
+depend:	3 - updating target "test"
+depend:	4 - Using dependency "test : model/eXtremeManagement.zuml utils.py CustomizationPolicy.py __init__.py relations.py config.py eXtremeManagement.py permissions.py schemata.py Customer.py Project.py Iteration.py Story.py Task.py CustomerFolder.py ProjectMember.py ProjectFolder.py"
+depend:	5 - Unknown type of file, no dependency check for "model/eXtremeManagement.zuml"
+depend:	5 - updating target "utils.py"
+depend:	5 - Target has no build commands and exists: "utils.py"
+depend:	5 - updating target "CustomizationPolicy.py"
+depend:	5 - Target has no build commands and exists: "CustomizationPolicy.py"
+depend:	5 - updating target "__init__.py"
+depend:	5 - Target has no build commands and exists: "__init__.py"
+depend:	5 - updating target "relations.py"
+depend:	5 - Target has no build commands and exists: "relations.py"
+depend:	5 - updating target "config.py"
+depend:	5 - Target has no build commands and exists: "config.py"
+depend:	5 - updating target "eXtremeManagement.py"
+depend:	5 - Target has no build commands and exists: "eXtremeManagement.py"
+depend:	5 - updating target "permissions.py"
+depend:	5 - Target has no build commands and exists: "permissions.py"
+depend:	5 - updating target "schemata.py"
+depend:	5 - Target has no build commands and exists: "schemata.py"
+depend:	5 - updating target "Customer.py"
+depend:	5 - Target has no build commands and exists: "Customer.py"
+depend:	5 - updating target "Project.py"
+depend:	5 - Target has no build commands and exists: "Project.py"
+depend:	5 - updating target "Iteration.py"
+depend:	5 - Target has no build commands and exists: "Iteration.py"
+depend:	5 - updating target "Story.py"
+depend:	5 - Target has no build commands and exists: "Story.py"
+depend:	5 - updating target "Task.py"
+depend:	5 - Target has no build commands and exists: "Task.py"
+depend:	5 - updating target "CustomerFolder.py"
+depend:	5 - Target has no build commands and exists: "CustomerFolder.py"
+depend:	5 - updating target "ProjectMember.py"
+depend:	5 - Target has no build commands and exists: "ProjectMember.py"
+depend:	5 - updating target "ProjectFolder.py"
+depend:	5 - Target has no build commands and exists: "ProjectFolder.py"
+depend:	3 - Updating "test" from "model/eXtremeManagement.zuml utils.py CustomizationPolicy.py __init__.py relations.py config.py eXtremeManagement.py permissions.py schemata.py Customer.py Project.py Iteration.py Story.py Task.py CustomerFolder.py ProjectMember.py ProjectFolder.py": virtual target
+extra:	Shell commands for updating "test{virtual=1}":
+system:	cd /Products/eXtremeManagement/tests;	 python runalltests.py
+log:	sh: line 1: cd: /Products/eXtremeManagement/tests: No such file or directory
+python: can't open file 'runalltests.py'
 
+error:	Error in recipe "/home/zope/dev1/Products/eXtremeManagement/main.aap" line 19: Shell command returned 2

@@ -6,9 +6,38 @@ depend:	Building the "all" target
 depend:	1 - updating target "all"
 depend:	2 - Using dependency "all : version.txt i18n/milieudefensie-nl.po test"
 depend:	3 - updating target "version.txt"
-depend:	4 - Using dependency "version.txt : model/MilieuDefensie.zuml model/generate.conf"
-depend:	5 - updating target "model/MilieuDefensie.zuml"
-depend:	5 - Do not know how to build "model/MilieuDefensie.zuml"
-depend:	5 - updating target "build-Linux2_6_8_1_5_386/model/MilieuDefensie.zuml"
-depend:	5 - Do not know how to build "build-Linux2_6_8_1_5_386/model/MilieuDefensie.zuml"
-error:	Do not know how to build "model/MilieuDefensie.zuml"
+depend:	4 - Using dependency "version.txt : model/eXtremeManagement.zuml model/generate.conf"
+depend:	5 - updating target "model/eXtremeManagement.zuml"
+depend:	5 - Target has no build commands and exists: "model/eXtremeManagement.zuml"
+depend:	5 - Unknown type of file, no dependency check for "model/eXtremeManagement.zuml"
+note:	Cannot read sign file "AAPDIR/sign": [Errno 2] No such file or directory: '/home/zope/dev1/Products/eXtremeManagement/AAPDIR/sign'
+depend:	5 - updating target "model/generate.conf"
+depend:	5 - Target has no build commands and exists: "model/generate.conf"
+depend:	5 - Unknown type of file, no dependency check for "model/generate.conf"
+depend:	3 - Updating "version.txt" from "model/eXtremeManagement.zuml model/generate.conf": no old signature for "model/eXtremeManagement.zuml"
+extra:	Shell commands for updating "version.txt":
+system:	cd ..; python ArchGenXML/ArchGenXML.py -c eXtremeManagement/model/generate.conf eXtremeManagement/model/eXtremeManagement.zuml
+log:	WARNING Didn't find option 'creation-permission' (from the config file) in the list of allowable options. Run ArchGenXML.py with the --help option for information on allowable options.
+WARNING Didn't find option 'no-rcs-id' (from the config file) in the list of allowable options. Run ArchGenXML.py with the --help option for information on allowable options.
+ArchGenXML 1.4.0-beta2 devel
+(c) 2003-2005 BlueDynamics KEG, under GNU General Public License 2.0 or later
+INFO  Parsing...
+WARNING Master Object not found for aggregation relation id='I4cdac8m103219cab14mm7f4f'.
+INFO  Directory in which we're generating the files: 'eXtremeManagement'.
+INFO  Generating...
+WARNING Can't strip html from doc-strings. Module 'stripogram' not found.
+INFO  Starting new Product: 'eXtremeManagement'.
+INFO      Generating class 'Customer'.
+INFO      Generating class 'Project'.
+INFO      Generating class 'Iteration'.
+INFO      Generating class 'Story'.
+INFO      Generating class 'Task'.
+INFO      Generating class 'CustomerFolder'.
+INFO      Generating class 'ProjectMember'.
+INFO      Generating class 'ProjectFolder'.
+
+depend:	3 - updating target "i18n/milieudefensie-nl.po"
+depend:	3 - Do not know how to build "i18n/milieudefensie-nl.po"
+depend:	3 - updating target "build-Linux2_6_8_1_5_386/i18n/milieudefensie-nl.po"
+depend:	3 - Do not know how to build "build-Linux2_6_8_1_5_386/i18n/milieudefensie-nl.po"
+error:	Do not know how to build "i18n/milieudefensie-nl.po"
