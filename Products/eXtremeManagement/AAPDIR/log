@@ -1,0 +1,29 @@
+extra:	Reading recipe "main.aap"
+extra:	Finished reading recipe "main.aap"
+depend:	Adding default dependency for "clean"
+depend:	Adding default dependency for "cleanmore"
+depend:	Building targets specified on command line
+depend:	1 - updating target "gen"
+depend:	2 - Using dependency "gen : "
+depend:	1 - Updating "gen" from "": no old signature for "buildcheck"
+extra:	Shell commands for updating "gen":
+system:	cd ..; python ArchGenXML/ArchGenXML.py -c eXtremeManagement/model/generate.conf eXtremeManagement/model/eXtremeManagement.zuml
+log:	WARNING Didn't find option 'creation-permission' (from the config file) in the list of allowable options. Run ArchGenXML.py with the --help option for information on allowable options.
+WARNING Didn't find option 'no-rcs-id' (from the config file) in the list of allowable options. Run ArchGenXML.py with the --help option for information on allowable options.
+ArchGenXML 1.4.0-beta2 devel
+(c) 2003-2005 BlueDynamics KEG, under GNU General Public License 2.0 or later
+INFO  Parsing...
+WARNING Master Object not found for aggregation relation id='I4cdac8m103219cab14mm7f4f'.
+INFO  Directory in which we're generating the files: 'eXtremeManagement'.
+INFO  Generating...
+WARNING Can't strip html from doc-strings. Module 'stripogram' not found.
+INFO  Starting new Product: 'eXtremeManagement'.
+INFO      Generating class 'Customer'.
+INFO      Generating class 'Project'.
+INFO      Generating class 'Iteration'.
+INFO      Generating class 'Story'.
+INFO      Generating class 'Task'.
+INFO      Generating class 'CustomerFolder'.
+INFO      Generating class 'ProjectMember'.
+INFO      Generating class 'ProjectFolder'.
+
