@@ -306,7 +306,7 @@
                                                                                           path=project_path)"
                    tal:condition="python:stories or stories_estimated">
 
-           <h1 i18n:translate="header_stories_(not)_estimated">Stories (not) estimated</h1>
+           <br /><h1 i18n:translate="header_stories_(not)_estimated">Stories (not) estimated</h1>
           
            <p class="discreet" 
               i18n:translate="description_stories_not_estimated">
@@ -315,7 +315,7 @@
               and will be visible in the list above to be assigned to an iteration.
            </p>
        
-           <table class="listing" width="60%">
+           <table class="listing" width="70%">
              <tr>
                <th tal:condition="stories" 
                    i18n:translate="stories_not_estimated">Stories not estimated</th>

@@ -64,7 +64,7 @@ def configureUserActions(portal):
         actionTool.addAction('time_registration', 
                              'Time registration',
                              'string:${portal_url}/update_hours_form',
-                             "python:portal.portal_membership.getAuthenticatedMember().has_role('Member')",
+                             "python:portal.portal_membership.getAuthenticatedMember().has_role('Employee')",
                              'View',
                              'user'
                             )
@@ -166,8 +166,8 @@ def install(self):
 
     out.write("Successfully installed %s." % PROJECTNAME)
    
-    print >> out, "Customize the portal"
-    setupSkin(self)
+#    print >> out, "Customize the portal"
+#    setupSkin(self)
  
     print >> out, "Configuring new roles"
     configureRoles(self)

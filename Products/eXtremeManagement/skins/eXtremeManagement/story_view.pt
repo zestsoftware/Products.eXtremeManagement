@@ -22,8 +22,7 @@
          tal:define="totalActual python:here.getTotalActual();
                      totalEstimate python:here.getTotalEstimate();
                      item_path python:'/'.join(context.getPhysicalPath());
-                     items python:here.portal_catalog.searchResults(portal_type='Task', 
-                                                                    path=item_path);">
+                     items python:here.portal_catalog.searchResults(portal_type='Task', path=item_path);">
 
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
           Title or id
