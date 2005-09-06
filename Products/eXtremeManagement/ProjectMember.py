@@ -29,7 +29,7 @@ from Products.Archetypes.atapi import *
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
 
-BaseSchema = BaseSchema.copy()
+#BaseSchema = BaseSchema.copy()
 BaseSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 
 ##/code-section module-header
@@ -38,6 +38,7 @@ schema=Schema((
     StringField('fullname',
         index="FieldIndex",
         widget=StringWidget(
+            description="Enter a name, eg. John Smith.",
             label='Fullname',
             label_msgid='eXtremeManagement_label_fullname',
             description_msgid='eXtremeManagement_help_fullname',
@@ -50,18 +51,20 @@ schema=Schema((
         index="FieldIndex",
         widget=IntegerWidget
         (
+            size="30",
+            description="Enter your phone number.",
             label='Phone',
             label_msgid='eXtremeManagement_label_phone',
             description_msgid='eXtremeManagement_help_phone',
             i18n_domain='eXtremeManagement',
         ),
-        required=1,
-        size="30"
+        required=1
     ),
     
     StringField('email',
         index="FieldIndex",
         widget=StringWidget(
+            description="Enter your email address.",
             label='Email',
             label_msgid='eXtremeManagement_label_email',
             description_msgid='eXtremeManagement_help_email',
@@ -71,6 +74,7 @@ schema=Schema((
     
     TextField('comments',
         widget=TextAreaWidget(
+            description="Enter some comments.",
             label='Comments',
             label_msgid='eXtremeManagement_label_comments',
             description_msgid='eXtremeManagement_help_comments',

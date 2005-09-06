@@ -30,9 +30,9 @@ from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
 
 BaseFolderSchema = OrderedBaseFolderSchema.copy()
-BaseFolderSchema['description'].isMetadata = False
-BaseFolderSchema['description'].schemata = 'default'
-BaseFolderSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+OrderedBaseFolderSchema['description'].isMetadata = False
+OrderedBaseFolderSchema['description'].schemata = 'default'
+OrderedBaseFolderSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 
 ##/code-section module-header
 
@@ -40,6 +40,7 @@ schema=Schema((
     StringField('name',
         index="FieldIndex",
         widget=StringWidget(
+            description="Enter full name, eg. John Smith.",
             label='Name',
             label_msgid='eXtremeManagement_label_name',
             description_msgid='eXtremeManagement_help_name',
@@ -51,6 +52,7 @@ schema=Schema((
     StringField('adress',
         index="FieldIndex",
         widget=StringWidget(
+            description="Enter address.",
             label='Adress',
             label_msgid='eXtremeManagement_label_adress',
             description_msgid='eXtremeManagement_help_adress',
@@ -62,6 +64,7 @@ schema=Schema((
     StringField('zipCode',
         index="FieldIndex",
         widget=StringWidget(
+            description="Enter zip code.",
             label='Zipcode',
             label_msgid='eXtremeManagement_label_zipCode',
             description_msgid='eXtremeManagement_help_zipCode',
@@ -73,6 +76,7 @@ schema=Schema((
     StringField('city',
         index="FieldIndex",
         widget=StringWidget(
+            description="Enter city name.",
             label='City',
             label_msgid='eXtremeManagement_label_city',
             description_msgid='eXtremeManagement_help_city',
@@ -84,6 +88,7 @@ schema=Schema((
     StringField('country',
         index="FieldIndex",
         widget=StringWidget(
+            description="Enter country.",
             label='Country',
             label_msgid='eXtremeManagement_label_country',
             description_msgid='eXtremeManagement_help_country',
@@ -96,30 +101,33 @@ schema=Schema((
         index="FieldIndex",
         widget=IntegerWidget
         (
+            size="30",
+            description="Enter your phone number.",
             label='Phone',
             label_msgid='eXtremeManagement_label_phone',
             description_msgid='eXtremeManagement_help_phone',
             i18n_domain='eXtremeManagement',
         ),
-        required=1,
-        size="30"
+        required=1
     ),
     
     StringField('fax',
         index="FieldIndex",
         widget=IntegerWidget
         (
+            size="30",
+            description="Enter your fax number.",
             label='Fax',
             label_msgid='eXtremeManagement_label_fax',
             description_msgid='eXtremeManagement_help_fax',
             i18n_domain='eXtremeManagement',
-        ),
-        size="30"
+        )
     ),
     
     StringField('email',
         index="FieldIndex",
         widget=StringWidget(
+            description="Enter your email address.",
             label='Email',
             label_msgid='eXtremeManagement_label_email',
             description_msgid='eXtremeManagement_help_email',
@@ -130,6 +138,7 @@ schema=Schema((
     StringField('website',
         index="FieldIndex",
         widget=StringWidget(
+            description="Enter your website address.",
             label='Website',
             label_msgid='eXtremeManagement_label_website',
             description_msgid='eXtremeManagement_help_website',
@@ -139,12 +148,12 @@ schema=Schema((
     
     TextField('comments',
         widget=TextAreaWidget(
+            description="Enter some comments.",
             label='Comments',
             label_msgid='eXtremeManagement_label_comments',
             description_msgid='eXtremeManagement_help_comments',
             i18n_domain='eXtremeManagement',
-        ),
-        derived="false"
+        )
     ),
     
 ),

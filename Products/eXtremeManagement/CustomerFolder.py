@@ -30,8 +30,8 @@ from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
 
 BaseFolderSchema = OrderedBaseFolderSchema.copy()
-BaseFolderSchema['description'].isMetadata = False
-BaseFolderSchema['description'].schemata = 'default'
+OrderedBaseFolderSchema['description'].isMetadata = False
+OrderedBaseFolderSchema['description'].schemata = 'default'
 
 ##/code-section module-header
 

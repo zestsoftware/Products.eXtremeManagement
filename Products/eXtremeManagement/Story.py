@@ -38,6 +38,7 @@ schema=Schema((
     TextField('mainText',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
+            description="Enter the main description for this object.",
             label='Maintext',
             label_msgid='eXtremeManagement_label_mainText',
             description_msgid='eXtremeManagement_help_mainText',

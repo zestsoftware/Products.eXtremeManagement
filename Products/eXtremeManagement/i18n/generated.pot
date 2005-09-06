@@ -66,7 +66,8 @@ msgstr "city"
 
 #: Customer.py
 #. comments
-## 1 more: ProjectMember.py
+#: ProjectMember.py
+#. Enter some comments.
 msgid "eXtremeManagement_help_comments"
 msgstr "comments"
 
@@ -103,7 +104,8 @@ msgstr "description"
 
 #: Customer.py
 #. email
-## 1 more: ProjectMember.py
+#: ProjectMember.py
+#. Enter your email address.
 msgid "eXtremeManagement_help_email"
 msgstr "email"
 
@@ -176,7 +178,8 @@ msgstr "name"
 
 #: Customer.py
 #. phone
-## 1 more: ProjectMember.py
+#: ProjectMember.py
+#. Enter your phone number.
 msgid "eXtremeManagement_help_phone"
 msgstr "phone"
 
