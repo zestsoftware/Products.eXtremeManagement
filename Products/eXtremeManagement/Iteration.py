@@ -29,10 +29,10 @@ from Products.Archetypes.atapi import *
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
 
-OrderedBaseFolderSchema = OrderedBaseFolderSchema.copy()
-OrderedBaseFolderSchema['description'].isMetadata = False
-OrderedBaseFolderSchema['description'].schemata = 'default'
-OrderedBaseFolderSchame['id'].widget.visible = {'edit':'hidden', 'view':'invisible'
+#OrderedBaseFolderSchema = OrderedBaseFolderSchema.copy()
+#OrderedBaseFolderSchema['description'].isMetadata = False
+#OrderedBaseFolderSchema['description'].schemata = 'default'
+#OrderedBaseFolderSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'
 
 ##/code-section module-header
 

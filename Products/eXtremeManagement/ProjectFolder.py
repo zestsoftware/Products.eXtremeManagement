@@ -29,9 +29,9 @@ from Products.Archetypes.atapi import *
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
 
-OrderedBaseFolderSchema = OrderedBaseFolderSchema.copy()
-OrderedBaseFolderSchema['description'].isMetadata = False
-OrderedBaseFolderSchema['description'].schemata = 'default'
+BaseFolderSchema = OrderedBaseFolderSchema.copy()
+BaseFolderSchema['description'].isMetadata = False
+BaseFolderSchema['description'].schemata = 'default'
 
 ##/code-section module-header
 

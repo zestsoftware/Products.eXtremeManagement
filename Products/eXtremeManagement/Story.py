@@ -29,8 +29,8 @@ from Products.Archetypes.atapi import *
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
 
-OrderedBaseFolderSchema = OrderedBaseFolderSchema.copy()
-OrderedBaseFolderSchame['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+BaseFolderSchema = OrderedBaseFolderSchema.copy()
+BaseFolderSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 
 ##/code-section module-header
 

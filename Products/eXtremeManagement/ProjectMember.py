@@ -29,8 +29,8 @@ from Products.Archetypes.atapi import *
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
 
-BaseSchema = BaseScheman.copy()
-BaseSchama['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+BaseSchema = BaseSchema.copy()
+BaseSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 
 ##/code-section module-header
 

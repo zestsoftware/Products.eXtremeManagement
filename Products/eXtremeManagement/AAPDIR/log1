@@ -20,10 +20,23 @@ WARNING Can't strip html from doc-strings. Module 'stripogram' not found.
 INFO  Starting new Product: 'eXtremeManagement'.
 INFO      Generating class 'Customer'.
 INFO      Generating class 'Project'.
-INFO      Generating class 'Iteration'.
-INFO      Generating class 'Story'.
-INFO      Generating class 'Task'.
-INFO      Generating class 'CustomerFolder'.
-INFO      Generating class 'ProjectMember'.
-INFO      Generating class 'ProjectFolder'.
+CRITICAL Error while reparsing file 'eXtremeManagement/Iteration.py'.
+Traceback (most recent call last):
+  File "ArchGenXML/ArchGenXML.py", line 80, in ?
+    main()
+  File "ArchGenXML/ArchGenXML.py", line 77, in main
+    gen.parseAndGenerate()
+  File "/home/ahadi/Products/ArchGenXML/ArchetypesGenerator.py", line 2818, in parseAndGenerate
+    self.generateProduct(root)
+  File "/home/ahadi/Products/ArchGenXML/ArchetypesGenerator.py", line 2738, in generateProduct
+    self.generatePackage(root)
+  File "/home/ahadi/Products/ArchGenXML/ArchetypesGenerator.py", line 2399, in generatePackage
+    mod=PyParser.PyModule(filename)
+  File "/home/ahadi/Products/ArchGenXML/PyParser.py", line 53, in __init__
+    self.ast = parser.suite(self.filebuf)
+  File "<string>", line 39
+    schema=Schema((
+         ^
+SyntaxError: invalid syntax
 
+error:	Error in recipe "/home/ahadi/Products/eXtremeManagement/main.aap" line 44: Shell command returned 1
