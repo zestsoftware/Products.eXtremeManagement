@@ -1,8 +1,7 @@
 # File: ProjectMember.py
 # 
 # Copyright (c) 2005 by Zest software 2005
-# Generator: ArchGenXML Version 1.4.0-beta2 devel 
-#            http://plone.org/products/archgenxml
+# Generator: ArchGenXML Version 1.4.0-beta2 http://sf.net/projects/archetypes/
 #
 # GNU General Public Licence (GPL)
 # 
@@ -29,54 +28,56 @@ from Products.Archetypes.atapi import *
 
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
+
+BaseSchema = BaseScheman.copy()
+BaseSchama['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+
 ##/code-section module-header
 
 schema=Schema((
-    StringField('firstName',
+    StringField('fullname',
+        index="FieldIndex",
         widget=StringWidget(
-            label='Firstname',
-            label_msgid='eXtremeManagement_label_firstName',
-            description_msgid='eXtremeManagement_help_firstName',
+            label='Fullname',
+            label_msgid='eXtremeManagement_label_fullname',
+            description_msgid='eXtremeManagement_help_fullname',
+            i18n_domain='eXtremeManagement',
+        ),
+        required=1
+    ),
+    
+    StringField('phone',
+        index="FieldIndex",
+        widget=IntegerWidget
+        (
+            label='Phone',
+            label_msgid='eXtremeManagement_label_phone',
+            description_msgid='eXtremeManagement_help_phone',
+            i18n_domain='eXtremeManagement',
+        ),
+        required=1,
+        size="30"
+    ),
+    
+    StringField('email',
+        index="FieldIndex",
+        widget=StringWidget(
+            label='Email',
+            label_msgid='eXtremeManagement_label_email',
+            description_msgid='eXtremeManagement_help_email',
             i18n_domain='eXtremeManagement',
         )
     ),
-
-    StringField('lastName',
-        widget=StringWidget(
-            label='Lastname',
-            label_msgid='eXtremeManagement_label_lastName',
-            description_msgid='eXtremeManagement_help_lastName',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    IntegerField('phoneNumber',
-        widget=IntegerWidget(
-            label='Phonenumber',
-            label_msgid='eXtremeManagement_label_phoneNumber',
-            description_msgid='eXtremeManagement_help_phoneNumber',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    StringField('emailAddress',
-        widget=StringWidget(
-            label='Emailaddress',
-            label_msgid='eXtremeManagement_label_emailAddress',
-            description_msgid='eXtremeManagement_help_emailAddress',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    StringField('comments',
-        widget=StringWidget(
+    
+    TextField('comments',
+        widget=TextAreaWidget(
             label='Comments',
             label_msgid='eXtremeManagement_label_comments',
             description_msgid='eXtremeManagement_help_comments',
             i18n_domain='eXtremeManagement',
         )
     ),
-
+    
 ),
 )
 
@@ -84,29 +85,28 @@ schema=Schema((
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class ProjectMember(Base,BaseContent):
+class ProjectMember(BaseContent,BaseContent):
     security = ClassSecurityInfo()
-    __implements__ = (getattr(Base,'__implements__',()),) + (getattr(BaseContent,'__implements__',()),)
+    __implements__ = (getattr(BaseContent,'__implements__',()),) + (getattr(BaseContent,'__implements__',()),)
 
 
     # This name appears in the 'add' box
     archetype_name             = 'ProjectMember'
 
-    meta_type                  = 'ProjectMember'
-    portal_type                = 'ProjectMember'
-    allowed_content_types      = [] + list(getattr(Base, 'allowed_content_types', []))
+    meta_type                  = 'ProjectMember' 
+    portal_type                = 'ProjectMember' 
+    allowed_content_types      = [] + list(getattr(BaseContent, 'allowed_content_types', []))
     filter_content_types       = 0
     global_allow               = 0
     allow_discussion           = 0
     #content_icon               = 'ProjectMember.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
-    suppl_views                = ()
     typeDescription            = "ProjectMember"
     typeDescMsgId              = 'description_edit_projectmember'
 
     schema = BaseSchema + \
-             getattr(Base,'schema',Schema(())) + \
+             getattr(BaseContent,'schema',Schema(())) + \
              schema
 
     ##code-section class-header #fill in your manual code here

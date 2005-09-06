@@ -1,8 +1,7 @@
 # File: Iteration.py
 # 
 # Copyright (c) 2005 by Zest software 2005
-# Generator: ArchGenXML Version 1.4.0-beta2 devel 
-#            http://plone.org/products/archgenxml
+# Generator: ArchGenXML Version 1.4.0-beta2 http://sf.net/projects/archetypes/
 #
 # GNU General Public Licence (GPL)
 # 
@@ -29,36 +28,15 @@ from Products.Archetypes.atapi import *
 
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
+
+OrderedBaseFolderSchema = OrderedBaseFolderSchema.copy()
+OrderedBaseFolderSchema['description'].isMetadata = False
+OrderedBaseFolderSchema['description'].schemata = 'default'
+OrderedBaseFolderSchame['id'].widget.visible = {'edit':'hidden', 'view':'invisible'
+
 ##/code-section module-header
 
 schema=Schema((
-    StringField('id',
-        widget=StringWidget(
-            label='Id',
-            label_msgid='eXtremeManagement_label_id',
-            description_msgid='eXtremeManagement_help_id',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    StringField('title',
-        widget=StringWidget(
-            label='Title',
-            label_msgid='eXtremeManagement_label_title',
-            description_msgid='eXtremeManagement_help_title',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    StringField('description',
-        widget=StringWidget(
-            label='Description',
-            label_msgid='eXtremeManagement_label_description',
-            description_msgid='eXtremeManagement_help_description',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
 ),
 )
 
@@ -74,8 +52,8 @@ class Iteration(OrderedBaseFolder,BaseFolder):
     # This name appears in the 'add' box
     archetype_name             = 'Iteration'
 
-    meta_type                  = 'Iteration'
-    portal_type                = 'Iteration'
+    meta_type                  = 'Iteration' 
+    portal_type                = 'Iteration' 
     allowed_content_types      = ['Story'] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
     filter_content_types       = 1
     global_allow               = 0
@@ -83,7 +61,6 @@ class Iteration(OrderedBaseFolder,BaseFolder):
     #content_icon               = 'Iteration.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
-    suppl_views                = ()
     typeDescription            = "Iteration"
     typeDescMsgId              = 'description_edit_iteration'
 

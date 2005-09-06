@@ -1,8 +1,7 @@
 # File: Customer.py
 # 
 # Copyright (c) 2005 by Zest software 2005
-# Generator: ArchGenXML Version 1.4.0-beta2 devel 
-#            http://plone.org/products/archgenxml
+# Generator: ArchGenXML Version 1.4.0-beta2 http://sf.net/projects/archetypes/
 #
 # GNU General Public Licence (GPL)
 # 
@@ -29,109 +28,107 @@ from Products.Archetypes.atapi import *
 
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
+
+OrderedBaseFolderSchema = OrderedBaseFolderSchema.copy()
+OrderedBaseFolderSchema['description'].isMetadata = False
+OrderedBaseFolderSchema['description'].schemata = 'default'
+OrderedBaseFolderSchame['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+
 ##/code-section module-header
 
 schema=Schema((
-    StringField('id',
-        widget=StringWidget(
-            label='Id',
-            label_msgid='eXtremeManagement_label_id',
-            description_msgid='eXtremeManagement_help_id',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    StringField('title',
-        widget=StringWidget(
-            label='Title',
-            label_msgid='eXtremeManagement_label_title',
-            description_msgid='eXtremeManagement_help_title',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    StringField('description',
-        widget=StringWidget(
-            label='Description',
-            label_msgid='eXtremeManagement_label_description',
-            description_msgid='eXtremeManagement_help_description',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
     StringField('name',
+        index="FieldIndex",
         widget=StringWidget(
             label='Name',
             label_msgid='eXtremeManagement_label_name',
             description_msgid='eXtremeManagement_help_name',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        required=1
     ),
-
+    
     StringField('adress',
+        index="FieldIndex",
         widget=StringWidget(
             label='Adress',
             label_msgid='eXtremeManagement_label_adress',
             description_msgid='eXtremeManagement_help_adress',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        required=1
     ),
-
+    
     StringField('zipCode',
+        index="FieldIndex",
         widget=StringWidget(
             label='Zipcode',
             label_msgid='eXtremeManagement_label_zipCode',
             description_msgid='eXtremeManagement_help_zipCode',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        required=1
     ),
-
-    StringField('location',
+    
+    StringField('city',
+        index="FieldIndex",
         widget=StringWidget(
-            label='Location',
-            label_msgid='eXtremeManagement_label_location',
-            description_msgid='eXtremeManagement_help_location',
+            label='City',
+            label_msgid='eXtremeManagement_label_city',
+            description_msgid='eXtremeManagement_help_city',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        required=1
     ),
-
+    
     StringField('country',
+        index="FieldIndex",
         widget=StringWidget(
             label='Country',
             label_msgid='eXtremeManagement_label_country',
             description_msgid='eXtremeManagement_help_country',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        required=1
     ),
-
-    IntegerField('phoneNumber',
-        widget=IntegerWidget(
-            label='Phonenumber',
-            label_msgid='eXtremeManagement_label_phoneNumber',
-            description_msgid='eXtremeManagement_help_phoneNumber',
+    
+    StringField('phone',
+        index="FieldIndex",
+        widget=IntegerWidget
+        (
+            label='Phone',
+            label_msgid='eXtremeManagement_label_phone',
+            description_msgid='eXtremeManagement_help_phone',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        required=1,
+        size="30"
     ),
-
-    IntegerField('faxNumber',
-        widget=IntegerWidget(
-            label='Faxnumber',
-            label_msgid='eXtremeManagement_label_faxNumber',
-            description_msgid='eXtremeManagement_help_faxNumber',
+    
+    StringField('fax',
+        index="FieldIndex",
+        widget=IntegerWidget
+        (
+            label='Fax',
+            label_msgid='eXtremeManagement_label_fax',
+            description_msgid='eXtremeManagement_help_fax',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        size="30"
     ),
-
-    StringField('emailAddress',
+    
+    StringField('email',
+        index="FieldIndex",
         widget=StringWidget(
-            label='Emailaddress',
-            label_msgid='eXtremeManagement_label_emailAddress',
-            description_msgid='eXtremeManagement_help_emailAddress',
+            label='Email',
+            label_msgid='eXtremeManagement_label_email',
+            description_msgid='eXtremeManagement_help_email',
             i18n_domain='eXtremeManagement',
         )
     ),
-
+    
     StringField('website',
+        index="FieldIndex",
         widget=StringWidget(
             label='Website',
             label_msgid='eXtremeManagement_label_website',
@@ -139,9 +136,9 @@ schema=Schema((
             i18n_domain='eXtremeManagement',
         )
     ),
-
-    StringField('comments',
-        widget=StringWidget(
+    
+    TextField('comments',
+        widget=TextAreaWidget(
             label='Comments',
             label_msgid='eXtremeManagement_label_comments',
             description_msgid='eXtremeManagement_help_comments',
@@ -149,7 +146,7 @@ schema=Schema((
         ),
         derived="false"
     ),
-
+    
 ),
 )
 
@@ -165,8 +162,8 @@ class Customer(OrderedBaseFolder,BaseFolder):
     # This name appears in the 'add' box
     archetype_name             = 'Customer'
 
-    meta_type                  = 'Customer'
-    portal_type                = 'Customer'
+    meta_type                  = 'Customer' 
+    portal_type                = 'Customer' 
     allowed_content_types      = ['ProjectMember'] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
     filter_content_types       = 1
     global_allow               = 0
@@ -174,7 +171,6 @@ class Customer(OrderedBaseFolder,BaseFolder):
     #content_icon               = 'Customer.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
-    suppl_views                = ()
     typeDescription            = "Customer"
     typeDescMsgId              = 'description_edit_customer'
 

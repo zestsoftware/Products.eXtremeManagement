@@ -1,8 +1,7 @@
 # File: Project.py
 # 
 # Copyright (c) 2005 by Zest software 2005
-# Generator: ArchGenXML Version 1.4.0-beta2 devel 
-#            http://plone.org/products/archgenxml
+# Generator: ArchGenXML Version 1.4.0-beta2 http://sf.net/projects/archetypes/
 #
 # GNU General Public Licence (GPL)
 # 
@@ -29,36 +28,14 @@ from Products.Archetypes.atapi import *
 
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
+
+OrderedBaseFolderSchema = OrderedBaseFolderSchema.copy()
+OrderedBaseFolderSchema['description'].isMetadata = False
+OrderedBaseFolderSchema['description'].schemata = 'default'
+
 ##/code-section module-header
 
 schema=Schema((
-    StringField('id',
-        widget=StringWidget(
-            label='Id',
-            label_msgid='eXtremeManagement_label_id',
-            description_msgid='eXtremeManagement_help_id',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    StringField('title',
-        widget=StringWidget(
-            label='Title',
-            label_msgid='eXtremeManagement_label_title',
-            description_msgid='eXtremeManagement_help_title',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    StringField('description',
-        widget=StringWidget(
-            label='Description',
-            label_msgid='eXtremeManagement_label_description',
-            description_msgid='eXtremeManagement_help_description',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
 ),
 )
 
@@ -74,8 +51,8 @@ class Project(OrderedBaseFolder,BaseFolder):
     # This name appears in the 'add' box
     archetype_name             = 'Project'
 
-    meta_type                  = 'Project'
-    portal_type                = 'Project'
+    meta_type                  = 'Project' 
+    portal_type                = 'Project' 
     allowed_content_types      = ['Iteration', 'Story'] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
     filter_content_types       = 1
     global_allow               = 0
@@ -83,7 +60,6 @@ class Project(OrderedBaseFolder,BaseFolder):
     #content_icon               = 'Project.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
-    suppl_views                = ()
     typeDescription            = "Project"
     typeDescMsgId              = 'description_edit_project'
 

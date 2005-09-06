@@ -1,8 +1,7 @@
 # File: ProjectFolder.py
 # 
 # Copyright (c) 2005 by Zest software 2005
-# Generator: ArchGenXML Version 1.4.0-beta2 devel 
-#            http://plone.org/products/archgenxml
+# Generator: ArchGenXML Version 1.4.0-beta2 http://sf.net/projects/archetypes/
 #
 # GNU General Public Licence (GPL)
 # 
@@ -29,6 +28,11 @@ from Products.Archetypes.atapi import *
 
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
+
+OrderedBaseFolderSchema = OrderedBaseFolderSchema.copy()
+OrderedBaseFolderSchema['description'].isMetadata = False
+OrderedBaseFolderSchema['description'].schemata = 'default'
+
 ##/code-section module-header
 
 schema=Schema((
@@ -47,8 +51,8 @@ class ProjectFolder(OrderedBaseFolder,BaseFolder):
     # This name appears in the 'add' box
     archetype_name             = 'ProjectFolder'
 
-    meta_type                  = 'ProjectFolder'
-    portal_type                = 'ProjectFolder'
+    meta_type                  = 'ProjectFolder' 
+    portal_type                = 'ProjectFolder' 
     allowed_content_types      = ['Project'] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
     filter_content_types       = 1
     global_allow               = 1
@@ -56,7 +60,6 @@ class ProjectFolder(OrderedBaseFolder,BaseFolder):
     #content_icon               = 'ProjectFolder.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
-    suppl_views                = ()
     typeDescription            = "ProjectFolder"
     typeDescMsgId              = 'description_edit_projectfolder'
 

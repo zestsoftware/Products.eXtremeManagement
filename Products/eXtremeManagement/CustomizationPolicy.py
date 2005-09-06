@@ -56,6 +56,6 @@ class eXtremeManagementPolicy(DefaultCustomizationPolicy):
 
 
 def register(context):
-    addPolicy('xxx_name_this', xxx_name_thisCustomizationPolicy())
+    addPolicy('eXtremeManagement', eXtremeManagementPolicy())
 
 

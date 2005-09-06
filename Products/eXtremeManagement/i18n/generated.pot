@@ -59,6 +59,12 @@ msgstr "attribute_33"
 
 
 #: Customer.py
+#. city
+msgid "eXtremeManagement_help_city"
+msgstr "city"
+
+
+#: Customer.py
 #. comments
 ## 1 more: ProjectMember.py
 msgid "eXtremeManagement_help_comments"
@@ -91,14 +97,19 @@ msgstr "descriptino"
 
 #: Customer.py
 #. description
-## 3 more: Project.py, Iteration.py, Story.py
 msgid "eXtremeManagement_help_description"
 msgstr "description"
 
 
 #: Customer.py
-#. emailAddress
+#. email
 ## 1 more: ProjectMember.py
+msgid "eXtremeManagement_help_email"
+msgstr "email"
+
+
+#: Customer.py
+#. emailAddress
 msgid "eXtremeManagement_help_emailAddress"
 msgstr "emailAddress"
 
@@ -107,6 +118,12 @@ msgstr "emailAddress"
 #. estimate
 msgid "eXtremeManagement_help_estimate"
 msgstr "estimate"
+
+
+#: Customer.py
+#. fax
+msgid "eXtremeManagement_help_fax"
+msgstr "fax"
 
 
 #: Customer.py
@@ -121,9 +138,14 @@ msgid "eXtremeManagement_help_firstName"
 msgstr "firstName"
 
 
+#: ProjectMember.py
+#. fullname
+msgid "eXtremeManagement_help_fullname"
+msgstr "fullname"
+
+
 #: Customer.py
 #. id
-## 4 more: Project.py, Iteration.py, Story.py, Task.py
 msgid "eXtremeManagement_help_id"
 msgstr "id"
 
@@ -153,10 +175,22 @@ msgstr "name"
 
 
 #: Customer.py
-#. phoneNumber
+#. phone
 ## 1 more: ProjectMember.py
+msgid "eXtremeManagement_help_phone"
+msgstr "phone"
+
+
+#: Customer.py
+#. phoneNumber
 msgid "eXtremeManagement_help_phoneNumber"
 msgstr "phoneNumber"
+
+
+#: Task.py
+#. task
+msgid "eXtremeManagement_help_task"
+msgstr "task"
 
 
 #: Task.py
@@ -167,7 +201,6 @@ msgstr "taskDescription"
 
 #: Customer.py
 #. title
-## 4 more: Project.py, Iteration.py, Story.py, Task.py
 msgid "eXtremeManagement_help_title"
 msgstr "title"
 
@@ -227,6 +260,12 @@ msgstr "Attribute_33"
 
 
 #: Customer.py
+#. City
+msgid "eXtremeManagement_label_city"
+msgstr "City"
+
+
+#: Customer.py
 #. Comments
 ## 1 more: ProjectMember.py
 msgid "eXtremeManagement_label_comments"
@@ -259,14 +298,19 @@ msgstr "Descriptino"
 
 #: Customer.py
 #. Description
-## 3 more: Project.py, Iteration.py, Story.py
 msgid "eXtremeManagement_label_description"
 msgstr "Description"
 
 
 #: Customer.py
-#. Emailaddress
+#. Email
 ## 1 more: ProjectMember.py
+msgid "eXtremeManagement_label_email"
+msgstr "Email"
+
+
+#: Customer.py
+#. Emailaddress
 msgid "eXtremeManagement_label_emailAddress"
 msgstr "Emailaddress"
 
@@ -275,6 +319,12 @@ msgstr "Emailaddress"
 #. Estimate
 msgid "eXtremeManagement_label_estimate"
 msgstr "Estimate"
+
+
+#: Customer.py
+#. Fax
+msgid "eXtremeManagement_label_fax"
+msgstr "Fax"
 
 
 #: Customer.py
@@ -289,9 +339,14 @@ msgid "eXtremeManagement_label_firstName"
 msgstr "Firstname"
 
 
+#: ProjectMember.py
+#. Fullname
+msgid "eXtremeManagement_label_fullname"
+msgstr "Fullname"
+
+
 #: Customer.py
 #. Id
-## 4 more: Project.py, Iteration.py, Story.py, Task.py
 msgid "eXtremeManagement_label_id"
 msgstr "Id"
 
@@ -321,10 +376,22 @@ msgstr "Name"
 
 
 #: Customer.py
-#. Phonenumber
+#. Phone
 ## 1 more: ProjectMember.py
+msgid "eXtremeManagement_label_phone"
+msgstr "Phone"
+
+
+#: Customer.py
+#. Phonenumber
 msgid "eXtremeManagement_label_phoneNumber"
 msgstr "Phonenumber"
+
+
+#: Task.py
+#. Task
+msgid "eXtremeManagement_label_task"
+msgstr "Task"
 
 
 #: Task.py
@@ -335,7 +402,6 @@ msgstr "Taskdescription"
 
 #: Customer.py
 #. Title
-## 4 more: Project.py, Iteration.py, Story.py, Task.py
 msgid "eXtremeManagement_label_title"
 msgstr "Title"
 

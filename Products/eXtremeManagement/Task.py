@@ -1,8 +1,7 @@
 # File: Task.py
 # 
 # Copyright (c) 2005 by Zest software 2005
-# Generator: ArchGenXML Version 1.4.0-beta2 devel 
-#            http://plone.org/products/archgenxml
+# Generator: ArchGenXML Version 1.4.0-beta2 http://sf.net/projects/archetypes/
 #
 # GNU General Public Licence (GPL)
 # 
@@ -32,43 +31,32 @@ from Products.eXtremeManagement.config import *
 ##/code-section module-header
 
 schema=Schema((
-    StringField('id',
-        widget=StringWidget(
-            label='Id',
-            label_msgid='eXtremeManagement_label_id',
-            description_msgid='eXtremeManagement_help_id',
+    TextField('task',
+        index="FieldIndex",
+        widget=TextAreaWidget(
+            label='Task',
+            label_msgid='eXtremeManagement_label_task',
+            description_msgid='eXtremeManagement_help_task',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        required=1
     ),
-
-    StringField('title',
-        widget=StringWidget(
-            label='Title',
-            label_msgid='eXtremeManagement_label_title',
-            description_msgid='eXtremeManagement_help_title',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    IntegerField('attribute_33',
-        widget=IntegerWidget(
-            label='Attribute_33',
-            label_msgid='eXtremeManagement_label_attribute_33',
-            description_msgid='eXtremeManagement_help_attribute_33',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
+    
     IntegerField('estimate',
+        default="0",
+        index="FieldIndex",
         widget=IntegerWidget(
             label='Estimate',
             label_msgid='eXtremeManagement_label_estimate',
             description_msgid='eXtremeManagement_help_estimate',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        required=1
     ),
-
+    
     IntegerField('actual',
+        default="0",
+        index="FieldIndex",
         widget=IntegerWidget(
             label='Actual',
             label_msgid='eXtremeManagement_label_actual',
@@ -76,8 +64,9 @@ schema=Schema((
             i18n_domain='eXtremeManagement',
         )
     ),
-
+    
     LinesField('assignees',
+        index="FieldIndex",
         widget=MultiSelectionWidget(
             label='Assignees',
             label_msgid='eXtremeManagement_label_assignees',
@@ -86,7 +75,7 @@ schema=Schema((
         ),
         multiValued=1
     ),
-
+    
 ),
 )
 
@@ -102,8 +91,8 @@ class Task(OrderedBaseFolder,BaseContent):
     # This name appears in the 'add' box
     archetype_name             = 'Task'
 
-    meta_type                  = 'Task'
-    portal_type                = 'Task'
+    meta_type                  = 'Task' 
+    portal_type                = 'Task' 
     allowed_content_types      = [] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
     filter_content_types       = 0
     global_allow               = 0
@@ -111,7 +100,6 @@ class Task(OrderedBaseFolder,BaseContent):
     #content_icon               = 'Task.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
-    suppl_views                = ()
     typeDescription            = "Task"
     typeDescMsgId              = 'description_edit_task'
 

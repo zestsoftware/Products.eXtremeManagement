@@ -10,7 +10,6 @@ from Products.CMFCore.CMFCorePermissions import setDefaultRoles
 
 PROJECTNAME = "eXtremeManagement"
 
-# Permissions
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
 setDefaultRoles(DEFAULT_ADD_CONTENT_PERMISSION, ('Manager', 'Owner', 'Member'))
 
@@ -20,7 +19,6 @@ product_globals=globals()
 ##/code-section config-bottom
 
 
-# load custom configuration not managed by ArchGenXML
 try:
     from Products.eXtremeManagement.AppConfig import *
 except ImportError:
