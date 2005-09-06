@@ -51,7 +51,7 @@ class CustomerFolder(OrderedBaseFolder,BaseFolder):
     portal_type                = 'CustomerFolder'
     allowed_content_types      = ['Customer'] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
     filter_content_types       = 1
-    global_allow               = 0
+    global_allow               = 1
     allow_discussion           = 0
     #content_icon               = 'CustomerFolder.gif'
     immediate_view             = 'base_view'

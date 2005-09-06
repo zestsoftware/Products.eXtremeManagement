@@ -51,7 +51,7 @@ class ProjectFolder(OrderedBaseFolder,BaseFolder):
     portal_type                = 'ProjectFolder'
     allowed_content_types      = ['Project'] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
     filter_content_types       = 1
-    global_allow               = 0
+    global_allow               = 1
     allow_discussion           = 0
     #content_icon               = 'ProjectFolder.gif'
     immediate_view             = 'base_view'

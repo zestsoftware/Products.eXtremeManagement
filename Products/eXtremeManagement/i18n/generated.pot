@@ -34,6 +34,12 @@ msgid "eXtremeManagement_help_assignTo"
 msgstr "assignTo"
 
 
+#: Task.py
+#. assignees
+msgid "eXtremeManagement_help_assignees"
+msgstr "assignees"
+
+
 #: Story.py
 #. attribute_25
 msgid "eXtremeManagement_help_attribute_25"
@@ -194,6 +200,12 @@ msgstr "Adress"
 #. Assignto
 msgid "eXtremeManagement_label_assignTo"
 msgstr "Assignto"
+
+
+#: Task.py
+#. Assignees
+msgid "eXtremeManagement_label_assignees"
+msgstr "Assignees"
 
 
 #: Story.py

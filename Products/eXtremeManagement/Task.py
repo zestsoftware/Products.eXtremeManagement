@@ -77,13 +77,14 @@ schema=Schema((
         )
     ),
 
-    StringField('assignTo',
-        widget=SelectionWidget(
-            label='Assignto',
-            label_msgid='eXtremeManagement_label_assignTo',
-            description_msgid='eXtremeManagement_help_assignTo',
+    LinesField('assignees',
+        widget=MultiSelectionWidget(
+            label='Assignees',
+            label_msgid='eXtremeManagement_label_assignees',
+            description_msgid='eXtremeManagement_help_assignees',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        multiValued=1
     ),
 
 ),
@@ -93,9 +94,9 @@ schema=Schema((
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class Task(BaseContent):
+class Task(OrderedBaseFolder,BaseContent):
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseContent,'__implements__',()),)
+    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),) + (getattr(BaseContent,'__implements__',()),)
 
 
     # This name appears in the 'add' box
@@ -103,7 +104,7 @@ class Task(BaseContent):
 
     meta_type                  = 'Task'
     portal_type                = 'Task'
-    allowed_content_types      = []
+    allowed_content_types      = [] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
     filter_content_types       = 0
     global_allow               = 0
     allow_discussion           = 0
@@ -115,6 +116,7 @@ class Task(BaseContent):
     typeDescMsgId              = 'description_edit_task'
 
     schema = BaseSchema + \
+             getattr(OrderedBaseFolder,'schema',Schema(())) + \
              schema
 
     ##code-section class-header #fill in your manual code here

@@ -77,13 +77,15 @@ schema=Schema((
         )
     ),
 
-    StringField('mainText',
-        widget=StringWidget(
+    TextField('mainText',
+        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
+        widget=RichWidget(
             label='Maintext',
             label_msgid='eXtremeManagement_label_mainText',
             description_msgid='eXtremeManagement_help_mainText',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        default_output_type='text/html'
     ),
 
 ),
@@ -103,7 +105,7 @@ class Story(OrderedBaseFolder,BaseFolder):
 
     meta_type                  = 'Story'
     portal_type                = 'Story'
-    allowed_content_types      = ['Task', 'OrderedBaseFolder', 'Story', 'Iteration', 'Project', 'ProjectFolder', 'CustomerFolder', 'Customer'] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
+    allowed_content_types      = ['Task'] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
     filter_content_types       = 1
     global_allow               = 0
     allow_discussion           = 0

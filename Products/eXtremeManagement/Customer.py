@@ -146,7 +146,8 @@ schema=Schema((
             label_msgid='eXtremeManagement_label_comments',
             description_msgid='eXtremeManagement_help_comments',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        derived="false"
     ),
 
 ),
