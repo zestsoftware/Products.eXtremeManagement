@@ -85,7 +85,7 @@ msgstr "descriptino"
 
 #: Customer.py
 #. description
-## 5 more: Project.py, Iteration.py, Story.py, CustomerFolder.py, ProjectFolder.py
+## 3 more: Project.py, Iteration.py, Story.py
 msgid "eXtremeManagement_help_description"
 msgstr "description"
 
@@ -117,7 +117,7 @@ msgstr "firstName"
 
 #: Customer.py
 #. id
-## 6 more: Project.py, Iteration.py, Story.py, Task.py, CustomerFolder.py, ProjectFolder.py
+## 4 more: Project.py, Iteration.py, Story.py, Task.py
 msgid "eXtremeManagement_help_id"
 msgstr "id"
 
@@ -142,7 +142,6 @@ msgstr "mainText"
 
 #: Customer.py
 #. name
-## 6 more: Project.py, Iteration.py, Story.py, Task.py, CustomerFolder.py, ProjectFolder.py
 msgid "eXtremeManagement_help_name"
 msgstr "name"
 
@@ -248,7 +247,7 @@ msgstr "Descriptino"
 
 #: Customer.py
 #. Description
-## 5 more: Project.py, Iteration.py, Story.py, CustomerFolder.py, ProjectFolder.py
+## 3 more: Project.py, Iteration.py, Story.py
 msgid "eXtremeManagement_label_description"
 msgstr "Description"
 
@@ -280,7 +279,7 @@ msgstr "Firstname"
 
 #: Customer.py
 #. Id
-## 6 more: Project.py, Iteration.py, Story.py, Task.py, CustomerFolder.py, ProjectFolder.py
+## 4 more: Project.py, Iteration.py, Story.py, Task.py
 msgid "eXtremeManagement_label_id"
 msgstr "Id"
 
@@ -305,7 +304,6 @@ msgstr "Maintext"
 
 #: Customer.py
 #. Name
-## 6 more: Project.py, Iteration.py, Story.py, Task.py, CustomerFolder.py, ProjectFolder.py
 msgid "eXtremeManagement_label_name"
 msgstr "Name"
 

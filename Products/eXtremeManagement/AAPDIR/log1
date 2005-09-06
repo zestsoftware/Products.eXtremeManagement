@@ -5,7 +5,7 @@ depend:	Adding default dependency for "cleanmore"
 depend:	Building targets specified on command line
 depend:	1 - updating target "gen"
 depend:	2 - Using dependency "gen : "
-depend:	1 - Updating "gen" from "": no old signature for "buildcheck"
+depend:	1 - Updating "gen" from "": it doesn't exist
 extra:	Shell commands for updating "gen":
 system:	cd ..; python ArchGenXML/ArchGenXML.py -c eXtremeManagement/model/generate.conf eXtremeManagement/model/eXtremeManagement.zuml
 log:	WARNING Didn't find option 'creation-permission' (from the config file) in the list of allowable options. Run ArchGenXML.py with the --help option for information on allowable options.

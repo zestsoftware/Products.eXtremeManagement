@@ -156,9 +156,9 @@ schema=Schema((
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class Customer(BaseFolder):
+class Customer(OrderedBaseFolder,BaseFolder):
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseFolder,'__implements__',()),)
+    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),) + (getattr(BaseFolder,'__implements__',()),)
 
 
     # This name appears in the 'add' box
@@ -166,7 +166,7 @@ class Customer(BaseFolder):
 
     meta_type                  = 'Customer'
     portal_type                = 'Customer'
-    allowed_content_types      = ['CustomerFolder']
+    allowed_content_types      = ['ProjectMember'] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
     filter_content_types       = 1
     global_allow               = 0
     allow_discussion           = 0
@@ -178,6 +178,7 @@ class Customer(BaseFolder):
     typeDescMsgId              = 'description_edit_customer'
 
     schema = BaseFolderSchema + \
+             getattr(OrderedBaseFolder,'schema',Schema(())) + \
              schema
 
     ##code-section class-header #fill in your manual code here

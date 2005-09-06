@@ -32,33 +32,6 @@ from Products.eXtremeManagement.config import *
 ##/code-section module-header
 
 schema=Schema((
-    StringField('id',
-        widget=StringWidget(
-            label='Id',
-            label_msgid='eXtremeManagement_label_id',
-            description_msgid='eXtremeManagement_help_id',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    StringField('name',
-        widget=StringWidget(
-            label='Name',
-            label_msgid='eXtremeManagement_label_name',
-            description_msgid='eXtremeManagement_help_name',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    StringField('description',
-        widget=StringWidget(
-            label='Description',
-            label_msgid='eXtremeManagement_label_description',
-            description_msgid='eXtremeManagement_help_description',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
 ),
 )
 
@@ -66,9 +39,9 @@ schema=Schema((
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class CustomerFolder(BaseContent):
+class CustomerFolder(OrderedBaseFolder,BaseFolder):
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseContent,'__implements__',()),)
+    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),) + (getattr(BaseFolder,'__implements__',()),)
 
 
     # This name appears in the 'add' box
@@ -76,8 +49,8 @@ class CustomerFolder(BaseContent):
 
     meta_type                  = 'CustomerFolder'
     portal_type                = 'CustomerFolder'
-    allowed_content_types      = []
-    filter_content_types       = 0
+    allowed_content_types      = ['Customer'] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
+    filter_content_types       = 1
     global_allow               = 0
     allow_discussion           = 0
     #content_icon               = 'CustomerFolder.gif'
@@ -87,7 +60,8 @@ class CustomerFolder(BaseContent):
     typeDescription            = "CustomerFolder"
     typeDescMsgId              = 'description_edit_customerfolder'
 
-    schema = BaseSchema + \
+    schema = BaseFolderSchema + \
+             getattr(OrderedBaseFolder,'schema',Schema(())) + \
              schema
 
     ##code-section class-header #fill in your manual code here

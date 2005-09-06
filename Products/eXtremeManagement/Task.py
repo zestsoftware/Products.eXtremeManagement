@@ -59,33 +59,6 @@ schema=Schema((
         )
     ),
 
-    StringField('id',
-        widget=StringWidget(
-            label='Id',
-            label_msgid='eXtremeManagement_label_id',
-            description_msgid='eXtremeManagement_help_id',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    StringField('name',
-        widget=StringWidget(
-            label='Name',
-            label_msgid='eXtremeManagement_label_name',
-            description_msgid='eXtremeManagement_help_name',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    StringField('taskDescription',
-        widget=StringWidget(
-            label='Taskdescription',
-            label_msgid='eXtremeManagement_label_taskDescription',
-            description_msgid='eXtremeManagement_help_taskDescription',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
     IntegerField('estimate',
         widget=IntegerWidget(
             label='Estimate',
@@ -120,9 +93,9 @@ schema=Schema((
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class Task(BaseFolder):
+class Task(BaseContent):
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseFolder,'__implements__',()),)
+    __implements__ = (getattr(BaseContent,'__implements__',()),)
 
 
     # This name appears in the 'add' box
@@ -130,9 +103,9 @@ class Task(BaseFolder):
 
     meta_type                  = 'Task'
     portal_type                = 'Task'
-    allowed_content_types      = ['Story']
-    filter_content_types       = 1
-    global_allow               = 1
+    allowed_content_types      = []
+    filter_content_types       = 0
+    global_allow               = 0
     allow_discussion           = 0
     #content_icon               = 'Task.gif'
     immediate_view             = 'base_view'
@@ -141,7 +114,7 @@ class Task(BaseFolder):
     typeDescription            = "Task"
     typeDescMsgId              = 'description_edit_task'
 
-    schema = BaseFolderSchema + \
+    schema = BaseSchema + \
              schema
 
     ##code-section class-header #fill in your manual code here

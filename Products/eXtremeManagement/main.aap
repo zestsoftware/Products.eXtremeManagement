@@ -33,12 +33,12 @@ epydoc:
 caching:
     # Generate a .metadata with caching info 
 
-#i18n/eXtremeManagement-nl.po: $TEMPLATES i18n/generated.pot
-#    GOODTEMPLATES = `_no.TEMPLATES.replace('skins/eXtremeManagement/header.pt', '')`
-#    :sys i18ndude rebuild-pot --pot i18n/eXtremeManagement.pot --create eXtremeManagement --merge i18n/generated.pot $GOODTEMPLATES
+i18n/eXtremeManagement-nl.po: $TEMPLATES i18n/generated.pot
+    GOODTEMPLATES = `_no.TEMPLATES.replace('skins/eXtremeManagement/header.pt', '')`
+    :sys i18ndude rebuild-pot --pot i18n/eXtremeManagement.pot --create eXtremeManagement --merge i18n/generated.pot $GOODTEMPLATES
 
-#i18n-sync:
-#    :sys i18ndude sync --pot i18n/eXtremeManagement.pot i18n/eXtremeManagement-nl.po i18n/eXtremeManagement-en.po
+i18n-sync:
+    :sys i18ndude sync --pot i18n/eXtremeManagement.pot i18n/eXtremeManagement-nl.po i18n/eXtremeManagement-en.po
 
 gen:
     # No questions, just run AGX again

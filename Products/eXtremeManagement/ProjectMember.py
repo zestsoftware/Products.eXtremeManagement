@@ -84,9 +84,9 @@ schema=Schema((
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class ProjectMember(BaseFolder):
+class ProjectMember(Base,BaseContent):
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseFolder,'__implements__',()),)
+    __implements__ = (getattr(Base,'__implements__',()),) + (getattr(BaseContent,'__implements__',()),)
 
 
     # This name appears in the 'add' box
@@ -94,9 +94,9 @@ class ProjectMember(BaseFolder):
 
     meta_type                  = 'ProjectMember'
     portal_type                = 'ProjectMember'
-    allowed_content_types      = ['Customer']
-    filter_content_types       = 1
-    global_allow               = 1
+    allowed_content_types      = [] + list(getattr(Base, 'allowed_content_types', []))
+    filter_content_types       = 0
+    global_allow               = 0
     allow_discussion           = 0
     #content_icon               = 'ProjectMember.gif'
     immediate_view             = 'base_view'
@@ -105,7 +105,8 @@ class ProjectMember(BaseFolder):
     typeDescription            = "ProjectMember"
     typeDescMsgId              = 'description_edit_projectmember'
 
-    schema = BaseFolderSchema + \
+    schema = BaseSchema + \
+             getattr(Base,'schema',Schema(())) + \
              schema
 
     ##code-section class-header #fill in your manual code here

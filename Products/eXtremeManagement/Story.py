@@ -77,33 +77,6 @@ schema=Schema((
         )
     ),
 
-    StringField('id',
-        widget=StringWidget(
-            label='Id',
-            label_msgid='eXtremeManagement_label_id',
-            description_msgid='eXtremeManagement_help_id',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    StringField('name',
-        widget=StringWidget(
-            label='Name',
-            label_msgid='eXtremeManagement_label_name',
-            description_msgid='eXtremeManagement_help_name',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    StringField('descriptino',
-        widget=StringWidget(
-            label='Descriptino',
-            label_msgid='eXtremeManagement_label_descriptino',
-            description_msgid='eXtremeManagement_help_descriptino',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
     StringField('mainText',
         widget=StringWidget(
             label='Maintext',
@@ -120,9 +93,9 @@ schema=Schema((
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class Story(BaseFolder):
+class Story(OrderedBaseFolder,BaseFolder):
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseFolder,'__implements__',()),)
+    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),) + (getattr(BaseFolder,'__implements__',()),)
 
 
     # This name appears in the 'add' box
@@ -130,7 +103,7 @@ class Story(BaseFolder):
 
     meta_type                  = 'Story'
     portal_type                = 'Story'
-    allowed_content_types      = ['Iteration']
+    allowed_content_types      = ['Task', 'OrderedBaseFolder', 'Story', 'Iteration', 'Project', 'ProjectFolder', 'CustomerFolder', 'Customer'] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
     filter_content_types       = 1
     global_allow               = 0
     allow_discussion           = 0
@@ -142,6 +115,7 @@ class Story(BaseFolder):
     typeDescMsgId              = 'description_edit_story'
 
     schema = BaseFolderSchema + \
+             getattr(OrderedBaseFolder,'schema',Schema(())) + \
              schema
 
     ##code-section class-header #fill in your manual code here
