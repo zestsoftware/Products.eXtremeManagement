@@ -1,6 +1,6 @@
 """ Extensions/Install.py """
 
-# Copyright (c) 2005 by Zest software 2005
+# Copyright (c) 2005 by ['']
 #
 # Generated: 
 # Generator: ArchGenXML Version 1.4.0-beta2
@@ -20,7 +20,7 @@
 # this program; if not, write to the Free Software Foundation, Inc., 59 Temple
 # Place, Suite 330, Boston, MA  02111-1307  USA
 #
-__author__    = '''Ahmad Hadi <a.hadi@zestsoftware.nl>'''
+__author__    = ''' <>'''
 __docformat__ = 'plaintext'
 __version__   = '$ Revision 0.0 $'[11:-2]
 

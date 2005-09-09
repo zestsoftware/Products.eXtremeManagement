@@ -1,6 +1,6 @@
 # File: Project.py
 # 
-# Copyright (c) 2005 by Zest software 2005
+# Copyright (c) 2005 by ['']
 # Generator: ArchGenXML Version 1.4.0-beta2 http://sf.net/projects/archetypes/
 #
 # GNU General Public Licence (GPL)
@@ -17,7 +17,7 @@
 # this program; if not, write to the Free Software Foundation, Inc., 59 Temple
 # Place, Suite 330, Boston, MA  02111-1307  USA
 #
-__author__  = '''Ahmad Hadi <a.hadi@zestsoftware.nl>'''
+__author__  = ''' <>'''
 __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
@@ -72,6 +72,40 @@ class Project(OrderedBaseFolder,BaseFolder):
 
 
     #Methods
+
+    security.declarePublic('getProject')
+    def getProject(self):
+        """
+        returns self - useful while doing aquisition many levels down the tree
+        """
+        return self
+
+
+    security.declarePublic('getMembers')
+    def getMembers(self):
+        """
+        """
+        grp = getToolByName(self, 'portal_groups')
+        mem = getToolByName(self, 'portal_membership')
+        prefix=self.acl_users.getGroupPrefix()
+        list1 = []
+        for user, roles in self.get_local_roles():
+            if role in roles:
+                if string.find(user, prefix) == 0:
+                    for i1 in grp.getGroupById(user).getGroupMembers():
+                        name = hasattr(i1, 'fullname') and i1.fullname.strip() or i1.getId()
+                        list1.append((i1.getId(), name))
+                else:
+                    m1 = mem.getMemberById(user)
+                    if m1:
+                        id = m1.getId()
+                        name = hasattr(m1, 'fullname') and m1.fullname.strip() or m1.getId()
+                    else:
+                        id = name = user
+                    list1.append((id, name))
+
+        return list1
+
 
 registerType(Project,PROJECTNAME)
 # end of class Project

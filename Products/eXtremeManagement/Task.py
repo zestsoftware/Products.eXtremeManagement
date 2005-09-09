@@ -1,6 +1,6 @@
 # File: Task.py
 # 
-# Copyright (c) 2005 by Zest software 2005
+# Copyright (c) 2005 by ['']
 # Generator: ArchGenXML Version 1.4.0-beta2 http://sf.net/projects/archetypes/
 #
 # GNU General Public Licence (GPL)
@@ -17,7 +17,7 @@
 # this program; if not, write to the Free Software Foundation, Inc., 59 Temple
 # Place, Suite 330, Boston, MA  02111-1307  USA
 #
-__author__  = '''Ahmad Hadi <a.hadi@zestsoftware.nl>'''
+__author__  = ''' <>'''
 __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
@@ -77,7 +77,8 @@ schema=Schema((
             description_msgid='eXtremeManagement_help_assignees',
             i18n_domain='eXtremeManagement',
         ),
-        multiValued=1
+        multiValued=1,
+        vocabulary=_get_assignees
     ),
     
 ),
@@ -116,6 +117,14 @@ class Task(OrderedBaseFolder,BaseContent):
 
 
     #Methods
+
+    security.declarePublic('_get_assignees')
+    def _get_assignees(self):
+        """
+        returns a list of team members
+        """
+        return DisplayList((self.getProject().getMembers()))
+
 
 registerType(Task,PROJECTNAME)
 # end of class Task
