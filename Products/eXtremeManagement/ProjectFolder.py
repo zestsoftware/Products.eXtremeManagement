@@ -57,7 +57,7 @@ class ProjectFolder(OrderedBaseFolder,BaseFolder):
     filter_content_types       = 1
     global_allow               = 1
     allow_discussion           = 0
-    #content_icon               = 'ProjectFolder.gif'
+    content_icon               = 'project_icon.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
     typeDescription            = "ProjectFolder"

@@ -102,7 +102,7 @@ class Task(OrderedBaseFolder,BaseContent):
     filter_content_types       = 0
     global_allow               = 0
     allow_discussion           = 0
-    #content_icon               = 'Task.gif'
+    content_icon               = 'task_icon.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
     typeDescription            = "Task"
@@ -124,6 +124,7 @@ class Task(OrderedBaseFolder,BaseContent):
         returns a list of team members
         """
         return DisplayList((self.getProject().getMembers()))
+
 
 
 registerType(Task,PROJECTNAME)

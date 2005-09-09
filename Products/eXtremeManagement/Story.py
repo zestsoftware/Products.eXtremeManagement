@@ -69,7 +69,7 @@ class Story(OrderedBaseFolder,BaseFolder):
     filter_content_types       = 1
     global_allow               = 0
     allow_discussion           = 0
-    #content_icon               = 'Story.gif'
+    content_icon               = 'story_icon.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
     typeDescription            = "Story"
@@ -91,6 +91,7 @@ class Story(OrderedBaseFolder,BaseFolder):
         Dummy attribute to allow drop-in replacement of Document
         """
         return self.getMainText()
+
 
 
 registerType(Story,PROJECTNAME)

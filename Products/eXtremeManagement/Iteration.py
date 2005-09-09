@@ -58,7 +58,7 @@ class Iteration(OrderedBaseFolder,BaseFolder):
     filter_content_types       = 1
     global_allow               = 0
     allow_discussion           = 0
-    #content_icon               = 'Iteration.gif'
+    content_icon               = 'iteration_icon.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
     typeDescription            = "Iteration"

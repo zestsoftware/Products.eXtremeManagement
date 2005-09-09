@@ -103,7 +103,7 @@ class ProjectMember(BaseContent,BaseContent):
     filter_content_types       = 0
     global_allow               = 0
     allow_discussion           = 0
-    #content_icon               = 'ProjectMember.gif'
+    content_icon               = 'user.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
     typeDescription            = "ProjectMember"

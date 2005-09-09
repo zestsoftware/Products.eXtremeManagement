@@ -177,7 +177,7 @@ class Customer(OrderedBaseFolder,BaseFolder):
     filter_content_types       = 1
     global_allow               = 0
     allow_discussion           = 0
-    #content_icon               = 'Customer.gif'
+    content_icon               = 'group_icon.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
     typeDescription            = "Customer"

@@ -57,7 +57,7 @@ class Project(OrderedBaseFolder,BaseFolder):
     filter_content_types       = 1
     global_allow               = 0
     allow_discussion           = 0
-    #content_icon               = 'Project.gif'
+    content_icon               = 'project_icon.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
     typeDescription            = "Project"
@@ -79,6 +79,7 @@ class Project(OrderedBaseFolder,BaseFolder):
         returns self - useful while doing aquisition many levels down the tree
         """
         return self
+
 
 
     security.declarePublic('getMembers')
@@ -105,6 +106,7 @@ class Project(OrderedBaseFolder,BaseFolder):
                     list1.append((id, name))
 
         return list1
+
 
 
 registerType(Project,PROJECTNAME)
