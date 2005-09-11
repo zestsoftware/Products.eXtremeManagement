@@ -1,77 +1,66 @@
-#
-# Initialise the product's module. There are three ways to inject custom code
-# here:
-#
-#   - To set global configuration variables, create a file AppConfig.py. This
-#       will be imported in config.py, which in turn is imported in each
-#       generated class and in this file.
-#   - To perform custom initialisation after types have been registered, use
-#       the protected code section at the bottom of initialize().
-#   - To register a customisation policy, create a file CustomizationPolicy.py
-#       with a method register(context) to register the policy
-#
+# eXtremeManagement Module
+__author__  = 'Ahmad Hadi'
+__docformat__ = 'restructuredtext'
 
-from zLOG import LOG, INFO
-
-LOG('eXtremeManagement',INFO, 'Installing Product')
-
-try:
-    import CustomizationPolicy
-except ImportError:
-    CustomizationPolicy=None
-
+import sys
 from Globals import package_home
-from Products.CMFCore import utils, CMFCorePermissions, DirectoryView
-from Products.CMFPlone.PloneUtilities import ToolInit
-from Products.Archetypes.public import *
-from Products.Archetypes import listTypes
-from Products.Archetypes.utils import capitalize
-
+from Products.CMFCore.utils import ContentInit
+from Products.CMFCore import utils as cmf_utils
+from Products.CMFCore.DirectoryView import registerDirectory
+from Products.Archetypes import public as atapi
+from Products.Archetypes.public import process_types, listTypes
 import os, os.path
 
 from Products.eXtremeManagement.config import *
+from Products.eXtremeManagement import CustomizationPolicy
+from Products.eXtremeManagement import eXtremeManagement
+from Products.eXtremeManagement.permissions import *
+import config, permissions
 
-DirectoryView.registerDirectory('skins', product_globals)
-DirectoryView.registerDirectory('skins/eXtremeManagement',
-                                    product_globals)
+registerDirectory(SKINS_DIR, GLOBALS)
 
-##code-section custom-init-head #fill in your manual code here
-##/code-section custom-init-head
+#def initialize(context):
+#    CustomizationPolicy.register(context, globals())
+#    listOfTypes = listTypes(PROJECTNAME)
+#    content_types, constructors, ftis = process_types(
+#        listOfTypes,
+#        PROJECTNAME)
+#
+#    ContentInit(
+#        PROJECTNAME + ' Content',
+#        content_types      = content_types,
+#        permission         = ADD_CONTENT_PERMISSION,
+#        extra_constructors = constructors,
+#        fti                = ftis,
+#        ).initialize(context)
 
+import utils
 
 def initialize(context):
-    ##code-section custom-init-top #fill in your manual code here
-    ##/code-section custom-init-top
+    extreme_types = atapi.listTypes(config.PROJECTNAME)
+    content_types, constructors, ftis = atapi.process_types( extreme_types,
+                                                             config.PROJECTNAME)
+    # separate out the content types so we can register them in groups
+    # based on permissions
 
-    # imports packages and types for registration
+    type_map = utils.separateTypesByPerm(
+        extreme_types,
+        content_types,
+        constructors,
+        permissions.ContentPermissionMap
+        )
 
-    import Customer
-    import Project
-    import Iteration
-    import Story
-    import Task
-    import CustomerFolder
-    import ProjectMember
-    import ProjectFolder
+    for permission in type_map:
+        factory_info = type_map[ permission ]
+        content_types = tuple([fi[0] for fi in factory_info])
+        constructors  = tuple([fi[1] for fi in factory_info])
 
-    # initialize portal content
-    content_types, constructors, ftis = process_types(
-        listTypes(PROJECTNAME),
-        PROJECTNAME)
+        cmf_utils.ContentInit(
+            config.PROJECTNAME + ' Content',
+            content_types      = content_types,
+            permission         = permission,
+            extra_constructors = constructors,
+            fti                = ftis,
+            ).initialize(context)
 
-    utils.ContentInit(
-        PROJECTNAME + ' Content',
-        content_types      = content_types,
-        permission         = DEFAULT_ADD_CONTENT_PERMISSION,
-        extra_constructors = constructors,
-        fti                = ftis,
-        ).initialize(context)
-
-    # apply customization-policy, if theres any
-    if CustomizationPolicy and hasattr(CustomizationPolicy, 'register'):
-        CustomizationPolicy.register(context)
-        print 'Customization policy for eXtremeManagement installed'
-
-    ##code-section custom-init-bottom #fill in your manual code here
-    ##/code-section custom-init-bottom
 
