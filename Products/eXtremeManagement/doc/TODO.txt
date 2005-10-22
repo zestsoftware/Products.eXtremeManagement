@@ -3,13 +3,9 @@ TODO
   Top priority
 
   - collapse completed Iterations (plus sign with javascript)
-  - Add workflows to the model
-  - Fix status names for Plone-2.1 (title is shown).
   - Add tasks from the story_view and have an edit button for each task.
   - Add and edit stories from the iteration_view and project_view.
   - Drag and drop to assign stories to iterations.
-  - Add date fields for start and end of an iteration and fetch the end date
-    from a last iteration for the start date of a new iteration.
 
 
   Mid terms

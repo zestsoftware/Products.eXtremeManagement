@@ -137,6 +137,12 @@ msgid "eXtremeManagement_help_emailAddress"
 msgstr "emailAddress"
 
 
+#: content/Iteration.py
+#. endDate
+msgid "eXtremeManagement_help_endDate"
+msgstr "endDate"
+
+
 #: content/Task.py
 #. Enter the estimated time (in hours).
 #: Task.py
@@ -206,6 +212,12 @@ msgid "eXtremeManagement_help_mainText"
 msgstr "mainText"
 
 
+#: content/Iteration.py
+#. manHours
+msgid "eXtremeManagement_help_manHours"
+msgstr "manHours"
+
+
 #: Booking.py
 #. minutes
 ## 1 more: content/Booking.py
@@ -234,6 +246,12 @@ msgstr "phone"
 #. phoneNumber
 msgid "eXtremeManagement_help_phoneNumber"
 msgstr "phoneNumber"
+
+
+#: content/Iteration.py
+#. startDate
+msgid "eXtremeManagement_help_startDate"
+msgstr "startDate"
 
 
 #: Task.py
@@ -384,6 +402,12 @@ msgid "eXtremeManagement_label_emailAddress"
 msgstr "Emailaddress"
 
 
+#: content/Iteration.py
+#. Enddate
+msgid "eXtremeManagement_label_endDate"
+msgstr "Enddate"
+
+
 #: Task.py
 #. Estimate
 ## 1 more: content/Task.py
@@ -449,6 +473,12 @@ msgid "eXtremeManagement_label_mainText"
 msgstr "Maintext"
 
 
+#: content/Iteration.py
+#. Manhours
+msgid "eXtremeManagement_label_manHours"
+msgstr "Manhours"
+
+
 #: Booking.py
 #. Minutes
 ## 1 more: content/Booking.py
@@ -474,6 +504,12 @@ msgstr "Phone"
 #. Phonenumber
 msgid "eXtremeManagement_label_phoneNumber"
 msgstr "Phonenumber"
+
+
+#: content/Iteration.py
+#. Startdate
+msgid "eXtremeManagement_label_startDate"
+msgstr "Startdate"
 
 
 #: Task.py

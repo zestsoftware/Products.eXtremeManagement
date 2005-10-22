@@ -38,6 +38,33 @@ from Products.eXtremeManagement.config import *
 ##/code-section module-header
 
 schema=Schema((
+    DateTimeField('startDate',
+        widget=CalendarWidget(
+            label='Startdate',
+            label_msgid='eXtremeManagement_label_startDate',
+            description_msgid='eXtremeManagement_help_startDate',
+            i18n_domain='eXtremeManagement',
+        )
+    ),
+
+    DateTimeField('endDate',
+        widget=CalendarWidget(
+            label='Enddate',
+            label_msgid='eXtremeManagement_label_endDate',
+            description_msgid='eXtremeManagement_help_endDate',
+            i18n_domain='eXtremeManagement',
+        )
+    ),
+
+    IntegerField('manHours',
+        widget=IntegerWidget(
+            label='Manhours',
+            label_msgid='eXtremeManagement_label_manHours',
+            description_msgid='eXtremeManagement_help_manHours',
+            i18n_domain='eXtremeManagement',
+        )
+    ),
+
 ),
 )
 
