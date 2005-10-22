@@ -1,0 +1,51 @@
+AGX = python ArchGenXML/ArchGenXML.py 
+PRODUCT = eXtremeManagement
+CONFIG = model/generate.conf
+MODEL = model/${PRODUCT}.zuml
+PYTHONFILES = `glob('*.py')`
+TESTFILES = `glob('test/*.py')`
+TEMPLATES = `glob('skins/eXtremeManagement/*pt')`
+SOFTWARE_HOME = `os.environ.get('SOFTWARE_HOME', '')`
+INSTANCE_HOME = `os.environ.get('INSTANCE_HOME', '')`
+
+all: version.txt i18n/eXtremeManagement-nl.po test
+
+version.txt: $MODEL $CONFIG
+    # Handy hack, regenerating from the model updates version.txt...
+    :sys cd ..; $AGX -c $PRODUCT/$CONFIG $PRODUCT/$MODEL
+    # :sys i18ndude sync --pot i18n/generated.pot i18n/eXtremeManagement-*.po
+
+test: $MODEL $PYTHONFILES $TESTFILES
+    :sys cd $INSTANCE_HOME/Products/${PRODUCT}/tests;\
+	 python runalltests.py
+
+pydoc:
+    :sys cd doc/pydoc;\
+         export PYTHONPATH=$SOFTWARE_HOME:$INSTANCE_HOME/Products;\
+         pydoc -w ../../*py;\
+         cd tests;\
+         pydoc -w ../../../tests/*py
+
+epydoc:
+    :sys export PYTHONPATH=$SOFTWARE_HOME:$INSTANCE_HOME/Products;\
+         epydoc -o doc/pydoc --docformat structuredtext .
+
+caching:
+    # Generate a .metadata with caching info 
+
+i18n/eXtremeManagement-nl.po: $TEMPLATES i18n/generated.pot
+    GOODTEMPLATES = `_no.TEMPLATES.replace('skins/eXtremeManagement/header.pt', '')`
+    :sys i18ndude rebuild-pot --pot i18n/eXtremeManagement.pot --create eXtremeManagement --merge i18n/generated.pot $GOODTEMPLATES
+
+i18n-sync:
+    :sys i18ndude sync --pot i18n/eXtremeManagement.pot i18n/eXtremeManagement-nl.po i18n/eXtremeManagement-en.po
+
+gen:
+    # No questions, just run AGX again
+    :sys cd ..; $AGX -c $PRODUCT/$CONFIG $PRODUCT/$MODEL
+
+tar: version.txt test
+    :sys rm -f ${PRODUCT}.tgz
+    :sys cd ..;\
+         tar -czvf ${PRODUCT}.tgz ${PRODUCT}
+    

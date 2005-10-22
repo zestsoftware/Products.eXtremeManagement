@@ -1,10 +1,27 @@
-from Products.CMFCore.CMFCorePermissions import AddPortalContent, ManagePortal
-from Products.Archetypes.public import DisplayList
+#
+# Product configuration. This contents of this module will be imported into
+# __init__.py and every content type module.
+#
+# If you wish to perform custom configuration, you may put a file AppConfig.py
+# in your product's root directory. This will be included in this file if
+# found.
+#
+from Products.CMFCore.CMFCorePermissions import setDefaultRoles
 
-ADD_CONTENT_PERMISSION = AddPortalContent
-PROJECTNAME = 'eXtremeManagement'
-SKINS_DIR = 'skins'
+PROJECTNAME = "eXtremeManagement"
 
-GLOBALS = globals()
+DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
+setDefaultRoles(DEFAULT_ADD_CONTENT_PERMISSION, ('Manager', 'Owner', 'Member'))
+
+product_globals=globals()
+
+##code-section config-bottom #fill in your manual code here
+##/code-section config-bottom
 
 
+try:
+    from Products.eXtremeManagement.AppConfig import *
+except ImportError:
+    pass
+
+# End of config.py
