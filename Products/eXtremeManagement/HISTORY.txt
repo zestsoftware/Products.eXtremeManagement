@@ -1,3 +1,13 @@
+2005-10-23 - jladage
+
+  - Release 1.0 
+
+  - fixed permission
+
+  - fixed workflows
+
+
+
 2005-09-23 - jladage
 
   - Prepared initial release by merging the agx-itegration branch back to trunk.
