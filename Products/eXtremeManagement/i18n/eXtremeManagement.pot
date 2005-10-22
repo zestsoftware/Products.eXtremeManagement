@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2005-10-21 14:12+0000\n"
+"POT-Creation-Date: 2005-10-22 22:03+0000\n"
 "PO-Revision-Date: Mon Sep  5 16:31:19 2005\n"
 "Last-Translator: ['Ahmad Hadi'] <['a.hadi@zestsoftware.nl']>\n"
 "Language-Team: ['Ahmad Hadi'] <['a.hadi@zestsoftware.nl']>\n"
@@ -147,10 +147,10 @@ msgid "eXtremeManagement_help_city"
 msgstr ""
 
 
-#: Customer.py
-#. comments
 #: ProjectMember.py
 #. Enter some comments.
+#: Customer.py
+#. comments
 msgid "eXtremeManagement_help_comments"
 msgstr ""
 
@@ -187,10 +187,10 @@ msgid "eXtremeManagement_help_description"
 msgstr ""
 
 
-#: Customer.py
-#. email
 #: ProjectMember.py
 #. Enter your email address.
+#: Customer.py
+#. email
 msgid "eXtremeManagement_help_email"
 msgstr ""
 
@@ -283,10 +283,10 @@ msgid "eXtremeManagement_help_name"
 msgstr ""
 
 
-#: Customer.py
-#. phone
 #: ProjectMember.py
 #. Enter your phone number.
+#: Customer.py
+#. phone
 msgid "eXtremeManagement_help_phone"
 msgstr ""
 
