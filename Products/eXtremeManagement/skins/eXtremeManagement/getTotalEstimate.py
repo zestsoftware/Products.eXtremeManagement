@@ -4,16 +4,21 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=
+##parameters=obj=None
 ##title=Get total estimated time
 ##
+if obj:
+    current_path = '/'.join(obj.getPhysicalPath())
+else:
+    current_path = '/'.join(context.getPhysicalPath())
 
-items = context.contentValues('Task')
-list = []
-for item in items:
-    list.append(item.estimate)
+tasks = context.portal_catalog.searchResults(portal_type='Task',
+                                             path=current_path)
+estimates = []
+for task in tasks:
+    obj = task.getObject()
+    estimates.append(obj.getEstimate())
 
-newlist = sum(list)
+estimated = sum(estimates)
 
-return newlist
-
+return str(estimated) + ':00'

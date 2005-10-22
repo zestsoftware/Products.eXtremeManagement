@@ -4,17 +4,31 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=
+##parameters=obj=None
 ##title=Get total actual time
 ##
 
-items = context.contentValues('Task')
-list = []
+if obj:
+    current_path = '/'.join(obj.getPhysicalPath())
+else:
+    current_path = '/'.join(context.getPhysicalPath())
 
-for item in items:
-    list.append(item.actual)
+items = context.portal_catalog.searchResults(portal_type='Task',
+                                             path=current_path)
+time = 0.0
+hours = 0
+minutes = 0
 
-newlist = sum(list)
+if items:
+    for item in items:
+        obj = item.getObject()
+        time = time + obj.get_actual_hours()
 
-return newlist
+    hours = int(time)
+    minutes = int((time - hours)*60)
+    if minutes == 0:
+        minutes = '00'
+    return ('%s:%s' % (hours, minutes))
+else:
+    return '0:00'
 

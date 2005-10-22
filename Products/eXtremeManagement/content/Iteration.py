@@ -1,7 +1,8 @@
-# File: ProjectFolder.py
+# File: Iteration.py
 # 
-# Copyright (c) 2005 by ['']
-# Generator: ArchGenXML Version 1.4.0-beta2 http://sf.net/projects/archetypes/
+# Copyright (c) 2005 by Zest software 2005
+# Generator: ArchGenXML Version 1.4.0-beta2 devel 
+#            http://plone.org/products/archgenxml
 #
 # GNU General Public Licence (GPL)
 # 
@@ -17,21 +18,22 @@
 # this program; if not, write to the Free Software Foundation, Inc., 59 Temple
 # Place, Suite 330, Boston, MA  02111-1307  USA
 #
-__author__  = ''' <>'''
+__author__  = '''Ahmad Hadi <a.hadi@zestsoftware.nl>'''
 __docformat__ = 'plaintext'
+
 
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
 
 
 
-
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
 
-BaseFolderSchema = OrderedBaseFolderSchema.copy()
-BaseFolderSchema['description'].isMetadata = False
-BaseFolderSchema['description'].schemata = 'default'
+#OrderedBaseFolderSchema = OrderedBaseFolderSchema.copy()
+#OrderedBaseFolderSchema['description'].isMetadata = False
+#OrderedBaseFolderSchema['description'].schemata = 'default'
+#OrderedBaseFolderSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'
 
 ##/code-section module-header
 
@@ -40,32 +42,39 @@ schema=Schema((
 )
 
 
+##code-section after-local-schema #fill in your manual code here
+##/code-section after-local-schema
+
+Iteration_schema = OrderedBaseFolderSchema + \
+    schema
+
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class ProjectFolder(OrderedBaseFolder,BaseFolder):
+class Iteration(OrderedBaseFolder):
     security = ClassSecurityInfo()
-    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),) + (getattr(BaseFolder,'__implements__',()),)
+    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
 
 
     # This name appears in the 'add' box
-    archetype_name             = 'ProjectFolder'
+    archetype_name             = 'Iteration'
 
-    meta_type                  = 'ProjectFolder' 
-    portal_type                = 'ProjectFolder' 
-    allowed_content_types      = ['Project'] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
+    meta_type                  = 'Iteration'
+    portal_type                = 'Iteration'
+    allowed_content_types      = ['Story']
     filter_content_types       = 1
-    global_allow               = 1
+    global_allow               = 0
     allow_discussion           = 0
-    content_icon               = 'project_icon.gif'
+    content_icon               = 'iteration_icon.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
-    typeDescription            = "ProjectFolder"
-    typeDescMsgId              = 'description_edit_projectfolder'
+    suppl_views                = ()
+    typeDescription            = "Iteration"
+    typeDescMsgId              = 'description_edit_iteration'
 
-    schema = BaseFolderSchema + \
-             getattr(OrderedBaseFolder,'schema',Schema(())) + \
-             schema
+    _at_rename_after_creation  = True
+
+    schema = Iteration_schema
 
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header
@@ -73,8 +82,8 @@ class ProjectFolder(OrderedBaseFolder,BaseFolder):
 
     #Methods
 
-registerType(ProjectFolder,PROJECTNAME)
-# end of class ProjectFolder
+registerType(Iteration,PROJECTNAME)
+# end of class Iteration
 
 ##code-section module-footer #fill in your manual code here
 ##/code-section module-footer

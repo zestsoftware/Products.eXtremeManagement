@@ -1,0 +1,3 @@
+[actions]
+action.success=traverse_to:string:task_view
+action.failure=traverse_to:string:task_view

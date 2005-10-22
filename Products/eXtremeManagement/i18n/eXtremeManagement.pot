@@ -1,211 +1,1172 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <ahadi@zestsoftware.nl>, 2005.
+# ArchGenXML generated POT File
+# ['Ahmad Hadi'] <['a.hadi@zestsoftware.nl']>, 2005.
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0beta\n"
-"POT-Creation-Date: 2005-05-19 21:13+0000\n"
-"PO-Revision-Date: 2005-05-19 13:15 +GMT+1\n"
-"Last-Translator: Ahmad Hadi <ahadi@zestsoftware.nl>\n"
-"Language-Team: Nederlands <service@zestsoftware.nl>\n"
+"Project-Id-Version: eXtremeManagement\n"
+"POT-Creation-Date: 2005-10-21 14:12+0000\n"
+"PO-Revision-Date: Mon Sep  5 16:31:19 2005\n"
+"Last-Translator: ['Ahmad Hadi'] <['a.hadi@zestsoftware.nl']>\n"
+"Language-Team: ['Ahmad Hadi'] <['a.hadi@zestsoftware.nl']>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=ascii\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: nl\n"
-"Language-Name: Nederlands\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
 "Preferred-Encodings: latin1 utf-8\n"
 "Domain: eXtremeManagement\n"
 
-### customer_view template ###
+#: skins/eXtremeManagement/update_hours_form.cpt
+#. <input class="context" i18n:attributes="value" name="submit" tabindex="" tal:attributes="tabindex tabindex/next;" type="submit" value="Send"/>
+# Original: "Send"
+msgid "Send"
+msgstr ""
+
+
+#: skins/eXtremeManagement/customer_view.pt
+#. <a class="link-plain" href="" i18n:attributes="title" tal:attributes="href string:mailto:${member/getEmail}" title="Send a mail to this user">
+#: skins/eXtremeManagement/projectmember_view.pt
+#. <a class="link-plain" href="" i18n:attributes="title" tal:attributes="href string:mailto:${emailaddress}" tal:condition="python:here.email" title="Send a mail to this user">
+# Original: "Send a mail to this user"
+msgid "Send a mail to this user"
+msgstr ""
+
+
+#: skins/eXtremeManagement/project_view.pt
+#. <p class="discreet" i18n:translate="description_new_iterations">
+#.               Here is a list of all iterations with the status
+#.  <strong>
+#.   Open
+#.  </strong>
+#.  .
+#.               The stories assigned to these iterations are also displayed.
+#.               This makes it easier to see which stories are assigned to which iteration.
+#. </p>
+# Original: "Here is a list of all iterations with the status <strong>Open</strong> . The stories assigned to these iterations are also displayed. This makes it easier to see which stories are assigned to which iteration."
+msgid "description_new_iterations"
+msgstr ""
+
+
+#: skins/eXtremeManagement/project_administration.pt
+#. <p class="discreet" i18n:translate="description_project_administration">
+#.              This is a list of all projects. Also the iterations which are completed with state, estimated and actual time.
+#.              Once an iteration is completed and invoiced, the status can be changed to
+#.  <strong>
+#.   Invoiced
+#.  </strong>
+#.  .
+#.              This way the administration has an overview with all iterations which are invoiced.
+#. </p>
+# Original: "This is a list of all projects. Also the iterations which are completed with state, estimated and actual time. Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong> . This way the administration has an overview with all iterations which are invoiced."
+msgid "description_project_administration"
+msgstr ""
+
+
+#: skins/eXtremeManagement/project_view.pt
+#. <p class="discreet" i18n:translate="description_stories_not_estimated">
+#.               These stories are not estimated yet.
+#.               After estimating these stories, they get the status &quot;estimated&quot;
+#.  <br/>
+#.               and will be visible in the list above to be assigned to an iteration.
+#. </p>
+# Original: "These stories are not estimated yet. After estimating these stories, they get the status \"estimated\" <br/> and will be visible in the list above to be assigned to an iteration."
+msgid "description_stories_not_estimated"
+msgstr ""
+
+
+#: skins/eXtremeManagement/update_hours_form.cpt
+#. <p class="discreet" i18n:translate="description_time_registration">
+#.             To register your time (hours), use the form below and press 'Send'.
+#. </p>
+# Original: "To register your time (hours), use the form below and press 'Send'."
+msgid "description_time_registration"
+msgstr ""
+
+
+#: Task.py
+#. actual
+msgid "eXtremeManagement_help_actual"
+msgstr ""
+
+
+#: Customer.py
+#. Enter address.
+msgid "eXtremeManagement_help_address"
+msgstr ""
+
+
+#: Customer.py
+#. adress
+msgid "eXtremeManagement_help_adress"
+msgstr ""
+
+
+#: Task.py
+#. assignTo
+msgid "eXtremeManagement_help_assignTo"
+msgstr ""
+
+
+#: content/Task.py
+#. Select the member(s) to assign this task to.
+#: Task.py
+#. assignees
+msgid "eXtremeManagement_help_assignees"
+msgstr ""
+
+
+#: Story.py
+#. attribute_25
+msgid "eXtremeManagement_help_attribute_25"
+msgstr ""
+
+
+#: Project.py
+#. attribute_30
+msgid "eXtremeManagement_help_attribute_30"
+msgstr ""
+
+
+#: Task.py
+#. attribute_33
+msgid "eXtremeManagement_help_attribute_33"
+msgstr ""
+
+
+#: Booking.py
+#. billable
+msgid "eXtremeManagement_help_billable"
+msgstr ""
+
+
+#: content/Customer.py
+#. Enter city name.
+#: Customer.py
+#. city
+msgid "eXtremeManagement_help_city"
+msgstr ""
+
+
+#: Customer.py
+#. comments
+#: ProjectMember.py
+#. Enter some comments.
+msgid "eXtremeManagement_help_comments"
+msgstr ""
+
+
+#: content/Customer.py
+#. Enter country.
+#: Customer.py
+#. country
+msgid "eXtremeManagement_help_country"
+msgstr ""
+
+
+#: ProjectFolder.py
+#. customerfolders
+msgid "eXtremeManagement_help_customerfolders"
+msgstr ""
+
+
+#: Project.py
+#. customers
+msgid "eXtremeManagement_help_customers"
+msgstr ""
+
+
+#: Story.py
+#. descriptino
+msgid "eXtremeManagement_help_descriptino"
+msgstr ""
+
+
+#: Customer.py
+#. description
+msgid "eXtremeManagement_help_description"
+msgstr ""
+
+
+#: Customer.py
+#. email
+#: ProjectMember.py
+#. Enter your email address.
+msgid "eXtremeManagement_help_email"
+msgstr ""
+
+
+#: Customer.py
+#. emailAddress
+msgid "eXtremeManagement_help_emailAddress"
+msgstr ""
+
+
+#: content/Task.py
+#. Enter the estimated time (in hours).
+#: Task.py
+#. estimate
+msgid "eXtremeManagement_help_estimate"
+msgstr ""
+
+
+#: content/Customer.py
+#. Enter your fax number.
+#: Customer.py
+#. fax
+msgid "eXtremeManagement_help_fax"
+msgstr ""
+
+
+#: Customer.py
+#. faxNumber
+msgid "eXtremeManagement_help_faxNumber"
+msgstr ""
+
+
+#: ProjectMember.py
+#. firstName
+msgid "eXtremeManagement_help_firstName"
+msgstr ""
+
+
+#: content/ProjectMember.py
+#. Enter a name, eg. John Smith.
+#: ProjectMember.py
+#. fullname
+msgid "eXtremeManagement_help_fullname"
+msgstr ""
+
+
+#: Booking.py
+#. hours
+msgid "eXtremeManagement_help_hours"
+msgstr ""
+
+
+#: Customer.py
+#. id
+msgid "eXtremeManagement_help_id"
+msgstr ""
+
+
+#: ProjectMember.py
+#. lastName
+msgid "eXtremeManagement_help_lastName"
+msgstr ""
+
+
+#: Customer.py
+#. location
+msgid "eXtremeManagement_help_location"
+msgstr ""
+
+
+#: Story.py
+#. mainText
+#: content/Story.py
+#. Enter the main description for this object.
+msgid "eXtremeManagement_help_mainText"
+msgstr ""
+
+
+#: Booking.py
+#. minutes
+msgid "eXtremeManagement_help_minutes"
+msgstr ""
+
+
+#: content/Customer.py
+#. Enter full name, eg. John Smith.
+#: Customer.py
+#. name
+msgid "eXtremeManagement_help_name"
+msgstr ""
+
+
+#: Customer.py
+#. phone
+#: ProjectMember.py
+#. Enter your phone number.
+msgid "eXtremeManagement_help_phone"
+msgstr ""
+
+
+#: Customer.py
+#. phoneNumber
+msgid "eXtremeManagement_help_phoneNumber"
+msgstr ""
+
+
+#: Task.py
+#. task
+msgid "eXtremeManagement_help_task"
+msgstr ""
+
+
+#: Task.py
+#. taskDescription
+msgid "eXtremeManagement_help_taskDescription"
+msgstr ""
+
+
+#: Customer.py
+#. title
+msgid "eXtremeManagement_help_title"
+msgstr ""
+
+
+#: content/Customer.py
+#. Enter your website address.
+#: Customer.py
+#. website
+msgid "eXtremeManagement_help_website"
+msgstr ""
+
+
+#: content/Customer.py
+#. Enter zip code.
+#: Customer.py
+#. zipCode
+msgid "eXtremeManagement_help_zipCode"
+msgstr ""
+
+
+#: Task.py
+#. Actual
+msgid "eXtremeManagement_label_actual"
+msgstr ""
+
+
+#: Customer.py
+#. Address
+msgid "eXtremeManagement_label_address"
+msgstr ""
+
+
+#: Customer.py
+#. Adress
+msgid "eXtremeManagement_label_adress"
+msgstr ""
+
+
+#: Task.py
+#. Assignto
+msgid "eXtremeManagement_label_assignTo"
+msgstr ""
+
+
+#: Task.py
+#. Assignees
+msgid "eXtremeManagement_label_assignees"
+msgstr ""
+
+
+#: Story.py
+#. Attribute_25
+msgid "eXtremeManagement_label_attribute_25"
+msgstr ""
+
+
+#: Project.py
+#. Attribute_30
+msgid "eXtremeManagement_label_attribute_30"
+msgstr ""
+
+
+#: Task.py
+#. Attribute_33
+msgid "eXtremeManagement_label_attribute_33"
+msgstr ""
+
+
+#: Booking.py
+#. Billable
+msgid "eXtremeManagement_label_billable"
+msgstr ""
+
+
+#: Customer.py
+#. City
+msgid "eXtremeManagement_label_city"
+msgstr ""
+
+
+#: Customer.py
+#. Comments
+msgid "eXtremeManagement_label_comments"
+msgstr ""
+
+
+#: Customer.py
+#. Country
+msgid "eXtremeManagement_label_country"
+msgstr ""
+
+
+#: ProjectFolder.py
+#. Customerfolders
+msgid "eXtremeManagement_label_customerfolders"
+msgstr ""
+
+
+#: Project.py
+#. Customers
+msgid "eXtremeManagement_label_customers"
+msgstr ""
+
+
+#: Story.py
+#. Descriptino
+msgid "eXtremeManagement_label_descriptino"
+msgstr ""
+
+
+#: Customer.py
+#. Description
+msgid "eXtremeManagement_label_description"
+msgstr ""
+
+
+#: Customer.py
+#. Email
+msgid "eXtremeManagement_label_email"
+msgstr ""
+
+
+#: Customer.py
+#. Emailaddress
+msgid "eXtremeManagement_label_emailAddress"
+msgstr ""
+
+
+#: Task.py
+#. Estimate
+msgid "eXtremeManagement_label_estimate"
+msgstr ""
+
+
+#: Customer.py
+#. Fax
+msgid "eXtremeManagement_label_fax"
+msgstr ""
+
+
+#: Customer.py
+#. Faxnumber
+msgid "eXtremeManagement_label_faxNumber"
+msgstr ""
+
+
+#: ProjectMember.py
+#. Firstname
+msgid "eXtremeManagement_label_firstName"
+msgstr ""
+
+
+#: ProjectMember.py
+#. Fullname
+msgid "eXtremeManagement_label_fullname"
+msgstr ""
+
+
+#: Booking.py
+#. Hours
+msgid "eXtremeManagement_label_hours"
+msgstr ""
+
+
+#: Customer.py
+#. Id
+msgid "eXtremeManagement_label_id"
+msgstr ""
+
+
+#: ProjectMember.py
+#. Lastname
+msgid "eXtremeManagement_label_lastName"
+msgstr ""
+
+
+#: Customer.py
+#. Location
+msgid "eXtremeManagement_label_location"
+msgstr ""
+
+
+#: Story.py
+#. Maintext
+msgid "eXtremeManagement_label_mainText"
+msgstr ""
+
+
+#: Booking.py
+#. Minutes
+msgid "eXtremeManagement_label_minutes"
+msgstr ""
+
+
+#: Customer.py
+#. Name
+msgid "eXtremeManagement_label_name"
+msgstr ""
+
+
+#: Customer.py
+#. Phone
+msgid "eXtremeManagement_label_phone"
+msgstr ""
+
+
+#: Customer.py
+#. Phonenumber
+msgid "eXtremeManagement_label_phoneNumber"
+msgstr ""
+
+
+#: Task.py
+#. Task
+msgid "eXtremeManagement_label_task"
+msgstr ""
+
+
+#: Task.py
+#. Taskdescription
+msgid "eXtremeManagement_label_taskDescription"
+msgstr ""
+
+
+#: Customer.py
+#. Title
+msgid "eXtremeManagement_label_title"
+msgstr ""
+
+
+#: Customer.py
+#. Website
+msgid "eXtremeManagement_label_website"
+msgstr ""
+
+
+#: Customer.py
+#. Zipcode
+msgid "eXtremeManagement_label_zipCode"
+msgstr ""
+
+
+#: skins/eXtremeManagement/customer_view.pt
+#. <h1 class="documentFirstHeading" i18n:translate="header_customers">
+#.           Customer info
+#. </h1>
+# Original: "Customer info"
 msgid "header_customers"
 msgstr ""
 
-msgid "listingheader_name"
+
+#: skins/eXtremeManagement/project_view.pt
+#. <h1 i18n:translate="header_iterations">
+#.  Iterations
+#. </h1>
+# Original: "Iterations"
+msgid "header_iterations"
 msgstr ""
 
-msgid "listingheader_address"
+
+#: skins/eXtremeManagement/projectmember_view.pt
+#. <h1 class="documentFirstHeading" i18n:translate="header_memberinfo">
+#.          Project member info
+#. </h1>
+# Original: "Project member info"
+msgid "header_memberinfo"
 msgstr ""
 
-msgid "listingheader_zipCode"
+
+#: skins/eXtremeManagement/project_administration.pt
+#. <h1 class="documentFirstHeading" i18n:translate="header_project_administration">
+#.          Project administration
+#. </h1>
+# Original: "Project administration"
+msgid "header_project_administration"
 msgstr ""
 
-msgid "listingheader_city"
-msgstr ""
 
-msgid "listingheader_country"
-msgstr ""
-
-msgid "listingheader_phone"
-msgstr ""
-
-msgid "listingheader_fax"
-msgstr ""
-
-msgid "listingheader_email"
-msgstr ""
-
-msgid "listingheader_comments"
-msgstr ""
-
+#: skins/eXtremeManagement/customer_view.pt
+#. <h1 i18n:translate="header_project_members">
+#.  Project members
+#. </h1>
+# Original: "Project members"
 msgid "header_project_members"
 msgstr ""
 
 
-### iteration_view template ###
-msgid "listingheader_title"
+#: skins/eXtremeManagement/project_view.pt
+#. <h1 i18n:translate="header_stories">
+#.  Stories
+#. </h1>
+# Original: "Stories"
+msgid "header_stories"
 msgstr ""
 
 
+#: skins/eXtremeManagement/portlet_tasks.pt
+#. <a href="" i18n:translate="header_time_registration" tal:attributes="href string:${portal_url}/update_hours_form">
+#.  Time registration
+#. </a>
+#: skins/eXtremeManagement/update_hours_form.cpt
+#. <h1 class="documentFirstHeading" i18n:translate="header_time_registration">
+#.          Time registration
+#. </h1>
+# Original: "Time registration"
+msgid "header_time_registration"
+msgstr ""
+
+
+#: skins/eXtremeManagement/project_view.pt
+#. <th i18n:translate="headerlisting_new_iterations" tal:condition="open_iterations">
+#.  Iterations
+#. </th>
+# Original: "Iterations"
+msgid "headerlisting_new_iterations"
+msgstr ""
+
+
+#: skins/eXtremeManagement/booking_view.pt
+#. <h5 class="header-booking-hours" i18n:translate="heading-booking">
+#.  Booking
+#. </h5>
+# Original: "Booking"
+msgid "heading-booking"
+msgstr ""
+
+
+#: skins/eXtremeManagement/task_view.pt
+#. <h1 i18n:translate="heading-bookings">
+#.  Bookings
+#. </h1>
+# Original: "Bookings"
+msgid "heading-bookings"
+msgstr ""
+
+
+#: skins/eXtremeManagement/story_view.pt
+#. <h1 class="documentFirstHeading" i18n:translate="heading-contents">
+#.  Contents
+#. </h1>
+# Original: "Contents"
+msgid "heading-contents"
+msgstr ""
+
+
+#: skins/eXtremeManagement/iteration_view.pt
+#. <h1 class="" i18n:translate="heading-stories">
+#.  Stories
+#. </h1>
+# Original: "Stories"
+msgid "heading-stories"
+msgstr ""
+
+
+#: skins/eXtremeManagement/project_view.pt
+#. <h1 class="" i18n:translate="heading_iterations">
+#.  Iterations
+#. </h1>
+# Original: "Iterations"
+msgid "heading_iterations"
+msgstr ""
+
+
+#: skins/eXtremeManagement/story_view.pt
+#. <h1 class="documentFirstHeading" i18n:translate="heading_tasks">
+#.  Tasks
+#. </h1>
+# Original: "Tasks"
+msgid "heading_tasks"
+msgstr ""
+
+
+#: skins/eXtremeManagement/update_hours_form.cpt
+#. <span i18n:translate="label_description">
+#.  Comments:
+#. </span>
+# Original: "Comments:"
+msgid "label_description"
+msgstr ""
+
+
+#: skins/eXtremeManagement/update_hours_form.cpt
+#. <span i18n:translate="label_hours" id="label_hours">
+#.  Hours
+#. </span>
+# Original: "Hours"
+msgid "label_hours"
+msgstr ""
+
+
+#: skins/eXtremeManagement/update_hours_form.cpt
+#. <span i18n:translate="label_minutes" id="label_minutes">
+#.  Minutes
+#. </span>
+# Original: "Minutes"
+msgid "label_minutes"
+msgstr ""
+
+
+#: skins/eXtremeManagement/task_view.pt
+#. <th i18n:translate="listingheader-booking">
+#.  Booking
+#. </th>
+# Original: "Booking"
+msgid "listingheader-booking"
+msgstr ""
+
+
+#: skins/eXtremeManagement/task_view.pt
+#. <th i18n:translate="listingheader-time">
+#.  Time
+#. </th>
+# Original: "Time"
+msgid "listingheader-time"
+msgstr ""
+
+
+#: skins/eXtremeManagement/iteration_view.pt
+#. <th i18n:translate="listingheader_actual">
+#.  Actual
+#. </th>
+#: skins/eXtremeManagement/project_administration.pt
+#. <th i18n:translate="listingheader_actual" id="iteration-table-header" width="15%">
+#.  Actual
+#. </th>
+## 2 more: skins/eXtremeManagement/story_view.pt, skins/eXtremeManagement/update_hours_form.cpt
+# Original: "Actual"
+msgid "listingheader_actual"
+msgstr ""
+
+
+#: skins/eXtremeManagement/customer_view.pt
+#. <th i18n:translate="listingheader_address" id="customer_info_header">
+#.  Address
+#. </th>
+# Original: "Address"
+msgid "listingheader_address"
+msgstr ""
+
+
+#: skins/eXtremeManagement/story_view.pt
+#. <th i18n:translate="listingheader_assignees">
+#.  Assignee(s)
+#. </th>
+#: skins/eXtremeManagement/task_view.pt
+#. <th i18n:translate="listingheader_assignees" id="task_header">
+#.  Assignee(s)
+#. </th>
+# Original: "Assignee(s)"
+msgid "listingheader_assignees"
+msgstr ""
+
+
+#: skins/eXtremeManagement/update_hours_form.cpt
+#. <th i18n:translate="listingheader_booking">
+#.  Booking
+#. </th>
+# Original: "Booking"
+msgid "listingheader_booking"
+msgstr ""
+
+
+#: skins/eXtremeManagement/customer_view.pt
+#. <th i18n:translate="listingheader_city" id="customer_info_header">
+#.  City
+#. </th>
+# Original: "City"
+msgid "listingheader_city"
+msgstr ""
+
+
+#: skins/eXtremeManagement/customer_view.pt
+#. <th i18n:translate="listingheader_comments" id="customer_info_header">
+#.  Comments
+#. </th>
+# Original: "Comments"
+msgid "listingheader_comments"
+msgstr ""
+
+
+#: skins/eXtremeManagement/customer_view.pt
+#. <th i18n:translate="listingheader_country" id="customer_info_header">
+#.  Country
+#. </th>
+# Original: "Country"
+msgid "listingheader_country"
+msgstr ""
+
+
+#: skins/eXtremeManagement/story_view.pt
+#. <th i18n:translate="listingheader_diff">
+#.  Difference
+#. </th>
+# Original: "Difference"
+msgid "listingheader_diff"
+msgstr ""
+
+
+#: skins/eXtremeManagement/customer_view.pt
+#. <th i18n:translate="listingheader_email" id="header_projectmemeber_listing">
+#.  email
+#. </th>
+#: skins/eXtremeManagement/projectmember_view.pt
+#. <th i18n:translate="listingheader_email" id="projectmemeber_info_header">
+#.  E-mail
+#. </th>
+# Original: "email"
+msgid "listingheader_email"
+msgstr ""
+
+
+#: skins/eXtremeManagement/iteration_view.pt
+#. <th i18n:translate="listingheader_estimate">
+#.  Estimates
+#. </th>
+#: skins/eXtremeManagement/project_administration.pt
+#. <th i18n:translate="listingheader_estimate" id="iteration-table-header" width="15%">
+#.  Estimate
+#. </th>
+#: skins/eXtremeManagement/story_view.pt
+#. <th i18n:translate="listingheader_estimate">
+#.  Estimate
+#. </th>
+## 2 more: skins/eXtremeManagement/task_view.pt, skins/eXtremeManagement/update_hours_form.cpt
+# Original: "Estimates"
+msgid "listingheader_estimate"
+msgstr ""
+
+
+#: skins/eXtremeManagement/customer_view.pt
+#. <th i18n:translate="listingheader_fax" id="customer_info_header">
+#.  Fax
+#. </th>
+# Original: "Fax"
+msgid "listingheader_fax"
+msgstr ""
+
+
+#: skins/eXtremeManagement/customer_view.pt
+#. <th i18n:translate="listingheader_name" id="customer_info_header">
+#.  Fullname
+#. </th>
+#: skins/eXtremeManagement/customer_view.pt
+#. <th i18n:translate="listingheader_name" id="header_projectmemeber_listing">
+#.  name
+#. </th>
+#: skins/eXtremeManagement/projectmember_view.pt
+#. <th i18n:translate="listingheader_name" id="projectmemeber_info_header">
+#.  Name
+#. </th>
+# Original: "Fullname"
+msgid "listingheader_name"
+msgstr ""
+
+
+#: skins/eXtremeManagement/customer_view.pt
+#. <th i18n:translate="listingheader_phone" id="customer_info_header">
+#.  Phone
+#. </th>
+#: skins/eXtremeManagement/customer_view.pt
+#. <th i18n:translate="listingheader_phone" id="header_projectmemeber_listing">
+#.  phone
+#. </th>
+#: skins/eXtremeManagement/projectmember_view.pt
+#. <th i18n:translate="listingheader_phone" id="projectmemeber_info_header">
+#.  Phone
+#. </th>
+# Original: "Phone"
+msgid "listingheader_phone"
+msgstr ""
+
+
+#: skins/eXtremeManagement/project_view.pt
+#. <th i18n:translate="listingheader_progress">
+#.  Progress
+#. </th>
+## 1 more: skins/eXtremeManagement/project_view.pt
+# Original: "Progress"
+msgid "listingheader_progress"
+msgstr ""
+
+
+#: skins/eXtremeManagement/project_administration.pt
+#. <th i18n:translate="listingheader_projects">
+#.  Project
+#. </th>
+# Original: "Project"
+msgid "listingheader_projects"
+msgstr ""
+
+
+#: skins/eXtremeManagement/iteration_view.pt
+#. <th i18n:translate="listingheader_state">
+#.  Status
+#. </th>
+#: skins/eXtremeManagement/project_administration.pt
+#. <th i18n:translate="listingheader_state" id="iteration-table-header" width="20%">
+#.  State
+#. </th>
+#: skins/eXtremeManagement/task_view.pt
+#. <th i18n:translate="listingheader_state" id="task_header">
+#.  Status
+#. </th>
+## 1 more: skins/eXtremeManagement/task_view.pt
+# Original: "Status"
 msgid "listingheader_state"
 msgstr ""
 
 
-### portlet_tasks template ###
-msgid "box_open_tasks"
-msgstr ""
-
-
-### story_view template ###
-msgid "heading_tasks"
-msgstr ""
-
-msgid "listingheader_desc"
-msgstr ""
-
-msgid "listingheader_estimate"
-msgstr ""
-
-msgid "listingheader_actueel"
-msgstr ""
-
-msgid "listingheader_diff"
-msgstr ""
-
-msgid "listingheader_assignees"
-msgstr ""
-
-msgid "total"
-msgstr ""
-
-
-### project_view template ###
-msgid "heading_iterations"
-msgstr ""
-
+#: skins/eXtremeManagement/iteration_view.pt
+#. <th i18n:translate="listingheader_story">
+#.  Story
+#. </th>
+## 2 more: skins/eXtremeManagement/project_view.pt, skins/eXtremeManagement/project_view.pt
+# Original: "Story"
 msgid "listingheader_story"
 msgstr ""
 
-msgid "listingheader_progress"
-msgstr ""
 
-msgid "listingheader_tasks_open"
-msgstr ""
-
+#: skins/eXtremeManagement/project_view.pt
+#. <th i18n:translate="listingheader_tasks_completed">
+#.  Tasks completed
+#. </th>
+## 1 more: skins/eXtremeManagement/project_view.pt
+# Original: "Tasks completed"
 msgid "listingheader_tasks_completed"
 msgstr ""
 
-msgid "iteration-state"
+
+#: skins/eXtremeManagement/project_view.pt
+#. <th i18n:translate="listingheader_tasks_open">
+#.  Tasks open
+#. </th>
+## 1 more: skins/eXtremeManagement/project_view.pt
+# Original: "Tasks open"
+msgid "listingheader_tasks_open"
 msgstr ""
 
 
-### CT-Customer ###
-msgid "label_name"
-msgstr ""
-
-msgid "desc_name"
-msgstr ""
-
-msgid "label_address"
-msgstr ""
-
-msgid "desc_address"
-msgstr ""
-
-msgid "label_zipCode"
-msgstr ""
-
-msgid "desc_zipCode"
-msgstr ""
-
-msgid "label_city"
-msgstr ""
-
-msgid "desc_city"
-msgstr ""
-
-msgid "label_country"
-msgstr ""
-
-msgid "desc_country"
-msgstr ""
-
-msgid "label_phone"
-msgstr ""
-
-msgid "desc_phone"
-msgstr ""
-
-msgid "label_fax"
-msgstr ""
-
-msgid "desc_fax"
-msgstr ""
-
-msgid "label_email"
-msgstr ""
-
-msgid "desc_email"
-msgstr ""
-
-msgid "label_website"
-msgstr ""
-
-msgid "desc_website"
-msgstr ""
-
-msgid "label_comments"
-msgstr ""
-
-msgid "desc_comments"
+#: skins/eXtremeManagement/story_view.pt
+#. <th i18n:translate="listingheader_title">
+#.  Title
+#. </th>
+#: skins/eXtremeManagement/update_hours_form.cpt
+#. <th i18n:translate="listingheader_title">
+#.  Task
+#. </th>
+# Original: "Title"
+msgid "listingheader_title"
 msgstr ""
 
 
-### CT-ProjectMember ###
-msgid "label_fullname"
+#: skins/eXtremeManagement/customer_view.pt
+#. <th i18n:translate="listingheader_website" id="customer_info_header">
+#.  Website
+#. </th>
+# Original: "Website"
+msgid "listingheader_website"
 msgstr ""
 
 
-### CT-Task ###
-msgid "label_task"
-msgstr ""
-
-msgid "desc_task"
-msgstr ""
-
-msgid "label_estimate"
-msgstr ""
-
-msgid "desc_estimate"
-msgstr ""
-
-msgid "label_actual"
-msgstr ""
-
-msgid "desc_actual"
-msgstr ""
-
-msgid "label_assignees"
-msgstr ""
-
-msgid "desc_assignees"
+#: skins/eXtremeManagement/customer_view.pt
+#. <th i18n:translate="listingheader_zipCode" id="customer_info_header">
+#.  Zip code
+#. </th>
+# Original: "Zip code"
+msgid "listingheader_zipCode"
 msgstr ""
 
 
-### CT-Story ###
-msgid "label_mainText"
+#: skins/eXtremeManagement/project_administration.pt
+#. <p i18n:translate="no_projects_found">
+#.  No projects are published yet!
+#. </p>
+# Original: "No projects are published yet!"
+msgid "no_projects_found"
 msgstr ""
 
-msgid "desc_mainText"
+
+#: skins/eXtremeManagement/iteration_view.pt
+#. <p class="discreet" i18n:translate="no_stories_published" tal:condition="python: not stories">
+#.  No stories published yet!
+#. </p>
+# Original: "No stories published yet!"
+msgid "no_stories_published"
 msgstr ""
 
+
+#: skins/eXtremeManagement/update_hours_form.cpt
+#. <p i18n:translate="no_tasks_assigned">
+#.  No tasks are assigned to you!
+#. </p>
+# Original: "No tasks are assigned to you!"
+msgid "no_tasks_assigned"
+msgstr ""
+
+
+#: skins/eXtremeManagement/story_view.pt
+#. <p class="discreet" i18n:translate="no_tasks_defined" tal:condition="python: not items">
+#.  No tasks defined yet.
+#. </p>
+# Original: "No tasks defined yet."
+msgid "no_tasks_defined"
+msgstr ""
+
+
+#: skins/eXtremeManagement/portlet_tasks.pt
+#. <h5 i18n:translate="project_administration">
+#.  Project administration
+#. </h5>
+#: skins/eXtremeManagement/portlet_tasks.pt
+#. <a href="" i18n:translate="project_administration" tal:attributes="href string:${portal_url}/project_administration">
+#.  Project administration
+#. </a>
+# Original: "Project administration"
+msgid "project_administration"
+msgstr ""
+
+
+#: skins/eXtremeManagement/project_view.pt
+#. <th i18n:translate="stories_estimated" tal:condition="stories_estimated">
+#.  Stories estimated
+#. </th>
+# Original: "Stories estimated"
+msgid "stories_estimated"
+msgstr ""
+
+
+#: skins/eXtremeManagement/project_view.pt
+#. <th i18n:translate="stories_not_estimated" tal:condition="stories">
+#.  Stories not estimated
+#. </th>
+# Original: "Stories not estimated"
+msgid "stories_not_estimated"
+msgstr ""
+
+
+#: skins/eXtremeManagement/customer_view.pt
+#. <a href="" i18n:translate="title" tal:attributes="href here/getWebsite" tal:condition="here/getWebsite" tal:content="here/getWebsite" title="Visit the website">
+#. </a>
+msgid "title"
+msgstr ""
+
+
+#: skins/eXtremeManagement/iteration_view.pt
+#. <td colspan="2" i18n:translate="total" id="total">
+#.  Total
+#. </td>
+#: skins/eXtremeManagement/story_view.pt
+#. <td i18n:translate="total" id="total">
+#.  Total
+#. </td>
+# Original: "Total"
+msgid "total"
+msgstr ""
+
+#- Removed msgids:
+# 
+
+#- Added msgids:
+#  heading-booking header_customers listingheader_name
+# listingheader_address listingheader_zipCode listingheader_city
+# listingheader_country listingheader_phone listingheader_fax
+# listingheader_website title listingheader_comments
+# header_project_members listingheader_email "Send a mail to this user"
+# heading-stories listingheader_story listingheader_state
+# listingheader_estimate listingheader_actual total no_stories_published
+# project_administration header_time_registration
+# header_project_administration description_project_administration
+# listingheader_projects no_projects_found heading_iterations
+# listingheader_progress listingheader_tasks_open
+# listingheader_tasks_completed header_iterations
+# description_new_iterations headerlisting_new_iterations header_stories
+# description_stories_not_estimated stories_not_estimated
+# stories_estimated header_memberinfo heading_tasks listingheader_title
+# listingheader_diff listingheader_assignees no_tasks_defined
+# heading-contents heading-bookings listingheader-booking
+# listingheader-time description_time_registration listingheader_booking
+# label_hours label_minutes label_description Send no_tasks_assigned
+# eXtremeManagement_help_actual eXtremeManagement_help_address
+# eXtremeManagement_help_adress eXtremeManagement_help_assignTo
+# eXtremeManagement_help_assignees eXtremeManagement_help_attribute_25
+# eXtremeManagement_help_attribute_30
+# eXtremeManagement_help_attribute_33 eXtremeManagement_help_billable
+# eXtremeManagement_help_city eXtremeManagement_help_comments
+# eXtremeManagement_help_country eXtremeManagement_help_customerfolders
+# eXtremeManagement_help_customers eXtremeManagement_help_descriptino
+# eXtremeManagement_help_description eXtremeManagement_help_email
+# eXtremeManagement_help_emailAddress eXtremeManagement_help_estimate
+# eXtremeManagement_help_fax eXtremeManagement_help_faxNumber
+# eXtremeManagement_help_firstName eXtremeManagement_help_fullname
+# eXtremeManagement_help_hours eXtremeManagement_help_id
+# eXtremeManagement_help_lastName eXtremeManagement_help_location
+# eXtremeManagement_help_mainText eXtremeManagement_help_minutes
+# eXtremeManagement_help_name eXtremeManagement_help_phone
+# eXtremeManagement_help_phoneNumber eXtremeManagement_help_task
+# eXtremeManagement_help_taskDescription eXtremeManagement_help_title
+# eXtremeManagement_help_website eXtremeManagement_help_zipCode
+# eXtremeManagement_label_actual eXtremeManagement_label_address
+# eXtremeManagement_label_adress eXtremeManagement_label_assignTo
+# eXtremeManagement_label_assignees eXtremeManagement_label_attribute_25
+# eXtremeManagement_label_attribute_30
+# eXtremeManagement_label_attribute_33 eXtremeManagement_label_billable
+# eXtremeManagement_label_city eXtremeManagement_label_comments
+# eXtremeManagement_label_country
+# eXtremeManagement_label_customerfolders
+# eXtremeManagement_label_customers eXtremeManagement_label_descriptino
+# eXtremeManagement_label_description eXtremeManagement_label_email
+# eXtremeManagement_label_emailAddress eXtremeManagement_label_estimate
+# eXtremeManagement_label_fax eXtremeManagement_label_faxNumber
+# eXtremeManagement_label_firstName eXtremeManagement_label_fullname
+# eXtremeManagement_label_hours eXtremeManagement_label_id
+# eXtremeManagement_label_lastName eXtremeManagement_label_location
+# eXtremeManagement_label_mainText eXtremeManagement_label_minutes
+# eXtremeManagement_label_name eXtremeManagement_label_phone
+# eXtremeManagement_label_phoneNumber eXtremeManagement_label_task
+# eXtremeManagement_label_taskDescription eXtremeManagement_label_title
+# eXtremeManagement_label_website eXtremeManagement_label_zipCode
+
+#- Added msgids by merging file i18n/generated.pot:
+#  eXtremeManagement_help_actual eXtremeManagement_help_address
+# eXtremeManagement_help_adress eXtremeManagement_help_assignTo
+# eXtremeManagement_help_assignees eXtremeManagement_help_attribute_25
+# eXtremeManagement_help_attribute_30
+# eXtremeManagement_help_attribute_33 eXtremeManagement_help_billable
+# eXtremeManagement_help_city eXtremeManagement_help_comments
+# eXtremeManagement_help_country eXtremeManagement_help_customerfolders
+# eXtremeManagement_help_customers eXtremeManagement_help_descriptino
+# eXtremeManagement_help_description eXtremeManagement_help_email
+# eXtremeManagement_help_emailAddress eXtremeManagement_help_estimate
+# eXtremeManagement_help_fax eXtremeManagement_help_faxNumber
+# eXtremeManagement_help_firstName eXtremeManagement_help_fullname
+# eXtremeManagement_help_hours eXtremeManagement_help_id
+# eXtremeManagement_help_lastName eXtremeManagement_help_location
+# eXtremeManagement_help_mainText eXtremeManagement_help_minutes
+# eXtremeManagement_help_name eXtremeManagement_help_phone
+# eXtremeManagement_help_phoneNumber eXtremeManagement_help_task
+# eXtremeManagement_help_taskDescription eXtremeManagement_help_title
+# eXtremeManagement_help_website eXtremeManagement_help_zipCode
+# eXtremeManagement_label_actual eXtremeManagement_label_address
+# eXtremeManagement_label_adress eXtremeManagement_label_assignTo
+# eXtremeManagement_label_assignees eXtremeManagement_label_attribute_25
+# eXtremeManagement_label_attribute_30
+# eXtremeManagement_label_attribute_33 eXtremeManagement_label_billable
+# eXtremeManagement_label_city eXtremeManagement_label_comments
+# eXtremeManagement_label_country
+# eXtremeManagement_label_customerfolders
+# eXtremeManagement_label_customers eXtremeManagement_label_descriptino
+# eXtremeManagement_label_description eXtremeManagement_label_email
+# eXtremeManagement_label_emailAddress eXtremeManagement_label_estimate
+# eXtremeManagement_label_fax eXtremeManagement_label_faxNumber
+# eXtremeManagement_label_firstName eXtremeManagement_label_fullname
+# eXtremeManagement_label_hours eXtremeManagement_label_id
+# eXtremeManagement_label_lastName eXtremeManagement_label_location
+# eXtremeManagement_label_mainText eXtremeManagement_label_minutes
+# eXtremeManagement_label_name eXtremeManagement_label_phone
+# eXtremeManagement_label_phoneNumber eXtremeManagement_label_task
+# eXtremeManagement_label_taskDescription eXtremeManagement_label_title
+# eXtremeManagement_label_website eXtremeManagement_label_zipCode

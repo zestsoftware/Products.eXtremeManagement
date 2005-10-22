@@ -1,42 +1,31 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      lang="en"
-      metal:use-macro="here/main_template/macros/master"
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
       i18n:domain="eXtremeManagement">
-
-<head>
-      <metal:block metal:fill-slot="javascript_head_slot">
-        <script type="text/javascript"
-          tal:attributes="src string:$portal_url/project.js"></script>
-      </metal:block>
-  
-      <metal:block fill-slot="css_slot">
-        <style type="text/css" media="screen"
-               tal:content="string: @import url($portal_url/eXtreme.css);">
-        </style>
-      </metal:block>
-</head>
+  <metal:block use-macro="context/global_defines/macros/defines" />
 
 <body onload="javascript:setFromState('hideRow0');">
 
-    <div metal:fill-slot="main"
-         tal:define="idIndex python:Iterator(pos=-1);
-                     physical_path python: '/'.join(context.getPhysicalPath());
-                     iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
-                                                                         review_state='completed', 
-                                                                         path=physical_path);
-                     current_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
-                                                                                 sort_on='created',
-                                                                                 sort_order='normal',
-                                                                                 review_state='in-progress',
-                                                                                 path=physical_path)[:1]">
-
-        <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+    <metal:block metal:define-macro="header">
+       <h1 tal:content="here/title_or_id" class="documentFirstHeading">
             Title or id
-        </h1>
-	
-        <div class="documentDescription" tal:content="here/Description">
-            description
-        </div>
+       </h1>
+       <div class="documentDescription" tal:content="here/Description">
+           description
+       </div>
+       <link REL="stylesheet" TYPE="text/css" href="eXtreme.css" />
+    </metal:block>   
+        
+    <metal:block metal:define-macro="body"
+                 tal:define="idIndex python:Iterator(pos=-1);
+                             physical_path python: '/'.join(context.getPhysicalPath());
+                             iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
+                                                                                 review_state=['completed', 'invoiced'], 
+                                                                                 path=physical_path);
+                            current_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
+                                                                                        sort_on='created',
+                                                                                        sort_order='normal',
+                                                                                        review_state='in-progress',
+                                                                                        path=physical_path)[:1]">
 
 
         <tal:block tal:condition="iterations">
@@ -104,7 +93,7 @@
                   tal:repeat="story stories">
 
                 <div tal:define="storyObj story/getObject;
-                                 progress python:here.getProgress(storyObj);
+                                 progress python:storyObj.get_progress_perc();
                                  openTasks python:here.getOpenTasks(storyObj);
                                  completedTasks python:here.getCompletedTasks(storyObj)">
 
@@ -116,7 +105,7 @@
 
                   <td id="progress_details" width="150">
                    <span id="progress_percentage" 
-                         tal:content="python:str(progress) + '%'">&nbsp;</span><br />
+                         tal:content="string:${progress} %">&nbsp;</span><br />
                     <div id="progress_bar"> 
                        <img src="progress.gif" 
                             height="10" 
@@ -199,7 +188,7 @@
                   tal:repeat="story stories">
 
                 <div tal:define="storyObj story/getObject;
-                                 progress python:here.getProgress(storyObj);
+                                 progress python:storyObj.get_progress_perc();
                                  openTasks python:here.getOpenTasks(storyObj);
                                  completedTasks python:here.getCompletedTasks(storyObj)">
 
@@ -211,7 +200,7 @@
 
                   <td id="progress_details" width="150">
                    <span id="progress_percentage"
-                         tal:content="python:str(progress) + '%'">&nbsp;</span><br />
+                         tal:content="string:${progress} %">&nbsp;</span><br />
                     <div id="progress_bar">
                        <img src="progress.gif"
                             height="10"
@@ -230,28 +219,26 @@
           </div>
         </tal:block>
 
-
-        <tal:block tal:define="open_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
-                                                                                        review_state='open');
-                               act_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
-                                                                                       review_state='activated',
-                                                                                       sort_on='created',
-                                                                                       sort_order='normal')"
-                   tal:condition="python:open_iterations or act_iterations">
-           <h1 i18n:translate="header_new_iterations">New iterations</h1>
+        <tal:block tal:define="project_path python:'/'.join(context.getPhysicalPath());
+                               open_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
+                                                                                        review_state='open',
+                                                                                        path=project_path,
+                                                                                        sort_on='created',
+                                                                                        sort_order='normal')"
+                   tal:condition="python:open_iterations">
+           <h1 i18n:translate="header_iterations">Iterations</h1>
            <p class="discreet" 
               i18n:translate="description_new_iterations">
-              Here are 2 lists of iterations. Left you see new iterations and the stories in that iteration.
-              Right you see a list of iterations ready to work on.
+              Here is a list of all iterations with the status <strong>Open</strong>. 
+              The stories assigned to these iterations are also displayed. 
+              This makes it easier to see which stories are assigned to which iteration.
            </p> 
  
            <table class="listing" width="80%">
              <tr>
                <th i18n:translate="headerlisting_new_iterations" 
-                   tal:condition="open_iterations">New iterations</th>
-
-               <th i18n:translate="headerlisting_iterations_activated"
-                   tal:condition="act_iterations">Iteration activated</th>
+                   tal:condition="open_iterations">Iterations
+               </th>
              </tr>
 
              <tr>
@@ -264,7 +251,7 @@
                         tal:attributes="href iteration/getURL"
                         tal:content="iteration/Title">Title
                      </a>
-
+                     
                      <div style="display:normal;" class="list_iterations"
                           tal:define="stories python:iteration.getObject().contentValues('Story')">
                        <div tal:repeat="story stories">
@@ -280,18 +267,6 @@
                    </div>
                  </div>
                </td>
-               <td width="40%" tal:condition="act_iterations">
-                  <div class="list_iterations">
-                     <div tal:repeat="iteration act_iterations">
-                        <img src="" 
-                             tal:attributes="src iteration/getIcon" /> 
-                        <a href=""
-                           tal:attributes="href iteration/getURL"
-                           tal:content="iteration/Title">Title
-                        </a>
-                     </div>
-                  </div>
-               </td>
              </tr>
            </table>
         </tal:block>
@@ -306,7 +281,7 @@
                                                                                           path=project_path)"
                    tal:condition="python:stories or stories_estimated">
 
-           <br /><h1 i18n:translate="header_stories_(not)_estimated">Stories (not) estimated</h1>
+           <h1 i18n:translate="header_stories">Stories</h1>
           
            <p class="discreet" 
               i18n:translate="description_stories_not_estimated">
@@ -315,7 +290,7 @@
               and will be visible in the list above to be assigned to an iteration.
            </p>
        
-           <table class="listing" width="70%">
+           <table class="listing" width="80%">
              <tr>
                <th tal:condition="stories" 
                    i18n:translate="stories_not_estimated">Stories not estimated</th>
@@ -349,6 +324,7 @@
           </table>
         </tal:block>
 
-    </div>
-</body>
+    </metal:block>
+    <metal:block metal:define-macro="folderlisting" />
+  </body>
 </html>

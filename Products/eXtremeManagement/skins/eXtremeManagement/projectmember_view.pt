@@ -1,33 +1,23 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      lang="en"
-      i18n:domain="eXtremeManagement"
-      metal:use-macro="here/main_template/macros/master">
-
-  <head>
-      <metal:block fill-slot="top_slot">
-        <span tal:replace="nothing"
-              tal:define="dummy python:request.set('enable_border', 1)" />
-      </metal:block>
-
-      <metal:block fill-slot="css_slot">
-        <style type="text/css" media="screen"
-               tal:content="string: @import url($portal_url/eXtreme.css);">
-        </style>
-      </metal:block>
-  </head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      i18n:domain="eXtremeManagement">
+  <metal:block use-macro="context/global_defines/macros/defines" />
 
   <body>
+  
+    <metal:block metal:define-macro="header">
+      <h1 class="documentFirstHeading" i18n:translate="header_memberinfo">
+         Project member info
+      </h1>
 
-    <div metal:fill-slot="main">
-
-        <h1 class="documentFirstHeading" i18n:translate="header_memberinfo">
-          Project member info
-        </h1>
-
-        <div class="documentDescription"
-             tal:condition="here/Description"
-             tal:content="here/Description">description
-        </div>
+      <div class="documentDescription"
+           tal:condition="here/Description"
+           tal:content="here/Description">description
+      </div> 
+      <link REL="stylesheet" TYPE="text/css" href="eXtreme.css" />
+    </metal:block>
+   
+    <metal:block metal:define-macro="body">
 
           <table class="listing"
                  border="1" 
@@ -60,18 +50,11 @@
                  <span tal:condition="not: here/email">....</span>
                </td>
              </tr>
-             <tr>
-               <th id="projectmemeber_info_header" 
-                   i18n:translate="listingheader_comments">Comments</th>
-               <td>
-                 <span tal:condition="python:here.comments" 
-                       tal:content="here/comments">Comments</span>
-                 <span tal:condition="not: here/comments">....</span>
-             </tr>
+
           </table>
 
-
-    </div>
+    </metal:block>
+    <metal:block metal:define-macro="folderlisting" />
   </body>
 </html>
 

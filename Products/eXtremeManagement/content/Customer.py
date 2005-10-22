@@ -1,7 +1,8 @@
 # File: Customer.py
 # 
-# Copyright (c) 2005 by ['']
-# Generator: ArchGenXML Version 1.4.0-beta2 http://sf.net/projects/archetypes/
+# Copyright (c) 2005 by Zest software 2005
+# Generator: ArchGenXML Version 1.4.0-beta2 devel 
+#            http://plone.org/products/archgenxml
 #
 # GNU General Public Licence (GPL)
 # 
@@ -17,12 +18,12 @@
 # this program; if not, write to the Free Software Foundation, Inc., 59 Temple
 # Place, Suite 330, Boston, MA  02111-1307  USA
 #
-__author__  = ''' <>'''
+__author__  = '''Ahmad Hadi <a.hadi@zestsoftware.nl>'''
 __docformat__ = 'plaintext'
+
 
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
-
 
 
 
@@ -40,7 +41,7 @@ schema=Schema((
     StringField('name',
         index="FieldIndex",
         widget=StringWidget(
-            description="Enter full name, eg. John Smith.",
+            description="Enter the company name for this customer",
             label='Name',
             label_msgid='eXtremeManagement_label_name',
             description_msgid='eXtremeManagement_help_name',
@@ -48,19 +49,19 @@ schema=Schema((
         ),
         required=1
     ),
-    
-    StringField('adress',
+
+    StringField('address',
         index="FieldIndex",
         widget=StringWidget(
             description="Enter address.",
-            label='Adress',
-            label_msgid='eXtremeManagement_label_adress',
-            description_msgid='eXtremeManagement_help_adress',
+            label='Address',
+            label_msgid='eXtremeManagement_label_address',
+            description_msgid='eXtremeManagement_help_address',
             i18n_domain='eXtremeManagement',
         ),
         required=1
     ),
-    
+
     StringField('zipCode',
         index="FieldIndex",
         widget=StringWidget(
@@ -72,7 +73,7 @@ schema=Schema((
         ),
         required=1
     ),
-    
+
     StringField('city',
         index="FieldIndex",
         widget=StringWidget(
@@ -84,7 +85,7 @@ schema=Schema((
         ),
         required=1
     ),
-    
+
     StringField('country',
         index="FieldIndex",
         widget=StringWidget(
@@ -96,7 +97,7 @@ schema=Schema((
         ),
         required=1
     ),
-    
+
     StringField('phone',
         index="FieldIndex",
         widget=IntegerWidget
@@ -110,7 +111,7 @@ schema=Schema((
         ),
         required=1
     ),
-    
+
     StringField('fax',
         index="FieldIndex",
         widget=IntegerWidget
@@ -123,18 +124,7 @@ schema=Schema((
             i18n_domain='eXtremeManagement',
         )
     ),
-    
-    StringField('email',
-        index="FieldIndex",
-        widget=StringWidget(
-            description="Enter your email address.",
-            label='Email',
-            label_msgid='eXtremeManagement_label_email',
-            description_msgid='eXtremeManagement_help_email',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-    
+
     StringField('website',
         index="FieldIndex",
         widget=StringWidget(
@@ -145,47 +135,61 @@ schema=Schema((
             i18n_domain='eXtremeManagement',
         )
     ),
-    
-    TextField('comments',
-        widget=TextAreaWidget(
-            description="Enter some comments.",
-            label='Comments',
-            label_msgid='eXtremeManagement_label_comments',
-            description_msgid='eXtremeManagement_help_comments',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-    
+
 ),
 )
 
 
+##code-section after-local-schema #fill in your manual code here
+##/code-section after-local-schema
+
+Customer_schema = OrderedBaseFolderSchema + \
+    schema
+
 ##code-section after-schema #fill in your manual code here
+
+Customer_schema = schema + BaseFolderSchema 
+
 ##/code-section after-schema
 
-class Customer(OrderedBaseFolder,BaseFolder):
+class Customer(OrderedBaseFolder):
     security = ClassSecurityInfo()
-    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),) + (getattr(BaseFolder,'__implements__',()),)
+    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
 
 
     # This name appears in the 'add' box
     archetype_name             = 'Customer'
 
-    meta_type                  = 'Customer' 
-    portal_type                = 'Customer' 
-    allowed_content_types      = ['ProjectMember'] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
+    meta_type                  = 'Customer'
+    portal_type                = 'Customer'
+    allowed_content_types      = ['ProjectMember']
     filter_content_types       = 1
     global_allow               = 0
     allow_discussion           = 0
     content_icon               = 'group_icon.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
+    suppl_views                = ()
     typeDescription            = "Customer"
     typeDescMsgId              = 'description_edit_customer'
 
-    schema = BaseFolderSchema + \
-             getattr(OrderedBaseFolder,'schema',Schema(())) + \
-             schema
+    actions =  (
+
+
+       {'action':      "string:$object_url/folder_localrole_form",
+        'category':    "object",
+        'id':          'local_roles',
+        'name':        'Sharing',
+        'permissions': ("View",),
+        'condition'  : 'python:1'
+       },
+
+
+    )
+
+    _at_rename_after_creation  = True
+
+    schema = Customer_schema
 
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header

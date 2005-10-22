@@ -1,0 +1,126 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      i18n:domain="eXtremeManagement"
+      metal:use-macro="here/main_template/macros/master">
+
+  <head>
+      <metal:block fill-slot="top_slot"
+                   tal:define="dummy python:request.set('disable_border', 1)" />
+
+      <metal:block fill-slot="css_slot">
+        <style type="text/css" media="screen"
+               tal:content="string: @import url($portal_url/eXtreme.css);">
+        </style>
+     </metal:block>
+  </head>
+
+  <body>
+
+    <div metal:fill-slot="main"
+         tal:define="project_path python: '/'.join(context.getPhysicalPath());
+                     projects python:here.portal_catalog.searchResults(portal_type='Project', 
+                                                                       path=project_path,);">
+
+       <h1 i18n:translate="header_project_administration" 
+           class="documentFirstHeading">
+         Project administration
+       </h1>
+
+       <tal:block tal:condition="projects">
+  
+          <p class="discreet" 
+             i18n:translate="description_project_administration"> 
+             This is a list of all projects. Also the iterations which are completed with state, estimated and actual time.
+             Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>. 
+             This way the administration has an overview with all iterations which are invoiced.
+          </p>
+
+          <table class="listing"
+                 border="1" 
+                 width="100%"
+                 cellpadding="0" 
+                 cellspacing="0">
+                 
+             <tr>
+                <th i18n:translate="listingheader_projects">Project</th>
+             </tr>
+
+             <tr tal:repeat="project projects">
+                <td id="td-project">
+                   <a href=""
+                      tal:attributes="href string:${project/getURL}">
+                      <span id="project_title" 
+                            tal:content="project/Title">
+                         Title
+                      </span>
+                   </a>
+                   <div class="project_description" 
+                        tal:content="project/Description">Description</div><br />                     
+                      
+                      <table width="95%" 
+                             border="0"
+                             cellpadding="0"
+                             cellspacing="3"
+                             class="iteration-table"
+                             tal:define="project_path python: '/'.join(project.getObject().getPhysicalPath()); 
+                                         iterations python:here.portal_catalog.searchResults(portal_type='Iteration', 
+                                                                                       review_state=['completed', 'invoiced'],
+                                                                                       path=project_path)"
+                             tal:condition="iterations"> 
+                         <tr>
+                            <td width="50%" 
+                                id="iteration-table-header">&nbsp;</td>
+                            <th width="20%" 
+                                id="iteration-table-header" 
+                                i18n:translate="listingheader_state">State</th>
+                            <th width="15%" 
+                                id="iteration-table-header" 
+                                i18n:translate="listingheader_estimate">Estimate</th>
+                            <th width="15%" 
+                                id="iteration-table-header" 
+                                i18n:translate="listingheader_actual">Actual</th>
+                         </tr>
+                      
+                         <tr tal:repeat="iteration iterations" style="padding:0px 0px 5px 0px;">
+                            <tal:block tal:define="iterationObj iteration/getObject;">
+                               <td id="td-iteration-title">
+                                  <img src="" 
+                                       alt="" 
+                                       height="16" 
+                                       width="16"
+                                       tal:attributes="src string:${here/portal_url}/${iteration/getIcon};" /> 
+                                  <a href=""
+                                     tal:attributes="href string:${iteration/getURL}">
+                                     <span id="iteration_title" 
+                                           tal:content="iteration/Title">Title</span>
+                                  </a> 
+                               </td>
+                          
+                               <td id="td-iteration-state" tal:content="iteration/review_state">state</td>
+                               <td id="td-iteration-estimate"
+                                   tal:define="iterationObj iteration/getObject;
+                                               projectEstimate python:here.getIterationTotalEstimate(iterationObj)"
+                                   tal:content="projectEstimate">Estimate</td>
+                               <td id="td-iteration-actual" 
+                                   tal:define="iterationObj iteration/getObject; 
+                                               projectActual python:here.getIterationTotalActual(iterationObj)"
+                                   tal:content="projectActual">test2</td>
+                            </tal:block>
+                         </tr>
+
+                      </table>
+                </td>
+             </tr>
+          </table>
+
+       </tal:block>
+
+       <div tal:condition="not:projects" class="discreet">
+         <p i18n:translate="no_projects_found">No projects are published yet!</p>
+       </div>
+
+    </div>
+  </body>
+</html>
+
+

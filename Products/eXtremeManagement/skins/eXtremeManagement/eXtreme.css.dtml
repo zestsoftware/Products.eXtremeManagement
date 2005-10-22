@@ -109,8 +109,63 @@
     color: &dtml-discreetColor;;
     font-weight: normal;
 }
-
-
+#task_header{
+    text-align: right;
+    font-weight: bold;
+    width: 40%;
+}
+.story_description{
+    margin: 0.3em 0 0.3em 1.5em;
+    color: &dtml-discreetColor;;
+}
+.project_description{
+    margin: 0.3em 0 0.3em 1.5em;
+    color: &dtml-discreetColor;;
+}
+#project_title{
+    font-weight: bold;
+}
+.project_iterations {
+    margin: 10px 0px 0px 30px;
+}
+#iteration-item{
+    padding: 0px 0px 0px 40px;
+}
+.iteration-table {
+    margin-left: 20px;
+}
+#td-project{
+    padding-bottom: 10px;
+}
+#td-iteration-title{
+    border: none;
+}
+#td-iteration-state{
+    border: none;
+    text-align: center;
+}
+#td-iteration-estimate{
+    border: none;
+    text-align: center;
+}
+#td-iteration-actual{
+    border: none;
+    text-align: center;
+}
+#iteration-table-header {
+    border: none;
+    text-align: center;
+}
+.listing th{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+#booking_title{
+    font-weight: bold;
+}
+.booking_description{
+    margin-left: 20px;
+}
 
 
 /* </dtml-with> */

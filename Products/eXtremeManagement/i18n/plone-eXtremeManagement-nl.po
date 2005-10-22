@@ -50,8 +50,11 @@ msgstr "Accepteer"
 msgid "Assign"
 msgstr "Toekennen"
 
-msgid "Unassign"
-msgstr ""
+msgid "Invoice"
+msgstr "Factureer"
+
+msgid "invoiced"
+msgstr "Gefactureerd"
 
 msgid "Estimate"
 msgstr "Schatten"

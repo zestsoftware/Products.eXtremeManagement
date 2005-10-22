@@ -1,0 +1,12 @@
+2005-09-23 - jladage
+
+  - Prepared initial release by merging the agx-itegration branch back to trunk.
+
+  - Added tests package and related classed to the model.
+
+  - Wrote more tests for Setup and Content Types.
+
+  - Fixed calculations
+
+
+

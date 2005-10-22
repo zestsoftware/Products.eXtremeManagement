@@ -252,7 +252,7 @@ msgid "description_stories_not_estimated"
 msgstr "Hieronder worden 2 lijsten weergegeven met de stories die aangemaakt zijn. In de linkerlijst worden alle stories weergegeven die nog niet geschat zijn op het aantal uren. In de rechterlijst worden stories weergegeven die wel voorzien zijn van een schatting."
 
 msgid "description_new_iterations" 
-msgstr "Hieronder worden 2 lijsten weergegeven. In de linkerlijst worden de openstaande iteraties weergegeven met daarin de stories die toegevoegd zijn. In de rechterlijst worden alle ge-activeerde iteraties getoond. Deze zijn voorzien van stories en een schatting."
+msgstr "Hieronder wordt een lijst weergegeven met alle openstaande iteraties. Per iteratie worden ook de stories getoond (ingesprongen). Zo heeft men een overzicht van de iteraties en stories die toegekend zijn aan deze iteraties."
 
 msgid "Send"
 msgstr "Versturen"
@@ -261,7 +261,7 @@ msgid "no_tasks_assigned"
 msgstr "Op dit moment heb jij geen taken!"
 
 msgid "header_time_registration"
-msgstr "Uren Registratie"
+msgstr "Uren registratie"
 
 msgid "description_time_registration"
 msgstr "Om je uren te boeken, maak je gebruik van onderstaand formulier. Vul de velden 'daadwerkelijk' in en klik op <strong>versturen</strong>. Je uren worden dan automatisch bijgewerkt."
@@ -272,3 +272,35 @@ msgstr "Er zijn op dit moment geen stories gedefinieerd!"
 msgid "heading-contents"
 msgstr "Inhoud"
 
+msgid "project_administration"
+msgstr "Project administratie"
+
+msgid "header_project_administration"
+msgstr "Project administratie"
+
+msgid "description_project_administration"
+msgstr "Hieronder worden alle projecten weergegeven. Daarin worden alle iteraties getoond met de schatting en de daadwerkelijk gewerkte uren. Zodra een iteratie gefactureerd wordt, kan de status veranderd worden naar <strong>gefactureerd</strong>. Zo heeft de administratie een overzicht van iteraties die gefactureerd zijn."
+
+msgid "heading-booking"
+msgstr "Geboekt"
+
+msgid "heading-bookings"
+msgstr "Boekingen"
+
+msgid "listingheader-booking"
+msgstr "Boeking"
+
+msgid "listingheader-time"
+msgstr "Tijd"
+
+msgid "listingheader_booking"
+msgstr "Uren boeken"
+
+msgid "label_hours"
+msgstr "Uren"
+
+msgid "label_minutes"
+msgstr "Minuten"
+
+msgid "label_description"
+msgstr "Omschrijving:"

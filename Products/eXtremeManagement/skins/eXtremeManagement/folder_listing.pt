@@ -3,7 +3,7 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="plone">
 
-  <link href="eXtreme.css" type=text/css rel=stylesheet>
+  <link href="eXtreme.css" type="text/css" rel="stylesheet" />
 
 <body>
 

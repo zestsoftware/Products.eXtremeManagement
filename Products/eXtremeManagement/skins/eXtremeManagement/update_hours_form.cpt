@@ -28,7 +28,7 @@
         
           <p class="discreet" 
              i18n:translate="description_time_registration"> 
-          To register your time (hours), use the form below and press 'Send'.
+            To register your time (hours), use the form below and press 'Send'.
           </p>
 
         <form tal:define="errors options/state/getErrors"
@@ -37,39 +37,75 @@
 
           <table class="listing"
                  border="1" 
-                 width="80%"
+                 width="100%"
                  cellpadding="0" 
                  cellspacing="0">
 
              <tr>
-               <th i18n:translate="listingheader_desc">Task Description</th> 
-               <th i18n:translate="listingheader_state">Status</th>
+               <th i18n:translate="listingheader_title">Task</th> 
                <th i18n:translate="listingheader_estimate">Estimate</th>
                <th i18n:translate="listingheader_actual">Actual</th>
+               <th i18n:translate="listingheader_booking">Booking</th>
              </tr>
 
-             <tr tal:repeat="task tasks">
+             <tr tal:repeat="taskObj tasks">
                  <td>
                    <a href=""
-                      tal:attributes="href task/absolute_url">
+                      tal:attributes="href taskObj/absolute_url">
                       <img src="task_icon.gif" /> 
-                      <span tal:content="task/Title">Task</span></a></td>
+                      <span tal:content="taskObj/Title">Task</span></a></td>
 
-                 <td tal:define="wtool here/portal_workflow;
-                                 review_state python:wtool.getInfoFor(task, 'review_state')"
-                   tal:content="review_state">Status</td>
                  <td id="estimate" 
-                     tal:content="task/getEstimate">Estimate</td>
-
+                     tal:content="taskObj/getEstimate">Estimate</td>
                  <td id="actual" 
-                     tal:define="actualValue python:task.getActual();">
-                     <input type="text"
-                            size="5"
-                            value=""
-                            id="input_field_center"
-                            tal:attributes="name task/UID;
-                                            value actualValue" />
+                     tal:define="totalActual python:here.getTotalActual(taskObj);"
+                     tal:content="totalActual">actual</td> 
+                
+                 <td>
+                   <div style="padding-top:5px;">
+                     <span i18n:translate="label_hours" 
+                           id="label_hours">Hours</span>
+                           
+                       <select name="hours"
+                               id="hours"
+                               tabindex=""
+                               tal:define="hours python:('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10');"
+                               tal:attributes="name python:taskObj.UID() + '_hours';
+                                               tabindex tabindex/next;">
+                         <tal:block tal:repeat="hour hours">
+                         <option value=""
+                                 tal:content="hour"
+                                 tal:attributes="value hour">dummy</option>
+                         </tal:block>
+                       </select>
+
+                       <span style="font-weight:bold;">:</span>
+
+                       <select name="minutes"
+                               id="minutes"
+                               tabindex=""
+                               tal:define="minutes python:('0', '15', '30', '45');"
+                               tal:attributes="name python:taskObj.UID() + '_minutes';
+                                               tabindex tabindex/next;">
+                         <tal:block tal:repeat="minute minutes">
+                           <option value=""
+                                   tal:content="minute"
+                                   tal:attributes="value minute">dummy</option>
+                         </tal:block>
+                       </select> 
+                       
+                     <span i18n:translate="label_minutes" 
+                           id="label_minutes">Minutes</span>
+                   </div><br />
+                
+                   <span i18n:translate="label_description">Comments:</span>
+                   <div style="margin-right:15px; padding-bottom:10px;">
+                     <textarea name="description" rows="4"
+                         tal:attributes="name python:taskObj.UID()+'_description'"> </textarea>
+                   </div>
+                
                  </td>
+                 
              </tr>
           </table>
 
@@ -80,6 +116,7 @@
                  value="Send"
                  i18n:attributes="value"
                  tal:attributes="tabindex tabindex/next;"/>
+
           <input type="hidden" name="form.submitted" value="1" />
 
        </form>

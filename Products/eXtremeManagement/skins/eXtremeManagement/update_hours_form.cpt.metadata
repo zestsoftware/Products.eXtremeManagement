@@ -4,10 +4,6 @@ title=update hours
 [security]
 View=0:Authenticated
 
-[validators]
-validators=validate_actual
-validators..Cancel=
-
 [actions]
 action.success=traverse_to:string:update_hours
 action.success..Cancel=redirect_to:string:update_hours_form

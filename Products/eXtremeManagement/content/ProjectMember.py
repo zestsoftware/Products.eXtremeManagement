@@ -1,7 +1,8 @@
 # File: ProjectMember.py
 # 
-# Copyright (c) 2005 by ['']
-# Generator: ArchGenXML Version 1.4.0-beta2 http://sf.net/projects/archetypes/
+# Copyright (c) 2005 by Zest software 2005
+# Generator: ArchGenXML Version 1.4.0-beta2 devel 
+#            http://plone.org/products/archgenxml
 #
 # GNU General Public Licence (GPL)
 # 
@@ -17,20 +18,21 @@
 # this program; if not, write to the Free Software Foundation, Inc., 59 Temple
 # Place, Suite 330, Boston, MA  02111-1307  USA
 #
-__author__  = ''' <>'''
+__author__  = '''Ahmad Hadi <a.hadi@zestsoftware.nl>'''
 __docformat__ = 'plaintext'
+
 
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
 
 
 
-
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
 
-#BaseSchema = BaseSchema.copy()
+BaseSchema = BaseSchema.copy()
 BaseSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+#BaseSchema['title'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 
 ##/code-section module-header
 
@@ -46,7 +48,7 @@ schema=Schema((
         ),
         required=1
     ),
-    
+
     StringField('phone',
         index="FieldIndex",
         widget=IntegerWidget
@@ -60,7 +62,7 @@ schema=Schema((
         ),
         required=1
     ),
-    
+
     StringField('email',
         index="FieldIndex",
         widget=StringWidget(
@@ -71,47 +73,45 @@ schema=Schema((
             i18n_domain='eXtremeManagement',
         )
     ),
-    
-    TextField('comments',
-        widget=TextAreaWidget(
-            description="Enter some comments.",
-            label='Comments',
-            label_msgid='eXtremeManagement_label_comments',
-            description_msgid='eXtremeManagement_help_comments',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-    
+
 ),
 )
 
 
+##code-section after-local-schema #fill in your manual code here
+##/code-section after-local-schema
+
+ProjectMember_schema = BaseSchema + \
+    schema
+
 ##code-section after-schema #fill in your manual code here
+ProjectMember_schema = schema + BaseSchema
 ##/code-section after-schema
 
-class ProjectMember(BaseContent,BaseContent):
+class ProjectMember(BaseContent):
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseContent,'__implements__',()),) + (getattr(BaseContent,'__implements__',()),)
+    __implements__ = (getattr(BaseContent,'__implements__',()),)
 
 
     # This name appears in the 'add' box
     archetype_name             = 'ProjectMember'
 
-    meta_type                  = 'ProjectMember' 
-    portal_type                = 'ProjectMember' 
-    allowed_content_types      = [] + list(getattr(BaseContent, 'allowed_content_types', []))
+    meta_type                  = 'ProjectMember'
+    portal_type                = 'ProjectMember'
+    allowed_content_types      = []
     filter_content_types       = 0
     global_allow               = 0
     allow_discussion           = 0
     content_icon               = 'user.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
+    suppl_views                = ()
     typeDescription            = "ProjectMember"
     typeDescMsgId              = 'description_edit_projectmember'
 
-    schema = BaseSchema + \
-             getattr(BaseContent,'schema',Schema(())) + \
-             schema
+    _at_rename_after_creation  = True
+
+    schema = ProjectMember_schema
 
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header

@@ -1,7 +1,8 @@
 # File: Story.py
 # 
-# Copyright (c) 2005 by ['']
-# Generator: ArchGenXML Version 1.4.0-beta2 http://sf.net/projects/archetypes/
+# Copyright (c) 2005 by Zest software 2005
+# Generator: ArchGenXML Version 1.4.0-beta2 devel 
+#            http://plone.org/products/archgenxml
 #
 # GNU General Public Licence (GPL)
 # 
@@ -17,12 +18,12 @@
 # this program; if not, write to the Free Software Foundation, Inc., 59 Temple
 # Place, Suite 330, Boston, MA  02111-1307  USA
 #
-__author__  = ''' <>'''
+__author__  = '''Ahmad Hadi <a.hadi@zestsoftware.nl>'''
 __docformat__ = 'plaintext'
+
 
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
-
 
 
 
@@ -47,37 +48,44 @@ schema=Schema((
         default_output_type='text/html',
         required=1
     ),
-    
+
 ),
 )
 
 
+##code-section after-local-schema #fill in your manual code here
+##/code-section after-local-schema
+
+Story_schema = OrderedBaseFolderSchema + \
+    schema
+
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
 
-class Story(OrderedBaseFolder,BaseFolder):
+class Story(OrderedBaseFolder):
     security = ClassSecurityInfo()
-    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),) + (getattr(BaseFolder,'__implements__',()),)
+    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
 
 
     # This name appears in the 'add' box
     archetype_name             = 'Story'
 
-    meta_type                  = 'Story' 
-    portal_type                = 'Story' 
-    allowed_content_types      = ['Task'] + list(getattr(OrderedBaseFolder, 'allowed_content_types', []))
+    meta_type                  = 'Story'
+    portal_type                = 'Story'
+    allowed_content_types      = ['Task']
     filter_content_types       = 1
     global_allow               = 0
     allow_discussion           = 0
     content_icon               = 'story_icon.gif'
     immediate_view             = 'base_view'
     default_view               = 'base_view'
+    suppl_views                = ()
     typeDescription            = "Story"
     typeDescMsgId              = 'description_edit_story'
 
-    schema = BaseFolderSchema + \
-             getattr(OrderedBaseFolder,'schema',Schema(())) + \
-             schema
+    _at_rename_after_creation  = True
+
+    schema = Story_schema
 
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header
@@ -91,6 +99,25 @@ class Story(OrderedBaseFolder,BaseFolder):
         Dummy attribute to allow drop-in replacement of Document
         """
         return self.getMainText()
+
+
+
+    security.declarePublic('get_progress_perc')
+    def get_progress_perc(self):
+        """
+        
+        """
+        tasks = self.contentValues()
+        estimates = []
+        actual = 0.0
+        if tasks:
+            for task in tasks:
+                estimates.append(task.getEstimate())
+                actual = actual + task.get_actual_hours()
+            estimated = sum(estimates)
+            return round(actual/estimated*100, 1)
+        else:
+            return 0
 
 
 

@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      i18n:domain="eXtremeManagement">
+  <metal:block use-macro="context/global_defines/macros/defines" />
+
+  <body>
+    <metal:block metal:define-macro="header">
+       <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+         Title or id
+       </h1>
+       <div class="documentDescription"
+            tal:condition="here/Description"
+            tal:content="here/Description">description
+       </div>
+       <link REL="stylesheet" TYPE="text/css" href="eXtreme.css" />
+    </metal:block>
+   
+    <metal:block metal:define-macro="body">
+
+      <h5 class="header-booking-hours" 
+          i18n:translate="heading-booking">Booking
+      </h5>
+      <span tal:content="here/getTotalFormatted">3:14</span>
+
+    </metal:block>
+    <metal:block metal:define-macro="folderlisting" />
+  </body>
+</html>

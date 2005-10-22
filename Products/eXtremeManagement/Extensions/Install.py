@@ -1,10 +1,10 @@
 """ Extensions/Install.py """
 
-# Copyright (c) 2005 by ['']
+# Copyright (c) 2005 by Zest software 2005
 #
 # Generated: 
-# Generator: ArchGenXML Version 1.4.0-beta2
-#            http://sf.net/projects/archetypes/
+# Generator: ArchGenXML Version 1.4.0-beta2 devel
+#            http://plone.org/products/archgenxml
 #
 # GNU General Public Licence (GPL)
 # 
@@ -20,7 +20,7 @@
 # this program; if not, write to the Free Software Foundation, Inc., 59 Temple
 # Place, Suite 330, Boston, MA  02111-1307  USA
 #
-__author__    = ''' <>'''
+__author__    = '''Ahmad Hadi <a.hadi@zestsoftware.nl>'''
 __docformat__ = 'plaintext'
 __version__   = '$ Revision 0.0 $'[11:-2]
 
@@ -84,6 +84,11 @@ def install(self):
         print >>out,'no workflow install'
 
 
+    # enable portal_factory for given types
+    factory_tool = getToolByName(self,'portal_factory')
+    factory_types=[
+        ] + factory_tool.getFactoryTypes().keys()
+    factory_tool.manage_setPortalFactoryTypes(listOfTypeIds=factory_types)
 
     # try to call a custom install method
     # in 'AppInstall.py' method 'install'

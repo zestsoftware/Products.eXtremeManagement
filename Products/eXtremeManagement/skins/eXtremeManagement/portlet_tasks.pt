@@ -4,18 +4,18 @@
 
 <body>
 
-<link href="eXtreme.css" type=text/css rel=stylesheet>
+<link href="eXtreme.css" type="text/css" rel="stylesheet" />
 
 <!-- The open tasks box -->
 
 <div metal:define-macro="portlet"
      tal:define="DateTime python:modules['DateTime'].DateTime;
                  results python:here.getTasks();"
-     tal:condition="results">
+     tal:condition="python:portal.portal_membership.getAuthenticatedMember().has_role('Employee', 'Manager')">
  
-    <div class="portlet" id="portlet-open-tasks">
+    <div class="portlet" id="portlet-project-admininstration">
 
-        <h5 i18n:translate="box_open_tasks">Open tasks</h5>
+        <h5 i18n:translate="project_administration">Project administration</h5>
 
         <div class="portletBody">
             <tal:block repeat="item results">
@@ -39,8 +39,32 @@
                          tal:content="python:here.toPortalTime(moddate)">July 7, 08:11</div>
             </div>
             </tal:block>
+            
+            <div style="padding:5px;">
+               <img src="" 
+                    alt="" 
+                    height="16" 
+                    width="16"
+                    tal:attributes="src string:${here/portal_url}/tasks_links_icon.gif" />
+                  <a href=""
+                     i18n:translate="header_time_registration"
+                     tal:attributes="href string:${portal_url}/update_hours_form">Time registration
+                   </a> 
+            </div>  
+            <div style="padding:5px;">
+               <img src="" 
+                    alt="" 
+                    height="16" 
+                    width="16"
+                    tal:attributes="src string:${here/portal_url}/tasks_links_icon.gif" />
+                  <a href="" 
+                     i18n:translate="project_administration" 
+                     tal:attributes="href string:${portal_url}/project_administration">Project administration
+                  </a>
+            </div> 
 
         </div>
+        
     </div>
 </div>
 </body>

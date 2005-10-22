@@ -1,37 +1,26 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      lang="en"
-      i18n:domain="eXtremeManagement"
-      metal:use-macro="here/main_template/macros/master">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      i18n:domain="eXtremeManagement">
+  <metal:block use-macro="context/global_defines/macros/defines" />
 
-  <head>
-      <metal:block fill-slot="top_slot">
-        <span tal:replace="nothing"
-              tal:define="dummy python:request.set('enable_border', 1)" />
-      </metal:block>
-
-      <metal:block fill-slot="css_slot">
-        <style type="text/css" media="screen"
-               tal:content="string: @import url($portal_url/eXtreme.css);">
-        </style>
-      </metal:block>
-  </head>
 
   <body>
-
-    <div metal:fill-slot="main" 
+    <metal:block metal:define-macro="header">
+       <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+          Title or id
+       </h1>
+       <div class="discreet" 
+            tal:content="here/Description">Description
+       </div>
+       <link rel="stylesheet" type="text/css" href="eXtreme.css" />
+    </metal:block>        
+          
+    <metal:block metal:define-macro="body"
          tal:define="iteration_path python:'/'.join(here.getPhysicalPath());
                      stories python:here.portal_catalog.searchResults(portal_type='Story',
                                                                       sort_on='Date',
                                                                       sort_order='traverse',
                                                                       path=iteration_path);">
-
-        <h1 tal:content="here/title_or_id" class="documentFirstHeading">
-          Title or id
-        </h1>
-
-        <div class="discreet" 
-             tal:content="here/Description">Description
-        </div>
 
         <tal:block tal:condition="stories">
           <h1 class="" i18n:translate="heading-stories">Stories</h1>
@@ -41,25 +30,43 @@
                    cellpadding="0"
                    cellspacing="0">
 
-              <tr tal:condition="python:here.contentValues('Story')">
-                <th i18n:translate="listingheader_title">Title</th>
-                <th i18n:translate="listingheader_desc">Description</th>
+              <tr tal:condition="stories">
+                <th i18n:translate="listingheader_story">Story</th>
                 <th i18n:translate="listingheader_state">Status</th>
+                <th i18n:translate="listingheader_estimate">Estimates</th>
+                <th i18n:translate="listingheader_actual">Actual</th>
               </tr>
 
               <tr tal:repeat="story stories">
-                <div tal:define="storyObj story/getObject;">
-                  <td width="30%">
+                <div tal:define="storyObj story/getObject">
+                  <td>
                     <a href=""
                        id="storyTitle_iteration_overview"
                        tal:attributes="href string:${storyObj/absolute_url}">
-                       <span tal:content="storyObj/Title">Title</span></a></td>
+                      <span tal:content="storyObj/Title">Title</span></a>
+                      <div class="story_description" 
+                           tal:content="story/Description">Description</div>
+                  </td>
 
-                  <td tal:content="story/Description">Descriptino</td>
                   <td tal:define="wtool here/portal_workflow;
                                   review_state python:wtool.getInfoFor(storyObj, 'review_state')"
                       tal:content="review_state" i18n:translate="">Status</td>
+                  <td id="td-estimate" 
+                      tal:content="python:here.getTotalEstimate(storyObj)">Estimate</td>
+                  <td id="td-actual" 
+                      tal:content="python:here.getTotalActual(storyObj)">Actual</td>
                 </div>
+              </tr>
+              <tr>
+                <td id="total" 
+                    colspan="2" 
+                    i18n:translate="total">Total</td>
+                <td id="total-estimate"
+                    tal:define="totalEstimate python:here.getTotalEstimate();"
+                    tal:content="totalEstimate">Total estimate</td>
+                <td id="total-actual"
+                    tal:define="totalActual python:here.getTotalActual();"
+                    tal:content="totalActual">Total actual</td>
               </tr>
             </table>
         </tal:block>
@@ -68,6 +75,7 @@
            tal:condition="python: not stories"
            i18n:translate="no_stories_published">No stories published yet!</p>
 
-    </div>
+    </metal:block>
+    <metal:block metal:define-macro="folderlisting" />
   </body>
 </html>

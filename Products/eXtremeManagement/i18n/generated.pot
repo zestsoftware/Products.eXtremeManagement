@@ -23,6 +23,13 @@ msgstr "actual"
 
 
 #: Customer.py
+#. Enter address.
+## 1 more: content/Customer.py
+msgid "eXtremeManagement_help_address"
+msgstr "Enter address."
+
+
+#: Customer.py
 #. adress
 msgid "eXtremeManagement_help_adress"
 msgstr "adress"
@@ -34,6 +41,8 @@ msgid "eXtremeManagement_help_assignTo"
 msgstr "assignTo"
 
 
+#: content/Task.py
+#. Select the member(s) to assign this task to.
 #: Task.py
 #. assignees
 msgid "eXtremeManagement_help_assignees"
@@ -58,20 +67,31 @@ msgid "eXtremeManagement_help_attribute_33"
 msgstr "attribute_33"
 
 
+#: Booking.py
+#. billable
+## 1 more: content/Booking.py
+msgid "eXtremeManagement_help_billable"
+msgstr "billable"
+
+
+#: content/Customer.py
+#. Enter city name.
 #: Customer.py
 #. city
 msgid "eXtremeManagement_help_city"
 msgstr "city"
 
 
-#: Customer.py
-#. comments
 #: ProjectMember.py
 #. Enter some comments.
+#: Customer.py
+#. comments
 msgid "eXtremeManagement_help_comments"
 msgstr "comments"
 
 
+#: content/Customer.py
+#. Enter country.
 #: Customer.py
 #. country
 msgid "eXtremeManagement_help_country"
@@ -102,10 +122,11 @@ msgid "eXtremeManagement_help_description"
 msgstr "description"
 
 
-#: Customer.py
-#. email
 #: ProjectMember.py
 #. Enter your email address.
+#: Customer.py
+#. email
+## 1 more: content/ProjectMember.py
 msgid "eXtremeManagement_help_email"
 msgstr "email"
 
@@ -116,12 +137,16 @@ msgid "eXtremeManagement_help_emailAddress"
 msgstr "emailAddress"
 
 
+#: content/Task.py
+#. Enter the estimated time (in hours).
 #: Task.py
 #. estimate
 msgid "eXtremeManagement_help_estimate"
 msgstr "estimate"
 
 
+#: content/Customer.py
+#. Enter your fax number.
 #: Customer.py
 #. fax
 msgid "eXtremeManagement_help_fax"
@@ -140,10 +165,19 @@ msgid "eXtremeManagement_help_firstName"
 msgstr "firstName"
 
 
+#: content/ProjectMember.py
+#. Enter a name, eg. John Smith.
 #: ProjectMember.py
 #. fullname
 msgid "eXtremeManagement_help_fullname"
 msgstr "fullname"
+
+
+#: Booking.py
+#. hours
+## 1 more: content/Booking.py
+msgid "eXtremeManagement_help_hours"
+msgstr "hours"
 
 
 #: Customer.py
@@ -166,20 +200,32 @@ msgstr "location"
 
 #: Story.py
 #. mainText
+#: content/Story.py
+#. Enter the main description for this object.
 msgid "eXtremeManagement_help_mainText"
 msgstr "mainText"
 
 
+#: Booking.py
+#. minutes
+## 1 more: content/Booking.py
+msgid "eXtremeManagement_help_minutes"
+msgstr "minutes"
+
+
+#: content/Customer.py
+#. Enter full name, eg. John Smith.
 #: Customer.py
 #. name
 msgid "eXtremeManagement_help_name"
 msgstr "name"
 
 
-#: Customer.py
-#. phone
 #: ProjectMember.py
 #. Enter your phone number.
+#: Customer.py
+#. phone
+## 2 more: content/ProjectMember.py, content/Customer.py
 msgid "eXtremeManagement_help_phone"
 msgstr "phone"
 
@@ -208,12 +254,16 @@ msgid "eXtremeManagement_help_title"
 msgstr "title"
 
 
+#: content/Customer.py
+#. Enter your website address.
 #: Customer.py
 #. website
 msgid "eXtremeManagement_help_website"
 msgstr "website"
 
 
+#: content/Customer.py
+#. Enter zip code.
 #: Customer.py
 #. zipCode
 msgid "eXtremeManagement_help_zipCode"
@@ -224,6 +274,13 @@ msgstr "zipCode"
 #. Actual
 msgid "eXtremeManagement_label_actual"
 msgstr "Actual"
+
+
+#: Customer.py
+#. Address
+## 1 more: content/Customer.py
+msgid "eXtremeManagement_label_address"
+msgstr "Address"
 
 
 #: Customer.py
@@ -240,6 +297,7 @@ msgstr "Assignto"
 
 #: Task.py
 #. Assignees
+## 1 more: content/Task.py
 msgid "eXtremeManagement_label_assignees"
 msgstr "Assignees"
 
@@ -262,21 +320,29 @@ msgid "eXtremeManagement_label_attribute_33"
 msgstr "Attribute_33"
 
 
+#: Booking.py
+#. Billable
+## 1 more: content/Booking.py
+msgid "eXtremeManagement_label_billable"
+msgstr "Billable"
+
+
 #: Customer.py
 #. City
+## 1 more: content/Customer.py
 msgid "eXtremeManagement_label_city"
 msgstr "City"
 
 
 #: Customer.py
 #. Comments
-## 1 more: ProjectMember.py
 msgid "eXtremeManagement_label_comments"
 msgstr "Comments"
 
 
 #: Customer.py
 #. Country
+## 1 more: content/Customer.py
 msgid "eXtremeManagement_label_country"
 msgstr "Country"
 
@@ -307,7 +373,7 @@ msgstr "Description"
 
 #: Customer.py
 #. Email
-## 1 more: ProjectMember.py
+## 1 more: content/ProjectMember.py
 msgid "eXtremeManagement_label_email"
 msgstr "Email"
 
@@ -320,12 +386,14 @@ msgstr "Emailaddress"
 
 #: Task.py
 #. Estimate
+## 1 more: content/Task.py
 msgid "eXtremeManagement_label_estimate"
 msgstr "Estimate"
 
 
 #: Customer.py
 #. Fax
+## 1 more: content/Customer.py
 msgid "eXtremeManagement_label_fax"
 msgstr "Fax"
 
@@ -344,8 +412,16 @@ msgstr "Firstname"
 
 #: ProjectMember.py
 #. Fullname
+## 1 more: content/ProjectMember.py
 msgid "eXtremeManagement_label_fullname"
 msgstr "Fullname"
+
+
+#: Booking.py
+#. Hours
+## 1 more: content/Booking.py
+msgid "eXtremeManagement_label_hours"
+msgstr "Hours"
 
 
 #: Customer.py
@@ -368,19 +444,28 @@ msgstr "Location"
 
 #: Story.py
 #. Maintext
+## 1 more: content/Story.py
 msgid "eXtremeManagement_label_mainText"
 msgstr "Maintext"
 
 
+#: Booking.py
+#. Minutes
+## 1 more: content/Booking.py
+msgid "eXtremeManagement_label_minutes"
+msgstr "Minutes"
+
+
 #: Customer.py
 #. Name
+## 1 more: content/Customer.py
 msgid "eXtremeManagement_label_name"
 msgstr "Name"
 
 
 #: Customer.py
 #. Phone
-## 1 more: ProjectMember.py
+## 2 more: content/ProjectMember.py, content/Customer.py
 msgid "eXtremeManagement_label_phone"
 msgstr "Phone"
 
@@ -411,12 +496,14 @@ msgstr "Title"
 
 #: Customer.py
 #. Website
+## 1 more: content/Customer.py
 msgid "eXtremeManagement_label_website"
 msgstr "Website"
 
 
 #: Customer.py
 #. Zipcode
+## 1 more: content/Customer.py
 msgid "eXtremeManagement_label_zipCode"
 msgstr "Zipcode"
 
