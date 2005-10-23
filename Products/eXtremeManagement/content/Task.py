@@ -27,6 +27,9 @@ from Products.Archetypes.atapi import *
 
 
 
+# additional imports from tagged value 'import'
+from Products.CMFPlone.interfaces.NonStructuralFolder import INonStructuralFolder
+
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
 BaseFolderSchema = OrderedBaseFolderSchema.copy()
@@ -77,7 +80,7 @@ Task_schema = BaseFolderSchema + \
 
 class Task(BaseFolder):
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseFolder,'__implements__',()),)
+    __implements__ = (getattr(BaseFolder,'__implements__',()),) + (INonStructuralFolder,)
 
 
     # This name appears in the 'add' box

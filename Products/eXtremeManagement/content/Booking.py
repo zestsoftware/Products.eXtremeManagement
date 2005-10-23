@@ -159,6 +159,7 @@ class Booking(BaseContent):
         self.setId(newId)        
 
 
+
 registerType(Booking,PROJECTNAME)
 # end of class Booking
 

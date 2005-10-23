@@ -10,7 +10,8 @@
 
 <div metal:define-macro="portlet"
      tal:define="DateTime python:modules['DateTime'].DateTime;
-                 results python:here.getTasks();">
+                 results python:here.getTasks();"
+     tal:condition="python:results or member.has_role('Manager')">
  
     <div class="portlet" id="portlet-project-admininstration">
 
@@ -19,7 +20,7 @@
         <div class="portletBody">
             <tal:block repeat="item results">
             <div tal:define="oddrow repeat/item/odd;"
-                 tal:attributes="class python:test(oddrow, 'portletContent odd', 'portletContent even')">
+                 tal:attributes="class python:test(oddrow, 'portletItem odd', 'portletItem even')">
 
                     <a href="#"
                        class="marker"
@@ -39,7 +40,7 @@
             </div>
             </tal:block>
             
-            <div style="padding:5px;">
+            <div tal:condition="results" class="portletItem even">
                <img src="" 
                     alt="" 
                     height="16" 
@@ -50,7 +51,7 @@
                      tal:attributes="href string:${portal_url}/update_hours_form">Time registration
                    </a> 
             </div>  
-            <div style="padding:5px;">
+            <div tal:condition="python: member.has_role('Manager')"  class="portletItem odd">
                <img src="" 
                     alt="" 
                     height="16" 

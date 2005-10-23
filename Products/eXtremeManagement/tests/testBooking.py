@@ -87,6 +87,7 @@ class testBooking(eXtremeManagementTestCase):
         pass
 
 
+
     # Manually created methods
 
 def test_suite():
