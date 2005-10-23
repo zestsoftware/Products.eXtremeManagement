@@ -45,10 +45,10 @@
                <th i18n:translate="listingheader_title">Task</th> 
                <th i18n:translate="listingheader_estimate">Estimate</th>
                <th i18n:translate="listingheader_actual">Actual</th>
-               <th i18n:translate="listingheader_booking">Booking</th>
              </tr>
 
-             <tr tal:repeat="taskObj tasks">
+             <tal:loop tal:repeat="taskObj tasks">
+             <tr>
                  <td>
                    <a href=""
                       tal:attributes="href taskObj/absolute_url">
@@ -61,7 +61,9 @@
                      tal:define="totalActual python:here.getTotalActual(taskObj);"
                      tal:content="totalActual">actual</td> 
                 
-                 <td>
+             </tr>
+             <tr>
+                 <td colspan="3">
                    <div style="padding-top:5px;">
                      <span i18n:translate="label_hours" 
                            id="label_hours">Hours</span>
@@ -96,7 +98,7 @@
                        
                      <span i18n:translate="label_minutes" 
                            id="label_minutes">Minutes</span>
-                   </div><br />
+                   </div>
                 
                    <span i18n:translate="label_description">Comments:</span>
                    <div style="margin-right:15px; padding-bottom:10px;">
@@ -107,6 +109,7 @@
                  </td>
                  
              </tr>
+             </tal:loop>
           </table>
 
           <input class="context"

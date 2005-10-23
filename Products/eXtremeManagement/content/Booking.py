@@ -142,6 +142,23 @@ class Booking(BaseContent):
 
 
 
+    security.declarePublic('_renameAfterCreation')
+    def _renameAfterCreation(self, check_auto_id=False):
+        parent = self.aq_inner.aq_parent
+        maxId = 0
+        for id in parent.objectIds():
+            try:
+                intId = int(id)
+                maxId = max(maxId, intId)
+            except (TypeError, ValueError):
+                pass
+        newId = str(maxId + 1)
+        # Can't rename without a subtransaction commit when using
+        # portal_factory!
+        get_transaction().commit(1)
+        self.setId(newId)        
+
+
 registerType(Booking,PROJECTNAME)
 # end of class Booking
 

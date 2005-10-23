@@ -82,26 +82,18 @@
                 <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
               </tr>
  
-              <tr tal:define="iteration_path python:'/'.join(obj.getPhysicalPath());
-                              stories python:here.portal_catalog.searchResults(portal_type='Story',
-                                                                               sort_order='traverse',
-                                                                               review_state=['completed', 
-                                                                                             'in-progress', 
-                                                                                             'assigned'],
-                                                                               path=iteration_path);"
-                  tal:condition="stories"
+              <tr tal:define="stories python:obj.contentValues('Story');"
                   tal:repeat="story stories">
 
-                <div tal:define="storyObj story/getObject;
-                                 progress python:storyObj.get_progress_perc();
-                                 openTasks python:here.getOpenTasks(storyObj);
-                                 completedTasks python:here.getCompletedTasks(storyObj)">
+                <div tal:define="progress python:story.get_progress_perc();
+                                 openTasks python:here.getOpenTasks(story);
+                                 completedTasks python:here.getCompletedTasks(story)">
 
                   <td width="30%"> 
                     <a href="" 
                        id="storyTitle_project_overview"
-                       tal:attributes="href string:${storyObj/absolute_url}">
-                       <span tal:content="storyObj/Title">Title</span></a></td>
+                       tal:attributes="href story/absolute_url">
+                       <span tal:content="story/Title">Title</span></a></td>
 
                   <td id="progress_details" width="150">
                    <span id="progress_percentage" 
@@ -177,26 +169,18 @@
                 <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
               </tr>
 
-              <tr tal:define="iteration_path python:'/'.join(obj.getPhysicalPath());
-                              stories python:here.portal_catalog.searchResults(portal_type='Story',
-                                                                               sort_order='traverse',
-                                                                               review_state=['completed',
-                                                                                             'in-progress',
-                                                                                             'assigned'],
-                                                                               path=iteration_path);"
-                  tal:condition="stories"
+              <tr tal:define="stories python:obj.contentValues('Story');"
                   tal:repeat="story stories">
 
-                <div tal:define="storyObj story/getObject;
-                                 progress python:storyObj.get_progress_perc();
-                                 openTasks python:here.getOpenTasks(storyObj);
-                                 completedTasks python:here.getCompletedTasks(storyObj)">
+                <div tal:define="progress python:story.get_progress_perc();
+                                 openTasks python:here.getOpenTasks(story);
+                                 completedTasks python:here.getCompletedTasks(story)">
 
                   <td width="30%">
                     <a href=""
                        id="storyTitle_project_overview"
-                       tal:attributes="href string:${storyObj/absolute_url}">
-                       <span tal:content="storyObj/Title">Title</span></a></td>
+                       tal:attributes="href story/absolute_url">
+                       <span tal:content="story/Title">Title</span></a></td>
 
                   <td id="progress_details" width="150">
                    <span id="progress_percentage"
@@ -221,7 +205,7 @@
 
         <tal:block tal:define="project_path python:'/'.join(context.getPhysicalPath());
                                open_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
-                                                                                        review_state='open',
+                                                                                        review_state='new',
                                                                                         path=project_path,
                                                                                         sort_on='created',
                                                                                         sort_order='normal')"

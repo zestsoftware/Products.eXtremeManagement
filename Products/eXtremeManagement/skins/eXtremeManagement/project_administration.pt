@@ -17,9 +17,7 @@
   <body>
 
     <div metal:fill-slot="main"
-         tal:define="project_path python: '/'.join(context.getPhysicalPath());
-                     projects python:here.portal_catalog.searchResults(portal_type='Project', 
-                                                                       path=project_path,);">
+         tal:define="projects python:here.portal_catalog.searchResults(portal_type='Project');">
 
        <h1 i18n:translate="header_project_administration" 
            class="documentFirstHeading">
@@ -62,10 +60,8 @@
                              cellpadding="0"
                              cellspacing="3"
                              class="iteration-table"
-                             tal:define="project_path python: '/'.join(project.getObject().getPhysicalPath()); 
-                                         iterations python:here.portal_catalog.searchResults(portal_type='Iteration', 
-                                                                                       review_state=['completed', 'invoiced'],
-                                                                                       path=project_path)"
+                             tal:define="project_path python:'/'.join(project.getObject().getPhysicalPath()); 
+                                         iterations python:here.portal_catalog.searchResults(portal_type='Iteration', review_state=['completed', 'invoiced'], path=project_path);"
                              tal:condition="iterations"> 
                          <tr>
                             <td width="50%" 
@@ -99,11 +95,11 @@
                                <td id="td-iteration-state" tal:content="iteration/review_state">state</td>
                                <td id="td-iteration-estimate"
                                    tal:define="iterationObj iteration/getObject;
-                                               projectEstimate python:here.getIterationTotalEstimate(iterationObj)"
+                                               projectEstimate python:here.getTotalEstimate(iterationObj)"
                                    tal:content="projectEstimate">Estimate</td>
                                <td id="td-iteration-actual" 
                                    tal:define="iterationObj iteration/getObject; 
-                                               projectActual python:here.getIterationTotalActual(iterationObj)"
+                                               projectActual python:here.getTotalActual(iterationObj)"
                                    tal:content="projectActual">test2</td>
                             </tal:block>
                          </tr>
@@ -122,5 +118,3 @@
     </div>
   </body>
 </html>
-
-

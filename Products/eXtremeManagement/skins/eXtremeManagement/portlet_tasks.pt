@@ -10,8 +10,7 @@
 
 <div metal:define-macro="portlet"
      tal:define="DateTime python:modules['DateTime'].DateTime;
-                 results python:here.getTasks();"
-     tal:condition="python:portal.portal_membership.getAuthenticatedMember().has_role('Employee', 'Manager')">
+                 results python:here.getTasks();">
  
     <div class="portlet" id="portlet-project-admininstration">
 

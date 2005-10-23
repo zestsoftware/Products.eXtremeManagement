@@ -8,9 +8,8 @@
 
 <div metal:define-macro="portlet"
      tal:define="results python:here.portal_catalog.searchResults(portal_type='Story', 
-                                                                  review_state='pending');
-                 member python:portal.portal_membership.getAuthenticatedMember()"
-     tal:condition="python:results and member.has_role('Employee', 'Manager')">
+                                                                  review_state='pending');"
+     tal:condition="python:results">
 
     <div class="portlet" id="portlet-stories">
         <h5 i18n:translate="box_stories">Stories</h5>

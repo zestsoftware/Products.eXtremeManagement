@@ -10,7 +10,7 @@
 
 member = context.portal_membership.getAuthenticatedMember()
 items = context.portal_catalog.searchResults(portal_type='Task', 
-                                             review_state='open')
+                                             review_state=['open','assigned','in-progress'])
 list = []
 
 for item in items:

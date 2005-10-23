@@ -76,6 +76,16 @@ class testBooking(eXtremeManagementTestCase):
         pass
 
 
+    # from class Booking:
+    def test__renameAfterCreation(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Booking('temp_Booking')
+        ##self.folder._setObject('temp_Booking', o)
+        pass
+
 
     # Manually created methods
 
