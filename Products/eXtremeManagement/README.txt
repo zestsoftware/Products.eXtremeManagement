@@ -3,50 +3,59 @@ eXtreme Management Tool
 
 Features
 
-This application provides project administration which supports the eXtreme Programming Methodolgy.
-By developing number of new content types we can use iterations, Stories and tasks to manage our XP
-projects.
+This application provides project administration which supports the
+eXtreme Programming Methodology.  By developing a number of new
+content types we can use iterations, Stories and tasks to manage our
+XP projects.
 
 
 Content Types
 
     * Project
-      Multiple projects can be added by employees. For each project contact information of team
-      members, iterations and stories can be added by both the customers and employees.
+      Multiple projects can be added by employees. For each project
+      contact information of team members, iterations and stories can
+      be added by both the customers and employees.
 
     * Iteration
-      The project will be planned with iterations. An iteration is a period of 2 to 4 weeks in which
-      a number of stories will be implemented.
+      The project will be planned with iterations. An iteration is a
+      period of 2 to 4 weeks in which a number of stories will be
+      implemented.
 
     * Story
-      The customer can define new features by describing this feature in a story.
+      The customer can define new features by describing these feature
+      in a story.
 
     * Task
       The employees can estimate the story by defining tasks.
 
 
-Workfow
+Workflow
 
-Customers can create stories and submit then for estimating. The employees will find pending stories
-in the review portlet and can start adding more detailed tasks.
+Customers can create stories and submit them for estimating. The
+employees will find pending stories in the review portlet and can
+start adding more detailed tasks.
 
-After the employee has finished his tasklist he can set the estimate transition. This will show the
-customer the story in the 'to be assigned to iterations' list.
+After the employee has finished his tasklist he can set the estimate
+transition. This will show the customer the story in the 'to be
+assigned to iterations' list.
 
-The customer can then copy the story to the preferred iteration  and 'assign' the story.
+The customer can then copy the story to the preferred iteration and
+'assign' the story.
 
-After the stories are assigned to the iteration, the iterations state can be set to 'active'. Now
-employees can book their working hours on the tasks as the project goes on.
+After the stories are assigned to the iteration, the state of the
+iteration can be set to 'active'. Now employees can book their working
+hours on the tasks as the project goes on.
 
 
 Time Registration
 
-When a developer has done work on a task he can add bookings to the task and describe the work in the
-comment field.
+When a developer has done work on a task he can add bookings to the
+task and describe the work in the comment field.
 
 
 Project overview
 
-Customers can monitor all progress at the project overview page. This gives the customer the
-"Overall Plan" by showing each iteration in a list with progress bars. By clicking on a iteration
-more detailed information will be show about the stories.
+Customers can monitor all progress at the project overview page. This
+gives the customer the "Overall Plan" by showing each iteration in a
+list with progress bars. By clicking on an iteration more detailed
+information will be shown about the stories.
