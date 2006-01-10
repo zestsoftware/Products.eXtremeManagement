@@ -59,15 +59,17 @@ class testWorkflow(eXtremeManagementTestCase):
         self.workflow = self.portal.portal_workflow
         self.userfolder = self.portal.acl_users
 
-        self.userfolder._doAddUser('initial', 'secret', ['Manager'], [])
+        #self.userfolder._doAddUser('initial', 'secret', ['Manager'], [])
         self.userfolder._doAddUser('member', 'secret', ['Member'], [])
         self.userfolder._doAddUser('reviewer', 'secret', ['Reviewer'], [])
         self.userfolder._doAddUser('manager', 'secret', ['Manager'], [])
         self.userfolder._doAddUser('employee', 'secret', ['Employee'], [])
         self.userfolder._doAddUser('customer', 'secret', ['Customer'], [])
 
-        self.login('initial')
-        self.folder.invokeFactory('ProjectFolder', id='projects')
+        #self.login('initial')
+        self.login('manager')
+        # Create a projectfolder in the portal root
+        self.portal.invokeFactory('ProjectFolder', id='projects')
         self.projects = self.folder.projects
 
         self.projects.invokeFactory('Project', id='project')
@@ -77,6 +79,7 @@ class testWorkflow(eXtremeManagementTestCase):
         self.project.invokeFactory('Iteration', id='iteration')
         self.iteration = self.project.iteration
 
+        #self.login('customer')
         # Create Story in iteration
         self.iteration.invokeFactory('Story', id='story')
         self.story = self.iteration.story
@@ -86,11 +89,13 @@ class testWorkflow(eXtremeManagementTestCase):
         self.project.invokeFactory('Story', id='projectstory')
         self.projectstory = self.project.projectstory
 
+        self.login('employee')
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
 
         self.task.invokeFactory('Booking', id='booking')
         self.booking = self.task.booking
+        self.logout()
 
     # Manually created methods
     def tryForbiddenTransition(self, ctObject, originalState,
@@ -109,20 +114,9 @@ class testWorkflow(eXtremeManagementTestCase):
     def testProjectTransitions(self):
         """Test transitions of the Project Content Type
         """
-
-        # Owner can transition a project:
+        # Manager (same as Owner here) can transition a project:
         # private -> active -> completed -> active -> private
-        self.tryAllowedTransition(self.project, 'project',
-                                  'private', 'activate', 'active')
-        self.tryAllowedTransition(self.project, 'project',
-                                  'active', 'close', 'completed')
-        self.tryAllowedTransition(self.project, 'project',
-                                  'completed', 'reactivate', 'active')
-        self.tryAllowedTransition(self.project, 'project',
-                                  'active', 'deactivate', 'private')
-
         self.login('manager')
-        # Manager can do the same here as Owner
         self.tryAllowedTransition(self.project, 'project',
                                   'private', 'activate', 'active')
         self.tryAllowedTransition(self.project, 'project',
@@ -171,8 +165,10 @@ class testWorkflow(eXtremeManagementTestCase):
         for role in ['Member','Authenticated','Employee','Customer','Reviewer','Owner']:
             print '%s portal roles:' % role
             print self.getPermissionsOfRole(self.portal, role)
+        """
 
 
+        """
         for user in self.userfolder.getUserIds():
             print '##############################'
             print user + ':'
@@ -180,7 +176,10 @@ class testWorkflow(eXtremeManagementTestCase):
             roles = self.userfolder.getUserById(user).getRoles()
             for role in roles:
                 print '    role %s:' % role
-                print self.getPermissionsOfRole(self.portal, role)
+                if role == 'Manager':
+                    print 'A Manager can do anything.'
+                else:
+                    print self.getPermissionsOfRole(self.portal, role)
 
             for object in [self.projects,self.project,self.iteration,self.story,self.task,self.booking]:
                 self.printLocalPermissions(object, user)
