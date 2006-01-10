@@ -1,24 +1,29 @@
 # File: ProjectMember.py
-# 
-# Copyright (c) 2005 by Zest software 2005
-# Generator: ArchGenXML Version 1.4.0-beta2 devel 
+#
+# Copyright (c) 2006 by Zest software
+# Generator: ArchGenXML 
 #            http://plone.org/products/archgenxml
 #
-# GNU General Public Licence (GPL)
-# 
-# This program is free software; you can redistribute it and/or modify it under
-# the terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
-# This program is distributed in the hope that it will be useful, but WITHOUT
-# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
-# details.
-# You should have received a copy of the GNU General Public License along with
-# this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-# Place, Suite 330, Boston, MA  02111-1307  USA
+# GNU General Public License (GPL)
 #
-__author__  = '''Ahmad Hadi <a.hadi@zestsoftware.nl>'''
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+# 02110-1301, USA.
+#
+
+__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
+<m.van.rees@zestsoftware.nl>"""
 __docformat__ = 'plaintext'
 
 
@@ -36,8 +41,10 @@ BaseSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 
 ##/code-section module-header
 
-schema=Schema((
-    StringField('fullname',
+schema = Schema((
+
+    StringField(
+        name='fullname',
         index="FieldIndex",
         widget=StringWidget(
             description="Enter a name, eg. John Smith.",
@@ -49,7 +56,8 @@ schema=Schema((
         required=1
     ),
 
-    StringField('phone',
+    StringField(
+        name='phone',
         index="FieldIndex",
         widget=IntegerWidget
         (
@@ -63,7 +71,8 @@ schema=Schema((
         required=1
     ),
 
-    StringField('email',
+    StringField(
+        name='email',
         index="FieldIndex",
         widget=StringWidget(
             description="Enter your email address.",
@@ -81,8 +90,8 @@ schema=Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-ProjectMember_schema = BaseSchema + \
-    schema
+ProjectMember_schema = BaseSchema.copy() + \
+    schema.copy()
 
 ##code-section after-schema #fill in your manual code here
 ProjectMember_schema = schema + BaseSchema
@@ -94,22 +103,22 @@ class ProjectMember(BaseContent):
 
 
     # This name appears in the 'add' box
-    archetype_name             = 'ProjectMember'
+    archetype_name = 'ProjectMember'
 
-    meta_type                  = 'ProjectMember'
-    portal_type                = 'ProjectMember'
-    allowed_content_types      = []
-    filter_content_types       = 0
-    global_allow               = 0
-    allow_discussion           = 0
-    content_icon               = 'user.gif'
-    immediate_view             = 'base_view'
-    default_view               = 'base_view'
-    suppl_views                = ()
-    typeDescription            = "ProjectMember"
-    typeDescMsgId              = 'description_edit_projectmember'
+    meta_type = 'ProjectMember'
+    portal_type = 'ProjectMember'
+    allowed_content_types = []
+    filter_content_types = 0
+    global_allow = 0
+    allow_discussion = False
+    content_icon = 'user.gif'
+    immediate_view = 'base_view'
+    default_view = 'base_view'
+    suppl_views = ()
+    typeDescription = "ProjectMember"
+    typeDescMsgId = 'description_edit_projectmember'
 
-    _at_rename_after_creation  = True
+    _at_rename_after_creation = True
 
     schema = ProjectMember_schema
 
@@ -117,7 +126,7 @@ class ProjectMember(BaseContent):
     ##/code-section class-header
 
 
-    #Methods
+    # Methods
 
 registerType(ProjectMember,PROJECTNAME)
 # end of class ProjectMember

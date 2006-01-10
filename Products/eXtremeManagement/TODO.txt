@@ -1,0 +1,5 @@
+* Probably remove CustomerFolder, Customer and ProjectMember from UML
+  model.
+
+* Check and double-check newly generated code in directory Extensions
+  with old dumped code in directory workflow.

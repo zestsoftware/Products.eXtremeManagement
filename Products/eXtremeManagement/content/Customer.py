@@ -1,24 +1,29 @@
 # File: Customer.py
-# 
-# Copyright (c) 2005 by Zest software 2005
-# Generator: ArchGenXML Version 1.4.0-beta2 devel 
+#
+# Copyright (c) 2006 by Zest software
+# Generator: ArchGenXML 
 #            http://plone.org/products/archgenxml
 #
-# GNU General Public Licence (GPL)
-# 
-# This program is free software; you can redistribute it and/or modify it under
-# the terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
-# This program is distributed in the hope that it will be useful, but WITHOUT
-# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
-# details.
-# You should have received a copy of the GNU General Public License along with
-# this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-# Place, Suite 330, Boston, MA  02111-1307  USA
+# GNU General Public License (GPL)
 #
-__author__  = '''Ahmad Hadi <a.hadi@zestsoftware.nl>'''
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+# 02110-1301, USA.
+#
+
+__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
+<m.van.rees@zestsoftware.nl>"""
 __docformat__ = 'plaintext'
 
 
@@ -37,8 +42,10 @@ OrderedBaseFolderSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisib
 
 ##/code-section module-header
 
-schema=Schema((
-    StringField('name',
+schema = Schema((
+
+    StringField(
+        name='name',
         index="FieldIndex",
         widget=StringWidget(
             description="Enter the company name for this customer",
@@ -50,7 +57,8 @@ schema=Schema((
         required=1
     ),
 
-    StringField('address',
+    StringField(
+        name='address',
         index="FieldIndex",
         widget=StringWidget(
             description="Enter address.",
@@ -62,7 +70,8 @@ schema=Schema((
         required=1
     ),
 
-    StringField('zipCode',
+    StringField(
+        name='zipCode',
         index="FieldIndex",
         widget=StringWidget(
             description="Enter zip code.",
@@ -74,7 +83,8 @@ schema=Schema((
         required=1
     ),
 
-    StringField('city',
+    StringField(
+        name='city',
         index="FieldIndex",
         widget=StringWidget(
             description="Enter city name.",
@@ -86,7 +96,8 @@ schema=Schema((
         required=1
     ),
 
-    StringField('country',
+    StringField(
+        name='country',
         index="FieldIndex",
         widget=StringWidget(
             description="Enter country.",
@@ -98,7 +109,8 @@ schema=Schema((
         required=1
     ),
 
-    StringField('phone',
+    StringField(
+        name='phone',
         index="FieldIndex",
         widget=IntegerWidget
         (
@@ -112,7 +124,8 @@ schema=Schema((
         required=1
     ),
 
-    StringField('fax',
+    StringField(
+        name='fax',
         index="FieldIndex",
         widget=IntegerWidget
         (
@@ -125,7 +138,8 @@ schema=Schema((
         )
     ),
 
-    StringField('website',
+    StringField(
+        name='website',
         index="FieldIndex",
         widget=StringWidget(
             description="Enter your website address.",
@@ -143,8 +157,8 @@ schema=Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-Customer_schema = OrderedBaseFolderSchema + \
-    schema
+Customer_schema = OrderedBaseFolderSchema.copy() + \
+    schema.copy()
 
 ##code-section after-schema #fill in your manual code here
 
@@ -158,36 +172,36 @@ class Customer(OrderedBaseFolder):
 
 
     # This name appears in the 'add' box
-    archetype_name             = 'Customer'
+    archetype_name = 'Customer'
 
-    meta_type                  = 'Customer'
-    portal_type                = 'Customer'
-    allowed_content_types      = ['ProjectMember']
-    filter_content_types       = 1
-    global_allow               = 0
-    allow_discussion           = 0
-    content_icon               = 'group_icon.gif'
-    immediate_view             = 'base_view'
-    default_view               = 'base_view'
-    suppl_views                = ()
-    typeDescription            = "Customer"
-    typeDescMsgId              = 'description_edit_customer'
+    meta_type = 'Customer'
+    portal_type = 'Customer'
+    allowed_content_types = ['ProjectMember']
+    filter_content_types = 1
+    global_allow = 0
+    allow_discussion = False
+    content_icon = 'group_icon.gif'
+    immediate_view = 'base_view'
+    default_view = 'base_view'
+    suppl_views = ()
+    typeDescription = "Customer"
+    typeDescMsgId = 'description_edit_customer'
 
     actions =  (
 
 
-       {'action':      "string:$object_url/folder_localrole_form",
-        'category':    "object",
-        'id':          'local_roles',
-        'name':        'Sharing',
+       {'action': "string:${object_url}/folder_localrole_form",
+        'category': "object",
+        'id': 'local_roles',
+        'name': 'Sharing',
         'permissions': ("View",),
-        'condition'  : 'python:1'
+        'condition': 'python:1'
        },
 
 
     )
 
-    _at_rename_after_creation  = True
+    _at_rename_after_creation = True
 
     schema = Customer_schema
 
@@ -195,7 +209,7 @@ class Customer(OrderedBaseFolder):
     ##/code-section class-header
 
 
-    #Methods
+    # Methods
 
 registerType(Customer,PROJECTNAME)
 # end of class Customer

@@ -1,4 +1,4 @@
-AGX = python ArchGenXML/ArchGenXML.py --detailed-created-permissions=1
+AGX = python ArchGenXML/ArchGenXML.py
 PRODUCT = eXtremeManagement
 CONFIG = model/generate.conf
 MODEL = model/${PRODUCT}.zuml

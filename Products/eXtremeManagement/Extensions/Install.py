@@ -1,28 +1,31 @@
-""" Extensions/Install.py """
-
-# Copyright (c) 2005 by Zest software 2005
+# File: eXtremeManagement.py
 #
-# Generated: 
-# Generator: ArchGenXML Version 1.4.0-beta2 devel
+# Copyright (c) 2006 by Zest software
+# Generator: ArchGenXML Version 1.4.1 svn/devel
 #            http://plone.org/products/archgenxml
 #
-# GNU General Public Licence (GPL)
-# 
-# This program is free software; you can redistribute it and/or modify it under
-# the terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
-# This program is distributed in the hope that it will be useful, but WITHOUT
-# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
-# details.
-# You should have received a copy of the GNU General Public License along with
-# this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-# Place, Suite 330, Boston, MA  02111-1307  USA
+# GNU General Public License (GPL)
 #
-__author__    = '''Ahmad Hadi <a.hadi@zestsoftware.nl>'''
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+# 02110-1301, USA.
+#
+
+__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
+<m.van.rees@zestsoftware.nl>"""
 __docformat__ = 'plaintext'
-__version__   = '$ Revision 0.0 $'[11:-2]
+
 
 import os.path
 import sys
@@ -83,12 +86,47 @@ def install(self):
     else:
         print >>out,'no workflow install'
 
+    #bind classes to workflows
+    wft = getToolByName(self,'portal_workflow')
+    wft.setChainForPortalTypes( ['CustomerFolder'], "folder_workflow")
+    wft.setChainForPortalTypes( ['ProjectFolder'], "folder_workflow")
 
     # enable portal_factory for given types
     factory_tool = getToolByName(self,'portal_factory')
     factory_types=[
         ] + factory_tool.getFactoryTypes().keys()
     factory_tool.manage_setPortalFactoryTypes(listOfTypeIds=factory_types)
+
+    from Products.eXtremeManagement.config import STYLESHEETS
+    try:
+        portal_css = getToolByName(portal, 'portal_css')
+        for stylesheet in STYLESHEETS:
+            try:
+                portal_css.unregisterResource(stylesheet['id'])
+            except:
+                pass
+            defaults = {'id': '',
+            'media': 'all',
+            'enabled': True}
+            defaults.update(stylesheet)
+            portal_css.manage_addStylesheet(**defaults)
+    except:
+        # No portal_css registry
+        pass
+    from Products.eXtremeManagement.config import JAVASCRIPTS
+    try:
+        portal_javascripts = getToolByName(portal, 'portal_javascripts')
+        for javascript in JAVASCRIPTS:
+            try:
+                portal_javascripts.unregisterResource(stylesheet['id'])
+            except:
+                pass
+            defaults = {'id': ''}
+            defaults.update(javascript)
+            portal_javascripts.registerScript(**defaults)
+    except:
+        # No portal_javascripts registry
+        pass
 
     # try to call a custom install method
     # in 'AppInstall.py' method 'install'
@@ -113,15 +151,18 @@ def uninstall(self):
 
     # try to call a workflow uninstall method
     # in 'InstallWorkflows.py' method 'uninstallWorkflows'
+    
+    # TODO: this is buggy code. There is no workflow uninstaller in
+    # the generated InstallWorkflows.py.
     try:
-        installWorkflows = ExternalMethod('temp','temp',PROJECTNAME+'.InstallWorkflows', 'uninstallWorkflows').__of__(self)
+        uninstallWorkflows = ExternalMethod('temp','temp',PROJECTNAME+'.InstallWorkflows', 'uninstallWorkflows').__of__(self)
     except NotFound:
-        installWorkflows = None
+        uninstallWorkflows = None
 
-    if installWorkflows:
-        print >>out,'Workflow Uninstall:'
-        res = uninstallWorkflows(self,out)
-        print >>out,res or 'no output'
+    if uninstallWorkflows:
+        print >>out, 'Workflow Uninstall:'
+        res = uninstallWorkflows(self, out)
+        print >>out, res or 'no output'
     else:
         print >>out,'no workflow uninstall'
 

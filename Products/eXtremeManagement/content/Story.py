@@ -1,24 +1,29 @@
 # File: Story.py
-# 
-# Copyright (c) 2005 by Zest software 2005
-# Generator: ArchGenXML Version 1.4.0-beta2 devel 
+#
+# Copyright (c) 2006 by Zest software
+# Generator: ArchGenXML 
 #            http://plone.org/products/archgenxml
 #
-# GNU General Public Licence (GPL)
-# 
-# This program is free software; you can redistribute it and/or modify it under
-# the terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
-# This program is distributed in the hope that it will be useful, but WITHOUT
-# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
-# details.
-# You should have received a copy of the GNU General Public License along with
-# this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-# Place, Suite 330, Boston, MA  02111-1307  USA
+# GNU General Public License (GPL)
 #
-__author__  = '''Ahmad Hadi <a.hadi@zestsoftware.nl>'''
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+# 02110-1301, USA.
+#
+
+__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
+<m.van.rees@zestsoftware.nl>"""
 __docformat__ = 'plaintext'
 
 
@@ -35,8 +40,10 @@ BaseFolderSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 
 ##/code-section module-header
 
-schema=Schema((
-    TextField('mainText',
+schema = Schema((
+
+    TextField(
+        name='mainText',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
             description="Enter the main description for this object.",
@@ -49,6 +56,18 @@ schema=Schema((
         required=1
     ),
 
+    IntegerField(
+        name='lastTaskId',
+        default="0",
+        widget=IntegerWidget(
+            visible={'edit' : 'invisible', 'view' : 'visible' } ,
+            label='Lasttaskid',
+            label_msgid='eXtremeManagement_label_lastTaskId',
+            description_msgid='eXtremeManagement_help_lastTaskId',
+            i18n_domain='eXtremeManagement',
+        )
+    ),
+
 ),
 )
 
@@ -56,8 +75,8 @@ schema=Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-Story_schema = OrderedBaseFolderSchema + \
-    schema
+Story_schema = OrderedBaseFolderSchema.copy() + \
+    schema.copy()
 
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
@@ -68,22 +87,22 @@ class Story(OrderedBaseFolder):
 
 
     # This name appears in the 'add' box
-    archetype_name             = 'Story'
+    archetype_name = 'Story'
 
-    meta_type                  = 'Story'
-    portal_type                = 'Story'
-    allowed_content_types      = ['Task']
-    filter_content_types       = 1
-    global_allow               = 0
-    allow_discussion           = 0
-    content_icon               = 'story_icon.gif'
-    immediate_view             = 'base_view'
-    default_view               = 'base_view'
-    suppl_views                = ()
-    typeDescription            = "Story"
-    typeDescMsgId              = 'description_edit_story'
+    meta_type = 'Story'
+    portal_type = 'Story'
+    allowed_content_types = ['Task']
+    filter_content_types = 1
+    global_allow = 0
+    allow_discussion = False
+    content_icon = 'story_icon.gif'
+    immediate_view = 'base_view'
+    default_view = 'base_view'
+    suppl_views = ()
+    typeDescription = "Story"
+    typeDescMsgId = 'description_edit_story'
 
-    _at_rename_after_creation  = True
+    _at_rename_after_creation = True
 
     schema = Story_schema
 
@@ -91,16 +110,13 @@ class Story(OrderedBaseFolder):
     ##/code-section class-header
 
 
-    #Methods
-
+    # Methods
     security.declarePublic('CookedBody')
     def CookedBody(self):
         """
         Dummy attribute to allow drop-in replacement of Document
         """
         return self.getMainText()
-
-
 
     security.declarePublic('get_progress_perc')
     def get_progress_perc(self):
@@ -118,6 +134,18 @@ class Story(OrderedBaseFolder):
             return round(actual/estimated*100, 1)
         else:
             return 0
+
+    # Manually created methods
+
+    def generateUniqueId(self, type_name):
+        """ Generate sequential IDs for tasks
+        With thanks to Upfront Systems for their code from Upfront Project
+        """
+        if type_name == 'Task':
+            self.lastTaskId += 1
+            return str(self.lastTaskId)
+        else:
+            return self.aq_parent.generateUniqueId(type_name)
 
 
 

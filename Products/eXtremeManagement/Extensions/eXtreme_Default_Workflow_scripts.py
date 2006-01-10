@@ -1,8 +1,9 @@
-# File: content.py
-#
+""" Workflow Scripts for: eXtreme_Default_Workflow """
+
 # Copyright (c) 2006 by Zest software
-# Generator: ArchGenXML 
-#            http://plone.org/products/archgenxml
+#
+# Generator: ArchGenXML Version 1.4.1 svn/devel
+#            http://sf.net/projects/archetypes/
 #
 # GNU General Public License (GPL)
 #
@@ -21,29 +22,12 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 # 02110-1301, USA.
 #
-
-__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>"""
+__author__    = '''Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
+<m.van.rees@zestsoftware.nl>'''
 __docformat__ = 'plaintext'
+__version__   = '$ Revision 0.0 $'[11:-2]
 
+##code-section workflow-script-header #fill in your manual code here
+##/code-section workflow-script-header
 
-##code-section init-module-header #fill in your manual code here
-##/code-section init-module-header
-
-
-# Subpackages
-
-# Classes
-import Project
-import Iteration
-import Story
-import Task
-import ProjectMember
-import Customer
-import CustomerFolder
-import ProjectFolder
-import Booking
-
-##code-section init-module-footer #fill in your manual code here
-##/code-section init-module-footer
-
+## []

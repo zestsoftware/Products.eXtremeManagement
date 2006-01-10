@@ -16,530 +16,564 @@ msgstr ""
 "Preferred-Encodings: latin1 utf-8\n"
 "Domain: eXtremeManagement\n"
 
-#: Task.py
+#. Default: "actual"
 #. actual
+#: Task.py
 msgid "eXtremeManagement_help_actual"
-msgstr "actual"
+msgstr ""
 
-
-#: Customer.py
+## 1 more: content/Customer.py
+#. Default: "Enter address."
 #. Enter address.
-## 1 more: content/Customer.py
+#: Customer.py
+#: content/Customer.py
 msgid "eXtremeManagement_help_address"
-msgstr "Enter address."
+msgstr ""
 
-
-#: Customer.py
+#. Default: "adress"
 #. adress
+#: Customer.py
 msgid "eXtremeManagement_help_adress"
-msgstr "adress"
+msgstr ""
 
-
-#: Task.py
+#. Default: "assignTo"
 #. assignTo
+#: Task.py
 msgid "eXtremeManagement_help_assignTo"
-msgstr "assignTo"
+msgstr ""
 
-
-#: content/Task.py
+#. Default: "assignees"
 #. Select the member(s) to assign this task to.
-#: Task.py
 #. assignees
-msgid "eXtremeManagement_help_assignees"
-msgstr "assignees"
-
-
-#: Story.py
-#. attribute_25
-msgid "eXtremeManagement_help_attribute_25"
-msgstr "attribute_25"
-
-
-#: Project.py
-#. attribute_30
-msgid "eXtremeManagement_help_attribute_30"
-msgstr "attribute_30"
-
-
-#: Task.py
-#. attribute_33
-msgid "eXtremeManagement_help_attribute_33"
-msgstr "attribute_33"
-
-
-#: Booking.py
-#. billable
-## 1 more: content/Booking.py
-msgid "eXtremeManagement_help_billable"
-msgstr "billable"
-
-
-#: content/Customer.py
-#. Enter city name.
-#: Customer.py
-#. city
-msgid "eXtremeManagement_help_city"
-msgstr "city"
-
-
-#: ProjectMember.py
-#. Enter some comments.
-#: Customer.py
-#. comments
-msgid "eXtremeManagement_help_comments"
-msgstr "comments"
-
-
-#: content/Customer.py
-#. Enter country.
-#: Customer.py
-#. country
-msgid "eXtremeManagement_help_country"
-msgstr "country"
-
-
-#: ProjectFolder.py
-#. customerfolders
-msgid "eXtremeManagement_help_customerfolders"
-msgstr "customerfolders"
-
-
-#: Project.py
-#. customers
-msgid "eXtremeManagement_help_customers"
-msgstr "customers"
-
-
-#: Story.py
-#. descriptino
-msgid "eXtremeManagement_help_descriptino"
-msgstr "descriptino"
-
-
-#: Customer.py
-#. description
-msgid "eXtremeManagement_help_description"
-msgstr "description"
-
-
-#: ProjectMember.py
-#. Enter your email address.
-#: Customer.py
-#. email
-## 1 more: content/ProjectMember.py
-msgid "eXtremeManagement_help_email"
-msgstr "email"
-
-
-#: Customer.py
-#. emailAddress
-msgid "eXtremeManagement_help_emailAddress"
-msgstr "emailAddress"
-
-
-#: content/Iteration.py
-#. endDate
-msgid "eXtremeManagement_help_endDate"
-msgstr "endDate"
-
-
 #: content/Task.py
-#. Enter the estimated time (in hours).
 #: Task.py
-#. estimate
-msgid "eXtremeManagement_help_estimate"
-msgstr "estimate"
+msgid "eXtremeManagement_help_assignees"
+msgstr ""
 
-
-#: content/Customer.py
-#. Enter your fax number.
-#: Customer.py
-#. fax
-msgid "eXtremeManagement_help_fax"
-msgstr "fax"
-
-
-#: Customer.py
-#. faxNumber
-msgid "eXtremeManagement_help_faxNumber"
-msgstr "faxNumber"
-
-
-#: ProjectMember.py
-#. firstName
-msgid "eXtremeManagement_help_firstName"
-msgstr "firstName"
-
-
-#: content/ProjectMember.py
-#. Enter a name, eg. John Smith.
-#: ProjectMember.py
-#. fullname
-msgid "eXtremeManagement_help_fullname"
-msgstr "fullname"
-
-
-#: Booking.py
-#. hours
-## 1 more: content/Booking.py
-msgid "eXtremeManagement_help_hours"
-msgstr "hours"
-
-
-#: Customer.py
-#. id
-msgid "eXtremeManagement_help_id"
-msgstr "id"
-
-
-#: ProjectMember.py
-#. lastName
-msgid "eXtremeManagement_help_lastName"
-msgstr "lastName"
-
-
-#: Customer.py
-#. location
-msgid "eXtremeManagement_help_location"
-msgstr "location"
-
-
+#. Default: "attribute_25"
+#. attribute_25
 #: Story.py
-#. mainText
-#: content/Story.py
-#. Enter the main description for this object.
-msgid "eXtremeManagement_help_mainText"
-msgstr "mainText"
+msgid "eXtremeManagement_help_attribute_25"
+msgstr ""
 
-
-#: content/Iteration.py
-#. manHours
-msgid "eXtremeManagement_help_manHours"
-msgstr "manHours"
-
-
-#: Booking.py
-#. minutes
-## 1 more: content/Booking.py
-msgid "eXtremeManagement_help_minutes"
-msgstr "minutes"
-
-
-#: content/Customer.py
-#. Enter full name, eg. John Smith.
-#: Customer.py
-#. name
-msgid "eXtremeManagement_help_name"
-msgstr "name"
-
-
-#: ProjectMember.py
-#. Enter your phone number.
-#: Customer.py
-#. phone
-## 2 more: content/ProjectMember.py, content/Customer.py
-msgid "eXtremeManagement_help_phone"
-msgstr "phone"
-
-
-#: Customer.py
-#. phoneNumber
-msgid "eXtremeManagement_help_phoneNumber"
-msgstr "phoneNumber"
-
-
-#: content/Iteration.py
-#. startDate
-msgid "eXtremeManagement_help_startDate"
-msgstr "startDate"
-
-
-#: Task.py
-#. task
-msgid "eXtremeManagement_help_task"
-msgstr "task"
-
-
-#: Task.py
-#. taskDescription
-msgid "eXtremeManagement_help_taskDescription"
-msgstr "taskDescription"
-
-
-#: Customer.py
-#. title
-msgid "eXtremeManagement_help_title"
-msgstr "title"
-
-
-#: content/Customer.py
-#. Enter your website address.
-#: Customer.py
-#. website
-msgid "eXtremeManagement_help_website"
-msgstr "website"
-
-
-#: content/Customer.py
-#. Enter zip code.
-#: Customer.py
-#. zipCode
-msgid "eXtremeManagement_help_zipCode"
-msgstr "zipCode"
-
-
-#: Task.py
-#. Actual
-msgid "eXtremeManagement_label_actual"
-msgstr "Actual"
-
-
-#: Customer.py
-#. Address
-## 1 more: content/Customer.py
-msgid "eXtremeManagement_label_address"
-msgstr "Address"
-
-
-#: Customer.py
-#. Adress
-msgid "eXtremeManagement_label_adress"
-msgstr "Adress"
-
-
-#: Task.py
-#. Assignto
-msgid "eXtremeManagement_label_assignTo"
-msgstr "Assignto"
-
-
-#: Task.py
-#. Assignees
-## 1 more: content/Task.py
-msgid "eXtremeManagement_label_assignees"
-msgstr "Assignees"
-
-
-#: Story.py
-#. Attribute_25
-msgid "eXtremeManagement_label_attribute_25"
-msgstr "Attribute_25"
-
-
+#. Default: "attribute_30"
+#. attribute_30
 #: Project.py
-#. Attribute_30
-msgid "eXtremeManagement_label_attribute_30"
-msgstr "Attribute_30"
+msgid "eXtremeManagement_help_attribute_30"
+msgstr ""
 
-
+#. Default: "attribute_33"
+#. attribute_33
 #: Task.py
-#. Attribute_33
-msgid "eXtremeManagement_label_attribute_33"
-msgstr "Attribute_33"
+msgid "eXtremeManagement_help_attribute_33"
+msgstr ""
 
-
-#: Booking.py
-#. Billable
 ## 1 more: content/Booking.py
-msgid "eXtremeManagement_label_billable"
-msgstr "Billable"
+#. Default: "billable"
+#. billable
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_help_billable"
+msgstr ""
 
-
+#. Default: "city"
+#. Enter city name.
+#. city
+#: content/Customer.py
 #: Customer.py
-#. City
-## 1 more: content/Customer.py
-msgid "eXtremeManagement_label_city"
-msgstr "City"
+msgid "eXtremeManagement_help_city"
+msgstr ""
 
-
+#. Default: "comments"
+#. Enter some comments.
+#. comments
+#: ProjectMember.py
 #: Customer.py
-#. Comments
-msgid "eXtremeManagement_label_comments"
-msgstr "Comments"
+msgid "eXtremeManagement_help_comments"
+msgstr ""
 
-
+#. Default: "country"
+#. Enter country.
+#. country
+#: content/Customer.py
 #: Customer.py
-#. Country
-## 1 more: content/Customer.py
-msgid "eXtremeManagement_label_country"
-msgstr "Country"
+msgid "eXtremeManagement_help_country"
+msgstr ""
 
-
+#. Default: "customerfolders"
+#. customerfolders
 #: ProjectFolder.py
-#. Customerfolders
-msgid "eXtremeManagement_label_customerfolders"
-msgstr "Customerfolders"
+msgid "eXtremeManagement_help_customerfolders"
+msgstr ""
 
-
+#. Default: "customers"
+#. customers
 #: Project.py
-#. Customers
-msgid "eXtremeManagement_label_customers"
-msgstr "Customers"
+msgid "eXtremeManagement_help_customers"
+msgstr ""
 
-
+#. Default: "descriptino"
+#. descriptino
 #: Story.py
-#. Descriptino
-msgid "eXtremeManagement_label_descriptino"
-msgstr "Descriptino"
+msgid "eXtremeManagement_help_descriptino"
+msgstr ""
 
-
+#. Default: "description"
+#. description
 #: Customer.py
-#. Description
-msgid "eXtremeManagement_label_description"
-msgstr "Description"
+msgid "eXtremeManagement_help_description"
+msgstr ""
 
-
-#: Customer.py
-#. Email
 ## 1 more: content/ProjectMember.py
-msgid "eXtremeManagement_label_email"
-msgstr "Email"
-
-
+#. Default: "email"
+#. Enter your email address.
+#. email
+#: ProjectMember.py
 #: Customer.py
-#. Emailaddress
-msgid "eXtremeManagement_label_emailAddress"
-msgstr "Emailaddress"
+#: content/ProjectMember.py
+msgid "eXtremeManagement_help_email"
+msgstr ""
 
+#. Default: "emailAddress"
+#. emailAddress
+#: Customer.py
+msgid "eXtremeManagement_help_emailAddress"
+msgstr ""
 
+#. Default: "endDate"
+#. endDate
 #: content/Iteration.py
-#. Enddate
-msgid "eXtremeManagement_label_endDate"
-msgstr "Enddate"
+msgid "eXtremeManagement_help_endDate"
+msgstr ""
 
-
+#. Default: "estimate"
+#. Enter the estimated time (in hours).
+#. estimate
+#: content/Task.py
 #: Task.py
-#. Estimate
-## 1 more: content/Task.py
-msgid "eXtremeManagement_label_estimate"
-msgstr "Estimate"
+msgid "eXtremeManagement_help_estimate"
+msgstr ""
 
-
+#. Default: "fax"
+#. Enter your fax number.
+#. fax
+#: content/Customer.py
 #: Customer.py
-#. Fax
-## 1 more: content/Customer.py
-msgid "eXtremeManagement_label_fax"
-msgstr "Fax"
+msgid "eXtremeManagement_help_fax"
+msgstr ""
 
-
+#. Default: "faxNumber"
+#. faxNumber
 #: Customer.py
-#. Faxnumber
-msgid "eXtremeManagement_label_faxNumber"
-msgstr "Faxnumber"
+msgid "eXtremeManagement_help_faxNumber"
+msgstr ""
 
-
+#. Default: "firstName"
+#. firstName
 #: ProjectMember.py
-#. Firstname
-msgid "eXtremeManagement_label_firstName"
-msgstr "Firstname"
+msgid "eXtremeManagement_help_firstName"
+msgstr ""
 
-
+#. Default: "fullname"
+#. Enter a name, eg. John Smith.
+#. fullname
+#: content/ProjectMember.py
 #: ProjectMember.py
-#. Fullname
-## 1 more: content/ProjectMember.py
-msgid "eXtremeManagement_label_fullname"
-msgstr "Fullname"
+msgid "eXtremeManagement_help_fullname"
+msgstr ""
 
-
-#: Booking.py
-#. Hours
 ## 1 more: content/Booking.py
-msgid "eXtremeManagement_label_hours"
-msgstr "Hours"
+#. Default: "hours"
+#. hours
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_help_hours"
+msgstr ""
 
-
+#. Default: "id"
+#. id
 #: Customer.py
-#. Id
-msgid "eXtremeManagement_label_id"
-msgstr "Id"
+msgid "eXtremeManagement_help_id"
+msgstr ""
 
-
+#. Default: "lastName"
+#. lastName
 #: ProjectMember.py
-#. Lastname
-msgid "eXtremeManagement_label_lastName"
-msgstr "Lastname"
+msgid "eXtremeManagement_help_lastName"
+msgstr ""
 
+#. Default: "lastTaskId"
+#: content/Story.py
+msgid "eXtremeManagement_help_lastTaskId"
+msgstr ""
 
+#. Default: "location"
+#. location
 #: Customer.py
-#. Location
-msgid "eXtremeManagement_label_location"
-msgstr "Location"
+msgid "eXtremeManagement_help_location"
+msgstr ""
 
-
+#. Default: "mainText"
+#. mainText
+#. Enter the main description for this object.
 #: Story.py
-#. Maintext
-## 1 more: content/Story.py
-msgid "eXtremeManagement_label_mainText"
-msgstr "Maintext"
+#: content/Story.py
+msgid "eXtremeManagement_help_mainText"
+msgstr ""
 
-
+#. Default: "manHours"
+#. manHours
 #: content/Iteration.py
-#. Manhours
-msgid "eXtremeManagement_label_manHours"
-msgstr "Manhours"
+msgid "eXtremeManagement_help_manHours"
+msgstr ""
 
-
-#: Booking.py
-#. Minutes
 ## 1 more: content/Booking.py
-msgid "eXtremeManagement_label_minutes"
-msgstr "Minutes"
+#. Default: "minutes"
+#. minutes
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_help_minutes"
+msgstr ""
 
-
+#. Default: "name"
+#. Enter full name, eg. John Smith.
+#. name
+#: content/Customer.py
 #: Customer.py
-#. Name
-## 1 more: content/Customer.py
-msgid "eXtremeManagement_label_name"
-msgstr "Name"
+msgid "eXtremeManagement_help_name"
+msgstr ""
 
-
-#: Customer.py
-#. Phone
 ## 2 more: content/ProjectMember.py, content/Customer.py
-msgid "eXtremeManagement_label_phone"
-msgstr "Phone"
-
-
+#. Default: "phone"
+#. Enter your phone number.
+#. phone
+#: ProjectMember.py
 #: Customer.py
-#. Phonenumber
-msgid "eXtremeManagement_label_phoneNumber"
-msgstr "Phonenumber"
+#: content/ProjectMember.py
+msgid "eXtremeManagement_help_phone"
+msgstr ""
 
+#. Default: "phoneNumber"
+#. phoneNumber
+#: Customer.py
+msgid "eXtremeManagement_help_phoneNumber"
+msgstr ""
 
+#. Default: "startDate"
+#. startDate
 #: content/Iteration.py
+msgid "eXtremeManagement_help_startDate"
+msgstr ""
+
+#. Default: "task"
+#. task
+#: Task.py
+msgid "eXtremeManagement_help_task"
+msgstr ""
+
+#. Default: "taskDescription"
+#. taskDescription
+#: Task.py
+msgid "eXtremeManagement_help_taskDescription"
+msgstr ""
+
+#. Default: "title"
+#. title
+#: Customer.py
+msgid "eXtremeManagement_help_title"
+msgstr ""
+
+#. Default: "website"
+#. Enter your website address.
+#. website
+#: content/Customer.py
+#: Customer.py
+msgid "eXtremeManagement_help_website"
+msgstr ""
+
+#. Default: "zipCode"
+#. Enter zip code.
+#. zipCode
+#: content/Customer.py
+#: Customer.py
+msgid "eXtremeManagement_help_zipCode"
+msgstr ""
+
+#. Default: "Actual"
+#. Actual
+#: Task.py
+msgid "eXtremeManagement_label_actual"
+msgstr ""
+
+## 1 more: content/Customer.py
+#. Default: "Address"
+#. Address
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_address"
+msgstr ""
+
+#. Default: "Adress"
+#. Adress
+#: Customer.py
+msgid "eXtremeManagement_label_adress"
+msgstr ""
+
+#. Default: "Assignto"
+#. Assignto
+#: Task.py
+msgid "eXtremeManagement_label_assignTo"
+msgstr ""
+
+## 1 more: content/Task.py
+#. Default: "Assignees"
+#. Assignees
+#: Task.py
+#: content/Task.py
+msgid "eXtremeManagement_label_assignees"
+msgstr ""
+
+#. Default: "Attribute_25"
+#. Attribute_25
+#: Story.py
+msgid "eXtremeManagement_label_attribute_25"
+msgstr ""
+
+#. Default: "Attribute_30"
+#. Attribute_30
+#: Project.py
+msgid "eXtremeManagement_label_attribute_30"
+msgstr ""
+
+#. Default: "Attribute_33"
+#. Attribute_33
+#: Task.py
+msgid "eXtremeManagement_label_attribute_33"
+msgstr ""
+
+## 1 more: content/Booking.py
+#. Default: "Billable"
+#. Billable
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_label_billable"
+msgstr ""
+
+## 1 more: content/Customer.py
+#. Default: "City"
+#. City
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_city"
+msgstr ""
+
+#. Default: "Comments"
+#. Comments
+#: Customer.py
+msgid "eXtremeManagement_label_comments"
+msgstr ""
+
+## 1 more: content/Customer.py
+#. Default: "Country"
+#. Country
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_country"
+msgstr ""
+
+#. Default: "Customerfolders"
+#. Customerfolders
+#: ProjectFolder.py
+msgid "eXtremeManagement_label_customerfolders"
+msgstr ""
+
+#. Default: "Customers"
+#. Customers
+#: Project.py
+msgid "eXtremeManagement_label_customers"
+msgstr ""
+
+#. Default: "Descriptino"
+#. Descriptino
+#: Story.py
+msgid "eXtremeManagement_label_descriptino"
+msgstr ""
+
+#. Default: "Description"
+#. Description
+#: Customer.py
+msgid "eXtremeManagement_label_description"
+msgstr ""
+
+## 1 more: content/ProjectMember.py
+#. Default: "Email"
+#. Email
+#: Customer.py
+#: content/ProjectMember.py
+msgid "eXtremeManagement_label_email"
+msgstr ""
+
+#. Default: "Emailaddress"
+#. Emailaddress
+#: Customer.py
+msgid "eXtremeManagement_label_emailAddress"
+msgstr ""
+
+#. Default: "Enddate"
+#. Enddate
+#: content/Iteration.py
+msgid "eXtremeManagement_label_endDate"
+msgstr ""
+
+## 1 more: content/Task.py
+#. Default: "Estimate"
+#. Estimate
+#: Task.py
+#: content/Task.py
+msgid "eXtremeManagement_label_estimate"
+msgstr ""
+
+## 1 more: content/Customer.py
+#. Default: "Fax"
+#. Fax
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_fax"
+msgstr ""
+
+#. Default: "Faxnumber"
+#. Faxnumber
+#: Customer.py
+msgid "eXtremeManagement_label_faxNumber"
+msgstr ""
+
+#. Default: "Firstname"
+#. Firstname
+#: ProjectMember.py
+msgid "eXtremeManagement_label_firstName"
+msgstr ""
+
+## 1 more: content/ProjectMember.py
+#. Default: "Fullname"
+#. Fullname
+#: ProjectMember.py
+#: content/ProjectMember.py
+msgid "eXtremeManagement_label_fullname"
+msgstr ""
+
+## 1 more: content/Booking.py
+#. Default: "Hours"
+#. Hours
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_label_hours"
+msgstr ""
+
+#. Default: "Id"
+#. Id
+#: Customer.py
+msgid "eXtremeManagement_label_id"
+msgstr ""
+
+#. Default: "Lastname"
+#. Lastname
+#: ProjectMember.py
+msgid "eXtremeManagement_label_lastName"
+msgstr ""
+
+#. Default: "Lasttaskid"
+#: content/Story.py
+msgid "eXtremeManagement_label_lastTaskId"
+msgstr ""
+
+#. Default: "Location"
+#. Location
+#: Customer.py
+msgid "eXtremeManagement_label_location"
+msgstr ""
+
+## 1 more: content/Story.py
+#. Default: "Maintext"
+#. Maintext
+#: Story.py
+#: content/Story.py
+msgid "eXtremeManagement_label_mainText"
+msgstr ""
+
+#. Default: "Manhours"
+#. Manhours
+#: content/Iteration.py
+msgid "eXtremeManagement_label_manHours"
+msgstr ""
+
+## 1 more: content/Booking.py
+#. Default: "Minutes"
+#. Minutes
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_label_minutes"
+msgstr ""
+
+## 1 more: content/Customer.py
+#. Default: "Name"
+#. Name
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_name"
+msgstr ""
+
+## 2 more: content/ProjectMember.py, content/Customer.py
+#. Default: "Phone"
+#. Phone
+#: Customer.py
+#: content/ProjectMember.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_phone"
+msgstr ""
+
+#. Default: "Phonenumber"
+#. Phonenumber
+#: Customer.py
+msgid "eXtremeManagement_label_phoneNumber"
+msgstr ""
+
+#. Default: "Startdate"
 #. Startdate
+#: content/Iteration.py
 msgid "eXtremeManagement_label_startDate"
-msgstr "Startdate"
+msgstr ""
 
-
-#: Task.py
+#. Default: "Task"
 #. Task
-msgid "eXtremeManagement_label_task"
-msgstr "Task"
-
-
 #: Task.py
+msgid "eXtremeManagement_label_task"
+msgstr ""
+
+#. Default: "Taskdescription"
 #. Taskdescription
+#: Task.py
 msgid "eXtremeManagement_label_taskDescription"
-msgstr "Taskdescription"
+msgstr ""
 
-
-#: Customer.py
+#. Default: "Title"
 #. Title
+#: Customer.py
 msgid "eXtremeManagement_label_title"
-msgstr "Title"
+msgstr ""
 
-
-#: Customer.py
+## 1 more: content/Customer.py
+#. Default: "Website"
 #. Website
-## 1 more: content/Customer.py
-msgid "eXtremeManagement_label_website"
-msgstr "Website"
-
-
 #: Customer.py
-#. Zipcode
+#: content/Customer.py
+msgid "eXtremeManagement_label_website"
+msgstr ""
+
 ## 1 more: content/Customer.py
+#. Default: "Zipcode"
+#. Zipcode
+#: Customer.py
+#: content/Customer.py
 msgid "eXtremeManagement_label_zipCode"
-msgstr "Zipcode"
+msgstr ""
 

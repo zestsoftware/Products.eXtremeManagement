@@ -26,6 +26,7 @@
         </div>
 
         <div>
+
         <tal:block tal:condition="items">
 
           <h1 class="documentFirstHeading" 
@@ -38,6 +39,7 @@
 
              <thead>
                <tr>
+                 <th i18n:translate="listingheader_id">id</th>
                  <th i18n:translate="listingheader_title">Title</th>
                  <th i18n:translate="listingheader_estimate">Estimate</th>                  
                  <th i18n:translate="listingheader_actual">Actual</th>
@@ -49,6 +51,8 @@
 
                <tr tal:repeat="item items">
                 <div tal:define="taskObj item/getObject;">
+                 <td>
+                   <span tal:omit-tag="" tal:content="taskObj/id">id</span></td>
                  <td>
                    <a href=""
                       tal:attributes="href string:${taskObj/absolute_url}">

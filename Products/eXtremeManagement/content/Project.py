@@ -1,24 +1,29 @@
 # File: Project.py
-# 
-# Copyright (c) 2005 by Zest software 2005
-# Generator: ArchGenXML Version 1.4.0-beta2 devel 
+#
+# Copyright (c) 2006 by Zest software
+# Generator: ArchGenXML 
 #            http://plone.org/products/archgenxml
 #
-# GNU General Public Licence (GPL)
-# 
-# This program is free software; you can redistribute it and/or modify it under
-# the terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
-# This program is distributed in the hope that it will be useful, but WITHOUT
-# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
-# details.
-# You should have received a copy of the GNU General Public License along with
-# this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-# Place, Suite 330, Boston, MA  02111-1307  USA
+# GNU General Public License (GPL)
 #
-__author__  = '''Ahmad Hadi <a.hadi@zestsoftware.nl>'''
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+# 02110-1301, USA.
+#
+
+__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
+<m.van.rees@zestsoftware.nl>"""
 __docformat__ = 'plaintext'
 
 
@@ -39,7 +44,8 @@ import string
 
 ##/code-section module-header
 
-schema=Schema((
+schema = Schema((
+
 ),
 )
 
@@ -47,8 +53,8 @@ schema=Schema((
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
-Project_schema = OrderedBaseFolderSchema + \
-    schema
+Project_schema = OrderedBaseFolderSchema.copy() + \
+    schema.copy()
 
 ##code-section after-schema #fill in your manual code here
 ##/code-section after-schema
@@ -59,36 +65,36 @@ class Project(OrderedBaseFolder):
 
 
     # This name appears in the 'add' box
-    archetype_name             = 'Project'
+    archetype_name = 'Project'
 
-    meta_type                  = 'Project'
-    portal_type                = 'Project'
-    allowed_content_types      = ['Iteration', 'Story']
-    filter_content_types       = 1
-    global_allow               = 0
-    allow_discussion           = 0
-    content_icon               = 'project_icon.gif'
-    immediate_view             = 'base_view'
-    default_view               = 'base_view'
-    suppl_views                = ()
-    typeDescription            = "Project"
-    typeDescMsgId              = 'description_edit_project'
+    meta_type = 'Project'
+    portal_type = 'Project'
+    allowed_content_types = ['Iteration', 'Story']
+    filter_content_types = 1
+    global_allow = 0
+    allow_discussion = False
+    content_icon = 'project_icon.gif'
+    immediate_view = 'base_view'
+    default_view = 'base_view'
+    suppl_views = ()
+    typeDescription = "Project"
+    typeDescMsgId = 'description_edit_project'
 
     actions =  (
 
 
-       {'action':      "string:$object_url/project_team",
-        'category':    "object",
-        'id':          'team',
-        'name':        'Projectteam',
+       {'action': "string:${object_url}/project_team",
+        'category': "object",
+        'id': 'team',
+        'name': 'Projectteam',
         'permissions': ("View",),
-        'condition'  : 'python:1'
+        'condition': 'python:1'
        },
 
 
     )
 
-    _at_rename_after_creation  = True
+    _at_rename_after_creation = True
 
     schema = Project_schema
 
@@ -96,16 +102,13 @@ class Project(OrderedBaseFolder):
     ##/code-section class-header
 
 
-    #Methods
-
+    # Methods
     security.declarePublic('getProject')
     def getProject(self):
         """
         returns self - useful while doing aquisition many levels down the tree
         """
         return self
-
-
 
     security.declarePublic('getMembers')
     def getMembers(self, role='Employee'):
@@ -131,7 +134,6 @@ class Project(OrderedBaseFolder):
                     list1.append((id, name))
 
         return list1
-
 
 
 registerType(Project,PROJECTNAME)
