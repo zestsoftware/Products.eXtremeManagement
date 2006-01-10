@@ -44,6 +44,7 @@ from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeMa
 
 ##code-section module-beforeclass #fill in your manual code here
 from Products.CMFCore.WorkflowCore import WorkflowException
+from Products.PloneTestCase.setup import default_user
 ##/code-section module-beforeclass
 
 
@@ -58,6 +59,7 @@ class testWorkflow(eXtremeManagementTestCase):
         self.catalog = self.portal.portal_catalog
         self.workflow = self.portal.portal_workflow
         self.userfolder = self.portal.acl_users
+        self.default_user = default_user
 
         #self.userfolder._doAddUser('initial', 'secret', ['Manager'], [])
         self.userfolder._doAddUser('member', 'secret', ['Member'], [])
@@ -79,7 +81,6 @@ class testWorkflow(eXtremeManagementTestCase):
         self.project.invokeFactory('Iteration', id='iteration')
         self.iteration = self.project.iteration
 
-        #self.login('customer')
         # Create Story in iteration
         self.iteration.invokeFactory('Story', id='story')
         self.story = self.iteration.story
@@ -96,6 +97,7 @@ class testWorkflow(eXtremeManagementTestCase):
         self.task.invokeFactory('Booking', id='booking')
         self.booking = self.task.booking
         self.logout()
+        self.login(self.default_user)
 
     # Manually created methods
     def tryForbiddenTransition(self, ctObject, originalState,
@@ -149,7 +151,9 @@ class testWorkflow(eXtremeManagementTestCase):
         """Test transitions of the Story Content Type
         """
 
-        self.login('manager')
+        #self.login('customer')
+        #self.login('manager')
+        self.setRoles(['Manager'])
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'submit', 'pending')
         self.tryAllowedTransition(self.story, 'story',
@@ -158,46 +162,65 @@ class testWorkflow(eXtremeManagementTestCase):
                                   'draft', 'estimate', 'estimated')
         self.tryAllowedTransition(self.story, 'story',
                                   'estimated', 'retract', 'draft')
+
+        #self.printGlobalRolesUser(self.default_user)
+        # Not quite working:
+        #self.setPermissions(['Add portal content'])
+
 
         # Some tests to see how I can get information about users:
 
         """
+        for object in [self.portal, self.projects, self.project,
+                       self.iteration, self.story, self.task, self.booking, self.folder]:
+            self.printLocalPermissions(object, self.default_user)
         for role in ['Member','Authenticated','Employee','Customer','Reviewer','Owner']:
             print '%s portal roles:' % role
             print self.getPermissionsOfRole(self.portal, role)
-        """
-
-
-        """
         for user in self.userfolder.getUserIds():
             print '##############################'
             print user + ':'
             print 'global roles:'
-            roles = self.userfolder.getUserById(user).getRoles()
-            for role in roles:
-                print '    role %s:' % role
-                if role == 'Manager':
-                    print 'A Manager can do anything.'
-                else:
-                    print self.getPermissionsOfRole(self.portal, role)
+            self.printGlobalRolesUser(user)
 
-            for object in [self.projects,self.project,self.iteration,self.story,self.task,self.booking]:
+            for object in [self.portal, self.projects, self.project,
+                self.iteration, self.story, self.task, self.booking]:
                 self.printLocalPermissions(object, user)
+
+        self.loginAsPortalOwner()
+        for object in [self.portal, self.projects, self.project,
+                       self.iteration, self.story, self.task, self.booking]:
+            print object.title_or_id()
+            print 'getAllLocalRoles:'
+            print self.userfolder.getAllLocalRoles(object)
+            print 'getLocalRolesForDisplay:'
+            print self.userfolder.getLocalRolesForDisplay(object)
         """
 
 
-        self.login('employee')
-        #self.setPermissions('Request Review')
+        self.setRoles(['Employee'])
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'estimate', 'estimated')
         self.tryAllowedTransition(self.story, 'story',
                                   'estimated', 'retract', 'draft')
+
         """
+        self.setRoles(['Customer'])
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'submit', 'pending')
         self.tryAllowedTransition(self.story, 'story',
                                   'pending', 'retract', 'draft')
         """
+
+
+    def printGlobalRolesUser(self, userid):
+        roles = self.userfolder.getUserById(self.default_user).getRoles()
+        for role in roles:
+            print '    role %s:' % role
+            if role == 'Manager':
+                print 'A Manager can do anything.'
+            else:
+                print self.getPermissionsOfRole(self.portal, role)
 
     def printLocalPermissions(self, object, userid):
         print 'Local roles on %s:' % object.title_or_id()

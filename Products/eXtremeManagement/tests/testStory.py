@@ -45,6 +45,7 @@ from Products.eXtremeManagement.content.Story import Story
 
 ##code-section module-beforeclass #fill in your manual code here
 from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
+from Products.PloneTestCase.setup import default_user
 ##/code-section module-beforeclass
 
 
@@ -58,6 +59,7 @@ class testStory(eXtremeManagementTestCase):
     def afterSetUp(self):
         """
         """
+        self.default_user = default_user
         pass
 
     # from class Story:
@@ -84,16 +86,16 @@ class testStory(eXtremeManagementTestCase):
     def test_callStory(self):
         """ Test that you can add and call a Story item
         """
-        self.loginAsPortalOwner()
-        p=ProjectFolder('projects')
-        self.portal._setObject('projects',p)
+        #self.loginAsPortalOwner()
+        #p=ProjectFolder('projects2')
+        #self.portal._setObject('projects2',p)
         
         self.setRoles(['Manager'])
+        self.portal.invokeFactory('ProjectFolder', id='projects')
         self.portal.projects.invokeFactory('Project', id='testproject01')
         self.portal.projects.testproject01.invokeFactory('Iteration', id='testIteration')
         self.portal.projects.testproject01.testIteration.invokeFactory('Story', id='testStory')
         self.failUnless('testStory' in self.portal.projects.testproject01.testIteration.objectIds())
-
 
 
 def test_suite():

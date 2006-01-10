@@ -54,6 +54,27 @@ else:
 # Permissions
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
 setDefaultRoles(DEFAULT_ADD_CONTENT_PERMISSION, ('Manager', 'Owner'))
+ADD_CONTENT_PERMISSIONS = {
+    'Project': 'eXtremeManagement: Add Project',
+    'Iteration': 'eXtremeManagement: Add Iteration',
+    'Story': 'eXtremeManagement: Add Story',
+    'Task': 'eXtremeManagement: Add Task',
+    'ProjectMember': 'eXtremeManagement: Add ProjectMember',
+    'Customer': 'eXtremeManagement: Add Customer',
+    'CustomerFolder': 'eXtremeManagement: Add CustomerFolder',
+    'ProjectFolder': 'eXtremeManagement: Add ProjectFolder',
+    'Booking': 'eXtremeManagement: Add Booking',
+}
+
+setDefaultRoles('eXtremeManagement: Add Project', ('Manager','Owner'))
+setDefaultRoles('eXtremeManagement: Add Iteration', ('Manager','Owner'))
+setDefaultRoles('eXtremeManagement: Add Story', ('Manager','Owner'))
+setDefaultRoles('eXtremeManagement: Add Task', ('Manager','Owner'))
+setDefaultRoles('eXtremeManagement: Add ProjectMember', ('Manager','Owner'))
+setDefaultRoles('eXtremeManagement: Add Customer', ('Manager','Owner'))
+setDefaultRoles('eXtremeManagement: Add CustomerFolder', ('Manager','Owner'))
+setDefaultRoles('eXtremeManagement: Add ProjectFolder', ('Manager','Owner'))
+setDefaultRoles('eXtremeManagement: Add Booking', ('Manager','Owner'))
 
 product_globals = globals()
 
