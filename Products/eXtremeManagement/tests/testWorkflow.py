@@ -150,6 +150,11 @@ class testWorkflow(eXtremeManagementTestCase):
         self.login('customer')
         self.tryForbiddenTransition(self.project, 'active', 'close')
 
+    def testTaskTransitions(self):
+        """Test transitions of the Project Content Type
+        """
+        pass
+
     def testStoryTransitions(self):
         """Test transitions of the Story Content Type
         """
@@ -233,17 +238,44 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(self.story, 'story',
                                   'pending', 'retract', 'draft')
 
-
-    def testTaskTransitions(self):
-        """Test transitions of the Project Content Type
+    def testIterationTransitions(self):
+        """Test transitions of the Iteration Content Type
         """
-        pass
+        # Manager can do all transitions on an iteration:
+        self.login('manager')
+        self.tryAllowedTransition(self.iteration, 'iteration',
+                                  'new', 'accept', 'in-progress')
+        self.tryAllowedTransition(self.iteration, 'iteration',
+                                  'in-progress', 'complete', 'completed')
+        self.tryAllowedTransition(self.iteration, 'iteration',
+                                  'completed', 'reactivate', 'in-progress')
+        self.tryAllowedTransition(self.iteration, 'iteration',
+                                  'in-progress', 'retract', 'new')
 
-    def testBookingTransitions(self):
-        """Test transitions of the Project Content Type
-        """
-        pass
+        # Try some forbidden transactions
+        self.login('customer')
+        self.tryForbiddenTransition(self.iteration, 'new', 'accept')
 
+        # Employee can only accept and complete an iteration
+        self.login('employee')
+        self.tryAllowedTransition(self.iteration, 'iteration',
+                                  'new', 'accept', 'in-progress')
+        self.tryForbiddenTransition(self.iteration, 'in-progress', 'retract')
+        self.tryAllowedTransition(self.iteration, 'iteration',
+                                  'in-progress', 'complete', 'completed')
+        self.tryForbiddenTransition(self.iteration, 'completed', 'reactivate')
+
+        # Only a Manager can do an invoice
+        self.tryForbiddenTransition(self.iteration, 'completed', 'invoice')
+        self.login('customer')
+        self.tryForbiddenTransition(self.iteration, 'completed', 'invoice')
+        self.login('manager')
+        self.tryAllowedTransition(self.iteration, 'iteration',
+                                  'completed', 'invoice', 'invoiced')
+
+        
+        # Try some transactions that don't belong to the current state
+        self.tryForbiddenTransition(self.iteration, 'invoiced', 'reactivate')
 
     def printLocalPermissions(self, object, userid):
         roles = object.get_local_roles_for_userid(userid)
@@ -291,48 +323,14 @@ class testWorkflow(eXtremeManagementTestCase):
                          newState)
         self.failUnless(self.catalog(id=ctId, review_state=newState))
 
-    def testIterationTransitions(self):
-        """Test transitions of the Iteration Content Type
-        """
-        # Manager can do all transitions on an iteration:
-        self.login('manager')
-        self.tryAllowedTransition(self.iteration, 'iteration',
-                                  'new', 'accept', 'in-progress')
-        self.tryAllowedTransition(self.iteration, 'iteration',
-                                  'in-progress', 'complete', 'completed')
-        self.tryAllowedTransition(self.iteration, 'iteration',
-                                  'completed', 'reactivate', 'in-progress')
-        self.tryAllowedTransition(self.iteration, 'iteration',
-                                  'in-progress', 'retract', 'new')
-
-        # Try some forbidden transactions
-        self.login('customer')
-        self.tryForbiddenTransition(self.iteration, 'new', 'accept')
-
-        # Employee can only accept and complete an iteration
-        self.login('employee')
-        self.tryAllowedTransition(self.iteration, 'iteration',
-                                  'new', 'accept', 'in-progress')
-        self.tryForbiddenTransition(self.iteration, 'in-progress', 'retract')
-        self.tryAllowedTransition(self.iteration, 'iteration',
-                                  'in-progress', 'complete', 'completed')
-        self.tryForbiddenTransition(self.iteration, 'completed', 'reactivate')
-
-        # Only a Manager can do an invoice
-        self.tryForbiddenTransition(self.iteration, 'completed', 'invoice')
-        self.login('customer')
-        self.tryForbiddenTransition(self.iteration, 'completed', 'invoice')
-        self.login('manager')
-        self.tryAllowedTransition(self.iteration, 'iteration',
-                                  'completed', 'invoice', 'invoiced')
-
-        
-        # Try some transactions that don't belong to the current state
-        self.tryForbiddenTransition(self.iteration, 'invoiced', 'reactivate')
-
     def getPermissionsOfRole(self, object, role):
         perms = object.permissionsOfRole(role)
         return [p['name'] for p in perms if p['selected']]
+
+    def testBookingTransitions(self):
+        """Test transitions of the Project Content Type
+        """
+        pass
 
     def getPermissionSettings(self, object, permission):
         permission_settings = object.permission_settings(permission)
