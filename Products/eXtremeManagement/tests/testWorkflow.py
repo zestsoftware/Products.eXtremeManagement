@@ -153,7 +153,6 @@ class testWorkflow(eXtremeManagementTestCase):
     def testStoryTransitions(self):
         """Test transitions of the Story Content Type
         """
-
         #self.login('customer')
         #self.login('manager')
         self.setRoles(['Manager'])
@@ -235,6 +234,18 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(self.story, 'story',
                                   'pending', 'retract', 'draft')
 
+
+    def testTaskTransitions(self):
+        """Test transitions of the Project Content Type
+        """
+        pass
+
+    def testBookingTransitions(self):
+        """Test transitions of the Project Content Type
+        """
+        pass
+
+
     def printLocalPermissions(self, object, userid):
         roles = object.get_local_roles_for_userid(userid)
         if roles:
@@ -284,7 +295,6 @@ class testWorkflow(eXtremeManagementTestCase):
     def testIterationTransitions(self):
         """Test transitions of the Iteration Content Type
         """
-
         # Manager can do all transitions on an iteration:
         self.login('manager')
         self.tryAllowedTransition(self.iteration, 'iteration',
