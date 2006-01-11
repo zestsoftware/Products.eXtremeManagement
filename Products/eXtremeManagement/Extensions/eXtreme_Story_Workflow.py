@@ -59,7 +59,7 @@ def setupeXtreme_Story_Workflow(self, workflow):
     for s in ['estimated', 'pending', 'in-progress', 'completed', 'draft']:
         workflow.states.addState(s)
 
-    for t in ['activate', 'submit', 'retract', 'estimate', 'improve', 'refactor', 'complete']:
+    for t in ['deactivate', 'activate', 'submit', 'retract', 'estimate', 'improve', 'refactor', 'complete']:
         workflow.transitions.addTransition(t)
 
     for v in ['review_history', 'comments', 'time', 'actor', 'action']:
@@ -128,7 +128,7 @@ def setupeXtreme_Story_Workflow(self, workflow):
 
     stateDef = workflow.states['in-progress']
     stateDef.setProperties(title="""in-progress""",
-                           transitions=['complete'])
+                           transitions=['complete', 'deactivate'])
     stateDef.setPermission('Access contents information',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
@@ -193,6 +193,18 @@ def setupeXtreme_Story_Workflow(self, workflow):
                            ['Employee', 'Manager'])
 
     ## Transitions initialization
+
+    transitionDef = workflow.transitions['deactivate']
+    transitionDef.setProperties(title="""Deactivate""",
+                                new_state_id="""estimated""",
+                                trigger_type=1,
+                                script_name="""""",
+                                after_script_name="""""",
+                                actbox_name="""Deactivate""",
+                                actbox_url="""""",
+                                actbox_category="""workflow""",
+                                props={'guard_roles': 'Employee;Manager'},
+                                )
 
     transitionDef = workflow.transitions['activate']
     transitionDef.setProperties(title="""Activate""",

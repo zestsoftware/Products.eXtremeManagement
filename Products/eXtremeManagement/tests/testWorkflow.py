@@ -164,6 +164,28 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'estimate', 'estimated')
         self.tryAllowedTransition(self.story, 'story',
+                                  'estimated', 'activate', 'in-progress')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'in-progress', 'complete', 'completed')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'completed', 'improve', 'in-progress')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'in-progress', 'deactivate', 'estimated')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'estimated', 'refactor', 'draft')
+
+        self.setRoles(['Employee'])
+        self.tryAllowedTransition(self.story, 'story',
+                                  'draft', 'estimate', 'estimated')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'estimated', 'activate', 'in-progress')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'in-progress', 'complete', 'completed')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'completed', 'improve', 'in-progress')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'in-progress', 'deactivate', 'estimated')
+        self.tryAllowedTransition(self.story, 'story',
                                   'estimated', 'refactor', 'draft')
 
         #self.printGlobalRolesUser(self.default_user)
@@ -196,11 +218,6 @@ class testWorkflow(eXtremeManagementTestCase):
         """
 
 
-        self.setRoles(['Employee'])
-        self.tryAllowedTransition(self.story, 'story',
-                                  'draft', 'estimate', 'estimated')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'estimated', 'refactor', 'draft')
 
         self.setRoles(['Manager'])
         self.tryAllowedTransition(self.project, 'project',
