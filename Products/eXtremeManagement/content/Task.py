@@ -37,10 +37,9 @@ from Products.CMFPlone.interfaces.NonStructuralFolder import INonStructuralFolde
 
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
-BaseFolderSchema = OrderedBaseFolderSchema.copy()
-BaseFolderSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-#BaseFolderSchema['description'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-BaseFolderSchema['description'].widget.required = 1
+
+from Products.CMFCore.utils import getToolByName
+
 ##/code-section module-header
 
 schema = Schema((
@@ -78,6 +77,11 @@ schema = Schema((
 
 
 ##code-section after-local-schema #fill in your manual code here
+
+BaseFolderSchema = OrderedBaseFolderSchema.copy()
+BaseFolderSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+BaseFolderSchema['description'].widget.required = 1
+
 ##/code-section after-local-schema
 
 Task_schema = BaseFolderSchema.copy() + \
@@ -121,7 +125,18 @@ class Task(BaseFolder):
         """
         returns a list of team members
         """
-        return DisplayList((self.getProject().getMembers()))
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        mem = getToolByName(self, 'portal_membership')
+        uids = []
+        members = self.getProject().getMembers()
+
+        for userid in portal.acl_users.getUserIds():
+            if 'Employee' in portal.acl_users.getUserById(userid).getRoles() or userid in members:
+                member = mem.getMemberById(userid)
+                name = hasattr(member, 'fullname') and member.fullname.strip() or member.getId()
+                uids.append((userid, name))
+
+        return DisplayList(uids)
 
     security.declarePublic('get_actual_hours')
     def get_actual_hours(self):

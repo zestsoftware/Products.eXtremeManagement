@@ -122,16 +122,11 @@ class Project(OrderedBaseFolder):
             if role in roles:
                 if string.find(user, prefix) == 0:
                     for i1 in grp.getGroupById(user).getGroupMembers():
-                        name = hasattr(i1, 'fullname') and i1.fullname.strip() or i1.getId()
-                        list1.append((i1.getId(), name))
+                        list1.append(i1.getId())
                 else:
                     m1 = mem.getMemberById(user)
                     if m1:
-                        id = m1.getId()
-                        name = hasattr(m1, 'fullname') and m1.fullname.strip() or m1.getId()
-                    else:
-                        id = name = user
-                    list1.append((id, name))
+                        list1.append(m1.getId())
 
         return list1
 
