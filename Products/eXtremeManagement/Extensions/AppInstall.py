@@ -67,6 +67,12 @@ def addFolders(portal):
         types_tool = getToolByName(portal, 'portal_types')
         types_tool.ProjectFolder._updateProperty('global_allow', 0)
 
+def disableJoinLink(portal):
+    """- Only manager is allowed to add members.
+    """
+    portal.manage_permission('Add portal member', ['Manager'], 0)
+
+
 
 def install(self):
     out = StringIO()
@@ -87,7 +93,7 @@ def install(self):
     # Turned off for now.
     #print >> out, "Adding default folders"
     #addFolders(self)
-
+    disableJoinLink(self)
     return out.getvalue()
 
 def uninstall(self):
