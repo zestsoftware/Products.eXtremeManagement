@@ -221,14 +221,13 @@ class testWorkflow(eXtremeManagementTestCase):
         self.setRoles(['Manager'])
         self.tryAllowedTransition(self.project, 'project',
                                   'private', 'activate', 'active')
-        self.setRoles(['Customer'])
-        #self.setPermissions(['Request review'])
-        #self.story.manage_addLocalRoles(self.default_user,['Customer'])
+        self.setRoles(['Member'])
+        self.project.manage_addLocalRoles(self.default_user,['Customer'])
+        """
         self.printGlobalRolesUser(self.default_user)
         for object in self.main_objects:
             self.printLocalPermissions(object, self.default_user)
-
-        # default_user does NOT have the LOCAL role Customer. Then why do these tests pass?
+        """
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'submit', 'pending')
         self.tryAllowedTransition(self.story, 'story',
@@ -267,7 +266,7 @@ class testWorkflow(eXtremeManagementTestCase):
         self.assertEqual(self.workflow.getInfoFor(self.booking, 'review_state'), 'booking')
 
     def printGlobalRolesUser(self, userid):
-        roles = self.userfolder.getUserById(self.default_user).getRoles()
+        roles = self.userfolder.getUserById(userid).getRoles()
         for role in roles:
             print '    %s has global role %s with these permissions:' % (userid, role)
             if role == 'Manager':
