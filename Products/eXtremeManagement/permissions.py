@@ -10,9 +10,3 @@ from utils import ContentPermMap
 
 # Roles
 eXtremeManagementRoles = ['Employee', 'Customer',]
-
-#RolePermissionMap={'Employee':(AddProjectFolder, AddProject, AddIteration, AddStory, AddTask, AddProjectMember, 
-#                               AddCustomerFolder, AddCustomer, CMFPerms.DeleteObjects, CMFPerms.SetOwnProperties, 
-#                               CMFPerms.ManageProperties, CMFPerms.AddPortalContent, CMFPerms.View, 
-#                               CMFPerms.ModifyPortalContent, CMFPerms.ListFolderContents)} 
-
