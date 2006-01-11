@@ -174,8 +174,6 @@ class testWorkflow(eXtremeManagementTestCase):
         # Some tests to see how I can get information about users:
 
         """
-        for object in self.main_objects:
-            self.printLocalPermissions(object, self.default_user)
         for role in ['Member','Authenticated','Employee','Customer','Reviewer','Owner']:
             print '%s portal roles:' % role
             print self.getPermissionsOfRole(self.portal, role)
@@ -208,22 +206,26 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(self.project, 'project',
                                   'private', 'activate', 'active')
         self.setRoles(['Customer'])
-        # But default_user does NOT have the LOCAL role Customer.
         #self.setPermissions(['Request review'])
         #self.story.manage_addLocalRoles(self.default_user,['Customer'])
-        #self.printGlobalRolesUser(self.default_user)
+        self.printGlobalRolesUser(self.default_user)
         for object in self.main_objects:
             self.printLocalPermissions(object, self.default_user)
+
+        # default_user does NOT have the LOCAL role Customer. Then why do these tests pass?
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'submit', 'pending')
         self.tryAllowedTransition(self.story, 'story',
                                   'pending', 'retract', 'draft')
 
     def printLocalPermissions(self, object, userid):
-        print 'Local roles on %s:' % object.title_or_id()
         roles = object.get_local_roles_for_userid(userid)
+        if roles:
+            print '%s has local roles on %s:' % (userid, object.title_or_id())
+        else:
+            print '%s has no local roles on %s.' % (userid, object.title_or_id())
         for role in roles:
-            print '    role %s:' % role
+            print '    local role %s:' % role
             print '    with explicit permissions:'
             print self.getPermissionsOfRole(object, role)
 
@@ -239,7 +241,7 @@ class testWorkflow(eXtremeManagementTestCase):
     def printGlobalRolesUser(self, userid):
         roles = self.userfolder.getUserById(self.default_user).getRoles()
         for role in roles:
-            print '    role %s:' % role
+            print '    %s has global role %s with these permissions:' % (userid, role)
             if role == 'Manager':
                 print 'A Manager can do anything.'
             else:
