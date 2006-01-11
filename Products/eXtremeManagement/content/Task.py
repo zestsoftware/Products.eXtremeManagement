@@ -79,8 +79,8 @@ schema = Schema((
 ##code-section after-local-schema #fill in your manual code here
 
 BaseFolderSchema = OrderedBaseFolderSchema.copy()
-BaseFolderSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-BaseFolderSchema['description'].widget.required = 1
+BaseFolderSchema['description'].isMetadata = False
+BaseFolderSchema['description'].schemata = 'default'
 
 ##/code-section after-local-schema
 

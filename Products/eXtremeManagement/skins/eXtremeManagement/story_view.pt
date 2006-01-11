@@ -79,7 +79,7 @@
                </tr>
 
                <tr class="totalTasks">
-                 <td id="total" i18n:translate="total">Total</td>
+                 <td colspan="2" id="total" i18n:translate="total">Total</td>
                  <td id="total-estimate"
                      tal:content="totalEstimate">total estimate</td>
                  <td id="total-actual"
