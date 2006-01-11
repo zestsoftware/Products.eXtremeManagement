@@ -9,9 +9,7 @@ from Products.CMFDefault.PropertiesTool import PropertiesTool
 from StringIO import StringIO
 from sets import Set
 
-#from Products.eXtremeManagement.config import PROJECTNAME, GLOBALS
 from Products.eXtremeManagement.config import *
-from Products.eXtremeManagement.permissions import * 
 
 
 def configurePortalProps(portal):
