@@ -96,6 +96,9 @@ class testWorkflow(eXtremeManagementTestCase):
 
         self.task.invokeFactory('Booking', id='booking')
         self.booking = self.task.booking
+        self.main_objects = [self.portal, self.projects, self.project,
+                             self.iteration, self.story, self.task,
+                             self.booking]
         self.logout()
         self.login(self.default_user)
 
@@ -161,7 +164,7 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'estimate', 'estimated')
         self.tryAllowedTransition(self.story, 'story',
-                                  'estimated', 'withdraw', 'draft')
+                                  'estimated', 'refactor', 'draft')
 
         #self.printGlobalRolesUser(self.default_user)
         # Not quite working:
@@ -171,8 +174,7 @@ class testWorkflow(eXtremeManagementTestCase):
         # Some tests to see how I can get information about users:
 
         """
-        for object in [self.portal, self.projects, self.project,
-                       self.iteration, self.story, self.task, self.booking, self.folder]:
+        for object in self.main_objects:
             self.printLocalPermissions(object, self.default_user)
         for role in ['Member','Authenticated','Employee','Customer','Reviewer','Owner']:
             print '%s portal roles:' % role
@@ -183,13 +185,11 @@ class testWorkflow(eXtremeManagementTestCase):
             print 'global roles:'
             self.printGlobalRolesUser(user)
 
-            for object in [self.portal, self.projects, self.project,
-                self.iteration, self.story, self.task, self.booking]:
+            for object in self.main_objects:
                 self.printLocalPermissions(object, user)
 
         self.loginAsPortalOwner()
-        for object in [self.portal, self.projects, self.project,
-                       self.iteration, self.story, self.task, self.booking]:
+        for object in self.main_objects:
             print object.title_or_id()
             print 'getAllLocalRoles:'
             print self.userfolder.getAllLocalRoles(object)
@@ -202,15 +202,22 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'estimate', 'estimated')
         self.tryAllowedTransition(self.story, 'story',
-                                  'estimated', 'withdraw', 'draft')
+                                  'estimated', 'refactor', 'draft')
 
-        """
+        self.setRoles(['Manager'])
+        self.tryAllowedTransition(self.project, 'project',
+                                  'private', 'activate', 'active')
         self.setRoles(['Customer'])
+        # But default_user does NOT have the LOCAL role Customer.
+        #self.setPermissions(['Request review'])
+        #self.story.manage_addLocalRoles(self.default_user,['Customer'])
+        #self.printGlobalRolesUser(self.default_user)
+        for object in self.main_objects:
+            self.printLocalPermissions(object, self.default_user)
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'submit', 'pending')
         self.tryAllowedTransition(self.story, 'story',
                                   'pending', 'retract', 'draft')
-        """
 
     def printLocalPermissions(self, object, userid):
         print 'Local roles on %s:' % object.title_or_id()
