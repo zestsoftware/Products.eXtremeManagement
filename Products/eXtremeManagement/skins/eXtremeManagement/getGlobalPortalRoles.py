@@ -8,4 +8,4 @@
 ##title=
 ##
 
-return [r for r in context.portal_membership.getPortalRoles() if r != 'Owner']
+return [r for r in context.portal_membership.getPortalRoles() if r not in ['Owner','Customer']]
