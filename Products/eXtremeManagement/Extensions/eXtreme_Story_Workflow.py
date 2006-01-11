@@ -59,7 +59,7 @@ def setupeXtreme_Story_Workflow(self, workflow):
     for s in ['estimated', 'pending', 'in-progress', 'completed', 'draft']:
         workflow.states.addState(s)
 
-    for t in ['activate', 'complete', 'retract', 'estimate', 'submit', 'improve']:
+    for t in ['activate', 'complete', 'withdraw', 'retract', 'estimate', 'submit', 'improve']:
         workflow.transitions.addTransition(t)
 
     for v in ['review_history', 'comments', 'time', 'actor', 'action']:
@@ -84,7 +84,7 @@ def setupeXtreme_Story_Workflow(self, workflow):
 
     stateDef = workflow.states['estimated']
     stateDef.setProperties(title="""Estimated""",
-                           transitions=['activate', 'retract'])
+                           transitions=['activate', 'withdraw'])
     stateDef.setPermission('Access contents information',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
@@ -218,16 +218,28 @@ def setupeXtreme_Story_Workflow(self, workflow):
                                 props={'guard_roles': 'Employee;Manager'},
                                 )
 
-    transitionDef = workflow.transitions['retract']
-    transitionDef.setProperties(title="""Retract""",
+    transitionDef = workflow.transitions['withdraw']
+    transitionDef.setProperties(title="""Withdraw""",
                                 new_state_id="""draft""",
                                 trigger_type=1,
                                 script_name="""""",
                                 after_script_name="""""",
-                                actbox_name="""Retract""",
+                                actbox_name="""Withdraw""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
                                 props={'guard_roles': 'Customer;Employee;Manager'},
+                                )
+
+    transitionDef = workflow.transitions['retract']
+    transitionDef.setProperties(title="""retract""",
+                                new_state_id="""draft""",
+                                trigger_type=1,
+                                script_name="""""",
+                                after_script_name="""""",
+                                actbox_name="""retract""",
+                                actbox_url="""""",
+                                actbox_category="""workflow""",
+                                props={'guard_permissions': 'Request review'},
                                 )
 
     transitionDef = workflow.transitions['estimate']
@@ -251,7 +263,7 @@ def setupeXtreme_Story_Workflow(self, workflow):
                                 actbox_name="""Submit""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_permissions': 'Request Review'},
+                                props={'guard_permissions': 'Request review'},
                                 )
 
     transitionDef = workflow.transitions['improve']

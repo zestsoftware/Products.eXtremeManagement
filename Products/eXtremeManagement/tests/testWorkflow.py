@@ -161,7 +161,7 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'estimate', 'estimated')
         self.tryAllowedTransition(self.story, 'story',
-                                  'estimated', 'retract', 'draft')
+                                  'estimated', 'withdraw', 'draft')
 
         #self.printGlobalRolesUser(self.default_user)
         # Not quite working:
@@ -202,7 +202,7 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'estimate', 'estimated')
         self.tryAllowedTransition(self.story, 'story',
-                                  'estimated', 'retract', 'draft')
+                                  'estimated', 'withdraw', 'draft')
 
         """
         self.setRoles(['Customer'])
@@ -211,16 +211,6 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(self.story, 'story',
                                   'pending', 'retract', 'draft')
         """
-
-
-    def printGlobalRolesUser(self, userid):
-        roles = self.userfolder.getUserById(self.default_user).getRoles()
-        for role in roles:
-            print '    role %s:' % role
-            if role == 'Manager':
-                print 'A Manager can do anything.'
-            else:
-                print self.getPermissionsOfRole(self.portal, role)
 
     def printLocalPermissions(self, object, userid):
         print 'Local roles on %s:' % object.title_or_id()
@@ -238,6 +228,15 @@ class testWorkflow(eXtremeManagementTestCase):
         self.assertEqual(self.workflow.getInfoFor(self.projectstory, 'review_state'), 'draft')
         self.assertEqual(self.workflow.getInfoFor(self.task, 'review_state'), 'open')
         self.assertEqual(self.workflow.getInfoFor(self.booking, 'review_state'), 'booking')
+
+    def printGlobalRolesUser(self, userid):
+        roles = self.userfolder.getUserById(self.default_user).getRoles()
+        for role in roles:
+            print '    role %s:' % role
+            if role == 'Manager':
+                print 'A Manager can do anything.'
+            else:
+                print self.getPermissionsOfRole(self.portal, role)
 
     def tryAllowedTransition(self, ctObject, ctId, originalState,
                        workflowTransition, newState):
