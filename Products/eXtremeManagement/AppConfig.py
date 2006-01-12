@@ -1,2 +1,3 @@
-DEPENDENCIES = ['Poi']
+DEPENDENCIES = ['Poi','AddRemoveWidget','DataGridField']
+GLOBALS = globals()
 
