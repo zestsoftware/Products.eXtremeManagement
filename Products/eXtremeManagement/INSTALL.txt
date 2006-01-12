@@ -4,6 +4,12 @@ Dependencies
 
  * Archetypes 1.3.x (used 1.3.4)
 
+ * Poi (svn tag 1.0b2)
+
+ * DataGridField (http://svn.plone.org/svn/archetypes/MoreFieldsAndWidgets/DataGridField/trunk)
+
+ * AddRemoveWidget (http://svn.plone.org/svn/archetypes/MoreFieldsAndWidgets/DataGridField/trunk)
+
 
 Additional dependencies for development
 
