@@ -14,9 +14,11 @@
 from Products.CMFCore.utils import getToolByName
 
 RESOURCES = dict(
-    linkable = ('Document', 'Image', 'File', 'News Item', 'Event'),
+    linkable = ('Document', 'Image', 'File', 'News Item', 'Event',
+                'Iteration', 'Story'),
     mediaobject = ('Image',),
-    collection = ('Plone Site', 'Folder', 'Large Plone Folder'),
+    collection = ('Plone Site', 'Folder', 'Large Plone Folder',
+                  'ProjectFolder', 'Project', 'Iteration'),
     )
 
 EXCLUDED_HTML = [
