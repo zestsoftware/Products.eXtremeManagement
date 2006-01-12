@@ -18,37 +18,49 @@
 #portal-column-one{
    width: 200px;
 }
-#header_iteration_project_overview{
+
+.header_iteration_project_overview{
     font-weight: bold;
     font-size: 15px;
 }
-#header_iteration {
+
+.header_iteration {
     border-right: none;
 }
-#storyTitle_project_overview{
+
+.storyTitle_project_overview{
     font-weight: bold;
     text-decoration: underline;
 }
+
 #storyTitle_iteration_overview{
     font-weight: bold;
 }
-#progress_details {
+
+.progress_details {
     text-align: center;
     padding: 5px;
 }
-#progress_bar{
+
+.progress_bar{
     border: 1px solid #8CACBB;
     width: 100px;
     height: 10px;
     text-align: left;
 }
-#open_tasks {
+
+.open_tasks {
     text-align: center;
 }
-#completed_tasks {
+
+.completed_tasks {
     text-align: center;
 }
-#iteration-state {
+
+.listStories {
+    padding-bottom: 5px;
+}
+.iteration-state {
     text-align: right;
     border-left: none;
 }
@@ -67,15 +79,19 @@
     text-align: center;
     font-weight: bold;
 }
+
 #td-estimate {
     text-align: center;
 }
+
 #td-actual {
     text-align: center;
 }
+
 #td-diff {
     text-align: center;
 }
+
 #stories_not_estimated a{
     padding-left: 5px;
 }
@@ -88,85 +104,105 @@
     padding-bottom: 2px;
     text-align: center;
 }
+
 #estimate {
     text-align: center;
 }
-.list_iterations div{
+
+.list_iterations div {
     line-height: 1.5em;
     margin: 0.5em 0 0 1.5em;
     padding: 0;
 }
-#customer_info_header{
+
+#customer_info_header {
    text-align: right;
    font-weight: bold;
    width: 40%;
 }
-#projectmemeber_info_header{
+
+#projectmemeber_info_header {
    text-align: right;
    font-weight: bold;
 }
-#iteration-description{
+
+.iteration-description {
     color: &dtml-discreetColor;;
     font-weight: normal;
 }
-#task_header{
+
+#task_header {
     text-align: right;
     font-weight: bold;
     width: 40%;
 }
-.story_description{
+
+.story_description {
     margin: 0.3em 0 0.3em 1.5em;
     color: &dtml-discreetColor;;
 }
-.project_description{
+
+.project_description {
     margin: 0.3em 0 0.3em 1.5em;
     color: &dtml-discreetColor;;
 }
-#project_title{
+
+#project_title {
     font-weight: bold;
 }
+
 .project_iterations {
     margin: 10px 0px 0px 30px;
 }
-#iteration-item{
+
+#iteration-item {
     padding: 0px 0px 0px 40px;
 }
+
 .iteration-table {
     margin-left: 20px;
 }
-#td-project{
+
+#td-project {
     padding-bottom: 10px;
 }
-#td-iteration-title{
+
+#td-iteration-title {
     border: none;
 }
-#td-iteration-state{
-    border: none;
-    text-align: center;
-}
-#td-iteration-estimate{
+
+#td-iteration-state {
     border: none;
     text-align: center;
 }
-#td-iteration-actual{
+
+#td-iteration-estimate {
     border: none;
     text-align: center;
 }
+
+#td-iteration-actual {
+    border: none;
+    text-align: center;
+}
+
 #iteration-table-header {
     border: none;
     text-align: center;
 }
-.listing th{
+
+.listing th {
     padding-top: 2px;
     padding-bottom: 2px;
 }
-#booking_title{
+
+#booking_title {
     font-weight: bold;
 }
-.booking_description{
+
+.booking_description {
     margin-left: 20px;
 }
-
 
 /* </dtml-with> */
 

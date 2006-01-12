@@ -1,26 +1,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
       lang="en-US"
       i18n:domain="eXtremeManagement">
-  <metal:block use-macro="context/global_defines/macros/defines" />
-
-<body onload="javascript:setFromState('hideRow0');">
+    <metal:block use-macro="context/global_defines/macros/defines" />
 
     <metal:block metal:define-macro="header">
-       <h1 tal:content="here/title_or_id" class="documentFirstHeading">
-            Title or id
-       </h1>
-       <div class="documentDescription" tal:content="here/Description">
-           description
-       </div>
-       <link REL="stylesheet" TYPE="text/css" href="eXtreme.css" />
-    </metal:block>   
-        
+        <h1 tal:content="here/title_or_id" 
+            class="documentFirstHeading">
+                Title or id
+        </h1>
+        <div class="documentDescription" 
+             tal:content="here/Description">
+            description
+        </div>
+    </metal:block>
+
+    <body onload="javascript:setFromState('hideRow0');">
     <metal:block metal:define-macro="body"
                  tal:define="idIndex python:Iterator(pos=-1);
-                             physical_path python: '/'.join(context.getPhysicalPath());
-                             iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
-                                                                                 review_state=['completed', 'invoiced'], 
-                                                                                 path=physical_path);
+                            physical_path python: '/'.join(context.getPhysicalPath());
+                            iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
+                                                                                review_state=['completed', 'invoiced'], 
+                                                                                path=physical_path);
                             current_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
                                                                                         sort_on='created',
                                                                                         sort_order='normal',
@@ -29,286 +29,321 @@
 
 
         <tal:block tal:condition="iterations">
-         <h1 class="" i18n:translate="heading_iterations">Iterations</h1>
+            <h1 i18n:translate="heading_iterations">Iterations</h1>
 
-          <div class="iterations" 
-               tal:repeat="iteration iterations"> 
+            <div class="iterations" 
+                 tal:repeat="iteration iterations"> 
 
-            <div tal:define="obj iteration/getObject;
-                             idx idIndex/next;">
-
-            <table class="listing"
-                   border="1"
-                   width="100%"
-                   cellpadding="0" 
-                   cellspacing="0"
-                   tal:attributes="onload string:javascript:setFromState('hideTable${idx}');">
-            
-              <tr>
-                <th width="60%" height="30" align="left" id="header_iteration">        
-                  <img src="treeCollapsed.gif"
-                       tal:attributes="onclick string:javascript:toggleId('hideTable${idx}');" />
-
-                  <a href=""
-                     id="header_iteration_project_overview"
-                     tal:attributes="href string:${obj/absolute_url}">
-                    <img src="#"
-                         tal:attributes="src string:${here/portal_url}/${obj/getIcon}"/>
-                      <span tal:replace="obj/Title">Title</span>
-                  </a>
-                </th>
-                <th width="40%" id="iteration-state">status: 
-                    <img src="#" tal:attributes="src string:${iteration/review_state}.gif" />
-                </th> 
-              </tr>
-              <tr>
-                 <td colspan="2"
-                     id="iteration-description"
-                     tal:content="obj/Description">Description </td>
-              </tr>
-            </table>
-              
-            <table class="listing" 
-                   width="100%" 
-                   border="0"
-                   cellpadding="0" 
-                   cellspacing="0"
-                   tal:attributes="id string:hideTable${idx};">
-
-              <tr tal:condition="python:obj.contentValues('Story')">
-                <th i18n:translate="listingheader_story">Story</th>
-                <th i18n:translate="listingheader_progress">Progress</th>
-                <th i18n:translate="listingheader_tasks_open">Tasks open</th>
-                <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
-              </tr>
- 
-              <tr tal:define="stories python:obj.contentValues('Story');"
-                  tal:repeat="story stories">
-
-                <div tal:define="progress python:story.get_progress_perc();
-                                 openTasks python:here.getOpenTasks(story);
-                                 completedTasks python:here.getCompletedTasks(story)">
-
-                  <td width="30%"> 
-                    <a href="" 
-                       id="storyTitle_project_overview"
-                       tal:attributes="href story/absolute_url">
-                       <span tal:content="story/Title">Title</span></a></td>
-
-                  <td id="progress_details" width="150">
-                   <span id="progress_percentage" 
-                         tal:content="string:${progress} %">&nbsp;</span><br />
-                    <div id="progress_bar"> 
-                       <img src="progress.gif" 
-                            height="10" 
-                            width="" 
-                            tal:attributes="width progress"/></div></td> 
-                  <td id="open_tasks" 
-                      tal:content="openTasks">tasks open</td>
-                  <td id="completed_tasks" 
-                      tal:content="completedTasks">tasks completed</td>
-                       
-                </div>                 
-              </tr>
-            </table> 
-
-           </div>
-          </div>
-        </tal:block> <br />
-
-
-        <tal:block tal:condition="current_iterations">
-          <div class="iterations"
-               tal:repeat="curIteration current_iterations">
-
-           <div tal:define="obj curIteration/getObject;
+            <tal:block tal:define="obj iteration/getObject;
                             idx idIndex/next;">
 
+                <table class="listing"
+                       width="100%"
+                       cellpadding="0" 
+                       cellspacing="0"
+                       tal:attributes="onload string:javascript:setFromState('hideTable${idx}');">
+            
+                    <tr>
+                        <th width="60%" 
+                            height="30" 
+                            align="left" 
+                            class="header_iteration">
+                            <!-- do we still need this icon?-->
+                            <!--
+                            <img src="treeCollapsed.gif"
+                                 tal:attributes="onclick string:javascript:toggleId('hideTable${idx}');"
+                                 alt="Tree collapse" />
+                            -->
+                            <a  class="header_iteration_project_overview"
+                                tal:attributes="href string:${obj/absolute_url}">
+
+                                <img tal:attributes="src string:${here/portal_url}/${obj/getIcon}"
+                                     alt="project overview" />
+                                <span tal:replace="obj/Title" />
+                            </a>
+                        </th>
+                        <th width="40%" 
+                            class="iteration-state">
+                            status: 
+                            <img tal:attributes="src string:${iteration/review_state}.gif;
+                                                 alt iteration/review_state" />
+                        </th> 
+                    </tr>
+                    <tr>
+                        <td colspan="2"
+                            class="iteration-description"
+                            tal:content="obj/Description">
+                            Description
+                        </td>
+                    </tr>
+                </table>
+            
+                <table class="listing" 
+                       width="100%" 
+                       cellpadding="0" 
+                       cellspacing="0"
+                       tal:attributes="id string:hideTable${idx};">
+    
+                    <tr tal:condition="python:obj.contentValues('Story')">
+                        <th i18n:translate="listingheader_story">Story</th>
+                        <th i18n:translate="listingheader_progress">Progress</th>
+                        <th i18n:translate="listingheader_tasks_open">Tasks open</th>
+                        <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
+                    </tr>
+    
+                    <tr tal:define="stories python:obj.contentValues('Story');"
+                        tal:repeat="story stories">
+        
+                    <tal:block tal:define="progress python:story.get_progress_perc();
+                                    openTasks python:here.getOpenTasks(story);
+                                    completedTasks python:here.getCompletedTasks(story)">
+        
+                        <td width="30%"> 
+                            <a class="storyTitle_project_overview"
+                               tal:attributes="href story/absolute_url"
+                               tal:content="story/Title">
+                                Title
+                            </a>
+                        </td>
+        
+                        <td class="progress_details" 
+                            width="150">
+                            <span class="progress_percentage" 
+                                tal:content="string:${progress} %">&nbsp;</span>
+                            <br />
+                            <div class="progress_bar"> 
+                                <img src="progress.gif" 
+                                    height="10" 
+                                    tal:attributes="width progress"
+                                    alt="progress bar"/>
+                            </div>
+                        </td> 
+                        <td class="open_tasks" 
+                            tal:content="openTasks">tasks open</td>
+                        <td class="completed_tasks" 
+                            tal:content="completedTasks">tasks completed</td>
+                    </tal:block>
+                    </tr>
+                </table> 
+            </tal:block>
+            </div>
+        </tal:block> 
+        <br />
+
+        <tal:block tal:condition="current_iterations">
+        <div class="iterations"
+             tal:repeat="curIteration current_iterations">
+
+            <tal:block tal:define="obj curIteration/getObject;
+                                   idx idIndex/next;">
+
             <table class="listing"
-                   border="0"
                    width="100%"
                    cellpadding="0"
                    cellspacing="0"
                    tal:attributes="onload string:javascript:setFromState('hideTable${idx}');">
 
-              <tr>
-                <th width="60%" height="30" align="left" id="header_iteration">
-                  <img src="treeCollapsed.gif"
-                       tal:attributes="onclick string:javascript:toggleId('hideTable${idx}');" />
-
-                  <a href=""
-                     id="header_iteration_project_overview"
-                     tal:attributes="href string:${obj/absolute_url}">
-                    <img src="#"
-                         tal:attributes="src string:${here/portal_url}/${obj/getIcon}"/>
-                      <span tal:replace="obj/Title">Title</span>
-                  </a>
-                </th>
-                <th width="40%" id="iteration-state">status:
-                    <img src="#" tal:attributes="src string:${curIteration/review_state}.gif" />
-                </th>
-              </tr>
-              <tr>
-                 <td colspan="2"
-                     id="iteration-description"
-                     tal:content="obj/Description">Description </td>
-              </tr>
+                <tr>
+                    <th width="60%" 
+                        height="30" 
+                        align="left" 
+                        class="header_iteration">
+                    <!-- Do we still need this? -->
+                    <!--
+                    <img src="treeCollapsed.gif"
+                         tal:attributes="onclick string:javascript:toggleId('hideTable${idx}');"
+                         alt="Tree collapsed" />
+                    -->
+                    <a class="header_iteration_project_overview"
+                       tal:attributes="href string:${obj/absolute_url}">
+                        <img tal:attributes="src string:${here/portal_url}/${obj/getIcon};
+                                             alt string:Project overview"/>
+                        <span tal:replace="obj/Title">Title</span>
+                    </a>
+                    </th>
+                    <th width="40%" 
+                        class="iteration-state">
+                        status:
+                        <img tal:attributes="src string:${curIteration/review_state}.gif;
+                                             alt curIteration/review_state" />
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="2"
+                        class="iteration-description"
+                        tal:content="obj/Description">Description </td>
+                </tr>
             </table>
 
             <table class="listing"
                    width="100%"
-                   border="0"
                    cellpadding="0"
                    cellspacing="0"
                    tal:attributes="id string:hideTable${idx};">
 
-              <tr tal:condition="python:obj.contentValues('Story')">
-                <th i18n:translate="listingheader_story">Story</th>
-                <th i18n:translate="listingheader_progress">Progress</th>
-                <th i18n:translate="listingheader_tasks_open">Tasks open</th>
-                <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
-              </tr>
+                <tr tal:condition="python:obj.contentValues('Story')">
+                    <th i18n:translate="listingheader_story">Story</th>
+                    <th i18n:translate="listingheader_progress">Progress</th>
+                    <th i18n:translate="listingheader_tasks_open">Tasks open</th>
+                    <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
+                </tr>
 
-              <tr tal:define="stories python:obj.contentValues('Story');"
-                  tal:repeat="story stories">
+                <tr tal:define="stories python:obj.contentValues('Story');"
+                    tal:repeat="story stories">
 
-                <div tal:define="progress python:story.get_progress_perc();
-                                 openTasks python:here.getOpenTasks(story);
-                                 completedTasks python:here.getCompletedTasks(story)">
-
-                  <td width="30%">
-                    <a href=""
-                       id="storyTitle_project_overview"
-                       tal:attributes="href story/absolute_url">
-                       <span tal:content="story/Title">Title</span></a></td>
-
-                  <td id="progress_details" width="150">
-                   <span id="progress_percentage"
-                         tal:content="string:${progress} %">&nbsp;</span><br />
-                    <div id="progress_bar">
-                       <img src="progress.gif"
-                            height="10"
-                            width=""
-                            tal:attributes="width progress"/></div></td>
-                  <td id="open_tasks"
-                      tal:content="openTasks">tasks open</td>
-                  <td id="completed_tasks"
-                      tal:content="completedTasks">tasks completed</td>
-
-                </div>
-              </tr>
+                    <tal:block tal:define="progress python:story.get_progress_perc();
+                                    openTasks python:here.getOpenTasks(story);
+                                    completedTasks python:here.getCompletedTasks(story)">
+    
+                    <td width="30%">
+                        <a class="storyTitle_project_overview"
+                        tal:attributes="href story/absolute_url"
+                        tal:content="story/Title">
+                            Title
+                        </a>
+                    </td>
+    
+                    <td class="progress_details" 
+                        width="150">
+                        <span class="progress_percentage"
+                            tal:content="string:${progress} %">&nbsp;</span>
+                        <br />
+                        <div class="progress_bar">
+                            <img src="progress.gif"
+                                 height="10"
+                                 tal:attributes="width progress"
+                                 alt="Progress bar" />
+                        </div>
+                    </td>
+                    <td class="open_tasks"
+                        tal:content="openTasks">
+                        tasks open
+                    </td>
+                    <td class="completed_tasks"
+                        tal:content="completedTasks">
+                        tasks completed
+                    </td>
+                    </tal:block>
+                </tr>
             </table>
-
-           </div>
-          </div>
+            </tal:block>
+        </div>
         </tal:block>
 
         <tal:block tal:define="project_path python:'/'.join(context.getPhysicalPath());
-                               open_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
+                            open_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
                                                                                         review_state='new',
                                                                                         path=project_path,
                                                                                         sort_on='created',
                                                                                         sort_order='normal')"
                    tal:condition="python:open_iterations">
-           <h1 i18n:translate="header_iterations">Iterations</h1>
-           <p class="discreet" 
-              i18n:translate="description_new_iterations">
-              Here is a list of all iterations with the status <strong>Open</strong>. 
-              The stories assigned to these iterations are also displayed. 
-              This makes it easier to see which stories are assigned to which iteration.
-           </p> 
- 
-           <table class="listing" width="80%">
-             <tr>
-               <th i18n:translate="headerlisting_new_iterations" 
-                   tal:condition="open_iterations">Iterations
-               </th>
-             </tr>
 
-             <tr>
-               <td width="60%" tal:condition="open_iterations">
-                 <div class="list_iterations">
-                   <div tal:repeat="iteration open_iterations">
-                     <img src=""
-                          tal:attributes="src iteration/getIcon" />
-                     <a href=""
-                        tal:attributes="href iteration/getURL"
-                        tal:content="iteration/Title">Title
-                     </a>
-                     
-                     <div style="display:normal;" class="list_iterations"
-                          tal:define="stories python:iteration.getObject().contentValues('Story')">
-                       <div tal:repeat="story stories">
-                         <img src=""
-                              tal:attributes="src story/getIcon" />
-                         <a href=""
-                            tal:attributes="href story/absolute_url"
-                            tal:content="story/Title">Title
-                         </a>
-                       </div>
-                     </div>
+        <h1 i18n:translate="header_iterations">Iterations</h1>
 
-                   </div>
-                 </div>
-               </td>
-             </tr>
-           </table>
+        <p class="discreet" 
+            i18n:translate="description_new_iterations">
+            Here is a list of all iterations with the status <strong>Open</strong>. 
+            The stories assigned to these iterations are also displayed. 
+            This makes it easier to see which stories are assigned to which iteration.
+        </p> 
+
+        <table class="listing" 
+               width="80%">
+            <tr>
+                <th i18n:translate="headerlisting_new_iterations" 
+                    tal:condition="open_iterations">
+                    Iterations
+                </th>
+            </tr>
+            <tr>
+                <td width="60%" 
+                    tal:condition="open_iterations">
+                    <div class="list_iterations">
+                    <div tal:repeat="iteration open_iterations">
+                        <img tal:attributes="src iteration/getIcon"
+                             alt="iteration icon" />
+                        <a tal:attributes="href iteration/getURL"
+                           tal:content="iteration/Title">
+                            Title
+                        </a>
+                        
+                        <div class="list_iterations"
+                             tal:define="stories python:iteration.getObject().contentValues('Story')">
+                        <div tal:repeat="story stories">
+                            <img tal:attributes="src story/getIcon"
+                                    alt="iteration icon" />
+    
+                            <a  tal:attributes="href story/absolute_url"
+                                tal:content="story/Title">
+                                Title
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
         </tal:block>
 
 
         <tal:block tal:define="project_path python:'/'.join(here.getPhysicalPath());
-                               stories python:here.portal_catalog.searchResults(portal_type='Story', 
+                            stories python:here.portal_catalog.searchResults(portal_type='Story', 
                                                                                 review_state='draft',
                                                                                 path=project_path);
-                               stories_estimated python:here.portal_catalog.searchResults(portal_type='Story',
-                                                                                          review_state='estimated',
-                                                                                          path=project_path)"
+                            stories_estimated python:here.portal_catalog.searchResults(portal_type='Story',
+                                                                                        review_state='estimated',
+                                                                                        path=project_path)"
                    tal:condition="python:stories or stories_estimated">
 
-           <h1 i18n:translate="header_stories">Stories</h1>
-          
-           <p class="discreet" 
-              i18n:translate="description_stories_not_estimated">
-              These stories are not estimated yet. 
-              After estimating these stories, they get the status "estimated" <br />
-              and will be visible in the list above to be assigned to an iteration.
-           </p>
-       
-           <table class="listing" width="80%">
-             <tr>
-               <th tal:condition="stories" 
-                   i18n:translate="stories_not_estimated">Stories not estimated</th>
-               <th tal:condition="stories_estimated" 
-                   i18n:translate="stories_estimated">Stories estimated</th>
-             </tr>
-
-             <tr>
-               <td tal:condition="stories">
-                 <div tal:repeat="story stories">
-                   <img src=""
-                        tal:attributes="src story/getIcon" />
-                   <a href=""
-                      tal:attributes="href story/getURL"
-                      tal:content="story/Title">Title
-                   </a>
-                 </div>
-               </td>
-              
-               <td tal:condition="stories_estimated">
-                 <div tal:repeat="story_es stories_estimated">
-                   <img src=""
-                        tal:attributes="src story_es/getIcon" />
-                   <a href=""
-                      tal:attributes="href story_es/getURL"
-                      tal:content="story_es/Title">Title
-                   </a>
-                 </div>
-               </td>
-             </tr>
-          </table>
+        <h1 i18n:translate="header_stories">Stories</h1>
+        
+        <p class="discreet" 
+            i18n:translate="description_stories_not_estimated">
+            These stories are not estimated yet. 
+            After estimating these stories, they get the status "estimated" <br />
+            and will be visible in the list above to be assigned to an iteration.
+        </p>
+    
+        <table class="listing" 
+               width="80%">
+            <tbody valign="top">
+                <tr>
+                    <th tal:condition="stories" 
+                        i18n:translate="stories_not_estimated">Stories not estimated</th>
+                    <th tal:condition="stories_estimated" 
+                        i18n:translate="stories_estimated">Stories estimated</th>
+                </tr>
+                <tr>
+                    <td tal:condition="stories">
+                    <div tal:repeat="story stories"
+                         class="listStories">
+                        <img tal:attributes="src story/getIcon"
+                            alt="story icon" />
+                        <a tal:attributes="href story/getURL"
+                        tal:content="story/Title">
+                            Title
+                        </a>
+                    </div>
+                    </td>
+                
+                    <td tal:condition="stories_estimated">
+                    <div tal:repeat="story_es stories_estimated"
+                         class="listStories">
+                        <img tal:attributes="src story_es/getIcon"
+                            alt="story icon" />
+                        <a tal:attributes="href story_es/getURL"
+                        tal:content="story_es/Title">Title
+                        </a>
+                    </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         </tal:block>
-
     </metal:block>
+
     <metal:block metal:define-macro="folderlisting" />
-  </body>
+
+    </body>
 </html>
