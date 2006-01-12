@@ -69,7 +69,7 @@ def setupeXtreme_Task_Workflow(self, workflow):
     workflow.addManagedPermission('Modify portal content')
     workflow.addManagedPermission('View')
     workflow.addManagedPermission('Change portal events')
-    workflow.addManagedPermission('eXtremeManagement: Add Booking content')
+    workflow.addManagedPermission('eXtremeManagement: Add Booking')
 
     for l in []:
         if not l in workflow.worklists.objectValues():
@@ -96,7 +96,7 @@ def setupeXtreme_Task_Workflow(self, workflow):
     stateDef.setPermission('Change portal events',
                            0,
                            ['Manager', 'Owner'])
-    stateDef.setPermission('eXtremeManagement: Add Booking content',
+    stateDef.setPermission('eXtremeManagement: Add Booking',
                            0,
                            ['Employee', 'Manager'])
 
@@ -115,7 +115,7 @@ def setupeXtreme_Task_Workflow(self, workflow):
     stateDef.setPermission('Change portal events',
                            0,
                            ['Employee', 'Manager', 'Owner'])
-    stateDef.setPermission('eXtremeManagement: Add Booking content',
+    stateDef.setPermission('eXtremeManagement: Add Booking',
                            0,
                            ['Employee', 'Manager'])
 
@@ -134,7 +134,7 @@ def setupeXtreme_Task_Workflow(self, workflow):
     stateDef.setPermission('Change portal events',
                            0,
                            ['Employee', 'Manager', 'Owner'])
-    stateDef.setPermission('eXtremeManagement: Add Booking content',
+    stateDef.setPermission('eXtremeManagement: Add Booking',
                            0,
                            [])
 
@@ -153,7 +153,7 @@ def setupeXtreme_Task_Workflow(self, workflow):
     stateDef.setPermission('Change portal events',
                            0,
                            ['Employee', 'Manager', 'Owner'])
-    stateDef.setPermission('eXtremeManagement: Add Booking content',
+    stateDef.setPermission('eXtremeManagement: Add Booking',
                            0,
                            ['Employee', 'Manager'])
 
