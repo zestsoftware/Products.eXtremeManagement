@@ -19,7 +19,7 @@
    width: 200px;
 }
 
-.header_iteration_project_overview{
+.header_iteration_project_overview {
     font-weight: bold;
     font-size: 15px;
 }
@@ -28,12 +28,12 @@
     border-right: none;
 }
 
-.storyTitle_project_overview{
+.storyTitle_project_overview {
     font-weight: bold;
     text-decoration: underline;
 }
 
-#storyTitle_iteration_overview{
+.storyTitle_iteration_overview {
     font-weight: bold;
 }
 
@@ -42,7 +42,7 @@
     padding: 5px;
 }
 
-.progress_bar{
+.progress_bar {
     border: 1px solid #8CACBB;
     width: 100px;
     height: 10px;
@@ -80,25 +80,22 @@
     font-weight: bold;
 }
 
-#td-estimate {
+.td-story-title {
+    text-align: left;
+}
+
+.list-in-iteration {
     text-align: center;
 }
 
-#td-actual {
-    text-align: center;
-}
-
-#td-diff {
-    text-align: center;
-}
-
-#stories_not_estimated a{
+#stories_not_estimated a {
     padding-left: 5px;
 }
 
 #input_field_center{
     text-align: center;
 }
+
 #actual {
     padding-top: 2px;
     padding-bottom: 2px;
@@ -135,11 +132,6 @@
     text-align: right;
     font-weight: bold;
     width: 40%;
-}
-
-.story_description {
-    margin: 0.3em 0 0.3em 1.5em;
-    color: &dtml-discreetColor;;
 }
 
 .project_description {
