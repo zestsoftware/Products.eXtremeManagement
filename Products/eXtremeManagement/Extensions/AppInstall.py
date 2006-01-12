@@ -73,6 +73,29 @@ def disableJoinLink(portal):
     portal.manage_permission('Add portal member', ['Manager'], 0)
 
 
+def configureKupu(portal):
+    kupuTool = getToolByName(portal, 'kupu_library_tool')
+    linkable = list(kupuTool.getPortalTypesForResourceType('linkable'))
+    #mediaobject = list(kupuTool.getPortalTypesForResourceType('mediaobject'))
+    collection = list(kupuTool.getPortalTypesForResourceType('collection'))
+
+    for type in OUR_LINKABLE_TYPES:
+        if type not in linkable:
+            linkable.append(type)
+
+    for type in OUR_COLLECTION_TYPES:
+        if type not in collection:
+            collection.append(type)
+
+    # kupu_library_tool has an idiotic interface, basically written purely to
+    # work with its configuration page. :-(
+    kupuTool.updateResourceTypes(({'resource_type' : 'linkable',
+                                   'old_type'      : 'linkable',
+                                   'portal_types'  :  linkable},
+                                  {'resource_type' : 'collection',
+                                   'old_type'      : 'collection',
+                                   'portal_types'  :  collection},))
+
 
 def install(self):
     out = StringIO()
@@ -94,6 +117,10 @@ def install(self):
     #print >> out, "Adding default folders"
     #addFolders(self)
     disableJoinLink(self)
+
+    print >> out, "Integrate our types in kupu"
+    configureKupu(self)
+
     return out.getvalue()
 
 def uninstall(self):
