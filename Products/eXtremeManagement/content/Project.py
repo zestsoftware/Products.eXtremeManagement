@@ -70,7 +70,7 @@ class Project(OrderedBaseFolder):
 
     meta_type = 'Project'
     portal_type = 'Project'
-    allowed_content_types = ['Iteration', 'Story']
+    allowed_content_types = ['Iteration', 'Story', 'PoiTracker']
     filter_content_types = 1
     global_allow = 0
     allow_discussion = False
