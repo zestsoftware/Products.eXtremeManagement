@@ -131,7 +131,10 @@ class Story(OrderedBaseFolder):
                 estimates.append(task.getEstimate())
                 actual = actual + task.get_actual_hours()
             estimated = sum(estimates)
-            return round(actual/estimated*100, 1)
+            if estimated > 0:
+                return round(actual/estimated*100, 1)
+            else:
+                return 0.0
         else:
             return 0
 
