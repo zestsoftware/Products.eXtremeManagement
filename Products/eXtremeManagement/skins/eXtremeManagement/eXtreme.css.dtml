@@ -77,7 +77,7 @@
 }
 
 .td-story-title {
-    text-align: left;
+    text-align: left !important;
 }
 
 .list-in-iteration {
@@ -120,12 +120,7 @@
     width: 40%;
 }
 
-.project_description {
-    margin: 0.3em 0 0.3em 1.5em;
-    color: &dtml-discreetColor;;
-}
-
-#project_title {
+.project_title {
     font-weight: bold;
 }
 
@@ -141,33 +136,34 @@
     margin-left: 20px;
 }
 
-#td-project {
-    padding-bottom: 10px;
+
+/* ----project administration view ---- */
+
+.td-project {
+    padding-bottom: 10px !important;
 }
 
-#td-iteration-title {
-    border: none;
+.project_description {
+    margin: 0.3em 0 1em 1.5em;
+    color: &dtml-discreetColor;;
 }
 
-#td-iteration-state {
-    border: none;
-    text-align: center;
-}
-
-#td-iteration-estimate {
-    border: none;
-    text-align: center;
-}
-
-#td-iteration-actual {
+.iteration-table-header th {
     border: none;
     text-align: center;
 }
 
-#iteration-table-header {
+.project-list-info {
+    padding:0px 0px 5px 0px;
+}
+
+.project-list-info td {
     border: none;
     text-align: center;
 }
+
+/* ----end project administration view ---- */
+
 
 .listing th {
     padding-top: 2px;
