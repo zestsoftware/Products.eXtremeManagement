@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0beta\n"
-"POT-Creation-Date: 2005-05-19 21:13+0000\n"
+"POT-Creation-Date: 2006-01-13 14:55+0000\n"
 "PO-Revision-Date: 2005-05-19 13:15 +GMT+1\n"
 "Last-Translator: Ahmad Hadi <ahadi@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
@@ -17,290 +17,882 @@ msgstr ""
 "Preferred-Encodings: latin1 utf-8\n"
 "Domain: eXtremeManagement\n"
 
-### customer_view template ###
-msgid "header_customers"
-msgstr "Klantinformatie"
-
-msgid "listingheader_name"
-msgstr "Naam"
-
-msgid "listingheader_address"
-msgstr "Adres"
-
-msgid "listingheader_zipCode"
-msgstr "Postcode"
-
-msgid "listingheader_city"
-msgstr "Plaatsnaam"
-
-msgid "listingheader_country"
-msgstr "Land"
-
-msgid "listingheader_phone"
-msgstr "Telefoonnummer"
-
-msgid "listingheader_fax"
-msgstr "Faxnummer"
-
-msgid "listingheader_email"
-msgstr "E-mail"
-
-msgid "listingheader_comments"
-msgstr "Opmerking(en)"
-
-msgid "header_project_members"
-msgstr "Projectleden"
-
-### iteration_view template ###
-msgid "listingheader_title"
-msgstr "Titel"
-
-msgid "listingheader_state"
-msgstr "Status"
-
-
-### portlet_tasks template ###
-msgid "box_open_tasks" 
-msgstr "Openstaande taken"
-
-
-### story_view template ###
-msgid "heading_tasks"
-msgstr "Taken"
-
-msgid "listingheader_desc"
-msgstr "Omschrijving"
-
-msgid "listingheader_estimate"
-msgstr "Geschat"
-
-msgid "listingheader_actual"
-msgstr "Daadwerkelijk"
-
-msgid "listingheader_diff"
-msgstr "Verschil"
-
-msgid "listingheader_assignees"
-msgstr "Toegewezen aan"
-
-msgid "total"
-msgstr "Totaal"
-
-### project_view template ###
-msgid "heading_iterations"
-msgstr "Iteraties"
-
-msgid "listingheader_story"
-msgstr "Stories"
-
-msgid "listingheader_progress"
-msgstr "Voortgang"
-
-msgid "listingheader_tasks_open"
-msgstr "Openstaande taken"
-
-msgid "listingheader_tasks_completed"
-msgstr "Afgeronde taken"
-
-msgid "iteration-state"
-msgstr "Status"
-
-
-### CT-Customer ###
-msgid "label_name"
-msgstr "Volledige Naam"
-
-msgid "desc_name"
-msgstr "Vul de volledige naam in, bijvoorbeeld Marieke de Vries."
-
-msgid "label_address"
-msgstr "Adres"
-
-msgid "desc_address"
-msgstr "Vul het adres in."
-
-msgid "label_zipCode"
-msgstr "Postcode"
-
-msgid "desc_zipCode"
-msgstr "Vul de postcode in."
-
-msgid "label_city"
-msgstr "Plaatsnaam"
-
-msgid "desc_city"
-msgstr "Vul de plaatsnaam in."
-
-msgid "label_country"
-msgstr "Land"
-
-msgid "desc_country"
-msgstr "Vul het land in."
-
-msgid "label_phone"
-msgstr "Telefoonnummer"
-
-msgid "desc_phone"
-msgstr "Vul een telefoonnummer in."
-
-msgid "label_fax"
-msgstr "Faxnummer"
-
-msgid "desc_fax"
-msgstr "Vul een faxnummer in."
-
-msgid "label_email"
-msgstr "E-mail"
-
-msgid "desc_email"
-msgstr "Vul een email adres in."
-
-msgid "label_website"
-msgstr "Webadres"
-
-msgid "desc_website"
-msgstr "Vul een webadres in."
-
-msgid "label_comments"
-msgstr "Opmerking(en)"
-
-msgid "desc_comments"
-msgstr "Vul hier een opmerking in."
-
-
-### CT-ProjectMember ###
-msgid "label_fullname"
-msgstr "Naam"
-
-
-### CT-Task ###
-msgid "label_task"
-msgstr "Taak"
-
-msgid "desc_task"
-msgstr "Vul een omschrijving voor deze taak in."
-
-msgid "label_estimate"
-msgstr "Aantal uren (geschat)"
-
-msgid "desc_estimate"
-msgstr "Vul het aantal geschatte uren in."
-
-msgid "label_actual"
-msgstr "Aantal uren (daadwerkelijk)"
-
-msgid "desc_actual"
-msgstr "Vul het aantal daadwerkelijk gewerkte uren in."
-
-msgid "label_assignees"
-msgstr "Toewijzen aan"
-
-msgid "desc_assignees"
-msgstr "Selecteer de gebruiker(s) aan wie deze taak wordt toegewezen."
-
-
-### CT-Story ###
-msgid "label_mainText"
-msgstr "Hoofdtekst"
-
-msgid "desc_mainText"
-msgstr "Vul de hoofdtekst in."
-
-msgid "header_memberinfo"
-msgstr "Projectlid"
-
-msgid "completed"
-msgstr "Voltooid"
-
-msgid "open"
-msgstr "Open"
-
-msgid "in-progress"
-msgstr "In behandeling"
-
-msgid "Activate"
-msgstr "Activeren"
-
-msgid "Complete"
-msgstr "Afronden"
-
-msgid "estimated"
-msgstr "Geschat"
-
-msgid "assigned"
-msgstr "Toegekend"
-
-msgid "headerlisting_new_iterations"
-msgstr "Nieuwe iteraties"
-
-msgid "headerlisting_iterations_activated"
-msgstr "Geactiveerde iteraties"
-
-msgid "stories_not_estimated"
-msgstr "Stories niet geschat"
-
-msgid "stories_estimated"
-msgstr "Stories geschat"
-
-msgid "header_new_iterations"
-msgstr "Nieuwe iteraties"
-
-msgid "header_stories_(not)_estimated"
-msgstr "Stories (niet) geschat"
-
-msgid "description_stories_not_estimated"
-msgstr "Hieronder worden 2 lijsten weergegeven met de stories die aangemaakt zijn. In de linkerlijst worden alle stories weergegeven die nog niet geschat zijn op het aantal uren. In de rechterlijst worden stories weergegeven die wel voorzien zijn van een schatting."
-
-msgid "description_new_iterations" 
-msgstr "Hieronder wordt een lijst weergegeven met alle openstaande iteraties. Per iteratie worden ook de stories getoond (ingesprongen). Zo heeft men een overzicht van de iteraties en stories die toegekend zijn aan deze iteraties."
-
+#. Default: "Send"
+#: skins/eXtremeManagement/update_hours_form.cpt
 msgid "Send"
 msgstr "Versturen"
 
-msgid "no_tasks_assigned"
-msgstr "Op dit moment heb jij geen taken!"
+#. Default: "Send a mail to this user"
+#: skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/projectmember_view.pt
+msgid "Send a mail to this user"
+msgstr ""
 
-msgid "header_time_registration"
-msgstr "Uren registratie"
+#. Default: "Here is a list of all iterations with the status <strong>Open</strong>. The stories assigned to these iterations are also displayed. This makes it easier to see which stories are assigned to which iteration."
+#: skins/eXtremeManagement/project_view.pt
+msgid "description_new_iterations"
+msgstr "Hieronder wordt een lijst weergegeven met alle openstaande iteraties. Per iteratie worden ook de stories getoond (ingesprongen). Zo heeft men een overzicht van de iteraties en stories die toegekend zijn aan deze iteraties."
 
-msgid "description_time_registration"
-msgstr "Om je uren te boeken, maak je gebruik van onderstaand formulier. Vul de velden 'daadwerkelijk' in en klik op <strong>versturen</strong>. Je uren worden dan automatisch bijgewerkt."
-
-msgid "no_stories_published"
-msgstr "Er zijn op dit moment geen stories gedefinieerd!"
-
-msgid "heading-contents"
-msgstr "Inhoud"
-
-msgid "project_administration"
-msgstr "Project administratie"
-
-msgid "header_project_administration"
-msgstr "Project administratie"
-
+#. Default: "This is a list of all projects. Also the iterations which are completed with state, estimated and actual time. Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>. This way the administration has an overview with all iterations which are invoiced."
+#: skins/eXtremeManagement/project_administration.pt
 msgid "description_project_administration"
 msgstr "Hieronder worden alle projecten weergegeven. Daarin worden alle iteraties getoond met de schatting en de daadwerkelijk gewerkte uren. Zodra een iteratie gefactureerd wordt, kan de status veranderd worden naar <strong>gefactureerd</strong>. Zo heeft de administratie een overzicht van iteraties die gefactureerd zijn."
 
+#. Default: "These stories are not estimated yet. After estimating these stories, they get the status \"estimated\" <br/> and will be visible in the list above to be assigned to an iteration."
+#: skins/eXtremeManagement/project_view.pt
+msgid "description_stories_not_estimated"
+msgstr "Hieronder worden 2 lijsten weergegeven met de stories die aangemaakt zijn. In de linkerlijst worden alle stories weergegeven die nog niet geschat zijn op het aantal uren. In de rechterlijst worden stories weergegeven die wel voorzien zijn van een schatting."
+
+#. Default: "To register your time (hours), use the form below and press 'Send'."
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "description_time_registration"
+msgstr "Om je uren te boeken, maak je gebruik van onderstaand formulier. Vul de velden 'daadwerkelijk' in en klik op <strong>versturen</strong>. Je uren worden dan automatisch bijgewerkt."
+
+#. Default: "actual"
+#. actual
+#: Task.py
+msgid "eXtremeManagement_help_actual"
+msgstr ""
+
+## 1 more: content/Customer.py
+#. Default: "Enter address."
+#. Enter address.
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_help_address"
+msgstr ""
+
+#. Default: "adress"
+#. adress
+#: Customer.py
+msgid "eXtremeManagement_help_adress"
+msgstr ""
+
+#. Default: "assignTo"
+#. assignTo
+#: Task.py
+msgid "eXtremeManagement_help_assignTo"
+msgstr ""
+
+#. Default: "assignees"
+#. Select the member(s) to assign this task to.
+#. assignees
+#: content/Task.py
+#: Task.py
+msgid "eXtremeManagement_help_assignees"
+msgstr ""
+
+#. Default: "attribute_25"
+#. attribute_25
+#: Story.py
+msgid "eXtremeManagement_help_attribute_25"
+msgstr ""
+
+#. Default: "attribute_30"
+#. attribute_30
+#: Project.py
+msgid "eXtremeManagement_help_attribute_30"
+msgstr ""
+
+#. Default: "attribute_33"
+#. attribute_33
+#: Task.py
+msgid "eXtremeManagement_help_attribute_33"
+msgstr ""
+
+## 1 more: content/Booking.py
+#. Default: "billable"
+#. billable
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_help_billable"
+msgstr ""
+
+#. Default: "city"
+#. Enter city name.
+#. city
+#: content/Customer.py
+#: Customer.py
+msgid "eXtremeManagement_help_city"
+msgstr ""
+
+#. Default: "comments"
+#. Enter some comments.
+#. comments
+#: ProjectMember.py
+#: Customer.py
+msgid "eXtremeManagement_help_comments"
+msgstr ""
+
+#. Default: "country"
+#. Enter country.
+#. country
+#: content/Customer.py
+#: Customer.py
+msgid "eXtremeManagement_help_country"
+msgstr ""
+
+#. Default: "customerfolders"
+#. customerfolders
+#: ProjectFolder.py
+msgid "eXtremeManagement_help_customerfolders"
+msgstr ""
+
+#. Default: "customers"
+#. customers
+#: Project.py
+msgid "eXtremeManagement_help_customers"
+msgstr ""
+
+#. Default: "descriptino"
+#. descriptino
+#: Story.py
+msgid "eXtremeManagement_help_descriptino"
+msgstr ""
+
+#. Default: "description"
+#. description
+#: Customer.py
+msgid "eXtremeManagement_help_description"
+msgstr ""
+
+## 1 more: content/ProjectMember.py
+#. Default: "email"
+#. Enter your email address.
+#. email
+#: ProjectMember.py
+#: Customer.py
+#: content/ProjectMember.py
+msgid "eXtremeManagement_help_email"
+msgstr ""
+
+#. Default: "emailAddress"
+#. emailAddress
+#: Customer.py
+msgid "eXtremeManagement_help_emailAddress"
+msgstr ""
+
+#. Default: "endDate"
+#. endDate
+#: content/Iteration.py
+msgid "eXtremeManagement_help_endDate"
+msgstr ""
+
+#. Default: "estimate"
+#. Enter the estimated time (in hours).
+#. estimate
+#: content/Task.py
+#: Task.py
+msgid "eXtremeManagement_help_estimate"
+msgstr ""
+
+#. Default: "fax"
+#. Enter your fax number.
+#. fax
+#: content/Customer.py
+#: Customer.py
+msgid "eXtremeManagement_help_fax"
+msgstr ""
+
+#. Default: "faxNumber"
+#. faxNumber
+#: Customer.py
+msgid "eXtremeManagement_help_faxNumber"
+msgstr ""
+
+#. Default: "firstName"
+#. firstName
+#: ProjectMember.py
+msgid "eXtremeManagement_help_firstName"
+msgstr ""
+
+#. Default: "fullname"
+#. Enter a name, eg. John Smith.
+#. fullname
+#: content/ProjectMember.py
+#: ProjectMember.py
+msgid "eXtremeManagement_help_fullname"
+msgstr ""
+
+## 1 more: content/Booking.py
+#. Default: "hours"
+#. hours
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_help_hours"
+msgstr ""
+
+#. Default: "id"
+#. id
+#: Customer.py
+msgid "eXtremeManagement_help_id"
+msgstr ""
+
+#. Default: "lastName"
+#. lastName
+#: ProjectMember.py
+msgid "eXtremeManagement_help_lastName"
+msgstr ""
+
+#. Default: "lastTaskId"
+#: content/Story.py
+msgid "eXtremeManagement_help_lastTaskId"
+msgstr ""
+
+#. Default: "location"
+#. location
+#: Customer.py
+msgid "eXtremeManagement_help_location"
+msgstr ""
+
+#. Default: "mainText"
+#. mainText
+#. Enter the main description for this object.
+#: Story.py
+#: content/Story.py
+msgid "eXtremeManagement_help_mainText"
+msgstr ""
+
+#. Default: "manHours"
+#. manHours
+#: content/Iteration.py
+msgid "eXtremeManagement_help_manHours"
+msgstr ""
+
+## 1 more: content/Booking.py
+#. Default: "minutes"
+#. minutes
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_help_minutes"
+msgstr ""
+
+#. Default: "name"
+#. Enter full name, eg. John Smith.
+#. name
+#: content/Customer.py
+#: Customer.py
+msgid "eXtremeManagement_help_name"
+msgstr ""
+
+## 2 more: content/ProjectMember.py, content/Customer.py
+#. Default: "phone"
+#. Enter your phone number.
+#. phone
+#: ProjectMember.py
+#: Customer.py
+#: content/ProjectMember.py
+msgid "eXtremeManagement_help_phone"
+msgstr ""
+
+#. Default: "phoneNumber"
+#. phoneNumber
+#: Customer.py
+msgid "eXtremeManagement_help_phoneNumber"
+msgstr ""
+
+#. Default: "startDate"
+#. startDate
+#: content/Iteration.py
+msgid "eXtremeManagement_help_startDate"
+msgstr ""
+
+#. Default: "task"
+#. task
+#: Task.py
+msgid "eXtremeManagement_help_task"
+msgstr ""
+
+#. Default: "taskDescription"
+#. taskDescription
+#: Task.py
+msgid "eXtremeManagement_help_taskDescription"
+msgstr ""
+
+#. Default: "title"
+#. title
+#: Customer.py
+msgid "eXtremeManagement_help_title"
+msgstr ""
+
+#. Default: "website"
+#. Enter your website address.
+#. website
+#: content/Customer.py
+#: Customer.py
+msgid "eXtremeManagement_help_website"
+msgstr ""
+
+#. Default: "zipCode"
+#. Enter zip code.
+#. zipCode
+#: content/Customer.py
+#: Customer.py
+msgid "eXtremeManagement_help_zipCode"
+msgstr ""
+
+#. Default: "Actual"
+#. Actual
+#: Task.py
+msgid "eXtremeManagement_label_actual"
+msgstr ""
+
+## 1 more: content/Customer.py
+#. Default: "Address"
+#. Address
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_address"
+msgstr ""
+
+#. Default: "Adress"
+#. Adress
+#: Customer.py
+msgid "eXtremeManagement_label_adress"
+msgstr ""
+
+#. Default: "Assignto"
+#. Assignto
+#: Task.py
+msgid "eXtremeManagement_label_assignTo"
+msgstr ""
+
+## 1 more: content/Task.py
+#. Default: "Assignees"
+#. Assignees
+#: Task.py
+#: content/Task.py
+msgid "eXtremeManagement_label_assignees"
+msgstr ""
+
+#. Default: "Attribute_25"
+#. Attribute_25
+#: Story.py
+msgid "eXtremeManagement_label_attribute_25"
+msgstr ""
+
+#. Default: "Attribute_30"
+#. Attribute_30
+#: Project.py
+msgid "eXtremeManagement_label_attribute_30"
+msgstr ""
+
+#. Default: "Attribute_33"
+#. Attribute_33
+#: Task.py
+msgid "eXtremeManagement_label_attribute_33"
+msgstr ""
+
+## 1 more: content/Booking.py
+#. Default: "Billable"
+#. Billable
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_label_billable"
+msgstr ""
+
+## 1 more: content/Customer.py
+#. Default: "City"
+#. City
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_city"
+msgstr ""
+
+#. Default: "Comments"
+#. Comments
+#: Customer.py
+msgid "eXtremeManagement_label_comments"
+msgstr ""
+
+## 1 more: content/Customer.py
+#. Default: "Country"
+#. Country
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_country"
+msgstr ""
+
+#. Default: "Customerfolders"
+#. Customerfolders
+#: ProjectFolder.py
+msgid "eXtremeManagement_label_customerfolders"
+msgstr ""
+
+#. Default: "Customers"
+#. Customers
+#: Project.py
+msgid "eXtremeManagement_label_customers"
+msgstr ""
+
+#. Default: "Descriptino"
+#. Descriptino
+#: Story.py
+msgid "eXtremeManagement_label_descriptino"
+msgstr ""
+
+#. Default: "Description"
+#. Description
+#: Customer.py
+msgid "eXtremeManagement_label_description"
+msgstr ""
+
+## 1 more: content/ProjectMember.py
+#. Default: "Email"
+#. Email
+#: Customer.py
+#: content/ProjectMember.py
+msgid "eXtremeManagement_label_email"
+msgstr ""
+
+#. Default: "Emailaddress"
+#. Emailaddress
+#: Customer.py
+msgid "eXtremeManagement_label_emailAddress"
+msgstr ""
+
+#. Default: "Enddate"
+#. Enddate
+#: content/Iteration.py
+msgid "eXtremeManagement_label_endDate"
+msgstr ""
+
+## 1 more: content/Task.py
+#. Default: "Estimate"
+#. Estimate
+#: Task.py
+#: content/Task.py
+msgid "eXtremeManagement_label_estimate"
+msgstr ""
+
+## 1 more: content/Customer.py
+#. Default: "Fax"
+#. Fax
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_fax"
+msgstr ""
+
+#. Default: "Faxnumber"
+#. Faxnumber
+#: Customer.py
+msgid "eXtremeManagement_label_faxNumber"
+msgstr ""
+
+#. Default: "Firstname"
+#. Firstname
+#: ProjectMember.py
+msgid "eXtremeManagement_label_firstName"
+msgstr ""
+
+## 1 more: content/ProjectMember.py
+#. Default: "Fullname"
+#. Fullname
+#: ProjectMember.py
+#: content/ProjectMember.py
+msgid "eXtremeManagement_label_fullname"
+msgstr ""
+
+## 1 more: content/Booking.py
+#. Default: "Hours"
+#. Hours
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_label_hours"
+msgstr ""
+
+#. Default: "Id"
+#. Id
+#: Customer.py
+msgid "eXtremeManagement_label_id"
+msgstr ""
+
+#. Default: "Lastname"
+#. Lastname
+#: ProjectMember.py
+msgid "eXtremeManagement_label_lastName"
+msgstr ""
+
+#. Default: "Lasttaskid"
+#: content/Story.py
+msgid "eXtremeManagement_label_lastTaskId"
+msgstr ""
+
+#. Default: "Location"
+#. Location
+#: Customer.py
+msgid "eXtremeManagement_label_location"
+msgstr ""
+
+## 1 more: content/Story.py
+#. Default: "Maintext"
+#. Maintext
+#: Story.py
+#: content/Story.py
+msgid "eXtremeManagement_label_mainText"
+msgstr ""
+
+#. Default: "Manhours"
+#. Manhours
+#: content/Iteration.py
+msgid "eXtremeManagement_label_manHours"
+msgstr ""
+
+## 1 more: content/Booking.py
+#. Default: "Minutes"
+#. Minutes
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_label_minutes"
+msgstr ""
+
+## 1 more: content/Customer.py
+#. Default: "Name"
+#. Name
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_name"
+msgstr ""
+
+## 2 more: content/ProjectMember.py, content/Customer.py
+#. Default: "Phone"
+#. Phone
+#: Customer.py
+#: content/ProjectMember.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_phone"
+msgstr ""
+
+#. Default: "Phonenumber"
+#. Phonenumber
+#: Customer.py
+msgid "eXtremeManagement_label_phoneNumber"
+msgstr ""
+
+#. Default: "Startdate"
+#. Startdate
+#: content/Iteration.py
+msgid "eXtremeManagement_label_startDate"
+msgstr ""
+
+#. Default: "Task"
+#. Task
+#: Task.py
+msgid "eXtremeManagement_label_task"
+msgstr ""
+
+#. Default: "Taskdescription"
+#. Taskdescription
+#: Task.py
+msgid "eXtremeManagement_label_taskDescription"
+msgstr ""
+
+#. Default: "Title"
+#. Title
+#: Customer.py
+msgid "eXtremeManagement_label_title"
+msgstr ""
+
+## 1 more: content/Customer.py
+#. Default: "Website"
+#. Website
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_website"
+msgstr ""
+
+## 1 more: content/Customer.py
+#. Default: "Zipcode"
+#. Zipcode
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_zipCode"
+msgstr ""
+
+### customer_view template ###
+#. Default: "Customer info"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "header_customers"
+msgstr "Klantinformatie"
+
+#. Default: "Iterations"
+#: skins/eXtremeManagement/project_view.pt
+msgid "header_iterations"
+msgstr ""
+
+#. Default: "Project member info"
+#: skins/eXtremeManagement/projectmember_view.pt
+msgid "header_memberinfo"
+msgstr "Projectlid"
+
+#. Default: "Project administration"
+#: skins/eXtremeManagement/project_administration.pt
+msgid "header_project_administration"
+msgstr "Project administratie"
+
+#. Default: "Project members"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "header_project_members"
+msgstr "Projectleden"
+
+#. Default: "Stories"
+#: skins/eXtremeManagement/project_view.pt
+msgid "header_stories"
+msgstr ""
+
+#. Default: "Time registration"
+#: skins/eXtremeManagement/portlet_tasks.pt
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "header_time_registration"
+msgstr "Uren registratie"
+
+#. Default: "Iterations"
+#: skins/eXtremeManagement/project_view.pt
+msgid "headerlisting_new_iterations"
+msgstr "Nieuwe iteraties"
+
+#. Default: "Booking"
+#: skins/eXtremeManagement/booking_view.pt
 msgid "heading-booking"
 msgstr "Geboekt"
 
+#. Default: "Bookings"
+#: skins/eXtremeManagement/task_view.pt
 msgid "heading-bookings"
 msgstr "Boekingen"
 
-msgid "listingheader-booking"
-msgstr "Boeking"
+#. Default: "Stories"
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "heading-stories"
+msgstr ""
 
-msgid "listingheader-time"
-msgstr "Tijd"
+### project_view template ###
+#. Default: "Iterations"
+#: skins/eXtremeManagement/project_view.pt
+msgid "heading_iterations"
+msgstr "Iteraties"
 
-msgid "listingheader_booking"
-msgstr "Uren boeken"
+### story_view template ###
+#. Default: "Tasks"
+#: skins/eXtremeManagement/story_view.pt
+msgid "heading_tasks"
+msgstr "Taken"
 
+#. Default: "Comments:"
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "label_description"
+msgstr "Omschrijving:"
+
+#. Default: "Hours"
+#: skins/eXtremeManagement/update_hours_form.cpt
 msgid "label_hours"
 msgstr "Uren"
 
+#. Default: "Minutes"
+#: skins/eXtremeManagement/update_hours_form.cpt
 msgid "label_minutes"
 msgstr "Minuten"
 
-msgid "label_description"
-msgstr "Omschrijving:"
+#. Default: "Booking"
+#: skins/eXtremeManagement/task_view.pt
+msgid "listingheader-booking"
+msgstr "Boeking"
+
+#. Default: "Time"
+#: skins/eXtremeManagement/task_view.pt
+msgid "listingheader-time"
+msgstr "Tijd"
+
+#. Default: "Fullname"
+#: skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/projectmember_view.pt
+msgid "listingheader_Fullname"
+msgstr ""
+
+#. Default: "Phone"
+#: skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/projectmember_view.pt
+msgid "listingheader_Phone"
+msgstr ""
+
+#. Default: "Actual"
+#: skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/project_administration.pt
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "listingheader_actual"
+msgstr "Daadwerkelijk"
+
+#. Default: "Address"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_address"
+msgstr "Adres"
+
+#. Default: "Assignee(s)"
+#: skins/eXtremeManagement/task_view.pt
+#: skins/eXtremeManagement/story_view.pt
+msgid "listingheader_assignees"
+msgstr "Toegewezen aan"
+
+#. Default: "City"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_city"
+msgstr "Plaatsnaam"
+
+#. Default: "Comments"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_comments"
+msgstr "Opmerking(en)"
+
+#. Default: "Country"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_country"
+msgstr "Land"
+
+#. Default: "Difference"
+#: skins/eXtremeManagement/story_view.pt
+msgid "listingheader_diff"
+msgstr "Verschil"
+
+#. Default: "email"
+#: skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/projectmember_view.pt
+msgid "listingheader_email"
+msgstr "E-mail"
+
+#. Default: "End date"
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "listingheader_enddate"
+msgstr "Einddatum"
+
+#. Default: "Estimate"
+#: skins/eXtremeManagement/task_view.pt
+#: skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/project_administration.pt
+msgid "listingheader_estimate"
+msgstr "Geschat"
+
+#. Default: "Fax"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_fax"
+msgstr "Faxnummer"
+
+#. Default: "id"
+#: skins/eXtremeManagement/story_view.pt
+msgid "listingheader_id"
+msgstr ""
+
+#. Default: "Man hours"
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "listingheader_man_uren"
+msgstr "Man uren"
+
+#. Default: "name"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_name"
+msgstr "Naam"
+
+#. Default: "phone"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_phone"
+msgstr "Telefoonnummer"
+
+#. Default: "Progress"
+#: skins/eXtremeManagement/project_view.pt
+msgid "listingheader_progress"
+msgstr "Voortgang"
+
+#. Default: "Project"
+#: skins/eXtremeManagement/project_administration.pt
+msgid "listingheader_projects"
+msgstr ""
+
+#. Default: "Start date"
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "listingheader_startdate"
+msgstr "Startdatum"
+
+#. Default: "Status"
+#: skins/eXtremeManagement/task_view.pt
+#: skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/project_administration.pt
+msgid "listingheader_state"
+msgstr "Status"
+
+#. Default: "Story"
+#: skins/eXtremeManagement/project_view.pt
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "listingheader_story"
+msgstr "Stories"
+
+#. Default: "Tasks completed"
+#: skins/eXtremeManagement/project_view.pt
+msgid "listingheader_tasks_completed"
+msgstr "Afgeronde taken"
+
+#. Default: "Tasks open"
+#: skins/eXtremeManagement/project_view.pt
+msgid "listingheader_tasks_open"
+msgstr "Openstaande taken"
+
+### iteration_view template ###
+#. Default: "Title"
+#: skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "listingheader_title"
+msgstr "Titel"
+
+#. Default: "Website"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_website"
+msgstr ""
+
+#. Default: "Zip code"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_zipCode"
+msgstr "Postcode"
+
+#. Default: "No projects are published yet!"
+#: skins/eXtremeManagement/project_administration.pt
+msgid "no_projects_found"
+msgstr ""
+
+#. Default: "No stories published yet!"
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "no_stories_published"
+msgstr "Er zijn op dit moment geen stories gedefinieerd!"
+
+#. Default: "No tasks are assigned to you!"
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "no_tasks_assigned"
+msgstr "Op dit moment heb jij geen taken!"
+
+#. Default: "No tasks defined yet."
+#: skins/eXtremeManagement/story_view.pt
+msgid "no_tasks_defined"
+msgstr ""
+
+#. Default: "Project administration"
+#: skins/eXtremeManagement/portlet_tasks.pt
+msgid "project_administration"
+msgstr "Project administratie"
+
+#. Default: "Stories estimated"
+#: skins/eXtremeManagement/project_view.pt
+msgid "stories_estimated"
+msgstr "Stories geschat"
+
+#. Default: "Stories not estimated"
+#: skins/eXtremeManagement/project_view.pt
+msgid "stories_not_estimated"
+msgstr "Stories niet geschat"
+
+#: skins/eXtremeManagement/customer_view.pt
+msgid "title"
+msgstr ""
+
+#. Default: "Total"
+#: skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "total"
+msgstr "Totaal"
+
