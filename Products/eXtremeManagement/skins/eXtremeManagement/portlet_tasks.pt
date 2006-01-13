@@ -2,70 +2,71 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       i18n:domain="eXtremeManagement">
 
-<body>
+    <body>
 
-<link href="eXtreme.css" type="text/css" rel="stylesheet" />
-
-<!-- The open tasks box -->
-
-<div metal:define-macro="portlet"
-     tal:define="DateTime python:modules['DateTime'].DateTime;
-                 results python:here.getTasks();"
-     tal:condition="python:results or member.has_role('Manager')">
- 
-    <div class="portlet" id="portlet-project-admininstration">
-
-        <h5 i18n:translate="project_administration">Project administration</h5>
-
-        <div class="portletBody">
-            <tal:block repeat="item results">
-            <div tal:define="oddrow repeat/item/odd;"
-                 tal:attributes="class python:test(oddrow, 'portletItem odd', 'portletItem even')">
-
-                    <a href="#"
-                       class="marker"
+    <!-- The open tasks box -->
+    
+    <div metal:define-macro="portlet"
+        tal:define="DateTime python:modules['DateTime'].DateTime;
+                    results python:here.getTasks();"
+        tal:condition="python:results or member.has_role('Manager')"
+        tal:omit-tag="">
+    
+        <div class="portlet" 
+            id="portlet-project-admininstration">
+    
+            <h5 i18n:translate="project_administration">
+                Project administration
+            </h5>
+    
+            <div class="portletBody">
+                <tal:block repeat="item results">
+                <div tal:define="oddrow repeat/item/odd;"
+                     tal:attributes="class python:test(oddrow, 'portletItem odd', 'portletItem even')">
+    
+                    <a class="marker"
                        tal:attributes="href item/absolute_url"> 
-
-                        <img src="" alt="" height="16" width="16"
-                             tal:attributes="src string:${here/portal_url}/${item/getIcon};" />
+                        <img alt="" 
+                             height="16" 
+                             width="16"
+                            tal:attributes="src string:${here/portal_url}/${item/getIcon};" />
 
                         <span tal:replace="item/Title">
-                        Title
+                            Title
                         </span>
-                    </a>  
-
+                    </a>
+    
                     <div class="portletDetails"
-                         tal:define="moddate item/ModificationDate;"
-                         tal:content="python:here.toPortalTime(moddate)">July 7, 08:11</div>
-            </div>
-            </tal:block>
-            
-            <div tal:condition="results" class="portletItem even">
-               <img src="" 
-                    alt="" 
-                    height="16" 
-                    width="16"
-                    tal:attributes="src string:${here/portal_url}/tasks_links_icon.gif" />
-                  <a href=""
-                     i18n:translate="header_time_registration"
-                     tal:attributes="href string:${portal_url}/update_hours_form">Time registration
-                   </a> 
-            </div>  
-            <div tal:condition="python: member.has_role('Manager')"  class="portletItem odd">
-               <img src="" 
-                    alt="" 
-                    height="16" 
-                    width="16"
-                    tal:attributes="src string:${here/portal_url}/tasks_links_icon.gif" />
-                  <a href="" 
-                     i18n:translate="project_administration" 
-                     tal:attributes="href string:${portal_url}/project_administration">Project administration
-                  </a>
-            </div> 
+                        tal:define="moddate item/ModificationDate;"
+                        tal:content="python:here.toPortalTime(moddate)">July 7, 08:11</div>
+                </div>
+                </tal:block>
+                
+                <div tal:condition="results" 
+                     class="portletItem even">
+                    <img  alt="" 
+                          height="16" 
+                          width="16"
+                          tal:attributes="src string:${here/portal_url}/tasks_links_icon.gif" />
 
+                    <a i18n:translate="header_time_registration"
+                       tal:attributes="href string:${portal_url}/update_hours_form">
+                        Time registration
+                    </a> 
+                </div>  
+                <div tal:condition="python: member.has_role('Manager')"  
+                     class="portletItem odd">
+                <img alt="" 
+                     height="16" 
+                     width="16"
+                     tal:attributes="src string:${here/portal_url}/tasks_links_icon.gif" />
+
+                    <a i18n:translate="project_administration" 
+                       tal:attributes="href string:${portal_url}/project_administration">Project administration
+                    </a>
+                </div> 
+            </div>
         </div>
-        
     </div>
-</div>
-</body>
+    </body>
 </html>

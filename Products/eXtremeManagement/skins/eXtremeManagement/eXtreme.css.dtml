@@ -49,11 +49,7 @@
     text-align: left;
 }
 
-.open_tasks {
-    text-align: center;
-}
-
-.completed_tasks {
+.tasks {
     text-align: center;
 }
 
@@ -93,16 +89,6 @@
 }
 
 #input_field_center{
-    text-align: center;
-}
-
-#actual {
-    padding-top: 2px;
-    padding-bottom: 2px;
-    text-align: center;
-}
-
-#estimate {
     text-align: center;
 }
 
@@ -194,6 +180,19 @@
 
 .booking_description {
     margin-left: 20px;
+}
+
+.hours-comments {
+    font-weight: bold;
+}
+
+.hours-comments textarea {
+    margin-right: 15px; 
+    margin-bottom: 15px;
+}
+
+.comments-title {
+    padding-top: 15px;
 }
 
 /* </dtml-with> */

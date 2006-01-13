@@ -118,9 +118,9 @@
                                     alt="progress bar"/>
                             </div>
                         </td> 
-                        <td class="open_tasks" 
+                        <td class="tasks" 
                             tal:content="openTasks">tasks open</td>
-                        <td class="completed_tasks" 
+                        <td class="tasks" 
                             tal:content="completedTasks">tasks completed</td>
                     </tal:block>
                     </tr>
@@ -215,11 +215,11 @@
                                  alt="Progress bar" />
                         </div>
                     </td>
-                    <td class="open_tasks"
+                    <td class="tasks"
                         tal:content="openTasks">
                         tasks open
                     </td>
-                    <td class="completed_tasks"
+                    <td class="tasks"
                         tal:content="completedTasks">
                         tasks completed
                     </td>

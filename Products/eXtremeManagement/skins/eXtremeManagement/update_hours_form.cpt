@@ -3,135 +3,118 @@
       i18n:domain="eXtremeManagement"
       metal:use-macro="here/main_template/macros/master">
 
-  <head>
-      <metal:block fill-slot="top_slot"
-                   tal:define="dummy python:request.set('disable_border', 1)" />
+    <head>
+        <metal:block fill-slot="top_slot"
+                     tal:define="dummy python:request.set('disable_border', 1)" />
+    </head>
 
-      <metal:block fill-slot="css_slot">
-        <style type="text/css" media="screen"
-               tal:content="string: @import url($portal_url/eXtreme.css);">
-        </style>
-     </metal:block>
-  </head>
+    <body>
 
-  <body>
-
-    <div metal:fill-slot="main"
-         tal:define="tasks python:here.getOwnTasks();">
-
-       <h1 i18n:translate="header_time_registration" 
-           class="documentFirstHeading">
-         Time registration
-       </h1>
-
-       <tal:block tal:condition="tasks">
+        <div metal:fill-slot="main"
+             tal:define="tasks python:here.getOwnTasks();">
         
-          <p class="discreet" 
-             i18n:translate="description_time_registration"> 
-            To register your time (hours), use the form below and press 'Send'.
-          </p>
+            <h1 i18n:translate="header_time_registration" 
+                class="documentFirstHeading">
+                Time registration
+            </h1>
 
-        <form tal:define="errors options/state/getErrors"
-              tal:attributes="action string:${here/absolute_url}/${template/id};"
-              method="post">
+            <tal:block tal:condition="tasks">
+        
+            <p class="discreet" 
+               i18n:translate="description_time_registration"> 
+                To register your time (hours), use the form below and press 'Send'.
+            </p>
 
-          <table class="listing"
-                 border="1" 
-                 width="100%"
-                 cellpadding="0" 
-                 cellspacing="0">
+            <form tal:define="errors options/state/getErrors"
+                  tal:attributes="action string:${here/absolute_url}/${template/id};"
+                  method="post">
 
-             <tr>
-               <th i18n:translate="listingheader_title">Task</th> 
-               <th i18n:translate="listingheader_estimate">Estimate</th>
-               <th i18n:translate="listingheader_actual">Actual</th>
-             </tr>
+                <table class="listing"
+                    border="1" 
+                    width="100%"
+                    cellpadding="0" 
+                    cellspacing="0">
+    
+                    <tr>
+                        <th i18n:translate="listingheader_title">Task</th> 
+                        <th i18n:translate="listingheader_estimate">Estimate</th>
+                        <th i18n:translate="listingheader_actual">Actual</th>
+                    </tr>
+    
+                    <tal:loop tal:repeat="taskObj tasks">
+                    <tr class="list-in-iteration">
+                        <td class="td-story-title">
+                            <a tal:attributes="href taskObj/absolute_url">
+                                <img src="task_icon.gif"
+                                    alt="task icon" /> 
+                                <span tal:replace="taskObj/Title">Task</span>
+                            </a>
+                        </td>
+            
+                        <td tal:content="taskObj/getEstimate">Estimate</td>
+                        <td tal:define="totalActual python:here.getTotalActual(taskObj);"
+                            tal:content="totalActual">actual</td> 
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="3"
+                            class="hours-comments">
+                            <br />
+                            <span i18n:translate="label_hours"
+                                tal:omit-tag="">Hours</span>
+                                
+                            <select name="hours"
+                                    tal:define="hours python:('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10');"
+                                    tal:attributes="name python:taskObj.UID() + '_hours';
+                                                    tabindex tabindex/next;">
+                                <tal:block tal:repeat="hour hours">
+                                <option tal:content="hour"
+                                        tal:attributes="value hour">dummy</option>
+                                </tal:block>
+                            </select>
+                            :
+                            <select name="minutes"
+                                    tal:define="minutes python:('0', '15', '30', '45');"
+                                    tal:attributes="name python:taskObj.UID() + '_minutes';
+                                                    tabindex tabindex/next;">
+                                <tal:block tal:repeat="minute minutes">
+                                <option tal:content="minute"
+                                        tal:attributes="value minute">dummy</option>
+                                </tal:block>
+                            </select> 
+                            
+                            <span i18n:translate="label_minutes"
+                                tal:omit-tag="">Minutes</span>
+                            <div i18n:translate="label_description"
+                                class="comments-title">Comments:</div>
+                            
+                            <textarea name="description" 
+                                      rows="4"
+                                      cols="15"
+                                      tal:attributes="name python:taskObj.UID()+'_description'"> </textarea>
+                        </td>
+                    </tr>
+                    </tal:loop>
+                </table>
+    
+                <input class="context"
+                    type="submit"
+                    name="submit"
+                    value="Send"
+                    i18n:attributes="value"
+                    tal:attributes="tabindex tabindex/next;" />
+    
+                <input type="hidden" name="form.submitted" value="1" />
+            </form>
+            </tal:block>
 
-             <tal:loop tal:repeat="taskObj tasks">
-             <tr>
-                 <td>
-                   <a href=""
-                      tal:attributes="href taskObj/absolute_url">
-                      <img src="task_icon.gif" /> 
-                      <span tal:content="taskObj/Title">Task</span></a></td>
-
-                 <td id="estimate" 
-                     tal:content="taskObj/getEstimate">Estimate</td>
-                 <td id="actual" 
-                     tal:define="totalActual python:here.getTotalActual(taskObj);"
-                     tal:content="totalActual">actual</td> 
-                
-             </tr>
-             <tr>
-                 <td colspan="3">
-                   <div style="padding-top:5px;">
-                     <span i18n:translate="label_hours" 
-                           id="label_hours">Hours</span>
-                           
-                       <select name="hours"
-                               id="hours"
-                               tabindex=""
-                               tal:define="hours python:('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10');"
-                               tal:attributes="name python:taskObj.UID() + '_hours';
-                                               tabindex tabindex/next;">
-                         <tal:block tal:repeat="hour hours">
-                         <option value=""
-                                 tal:content="hour"
-                                 tal:attributes="value hour">dummy</option>
-                         </tal:block>
-                       </select>
-
-                       <span style="font-weight:bold;">:</span>
-
-                       <select name="minutes"
-                               id="minutes"
-                               tabindex=""
-                               tal:define="minutes python:('0', '15', '30', '45');"
-                               tal:attributes="name python:taskObj.UID() + '_minutes';
-                                               tabindex tabindex/next;">
-                         <tal:block tal:repeat="minute minutes">
-                           <option value=""
-                                   tal:content="minute"
-                                   tal:attributes="value minute">dummy</option>
-                         </tal:block>
-                       </select> 
-                       
-                     <span i18n:translate="label_minutes" 
-                           id="label_minutes">Minutes</span>
-                   </div>
-                
-                   <span i18n:translate="label_description">Comments:</span>
-                   <div style="margin-right:15px; padding-bottom:10px;">
-                     <textarea name="description" rows="4"
-                         tal:attributes="name python:taskObj.UID()+'_description'"> </textarea>
-                   </div>
-                
-                 </td>
-                 
-             </tr>
-             </tal:loop>
-          </table>
-
-          <input class="context"
-                 tabindex=""
-                 type="submit"
-                 name="submit"
-                 value="Send"
-                 i18n:attributes="value"
-                 tal:attributes="tabindex tabindex/next;"/>
-
-          <input type="hidden" name="form.submitted" value="1" />
-
-       </form>
-
-      </tal:block>
-
-      <div tal:condition="not:tasks" class="discreet">
-        <p i18n:translate="no_tasks_assigned">No tasks are assigned to you!</p>
-      </div>
-
-    </div>
-  </body>
+            <p tal:condition="not:tasks" 
+               class="discreet" 
+               i18n:translate="no_tasks_assigned">
+                No tasks are assigned to you!
+            </p>
+        </div>
+    </body>
 </html>
 
 
