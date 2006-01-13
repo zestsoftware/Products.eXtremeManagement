@@ -60,15 +60,13 @@
                     </td>
                     </tal:block>
                 </tr>
-                <tr>
-                    <td id="total" 
+                <tr id="totalTasks">
+                    <td class="td-story-title"
                         colspan="2" 
                         i18n:translate="total">Total</td>
-                    <td id="total-estimate"
-                        tal:define="totalEstimate python:here.getTotalEstimate();"
+                    <td tal:define="totalEstimate python:here.getTotalEstimate();"
                         tal:content="totalEstimate">Total estimate</td>
-                    <td id="total-actual"
-                        tal:define="totalActual python:here.getTotalActual();"
+                    <td tal:define="totalActual python:here.getTotalActual();"
                         tal:content="totalActual">Total actual</td>
                 </tr>
             </table>

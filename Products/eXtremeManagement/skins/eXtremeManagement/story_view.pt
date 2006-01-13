@@ -82,22 +82,19 @@
                 </tal:block>
                 </tr>
    
-                <tr class="totalTasks">
+                <tr id="totalTasks">
                     <td colspan="2" 
-                        id="total" 
+                        class="td-story-title" 
                         i18n:translate="total">
                         Total
                     </td>
-                    <td id="total-estimate"
-                        tal:content="totalEstimate">
+                    <td tal:content="totalEstimate">
                         total estimate
                     </td>
-                    <td id="total-actual"
-                        tal:content="totalActual">
+                    <td tal:content="totalActual">
                         total actual
                     </td>
-                    <td id="total-diff" 
-                        tal:content="here/getTotalDifference">
+                    <td tal:content="here/getTotalDifference">
                         total diff
                     </td>
                     <td>&nbsp;</td>  

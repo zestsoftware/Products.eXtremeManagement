@@ -2,39 +2,42 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       i18n:domain="plone">
 
-<body>
+    <body>
+    
+    <!-- The stories box -->
+    <div metal:define-macro="portlet"
+         tal:define="results python:here.portal_catalog.searchResults(portal_type='Story', 
+                                                                    review_state='pending');"
+          tal:condition="python:results">
+    
+        <div class="portlet" id="portlet-stories">
+            <h5 i18n:translate="box_stories">Stories</h5>
 
-<!-- The stories box -->
-
-<div metal:define-macro="portlet"
-     tal:define="results python:here.portal_catalog.searchResults(portal_type='Story', 
-                                                                  review_state='pending');"
-     tal:condition="python:results">
-
-    <div class="portlet" id="portlet-stories">
-        <h5 i18n:translate="box_stories">Stories</h5>
-        <div class="portletBody">
-
-            <tal:block tal:repeat="obj results">
+            <div class="portletBody">    
+                <tal:block tal:repeat="obj results">
                 <div tal:define="oddrow repeat/obj/odd"
-                     tal:attributes="class python:test(oddrow, 'portletContent even', 'portletContent odd')">
-
-                    <a href=""
-                       tal:attributes="href obj/getURL">
-                        <img src="" alt="" height="16" width="16"
-                             tal:attributes="src string:${here/portal_url}/${obj/getIcon};" />
-                        <span tal:replace="python:test(obj.Title, obj.Title, obj.getId)"> ECP </span>
+                        tal:attributes="class python:test(oddrow, 'portletContent even', 'portletContent odd')">
+        
+                    <a tal:attributes="href obj/getURL">
+                        <img alt=""
+                                height="16" 
+                                width="16"
+                                tal:attributes="src string:${here/portal_url}/${obj/getIcon};" />
+                        <span tal:replace="python:test(obj.Title, obj.Title, obj.getId)"> 
+                            ECP 
+                        </span>
                     </a>
-
+        
                     <div class="portletDetails"
-                         tal:content="python:here.toPortalTime(obj.Date)">July 7, 08:11</div>
+                            tal:content="python:here.toPortalTime(obj.Date)">
+                        July 7, 08:11
+                    </div>
                 </div>
-            </tal:block>
-
+                </tal:block>
+            </div>
         </div>
     </div>
-</div>
-</body>
+    </body>
 </html>
  
 

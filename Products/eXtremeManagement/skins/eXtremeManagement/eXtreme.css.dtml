@@ -56,24 +56,15 @@
 .listStories {
     padding-bottom: 5px;
 }
+
 .iteration-state {
     text-align: right;
     border-left: none;
 }
-#total {
+
+#totalTasks {
     font-weight: bold;
-}
-#total-estimate {
     text-align: center;
-    font-weight: bold;
-}
-#total-actual {
-    text-align: center;
-    font-weight: bold;
-}
-#total-diff {
-    text-align: center;
-    font-weight: bold;
 }
 
 .td-story-title {
@@ -81,14 +72,6 @@
 }
 
 .list-in-iteration {
-    text-align: center;
-}
-
-#stories_not_estimated a {
-    padding-left: 5px;
-}
-
-#input_field_center{
     text-align: center;
 }
 
@@ -104,7 +87,7 @@
    width: 40%;
 }
 
-#projectmemeber_info_header {
+#projectmember_info_header {
    text-align: right;
    font-weight: bold;
 }
@@ -120,14 +103,6 @@
     width: 40%;
 }
 
-.project_title {
-    font-weight: bold;
-}
-
-.project_iterations {
-    margin: 10px 0px 0px 30px;
-}
-
 #iteration-item {
     padding: 0px 0px 0px 40px;
 }
@@ -138,6 +113,15 @@
 
 
 /* ----project administration view ---- */
+
+
+.project_title {
+    font-weight: bold;
+}
+
+.project_iterations {
+    margin: 10px 0px 0px 30px;
+}
 
 .td-project {
     padding-bottom: 10px !important;
@@ -178,6 +162,9 @@
     margin-left: 20px;
 }
 
+
+/* ---- hours view ---- */
+
 .hours-comments {
     font-weight: bold;
 }
@@ -190,6 +177,8 @@
 .comments-title {
     padding-top: 15px;
 }
+
+/* ---- end hours view ---- */
 
 /* </dtml-with> */
 
