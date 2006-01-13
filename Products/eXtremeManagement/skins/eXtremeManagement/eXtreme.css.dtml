@@ -81,15 +81,10 @@
     padding: 0;
 }
 
-#customer_info_header {
+.customer_info_header {
    text-align: right;
-   font-weight: bold;
-   width: 40%;
-}
-
-#projectmember_info_header {
-   text-align: right;
-   font-weight: bold;
+   font-weight: bold !important;
+   width: 20%;
 }
 
 .iteration-description {
@@ -146,6 +141,10 @@
     text-align: center;
 }
 
+.header_projectmember_listing th {
+    font-weight: bold !important;
+}
+
 /* ----end project administration view ---- */
 
 
@@ -154,7 +153,7 @@
     padding-bottom: 2px;
 }
 
-#booking_title {
+.booking_title {
     font-weight: bold;
 }
 

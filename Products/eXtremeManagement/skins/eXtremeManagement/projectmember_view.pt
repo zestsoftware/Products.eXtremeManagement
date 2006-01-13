@@ -1,60 +1,68 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
       lang="en-US"
       i18n:domain="eXtremeManagement">
-  <metal:block use-macro="context/global_defines/macros/defines" />
+    <metal:block use-macro="context/global_defines/macros/defines" />
 
-  <body>
-  
+    <body>
     <metal:block metal:define-macro="header">
-      <h1 class="documentFirstHeading" i18n:translate="header_memberinfo">
-         Project member info
-      </h1>
-
-      <div class="documentDescription"
-           tal:condition="here/Description"
-           tal:content="here/Description">description
-      </div> 
-      <link REL="stylesheet" TYPE="text/css" href="eXtreme.css" />
+        <h1 class="documentFirstHeading" 
+            i18n:translate="header_memberinfo">
+            Project member info
+        </h1>
+    
+        <div class="documentDescription"
+             tal:condition="here/Description"
+             tal:content="here/Description">
+            description
+        </div> 
     </metal:block>
-   
+    
     <metal:block metal:define-macro="body">
-
-          <table class="listing"
-                 border="1" 
-                 width="65%"
-                 cellpadding="0" cellspacing="0">
-
-             <tr>
-               <th id="projectmemeber_info_header" 
-                   i18n:translate="listingheader_name">Name</th>
-               <td tal:content="here/fullname">Name</td>
-             </tr>
-             <tr>
-               <th id="projectmemeber_info_header" 
-                   i18n:translate="listingheader_phone">Phone</th>
-               <td tal:content="here/phone">Phone</td>
-             </tr>
-             <tr>
-               <th id="projectmemeber_info_header" 
-                   i18n:translate="listingheader_email">E-mail</th>
-               <td tal:define="emailaddress python:here.email">
-                 <a href=""
-                    tal:condition="python:here.email"
-                    class="link-plain"
-                    tal:attributes="href string:mailto:${emailaddress}"
-                    title="Send a mail to this user"
-                    i18n:attributes="title">
-                    <img src="mail_icon.gif"/> 
-                    <span tal:content="emailaddress">Email</span>
-                 </a>
-                 <span tal:condition="not: here/email">....</span>
-               </td>
-             </tr>
-
-          </table>
-
+    
+        <table class="listing"
+                border="1" 
+                width="65%"
+                cellpadding="0" 
+                cellspacing="0">
+    
+            <tr>
+                <th class="customer_info_header"
+                    i18n:translate="listingheader_name">
+                    Name
+                </th>
+                <td width="45%"
+                    tal:content="context/getFullname">
+                    Name
+                </td>
+            </tr>
+            <tr>
+                <th class="customer_info_header" 
+                    i18n:translate="listingheader_phone">
+                    Phone
+                </th>
+                <td tal:content="context/getPhone">Phone</td>
+            </tr>
+            <tr>
+                <th class="customer_info_header" 
+                    i18n:translate="listingheader_email">
+                    E-mail
+                </th>
+                <td tal:define="emailaddress context/getEmail">
+                    <a tal:condition="context/getEmail"
+                       class="link-plain"
+                       tal:attributes="href string:mailto:${emailaddress}"
+                       title="Send a mail to this user"
+                       i18n:attributes="title">
+                        <img src="mail_icon.gif" 
+                             alt="email" /> 
+                        <span tal:replace="emailaddress">Email</span>
+                    </a>
+                    <span tal:condition="not: context/getEmail">....</span>
+                </td>
+            </tr>
+        </table>
     </metal:block>
     <metal:block metal:define-macro="folderlisting" />
-  </body>
+    </body>
 </html>
 
