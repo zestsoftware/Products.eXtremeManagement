@@ -27,8 +27,8 @@
     
             <tr>
                 <th class="customer_info_header"
-                    i18n:translate="listingheader_name">
-                    Name
+                    i18n:translate="listingheader_Fullname">
+                    Fullname
                 </th>
                 <td width="45%"
                     tal:content="context/getFullname">
@@ -37,7 +37,7 @@
             </tr>
             <tr>
                 <th class="customer_info_header" 
-                    i18n:translate="listingheader_phone">
+                    i18n:translate="listingheader_Phone">
                     Phone
                 </th>
                 <td tal:content="context/getPhone">Phone</td>
@@ -45,7 +45,7 @@
             <tr>
                 <th class="customer_info_header" 
                     i18n:translate="listingheader_email">
-                    E-mail
+                    email
                 </th>
                 <td tal:define="emailaddress context/getEmail">
                     <a tal:condition="context/getEmail"

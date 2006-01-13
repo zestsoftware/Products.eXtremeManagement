@@ -36,7 +36,7 @@
                     cellspacing="0">
     
                     <tr>
-                        <th i18n:translate="listingheader_title">Task</th> 
+                        <th i18n:translate="listingheader_title">Title</th> 
                         <th i18n:translate="listingheader_estimate">Estimate</th>
                         <th i18n:translate="listingheader_actual">Actual</th>
                     </tr>

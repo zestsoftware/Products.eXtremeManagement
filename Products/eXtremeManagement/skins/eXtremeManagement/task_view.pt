@@ -39,8 +39,7 @@
                 </th>
                 <td tal:define="wtool here/portal_workflow;
                                 review_state python:wtool.getInfoFor(here, 'review_state')"
-                    tal:content="review_state" 
-                    i18n:translate="">
+                    tal:content="review_state">
                     Status
                 </td>
             </tr>
