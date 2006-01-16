@@ -1,9 +1,8 @@
-""" Workflow Scripts for: eXtreme_Task_Workflow """
-
-# Copyright (c) 2006 by Zest software
+# File: eXtremeManagement.py
 #
+# Copyright (c) 2006 by Zest software
 # Generator: ArchGenXML Version 1.4.1 svn/devel
-#            http://sf.net/projects/archetypes/
+#            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
 #
@@ -22,12 +21,104 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 # 02110-1301, USA.
 #
-__author__    = '''Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>'''
+
+__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
+<m.van.rees@zestsoftware.nl>"""
 __docformat__ = 'plaintext'
-__version__   = '$ Revision 0.0 $'[11:-2]
+
+
+# Workflow Scripts for: eXtreme_Task_Workflow
 
 ##code-section workflow-script-header #fill in your manual code here
+
+from Products.CMFCore.utils import getToolByName
+
+
+def emailContact(portal, memberid, allowPortalContact=False):
+    membership = getToolByName(portal, 'portal_membership')
+    member = membership.getMemberById(memberid)
+
+    email = member.getProperty('email', None)
+    if email == '' or email is None:
+        if allowPortalContact:
+            email = portal.getProperty('email_from_address',
+                                       'postmaster@localhost')
+        else:
+            return None
+
+    fullname = member.getProperty('fullname', None)
+    if fullname == '' or fullname is None:
+        if allowPortalContact:
+            fullname = portal.getProperty('email_from_name', None)
+        else:
+            fullname = 'Fullname unknown'
+
+    emailContact = '%s <%s>' % (fullname, email)
+    return emailContact
+
 ##/code-section workflow-script-header
 
-## []
+
+def notify_assignees(self, state_change, **kw):
+    """
+    Thanks to Alan Runyan.  Adapted from:
+    http://plone.org/documentation/how-to/send-mail-on-workflow-transition
+    """
+
+    obj=state_change.object
+    history = state_change.getHistory()
+
+    portal = getToolByName(self,'portal_url').getPortalObject()
+    membership = getToolByName(portal, 'portal_membership')
+    wf_tool = getToolByName(portal, 'portal_workflow')
+    mailhost = getToolByName(portal, 'MailHost')
+
+    # This is the original creator of the task:
+    creatorid = obj.Creator()
+    
+    # This is the person that assigned this task to someone:
+    actorid = wf_tool.getInfoFor(obj, 'actor')
+    mFrom = emailContact(portal, actorid, allowPortalContact=True)
+    if mFrom is None:
+        return False
+    
+    mMsg = """
+A task has been assigned to you by:
+%s
+
+The url is:
+%s.
+
+The original creator of this task is:
+%s
+
+The description of the task is:
+%s
+
+This task is estimated at: %s hours.
+"""
+
+    mTitle = obj.Title()
+    mSubj = 'You have a new task: %s' % mTitle
+    obj_url = obj.absolute_url() #use portal_url + relative_url
+    #comments = wf_tool.getInfoFor(obj, 'comments')
+    mFrom = emailContact(portal, actorid, allowPortalContact=True)
+    mCreator = emailContact(portal, creatorid, allowPortalContact=True)
+    mInitializer = emailContact(portal, actorid)
+    if mInitializer is None:
+        mInitializer = 'unknown'
+
+    message = mMsg % (mInitializer, obj_url, mCreator, obj.Description(), obj.getEstimate())
+
+    # These are the persons that this task is now assigned to:
+    assignees = obj.getAssignees()
+    for employee_id in assignees:
+        mTo = emailContact(portal, employee_id)
+        if mTo:
+            try:
+                mailhost.secureSend(message, mTo, mFrom, mSubj)
+            except:
+                return False
+    return True
+
+

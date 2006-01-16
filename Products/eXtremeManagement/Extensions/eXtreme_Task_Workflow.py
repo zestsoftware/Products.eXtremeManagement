@@ -183,12 +183,20 @@ def setupeXtreme_Task_Workflow(self, workflow):
                                 props={},
                                 )
 
+    ## Creation of workflow scripts
+    for wf_scriptname in ['notify_assignees']:
+        if not wf_scriptname in workflow.scripts.objectIds():
+            workflow.scripts._setObject(wf_scriptname,
+                ExternalMethod(wf_scriptname, wf_scriptname,
+                productname + '.eXtreme_Task_Workflow_scripts',
+                wf_scriptname))
+
     transitionDef = workflow.transitions['assign']
     transitionDef.setProperties(title="""Assign this task""",
                                 new_state_id="""assigned""",
                                 trigger_type=1,
                                 script_name="""""",
-                                after_script_name="""""",
+                                after_script_name="""notify_assignees""",
                                 actbox_name="""Assign this task""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
