@@ -1,6 +1,6 @@
 STYLESHEETS = [{'id': 'eXtreme.css'}]
 
-DEPENDENCIES = ['Poi','AddRemoveWidget','DataGridField']
+DEPENDENCIES = ['Poi','AddRemoveWidget','DataGridField','kupu']
 GLOBALS = globals()
 
 # For kupu:
