@@ -38,6 +38,7 @@ if __name__ == '__main__':
 #
 
 from Testing import ZopeTestCase
+from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 
 # Import the tested classes

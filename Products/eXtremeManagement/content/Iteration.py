@@ -41,6 +41,7 @@ schema = Schema((
     DateTimeField(
         name='startDate',
         widget=CalendarWidget(
+            show_hm=False,
             label='Startdate',
             label_msgid='eXtremeManagement_label_startDate',
             description_msgid='eXtremeManagement_help_startDate',
@@ -51,6 +52,7 @@ schema = Schema((
     DateTimeField(
         name='endDate',
         widget=CalendarWidget(
+            show_hm=False,
             label='Enddate',
             label_msgid='eXtremeManagement_label_endDate',
             description_msgid='eXtremeManagement_help_endDate',
