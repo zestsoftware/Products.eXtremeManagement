@@ -377,9 +377,13 @@ class testWorkflow(eXtremeManagementTestCase):
         return [p['name'] for p in perms if p['selected']]
 
     def testBookingTransitions(self):
-        """Test transitions of the Project Content Type
         """
-        pass
+        Test transitions of the Booking Content Type.
+        Hm, there *aren't* any transitions here.
+        """
+        self.setRoles(['Manager'])
+        self.tryForbiddenTransition(self.booking, 'booking', 'activate')
+        self.tryForbiddenTransition(self.booking, 'booking', 'submit')
 
     def getPermissionSettings(self, object, permission):
         permission_settings = object.permission_settings(permission)
