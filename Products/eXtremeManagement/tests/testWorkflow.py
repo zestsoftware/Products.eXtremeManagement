@@ -173,21 +173,6 @@ class testWorkflow(eXtremeManagementTestCase):
         self.twoStepTransition(self.task, 'task', 'assigned', 'retract',
                                'open', 'customer')
 
-
-    def twoStepTransition(self, ctObject, ctId, originalState, workflowTransition,
-                          newState, loginName, useRole='Manager'):
-        """
-        Try a forbidden transition as user loginName.
-        Then do the allowed transition as the default_user with role useRole.
-        """
-        self.login(loginName)
-        self.tryForbiddenTransition(ctObject, originalState, workflowTransition)
-        self.login(default_user)
-        self.setRoles([useRole])
-        self.tryAllowedTransition(ctObject, ctId, originalState,
-                                  workflowTransition, newState)
-
-
     def testStoryTransitions(self):
         """Test transitions of the Story Content Type
         """
@@ -371,6 +356,19 @@ class testWorkflow(eXtremeManagementTestCase):
         self.assertEqual(self.workflow.getInfoFor(ctObject, 'review_state'),
                          newState)
         self.failUnless(self.catalog(id=ctId, review_state=newState))
+
+    def twoStepTransition(self, ctObject, ctId, originalState, workflowTransition,
+                          newState, loginName, useRole='Manager'):
+        """
+        Try a forbidden transition as user loginName.
+        Then do the allowed transition as the default_user with role useRole.
+        """
+        self.login(loginName)
+        self.tryForbiddenTransition(ctObject, originalState, workflowTransition)
+        self.login(default_user)
+        self.setRoles([useRole])
+        self.tryAllowedTransition(ctObject, ctId, originalState,
+                                  workflowTransition, newState)
 
     def getPermissionsOfRole(self, object, role):
         perms = object.permissionsOfRole(role)
