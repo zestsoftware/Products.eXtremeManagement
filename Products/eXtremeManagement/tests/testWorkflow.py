@@ -154,7 +154,39 @@ class testWorkflow(eXtremeManagementTestCase):
     def testTaskTransitions(self):
         """Test transitions of the Project Content Type
         """
-        pass
+        self.setRoles(['Employee'])
+        self.tryFullTaskRoute()
+        self.setRoles(['Manager'])
+        self.tryFullTaskRoute()
+
+        # Now some tests for the customer, who has no rights here:
+        self.twoStepTransition(self.task, 'task', 'open', 'assign',
+                               'assigned', 'customer')
+        self.twoStepTransition(self.task, 'task', 'assigned', 'activate',
+                               'in-progress', 'customer')
+        self.twoStepTransition(self.task, 'task', 'in-progress', 'complete',
+                               'completed', 'customer')
+        self.twoStepTransition(self.task, 'task', 'completed', 'reactivate',
+                               'in-progress', 'customer')
+        self.twoStepTransition(self.task, 'task', 'in-progress', 'deactivate',
+                               'assigned', 'customer')
+        self.twoStepTransition(self.task, 'task', 'assigned', 'retract',
+                               'open', 'customer')
+
+
+    def twoStepTransition(self, ctObject, ctId, originalState, workflowTransition,
+                          newState, loginName, useRole='Manager'):
+        """
+        Try a forbidden transition as user loginName.
+        Then do the allowed transition as the default_user with role useRole.
+        """
+        self.login(loginName)
+        self.tryForbiddenTransition(ctObject, originalState, workflowTransition)
+        self.login(default_user)
+        self.setRoles([useRole])
+        self.tryAllowedTransition(ctObject, ctId, originalState,
+                                  workflowTransition, newState)
+
 
     def testStoryTransitions(self):
         """Test transitions of the Story Content Type
@@ -238,6 +270,22 @@ class testWorkflow(eXtremeManagementTestCase):
                                   'draft', 'submit', 'pending')
         self.tryAllowedTransition(self.story, 'story',
                                   'pending', 'retract', 'draft')
+
+    def tryFullTaskRoute(self):
+        """Test transitions of the Project Content Type
+        """
+        self.tryAllowedTransition(self.task, 'task',
+                                  'open', 'assign', 'assigned')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'assigned', 'activate', 'in-progress')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'in-progress', 'complete', 'completed')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'completed', 'reactivate', 'in-progress')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'in-progress', 'deactivate', 'assigned')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'assigned', 'retract', 'open')
 
     def testIterationTransitions(self):
         """Test transitions of the Iteration Content Type

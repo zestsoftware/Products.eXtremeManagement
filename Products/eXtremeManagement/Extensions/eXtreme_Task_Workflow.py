@@ -59,7 +59,7 @@ def setupeXtreme_Task_Workflow(self, workflow):
     for s in ['assigned', 'in-progress', 'completed', 'open']:
         workflow.states.addState(s)
 
-    for t in ['retract', 'activate', 'assign', 'reactivate', 'complete']:
+    for t in ['deactivate', 'activate', 'complete', 'reactivate', 'retract', 'assign']:
         workflow.transitions.addTransition(t)
 
     for v in ['review_history', 'comments', 'time', 'actor', 'action']:
@@ -83,7 +83,7 @@ def setupeXtreme_Task_Workflow(self, workflow):
 
     stateDef = workflow.states['assigned']
     stateDef.setProperties(title="""Assigned""",
-                           transitions=['activate'])
+                           transitions=['activate', 'retract'])
     stateDef.setPermission('Access contents information',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
@@ -102,7 +102,7 @@ def setupeXtreme_Task_Workflow(self, workflow):
 
     stateDef = workflow.states['in-progress']
     stateDef.setProperties(title="""in-progress""",
-                           transitions=['complete', 'retract'])
+                           transitions=['complete', 'deactivate'])
     stateDef.setPermission('Access contents information',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
@@ -159,16 +159,16 @@ def setupeXtreme_Task_Workflow(self, workflow):
 
     ## Transitions initialization
 
-    transitionDef = workflow.transitions['retract']
-    transitionDef.setProperties(title="""Retract this task""",
-                                new_state_id="""open""",
+    transitionDef = workflow.transitions['deactivate']
+    transitionDef.setProperties(title="""deactivate""",
+                                new_state_id="""assigned""",
                                 trigger_type=1,
                                 script_name="""""",
                                 after_script_name="""""",
-                                actbox_name="""Retract this task""",
+                                actbox_name="""deactivate""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={},
+                                props={'guard_roles': 'Employee;Manager'},
                                 )
 
     transitionDef = workflow.transitions['activate']
@@ -180,7 +180,43 @@ def setupeXtreme_Task_Workflow(self, workflow):
                                 actbox_name="""Activate this task""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={},
+                                props={'guard_roles': 'Employee;Manager'},
+                                )
+
+    transitionDef = workflow.transitions['complete']
+    transitionDef.setProperties(title="""Mark this task as completed""",
+                                new_state_id="""completed""",
+                                trigger_type=1,
+                                script_name="""""",
+                                after_script_name="""""",
+                                actbox_name="""Mark this task as completed""",
+                                actbox_url="""""",
+                                actbox_category="""workflow""",
+                                props={'guard_roles': 'Employee;Manager'},
+                                )
+
+    transitionDef = workflow.transitions['reactivate']
+    transitionDef.setProperties(title="""reactivate""",
+                                new_state_id="""in-progress""",
+                                trigger_type=1,
+                                script_name="""""",
+                                after_script_name="""""",
+                                actbox_name="""reactivate""",
+                                actbox_url="""""",
+                                actbox_category="""workflow""",
+                                props={'guard_roles': 'Manager;Employee'},
+                                )
+
+    transitionDef = workflow.transitions['retract']
+    transitionDef.setProperties(title="""Retract this task""",
+                                new_state_id="""open""",
+                                trigger_type=1,
+                                script_name="""""",
+                                after_script_name="""""",
+                                actbox_name="""Retract this task""",
+                                actbox_url="""""",
+                                actbox_category="""workflow""",
+                                props={'guard_roles': 'Employee;Manager'},
                                 )
 
     ## Creation of workflow scripts
@@ -201,30 +237,6 @@ def setupeXtreme_Task_Workflow(self, workflow):
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
                                 props={'guard_roles': 'Employee;Manager'},
-                                )
-
-    transitionDef = workflow.transitions['reactivate']
-    transitionDef.setProperties(title="""reactivate""",
-                                new_state_id="""in-progress""",
-                                trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""""",
-                                actbox_name="""reactivate""",
-                                actbox_url="""""",
-                                actbox_category="""workflow""",
-                                props={'guard_roles': 'Manager;Employee'},
-                                )
-
-    transitionDef = workflow.transitions['complete']
-    transitionDef.setProperties(title="""Mark this task as completed""",
-                                new_state_id="""completed""",
-                                trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""""",
-                                actbox_name="""Mark this task as completed""",
-                                actbox_url="""""",
-                                actbox_category="""workflow""",
-                                props={},
                                 )
 
     ## State Variable
