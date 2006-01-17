@@ -83,7 +83,7 @@ def notify_assignees(self, state_change, **kw):
         return False
     
     mMsg = """
-A task has been assigned to you by:
+This task has been assigned by:
 %s
 
 The url is:
@@ -96,44 +96,47 @@ The description of the task is:
 %s
 
 This task is estimated at: %s hours.
+
+This task has been assigned to:
+%s
 """
 
     mTitle = obj.Title()
     mSubj = 'You have a new task: %s' % mTitle
     obj_url = obj.absolute_url() #use portal_url + relative_url
     #comments = wf_tool.getInfoFor(obj, 'comments')
-    mFrom = emailContact(portal, actorid, allowPortalContact=True)
     mCreator = emailContact(portal, creatorid, allowPortalContact=True)
+    mFrom = emailContact(portal, actorid, allowPortalContact=True)
     mInitializer = emailContact(portal, actorid)
     if mInitializer is None:
         mInitializer = 'unknown'
-
-    message = mMsg % (mInitializer, obj_url, mCreator,
-                      obj.Description(), obj.getEstimate())
-
     # These are the persons that this task is now assigned to:
     assignees = obj.getAssignees()
-    for employee_id in assignees:
-        mTo = emailContact(portal, employee_id)
-        personalMessage = message
+    listofAssignees = ''
+    for assignee in assignees:
+        listofAssignees += emailContact(portal, assignee)
+        listofAssignees += '\n'
+
+    
+    message = mMsg % (mInitializer, obj_url, mCreator,
+                      obj.Description(), obj.getEstimate(),
+                      listofAssignees)
+
+    for assignee in assignees:
+        mTo = emailContact(portal, assignee)
         if mTo:
-            mExtra = ''
-            if len(assignees) > 1:
-                mExtra = """
-This task has also been assigned to:
-"""
-                for extra_employee_id in assignees:
-                    if extra_employee_id != employee_id:
-                        mExtra += emailContact(portal, extra_employee_id)
-                        mExtra += '\n'
-                        
-            personalMessage += mExtra
             try:
-                mailhost.secureSend(personalMessage, mTo, mFrom, mSubj)
+                mailhost.secureSend(message, mTo, mFrom, mSubj)
             except:
                 return False
         else:
             return False
+
+    # Send email to initializer:
+    mSubj = 'You have assigned a new task: %s' % mTitle
+    if mInitializer and mInitializer != 'unknown':
+        mailhost.secureSend(message, mInitializer, mFrom, mSubj)
+
     return True
 
 
