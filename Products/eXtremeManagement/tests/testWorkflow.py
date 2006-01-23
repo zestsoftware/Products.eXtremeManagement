@@ -103,21 +103,20 @@ class testWorkflow(eXtremeManagementTestCase):
         self.logout()
         self.login(self.default_user)
 
-    # Manually created methods
-    def tryForbiddenTransition(self, ctObject, originalState,
-                               workflowTransition):
+    def test_initial_states(self):
+        """Test if the initial states for the CTs are what we expect
+        them to be.
         """
-        Try to execute a transaction that you are not allowed to do
-        ctObject = Content Type object to perform the transition on
-        originalState = currect state of the object
-        workflowTransition = transition to perform
-        """
-        self.assertEqual(self.workflow.getInfoFor(ctObject, 'review_state'),
-                         originalState)
-        self.assertRaises(WorkflowException,
-                          self.workflow.doActionFor, ctObject, workflowTransition)
 
-    def testProjectTransitions(self):
+        self.assertEqual(self.workflow.getInfoFor(self.projects,'review_state'), 'visible')
+        self.assertEqual(self.workflow.getInfoFor(self.project,'review_state'), 'private')
+        self.assertEqual(self.workflow.getInfoFor(self.iteration,'review_state'), 'new')
+        self.assertEqual(self.workflow.getInfoFor(self.story,'review_state'), 'draft')
+        self.assertEqual(self.workflow.getInfoFor(self.projectstory,'review_state'), 'draft')
+        self.assertEqual(self.workflow.getInfoFor(self.task,'review_state'), 'open')
+        self.assertEqual(self.workflow.getInfoFor(self.booking,'review_state'), 'booking')
+
+    def test_project_transitions(self):
         """Test transitions of the Project Content Type
         """
         # Manager (same as Owner here) can transition a project:
@@ -151,128 +150,7 @@ class testWorkflow(eXtremeManagementTestCase):
         self.login('customer')
         self.tryForbiddenTransition(self.project, 'active', 'close')
 
-    def testTaskTransitions(self):
-        """Test transitions of the Project Content Type
-        """
-        self.setRoles(['Employee'])
-        self.tryFullTaskRoute()
-        self.setRoles(['Manager'])
-        self.tryFullTaskRoute()
-
-        # Now some tests for the customer, who has no rights here:
-        self.twoStepTransition(self.task, 'task', 'open', 'assign',
-                               'assigned', 'customer')
-        self.twoStepTransition(self.task, 'task', 'assigned', 'activate',
-                               'in-progress', 'customer')
-        self.twoStepTransition(self.task, 'task', 'in-progress', 'complete',
-                               'completed', 'customer')
-        self.twoStepTransition(self.task, 'task', 'completed', 'reactivate',
-                               'in-progress', 'customer')
-        self.twoStepTransition(self.task, 'task', 'in-progress', 'deactivate',
-                               'assigned', 'customer')
-        self.twoStepTransition(self.task, 'task', 'assigned', 'retract',
-                               'open', 'customer')
-
-    def testStoryTransitions(self):
-        """Test transitions of the Story Content Type
-        """
-        #self.login('customer')
-        #self.login('manager')
-        self.setRoles(['Manager'])
-        self.tryAllowedTransition(self.story, 'story',
-                                  'draft', 'submit', 'pending')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'pending', 'retract', 'draft')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'draft', 'estimate', 'estimated')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'estimated', 'activate', 'in-progress')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'in-progress', 'complete', 'completed')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'completed', 'improve', 'in-progress')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'in-progress', 'deactivate', 'estimated')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'estimated', 'refactor', 'draft')
-
-        self.setRoles(['Employee'])
-        self.tryAllowedTransition(self.story, 'story',
-                                  'draft', 'estimate', 'estimated')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'estimated', 'activate', 'in-progress')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'in-progress', 'complete', 'completed')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'completed', 'improve', 'in-progress')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'in-progress', 'deactivate', 'estimated')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'estimated', 'refactor', 'draft')
-
-        #self.printGlobalRolesUser(self.default_user)
-        # Not quite working:
-        #self.setPermissions(['Add portal content'])
-
-
-        # Some tests to see how I can get information about users:
-
-        """
-        for role in ['Member','Authenticated','Employee','Customer','Reviewer','Owner']:
-            print '%s portal roles:' % role
-            print self.getPermissionsOfRole(self.portal, role)
-        for user in self.userfolder.getUserIds():
-            print '##############################'
-            print user + ':'
-            print 'global roles:'
-            self.printGlobalRolesUser(user)
-
-            for object in self.main_objects:
-                self.printLocalPermissions(object, user)
-
-        self.loginAsPortalOwner()
-        for object in self.main_objects:
-            print object.title_or_id()
-            print 'getAllLocalRoles:'
-            print self.userfolder.getAllLocalRoles(object)
-            print 'getLocalRolesForDisplay:'
-            print self.userfolder.getLocalRolesForDisplay(object)
-        """
-
-
-
-        self.setRoles(['Manager'])
-        self.tryAllowedTransition(self.project, 'project',
-                                  'private', 'activate', 'active')
-        self.setRoles(['Member'])
-        self.project.manage_addLocalRoles(self.default_user,['Customer'])
-        """
-        self.printGlobalRolesUser(self.default_user)
-        for object in self.main_objects:
-            self.printLocalPermissions(object, self.default_user)
-        """
-        self.tryAllowedTransition(self.story, 'story',
-                                  'draft', 'submit', 'pending')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'pending', 'retract', 'draft')
-
-    def tryFullTaskRoute(self):
-        """Test transitions of the Project Content Type
-        """
-        self.tryAllowedTransition(self.task, 'task',
-                                  'open', 'assign', 'assigned')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'assigned', 'activate', 'in-progress')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'in-progress', 'complete', 'completed')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'completed', 'reactivate', 'in-progress')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'in-progress', 'deactivate', 'assigned')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'assigned', 'retract', 'open')
-
-    def testIterationTransitions(self):
+    def test_iteration_transitions(self):
         """Test transitions of the Iteration Content Type
         """
         # Manager can do all transitions on an iteration:
@@ -311,6 +189,123 @@ class testWorkflow(eXtremeManagementTestCase):
         # Try some transactions that don't belong to the current state
         self.tryForbiddenTransition(self.iteration, 'invoiced', 'reactivate')
 
+    def test_story_transitions(self):
+        """Test transitions of the Story Content Type
+        """
+        #self.login('customer')
+        #self.login('manager')
+        self.setRoles(['Manager'])
+        self.tryAllowedTransition(self.story, 'story',
+                                  'draft', 'submit', 'pending')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'pending', 'retract', 'draft')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'draft', 'estimate', 'estimated')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'estimated', 'activate', 'in-progress')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'in-progress', 'complete', 'completed')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'completed', 'improve', 'in-progress')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'in-progress', 'deactivate', 'estimated')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'estimated', 'refactor', 'draft')
+
+        self.setRoles(['Employee'])
+        self.tryAllowedTransition(self.story, 'story',
+                                  'draft', 'estimate', 'estimated')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'estimated', 'activate', 'in-progress')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'in-progress', 'complete', 'completed')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'completed', 'improve', 'in-progress')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'in-progress', 'deactivate', 'estimated')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'estimated', 'refactor', 'draft')
+
+        self.setRoles(['Manager'])
+        self.tryAllowedTransition(self.project, 'project',
+                                  'private', 'activate', 'active')
+        self.setRoles(['Member'])
+        self.project.manage_addLocalRoles(self.default_user,['Customer'])
+        """
+        self.printGlobalRolesUser(self.default_user)
+        for object in self.main_objects:
+            self.printLocalPermissions(object, self.default_user)
+        """
+        self.tryAllowedTransition(self.story, 'story',
+                                  'draft', 'submit', 'pending')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'pending', 'retract', 'draft')
+
+    def test_task_transitions(self):
+        """Test transitions of the Project Content Type
+        """
+        self.setRoles(['Employee'])
+        self.tryFullTaskRoute()
+        self.setRoles(['Manager'])
+        self.tryFullTaskRoute()
+
+        # Now some tests for the customer, who has no rights here:
+        self.twoStepTransition(self.task, 'task', 'open', 'assign',
+                               'assigned', 'customer')
+        self.twoStepTransition(self.task, 'task', 'assigned', 'activate',
+                               'in-progress', 'customer')
+        self.twoStepTransition(self.task, 'task', 'in-progress', 'complete',
+                               'completed', 'customer')
+        self.twoStepTransition(self.task, 'task', 'completed', 'reactivate',
+                               'in-progress', 'customer')
+        self.twoStepTransition(self.task, 'task', 'in-progress', 'deactivate',
+                               'assigned', 'customer')
+        self.twoStepTransition(self.task, 'task', 'assigned', 'retract',
+                               'open', 'customer')
+
+    def test_booking_transitions(self):
+        """
+        Test transitions of the Booking Content Type.
+        Hm, there *aren't* any transitions here.
+        """
+        self.setRoles(['Manager'])
+        self.tryForbiddenTransition(self.booking, 'booking', 'activate')
+        self.tryForbiddenTransition(self.booking, 'booking', 'submit')
+
+    # Manually created methods
+    def getPermissionsOfRole(self, object, role):
+        perms = object.permissionsOfRole(role)
+        return [p['name'] for p in perms if p['selected']]
+
+    def tryForbiddenTransition(self, ctObject, originalState,
+                               workflowTransition):
+        """
+        Try to execute a transaction that you are not allowed to do
+        ctObject = Content Type object to perform the transition on
+        originalState = currect state of the object
+        workflowTransition = transition to perform
+        """
+        self.assertEqual(self.workflow.getInfoFor(ctObject, 'review_state'),
+                         originalState)
+        self.assertRaises(WorkflowException,
+                          self.workflow.doActionFor, ctObject, workflowTransition)
+
+    def tryFullTaskRoute(self):
+        """Test transitions of the Project Content Type
+        """
+        self.tryAllowedTransition(self.task, 'task',
+                                  'open', 'assign', 'assigned')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'assigned', 'activate', 'in-progress')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'in-progress', 'complete', 'completed')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'completed', 'reactivate', 'in-progress')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'in-progress', 'deactivate', 'assigned')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'assigned', 'retract', 'open')
+
     def printLocalPermissions(self, object, userid):
         roles = object.get_local_roles_for_userid(userid)
         if roles:
@@ -321,15 +316,6 @@ class testWorkflow(eXtremeManagementTestCase):
             print '    local role %s:' % role
             print '    with explicit permissions:'
             print self.getPermissionsOfRole(object, role)
-
-    def testInitialStates(self):
-        self.assertEqual(self.workflow.getInfoFor(self.projects, 'review_state'), 'visible')
-        self.assertEqual(self.workflow.getInfoFor(self.project, 'review_state'), 'private')
-        self.assertEqual(self.workflow.getInfoFor(self.iteration, 'review_state'), 'new')
-        self.assertEqual(self.workflow.getInfoFor(self.story, 'review_state'), 'draft')
-        self.assertEqual(self.workflow.getInfoFor(self.projectstory, 'review_state'), 'draft')
-        self.assertEqual(self.workflow.getInfoFor(self.task, 'review_state'), 'open')
-        self.assertEqual(self.workflow.getInfoFor(self.booking, 'review_state'), 'booking')
 
     def printGlobalRolesUser(self, userid):
         roles = self.userfolder.getUserById(userid).getRoles()
@@ -369,19 +355,6 @@ class testWorkflow(eXtremeManagementTestCase):
         self.setRoles([useRole])
         self.tryAllowedTransition(ctObject, ctId, originalState,
                                   workflowTransition, newState)
-
-    def getPermissionsOfRole(self, object, role):
-        perms = object.permissionsOfRole(role)
-        return [p['name'] for p in perms if p['selected']]
-
-    def testBookingTransitions(self):
-        """
-        Test transitions of the Booking Content Type.
-        Hm, there *aren't* any transitions here.
-        """
-        self.setRoles(['Manager'])
-        self.tryForbiddenTransition(self.booking, 'booking', 'activate')
-        self.tryForbiddenTransition(self.booking, 'booking', 'submit')
 
     def getPermissionSettings(self, object, permission):
         permission_settings = object.permission_settings(permission)
