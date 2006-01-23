@@ -72,6 +72,7 @@ def notify_assignees(self, state_change, **kw):
     membership = getToolByName(portal, 'portal_membership')
     wf_tool = getToolByName(portal, 'portal_workflow')
     mailhost = getToolByName(portal, 'MailHost')
+    send = mailhost.secureSend
 
     # This is the original creator of the task:
     creatorid = obj.Creator()
@@ -126,7 +127,7 @@ This task has been assigned to:
         mTo = emailContact(portal, assignee)
         if mTo:
             try:
-                mailhost.secureSend(message, mTo, mFrom, mSubj)
+                send(message, mTo, mFrom, mSubj)
             except:
                 return False
         else:
@@ -135,7 +136,7 @@ This task has been assigned to:
     # Send email to initializer:
     mSubj = 'You have assigned a new task: %s' % mTitle
     if mInitializer and mInitializer != 'unknown':
-        mailhost.secureSend(message, mInitializer, mFrom, mSubj)
+        send(message, mInitializer, mFrom, mSubj)
 
     return True
 
