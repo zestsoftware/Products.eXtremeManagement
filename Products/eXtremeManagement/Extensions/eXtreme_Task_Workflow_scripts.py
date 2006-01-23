@@ -56,19 +56,16 @@ def emailContact(portal, memberid, allowPortalContact=False):
     emailContact = '%s <%s>' % (fullname, email)
     return emailContact
 
-##/code-section workflow-script-header
+def mailMessage(portal, state_change, subject):
+    """Mail a message in reaction to a transition.
 
-
-def notify_assignees(self, state_change, **kw):
-    """
     Thanks to Alan Runyan.  Adapted from:
     http://plone.org/documentation/how-to/send-mail-on-workflow-transition
     """
 
     obj=state_change.object
-    history = state_change.getHistory()
+    #history = state_change.getHistory()
 
-    portal = getToolByName(self,'portal_url').getPortalObject()
     membership = getToolByName(portal, 'portal_membership')
     wf_tool = getToolByName(portal, 'portal_workflow')
     mailhost = getToolByName(portal, 'MailHost')
@@ -76,11 +73,9 @@ def notify_assignees(self, state_change, **kw):
     # This is the original creator of the task:
     creatorid = obj.Creator()
     
-    # This is the person that assigned this task to someone:
-    actorid = wf_tool.getInfoFor(obj, 'actor')
-    mFrom = emailContact(portal, actorid, allowPortalContact=True)
-    if mFrom is None:
-        return False
+    # This is the person that marked this task as completed:
+    transitionerId = wf_tool.getInfoFor(obj, 'actor')
+
     
     mMsg = """
 The url is:
@@ -92,25 +87,28 @@ The original creator of this task is:
 The description of the task is:
 %s
 
-This task is estimated at: %s hours.
+This estimate for this task is: %s hours.
 
-This task has been assigned to:
+This task is assigned to:
 %s
 
-This task has been assigned by:
+This transition was done by:
 %s
 
+with the following comments:
+%s
 """
 
     mTitle = obj.Title()
-    mSubj = 'You have a new task: %s' % mTitle
+    mSubj = '%s: %s' % (subject, mTitle)
     obj_url = obj.absolute_url() #use portal_url + relative_url
-    #comments = wf_tool.getInfoFor(obj, 'comments')
+    comments = wf_tool.getInfoFor(obj, 'comments')
     mCreator = emailContact(portal, creatorid, allowPortalContact=True)
-    mFrom = emailContact(portal, actorid, allowPortalContact=True)
-    mInitializer = emailContact(portal, actorid)
-    if mInitializer is None or mInitializer == '':
-        mInitializer = 'unknown'
+    mFrom = emailContact(portal, transitionerId, allowPortalContact=True)
+    mTransitioner = emailContact(portal, transitionerId)
+    if mTransitioner is None or mTransitioner == '':
+        mTransitioner = 'unknown'
+
     # These are the persons that this task is now assigned to:
     assignees = obj.getAssignees()
     listofAssignees = ''
@@ -121,11 +119,11 @@ This task has been assigned by:
 
     message = mMsg % (obj_url, mCreator, obj.Description(),
                       obj.getEstimate(), listofAssignees,
-                      mInitializer)
-
+                      mTransitioner, comments)
 
     for assignee in assignees:
         mTo = emailContact(portal, assignee)
+        # If email address is known:
         if mTo:
             try:
                 mailhost.simple_send(mTo, mFrom, mSubj, message)
@@ -135,8 +133,29 @@ This task has been assigned by:
             return False
 
     # Send email to initializer:
-    mSubj = 'You have assigned a new task: %s' % mTitle
-    if mInitializer and mInitializer != 'unknown':
-        mailhost.simple_send(mInitializer, mFrom, mSubj, message)
+    mSubj = '%s by you: %s' % (subject, mTitle)
+    if mTransitioner and mTransitioner != 'unknown':
+        mailhost.simple_send(mTransitioner, mFrom, mSubj, message)
 
     return True
+
+##/code-section workflow-script-header
+
+
+def notify_completed(self, state_change, **kw):
+    """
+    Notify interested people that a task has been completed.
+    """
+    portal = getToolByName(self,'portal_url').getPortalObject()
+    mailMessage(portal, state_change, 'Task completed')
+
+
+
+def notify_assignees(self, state_change, **kw):
+    """
+    Notify interested people that a task has been assigned.
+    """
+    portal = getToolByName(self,'portal_url').getPortalObject()
+    mailMessage(portal, state_change, 'Task assigned')
+
+
