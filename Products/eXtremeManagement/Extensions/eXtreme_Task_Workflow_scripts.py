@@ -72,7 +72,6 @@ def notify_assignees(self, state_change, **kw):
     membership = getToolByName(portal, 'portal_membership')
     wf_tool = getToolByName(portal, 'portal_workflow')
     mailhost = getToolByName(portal, 'MailHost')
-    send = mailhost.secureSend
 
     # This is the original creator of the task:
     creatorid = obj.Creator()
@@ -84,9 +83,6 @@ def notify_assignees(self, state_change, **kw):
         return False
     
     mMsg = """
-This task has been assigned by:
-%s
-
 The url is:
 %s.
 
@@ -100,6 +96,10 @@ This task is estimated at: %s hours.
 
 This task has been assigned to:
 %s
+
+This task has been assigned by:
+%s
+
 """
 
     mTitle = obj.Title()
@@ -109,7 +109,7 @@ This task has been assigned to:
     mCreator = emailContact(portal, creatorid, allowPortalContact=True)
     mFrom = emailContact(portal, actorid, allowPortalContact=True)
     mInitializer = emailContact(portal, actorid)
-    if mInitializer is None:
+    if mInitializer is None or mInitializer == '':
         mInitializer = 'unknown'
     # These are the persons that this task is now assigned to:
     assignees = obj.getAssignees()
@@ -118,16 +118,17 @@ This task has been assigned to:
         listofAssignees += emailContact(portal, assignee)
         listofAssignees += '\n'
 
-    
-    message = mMsg % (mInitializer, obj_url, mCreator,
-                      obj.Description(), obj.getEstimate(),
-                      listofAssignees)
+
+    message = mMsg % (obj_url, mCreator, obj.Description(),
+                      obj.getEstimate(), listofAssignees,
+                      mInitializer)
+
 
     for assignee in assignees:
         mTo = emailContact(portal, assignee)
         if mTo:
             try:
-                send(message, mTo, mFrom, mSubj)
+                mailhost.simple_send(mTo, mFrom, mSubj, message)
             except:
                 return False
         else:
@@ -136,8 +137,6 @@ This task has been assigned to:
     # Send email to initializer:
     mSubj = 'You have assigned a new task: %s' % mTitle
     if mInitializer and mInitializer != 'unknown':
-        send(message, mInitializer, mFrom, mSubj)
+        mailhost.simple_send(mInitializer, mFrom, mSubj, message)
 
     return True
-
-
