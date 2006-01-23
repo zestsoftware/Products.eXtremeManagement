@@ -89,7 +89,7 @@ def setupeXtreme_Task_Workflow(self, workflow):
                            ['Customer', 'Employee', 'Manager', 'Owner'])
     stateDef.setPermission('Modify portal content',
                            0,
-                           ['Manager', 'Owner'])
+                           ['Manager', 'Employee', 'Owner'])
     stateDef.setPermission('View',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
