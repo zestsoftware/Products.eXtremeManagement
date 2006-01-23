@@ -145,8 +145,16 @@ class Story(OrderedBaseFolder):
         With thanks to Upfront Systems for their code from Upfront Project
         """
         if type_name == 'Task':
-            self.lastTaskId += 1
-            return str(self.lastTaskId)
+            tasks = self.contentValues()
+            taskids = [0]
+            for task in tasks:
+                try:
+                    taskid = task.getId()
+                    taskids.append(int(taskid))
+                except:
+                    print 'WARNING: non-integer taskid found: %s' % taskid
+            lastTaskId = max(taskids) + 1
+            return str(lastTaskId)
         else:
             return self.aq_parent.generateUniqueId(type_name)
 
