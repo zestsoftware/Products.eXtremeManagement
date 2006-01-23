@@ -56,18 +56,6 @@ schema = Schema((
         required=1
     ),
 
-    IntegerField(
-        name='lastTaskId',
-        default="0",
-        widget=IntegerWidget(
-            visible={'edit' : 'invisible', 'view' : 'visible' } ,
-            label='Lasttaskid',
-            label_msgid='eXtremeManagement_label_lastTaskId',
-            description_msgid='eXtremeManagement_help_lastTaskId',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
 ),
 )
 
