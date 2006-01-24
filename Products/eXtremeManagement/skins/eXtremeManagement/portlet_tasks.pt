@@ -20,6 +20,29 @@
             </h5>
     
             <div class="portletBody">
+                <div tal:condition="python: member.has_role('Manager')"  
+                     class="portletItem even">
+                <img alt="" 
+                     height="16" 
+                     width="16"
+                     tal:attributes="src string:${here/portal_url}/tasks_links_icon.gif" />
+
+                    <a i18n:translate="project_administration" 
+                       tal:attributes="href string:${portal_url}/project_administration">Project administration
+                    </a>
+                </div> 
+                <div tal:condition="results" 
+                     class="portletItem odd">
+                    <img  alt="" 
+                          height="16" 
+                          width="16"
+                          tal:attributes="src string:${here/portal_url}/tasks_links_icon.gif" />
+
+                    <a i18n:translate="header_time_registration"
+                       tal:attributes="href string:${portal_url}/update_hours_form">
+                        Time registration
+                    </a> 
+                </div>  
                 <tal:block repeat="item results">
                 <div tal:define="oddrow repeat/item/odd;"
                      tal:attributes="class python:test(oddrow, 'portletItem odd', 'portletItem even')">
@@ -42,29 +65,6 @@
                 </div>
                 </tal:block>
                 
-                <div tal:condition="results" 
-                     class="portletItem even">
-                    <img  alt="" 
-                          height="16" 
-                          width="16"
-                          tal:attributes="src string:${here/portal_url}/tasks_links_icon.gif" />
-
-                    <a i18n:translate="header_time_registration"
-                       tal:attributes="href string:${portal_url}/update_hours_form">
-                        Time registration
-                    </a> 
-                </div>  
-                <div tal:condition="python: member.has_role('Manager')"  
-                     class="portletItem odd">
-                <img alt="" 
-                     height="16" 
-                     width="16"
-                     tal:attributes="src string:${here/portal_url}/tasks_links_icon.gif" />
-
-                    <a i18n:translate="project_administration" 
-                       tal:attributes="href string:${portal_url}/project_administration">Project administration
-                    </a>
-                </div> 
             </div>
         </div>
     </div>
