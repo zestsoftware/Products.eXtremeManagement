@@ -200,10 +200,9 @@ class Task(BaseFolder):
     security.declarePublic('CookedBody')
     def CookedBody(self):
         """
-        
+        Dummy attribute to allow drop-in replacement of Document
         """
-        
-        pass
+        return self.getMainText()
 
 
 registerType(Task,PROJECTNAME)

@@ -14,6 +14,7 @@
              tal:content="here/Description">
             description
         </div>
+        <div tal:replace="structure context/CookedBody" />
     </metal:block>
     
     <metal:block metal:define-macro="body">
