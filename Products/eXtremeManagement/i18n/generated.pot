@@ -497,6 +497,7 @@ msgstr ""
 #. Maintext
 #: Story.py
 #: content/Story.py
+#: content/Task.py
 msgid "eXtremeManagement_label_mainText"
 msgstr ""
 

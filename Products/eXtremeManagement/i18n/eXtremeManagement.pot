@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2006-01-13 14:55+0000\n"
+"POT-Creation-Date: 2006-01-24 11:30+0000\n"
 "PO-Revision-Date: Mon Sep  5 16:31:19 2005\n"
 "Last-Translator: ['Ahmad Hadi'] <['a.hadi@zestsoftware.nl']>\n"
 "Language-Team: ['Ahmad Hadi'] <['a.hadi@zestsoftware.nl']>\n"
@@ -22,8 +22,8 @@ msgid "Send"
 msgstr ""
 
 #. Default: "Send a mail to this user"
-#: skins/eXtremeManagement/customer_view.pt
 #: skins/eXtremeManagement/projectmember_view.pt
+#: skins/eXtremeManagement/customer_view.pt
 msgid "Send a mail to this user"
 msgstr ""
 
@@ -528,6 +528,7 @@ msgstr ""
 #. Maintext
 #: Story.py
 #: content/Story.py
+#: content/Task.py
 msgid "eXtremeManagement_label_mainText"
 msgstr ""
 
@@ -639,8 +640,8 @@ msgid "header_stories"
 msgstr ""
 
 #. Default: "Time registration"
-#: skins/eXtremeManagement/portlet_tasks.pt
 #: skins/eXtremeManagement/update_hours_form.cpt
+#: skins/eXtremeManagement/portlet_tasks.pt
 msgid "header_time_registration"
 msgstr ""
 
@@ -700,14 +701,14 @@ msgid "listingheader-time"
 msgstr ""
 
 #. Default: "Fullname"
-#: skins/eXtremeManagement/customer_view.pt
 #: skins/eXtremeManagement/projectmember_view.pt
+#: skins/eXtremeManagement/customer_view.pt
 msgid "listingheader_Fullname"
 msgstr ""
 
 #. Default: "Phone"
-#: skins/eXtremeManagement/customer_view.pt
 #: skins/eXtremeManagement/projectmember_view.pt
+#: skins/eXtremeManagement/customer_view.pt
 msgid "listingheader_Phone"
 msgstr ""
 
@@ -724,8 +725,8 @@ msgid "listingheader_address"
 msgstr ""
 
 #. Default: "Assignee(s)"
-#: skins/eXtremeManagement/task_view.pt
 #: skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/task_view.pt
 msgid "listingheader_assignees"
 msgstr ""
 
@@ -750,8 +751,8 @@ msgid "listingheader_diff"
 msgstr ""
 
 #. Default: "email"
-#: skins/eXtremeManagement/customer_view.pt
 #: skins/eXtremeManagement/projectmember_view.pt
+#: skins/eXtremeManagement/customer_view.pt
 msgid "listingheader_email"
 msgstr ""
 
@@ -761,9 +762,9 @@ msgid "listingheader_enddate"
 msgstr ""
 
 #. Default: "Estimate"
-#: skins/eXtremeManagement/task_view.pt
 #: skins/eXtremeManagement/story_view.pt
 #: skins/eXtremeManagement/project_administration.pt
+#: skins/eXtremeManagement/update_hours_form.cpt
 msgid "listingheader_estimate"
 msgstr ""
 
@@ -808,9 +809,9 @@ msgid "listingheader_startdate"
 msgstr ""
 
 #. Default: "Status"
-#: skins/eXtremeManagement/task_view.pt
 #: skins/eXtremeManagement/story_view.pt
 #: skins/eXtremeManagement/project_administration.pt
+#: skins/eXtremeManagement/task_view.pt
 msgid "listingheader_state"
 msgstr ""
 

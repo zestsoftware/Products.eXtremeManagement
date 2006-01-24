@@ -72,6 +72,17 @@ schema = Schema((
         vocabulary='_get_assignees'
     ),
 
+    TextField(
+        name='mainText',
+        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
+        widget=RichWidget(
+            label='Maintext',
+            label_msgid='eXtremeManagement_label_mainText',
+            i18n_domain='eXtremeManagement',
+        ),
+        default_output_type='text/html'
+    ),
+
 ),
 )
 
@@ -185,6 +196,14 @@ class Task(BaseFolder):
         """
         estimated = self.getEstimate()
         return str(estimated) + ':00'
+
+    security.declarePublic('CookedBody')
+    def CookedBody(self):
+        """
+        
+        """
+        
+        pass
 
 
 registerType(Task,PROJECTNAME)
