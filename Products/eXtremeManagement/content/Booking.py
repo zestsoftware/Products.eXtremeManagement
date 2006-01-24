@@ -50,7 +50,6 @@ schema = Schema((
         (
             label='Hours',
             label_msgid='eXtremeManagement_label_hours',
-            description_msgid='eXtremeManagement_help_hours',
             i18n_domain='eXtremeManagement',
         ),
         vocabulary=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
@@ -63,7 +62,6 @@ schema = Schema((
         (
             label='Minutes',
             label_msgid='eXtremeManagement_label_minutes',
-            description_msgid='eXtremeManagement_help_minutes',
             i18n_domain='eXtremeManagement',
         ),
         vocabulary=(0, 15, 30, 45)
@@ -75,7 +73,6 @@ schema = Schema((
         widget=BooleanWidget(
             label='Billable',
             label_msgid='eXtremeManagement_label_billable',
-            description_msgid='eXtremeManagement_help_billable',
             i18n_domain='eXtremeManagement',
         )
     ),

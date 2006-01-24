@@ -44,7 +44,6 @@ schema = Schema((
             show_hm=False,
             label='Startdate',
             label_msgid='eXtremeManagement_label_startDate',
-            description_msgid='eXtremeManagement_help_startDate',
             i18n_domain='eXtremeManagement',
         )
     ),
@@ -55,7 +54,6 @@ schema = Schema((
             show_hm=False,
             label='Enddate',
             label_msgid='eXtremeManagement_label_endDate',
-            description_msgid='eXtremeManagement_help_endDate',
             i18n_domain='eXtremeManagement',
         )
     ),
@@ -65,7 +63,6 @@ schema = Schema((
         widget=IntegerWidget(
             label='Manhours',
             label_msgid='eXtremeManagement_label_manHours',
-            description_msgid='eXtremeManagement_help_manHours',
             i18n_domain='eXtremeManagement',
         )
     ),
