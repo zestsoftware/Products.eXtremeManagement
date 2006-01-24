@@ -19,7 +19,9 @@
                  tal:define="totalEstimate python:here.getTotalEstimate();
                         totalActual python:here.getTotalActual();
                         item_path python:'/'.join(context.getPhysicalPath());
-                        items python:here.portal_catalog.searchResults(portal_type='Task', path=item_path);">
+                        items
+                        python:here.portal_catalog.searchResults(portal_type='Task',
+                        sort_on='id', path=item_path);">
     
         <div tal:replace="structure context/CookedBody" />
 
