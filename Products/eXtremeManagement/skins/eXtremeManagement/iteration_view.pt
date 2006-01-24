@@ -32,11 +32,7 @@
     
 
     <metal:block metal:define-macro="body" 
-                    tal:define="iteration_path python:'/'.join(here.getPhysicalPath());
-                                stories python:here.portal_catalog.searchResults(portal_type='Story',
-                                                                            sort_on='Date',
-                                                                            sort_order='traverse',
-                                                                            path=iteration_path);">
+                 tal:define="stories python:here.getSortedStories()">
     
         <tal:block tal:condition="stories">
             <h1 i18n:translate="heading-stories">Stories</h1>
