@@ -71,6 +71,10 @@
     text-align: left !important;
 }
 
+.list-in-iteration .td-time {
+    text-align: right !important;
+}
+
 .list-in-iteration {
     text-align: center;
 }

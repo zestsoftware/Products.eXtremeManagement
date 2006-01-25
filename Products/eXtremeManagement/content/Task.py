@@ -183,6 +183,8 @@ class Task(BaseFolder):
         diff = actual - estimated
         hours = int(diff)
         minutes = int((diff - hours)*60)
+        if hours == 0 and minutes == 0:
+            return ('0:00')
         minutes = abs(minutes)
         hours = abs(hours)
         if minutes < 10:
@@ -190,7 +192,7 @@ class Task(BaseFolder):
         if diff < 0:
             sign='-'
         else:
-            sign='+'            
+            sign='+'
         return ('%s%s:%s' % (sign, hours, minutes))
           
     security.declarePublic('get_estimate_formatted')

@@ -52,13 +52,16 @@
                             Title
                         </a>
                     </td>
-                    <td tal:content="taskObj/get_estimate_formatted">
+                    <td class="td-time"
+                        tal:content="taskObj/get_estimate_formatted">
                         estimate
                     </td>
-                    <td tal:content="taskObj/get_actual_hours_formatted">
+                    <td class="td-time"
+                        tal:content="taskObj/get_actual_hours_formatted">
                         actual
                     </td>
-                    <td tal:content="taskObj/get_difference_formatted">
+                    <td class="td-time"
+                        tal:content="taskObj/get_difference_formatted">
                         diff
                     </td>
                    <td tal:define="wtool here/portal_workflow;
