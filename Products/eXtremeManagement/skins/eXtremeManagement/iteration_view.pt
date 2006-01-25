@@ -22,7 +22,7 @@
                 <th i18n:translate="listingheader_enddate">End date</th>
             </tr>
             <tr>
-                <td tal:content="context/getTotalActual" />
+                <td tal:content="context/getManHours" />
                 <td tal:content="python:context.toLocalizedTime(context.getStartDate(), long_format=0)" />
                 <td tal:content="python:context.toLocalizedTime(context.getEndDate(), long_format=0)" />
             </tr>
