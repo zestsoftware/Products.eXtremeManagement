@@ -32,7 +32,7 @@
     
 
     <metal:block metal:define-macro="body" 
-                 tal:define="stories python:here.getSortedStories()">
+                 tal:define="stories here/getFolderContents;">
     
         <tal:block tal:condition="stories">
             <h1 i18n:translate="heading-stories">Stories</h1>

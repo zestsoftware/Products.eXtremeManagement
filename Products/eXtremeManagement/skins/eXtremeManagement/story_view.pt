@@ -19,9 +19,7 @@
                  tal:define="totalEstimate python:here.getTotalEstimate();
                         totalActual python:here.getTotalActual();
                         item_path python:'/'.join(context.getPhysicalPath());
-                        items
-                        python:here.portal_catalog.searchResults(portal_type='Task',
-                        sort_on='id', path=item_path);">
+                        items here/getFolderContents;">
     
         <div tal:replace="structure context/CookedBody" />
 
@@ -36,7 +34,6 @@
                    cellspacing="0">
                 <thead>
                 <tr>
-                    <th i18n:translate="listingheader_id">id</th>
                     <th i18n:translate="listingheader_title">Title</th>
                     <th i18n:translate="listingheader_estimate">Estimate</th>                  
                     <th i18n:translate="listingheader_actual">Actual</th>
@@ -49,9 +46,6 @@
                 <tr tal:repeat="item items"
                     class="list-in-iteration">
                 <tal:block tal:define="taskObj item/getObject;">
-                    <td tal:content="taskObj/id">
-                        id
-                    </td>
                     <td class="td-story-title">
                         <a tal:attributes="href string:${taskObj/absolute_url}"
                            tal:content="taskObj/title">
@@ -85,8 +79,7 @@
                 </tr>
    
                 <tr id="totalTasks">
-                    <td colspan="2" 
-                        class="td-story-title" 
+                    <td class="td-story-title" 
                         i18n:translate="total">
                         Total
                     </td>
