@@ -82,7 +82,7 @@ class Story(OrderedBaseFolder):
     allowed_content_types = ['Task']
     filter_content_types = 1
     global_allow = 0
-    allow_discussion = False
+    allow_discussion = True
     content_icon = 'story_icon.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'

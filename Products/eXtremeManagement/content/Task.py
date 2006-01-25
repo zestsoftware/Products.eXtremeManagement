@@ -114,7 +114,7 @@ class Task(BaseFolder):
     allowed_content_types = ['Booking']
     filter_content_types = 1
     global_allow = 0
-    allow_discussion = False
+    allow_discussion = True
     content_icon = 'task_icon.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'
