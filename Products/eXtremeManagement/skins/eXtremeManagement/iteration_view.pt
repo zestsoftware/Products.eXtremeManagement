@@ -62,7 +62,8 @@
                     </td>
                     <td tal:define="wtool here/portal_workflow;
                                     review_state python:wtool.getInfoFor(storyObj, 'review_state')"
-                        tal:content="review_state">
+                        tal:content="review_state"
+                        class="td-center">
                         Status
                     </td>
                     <td tal:content="python:here.getTotalEstimate(storyObj)">

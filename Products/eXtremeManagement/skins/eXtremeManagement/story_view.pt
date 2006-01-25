@@ -52,24 +52,22 @@
                             Title
                         </a>
                     </td>
-                    <td class="td-time"
-                        tal:content="taskObj/get_estimate_formatted">
+                    <td tal:content="taskObj/get_estimate_formatted">
                         estimate
                     </td>
-                    <td class="td-time"
-                        tal:content="taskObj/get_actual_hours_formatted">
+                    <td tal:content="taskObj/get_actual_hours_formatted">
                         actual
                     </td>
-                    <td class="td-time"
-                        tal:content="taskObj/get_difference_formatted">
+                    <td tal:content="taskObj/get_difference_formatted">
                         diff
                     </td>
                    <td tal:define="wtool here/portal_workflow;
                             review_state python:wtool.getInfoFor(taskObj, 'review_state')"
-                       tal:content="review_state">
+                       tal:content="review_state"
+                       class="td-center">
                         Status
                     </td>
-                    <td>
+                    <td class="td-center">
                         <span tal:omit-tag="" 
                               tal:repeat="newItem taskObj/getAssignees">
                             <img src="user.gif"

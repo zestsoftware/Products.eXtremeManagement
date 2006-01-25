@@ -64,19 +64,19 @@
 
 #totalTasks {
     font-weight: bold;
-    text-align: center;
+    text-align: right;
 }
 
 .td-story-title {
     text-align: left !important;
 }
 
-.list-in-iteration .td-time {
-    text-align: right !important;
+.td-center {
+    text-align: center !important;
 }
 
 .list-in-iteration {
-    text-align: center;
+    text-align: right;
 }
 
 .list_iterations div {
