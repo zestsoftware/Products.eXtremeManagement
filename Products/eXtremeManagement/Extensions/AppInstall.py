@@ -78,6 +78,16 @@ def disableJoinLink(portal):
     portal.manage_permission('Add portal member', ['Manager'], 0)
 
 
+def migrate_ct(portal, out):
+    """
+    No idea how to do this actually.
+    import Products.eXtremeManagement.content.migrate
+    portal.migrate.migrate()
+    portal.portal_skins.eXtremeManagement.migrate.migrate()
+    """
+    print >> out, "No migrating code yet.  Maurits."
+
+
 def configureKupu(portal):
     kupuTool = getToolByName(portal, 'kupu_library_tool')
     linkable = list(kupuTool.getPortalTypesForResourceType('linkable'))
@@ -125,6 +135,9 @@ def install(self):
 
     print >> out, "Integrate our types in kupu"
     configureKupu(self)
+
+    print >> out, "Migrating content"
+    migrate_ct(self, out)
 
     return out.getvalue()
 
