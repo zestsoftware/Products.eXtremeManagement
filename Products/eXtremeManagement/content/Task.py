@@ -181,13 +181,17 @@ class Task(BaseFolder):
         estimated = self.getEstimate()
         actual = self.get_actual_hours()
         diff = actual - estimated
-        hours = int(diff)        
+        hours = int(diff)
         minutes = int((diff - hours)*60)
-        if minutes == 0:
-            minutes = '00'
-        if minutes < 0:
-            minutes = minutes*-1
-        return ('%s:%s' % (hours, minutes))
+        minutes = abs(minutes)
+        hours = abs(hours)
+        if minutes < 10:
+            minutes = '0%s' % minutes
+        if diff < 0:
+            sign='-'
+        else:
+            sign='+'            
+        return ('%s%s:%s' % (sign, hours, minutes))
           
     security.declarePublic('get_estimate_formatted')
     def get_estimate_formatted(self):
