@@ -37,6 +37,7 @@
     
                     <tr>
                         <th i18n:translate="listingheader_title">Title</th> 
+                        <th i18n:translate="listingheader_story">Story</th> 
                         <th i18n:translate="listingheader_estimate">Estimate</th>
                         <th i18n:translate="listingheader_actual">Actual</th>
                     </tr>
@@ -51,6 +52,7 @@
                             </a>
                         </td>
             
+                        <td tal:content="taskObj/aq_parent/title">Story title</td>
                         <td tal:content="taskObj/getEstimate">Estimate</td>
                         <td tal:define="totalActual python:here.getTotalActual(taskObj);"
                             tal:content="totalActual">actual</td> 
