@@ -96,7 +96,8 @@
         
                     <tal:block tal:define="progress python:story.get_progress_perc();
                                     openTasks python:here.getOpenTasks(story);
-                                    completedTasks python:here.getCompletedTasks(story)">
+                                    completedTasks python:here.getCompletedTasks(story);
+                                    storyIsCompleted python:story.isCompleted()">
         
                         <td width="30%"> 
                             <a class="storyTitle_project_overview"
@@ -111,8 +112,14 @@
                             <span class="progress_percentage" 
                                 tal:content="string:${progress} %">&nbsp;</span>
                             <br />
-                            <div class="progress_bar"> 
-                                <img src="progress.gif" 
+                            <div class="progress_bar">
+                                <img tal:condition="storyIsCompleted"
+                                    src="progress-complete.gif" 
+                                    height="10" 
+                                    tal:attributes="width progress"
+                                    alt="progress bar"/>
+                                <img tal:condition="not:storyIsCompleted"
+                                    src="progress.gif" 
                                     height="10" 
                                     tal:attributes="width progress"
                                     alt="progress bar"/>
@@ -193,7 +200,8 @@
 
                     <tal:block tal:define="progress python:story.get_progress_perc();
                                     openTasks python:here.getOpenTasks(story);
-                                    completedTasks python:here.getCompletedTasks(story)">
+                                    completedTasks python:here.getCompletedTasks(story);
+                                    storyIsCompleted python:story.isCompleted()">
     
                     <td width="30%">
                         <a class="storyTitle_project_overview"
@@ -209,10 +217,16 @@
                             tal:content="string:${progress} %">&nbsp;</span>
                         <br />
                         <div class="progress_bar">
-                            <img src="progress.gif"
-                                 height="10"
-                                 tal:attributes="width progress"
-                                 alt="Progress bar" />
+                                <img tal:condition="storyIsCompleted"
+                                    src="progress-complete.gif" 
+                                    height="10" 
+                                    tal:attributes="width progress"
+                                    alt="progress bar"/>
+                                <img tal:condition="not:storyIsCompleted"
+                                    src="progress.gif" 
+                                    height="10" 
+                                    tal:attributes="width progress"
+                                    alt="progress bar"/>
                         </div>
                     </td>
                     <td class="tasks"

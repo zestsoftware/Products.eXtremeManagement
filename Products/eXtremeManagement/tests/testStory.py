@@ -83,6 +83,26 @@ class testStory(eXtremeManagementTestCase):
         ##self.folder._setObject('temp_Story', o)
         pass
 
+    # from class Story:
+    def test_generateUniqueId(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Story('temp_Story')
+        ##self.folder._setObject('temp_Story', o)
+        pass
+
+    # from class Story:
+    def test_isCompleted(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Story('temp_Story')
+        ##self.folder._setObject('temp_Story', o)
+        pass
+
     # Manually created methods
     def test_callStory(self):
         """ Test that you can add and call a Story item

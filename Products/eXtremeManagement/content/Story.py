@@ -112,12 +112,8 @@ class Story(OrderedBaseFolder):
         """
         
         """
-        portal = getToolByName(self,'portal_url').getPortalObject()
-        wf_tool = getToolByName(portal, 'portal_workflow')
-        state = wf_tool.getInfoFor(self, 'review_state')
-        if state == 'completed':
+        if self.isCompleted():
             return 100
-
         tasks = self.contentValues()
         estimates = []
         actual = 0.0
@@ -133,8 +129,7 @@ class Story(OrderedBaseFolder):
         else:
             return 0
 
-    # Manually created methods
-
+    security.declarePublic('generateUniqueId')
     def generateUniqueId(self, type_name):
         """ Generate sequential IDs for tasks
         With thanks to Upfront Systems for their code from Upfront Project
@@ -153,6 +148,18 @@ class Story(OrderedBaseFolder):
         else:
             return self.aq_parent.generateUniqueId(type_name)
 
+    security.declarePublic('isCompleted')
+    def isCompleted(self):
+        """
+        Returns True is the Story has review_state 'completed'.
+        """
+        portal = getToolByName(self,'portal_url').getPortalObject()
+        wf_tool = getToolByName(portal, 'portal_workflow')
+        state = wf_tool.getInfoFor(self, 'review_state')
+        if state == 'completed':
+            return True
+        else:
+            return False
 
 
 registerType(Story,PROJECTNAME)
