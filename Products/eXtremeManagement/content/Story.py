@@ -35,6 +35,7 @@ from Products.Archetypes.atapi import *
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
 
+from Products.CMFCore.utils import getToolByName
 BaseFolderSchema = OrderedBaseFolderSchema.copy()
 BaseFolderSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 
@@ -111,6 +112,12 @@ class Story(OrderedBaseFolder):
         """
         
         """
+        portal = getToolByName(self,'portal_url').getPortalObject()
+        wf_tool = getToolByName(portal, 'portal_workflow')
+        state = wf_tool.getInfoFor(self, 'review_state')
+        if state == 'completed':
+            return 100
+
         tasks = self.contentValues()
         estimates = []
         actual = 0.0
