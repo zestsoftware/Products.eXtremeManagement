@@ -32,6 +32,7 @@ from Products.Archetypes.atapi import *
 
 
 
+
 # additional imports from tagged value 'import'
 from Products.CMFPlone.interfaces.NonStructuralFolder import INonStructuralFolder
 
@@ -44,18 +45,15 @@ from Products.CMFCore.utils import getToolByName
 
 schema = Schema((
 
-    IntegerField(
-        name='estimate',
-        default="0",
-        index="FieldIndex",
-        widget=IntegerWidget(
-            description="Enter the estimated time (in hours).",
-            label='Estimate',
-            label_msgid='eXtremeManagement_label_estimate',
-            description_msgid='eXtremeManagement_help_estimate',
+    TextField(
+        name='mainText',
+        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
+        widget=RichWidget(
+            label='Maintext',
+            label_msgid='eXtremeManagement_label_mainText',
             i18n_domain='eXtremeManagement',
         ),
-        required=1
+        default_output_type='text/html'
     ),
 
     LinesField(
@@ -72,15 +70,28 @@ schema = Schema((
         vocabulary='_get_assignees'
     ),
 
-    TextField(
-        name='mainText',
-        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
-        widget=RichWidget(
-            label='Maintext',
-            label_msgid='eXtremeManagement_label_mainText',
+    IntegerField(
+        name='hours',
+        default="0",
+        index="FieldIndex",
+        widget=IntegerWidget(
+            description="Enter the estimated time (in hours).",
+            label='Hours',
+            label_msgid='eXtremeManagement_label_hours',
+            description_msgid='eXtremeManagement_help_hours',
             i18n_domain='eXtremeManagement',
         ),
-        default_output_type='text/html'
+        required=1
+    ),
+
+    IntegerField(
+        name='minutes',
+        default="0",
+        widget=IntegerWidget(
+            label='Minutes',
+            label_msgid='eXtremeManagement_label_minutes',
+            i18n_domain='eXtremeManagement',
+        )
     ),
 
 ),
@@ -103,7 +114,7 @@ Task_schema = BaseFolderSchema.copy() + \
 
 class Task(BaseFolder):
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseFolder,'__implements__',()),) + (INonStructuralFolder,)
+    __implements__ = (getattr(INonStructuralFolder,'__implements__',()),) + (INonStructuralFolder,)
 
 
     # This name appears in the 'add' box
@@ -209,6 +220,16 @@ class Task(BaseFolder):
         Dummy attribute to allow drop-in replacement of Document
         """
         return self.getMainText()
+
+    # Manually created methods
+
+    security.declarePublic('getEstimate')
+    def getEstimate(self):
+        """
+        For now, return the hours.
+        """
+        return self.getHours()
+
 
 
 registerType(Task,PROJECTNAME)

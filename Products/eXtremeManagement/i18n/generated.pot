@@ -187,6 +187,7 @@ msgstr ""
 #. hours
 #: Booking.py
 #: content/Booking.py
+#: content/Task.py
 msgid "eXtremeManagement_help_hours"
 msgstr ""
 
@@ -466,6 +467,7 @@ msgstr ""
 #. Hours
 #: Booking.py
 #: content/Booking.py
+#: content/Task.py
 msgid "eXtremeManagement_label_hours"
 msgstr ""
 
@@ -512,6 +514,7 @@ msgstr ""
 #. Minutes
 #: Booking.py
 #: content/Booking.py
+#: content/Task.py
 msgid "eXtremeManagement_label_minutes"
 msgstr ""
 

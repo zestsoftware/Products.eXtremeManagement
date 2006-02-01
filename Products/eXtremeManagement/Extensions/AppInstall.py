@@ -1,4 +1,6 @@
-# AUTHORS: Ahmad Hadi (ahadi@zestsoftware.nl)
+# AUTHORS: Ahmad Hadi (ahadi@zestsoftware.nl),
+# Maurits van Rees (m.van.rees@zestsoftware.nl)
+
 
 from Products.Archetypes.public import listTypes
 from Products.Archetypes.Extensions.utils import installTypes, install_subskin
@@ -78,14 +80,52 @@ def disableJoinLink(portal):
     portal.manage_permission('Add portal member', ['Manager'], 0)
 
 
+def _migrateTaskSchema(self):
+    at = getToolByName(self, 'archetype_tool')
+    class dummy:
+        form = {}
+    dummyRequest = dummy()
+    dummy.form['eXtremeManagement.Task'] = 1
+    at.manage_updateSchema(update_all=1,
+                           REQUEST=dummyRequest)
+
+
 def migrate_ct(portal, out):
     """
     No idea how to do this actually.
     import Products.eXtremeManagement.content.migrate
     portal.migrate.migrate()
     portal.portal_skins.eXtremeManagement.migrate.migrate()
+
+    jladage: the migration in my opinion should only do: task.hours = task.estimate once
+    jladage: since estimate is an int , only whole hours can be stored in there
+    jladage: after migration you should to an update catalog, to index the changes
+
     """
-    print >> out, "No migrating code yet.  Maurits."
+    print >> out, "Updating Task schema."
+    
+    task_brains = portal.portal_catalog(meta_type='Task')
+    print >> out, "Found %s tasks." % len(task_brains)
+    tasklist = []
+    for task_brain in task_brains:
+        task = task_brain.getObject()
+        if not hasattr(task, 'hours'):
+        #if hasattr(task, 'estimate'):
+            old_estimate = getattr(task, 'estimate')
+            tasklist.append((task_brain, old_estimate))
+            print >> out, "Task title %s has been added to the list with: %s hours." % (task.title, old_estimate)
+        else:
+            print >> out, "Task with title %s was already converted." % task.title
+
+    _migrateTaskSchema(portal)
+
+    for item in tasklist:
+        task_brain, old_estimate = item
+        task = task_brain.getObject()
+        task.setHours(old_estimate)
+        print >> out, "Setting estimate of task %s to: %s hours." % (task.title, old_estimate)
+
+    print >> out, "Migration of tasks completed"
 
 
 def configureKupu(portal):
