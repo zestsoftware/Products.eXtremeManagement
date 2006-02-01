@@ -90,7 +90,7 @@
                             Description
                         </div>
                     </td>
-                    <td tal:content="booking/getTotalFormatted">
+                    <td tal:content="booking/getActualHours">
                         4:45
                     </td>
                 </tr>

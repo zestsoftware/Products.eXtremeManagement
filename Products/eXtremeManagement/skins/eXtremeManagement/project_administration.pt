@@ -82,10 +82,10 @@
                             
                                 <td tal:content="iteration/review_state">state</td>
                                 <td tal:define="iterationObj iteration/getObject;
-                                                projectEstimate python:here.getTotalEstimate(iterationObj)"
+                                                projectEstimate python:iterationObj.getEstimate()"
                                     tal:content="projectEstimate">Estimate</td>
                                 <td tal:define="iterationObj iteration/getObject; 
-                                                projectActual python:here.getTotalActual(iterationObj)"
+                                                projectActual python:iterationObj.getActualHours()"
                                     tal:content="projectActual">actual</td>
                                 </tal:block>
                             </tr>

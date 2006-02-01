@@ -132,6 +132,36 @@ class Project(OrderedBaseFolder):
 
         return list1
 
+    security.declarePublic('formatTime')
+    def formatTime(self, time):
+        """
+        Returns time as a formatted string
+        e.g. 3:15
+        """
+        hours = int(time)        
+        minutes = int((time - hours)*60)
+        if hours == 0 and minutes == 0:
+            return ('0:00')
+        minutes = abs(minutes)
+        hours = abs(hours)
+        minutes = self.formatMinutes(minutes)
+        sign = ''
+        if time < 0:
+            sign = '-'
+        return ('%s%s%s' % (sign, hours, minutes))
+
+    security.declarePublic('formatMinutes')
+    def formatMinutes(self, minutes):
+        """
+        Takes the integer argument minutes and formats it nicely.  Examples:
+        5  => :05
+        24 => :24
+        """
+        if minutes < 10:
+            minutes = '0%s' % minutes
+        minutes = ':%s' % minutes
+        return minutes
+
 
 registerType(Project,PROJECTNAME)
 # end of class Project

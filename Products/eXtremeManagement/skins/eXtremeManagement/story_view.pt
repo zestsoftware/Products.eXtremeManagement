@@ -16,8 +16,9 @@
     </metal:block>
     
     <metal:block metal:define-macro="body"
-                 tal:define="totalEstimate python:here.getTotalEstimate();
-                        totalActual python:here.getTotalActual();
+                 tal:define="totalEstimate python:here.getEstimate();
+                        totalActual python:here.getActualHours();
+                        totalDifference python:here.getDifference();
                         item_path python:'/'.join(context.getPhysicalPath());
                         items here/getFolderContents;">
     
@@ -52,13 +53,13 @@
                             Title
                         </a>
                     </td>
-                    <td tal:content="taskObj/get_estimate_formatted">
+                    <td tal:content="taskObj/getEstimate">
                         estimate
                     </td>
-                    <td tal:content="taskObj/get_actual_hours_formatted">
+                    <td tal:content="taskObj/getActualHours">
                         actual
                     </td>
-                    <td tal:content="taskObj/get_difference_formatted">
+                    <td tal:content="taskObj/getDifference">
                         diff
                     </td>
                    <td tal:define="wtool here/portal_workflow;
@@ -90,7 +91,7 @@
                     <td tal:content="totalActual">
                         total actual
                     </td>
-                    <td tal:content="here/getTotalDifference">
+                    <td tal:content="totalDifference">
                         total diff
                     </td>
                     <td>&nbsp;</td>  

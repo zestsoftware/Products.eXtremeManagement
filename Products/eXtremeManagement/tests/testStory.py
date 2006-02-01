@@ -63,6 +63,16 @@ class testStory(eXtremeManagementTestCase):
         self.default_user = default_user
         pass
 
+    def test_call_story(self):
+        """ Test that you can add and call a Story item
+        """
+        self.setRoles(['Manager'])
+        self.portal.invokeFactory('ProjectFolder', id='projects')
+        self.portal.projects.invokeFactory('Project', id='testproject01')
+        self.portal.projects.testproject01.invokeFactory('Iteration', id='testIteration')
+        self.portal.projects.testproject01.testIteration.invokeFactory('Story', id='testStory')
+        self.failUnless('testStory' in self.portal.projects.testproject01.testIteration.objectIds())
+
     # from class Story:
     def test_CookedBody(self):
         """
@@ -103,21 +113,67 @@ class testStory(eXtremeManagementTestCase):
         ##self.folder._setObject('temp_Story', o)
         pass
 
-    # Manually created methods
-    def test_callStory(self):
-        """ Test that you can add and call a Story item
+    # from class Story:
+    def test_getRawEstimate(self):
         """
-        #self.loginAsPortalOwner()
-        #p=ProjectFolder('projects2')
-        #self.portal._setObject('projects2',p)
-        
-        self.setRoles(['Manager'])
-        self.portal.invokeFactory('ProjectFolder', id='projects')
-        self.portal.projects.invokeFactory('Project', id='testproject01')
-        self.portal.projects.testproject01.invokeFactory('Iteration', id='testIteration')
-        self.portal.projects.testproject01.testIteration.invokeFactory('Story', id='testStory')
-        self.failUnless('testStory' in self.portal.projects.testproject01.testIteration.objectIds())
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Story('temp_Story')
+        ##self.folder._setObject('temp_Story', o)
+        pass
 
+    # from class Story:
+    def test_getEstimate(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Story('temp_Story')
+        ##self.folder._setObject('temp_Story', o)
+        pass
+
+    # from class Story:
+    def test_getRawActualHours(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Story('temp_Story')
+        ##self.folder._setObject('temp_Story', o)
+        pass
+
+    # from class Story:
+    def test_getActualHours(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Story('temp_Story')
+        ##self.folder._setObject('temp_Story', o)
+        pass
+
+    # from class Story:
+    def test_getRawDifference(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Story('temp_Story')
+        ##self.folder._setObject('temp_Story', o)
+        pass
+
+    # from class Story:
+    def test_getDifference(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Story('temp_Story')
+        ##self.folder._setObject('temp_Story', o)
+        pass
+
+    # Manually created methods
 
 
 def test_suite():

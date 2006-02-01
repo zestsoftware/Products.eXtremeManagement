@@ -62,8 +62,7 @@ class testIteration(eXtremeManagementTestCase):
         """
         pass
 
-    # Manually created methods
-    def test_callIteration(self):
+    def test_call_iteration(self):
         """ Test that you can add and call an Iteration
         """
         self.loginAsPortalOwner()
@@ -75,6 +74,67 @@ class testIteration(eXtremeManagementTestCase):
         self.failUnless( 'testproject01' in self.portal.projects.objectIds())
         self.failUnless( 'testIteration' in self.portal.projects.testproject01.objectIds())
 
+    # from class Iteration:
+    def test_getRawEstimate(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Iteration('temp_Iteration')
+        ##self.folder._setObject('temp_Iteration', o)
+        pass
+
+    # from class Iteration:
+    def test_getEstimate(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Iteration('temp_Iteration')
+        ##self.folder._setObject('temp_Iteration', o)
+        pass
+
+    # from class Iteration:
+    def test_getRawActualHours(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Iteration('temp_Iteration')
+        ##self.folder._setObject('temp_Iteration', o)
+        pass
+
+    # from class Iteration:
+    def test_getActualHours(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Iteration('temp_Iteration')
+        ##self.folder._setObject('temp_Iteration', o)
+        pass
+
+    # from class Iteration:
+    def test_getRawDifference(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Iteration('temp_Iteration')
+        ##self.folder._setObject('temp_Iteration', o)
+        pass
+
+    # from class Iteration:
+    def test_getDifference(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Iteration('temp_Iteration')
+        ##self.folder._setObject('temp_Iteration', o)
+        pass
+
+    # Manually created methods
 
 
 def test_suite():

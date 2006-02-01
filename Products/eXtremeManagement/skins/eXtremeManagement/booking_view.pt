@@ -20,7 +20,7 @@
       <h5 class="header-booking-hours" 
           i18n:translate="heading-booking">Booking
       </h5>
-      <span tal:content="here/getTotalFormatted">3:14</span>
+      <span tal:content="here/getActualHours">3:14</span>
 
     </metal:block>
     <metal:block metal:define-macro="folderlisting" />

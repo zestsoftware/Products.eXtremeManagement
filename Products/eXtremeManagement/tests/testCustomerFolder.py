@@ -60,8 +60,7 @@ class testCustomerFolder(eXtremeManagementTestCase):
         """
         pass
 
-    # Manually created methods
-    def test_callCustomerFolder(self):
+    def test_call_customerFolder(self):
         """ Test if the customers folder is created
         """
         self.loginAsPortalOwner()
@@ -70,6 +69,7 @@ class testCustomerFolder(eXtremeManagementTestCase):
         self.failUnless('customers' in self.portal.objectIds())
         self.failUnless( self.portal.customers.portal_type == 'CustomerFolder')
 
+    # Manually created methods
 
 
 def test_suite():

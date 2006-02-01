@@ -160,59 +160,51 @@ class Task(BaseFolder):
 
         return DisplayList(uids)
 
-    security.declarePublic('get_actual_hours')
-    def get_actual_hours(self):
+    security.declarePublic('getRawEstimate')
+    def getRawEstimate(self):
+        """
+        Return hours + minutes as a single float.
+        """
+        return self.getHours() + (self.getMinutes() / 60.0)
+        
+    security.declarePublic('getEstimate')
+    def getEstimate(self):
+        """
+        Return the formatted estimate.
+        """
+        return self.formatTime(self.getRawEstimate())
+
+    security.declarePublic('getRawActualHours')
+    def getRawActualHours(self):
         """ Returns a float for further calculation.
         
         """  
         actual = 0.0     
         bookings = self.contentValues('Booking')
         for booking in bookings:
-             actual = actual + booking.getTotal() 
+             actual = actual + booking.getRawActualHours()
         return actual
 
-    security.declarePublic('get_actual_hours_formatted')
-    def get_actual_hours_formatted(self):
+    security.declarePublic('getActualHours')
+    def getActualHours(self):
         """Returns a formatted string
            e.g. 3:15
-        
         """
-        time = self.get_actual_hours()        
-        hours = int(time)        
-        minutes = int((time - hours)*60)
-        minutes = self.formatMinutes(minutes)
-        return ('%s%s' % (hours, minutes))
-        
-    security.declarePublic('get_difference_formatted')
-    def get_difference_formatted(self):
+        return self.formatTime(self.getRawActualHours())
+
+    security.declarePublic('getRawDifference')
+    def getRawDifference(self):
         """
         
         """
-        estimated = self.getEstimate()
-        actual = self.get_actual_hours()
-        diff = actual - estimated
-        hours = int(diff)
-        minutes = int((diff - hours)*60)
-        if hours == 0 and minutes == 0:
-            return ('0:00')
-        minutes = abs(minutes)
-        hours = abs(hours)
-        minutes = self.formatMinutes(minutes)
-        if diff < 0:
-            sign='-'
-        else:
-            sign='+'
-        return ('%s%s%s' % (sign, hours, minutes))
+        return self.getRawActualHours() -  self.getRawEstimate()
           
-    security.declarePublic('get_estimate_formatted')
-    def get_estimate_formatted(self):
+    security.declarePublic('getDifference')
+    def getDifference(self):
         """
         
         """
-        hours = self.getHours()
-        minutes = self.getMinutes()
-        minutes = self.formatMinutes(minutes)
-        return str(hours) + str(minutes)
+        return self.formatTime(self.getRawDifference())
 
     security.declarePublic('CookedBody')
     def CookedBody(self):
@@ -220,25 +212,6 @@ class Task(BaseFolder):
         Dummy attribute to allow drop-in replacement of Document
         """
         return self.getMainText()
-
-    security.declarePublic('getEstimate')
-    def getEstimate(self):
-        """
-        For now, return the hours.
-        """
-        return self.getHours() + (self.getMinutes() / 60.0)
-
-    security.declarePublic('formatMinutes')
-    def formatMinutes(self, minutes):
-        """
-        Takes the integer argument minutes and formats it nicely.  Examples:
-        5  => :05
-        24 => :24
-        """
-        if minutes < 10:
-            minutes = '0%s' % minutes
-        minutes = ':%s' % minutes
-        return minutes
 
 
 registerType(Task,PROJECTNAME)

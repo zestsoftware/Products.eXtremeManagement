@@ -71,47 +71,7 @@ class testTask(eXtremeManagementTestCase):
         pass
 
     # from class Task:
-    def test_get_actual_hours(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Task('temp_Task')
-        ##self.folder._setObject('temp_Task', o)
-        pass
-
-    # from class Task:
-    def test_get_actual_hours_formatted(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Task('temp_Task')
-        ##self.folder._setObject('temp_Task', o)
-        pass
-
-    # from class Task:
-    def test_get_difference_formatted(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Task('temp_Task')
-        ##self.folder._setObject('temp_Task', o)
-        pass
-
-    # from class Task:
-    def test_get_estimate_formatted(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Task('temp_Task')
-        ##self.folder._setObject('temp_Task', o)
-        pass
-
-    # from class Task:
-    def test_CookedBody(self):
+    def test_getRawEstimate(self):
         """
         """
         #Uncomment one of the following lines as needed
@@ -131,7 +91,47 @@ class testTask(eXtremeManagementTestCase):
         pass
 
     # from class Task:
-    def test_formatMinutes(self):
+    def test_getRawActualHours(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Task('temp_Task')
+        ##self.folder._setObject('temp_Task', o)
+        pass
+
+    # from class Task:
+    def test_getActualHours(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Task('temp_Task')
+        ##self.folder._setObject('temp_Task', o)
+        pass
+
+    # from class Task:
+    def test_getRawDifference(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Task('temp_Task')
+        ##self.folder._setObject('temp_Task', o)
+        pass
+
+    # from class Task:
+    def test_getDifference(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Task('temp_Task')
+        ##self.folder._setObject('temp_Task', o)
+        pass
+
+    # from class Task:
+    def test_CookedBody(self):
         """
         """
         #Uncomment one of the following lines as needed

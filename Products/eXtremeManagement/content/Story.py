@@ -115,18 +115,10 @@ class Story(OrderedBaseFolder):
         """
         if self.isCompleted():
             return 100
-        tasks = self.contentValues()
-        estimates = []
-        actual = 0.0
-        if tasks:
-            for task in tasks:
-                estimates.append(task.getEstimate())
-                actual = actual + task.get_actual_hours()
-            estimated = sum(estimates)
-            if estimated > 0:
-                return round(actual/estimated*100, 1)
-            else:
-                return 0.0
+        estimated = self.getRawEstimate()
+        actual = self.getRawActualHours()
+        if estimated > 0:
+            return round(actual/estimated*100, 1)
         else:
             return 0
 
@@ -161,6 +153,60 @@ class Story(OrderedBaseFolder):
             return True
         else:
             return False
+
+    security.declarePublic('getRawEstimate')
+    def getRawEstimate(self):
+        """
+        
+        """
+        tasks = self.contentValues()
+        estimated = 0.0
+        estimates = []
+        if tasks:
+            for task in tasks:
+                estimates.append(task.getRawEstimate())
+            estimated = sum(estimates)
+        return estimated
+
+    security.declarePublic('getEstimate')
+    def getEstimate(self):
+        """
+        
+        """
+        return self.formatTime(self.getRawEstimate())
+
+    security.declarePublic('getRawActualHours')
+    def getRawActualHours(self):
+        """
+        
+        """
+        tasks = self.contentValues()
+        actual = 0.0
+        if tasks:
+            for task in tasks:
+                actual = actual + task.getRawActualHours()
+        return actual
+
+    security.declarePublic('getActualHours')
+    def getActualHours(self):
+        """
+        
+        """
+        return self.formatTime(self.getRawActualHours())
+
+    security.declarePublic('getRawDifference')
+    def getRawDifference(self):
+        """
+        
+        """
+        return self.getRawActualHours() -  self.getRawEstimate()
+        
+    security.declarePublic('getDifference')
+    def getDifference(self):
+        """
+        
+        """
+        return self.formatTime(self.getRawDifference())
 
 
 registerType(Story,PROJECTNAME)

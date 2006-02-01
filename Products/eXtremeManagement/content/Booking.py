@@ -121,29 +121,6 @@ class Booking(BaseContent):
 
 
     # Methods
-    security.declarePublic('getTotal')
-    def getTotal(self):
-        """ Get the total hours and minutes in decimal format
-            for further calculations.
-        
-        """
-        hours = float(self.getHours())
-        minutes = float(self.getMinutes())/60
-        return hours + minutes
-
-    security.declarePublic('getTotalFormatted')
-    def getTotalFormatted(self):
-        """ Get the Total hours and minutes as a formatted
-            string e.g. 3:15
-        
-        """
-        minutes = self.getMinutes()
-        if minutes == 0:
-            minutes = '00'
-        else:
-            minutes = str(minutes)
-        return str(self.getHours()) + ':' + minutes
-
     security.declarePublic('_renameAfterCreation')
     def _renameAfterCreation(self, check_auto_id=False):
         parent = self.aq_inner.aq_parent
@@ -159,6 +136,23 @@ class Booking(BaseContent):
         # portal_factory!
         get_transaction().commit(1)
         self.setId(newId)        
+
+    security.declarePublic('getRawActualHours')
+    def getRawActualHours(self):
+        """
+        Get the total hours and minutes in decimal format
+        for further calculations.
+        """
+        hours = float(self.getHours())
+        minutes = float(self.getMinutes())/60
+        return hours + minutes
+
+    security.declarePublic('getActualHours')
+    def getActualHours(self):
+        """
+        
+        """
+        return self.formatTime(self.getRawActualHours())
 
 
 registerType(Booking,PROJECTNAME)

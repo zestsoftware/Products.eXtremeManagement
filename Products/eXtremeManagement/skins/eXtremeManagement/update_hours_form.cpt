@@ -54,7 +54,7 @@
             
                         <td tal:content="taskObj/aq_parent/title">Story title</td>
                         <td tal:content="taskObj/getEstimate">Estimate</td>
-                        <td tal:define="totalActual python:here.getTotalActual(taskObj);"
+                        <td tal:define="totalActual python:taskObj.getActualHours();"
                             tal:content="totalActual">actual</td> 
                         
                     </tr>
