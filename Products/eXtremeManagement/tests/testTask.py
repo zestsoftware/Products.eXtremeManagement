@@ -120,6 +120,26 @@ class testTask(eXtremeManagementTestCase):
         ##self.folder._setObject('temp_Task', o)
         pass
 
+    # from class Task:
+    def test_getEstimate(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Task('temp_Task')
+        ##self.folder._setObject('temp_Task', o)
+        pass
+
+    # from class Task:
+    def test_formatMinutes(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Task('temp_Task')
+        ##self.folder._setObject('temp_Task', o)
+        pass
+
     # Manually created methods
 
 

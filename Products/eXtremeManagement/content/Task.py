@@ -180,9 +180,8 @@ class Task(BaseFolder):
         time = self.get_actual_hours()        
         hours = int(time)        
         minutes = int((time - hours)*60)
-        if minutes == 0:
-            minutes = '00'
-        return ('%s:%s' % (hours, minutes))
+        minutes = self.formatMinutes(minutes)
+        return ('%s%s' % (hours, minutes))
         
     security.declarePublic('get_difference_formatted')
     def get_difference_formatted(self):
@@ -198,21 +197,22 @@ class Task(BaseFolder):
             return ('0:00')
         minutes = abs(minutes)
         hours = abs(hours)
-        if minutes < 10:
-            minutes = '0%s' % minutes
+        minutes = self.formatMinutes(minutes)
         if diff < 0:
             sign='-'
         else:
             sign='+'
-        return ('%s%s:%s' % (sign, hours, minutes))
+        return ('%s%s%s' % (sign, hours, minutes))
           
     security.declarePublic('get_estimate_formatted')
     def get_estimate_formatted(self):
         """
         
         """
-        estimated = self.getEstimate()
-        return str(estimated) + ':00'
+        hours = self.getHours()
+        minutes = self.getMinutes()
+        minutes = self.formatMinutes(minutes)
+        return str(hours) + str(minutes)
 
     security.declarePublic('CookedBody')
     def CookedBody(self):
@@ -221,15 +221,24 @@ class Task(BaseFolder):
         """
         return self.getMainText()
 
-    # Manually created methods
-
     security.declarePublic('getEstimate')
     def getEstimate(self):
         """
         For now, return the hours.
         """
-        return self.getHours()
+        return self.getHours() + (self.getMinutes() / 60.0)
 
+    security.declarePublic('formatMinutes')
+    def formatMinutes(self, minutes):
+        """
+        Takes the integer argument minutes and formats it nicely.  Examples:
+        5  => :05
+        24 => :24
+        """
+        if minutes < 10:
+            minutes = '0%s' % minutes
+        minutes = ':%s' % minutes
+        return minutes
 
 
 registerType(Task,PROJECTNAME)
