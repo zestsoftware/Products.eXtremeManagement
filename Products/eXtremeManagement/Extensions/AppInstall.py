@@ -92,10 +92,6 @@ def _migrateTaskSchema(self):
 
 def migrate_ct(portal, out):
     """
-    No idea how to do this actually.
-    import Products.eXtremeManagement.content.migrate
-    portal.migrate.migrate()
-    portal.portal_skins.eXtremeManagement.migrate.migrate()
 
     jladage: the migration in my opinion should only do: task.hours = task.estimate once
     jladage: since estimate is an int , only whole hours can be stored in there
@@ -109,23 +105,25 @@ def migrate_ct(portal, out):
     tasklist = []
     for task_brain in task_brains:
         task = task_brain.getObject()
-        if not hasattr(task, 'hours'):
-        #if hasattr(task, 'estimate'):
+        if hasattr(task, 'estimate'):
+        #if not hasattr(task, 'hours'):
             old_estimate = getattr(task, 'estimate')
             tasklist.append((task_brain, old_estimate))
-            print >> out, "Task title %s has been added to the list with: %s hours." % (task.title, old_estimate)
-        else:
-            print >> out, "Task with title %s was already converted." % task.title
 
     _migrateTaskSchema(portal)
+
+    print >> out, "Number of tasks that need to be migrated = %s." % len(tasklist)
 
     for item in tasklist:
         task_brain, old_estimate = item
         task = task_brain.getObject()
         task.setHours(old_estimate)
-        print >> out, "Setting estimate of task %s to: %s hours." % (task.title, old_estimate)
+        print >> out, "Migrating task %s with estimate of %s hours." % (task.title, old_estimate)
+        if hasattr(task, 'estimate'):
+            delattr(task, 'estimate')
+        task._updateCatalog(portal)
 
-    print >> out, "Migration of tasks completed"
+    print >> out, "Migration of tasks completed."
 
 
 def configureKupu(portal):
