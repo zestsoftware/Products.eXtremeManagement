@@ -95,8 +95,8 @@
                         tal:repeat="story stories">
         
                     <tal:block tal:define="progress python:story.get_progress_perc();
-                                    openTasks python:here.getOpenTasks(story);
-                                    completedTasks python:here.getCompletedTasks(story);
+                                    openTasks python:story.getUnfinishedTaskCount();
+                                    completedTasks python:story.getCompletedTaskCount();
                                     storyIsCompleted python:story.isCompleted()">
         
                         <td width="30%"> 
@@ -199,8 +199,8 @@
                     tal:repeat="story stories">
 
                     <tal:block tal:define="progress python:story.get_progress_perc();
-                                    openTasks python:here.getOpenTasks(story);
-                                    completedTasks python:here.getCompletedTasks(story);
+                                    openTasks python:story.getUnfinishedTaskCount();
+                                    completedTasks python:story.getCompletedTaskCount();
                                     storyIsCompleted python:story.isCompleted()">
     
                     <td width="30%">

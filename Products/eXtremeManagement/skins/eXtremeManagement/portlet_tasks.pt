@@ -8,12 +8,12 @@
     
     <div metal:define-macro="portlet"
         tal:define="DateTime python:modules['DateTime'].DateTime;
-                    results python:here.getTasks();"
+                    results python:portal.getOwnTasks();"
         tal:condition="python:results or member.has_role('Manager')"
         tal:omit-tag="">
     
         <div class="portlet" 
-            id="portlet-project-admininstration">
+            id="portlet-project-administration">
     
             <h5 i18n:translate="project_administration">
                 Project administration
