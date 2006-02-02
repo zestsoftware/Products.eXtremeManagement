@@ -80,18 +80,20 @@ schema = Schema((
             label_msgid='eXtremeManagement_label_hours',
             description_msgid='eXtremeManagement_help_hours',
             i18n_domain='eXtremeManagement',
-        ),
-        required=1
+        )
     ),
 
     IntegerField(
         name='minutes',
         default="0",
-        widget=IntegerWidget(
+        index="FieldIndex",
+        widget=SelectionWidget
+        (
             label='Minutes',
             label_msgid='eXtremeManagement_label_minutes',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        vocabulary=(0, 15, 30, 45)
     ),
 
 ),
