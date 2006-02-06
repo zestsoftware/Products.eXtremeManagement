@@ -25,6 +25,7 @@ if memberid is None:
 
 bookings = context.portal_catalog.searchResults(portal_type='Booking',
                                                 sort_on='getBookingDate',
+                                                Creator=memberid,
                                                 path=searchpath)
 list = []
 
