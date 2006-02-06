@@ -142,9 +142,20 @@ class Booking(BaseContent):
         """
         Get the total hours and minutes in decimal format
         for further calculations.
+
+        If a Booking has been cancelled, it unfortunately may still
+        exist, so use try/except.
         """
-        hours = float(self.getHours())
-        minutes = float(self.getMinutes())/60
+
+        try:
+            hours = float(self.getHours())
+        except:
+            hours = 0.0
+        try:
+            minutes = float(self.getMinutes())/60
+        except:
+            minutes = 0.0
+
         return hours + minutes
 
     security.declarePublic('getActualHours')
