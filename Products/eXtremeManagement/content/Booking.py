@@ -143,8 +143,10 @@ class Booking(BaseContent):
         Get the total hours and minutes in decimal format
         for further calculations.
 
-        If a Booking has been cancelled, it unfortunately may still
-        exist, so use try/except.
+        HACK: If a Booking has been cancelled, it unfortunately may
+        still exist, so use try/except.  The Booking should disappear
+        eventually, but at least this way it doesn't give float errors
+        in all sorts of scripts.
         """
 
         try:
