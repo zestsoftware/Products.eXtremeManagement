@@ -80,6 +80,7 @@ schema = Schema((
 
     DateTimeField(
         name='bookingDate',
+        index="DateIndex:brains",
         widget=CalendarWidget(
             show_hm=False,
             description="Date that you worked on this task",
@@ -88,6 +89,7 @@ schema = Schema((
             description_msgid='eXtremeManagement_help_bookingDate',
             i18n_domain='eXtremeManagement',
         ),
+        required=1,
         default_method=DateTime
     ),
 

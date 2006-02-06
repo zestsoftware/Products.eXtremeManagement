@@ -277,13 +277,6 @@ class testWorkflow(eXtremeManagementTestCase):
         perms = object.permissionsOfRole(role)
         return [p['name'] for p in perms if p['selected']]
 
-    def getPermissionSettings(self, object, permission):
-        permission_settings = object.permission_settings(permission)
-        if permission_settings == []:
-            return []
-        roles = permission_settings[0]['roles']
-        return [role['name'] for role in roles if role['checked']]
-
     def tryForbiddenTransition(self, ctObject, originalState,
                                workflowTransition):
         """
@@ -312,6 +305,17 @@ class testWorkflow(eXtremeManagementTestCase):
                                   'in-progress', 'deactivate', 'assigned')
         self.tryAllowedTransition(self.task, 'task',
                                   'assigned', 'retract', 'open')
+
+    def printLocalPermissions(self, object, userid):
+        roles = object.get_local_roles_for_userid(userid)
+        if roles:
+            print '%s has local roles on %s:' % (userid, object.title_or_id())
+        else:
+            print '%s has no local roles on %s.' % (userid, object.title_or_id())
+        for role in roles:
+            print '    local role %s:' % role
+            print '    with explicit permissions:'
+            print self.getPermissionsOfRole(object, role)
 
     def printGlobalRolesUser(self, userid):
         roles = self.userfolder.getUserById(userid).getRoles()
@@ -352,16 +356,12 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(ctObject, ctId, originalState,
                                   workflowTransition, newState)
 
-    def printLocalPermissions(self, object, userid):
-        roles = object.get_local_roles_for_userid(userid)
-        if roles:
-            print '%s has local roles on %s:' % (userid, object.title_or_id())
-        else:
-            print '%s has no local roles on %s.' % (userid, object.title_or_id())
-        for role in roles:
-            print '    local role %s:' % role
-            print '    with explicit permissions:'
-            print self.getPermissionsOfRole(object, role)
+    def getPermissionSettings(self, object, permission):
+        permission_settings = object.permission_settings(permission)
+        if permission_settings == []:
+            return []
+        roles = permission_settings[0]['roles']
+        return [role['name'] for role in roles if role['checked']]
 
 
 

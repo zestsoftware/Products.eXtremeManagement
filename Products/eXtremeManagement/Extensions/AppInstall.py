@@ -90,7 +90,45 @@ def _migrateTaskSchema(self):
                            REQUEST=dummyRequest)
 
 
-def migrate_ct(portal, out):
+def _migrateBookingSchema(self):
+    at = getToolByName(self, 'archetype_tool')
+    class dummy:
+        form = {}
+    dummyRequest = dummy()
+    dummy.form['eXtremeManagement.Booking'] = 1
+    at.manage_updateSchema(update_all=1,
+                           REQUEST=dummyRequest)
+
+
+def migrate_bookings(portal, out):
+    """
+
+    """
+    print >> out, "Updating Booking schema."
+    
+    booking_brains = portal.portal_catalog(meta_type='Booking')
+    print >> out, "Found %s bookings." % len(booking_brains)
+    bookinglist = []
+    for booking_brain in booking_brains:
+        booking = booking_brain.getObject()
+        if not hasattr(booking, 'bookingDate'):
+            old_field = booking_brain.created
+            bookinglist.append((booking_brain, old_field))
+
+    _migrateBookingSchema(portal)
+
+    print >> out, "Number of bookings that need to be migrated = %s." % len(bookinglist)
+
+    for item in bookinglist:
+        booking_brain, old_field = item
+        booking = booking_brain.getObject()
+        booking.setBookingDate(old_field)
+        print >> out, "Migrating booking %s with estimate of %s hours." % (booking.title, old_field)
+        booking._updateCatalog(portal)
+
+    print >> out, "Migration of bookings completed."
+
+def migrate_tasks(portal, out):
     """
 
     jladage: the migration in my opinion should only do: task.hours = task.estimate once
@@ -106,7 +144,6 @@ def migrate_ct(portal, out):
     for task_brain in task_brains:
         task = task_brain.getObject()
         if hasattr(task, 'estimate'):
-        #if not hasattr(task, 'hours'):
             old_estimate = getattr(task, 'estimate')
             tasklist.append((task_brain, old_estimate))
 
@@ -125,6 +162,17 @@ def migrate_ct(portal, out):
 
     print >> out, "Migration of tasks completed."
 
+
+def migrate_ct(portal, out):
+    """
+
+    jladage: the migration in my opinion should only do: task.hours = task.estimate once
+    jladage: since estimate is an int , only whole hours can be stored in there
+    jladage: after migration you should to an update catalog, to index the changes
+
+    """
+    migrate_tasks(portal, out)
+    migrate_bookings(portal, out)
 
 def configureKupu(portal):
     kupuTool = getToolByName(portal, 'kupu_library_tool')

@@ -24,7 +24,7 @@ if memberid is None:
 
 
 bookings = context.portal_catalog.searchResults(portal_type='Booking',
-                                                sort_on='Date',
+                                                sort_on='getBookingDate',
                                                 path=searchpath)
 list = []
 
