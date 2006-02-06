@@ -76,6 +76,11 @@ msgstr ""
 msgid "eXtremeManagement_help_billable"
 msgstr ""
 
+#. Default: "Date that you worked on this task"
+#: content/Booking.py
+msgid "eXtremeManagement_help_bookingDate"
+msgstr ""
+
 #. Default: "city"
 #. Enter city name.
 #. city
@@ -358,6 +363,11 @@ msgstr ""
 #: Booking.py
 #: content/Booking.py
 msgid "eXtremeManagement_label_billable"
+msgstr ""
+
+#. Default: "Bookingdate"
+#: content/Booking.py
+msgid "eXtremeManagement_label_bookingDate"
 msgstr ""
 
 ## 1 more: content/Customer.py

@@ -39,7 +39,7 @@ from Products.eXtremeManagement.config import *
 BaseSchema = BaseSchema.copy()
 BaseSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 #BaseSchema['title'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-
+from DateTime import DateTime
 ##/code-section module-header
 
 schema = Schema((
@@ -76,6 +76,19 @@ schema = Schema((
             label_msgid='eXtremeManagement_label_billable',
             i18n_domain='eXtremeManagement',
         )
+    ),
+
+    DateTimeField(
+        name='bookingDate',
+        widget=CalendarWidget(
+            show_hm=False,
+            description="Date that you worked on this task",
+            label='Bookingdate',
+            label_msgid='eXtremeManagement_label_bookingDate',
+            description_msgid='eXtremeManagement_help_bookingDate',
+            i18n_domain='eXtremeManagement',
+        ),
+        default_method=DateTime
     ),
 
 ),
