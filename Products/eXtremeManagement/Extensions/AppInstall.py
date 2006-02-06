@@ -111,9 +111,8 @@ def migrate_bookings(portal, out):
     bookinglist = []
     for booking_brain in booking_brains:
         booking = booking_brain.getObject()
-        if not hasattr(booking, 'bookingDate'):
-            old_field = booking_brain.created
-            bookinglist.append((booking_brain, old_field))
+        old_field = booking_brain.created
+        bookinglist.append((booking_brain, old_field))
 
     _migrateBookingSchema(portal)
 
