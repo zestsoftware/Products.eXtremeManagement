@@ -116,7 +116,7 @@ Task_schema = BaseFolderSchema.copy() + \
 
 class Task(BaseFolder):
     security = ClassSecurityInfo()
-    __implements__ = (getattr(INonStructuralFolder,'__implements__',()),) + (INonStructuralFolder,)
+    __implements__ = (getattr(BaseFolder,'__implements__',()),) + (getattr(INonStructuralFolder,'__implements__',()),)
 
 
     # This name appears in the 'add' box

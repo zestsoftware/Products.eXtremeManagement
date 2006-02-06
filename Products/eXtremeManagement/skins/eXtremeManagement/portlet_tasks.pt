@@ -8,7 +8,7 @@
     
     <div metal:define-macro="portlet"
         tal:define="DateTime python:modules['DateTime'].DateTime;
-                    results python:portal.getOwnTasks();"
+                    results python:portal.getOwnInProgressTasks();"
         tal:condition="python:results or member.has_role('Manager')"
         tal:omit-tag="">
     
