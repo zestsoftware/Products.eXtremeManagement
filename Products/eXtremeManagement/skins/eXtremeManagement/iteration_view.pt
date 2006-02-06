@@ -89,7 +89,7 @@
 
 
 
-            <tal:block tal:define="results python:portal.getOwnInProgressTasks();">
+            <tal:block tal:define="results python:context.getOwnInProgressTasks();">
             <h1 i18n:translate="heading-in-progress-tasks">My in-progress tasks</h1>
             <table class="listing nosort"
                    border="1"
@@ -144,7 +144,7 @@
             </tal:block>
 
 
-            <tal:block tal:define="results python:portal.getOwnAssignedTasks();">
+            <tal:block tal:define="results python:context.getOwnAssignedTasks();">
             <h1 i18n:translate="heading-in-progress-tasks">My assigned tasks</h1>
             <table class="listing nosort"
                    border="1"
