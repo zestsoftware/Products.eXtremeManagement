@@ -102,7 +102,9 @@ def _migrateBookingSchema(self):
 
 def migrate_bookings(portal, out):
     """
-
+    Only for one-time migrations.  This resets the bookingDate to
+    creationDate, which you don't really want if you already have such
+    a bookingDate.  But it doesn't seem to work any other way.
     """
     print >> out, "Updating Booking schema."
     
@@ -165,13 +167,10 @@ def migrate_tasks(portal, out):
 def migrate_ct(portal, out):
     """
 
-    jladage: the migration in my opinion should only do: task.hours = task.estimate once
-    jladage: since estimate is an int , only whole hours can be stored in there
-    jladage: after migration you should to an update catalog, to index the changes
-
     """
     migrate_tasks(portal, out)
-    migrate_bookings(portal, out)
+    # migrate bookings at your own peril.  See remark in that function.
+    #migrate_bookings(portal, out)
 
 def configureKupu(portal):
     kupuTool = getToolByName(portal, 'kupu_library_tool')
