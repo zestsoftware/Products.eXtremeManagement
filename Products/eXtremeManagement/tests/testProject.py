@@ -59,20 +59,25 @@ class testProject(eXtremeManagementTestCase):
     def afterSetUp(self):
         """
         """
-        pass
+        self.setRoles(['Manager'])
+        self.portal.invokeFactory('ProjectFolder', id='projects')
+        self.projects = self.folder.projects
+
+        self.projects.invokeFactory('Project', id='project')
+        self.project = self.projects.project
 
     # from class Project:
     def test_getProject(self):
         """ Test that you can add and call a Project item
         """
         self.loginAsPortalOwner()
-        p=ProjectFolder('projects')
-        self.portal._setObject('projects',p)
-        self.failUnless( self.portal.projects.portal_type == 'ProjectFolder')
+        p=ProjectFolder('projects01')
+        self.portal._setObject('projects01',p)
+        self.failUnless( self.portal.projects01.portal_type == 'ProjectFolder')
         
         o=Project('temp_Project')
-        self.portal.projects._setObject('temp_Project', o)
-        self.failUnless( self.portal.projects.temp_Project.portal_type == 'Project')
+        self.portal.projects01._setObject('temp_Project', o)
+        self.failUnless( self.portal.projects01.temp_Project.portal_type == 'Project')
 
     # from class Project:
     def test_getMembers(self):
@@ -102,7 +107,18 @@ class testProject(eXtremeManagementTestCase):
         ##self.loginAsPortalOwner()
         ##o=Project('temp_Project')
         ##self.folder._setObject('temp_Project', o)
-        pass
+        self.assertEqual(self.project.formatTime(0),'0:00')
+        self.assertEqual(self.project.formatTime(-0.6),'-0:36')
+        self.assertEqual(self.project.formatTime(0.6),'0:36')
+        self.assertEqual(self.project.formatTime(-1),'-1:00')
+        self.assertEqual(self.project.formatTime(1),'1:00')
+        self.assertEqual(self.project.formatTime(1.5),'1:30')
+        self.assertEqual(self.project.formatTime(-1.5),'-1:30')
+        # .04*60 == 2.3999999999999999, which should be rounded down:
+        self.assertEqual(self.project.formatTime(0.04),'0:02')
+        self.assertEqual(self.project.formatTime(8.05),'8:03')
+        self.assertEqual(self.project.formatTime(44.5),'44:30')
+        self.assertEqual(self.project.formatTime(0.999),'1:00')
 
     # from class Project:
     def test_formatMinutes(self):
@@ -112,7 +128,12 @@ class testProject(eXtremeManagementTestCase):
         ##self.loginAsPortalOwner()
         ##o=Project('temp_Project')
         ##self.folder._setObject('temp_Project', o)
-        pass
+        self.assertEqual(self.project.formatMinutes(-1),False)
+        self.assertEqual(self.project.formatMinutes(0),':00')
+        self.assertEqual(self.project.formatMinutes(5),':05')
+        self.assertEqual(self.project.formatMinutes(24),':24')
+        self.assertEqual(self.project.formatMinutes(59),':59')
+        self.assertEqual(self.project.formatMinutes(60),False)
 
     # Manually created methods
 
