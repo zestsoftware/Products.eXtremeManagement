@@ -21,7 +21,7 @@
     
             <div class="portletBody">
                 <div tal:condition="python: member.has_role('Manager')"  
-                     class="portletItem odd">
+                     class="portletItem even">
                 <img alt="" 
                      height="16" 
                      width="16"
@@ -31,9 +31,15 @@
                        tal:attributes="href string:${portal_url}/project_administration">Project administration
                     </a>
                 </div> 
+                <div class="portletItem odd">
+                    <a i18n:translate="booking_month" 
+                       tal:attributes="href
+                string:${portal_url}/booking_month">Bookings per month
+                    </a>
+                </div> 
                 <div class="portletItem even">
                     <a i18n:translate="booking_overview" 
-                       tal:attributes="href string:${portal_url}/booking_overview">Booking Overview
+                       tal:attributes="href string:${portal_url}/booking_overview">Detailed Bookings
                     </a>
                 </div> 
                 <div tal:condition="results" 
