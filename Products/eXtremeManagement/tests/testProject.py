@@ -59,12 +59,7 @@ class testProject(eXtremeManagementTestCase):
     def afterSetUp(self):
         """
         """
-        self.setRoles(['Manager'])
-        self.portal.invokeFactory('ProjectFolder', id='projects')
-        self.projects = self.folder.projects
-
-        self.projects.invokeFactory('Project', id='project')
-        self.project = self.projects.project
+        pass
 
     # from class Project:
     def test_getProject(self):
@@ -98,44 +93,6 @@ class testProject(eXtremeManagementTestCase):
         ##o=Project('temp_Project')
         ##self.folder._setObject('temp_Project', o)
         pass
-
-    # from class Project:
-    def test_formatTime(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Project('temp_Project')
-        ##self.folder._setObject('temp_Project', o)
-        self.assertEqual(self.project.formatTime(0),'0:00')
-        self.assertEqual(self.project.formatTime(-0.6),'-0:36')
-        self.assertEqual(self.project.formatTime(0.6),'0:36')
-        self.assertEqual(self.project.formatTime(-1),'-1:00')
-        self.assertEqual(self.project.formatTime(1),'1:00')
-        self.assertEqual(self.project.formatTime(1.5),'1:30')
-        self.assertEqual(self.project.formatTime(-1.5),'-1:30')
-        # .04*60 == 2.3999999999999999, which should be rounded down:
-        self.assertEqual(self.project.formatTime(0.04),'0:02')
-        self.assertEqual(self.project.formatTime(8.05),'8:03')
-        self.assertEqual(self.project.formatTime(44.5),'44:30')
-        self.assertEqual(self.project.formatTime(0.999),'1:00')
-
-    # from class Project:
-    def test_formatMinutes(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Project('temp_Project')
-        ##self.folder._setObject('temp_Project', o)
-        self.assertEqual(self.project.formatMinutes(-1),False)
-        self.assertEqual(self.project.formatMinutes(0),':00')
-        self.assertEqual(self.project.formatMinutes(5),':05')
-        self.assertEqual(self.project.formatMinutes(24),':24')
-        self.assertEqual(self.project.formatMinutes(59),':59')
-        self.assertEqual(self.project.formatMinutes(60),False)
-
-    # Manually created methods
 
 
 def test_suite():

@@ -112,7 +112,6 @@ class testBooking(eXtremeManagementTestCase):
         self.task.invokeFactory('Booking', id='booking5', hours=4, minutes=75)
         self.assertEqual(self.task.booking5.getRawActualHours(), 5.25)
 
-
     # from class Booking:
     def test_getActualHours(self):
         """

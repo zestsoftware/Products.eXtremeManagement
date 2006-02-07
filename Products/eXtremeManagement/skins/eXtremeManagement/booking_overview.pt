@@ -11,7 +11,6 @@
     <body>
 
     <div metal:fill-slot="main"
-         tal:define="projects python:here.portal_catalog.searchResults(portal_type='Project');"
          tal:omit-tag="">
 
         <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
