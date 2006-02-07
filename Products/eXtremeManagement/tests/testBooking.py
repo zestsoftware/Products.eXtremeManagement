@@ -58,7 +58,24 @@ class testBooking(eXtremeManagementTestCase):
     def afterSetUp(self):
         """
         """
-        pass
+        self.setRoles(['Manager'])
+        self.portal.invokeFactory('ProjectFolder', id='projects')
+        self.projects = self.folder.projects
+
+        self.projects.invokeFactory('Project', id='project')
+        self.project = self.projects.project
+
+        self.project.invokeFactory('Iteration', id='iteration')
+        self.iteration = self.project.iteration
+
+        self.iteration.invokeFactory('Story', id='story')
+        self.story = self.iteration.story
+
+        self.story.invokeFactory('Task', id='task')
+        self.task = self.story.task
+
+        self.task.invokeFactory('Booking', id='booking', hours=3, minutes=15)
+        self.booking = self.task.booking
 
     # from class Booking:
     def test__renameAfterCreation(self):
@@ -68,6 +85,7 @@ class testBooking(eXtremeManagementTestCase):
         ##self.loginAsPortalOwner()
         ##o=Booking('temp_Booking')
         ##self.folder._setObject('temp_Booking', o)
+        #self.assertEqual(self.booking.getId(), 1)
         pass
 
     # from class Booking:
@@ -78,7 +96,22 @@ class testBooking(eXtremeManagementTestCase):
         ##self.loginAsPortalOwner()
         ##o=Booking('temp_Booking')
         ##self.folder._setObject('temp_Booking', o)
-        pass
+        self.assertEqual(self.booking.getRawActualHours(), 3.25)
+
+        self.task.invokeFactory('Booking', id='booking2', hours=0, minutes=0)
+        self.assertEqual(self.task.booking2.getRawActualHours(), 0.0)
+
+        self.task.invokeFactory('Booking', id='booking3', hours=0, minutes=45)
+        self.assertEqual(self.task.booking3.getRawActualHours(), 0.75)
+
+        # The following two have a weird number of minutes, but if
+        # they pass, that is fine.
+        self.task.invokeFactory('Booking', id='booking4', hours=4, minutes=60)
+        self.assertEqual(self.task.booking4.getRawActualHours(), 5.0)
+
+        self.task.invokeFactory('Booking', id='booking5', hours=4, minutes=75)
+        self.assertEqual(self.task.booking5.getRawActualHours(), 5.25)
+
 
     # from class Booking:
     def test_getActualHours(self):
@@ -88,7 +121,7 @@ class testBooking(eXtremeManagementTestCase):
         ##self.loginAsPortalOwner()
         ##o=Booking('temp_Booking')
         ##self.folder._setObject('temp_Booking', o)
-        pass
+        self.assertEqual(self.booking.getActualHours(), '3:15')
 
     # Manually created methods
 
