@@ -5,7 +5,7 @@
 ##bind script=script
 ##bind subpath=traverse_subpath
 ##parameters=states=None, showEveryonesTasks=True
-##title=Return the number of tasks
+##title=Return the tasks, in catalog form
 ##
 
 """
@@ -21,20 +21,20 @@ object = context
 searchpath = '/'.join(object.getPhysicalPath())
 
 if states is None:
-    tasks = context.portal_catalog.searchResults(portal_type='Task',
+    taskbrains = context.portal_catalog.searchResults(portal_type='Task',
                                                  path=searchpath)
 else:
-    tasks = context.portal_catalog.searchResults(portal_type='Task',
+    taskbrains = context.portal_catalog.searchResults(portal_type='Task',
                                                  review_state=states,
                                                  path=searchpath)
 list = []
 if showEveryonesTasks:
-    list = tasks
+    list = taskbrains
 else:
     member = context.portal_membership.getAuthenticatedMember()
-    for task in tasks:
-        task = task.getObject()
+    for taskbrain in taskbrains:
+        task = taskbrain.getObject()
         if task.getAssignees():
             if member.id in task.getAssignees():
-                list.append(task)
+                list.append(taskbrain)
 return list

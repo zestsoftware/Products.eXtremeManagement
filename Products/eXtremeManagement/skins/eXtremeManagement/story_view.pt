@@ -20,7 +20,7 @@
                         totalActual python:here.getActualHours();
                         totalDifference python:here.getDifference();
                         item_path python:'/'.join(context.getPhysicalPath());
-                        items here/getFolderContents;">
+                        items python:context.getTasks();">
     
         <div tal:replace="structure context/CookedBody" />
 
@@ -28,13 +28,16 @@
             <h1 class="documentFirstHeading" 
                 i18n:translate="heading_tasks">Tasks</h1>
     
+            <metal:block metal:define-macro="tasklist_table">
             <table class="listing nosort"
                    border="1"
                    width="100%"
                    cellpadding="0" 
                    cellspacing="0">
+              <metal:block metal:define-macro="tasklist_header">
                 <thead>
                 <tr>
+                    <metal:block define-slot="extra_column_header"></metal:block>
                     <th i18n:translate="listingheader_title">Title</th>
                     <th i18n:translate="listingheader_estimate">Estimate</th>                  
                     <th i18n:translate="listingheader_actual">Actual</th>
@@ -43,10 +46,14 @@
                     <th i18n:translate="listingheader_assignees">Assignee(s)</th>
                 </tr>
                 </thead>
-    
+              </metal:block>
+
+
+              <metal:block metal:define-macro="tasklist_body">
                 <tr tal:repeat="item items"
                     class="list-in-iteration">
                 <tal:block tal:define="taskObj item/getObject;">
+                    <metal:block define-slot="extra_column_data"></metal:block>
                     <td class="td-story-title">
                         <a tal:attributes="href string:${taskObj/absolute_url}"
                            tal:content="taskObj/title">
@@ -79,7 +86,9 @@
                     </td>
                 </tal:block>
                 </tr>
+              </metal:block>
    
+                <metal:block define-slot="total_row">
                 <tr id="totalTasks">
                     <td class="td-story-title" 
                         i18n:translate="total">
@@ -97,7 +106,9 @@
                     <td>&nbsp;</td>  
                     <td>&nbsp;</td>  
                 </tr>
+                </metal:block>
             </table>
+            </metal:block>
             </tal:block>
             
             <p class="discreet"

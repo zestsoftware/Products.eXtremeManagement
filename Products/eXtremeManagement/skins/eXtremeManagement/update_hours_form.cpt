@@ -42,7 +42,8 @@
                         <th i18n:translate="listingheader_actual">Actual</th>
                     </tr>
     
-                    <tal:loop tal:repeat="taskObj tasks">
+                    <tal:loop tal:repeat="task tasks">
+                    <tal:block tal:define="taskObj task/getObject">
                     <tr class="list-in-iteration">
                         <td class="td-story-title">
                             <a tal:attributes="href taskObj/absolute_url">
@@ -96,6 +97,7 @@
                                       tal:attributes="name python:taskObj.UID()+'_description'"> </textarea>
                         </td>
                     </tr>
+                    </tal:block>
                     </tal:loop>
                 </table>
     

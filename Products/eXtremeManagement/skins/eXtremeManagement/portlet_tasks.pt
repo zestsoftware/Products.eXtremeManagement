@@ -55,11 +55,12 @@
                     </a> 
                 </div>  
                 <tal:block repeat="item results">
-                <div tal:define="oddrow repeat/item/odd;"
+                <div tal:define="oddrow repeat/item/odd;
+                                 taskObj item/getObject"
                      tal:attributes="class python:test(oddrow, 'portletItem odd', 'portletItem even')">
     
                     <a class="marker"
-                       tal:attributes="href item/absolute_url"> 
+                       tal:attributes="href taskObj/absolute_url"> 
                         <img alt="" 
                              height="16" 
                              width="16"
