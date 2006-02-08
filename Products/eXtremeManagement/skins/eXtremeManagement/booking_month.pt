@@ -13,6 +13,14 @@
     <div metal:fill-slot="main"
          tal:omit-tag="">
 
+         <p> Back to
+           <a tal:condition="not:request/previous|nothing"
+             tal:attributes="href
+              string:${template/absolute_url}?previous=1">previous</a> 
+            <a tal:condition="request/previous|nothing"
+               tal:attributes="href
+         string:${template/absolute_url}">current</a> month</p>
+
         <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
                                bookings python:context.getDailyBookings()"
                    tal:condition="bookings">
