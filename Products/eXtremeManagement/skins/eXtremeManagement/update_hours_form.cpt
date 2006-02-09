@@ -60,7 +60,7 @@
                         
                     </tr>
                     <tr>
-                        <td colspan="3"
+                        <td
                             class="hours-comments">
                             <br />
                             <span i18n:translate="label_hours"
@@ -85,9 +85,29 @@
                                         tal:attributes="value minute">dummy</option>
                                 </tal:block>
                             </select> 
-                            
                             <span i18n:translate="label_minutes"
                                 tal:omit-tag="">Minutes</span>
+                        </td>
+                        <td colspan="2">
+                            <span i18n:translate="label_bookingdate"
+                                tal:omit-tag="">Date to book this on</span>
+                            <div
+                                tal:define="inputname  python:taskObj.UID() + '_bookingDate';
+                                             formname   string:update_hours_form;
+                                             formvalue  python:DateTime();
+                                             inputvalue python:'';
+                                             inputvalue python:test(formvalue,formvalue,inputvalue);
+                                             show_hm python:False;
+                                             tabindex tabindex/next;">
+                               <div metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox"
+                                    tal:omit-tag="">
+                                  Gets the calendar code.
+                               </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
                             <div i18n:translate="label_description"
                                 class="comments-title">Comments:</div>
                             

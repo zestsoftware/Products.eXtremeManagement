@@ -10,12 +10,18 @@
 REQUEST = context.REQUEST
 
 def strip_uid(attr):
+    """
+    attr is of the form: 'uid_attribute'.
+    split this in 'uid' and 'attribute'.
+    """
     if attr.endswith('_hours'):
         return (attr[:-6], 'hours')
     if attr.endswith('_minutes'):
         return (attr[:-8], 'minutes')
     if attr.endswith('_description'):
         return (attr[:-12], 'description')
+    if attr.endswith('_bookingDate'):
+        return (attr[:-12], 'bookingDate')
     return (None, None)
 
 def getValue(attr):
@@ -29,6 +35,7 @@ for attr in REQUEST.form.keys():
         if hours != '0' or minutes != '0':
             brain = context.uid_catalog(UID=uid)
             task = brain[0].getObject()
+            bookingDate = getValue(uid+'_bookingDate')
             description = getValue(uid+'_description')
             bookings = task.contentValues()
             idx =1            
@@ -40,7 +47,8 @@ for attr in REQUEST.form.keys():
                                title=task.title,
                                description=description, 
                                hours=hours, 
-                               minutes=minutes)
+                               minutes=minutes,
+                               bookingDate=bookingDate)
     
 return state.set(portal_status_message='Your booking is done!')
 
