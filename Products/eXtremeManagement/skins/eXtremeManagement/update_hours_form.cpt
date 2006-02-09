@@ -3,10 +3,24 @@
       i18n:domain="eXtremeManagement"
       metal:use-macro="here/main_template/macros/master">
 
-    <head>
-        <metal:block fill-slot="top_slot"
-                     tal:define="dummy python:request.set('disable_border', 1)" />
-    </head>
+   <head>
+      <metal:border fill-slot="top_slot">
+         <tal:border define="dummy python:request.set('disable_border',1)" />
+      </metal:border>
+
+      <metal:calendar fill-slot="javascript_head_slot">
+         <!-- ECMAScript calendar -->
+         <style type="text/css" 
+                media="all"
+                tal:content="string:@import url($portal_url/jscalendar/calendar-system.css);" />
+         <script type="text/javascript"
+                 tal:attributes="src string:$portal_url/jscalendar/calendar_stripped.js"></script>
+         <script type="text/javascript" 
+                 charset="iso-8859-1"
+                 tal:condition="exists: portal/jscalendar/calendar-en.js"
+                 tal:attributes="src string:$portal_url/jscalendar/calendar-en.js"></script>
+      </metal:calendar>
+   </head>
 
     <body>
 
@@ -35,6 +49,8 @@
                     cellpadding="0" 
                     cellspacing="0">
     
+                    <tal:loop tal:repeat="task tasks">
+                    <tal:block tal:define="taskObj task/getObject">
                     <tr>
                         <th i18n:translate="listingheader_title">Title</th> 
                         <th i18n:translate="listingheader_story">Story</th> 
@@ -42,8 +58,6 @@
                         <th i18n:translate="listingheader_actual">Actual</th>
                     </tr>
     
-                    <tal:loop tal:repeat="task tasks">
-                    <tal:block tal:define="taskObj task/getObject">
                     <tr class="list-in-iteration">
                         <td class="td-story-title">
                             <a tal:attributes="href taskObj/absolute_url">
@@ -97,6 +111,7 @@
                                              formvalue  python:DateTime();
                                              inputvalue python:'';
                                              inputvalue python:test(formvalue,formvalue,inputvalue);
+                                             show_jscal python: 1;
                                              show_hm python:False;
                                              tabindex tabindex/next;">
                                <div metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox"
