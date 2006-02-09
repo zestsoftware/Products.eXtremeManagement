@@ -31,11 +31,13 @@
                string:${portal_url}/booking_month">Bookings per month
             </a>
         </dd> 
+
         <dd class="portletItem even">
             <a i18n:translate="booking_overview" 
                tal:attributes="href string:${portal_url}/booking_overview">Detailed Bookings
             </a>
         </dd>
+
         <!-- keep the following as the last one -->
         <dd tal:define="itemClass python:test(results, 'portletItem', 'portletItemLast');
                         class python:itemClass + ' odd';"
@@ -45,18 +47,15 @@
                string:${portal_url}/task_overview">Task overview
             </a>
         </dd> 
+
         <dd tal:condition="results" 
              class="portletItem even">
-            <img  alt="" 
-                  height="16" 
-                  width="16"
-                  tal:attributes="src string:${here/portal_url}/tasks_links_icon.gif" />
-
             <a i18n:translate="header_time_registration"
                tal:attributes="href string:${portal_url}/update_hours_form">
                 Time registration
             </a> 
         </dd>  
+
         <tal:block repeat="item results">
 
         <dd tal:define="oddrow repeat/item/odd;
