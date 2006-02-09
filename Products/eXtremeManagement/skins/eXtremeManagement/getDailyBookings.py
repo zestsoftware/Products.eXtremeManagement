@@ -112,7 +112,7 @@ projectFolder = pf[0].getObject()
 
 while date < endDate:
     bookingbrains = context.portal_catalog.searchResults(portal_type='Booking',
-                                                         getBookingDate={ "query": [date, date+1], "range": "minmax"},
+                                                         getBookingDate={ "query": [date, date+0.9999], "range": "minmax"},
                                                          Creator=memberid,
                                                          path=searchpath)
 
