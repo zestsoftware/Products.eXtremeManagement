@@ -110,9 +110,19 @@ date = startDate
 pf = context.portal_catalog.searchResults(portal_type='ProjectFolder')
 projectFolder = pf[0].getObject()
 
+"""
+HACK:
+>>> from DateTime import DateTime
+>>> today=DateTime('2006-02-02')
+>>> today
+DateTime('2006/02/02')
+>>> today+0.99999
+DateTime('2006/02/02 23:59:59.136 GMT+0')
+"""
+
 while date < endDate:
     bookingbrains = context.portal_catalog.searchResults(portal_type='Booking',
-                                                         getBookingDate={ "query": [date, date+0.9999], "range": "minmax"},
+                                                         getBookingDate={ "query": [date, date+0.99999], "range": "minmax"},
                                                          Creator=memberid,
                                                          path=searchpath)
 
