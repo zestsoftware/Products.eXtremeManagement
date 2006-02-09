@@ -10,32 +10,35 @@
                                                                     review_state='pending');"
           tal:condition="python:results">
     
-        <div class="portlet" id="portlet-stories">
-            <h5 i18n:translate="box_stories">Stories</h5>
-
-            <div class="portletBody">    
-                <tal:block tal:repeat="obj results">
-                <div tal:define="oddrow repeat/obj/odd"
-                        tal:attributes="class python:test(oddrow, 'portletContent even', 'portletContent odd')">
-        
-                    <a tal:attributes="href obj/getURL">
-                        <img alt=""
-                                height="16" 
-                                width="16"
-                                tal:attributes="src string:${here/portal_url}/${obj/getIcon};" />
-                        <span tal:replace="python:test(obj.Title, obj.Title, obj.getId)"> 
-                            ECP 
-                        </span>
-                    </a>
-        
-                    <div class="portletDetails"
-                            tal:content="python:here.toPortalTime(obj.Date)">
-                        July 7, 08:11
-                    </div>
+        <dl class="portlet" id="portlet-stories">
+            <dt class="portletHeader"
+                i18n:translate="box_stories">
+                Pending Stories
+            </dt>
+            <tal:block tal:repeat="obj results">
+            <dd tal:define="oddrow repeat/obj/odd;
+                            end repeat/obj/end;
+                            itemClass python:test(end, 'portletItemLast', 'portletItem');
+                            class python:itemClass + test(oddrow, ' even', ' odd')"
+                tal:attributes="class class">
+    
+                <a tal:attributes="href obj/getURL">
+                    <img alt=""
+                            height="16" 
+                            width="16"
+                            tal:attributes="src string:${here/portal_url}/${obj/getIcon};" />
+                    <span tal:replace="python:test(obj.Title, obj.Title, obj.getId)"> 
+                        ECP 
+                    </span>
+                </a>
+    
+                <div class="portletDetails"
+                        tal:content="python:here.toPortalTime(obj.Date)">
+                    July 7, 08:11
                 </div>
-                </tal:block>
-            </div>
-        </div>
+            </dd>
+            </tal:block>
+        </dl>
     </div>
     </body>
 </html>
