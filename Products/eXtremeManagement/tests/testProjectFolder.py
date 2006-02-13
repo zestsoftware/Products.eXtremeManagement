@@ -66,16 +66,6 @@ class testProjectFolder(eXtremeManagementTestCase):
         self.project = self.projects.project
 
     # from class ProjectFolder:
-    def test_formatMinutes(self):
-        """
-        """
-        self.assertEqual(self.project.formatMinutes(-1),False)
-        self.assertEqual(self.project.formatMinutes(0),':00')
-        self.assertEqual(self.project.formatMinutes(5),':05')
-        self.assertEqual(self.project.formatMinutes(24),':24')
-        self.assertEqual(self.project.formatMinutes(59),':59')
-        self.assertEqual(self.project.formatMinutes(60),False)
-
     def test_formatTime(self):
         """
         """
@@ -92,6 +82,16 @@ class testProjectFolder(eXtremeManagementTestCase):
         self.assertEqual(self.project.formatTime(44.5),'44:30')
         self.assertEqual(self.project.formatTime(0.999),'1:00')
 
+    # from class ProjectFolder:
+    def test_formatMinutes(self):
+        """
+        """
+        self.assertEqual(self.project.formatMinutes(-1),False)
+        self.assertEqual(self.project.formatMinutes(0),':00')
+        self.assertEqual(self.project.formatMinutes(5),':05')
+        self.assertEqual(self.project.formatMinutes(24),':24')
+        self.assertEqual(self.project.formatMinutes(59),':59')
+        self.assertEqual(self.project.formatMinutes(60),False)
 
     # Manually created methods
     def test_projectFolder(self):

@@ -94,6 +94,8 @@ class testProject(eXtremeManagementTestCase):
         ##self.folder._setObject('temp_Project', o)
         pass
 
+    # Manually created methods
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite
