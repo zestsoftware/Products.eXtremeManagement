@@ -173,6 +173,16 @@ class testStory(eXtremeManagementTestCase):
         ##self.folder._setObject('temp_Story', o)
         pass
 
+    # from class Story:
+    def test_canBeEstimated(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Story('temp_Story')
+        ##self.folder._setObject('temp_Story', o)
+        pass
+
     # Manually created methods
 
 

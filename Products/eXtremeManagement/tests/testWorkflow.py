@@ -91,6 +91,8 @@ class testWorkflow(eXtremeManagementTestCase):
         self.project.invokeFactory('Story', id='projectstory')
         self.projectstory = self.project.projectstory
 
+        #self.assertEqual(self.workflow.getInfoFor(self.story,'review_state'), 'draft')
+
         self.login('employee')
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
@@ -102,6 +104,7 @@ class testWorkflow(eXtremeManagementTestCase):
                              self.booking]
         self.logout()
         self.login(self.default_user)
+        self.assertEqual(self.story.canBeEstimated(), False)
 
     def test_initial_states(self):
         """Test if the initial states for the CTs are what we expect
@@ -199,8 +202,15 @@ class testWorkflow(eXtremeManagementTestCase):
                                   'draft', 'submit', 'pending')
         self.tryAllowedTransition(self.story, 'story',
                                   'pending', 'retract', 'draft')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'draft', 'estimate', 'estimated')
+
+        # story will go automatically to the 'estimated' state once
+        # all tasks have been set to 'estimated'
+        self.tryForbiddenTransition(self.story, 'draft', 'estimate')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'open', 'assign', 'assigned')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'assigned', 'accept', 'estimated')
+        # So now the story should have the status 'estimated'
         self.tryAllowedTransition(self.story, 'story',
                                   'estimated', 'activate', 'in-progress')
         self.tryAllowedTransition(self.story, 'story',
@@ -241,26 +251,38 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(self.story, 'story',
                                   'pending', 'retract', 'draft')
 
-    def test_task_transitions(self):
-        """Test transitions of the Project Content Type
+    def test_task_transitions_manager(self):
+        """Test transitions of the Task Content Type
         """
-        self.setRoles(['Employee'])
-        self.tryFullTaskRoute()
         self.setRoles(['Manager'])
         self.tryFullTaskRoute()
 
-        # Now some tests for the customer, who has no rights here:
+    def test_task_transitions_employee(self):
+        """Test transitions of the Task Content Type
+        """
+        self.setRoles(['Employee'])
+        self.tryFullTaskRoute()
+
+    def test_task_transitions_customer(self):
+        """Test transitions of the Task Content Type.
+        
+        Some tests for the customer, who has no rights here:
+        """
         self.twoStepTransition(self.task, 'task', 'open', 'assign',
                                'assigned', 'customer')
-        self.twoStepTransition(self.task, 'task', 'assigned', 'activate',
+        self.twoStepTransition(self.task, 'task', 'assigned', 'accept',
+                               'estimated', 'customer')
+        self.twoStepTransition(self.task, 'task', 'estimated', 'activate',
                                'in-progress', 'customer')
         self.twoStepTransition(self.task, 'task', 'in-progress', 'complete',
                                'completed', 'customer')
         self.twoStepTransition(self.task, 'task', 'completed', 'reactivate',
                                'in-progress', 'customer')
         self.twoStepTransition(self.task, 'task', 'in-progress', 'deactivate',
+                               'estimated', 'customer')
+        self.twoStepTransition(self.task, 'task', 'estimated', 'reestimate',
                                'assigned', 'customer')
-        self.twoStepTransition(self.task, 'task', 'assigned', 'retract',
+        self.twoStepTransition(self.task, 'task', 'assigned', 'reject',
                                'open', 'customer')
 
     def test_booking_transitions(self):
@@ -277,6 +299,13 @@ class testWorkflow(eXtremeManagementTestCase):
         perms = object.permissionsOfRole(role)
         return [p['name'] for p in perms if p['selected']]
 
+    def getPermissionSettings(self, object, permission):
+        permission_settings = object.permission_settings(permission)
+        if permission_settings == []:
+            return []
+        roles = permission_settings[0]['roles']
+        return [role['name'] for role in roles if role['checked']]
+
     def tryForbiddenTransition(self, ctObject, originalState,
                                workflowTransition):
         """
@@ -289,33 +318,6 @@ class testWorkflow(eXtremeManagementTestCase):
                          originalState)
         self.assertRaises(WorkflowException,
                           self.workflow.doActionFor, ctObject, workflowTransition)
-
-    def tryFullTaskRoute(self):
-        """Test transitions of the Project Content Type
-        """
-        self.tryAllowedTransition(self.task, 'task',
-                                  'open', 'assign', 'assigned')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'assigned', 'activate', 'in-progress')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'in-progress', 'complete', 'completed')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'completed', 'reactivate', 'in-progress')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'in-progress', 'deactivate', 'assigned')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'assigned', 'retract', 'open')
-
-    def printLocalPermissions(self, object, userid):
-        roles = object.get_local_roles_for_userid(userid)
-        if roles:
-            print '%s has local roles on %s:' % (userid, object.title_or_id())
-        else:
-            print '%s has no local roles on %s.' % (userid, object.title_or_id())
-        for role in roles:
-            print '    local role %s:' % role
-            print '    with explicit permissions:'
-            print self.getPermissionsOfRole(object, role)
 
     def printGlobalRolesUser(self, userid):
         roles = self.userfolder.getUserById(userid).getRoles()
@@ -356,12 +358,39 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(ctObject, ctId, originalState,
                                   workflowTransition, newState)
 
-    def getPermissionSettings(self, object, permission):
-        permission_settings = object.permission_settings(permission)
-        if permission_settings == []:
-            return []
-        roles = permission_settings[0]['roles']
-        return [role['name'] for role in roles if role['checked']]
+    def tryFullTaskRoute(self):
+        """Test transitions of the Project Content Type
+        """
+        self.tryAllowedTransition(self.task, 'task',
+                                  'open', 'assign', 'assigned')
+        self.assertEqual(self.workflow.getInfoFor(self.story,'review_state'), 'draft')
+        #import pdb; pdb.set_trace()
+        self.tryAllowedTransition(self.task, 'task',
+                                  'assigned', 'accept', 'estimated')
+        self.assertEqual(self.workflow.getInfoFor(self.story,'review_state'), 'estimated')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'estimated', 'activate', 'in-progress')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'in-progress', 'complete', 'completed')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'completed', 'reactivate', 'in-progress')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'in-progress', 'deactivate', 'estimated')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'estimated', 'reestimate', 'assigned')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'assigned', 'reject', 'open')
+
+    def printLocalPermissions(self, object, userid):
+        roles = object.get_local_roles_for_userid(userid)
+        if roles:
+            print '%s has local roles on %s:' % (userid, object.title_or_id())
+        else:
+            print '%s has no local roles on %s.' % (userid, object.title_or_id())
+        for role in roles:
+            print '    local role %s:' % role
+            print '    with explicit permissions:'
+            print self.getPermissionsOfRole(object, role)
 
 
 

@@ -251,7 +251,7 @@ def setupeXtreme_Story_Workflow(self, workflow):
                                 actbox_name="""Estimate""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_roles': 'Employee;Manager'},
+                                props={'guard_expr': 'here/canBeEstimated', 'guard_roles': 'Employee;Manager'},
                                 )
 
     transitionDef = workflow.transitions['improve']

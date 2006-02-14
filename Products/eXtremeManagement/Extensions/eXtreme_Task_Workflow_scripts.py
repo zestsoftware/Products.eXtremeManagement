@@ -97,6 +97,9 @@ This transition was done by:
 
 with the following comments:
 %s
+
+Please edit the estimate for this task and accept it or reject it.
+
 """
 
     mTitle = obj.Title()
@@ -142,12 +145,18 @@ with the following comments:
 ##/code-section workflow-script-header
 
 
-def notify_completed(self, state_change, **kw):
-    """
-    Notify interested people that a task has been completed.
-    """
-    portal = getToolByName(self,'portal_url').getPortalObject()
-    mailMessage(portal, state_change, 'Task completed')
+def tryStoryEstimation(self, state_change, **kw):
+    portal = self
+    task=state_change.object
+    story = task.aq_parent
+    if story.canBeEstimated():
+        wf_tool = getToolByName(portal, 'portal_workflow')
+        from Products.CMFCore.WorkflowCore import WorkflowException
+        try:
+            wf_tool.doActionFor(story, 'estimate')
+        except WorkflowException:
+            print 'ERROR: Transition "estimate" of story %s not allowed.' % story.Title()
+    pass
 
 
 
@@ -155,7 +164,16 @@ def notify_assignees(self, state_change, **kw):
     """
     Notify interested people that a task has been assigned.
     """
-    portal = getToolByName(self,'portal_url').getPortalObject()
+    portal = self
     mailMessage(portal, state_change, 'Task assigned')
+
+
+
+def notify_completed(self, state_change, **kw):
+    """
+    Notify interested people that a task has been completed.
+    """
+    portal = self
+    mailMessage(portal, state_change, 'Task completed')
 
 

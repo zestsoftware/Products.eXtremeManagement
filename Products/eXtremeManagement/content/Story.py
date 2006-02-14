@@ -208,6 +208,28 @@ class Story(OrderedBaseFolder):
         """
         return self.formatTime(self.getRawDifference())
 
+    security.declarePublic('canBeEstimated')
+    def canBeEstimated(self):
+        """
+        If all tasks in the story have been estimated, the story
+        itself can be estimated.  So get all tasks for the current
+        story and return true if they all have the status 'estimated'.
+
+        Note: if there are no tasks yet, then the Story also can't be
+        estimated.
+        """
+        portal = getToolByName(self,'portal_url').getPortalObject()
+        wf_tool = getToolByName(portal, 'portal_workflow')
+        tasks = self.contentValues('Task')
+        if not tasks:
+            return False
+        else:
+            for task in tasks:
+                review_state = wf_tool.getInfoFor(task, 'review_state', '')
+                if review_state != 'estimated':
+                    return False
+        return True
+
 
 registerType(Story,PROJECTNAME)
 # end of class Story
