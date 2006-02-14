@@ -127,7 +127,7 @@ Please edit the estimate for this task and accept it or reject it.
     for assignee in assignees:
         mTo = emailContact(portal, assignee)
         # If email address is known:
-        if mTo:
+        if mTo and mTo != mCreator  and mTo != mTransitioner:
             try:
                 mailhost.simple_send(mTo, mFrom, mSubj, message)
             except:
