@@ -118,11 +118,18 @@ class Project(OrderedBaseFolder):
         """
         grp = getToolByName(self, 'portal_groups')
         mem = getToolByName(self, 'portal_membership')
-        prefix=self.acl_users.getGroupPrefix()
+        # PAS doesn't use prefixes at all
+        # TODO: probably we want a global switch for PAS
+        try:
+            import Products.PlonePAS 
+        except ImportError:
+            prefix=self.acl_users.getGroupPrefix()
+        else:
+            prefix=''
         list1 = []
         for user, roles in self.get_local_roles():
             if role in roles:
-                if string.find(user, prefix) == 0:
+                if prefix != '' and string.find(user, prefix) == 0:
                     for i1 in grp.getGroupById(user).getGroupMembers():
                         list1.append(i1.getId())
                 else:
