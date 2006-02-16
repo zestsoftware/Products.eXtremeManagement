@@ -129,7 +129,7 @@
                             <textarea name="description" 
                                       rows="4"
                                       cols="15"
-                                      tal:attributes="name python:taskObj.UID()+'_description'"> </textarea>
+                                      tal:attributes="name python:taskObj.UID()+'_description'"></textarea>
                         </td>
                     </tr>
                     </tal:block>
