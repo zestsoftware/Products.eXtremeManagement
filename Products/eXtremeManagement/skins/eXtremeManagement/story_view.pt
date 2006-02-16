@@ -24,6 +24,13 @@
     
         <div tal:replace="structure context/CookedBody" />
 
+        <p tal:condition="context/getRoughEstimate"
+           i18n:translate="label_roughestimate">
+            Rough Estimate:
+            <span i18n:name="rough" tal:replace="structure context/getRoughEstimate" />
+            days.
+        </p>
+
         <tal:block tal:condition="items">
             <h1 class="documentFirstHeading" 
                 i18n:translate="heading_tasks">Tasks</h1>

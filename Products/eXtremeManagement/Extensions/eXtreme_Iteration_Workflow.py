@@ -59,7 +59,7 @@ def setupeXtreme_Iteration_Workflow(self, workflow):
     for s in ['in-progress', 'completed', 'invoiced', 'new']:
         workflow.states.addState(s)
 
-    for t in ['retract', 'invoice', 'reactivate', 'complete', 'accept']:
+    for t in ['retract', 'start', 'invoice', 'complete', 'reactivate']:
         workflow.transitions.addTransition(t)
 
     for v in ['review_history', 'comments', 'time', 'actor', 'action']:
@@ -140,7 +140,7 @@ def setupeXtreme_Iteration_Workflow(self, workflow):
 
     stateDef = workflow.states['new']
     stateDef.setProperties(title="""New""",
-                           transitions=['accept'])
+                           transitions=['start'])
     stateDef.setPermission('Access contents information',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
@@ -171,6 +171,26 @@ def setupeXtreme_Iteration_Workflow(self, workflow):
                                 props={'guard_roles': 'Manager'},
                                 )
 
+    ## Creation of workflow scripts
+    for wf_scriptname in ['startIteration']:
+        if not wf_scriptname in workflow.scripts.objectIds():
+            workflow.scripts._setObject(wf_scriptname,
+                ExternalMethod(wf_scriptname, wf_scriptname,
+                productname + '.eXtreme_Iteration_Workflow_scripts',
+                wf_scriptname))
+
+    transitionDef = workflow.transitions['start']
+    transitionDef.setProperties(title="""Start working""",
+                                new_state_id="""in-progress""",
+                                trigger_type=1,
+                                script_name="""""",
+                                after_script_name="""startIteration""",
+                                actbox_name="""Start working""",
+                                actbox_url="""""",
+                                actbox_category="""workflow""",
+                                props={'guard_expr': 'here/startable', 'guard_roles': 'Employee; Manager'},
+                                )
+
     transitionDef = workflow.transitions['invoice']
     transitionDef.setProperties(title="""Invoice""",
                                 new_state_id="""invoiced""",
@@ -178,18 +198,6 @@ def setupeXtreme_Iteration_Workflow(self, workflow):
                                 script_name="""""",
                                 after_script_name="""""",
                                 actbox_name="""Invoice""",
-                                actbox_url="""""",
-                                actbox_category="""workflow""",
-                                props={'guard_roles': 'Manager'},
-                                )
-
-    transitionDef = workflow.transitions['reactivate']
-    transitionDef.setProperties(title="""Reactivate""",
-                                new_state_id="""in-progress""",
-                                trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""""",
-                                actbox_name="""Reactivate""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
                                 props={'guard_roles': 'Manager'},
@@ -204,19 +212,19 @@ def setupeXtreme_Iteration_Workflow(self, workflow):
                                 actbox_name="""Finish""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_roles': 'Employee; Manager'},
+                                props={'guard_expr': 'here/completable', 'guard_roles': 'Employee; Manager'},
                                 )
 
-    transitionDef = workflow.transitions['accept']
-    transitionDef.setProperties(title="""Start working""",
+    transitionDef = workflow.transitions['reactivate']
+    transitionDef.setProperties(title="""Reactivate""",
                                 new_state_id="""in-progress""",
                                 trigger_type=1,
                                 script_name="""""",
                                 after_script_name="""""",
-                                actbox_name="""Start working""",
+                                actbox_name="""Reactivate""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_roles': 'Employee; Manager'},
+                                props={'guard_roles': 'Manager'},
                                 )
 
     ## State Variable

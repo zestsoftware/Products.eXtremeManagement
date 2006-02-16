@@ -56,9 +56,24 @@ class testTask(eXtremeManagementTestCase):
     ##/code-section class-header_testTask
 
     def afterSetUp(self):
-        """
-        """
-        pass
+        self.catalog = self.portal.portal_catalog
+        self.workflow = self.portal.portal_workflow
+        self.userfolder = self.portal.acl_users
+        self.setRoles(['Manager'])
+        self.userfolder._doAddUser('employee', 'secret', ['Employee'], [])
+        self.userfolder._doAddUser('developer', 'secret', ['Employee'], [])
+        self.portal.invokeFactory('ProjectFolder', id='projects')
+        self.projects = self.folder.projects
+        self.projects.invokeFactory('Project', id='project')
+        self.project = self.projects.project
+        self.project.invokeFactory('Iteration', id='iteration')
+        self.iteration = self.project.iteration
+        self.iteration.invokeFactory('Story', id='story')
+        self.story = self.iteration.story
+        self.story.setRoughEstimate(1.5)
+        self.workflow.doActionFor(self.story, 'estimate')
+        self.story.invokeFactory('Task', id='task')
+        self.task = self.story.task
 
     # from class Task:
     def test__get_assignees(self):
@@ -68,7 +83,14 @@ class testTask(eXtremeManagementTestCase):
         ##self.loginAsPortalOwner()
         ##o=Task('temp_Task')
         ##self.folder._setObject('temp_Task', o)
-        pass
+        
+        self.assertEqual(self.task.getAssignees(), ())
+        self.task.setAssignees('developer')
+        self.assertEqual(self.task.getAssignees(), ('developer',))
+        self.task.setAssignees(('developer','employee',))
+        self.assertEqual(self.task.getAssignees(), ('developer','employee',))
+        self.task.setAssignees('')
+        self.assertEqual(self.task.getAssignees(), ())
 
     # from class Task:
     def test_getRawEstimate(self):
@@ -139,6 +161,34 @@ class testTask(eXtremeManagementTestCase):
         ##o=Task('temp_Task')
         ##self.folder._setObject('temp_Task', o)
         pass
+
+    # from class Task:
+    def test_startable(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Task('temp_Task')
+        ##self.folder._setObject('temp_Task', o)
+        self.assertEqual(self.workflow.getInfoFor(self.task,'review_state'),
+                         'open')
+        self.assertEqual(self.task.startable(), False)
+        self.task.setAssignees('developer')
+        self.assertEqual(self.task.startable(), False)
+        self.task.setHours(0)
+        self.assertEqual(self.task.startable(), False)
+        self.task.setHours(-1)
+        self.assertEqual(self.task.startable(), False)
+        self.task.setHours(1)
+        self.assertEqual(self.task.startable(), True)
+        self.task.setHours(0)
+        self.assertEqual(self.task.startable(), False)
+        self.task.setMinutes(-15)
+        self.assertEqual(self.task.startable(), False)
+        self.task.setMinutes(15)
+        self.assertEqual(self.task.startable(), True)
+        self.task.setAssignees('')
+        self.assertEqual(self.task.startable(), False)
 
     # Manually created methods
 

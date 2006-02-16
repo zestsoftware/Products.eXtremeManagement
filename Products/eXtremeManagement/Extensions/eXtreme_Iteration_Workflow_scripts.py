@@ -1,9 +1,8 @@
-""" Workflow Scripts for: eXtreme_Iteration_Workflow """
-
-# Copyright (c) 2006 by Zest software
+# File: eXtremeManagement.py
 #
+# Copyright (c) 2006 by Zest software
 # Generator: ArchGenXML Version 1.4.1 svn/devel
-#            http://sf.net/projects/archetypes/
+#            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
 #
@@ -22,12 +21,34 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 # 02110-1301, USA.
 #
-__author__    = '''Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>'''
+
+__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
+<m.van.rees@zestsoftware.nl>"""
 __docformat__ = 'plaintext'
-__version__   = '$ Revision 0.0 $'[11:-2]
+
+
+# Workflow Scripts for: eXtreme_Iteration_Workflow
 
 ##code-section workflow-script-header #fill in your manual code here
+from Products.CMFCore.utils import getToolByName
 ##/code-section workflow-script-header
 
-## []
+
+def startIteration(self, state_change, **kw):
+    """
+    Give all estimated stories in this iteration the in-progress status.
+    """
+    portal = self
+    iteration=state_change.object
+    stories = iteration.contentValues('Story')
+    wf_tool = getToolByName(portal, 'portal_workflow')
+    from Products.CMFCore.WorkflowCore import WorkflowException
+    for story in stories:
+        review_state = wf_tool.getInfoFor(story,'review_state')
+        if review_state == 'estimated':
+            try:
+                wf_tool.doActionFor(story, 'activate')
+            except WorkflowException:
+                print 'WARNING: story %s with status %s in iteration %s can not be activated..' \
+                      % (story.Title(), review_state, iteration.Title())
+

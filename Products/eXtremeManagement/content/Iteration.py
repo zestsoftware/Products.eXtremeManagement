@@ -35,6 +35,7 @@ from Products.Archetypes.atapi import *
 
 from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
+from Products.CMFCore.utils import getToolByName
 ##/code-section module-header
 
 schema = Schema((
@@ -169,6 +170,37 @@ class Iteration(OrderedBaseFolder):
         
         """
         return self.formatTime(self.getRawDifference())
+
+    security.declarePublic('startable')
+    def startable(self):
+        """
+        Test if all stories in this iteration have statuses that are
+        okay.  Usually that status should be 'estimated', but at least
+        it should not be 'draft' or 'pending'.
+        """
+        unAcceptableStatuses = ['draft','pending']
+        portal = getToolByName(self,'portal_url').getPortalObject()
+        wf_tool = getToolByName(portal, 'portal_workflow')
+        stories = self.contentValues('Story')
+        for story in stories:
+            review_state = wf_tool.getInfoFor(story,'review_state')
+            if review_state in unAcceptableStatuses:
+                return False
+        return True
+
+    security.declarePublic('completable')
+    def completable(self):
+        """
+        Test if all stories in this iteration have completed.
+        """
+        portal = getToolByName(self,'portal_url').getPortalObject()
+        wf_tool = getToolByName(portal, 'portal_workflow')
+        stories = self.contentValues('Story')
+        for story in stories:
+            review_state = wf_tool.getInfoFor(story,'review_state')
+            if review_state != 'completed':
+                return False
+        return True
 
 
 registerType(Iteration,PROJECTNAME)

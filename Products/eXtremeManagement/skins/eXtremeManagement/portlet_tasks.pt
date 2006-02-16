@@ -8,7 +8,7 @@
     
     <div metal:define-macro="portlet"
         tal:define="DateTime python:modules['DateTime'].DateTime;
-                    results  python:portal.getOwnInProgressTasks();"
+                    results  python:portal.getOwnToDoTasks();"
         tal:omit-tag="">
 
      <dl class="portlet" id="portlet-project-administration">

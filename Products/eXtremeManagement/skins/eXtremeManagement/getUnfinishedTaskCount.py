@@ -8,6 +8,6 @@
 ##title=Get unfinished task for everyone.
 ##
 
-unfinished_states = ('open','assigned','in-progress',)
+unfinished_states = ('open','to-do',)
 showEveryonesTasks = True
 return len(context.getTasks(unfinished_states, showEveryonesTasks))

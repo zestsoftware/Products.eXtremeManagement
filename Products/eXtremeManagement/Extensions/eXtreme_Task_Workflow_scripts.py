@@ -44,7 +44,7 @@ def emailContact(portal, memberid, allowPortalContact=False):
             email = portal.getProperty('email_from_address',
                                        'postmaster@localhost')
         else:
-            return None
+            return ''
 
     fullname = member.getProperty('fullname', None)
     if fullname == '' or fullname is None:
@@ -97,9 +97,6 @@ This transition was done by:
 
 with the following comments:
 %s
-
-Please edit the estimate for this task and accept it or reject it.
-
 """
 
     mTitle = obj.Title()
@@ -127,7 +124,8 @@ Please edit the estimate for this task and accept it or reject it.
     for assignee in assignees:
         mTo = emailContact(portal, assignee)
         # If email address is known:
-        if mTo and mTo != mCreator  and mTo != mTransitioner:
+        if mTo and mTo != '' and mTo != mCreator \
+               and mTo != mTransitioner:
             try:
                 mailhost.simple_send(mTo, mFrom, mSubj, message)
             except:
@@ -145,35 +143,25 @@ Please edit the estimate for this task and accept it or reject it.
 ##/code-section workflow-script-header
 
 
-def tryStoryEstimation(self, state_change, **kw):
-    portal = self
-    task=state_change.object
-    story = task.aq_parent
-    if story.canBeEstimated():
-        wf_tool = getToolByName(portal, 'portal_workflow')
-        from Products.CMFCore.WorkflowCore import WorkflowException
-        try:
-            wf_tool.doActionFor(story, 'estimate')
-        except WorkflowException:
-            print 'ERROR: Transition "estimate" of story %s not allowed.' % story.Title()
-    pass
-
-
-
-def notify_assignees(self, state_change, **kw):
-    """
-    Notify interested people that a task has been assigned.
-    """
-    portal = self
-    mailMessage(portal, state_change, 'Task assigned')
-
-
-
 def notify_completed(self, state_change, **kw):
     """
     Notify interested people that a task has been completed.
     """
     portal = self
     mailMessage(portal, state_change, 'Task completed')
+
+
+
+def tryToCompleteStory(self, state_change, **kw):
+    portal = self
+    task=state_change.object
+    story = task.aq_parent
+    wf_tool = getToolByName(portal, 'portal_workflow')
+    from Products.CMFCore.WorkflowCore import WorkflowException
+    try:
+        wf_tool.doActionFor(story, 'complete')
+    except WorkflowException:
+        pass
+    pass
 
 

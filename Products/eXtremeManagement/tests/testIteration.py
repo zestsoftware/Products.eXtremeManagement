@@ -134,6 +134,26 @@ class testIteration(eXtremeManagementTestCase):
         ##self.folder._setObject('temp_Iteration', o)
         pass
 
+    # from class Iteration:
+    def test_startable(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Iteration('temp_Iteration')
+        ##self.folder._setObject('temp_Iteration', o)
+        pass
+
+    # from class Iteration:
+    def test_completable(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Iteration('temp_Iteration')
+        ##self.folder._setObject('temp_Iteration', o)
+        pass
+
     # Manually created methods
 
 

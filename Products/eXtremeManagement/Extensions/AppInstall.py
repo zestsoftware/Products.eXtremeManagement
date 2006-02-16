@@ -80,97 +80,53 @@ def disableJoinLink(portal):
     portal.manage_permission('Add portal member', ['Manager'], 0)
 
 
-def _migrateTaskSchema(self):
+def _migrateSchema(self, contentType):
     at = getToolByName(self, 'archetype_tool')
     class dummy:
         form = {}
     dummyRequest = dummy()
-    dummy.form['eXtremeManagement.Task'] = 1
+    dummy.form[contentType] = 1
     at.manage_updateSchema(update_all=1,
                            REQUEST=dummyRequest)
 
+def _migrateProjectSchema(self):
+    _migrateSchema(self, 'eXtremeManagement.Iteration')
+
+def _migrateIterationSchema(self):
+    _migrateSchema(self, 'eXtremeManagement.Iteration')
+
+def _migrateStorySchema(self):
+    _migrateSchema(self, 'eXtremeManagement.Story')
+
+def _migrateTaskSchema(self):
+    _migrateSchema(self, 'eXtremeManagement.Task')
 
 def _migrateBookingSchema(self):
-    at = getToolByName(self, 'archetype_tool')
-    class dummy:
-        form = {}
-    dummyRequest = dummy()
-    dummy.form['eXtremeManagement.Booking'] = 1
-    at.manage_updateSchema(update_all=1,
-                           REQUEST=dummyRequest)
+    _migrateSchema(self, 'eXtremeManagement.Booking')
+
+
+def migrate_stories(portal, out):
+    print >> out, "Updating Story schema."
+    _migrateStorySchema(portal)
+    print >> out, "Done."
+
+def migrate_tasks(portal, out):
+    print >> out, "Updating Task schema."
+    _migrateTaskSchema(portal)
+    print >> out, "Done."
 
 
 def migrate_bookings(portal, out):
-    """
-    Only for one-time migrations.  This resets the bookingDate to
-    creationDate, which you don't really want if you already have such
-    a bookingDate.  But it doesn't seem to work any other way.
-    """
     print >> out, "Updating Booking schema."
-    
-    booking_brains = portal.portal_catalog(meta_type='Booking')
-    print >> out, "Found %s bookings." % len(booking_brains)
-    bookinglist = []
-    for booking_brain in booking_brains:
-        booking = booking_brain.getObject()
-        old_field = booking_brain.created
-        bookinglist.append((booking_brain, old_field))
-
     _migrateBookingSchema(portal)
-
-    print >> out, "Number of bookings that need to be migrated = %s." % len(bookinglist)
-
-    for item in bookinglist:
-        booking_brain, old_field = item
-        booking = booking_brain.getObject()
-        booking.setBookingDate(old_field)
-        print >> out, "Migrating booking %s with estimate of %s hours." % (booking.title, old_field)
-        booking._updateCatalog(portal)
-
     print >> out, "Migration of bookings completed."
-
-def migrate_tasks(portal, out):
-    """
-
-    jladage: the migration in my opinion should only do: task.hours = task.estimate once
-    jladage: since estimate is an int , only whole hours can be stored in there
-    jladage: after migration you should to an update catalog, to index the changes
-
-    """
-    print >> out, "Updating Task schema."
-    
-    task_brains = portal.portal_catalog(meta_type='Task')
-    print >> out, "Found %s tasks." % len(task_brains)
-    tasklist = []
-    for task_brain in task_brains:
-        task = task_brain.getObject()
-        if hasattr(task, 'estimate'):
-            old_estimate = getattr(task, 'estimate')
-            tasklist.append((task_brain, old_estimate))
-
-    _migrateTaskSchema(portal)
-
-    print >> out, "Number of tasks that need to be migrated = %s." % len(tasklist)
-
-    for item in tasklist:
-        task_brain, old_estimate = item
-        task = task_brain.getObject()
-        task.setHours(old_estimate)
-        print >> out, "Migrating task %s with estimate of %s hours." % (task.title, old_estimate)
-        if hasattr(task, 'estimate'):
-            delattr(task, 'estimate')
-        task._updateCatalog(portal)
-
-    print >> out, "Migration of tasks completed."
-
 
 def migrate_ct(portal, out):
     """
 
     """
+    migrate_stories(portal, out)
     migrate_tasks(portal, out)
-    # migrate bookings at your own peril.  See remark in that function.
-    #migrate_bookings(portal, out)
 
 def configureKupu(portal):
     kupuTool = getToolByName(portal, 'kupu_library_tool')
@@ -224,6 +180,3 @@ def install(self):
     migrate_ct(self, out)
 
     return out.getvalue()
-
-def uninstall(self):
-    out = StringIO()

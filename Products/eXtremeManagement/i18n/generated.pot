@@ -551,6 +551,11 @@ msgstr ""
 msgid "eXtremeManagement_label_phoneNumber"
 msgstr ""
 
+#. Default: "Roughestimate"
+#: content/Story.py
+msgid "eXtremeManagement_label_roughEstimate"
+msgstr ""
+
 #. Default: "Startdate"
 #. Startdate
 #: content/Iteration.py

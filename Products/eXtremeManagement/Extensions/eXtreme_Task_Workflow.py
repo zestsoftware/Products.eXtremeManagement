@@ -56,10 +56,10 @@ def setupeXtreme_Task_Workflow(self, workflow):
     ##/code-section create-workflow-setup-method-header
 
 
-    for s in ['assigned', 'in-progress', 'completed', 'estimated', 'open']:
+    for s in ['to-do', 'completed', 'open']:
         workflow.states.addState(s)
 
-    for t in ['activate', 'complete', 'reactivate', 'reject', 'deactivate', 'reestimate', 'assign', 'accept']:
+    for t in ['deactivate', 'activate', 'complete', 'reactivate']:
         workflow.transitions.addTransition(t)
 
     for v in ['review_history', 'comments', 'time', 'actor', 'action']:
@@ -81,27 +81,8 @@ def setupeXtreme_Task_Workflow(self, workflow):
 
     ## States initialization
 
-    stateDef = workflow.states['assigned']
-    stateDef.setProperties(title="""Assigned""",
-                           transitions=['accept', 'reject'])
-    stateDef.setPermission('Access contents information',
-                           0,
-                           ['Customer', 'Employee', 'Manager', 'Owner'])
-    stateDef.setPermission('Modify portal content',
-                           0,
-                           ['Manager', 'Employee', 'Owner'])
-    stateDef.setPermission('View',
-                           0,
-                           ['Customer', 'Employee', 'Manager', 'Owner'])
-    stateDef.setPermission('Change portal events',
-                           0,
-                           ['Manager', 'Owner'])
-    stateDef.setPermission('eXtremeManagement: Add Booking',
-                           0,
-                           ['Employee', 'Manager'])
-
-    stateDef = workflow.states['in-progress']
-    stateDef.setProperties(title="""in-progress""",
+    stateDef = workflow.states['to-do']
+    stateDef.setProperties(title="""To-do""",
                            transitions=['complete', 'deactivate'])
     stateDef.setPermission('Access contents information',
                            0,
@@ -138,28 +119,9 @@ def setupeXtreme_Task_Workflow(self, workflow):
                            0,
                            [])
 
-    stateDef = workflow.states['estimated']
-    stateDef.setProperties(title="""estimated""",
-                           transitions=['reestimate', 'activate'])
-    stateDef.setPermission('Access contents information',
-                           0,
-                           ['Customer', 'Employee', 'Manager', 'Owner'])
-    stateDef.setPermission('Modify portal content',
-                           0,
-                           ['Manager'])
-    stateDef.setPermission('View',
-                           0,
-                           ['Customer', 'Employee', 'Manager', 'Owner'])
-    stateDef.setPermission('eXtremeManagement: Add Booking',
-                           0,
-                           ['Employee', 'Manager'])
-    stateDef.setPermission('Change portal events',
-                           0,
-                           ['Employee', 'Manager', 'Owner'])
-
     stateDef = workflow.states['open']
     stateDef.setProperties(title="""New""",
-                           transitions=['assign'])
+                           transitions=['activate'])
     stateDef.setPermission('Access contents information',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
@@ -178,20 +140,32 @@ def setupeXtreme_Task_Workflow(self, workflow):
 
     ## Transitions initialization
 
-    transitionDef = workflow.transitions['activate']
-    transitionDef.setProperties(title="""Activate this task""",
-                                new_state_id="""in-progress""",
+    transitionDef = workflow.transitions['deactivate']
+    transitionDef.setProperties(title="""deactivate""",
+                                new_state_id="""open""",
                                 trigger_type=1,
                                 script_name="""""",
                                 after_script_name="""""",
-                                actbox_name="""Activate this task""",
+                                actbox_name="""deactivate""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_roles': 'Employee;Manager'},
+                                props={'guard_roles': 'Manager'},
+                                )
+
+    transitionDef = workflow.transitions['activate']
+    transitionDef.setProperties(title="""activate""",
+                                new_state_id="""to-do""",
+                                trigger_type=1,
+                                script_name="""""",
+                                after_script_name="""""",
+                                actbox_name="""activate""",
+                                actbox_url="""""",
+                                actbox_category="""workflow""",
+                                props={'guard_expr': 'here/startable', 'guard_roles': 'Manager;Employee'},
                                 )
 
     ## Creation of workflow scripts
-    for wf_scriptname in ['notify_completed']:
+    for wf_scriptname in ['notify_completed', 'tryToCompleteStory']:
         if not wf_scriptname in workflow.scripts.objectIds():
             workflow.scripts._setObject(wf_scriptname,
                 ExternalMethod(wf_scriptname, wf_scriptname,
@@ -202,8 +176,8 @@ def setupeXtreme_Task_Workflow(self, workflow):
     transitionDef.setProperties(title="""Mark as completed""",
                                 new_state_id="""completed""",
                                 trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""notify_completed""",
+                                script_name="""notify_completed""",
+                                after_script_name="""tryToCompleteStory""",
                                 actbox_name="""Mark as completed""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
@@ -212,7 +186,7 @@ def setupeXtreme_Task_Workflow(self, workflow):
 
     transitionDef = workflow.transitions['reactivate']
     transitionDef.setProperties(title="""Reactivate this task""",
-                                new_state_id="""in-progress""",
+                                new_state_id="""to-do""",
                                 trigger_type=1,
                                 script_name="""""",
                                 after_script_name="""""",
@@ -220,82 +194,6 @@ def setupeXtreme_Task_Workflow(self, workflow):
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
                                 props={'guard_roles': 'Manager;Employee'},
-                                )
-
-    transitionDef = workflow.transitions['reject']
-    transitionDef.setProperties(title="""Reject this task""",
-                                new_state_id="""open""",
-                                trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""""",
-                                actbox_name="""Reject this task""",
-                                actbox_url="""""",
-                                actbox_category="""workflow""",
-                                props={'guard_roles': 'Employee;Manager'},
-                                )
-
-    transitionDef = workflow.transitions['deactivate']
-    transitionDef.setProperties(title="""deactivate""",
-                                new_state_id="""estimated""",
-                                trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""""",
-                                actbox_name="""deactivate""",
-                                actbox_url="""""",
-                                actbox_category="""workflow""",
-                                props={'guard_roles': 'Employee;Manager'},
-                                )
-
-    transitionDef = workflow.transitions['reestimate']
-    transitionDef.setProperties(title="""Re-estimate this task""",
-                                new_state_id="""assigned""",
-                                trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""""",
-                                actbox_name="""Re-estimate this task""",
-                                actbox_url="""""",
-                                actbox_category="""workflow""",
-                                props={'guard_roles': 'Employee;Manager'},
-                                )
-
-    ## Creation of workflow scripts
-    for wf_scriptname in ['notify_assignees']:
-        if not wf_scriptname in workflow.scripts.objectIds():
-            workflow.scripts._setObject(wf_scriptname,
-                ExternalMethod(wf_scriptname, wf_scriptname,
-                productname + '.eXtreme_Task_Workflow_scripts',
-                wf_scriptname))
-
-    transitionDef = workflow.transitions['assign']
-    transitionDef.setProperties(title="""Mark as assigned""",
-                                new_state_id="""assigned""",
-                                trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""notify_assignees""",
-                                actbox_name="""Mark as assigned""",
-                                actbox_url="""""",
-                                actbox_category="""workflow""",
-                                props={'guard_roles': 'Employee;Manager'},
-                                )
-
-    ## Creation of workflow scripts
-    for wf_scriptname in ['tryStoryEstimation']:
-        if not wf_scriptname in workflow.scripts.objectIds():
-            workflow.scripts._setObject(wf_scriptname,
-                ExternalMethod(wf_scriptname, wf_scriptname,
-                productname + '.eXtreme_Task_Workflow_scripts',
-                wf_scriptname))
-
-    transitionDef = workflow.transitions['accept']
-    transitionDef.setProperties(title="""Accept this task""",
-                                new_state_id="""estimated""",
-                                trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""tryStoryEstimation""",
-                                actbox_name="""Accept this task""",
-                                actbox_url="""""",
-                                actbox_category="""workflow""",
-                                props={'guard_roles': 'Employee;Manager'},
                                 )
 
     ## State Variable

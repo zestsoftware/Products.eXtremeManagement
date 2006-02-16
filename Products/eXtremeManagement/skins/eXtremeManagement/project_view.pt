@@ -24,7 +24,7 @@
                             current_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
                                                                                         sort_on='created',
                                                                                         sort_order='normal',
-                                                                                        review_state='in-progress',
+                                                                                        review_state='to-do',
                                                                                         path=physical_path)[:1]">
 
 

@@ -46,7 +46,6 @@ from Products.eXtremeManagement.content.Story import Story
 
 ##code-section module-beforeclass #fill in your manual code here
 from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
-from Products.PloneTestCase.setup import default_user
 ##/code-section module-beforeclass
 
 
@@ -58,20 +57,24 @@ class testStory(eXtremeManagementTestCase):
     ##/code-section class-header_testStory
 
     def afterSetUp(self):
-        """
-        """
-        self.default_user = default_user
-        pass
-
-    def test_call_story(self):
-        """ Test that you can add and call a Story item
-        """
+        self.workflow = self.portal.portal_workflow
+        self.userfolder = self.portal.acl_users
+        self.userfolder._doAddUser('customer', 'secret', ['Customer'], [])
         self.setRoles(['Manager'])
         self.portal.invokeFactory('ProjectFolder', id='projects')
-        self.portal.projects.invokeFactory('Project', id='testproject01')
-        self.portal.projects.testproject01.invokeFactory('Iteration', id='testIteration')
-        self.portal.projects.testproject01.testIteration.invokeFactory('Story', id='testStory')
-        self.failUnless('testStory' in self.portal.projects.testproject01.testIteration.objectIds())
+        self.projects = self.folder.projects
+        self.projects.invokeFactory('Project', id='project')
+        self.project = self.projects.project
+        self.project.manage_addLocalRoles('customer',['Customer'])
+        self.project.invokeFactory('Iteration', id='iteration')
+        self.iteration = self.project.iteration
+        self.iteration.invokeFactory('Story', id='story')
+        self.story = self.iteration.story
+        self.assertEqual(self.story.isEstimated(), False)
+        self.story.setRoughEstimate(4.5)
+        self.workflow.doActionFor(self.story, 'estimate')
+        self.story.invokeFactory('Task', id='task')
+        self.task = self.story.task
 
     # from class Story:
     def test_CookedBody(self):
@@ -174,7 +177,35 @@ class testStory(eXtremeManagementTestCase):
         pass
 
     # from class Story:
-    def test_canBeEstimated(self):
+    def test_isEstimated(self):
+        """
+        """
+        self.setRoles(['Manager'])
+        self.assertEqual(self.story.isEstimated(), True)
+        self.story.setRoughEstimate(0)
+        self.assertEqual(self.story.isEstimated(), False)
+        self.logout()
+        # A Customer shouldn't be able to set the rough Estimate
+        # This doesn't seem to work in this test environment.
+        #  self.login('customer')
+        #  print self.task.get_local_roles()
+        #  print self.task.permission_settings()
+        #  self.story.setRoughEstimate(4)
+        #  self.assertEqual(self.story.getRoughEstimate(), 0)
+        
+
+    # from class Story:
+    def test_startable(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        ##o=Story('temp_Story')
+        ##self.folder._setObject('temp_Story', o)
+        pass
+
+    # from class Story:
+    def test_completable(self):
         """
         """
         #Uncomment one of the following lines as needed

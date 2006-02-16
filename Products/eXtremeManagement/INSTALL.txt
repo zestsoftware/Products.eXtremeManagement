@@ -20,3 +20,18 @@ Additional dependencies for development
  * ZopeTestCase: http://www.zope.org/Members/shh/ZopeTestCase/0.9.6
    (needs to be installed in ZOPE_HOME/lib/python/Testing/ZopeTestCase)
 
+
+Migration from before release 1.0
+
+ * If you have been using the subversion trunk from before the first
+   official release, then you may have a migration issue.  The
+   workflow for Tasks has been simplified, which means some old states
+   now don't exist anymore.  Upon reinstall the migration code will
+   take care of this.  Assigned and estimated tasks are set to the
+   open state.  In-progress tasks normally get the to-do status.  In a
+   few cases this may not work.  When that in-progress task doesn't
+   have an estimate (or rather: it is 0) or it doesn't have any
+   assignees, then it will go to the open state instead.  If you don't
+   like that, you can fix those tasks by hand either before or after
+   the migration.  The reinstall will leave a url and explanation for
+   each offending task in the install log.

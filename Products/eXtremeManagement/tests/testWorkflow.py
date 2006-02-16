@@ -94,8 +94,21 @@ class testWorkflow(eXtremeManagementTestCase):
         #self.assertEqual(self.workflow.getInfoFor(self.story,'review_state'), 'draft')
 
         self.login('employee')
+        self.assertEqual(self.story.isEstimated(), False)
+        self.story.setRoughEstimate(4.5)
+        self.assertEqual(self.story.isEstimated(), True)
+        self.tryAllowedTransition(self.story, 'story',
+                                  'draft', 'estimate', 'estimated')
+
+        # Get a startable task
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
+        self.task.setAssignees('employee')
+        self.task.setHours(1)
+        self.assertEqual(self.task.startable(), True)
+
+        self.tryAllowedTransition(self.story, 'story',
+                                  'estimated', 'retract', 'draft')
 
         self.task.invokeFactory('Booking', id='booking')
         self.booking = self.task.booking
@@ -104,7 +117,6 @@ class testWorkflow(eXtremeManagementTestCase):
                              self.booking]
         self.logout()
         self.login(self.default_user)
-        self.assertEqual(self.story.canBeEstimated(), False)
 
     def test_initial_states(self):
         """Test if the initial states for the CTs are what we expect
@@ -158,10 +170,29 @@ class testWorkflow(eXtremeManagementTestCase):
         """
         # Manager can do all transitions on an iteration:
         self.login('manager')
+        self.assertEqual(self.iteration.startable(), False)
+        self.tryAllowedTransition(self.story, 'story',
+                                  'draft', 'estimate', 'estimated')
+        self.assertEqual(self.iteration.startable(), True)
+        self.assertEqual(self.story.isEstimated(), True)
+        self.assertEqual(self.story.startable(), True)
         self.tryAllowedTransition(self.iteration, 'iteration',
-                                  'new', 'accept', 'in-progress')
-        self.tryAllowedTransition(self.iteration, 'iteration',
-                                  'in-progress', 'complete', 'completed')
+                                  'new', 'start', 'in-progress')
+        self.assertEqual(self.workflow.getInfoFor(self.story, 'review_state'),
+                         'in-progress')
+        self.assertEqual(self.iteration.completable(), False)
+        self.assertEqual(self.story.completable(), False)
+        self.tryAllowedTransition(self.task, 'task',
+                                  'to-do', 'complete', 'completed')
+        # This _should_ have automatically set the Story and the
+        # Iteration to completed.
+        self.assertEqual(self.story.completable(), True)
+        self.assertEqual(self.iteration.completable(), True)
+        self.assertEqual(self.workflow.getInfoFor(self.story, 'review_state'),
+                         'completed')
+        self.assertEqual(self.workflow.getInfoFor(self.iteration, 'review_state'),
+                         'completed')
+        # Now revert
         self.tryAllowedTransition(self.iteration, 'iteration',
                                   'completed', 'reactivate', 'in-progress')
         self.tryAllowedTransition(self.iteration, 'iteration',
@@ -174,7 +205,7 @@ class testWorkflow(eXtremeManagementTestCase):
         # Employee can only accept and complete an iteration
         self.login('employee')
         self.tryAllowedTransition(self.iteration, 'iteration',
-                                  'new', 'accept', 'in-progress')
+                                  'new', 'start', 'in-progress')
         self.tryForbiddenTransition(self.iteration, 'in-progress', 'retract')
         self.tryAllowedTransition(self.iteration, 'iteration',
                                   'in-progress', 'complete', 'completed')
@@ -192,97 +223,86 @@ class testWorkflow(eXtremeManagementTestCase):
         # Try some transactions that don't belong to the current state
         self.tryForbiddenTransition(self.iteration, 'invoiced', 'reactivate')
 
-    def test_story_transitions(self):
-        """Test transitions of the Story Content Type
+    def test_story_transitions_manager(self):
+        """Test transitions of the Story Content Type as Manager.
         """
-        #self.login('customer')
-        #self.login('manager')
         self.setRoles(['Manager'])
+        # draft -> pending -> draft
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'submit', 'pending')
         self.tryAllowedTransition(self.story, 'story',
                                   'pending', 'retract', 'draft')
+        # draft -> pending -> estimated -> draft
+        self.tryAllowedTransition(self.story, 'story',
+                                  'draft', 'submit', 'pending')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'pending', 'estimate', 'estimated')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'estimated', 'retract', 'draft')
+        self.tryFullStoryRoute()
 
-        # story will go automatically to the 'estimated' state once
-        # all tasks have been set to 'estimated'
-        self.tryForbiddenTransition(self.story, 'draft', 'estimate')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'open', 'assign', 'assigned')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'assigned', 'accept', 'estimated')
-        # So now the story should have the status 'estimated'
-        self.tryAllowedTransition(self.story, 'story',
-                                  'estimated', 'activate', 'in-progress')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'in-progress', 'complete', 'completed')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'completed', 'improve', 'in-progress')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'in-progress', 'deactivate', 'estimated')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'estimated', 'refactor', 'draft')
-
+    def test_story_transitions_employee(self):
+        """Test transitions of the Story Content Type as Employee.
+        """
         self.setRoles(['Employee'])
-        self.tryAllowedTransition(self.story, 'story',
-                                  'draft', 'estimate', 'estimated')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'estimated', 'activate', 'in-progress')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'in-progress', 'complete', 'completed')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'completed', 'improve', 'in-progress')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'in-progress', 'deactivate', 'estimated')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'estimated', 'refactor', 'draft')
+        self.tryFullStoryRoute()
 
+    def test_story_transitions_customer(self):
+        """Test transitions of the Story Content Type as Customer.
+        """
         self.setRoles(['Manager'])
         self.tryAllowedTransition(self.project, 'project',
                                   'private', 'activate', 'active')
         self.setRoles(['Member'])
         self.project.manage_addLocalRoles(self.default_user,['Customer'])
-        """
-        self.printGlobalRolesUser(self.default_user)
-        for object in self.main_objects:
-            self.printLocalPermissions(object, self.default_user)
-        """
+        # draft -> pending -> draft
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'submit', 'pending')
         self.tryAllowedTransition(self.story, 'story',
                                   'pending', 'retract', 'draft')
+        # draft -> pending -> estimated -> draft
+        self.tryAllowedTransition(self.story, 'story',
+                                  'draft', 'submit', 'pending')
+        self.setRoles(['Employee'])
+        self.tryAllowedTransition(self.story, 'story',
+                                  'pending', 'estimate', 'estimated')
+        self.setRoles(['Member'])
+        self.tryForbiddenTransition(self.story, 'estimated', 'activate')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'estimated', 'retract', 'draft')
 
     def test_task_transitions_manager(self):
-        """Test transitions of the Task Content Type
+        """Test transitions of the Task Content Type as Manager.
         """
         self.setRoles(['Manager'])
         self.tryFullTaskRoute()
 
     def test_task_transitions_employee(self):
-        """Test transitions of the Task Content Type
+        """Test transitions of the Task Content Type as Employee.
         """
         self.setRoles(['Employee'])
-        self.tryFullTaskRoute()
+        self.tryAllowedTransition(self.task, 'task',
+                                  'open', 'activate', 'to-do')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'to-do', 'complete', 'completed')
+        self.tryAllowedTransition(self.task, 'task',
+                                  'completed', 'reactivate', 'to-do')
+        # Only a Manager can deactivate a Task, so an Employee can
+        # not.
+        self.tryForbiddenTransition(self.task, 'to-do', 'deactivate')
 
     def test_task_transitions_customer(self):
-        """Test transitions of the Task Content Type.
+        """Test transitions of the Task Content Type as Customer.
         
         Some tests for the customer, who has no rights here:
         """
-        self.twoStepTransition(self.task, 'task', 'open', 'assign',
-                               'assigned', 'customer')
-        self.twoStepTransition(self.task, 'task', 'assigned', 'accept',
-                               'estimated', 'customer')
-        self.twoStepTransition(self.task, 'task', 'estimated', 'activate',
-                               'in-progress', 'customer')
-        self.twoStepTransition(self.task, 'task', 'in-progress', 'complete',
+        self.twoStepTransition(self.task, 'task', 'open', 'activate',
+                               'to-do', 'customer')
+        self.twoStepTransition(self.task, 'task', 'to-do', 'complete',
                                'completed', 'customer')
         self.twoStepTransition(self.task, 'task', 'completed', 'reactivate',
-                               'in-progress', 'customer')
-        self.twoStepTransition(self.task, 'task', 'in-progress', 'deactivate',
-                               'estimated', 'customer')
-        self.twoStepTransition(self.task, 'task', 'estimated', 'reestimate',
-                               'assigned', 'customer')
-        self.twoStepTransition(self.task, 'task', 'assigned', 'reject',
+                               'to-do', 'customer')
+        self.twoStepTransition(self.task, 'task', 'to-do', 'deactivate',
                                'open', 'customer')
 
     def test_booking_transitions(self):
@@ -294,39 +314,59 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryForbiddenTransition(self.booking, 'booking', 'activate')
         self.tryForbiddenTransition(self.booking, 'booking', 'submit')
 
+    def test_operation_1(self):
+        """
+        """
+        #Uncomment one of the following lines as needed
+        ##self.loginAsPortalOwner()
+        pass
+
     # Manually created methods
-    def getPermissionsOfRole(self, object, role):
-        perms = object.permissionsOfRole(role)
-        return [p['name'] for p in perms if p['selected']]
-
-    def getPermissionSettings(self, object, permission):
-        permission_settings = object.permission_settings(permission)
-        if permission_settings == []:
-            return []
-        roles = permission_settings[0]['roles']
-        return [role['name'] for role in roles if role['checked']]
-
-    def tryForbiddenTransition(self, ctObject, originalState,
-                               workflowTransition):
+    def tryFullStoryRoute(self):
+        """Test transitions of the Story Content Type
         """
-        Try to execute a transaction that you are not allowed to do
-        ctObject = Content Type object to perform the transition on
-        originalState = currect state of the object
-        workflowTransition = transition to perform
-        """
-        self.assertEqual(self.workflow.getInfoFor(ctObject, 'review_state'),
-                         originalState)
-        self.assertRaises(WorkflowException,
-                          self.workflow.doActionFor, ctObject, workflowTransition)
+        # draft -> estimated -> draft
+        self.tryAllowedTransition(self.story, 'story',
+                                  'draft', 'estimate', 'estimated')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'estimated', 'retract', 'draft')
 
-    def printGlobalRolesUser(self, userid):
-        roles = self.userfolder.getUserById(userid).getRoles()
-        for role in roles:
-            print '    %s has global role %s with these permissions:' % (userid, role)
-            if role == 'Manager':
-                print 'A Manager can do anything.'
-            else:
-                print self.getPermissionsOfRole(self.portal, role)
+        # Set it to estimated again.
+        self.tryAllowedTransition(self.story, 'story',
+                                  'draft', 'estimate', 'estimated')
+        # Okay, the Story is estimated.  Now it needs to be activated.
+        # This can be done in two ways.
+
+        # 1. You can activate a Story by hand.
+        # estimated -> in-progress -> estimated
+        self.tryAllowedTransition(self.story, 'story',
+                                  'estimated', 'activate', 'in-progress')
+        self.tryAllowedTransition(self.story, 'story',
+                                  'in-progress', 'deactivate', 'estimated')
+
+        # 2. You can activate a Story automatically by activating its
+        # Iteration.
+        self.tryAllowedTransition(self.iteration, 'iteration',
+                                  'new', 'start', 'in-progress')
+        self.assertEqual(self.workflow.getInfoFor(self.story,'review_state'), 'in-progress')
+        self.assertEqual(self.workflow.getInfoFor(self.task,'review_state'), 'to-do')
+
+        # in-progress -> completed
+        # This is done automatically when all tasks of this story have
+        # been completed.
+        self.tryAllowedTransition(self.task, 'task',
+                                  'to-do', 'complete', 'completed')
+        self.assertEqual(self.workflow.getInfoFor(self.story,'review_state'), 'completed')
+
+        # completed -> in-progress
+        self.tryAllowedTransition(self.story, 'story',
+                                  'completed', 'improve', 'in-progress')
+
+        # in-progress -> completed
+        # The task has been completed previously, so you can now alo
+        # complete the story manually.
+        self.tryAllowedTransition(self.story, 'story',
+                                  'in-progress', 'complete', 'completed')
 
     def tryAllowedTransition(self, ctObject, ctId, originalState,
                        workflowTransition, newState):
@@ -359,38 +399,29 @@ class testWorkflow(eXtremeManagementTestCase):
                                   workflowTransition, newState)
 
     def tryFullTaskRoute(self):
-        """Test transitions of the Project Content Type
+        """Test transitions of the Task Content Type
         """
         self.tryAllowedTransition(self.task, 'task',
-                                  'open', 'assign', 'assigned')
-        self.assertEqual(self.workflow.getInfoFor(self.story,'review_state'), 'draft')
-        #import pdb; pdb.set_trace()
+                                  'open', 'activate', 'to-do')
         self.tryAllowedTransition(self.task, 'task',
-                                  'assigned', 'accept', 'estimated')
-        self.assertEqual(self.workflow.getInfoFor(self.story,'review_state'), 'estimated')
+                                  'to-do', 'complete', 'completed')
         self.tryAllowedTransition(self.task, 'task',
-                                  'estimated', 'activate', 'in-progress')
+                                  'completed', 'reactivate', 'to-do')
         self.tryAllowedTransition(self.task, 'task',
-                                  'in-progress', 'complete', 'completed')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'completed', 'reactivate', 'in-progress')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'in-progress', 'deactivate', 'estimated')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'estimated', 'reestimate', 'assigned')
-        self.tryAllowedTransition(self.task, 'task',
-                                  'assigned', 'reject', 'open')
+                                  'to-do', 'deactivate', 'open')
 
-    def printLocalPermissions(self, object, userid):
-        roles = object.get_local_roles_for_userid(userid)
-        if roles:
-            print '%s has local roles on %s:' % (userid, object.title_or_id())
-        else:
-            print '%s has no local roles on %s.' % (userid, object.title_or_id())
-        for role in roles:
-            print '    local role %s:' % role
-            print '    with explicit permissions:'
-            print self.getPermissionsOfRole(object, role)
+    def tryForbiddenTransition(self, ctObject, originalState,
+                               workflowTransition):
+        """
+        Try to execute a transaction that you are not allowed to do
+        ctObject = Content Type object to perform the transition on
+        originalState = currect state of the object
+        workflowTransition = transition to perform
+        """
+        self.assertEqual(self.workflow.getInfoFor(ctObject, 'review_state'),
+                         originalState)
+        self.assertRaises(WorkflowException,
+                          self.workflow.doActionFor, ctObject, workflowTransition)
 
 
 

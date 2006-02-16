@@ -215,6 +215,16 @@ class Task(BaseFolder):
         """
         return self.getMainText()
 
+    security.declarePublic('startable')
+    def startable(self):
+        """
+        A task should have an assignee and an estimate.
+        """
+        if self.getAssignees() and self.getRawEstimate() > 0:
+            return True
+        else:
+            return False
+
 
 registerType(Task,PROJECTNAME)
 # end of class Task

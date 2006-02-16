@@ -56,24 +56,24 @@ class testBooking(eXtremeManagementTestCase):
     ##/code-section class-header_testBooking
 
     def afterSetUp(self):
-        """
-        """
+        self.catalog = self.portal.portal_catalog
+        self.workflow = self.portal.portal_workflow
+        self.userfolder = self.portal.acl_users
         self.setRoles(['Manager'])
+        self.userfolder._doAddUser('employee', 'secret', ['Employee'], [])
+        self.userfolder._doAddUser('developer', 'secret', ['Employee'], [])
         self.portal.invokeFactory('ProjectFolder', id='projects')
         self.projects = self.folder.projects
-
         self.projects.invokeFactory('Project', id='project')
         self.project = self.projects.project
-
         self.project.invokeFactory('Iteration', id='iteration')
         self.iteration = self.project.iteration
-
         self.iteration.invokeFactory('Story', id='story')
         self.story = self.iteration.story
-
+        self.story.setRoughEstimate(1.5)
+        self.workflow.doActionFor(self.story, 'estimate')
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
-
         self.task.invokeFactory('Booking', id='booking', hours=3, minutes=15)
         self.booking = self.task.booking
 

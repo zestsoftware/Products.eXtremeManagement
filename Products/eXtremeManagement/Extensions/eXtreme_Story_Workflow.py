@@ -59,7 +59,7 @@ def setupeXtreme_Story_Workflow(self, workflow):
     for s in ['estimated', 'pending', 'in-progress', 'completed', 'draft']:
         workflow.states.addState(s)
 
-    for t in ['deactivate', 'activate', 'submit', 'retract', 'estimate', 'improve', 'refactor', 'complete']:
+    for t in ['deactivate', 'activate', 'complete', 'retract', 'estimate', 'submit', 'improve']:
         workflow.transitions.addTransition(t)
 
     for v in ['review_history', 'comments', 'time', 'actor', 'action']:
@@ -71,6 +71,7 @@ def setupeXtreme_Story_Workflow(self, workflow):
     workflow.addManagedPermission('List folder contents')
     workflow.addManagedPermission('Review portal content')
     workflow.addManagedPermission('eXtremeManagement: Add Task')
+    workflow.addManagedPermission('eXtremeManagement: Edit roughEstimate')
 
     for l in []:
         if not l in workflow.worklists.objectValues():
@@ -84,7 +85,7 @@ def setupeXtreme_Story_Workflow(self, workflow):
 
     stateDef = workflow.states['estimated']
     stateDef.setProperties(title="""Estimated""",
-                           transitions=['activate', 'refactor'])
+                           transitions=['activate', 'retract'])
     stateDef.setPermission('Access contents information',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
@@ -102,10 +103,13 @@ def setupeXtreme_Story_Workflow(self, workflow):
                            [])
     stateDef.setPermission('eXtremeManagement: Add Task',
                            0,
-                           ['Manager'])
+                           ['Employee', 'Manager'])
+    stateDef.setPermission('eXtremeManagement: Edit roughEstimate',
+                           0,
+                           ['Employee', 'Manager'])
 
     stateDef = workflow.states['pending']
-    stateDef.setProperties(title="""Pending""",
+    stateDef.setProperties(title="""Pending estimate""",
                            transitions=['estimate', 'retract'])
     stateDef.setPermission('Access contents information',
                            0,
@@ -124,10 +128,13 @@ def setupeXtreme_Story_Workflow(self, workflow):
                            ['Employee', 'Manager'])
     stateDef.setPermission('eXtremeManagement: Add Task',
                            0,
+                           [])
+    stateDef.setPermission('eXtremeManagement: Edit roughEstimate',
+                           0,
                            ['Employee', 'Manager'])
 
     stateDef = workflow.states['in-progress']
-    stateDef.setProperties(title="""in-progress""",
+    stateDef.setProperties(title="""In progress""",
                            transitions=['complete', 'deactivate'])
     stateDef.setPermission('Access contents information',
                            0,
@@ -190,6 +197,9 @@ def setupeXtreme_Story_Workflow(self, workflow):
                            ['Manager'])
     stateDef.setPermission('eXtremeManagement: Add Task',
                            0,
+                           [])
+    stateDef.setPermission('eXtremeManagement: Edit roughEstimate',
+                           0,
                            ['Employee', 'Manager'])
 
     ## Transitions initialization
@@ -206,40 +216,56 @@ def setupeXtreme_Story_Workflow(self, workflow):
                                 props={'guard_roles': 'Employee;Manager'},
                                 )
 
+    ## Creation of workflow scripts
+    for wf_scriptname in ['startStory']:
+        if not wf_scriptname in workflow.scripts.objectIds():
+            workflow.scripts._setObject(wf_scriptname,
+                ExternalMethod(wf_scriptname, wf_scriptname,
+                productname + '.eXtreme_Story_Workflow_scripts',
+                wf_scriptname))
+
     transitionDef = workflow.transitions['activate']
     transitionDef.setProperties(title="""Activate""",
                                 new_state_id="""in-progress""",
                                 trigger_type=1,
                                 script_name="""""",
-                                after_script_name="""""",
+                                after_script_name="""startStory""",
                                 actbox_name="""Activate""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_roles': 'Employee;Manager'},
+                                props={'guard_expr': 'here/startable', 'guard_roles': 'Employee;Manager'},
                                 )
 
-    transitionDef = workflow.transitions['submit']
-    transitionDef.setProperties(title="""Submit""",
-                                new_state_id="""pending""",
+    ## Creation of workflow scripts
+    for wf_scriptname in ['tryToCompleteIteration']:
+        if not wf_scriptname in workflow.scripts.objectIds():
+            workflow.scripts._setObject(wf_scriptname,
+                ExternalMethod(wf_scriptname, wf_scriptname,
+                productname + '.eXtreme_Story_Workflow_scripts',
+                wf_scriptname))
+
+    transitionDef = workflow.transitions['complete']
+    transitionDef.setProperties(title="""complete""",
+                                new_state_id="""completed""",
                                 trigger_type=1,
                                 script_name="""""",
-                                after_script_name="""""",
-                                actbox_name="""Submit""",
+                                after_script_name="""tryToCompleteIteration""",
+                                actbox_name="""complete""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_permissions': 'Request review'},
+                                props={'guard_expr': 'here/completable', 'guard_roles': 'Employee;Manager'},
                                 )
 
     transitionDef = workflow.transitions['retract']
-    transitionDef.setProperties(title="""retract""",
+    transitionDef.setProperties(title="""Retract""",
                                 new_state_id="""draft""",
                                 trigger_type=1,
                                 script_name="""""",
                                 after_script_name="""""",
-                                actbox_name="""retract""",
+                                actbox_name="""Retract""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_permissions': 'Request review'},
+                                props={'guard_roles': 'Customer;Employee;Manager'},
                                 )
 
     transitionDef = workflow.transitions['estimate']
@@ -251,7 +277,19 @@ def setupeXtreme_Story_Workflow(self, workflow):
                                 actbox_name="""Estimate""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_expr': 'here/canBeEstimated', 'guard_roles': 'Employee;Manager'},
+                                props={'guard_expr': 'here/isEstimated', 'guard_roles': 'Employee;Manager'},
+                                )
+
+    transitionDef = workflow.transitions['submit']
+    transitionDef.setProperties(title="""Submit for estimate""",
+                                new_state_id="""pending""",
+                                trigger_type=1,
+                                script_name="""""",
+                                after_script_name="""""",
+                                actbox_name="""Submit for estimate""",
+                                actbox_url="""""",
+                                actbox_category="""workflow""",
+                                props={'guard_permissions': 'Request review'},
                                 )
 
     transitionDef = workflow.transitions['improve']
@@ -261,30 +299,6 @@ def setupeXtreme_Story_Workflow(self, workflow):
                                 script_name="""""",
                                 after_script_name="""""",
                                 actbox_name="""Improve""",
-                                actbox_url="""""",
-                                actbox_category="""workflow""",
-                                props={'guard_roles': 'Employee;Manager'},
-                                )
-
-    transitionDef = workflow.transitions['refactor']
-    transitionDef.setProperties(title="""Refactor""",
-                                new_state_id="""draft""",
-                                trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""""",
-                                actbox_name="""Refactor""",
-                                actbox_url="""""",
-                                actbox_category="""workflow""",
-                                props={'guard_roles': 'Customer;Employee;Manager'},
-                                )
-
-    transitionDef = workflow.transitions['complete']
-    transitionDef.setProperties(title="""complete""",
-                                new_state_id="""completed""",
-                                trigger_type=1,
-                                script_name="""""",
-                                after_script_name="""""",
-                                actbox_name="""complete""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
                                 props={'guard_roles': 'Employee;Manager'},

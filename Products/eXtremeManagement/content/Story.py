@@ -58,6 +58,16 @@ schema = Schema((
         required=1
     ),
 
+    FloatField(
+        name='roughEstimate',
+        widget=DecimalWidget(
+            label='Roughestimate',
+            label_msgid='eXtremeManagement_label_roughEstimate',
+            i18n_domain='eXtremeManagement',
+        ),
+        write_permission="eXtremeManagement: Edit roughEstimate"
+    ),
+
 ),
 )
 
@@ -208,26 +218,52 @@ class Story(OrderedBaseFolder):
         """
         return self.formatTime(self.getRawDifference())
 
-    security.declarePublic('canBeEstimated')
-    def canBeEstimated(self):
+    security.declarePublic('isEstimated')
+    def isEstimated(self):
         """
-        If all tasks in the story have been estimated, the story
-        itself can be estimated.  So get all tasks for the current
-        story and return true if they all have the status 'estimated'.
+        True when roughEstimate is set
+        """
+        if self.getRoughEstimate() > 0:
+            return True
+        else:
+            return False
 
-        Note: if there are no tasks yet, then the Story also can't be
-        estimated.
+    security.declarePublic('startable')
+    def startable(self):
         """
+        Test if all tasks in this story can be activated and if the
+        Story itself has been estimated.  If the story is somehow
+        already in-progress or completed, then that is fine as well.
+        """
+        unAcceptableStatuses = ['draft','pending']
         portal = getToolByName(self,'portal_url').getPortalObject()
         wf_tool = getToolByName(portal, 'portal_workflow')
+        review_state = wf_tool.getInfoFor(self,'review_state')
+        if review_state in unAcceptableStatuses:
+            return False
+        if not self.isEstimated():
+            return False
         tasks = self.contentValues('Task')
         if not tasks:
             return False
         else:
             for task in tasks:
-                review_state = wf_tool.getInfoFor(task, 'review_state', '')
-                if review_state != 'estimated':
+                if not task.startable():
                     return False
+            return True
+
+    security.declarePublic('completable')
+    def completable(self):
+        """
+        Test if all tasks in this iteration have completed.
+        """
+        portal = getToolByName(self,'portal_url').getPortalObject()
+        wf_tool = getToolByName(portal, 'portal_workflow')
+        tasks = self.contentValues('Task')
+        for task in tasks:
+            review_state = wf_tool.getInfoFor(task,'review_state')
+            if review_state != 'completed':
+                return False
         return True
 
 

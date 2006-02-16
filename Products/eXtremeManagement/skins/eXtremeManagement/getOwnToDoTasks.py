@@ -5,9 +5,9 @@
 ##bind script=script
 ##bind subpath=traverse_subpath
 ##parameters=
-##title=Get own tasks that are in-progress in the current context
+##title=Get own tasks that are to-do in the current context
 ##
 
-required_states = ('in-progress',)
+required_states = ('to-do',)
 showEveryonesTasks = False
 return context.getTasks(required_states, showEveryonesTasks)
