@@ -40,7 +40,7 @@ from Products.eXtremeManagement.config import *
 ##code-section module-header #fill in your manual code here
 
 from Products.CMFCore.utils import getToolByName
-
+from sets import Set
 ##/code-section module-header
 
 schema = Schema((
@@ -154,11 +154,27 @@ class Task(BaseFolder):
         uids = []
         members = self.getProject().getMembers()
 
-        for userid in portal.acl_users.getUserIds():
-            if 'Employee' in portal.acl_users.getUserById(userid).getRoles() or userid in members:
+        users = {}
+        current = portal.aq_inner
+        while current is not None:
+            if hasattr(current, 'aq_base') and hasattr(current.aq_base, 'acl_users'):
+                for user in current.acl_users.getUsers():
+                    userid = user.getId()
+                    roles = users.get(userid, None)
+                    if roles is None:
+                        roles = Set()
+                        users[userid] = roles
+                    roles.update(user.getRoles())
+            current = getattr(current, 'aq_parent', None)
+            
+        possibleUids = list(users.keys())
+        possibleUids.sort()
+        for userid in possibleUids:
+            if 'Employee' in users[userid] or userid in members:
                 member = mem.getMemberById(userid)
-                name = hasattr(member, 'fullname') and member.fullname.strip() or member.getId()
-                uids.append((userid, name))
+                if member is not None:
+                    name = hasattr(member, 'fullname') and member.fullname.strip() or member.getId()
+                    uids.append((userid, name))
 
         return DisplayList(uids)
 
