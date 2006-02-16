@@ -1,4 +1,4 @@
-## Script (Python) "getOwnInProgressTasks"
+## Script (Python) "getOwnToDoTasks"
 ##bind container=container
 ##bind context=context
 ##bind namespace=
