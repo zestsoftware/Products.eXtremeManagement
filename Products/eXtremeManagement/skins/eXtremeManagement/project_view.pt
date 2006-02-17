@@ -69,69 +69,8 @@
                                                  alt iteration/review_state" />
                         </th> 
                     </tr>
-                    <tr>
-                        <td colspan="2"
-                            class="iteration-description"
-                            tal:content="obj/Description">
-                            Description
-                        </td>
-                    </tr>
                 </table>
             
-                <table class="listing" 
-                       width="100%" 
-                       cellpadding="0" 
-                       cellspacing="0"
-                       tal:attributes="id string:hideTable${idx};">
-    
-                    <tr tal:condition="python:obj.contentValues('Story')">
-                        <th i18n:translate="listingheader_story">Story</th>
-                        <th i18n:translate="listingheader_progress">Progress</th>
-                        <th i18n:translate="listingheader_tasks_open">Tasks open</th>
-                        <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
-                    </tr>
-    
-                    <tr tal:define="stories python:obj.contentValues('Story');"
-                        tal:repeat="story stories">
-        
-                    <tal:block tal:define="progress python:story.get_progress_perc();
-                                    openTasks python:story.getUnfinishedTaskCount();
-                                    completedTasks python:story.getCompletedTaskCount();
-                                    storyIsCompleted python:story.isCompleted()">
-        
-                        <td width="30%"> 
-                            <a class="storyTitle_project_overview"
-                               tal:attributes="href story/absolute_url"
-                               tal:content="story/Title">
-                                Title
-                            </a>
-                        </td>
-        
-                        <td class="progress_details" 
-                            width="150">
-                            <span class="progress_percentage" 
-                                tal:content="string:${progress} %">&nbsp;</span>
-                            <br />
-                            <div class="progress_bar">
-                                <img tal:condition="storyIsCompleted"
-                                    src="progress-complete.gif" 
-                                    height="10" 
-                                    tal:attributes="width progress"
-                                    alt="progress bar"/>
-                                <img tal:condition="not:storyIsCompleted"
-                                    src="progress.gif" 
-                                    height="10" 
-                                    tal:attributes="width progress"
-                                    alt="progress bar"/>
-                            </div>
-                        </td> 
-                        <td class="tasks" 
-                            tal:content="openTasks">tasks open</td>
-                        <td class="tasks" 
-                            tal:content="completedTasks">tasks completed</td>
-                    </tal:block>
-                    </tr>
-                </table> 
             </tal:block>
             </div>
         </tal:block> 
