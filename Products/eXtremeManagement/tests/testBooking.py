@@ -77,6 +77,7 @@ class testBooking(eXtremeManagementTestCase):
         self.task.invokeFactory('Booking', id='booking', hours=3, minutes=15)
         self.booking = self.task.booking
 
+
     # from class Booking:
     def test__renameAfterCreation(self):
         """

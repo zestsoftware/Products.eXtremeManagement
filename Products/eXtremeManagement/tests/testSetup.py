@@ -62,7 +62,6 @@ class testSetup(eXtremeManagementTestCase):
         ids = self.portal.objectIds()
         self.failUnless('archetype_tool' in ids)
         #[]
-
     def test_types(self):
         """
         """
@@ -77,14 +76,12 @@ class testSetup(eXtremeManagementTestCase):
         self.failUnless('Task' in ids)
         self.failUnless('Booking' in ids)
 
-
     def test_skins(self):
         """
         """
         ids = self.portal.portal_skins.objectIds()
         self.failUnless('eXtremeManagement' in ids)
         self.failUnless('eXtremeManagement_public' in ids)
-
 
     def test_workflows(self):
         ids = self.portal.portal_workflow.objectIds()
@@ -94,7 +91,6 @@ class testSetup(eXtremeManagementTestCase):
         self.failUnless('eXtreme_Task_Workflow' in ids)
         self.failUnless('eXtreme_Default_Workflow' in ids)
         self.failUnless('folder_workflow' in ids)
-
 
     def test_workflowChains(self):
         getChain = self.portal.portal_workflow.getChainForPortalType
@@ -109,7 +105,6 @@ class testSetup(eXtremeManagementTestCase):
         self.failUnless('eXtreme_Booking_Workflow' in getChain('Booking'))
         self.failUnless('eXtreme_Default_Workflow' in getChain('ProjectMember'))
 
-
     def test_customizePortal(self):
         """
         """
@@ -122,13 +117,13 @@ class testSetup(eXtremeManagementTestCase):
             self.failUnless(ptype in metaTypesNotToList)
 
     # Manually created methods
+
     def test_testCustomizePortal(self):
         """
         """
         #Uncomment one of the following lines as needed
         ##self.loginAsPortalOwner()
         pass
-
 
 
 def test_suite():

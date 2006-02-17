@@ -26,14 +26,10 @@ __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
 <m.van.rees@zestsoftware.nl>"""
 __docformat__ = 'plaintext'
 
-
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
-
-
-
-
 from Products.eXtremeManagement.config import *
+
 ##code-section module-header #fill in your manual code here
 
 BaseSchema = BaseSchema.copy()
@@ -87,7 +83,6 @@ schema = Schema((
 ),
 )
 
-
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
@@ -101,7 +96,6 @@ ProjectMember_schema = schema + BaseSchema
 class ProjectMember(BaseContent):
     security = ClassSecurityInfo()
     __implements__ = (getattr(BaseContent,'__implements__',()),)
-
 
     # This name appears in the 'add' box
     archetype_name = 'ProjectMember'
@@ -126,8 +120,8 @@ class ProjectMember(BaseContent):
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header
 
-
     # Methods
+
 
 registerType(ProjectMember,PROJECTNAME)
 # end of class ProjectMember

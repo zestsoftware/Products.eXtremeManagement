@@ -1,4 +1,4 @@
-# File: eXtremeManagement.py
+# File: Install.py
 #
 # Copyright (c) 2006 by Zest software
 # Generator: ArchGenXML Version 1.4.1 svn/devel
@@ -30,7 +30,7 @@ __docformat__ = 'plaintext'
 import os.path
 import sys
 from StringIO import StringIO
-
+from sets import Set
 from App.Common import package_home
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import manage_addTool
@@ -39,10 +39,8 @@ from zExceptions import NotFound, BadRequest
 
 from Products.Archetypes.Extensions.utils import installTypes
 from Products.Archetypes.Extensions.utils import install_subskin
-try:
-    from Products.Archetypes.lib.register import listTypes
-except ImportError:
-    from Products.Archetypes.public import listTypes
+from Products.Archetypes.config import TOOL_NAME as ARCHETYPETOOLNAME
+from Products.Archetypes.atapi import listTypes
 from Products.eXtremeManagement.config import PROJECTNAME
 from Products.eXtremeManagement.config import product_globals as GLOBALS
 
@@ -72,10 +70,15 @@ def install(self):
     install_subskin(self, out, GLOBALS)
 
 
+
+
     # try to call a workflow install method
     # in 'InstallWorkflows.py' method 'installWorkflows'
     try:
-        installWorkflows = ExternalMethod('temp','temp',PROJECTNAME+'.InstallWorkflows', 'installWorkflows').__of__(self)
+        installWorkflows = ExternalMethod('temp',
+                                          'temp',
+                                          PROJECTNAME+'.InstallWorkflows', 
+                                          'installWorkflows').__of__(self)
     except NotFound:
         installWorkflows = None
 
@@ -131,7 +134,8 @@ def install(self):
     # try to call a custom install method
     # in 'AppInstall.py' method 'install'
     try:
-        install = ExternalMethod('temp','temp',PROJECTNAME+'.AppInstall', 'install')
+        install = ExternalMethod('temp', 'temp',
+                                 PROJECTNAME+'.AppInstall', 'install')
     except NotFound:
         install = None
 
@@ -151,11 +155,10 @@ def uninstall(self):
 
     # try to call a workflow uninstall method
     # in 'InstallWorkflows.py' method 'uninstallWorkflows'
-    
-    # TODO: this is buggy code. There is no workflow uninstaller in
-    # the generated InstallWorkflows.py.
     try:
-        uninstallWorkflows = ExternalMethod('temp','temp',PROJECTNAME+'.InstallWorkflows', 'uninstallWorkflows').__of__(self)
+        uninstallWorkflows = ExternalMethod('temp', 'temp',
+                                            PROJECTNAME+'.InstallWorkflows', 
+                                            'uninstallWorkflows').__of__(self)
     except NotFound:
         uninstallWorkflows = None
 
@@ -169,7 +172,8 @@ def uninstall(self):
     # try to call a custom uninstall method
     # in 'AppInstall.py' method 'uninstall'
     try:
-        uninstall = ExternalMethod('temp','temp',PROJECTNAME+'.AppInstall', 'uninstall')
+        uninstall = ExternalMethod('temp', 'temp', 
+                                   PROJECTNAME+'.AppInstall', 'uninstall')
     except:
         uninstall = None
 

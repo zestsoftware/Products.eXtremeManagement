@@ -118,6 +118,7 @@ class testWorkflow(eXtremeManagementTestCase):
         self.logout()
         self.login(self.default_user)
 
+
     def test_initial_states(self):
         """Test if the initial states for the CTs are what we expect
         them to be.
@@ -322,6 +323,7 @@ class testWorkflow(eXtremeManagementTestCase):
         pass
 
     # Manually created methods
+
     def tryFullStoryRoute(self):
         """Test transitions of the Story Content Type
         """
@@ -422,7 +424,6 @@ class testWorkflow(eXtremeManagementTestCase):
                          originalState)
         self.assertRaises(WorkflowException,
                           self.workflow.doActionFor, ctObject, workflowTransition)
-
 
 
 def test_suite():

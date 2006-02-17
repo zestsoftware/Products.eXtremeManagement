@@ -26,14 +26,10 @@ __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
 <m.van.rees@zestsoftware.nl>"""
 __docformat__ = 'plaintext'
 
-
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
-
-
-
-
 from Products.eXtremeManagement.config import *
+
 ##code-section module-header #fill in your manual code here
 
 BaseSchema = BaseSchema.copy()
@@ -96,7 +92,6 @@ schema = Schema((
 ),
 )
 
-
 ##code-section after-local-schema #fill in your manual code here
 ##/code-section after-local-schema
 
@@ -109,7 +104,6 @@ Booking_schema = BaseSchema.copy() + \
 class Booking(BaseContent):
     security = ClassSecurityInfo()
     __implements__ = (getattr(BaseContent,'__implements__',()),)
-
 
     # This name appears in the 'add' box
     archetype_name = 'Booking'
@@ -134,8 +128,8 @@ class Booking(BaseContent):
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header
 
-
     # Methods
+
     security.declarePublic('_renameAfterCreation')
     def _renameAfterCreation(self, check_auto_id=False):
         parent = self.aq_inner.aq_parent

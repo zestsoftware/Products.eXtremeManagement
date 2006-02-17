@@ -76,6 +76,7 @@ class testStory(eXtremeManagementTestCase):
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
 
+
     # from class Story:
     def test_CookedBody(self):
         """
@@ -185,14 +186,6 @@ class testStory(eXtremeManagementTestCase):
         self.story.setRoughEstimate(0)
         self.assertEqual(self.story.isEstimated(), False)
         self.logout()
-        # A Customer shouldn't be able to set the rough Estimate
-        # This doesn't seem to work in this test environment.
-        #  self.login('customer')
-        #  print self.task.get_local_roles()
-        #  print self.task.permission_settings()
-        #  self.story.setRoughEstimate(4)
-        #  self.assertEqual(self.story.getRoughEstimate(), 0)
-        
 
     # from class Story:
     def test_startable(self):

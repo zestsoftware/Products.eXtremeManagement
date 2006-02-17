@@ -26,14 +26,10 @@ __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
 <m.van.rees@zestsoftware.nl>"""
 __docformat__ = 'plaintext'
 
-
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
-
-
-
-
 from Products.eXtremeManagement.config import *
+
 ##code-section module-header #fill in your manual code here
 
 from Products.CMFCore.utils import getToolByName
@@ -45,7 +41,6 @@ schema = Schema((
 
 ),
 )
-
 
 ##code-section after-local-schema #fill in your manual code here
 
@@ -64,7 +59,6 @@ Project_schema = OrderedBaseFolderSchema.copy() + \
 class Project(OrderedBaseFolder):
     security = ClassSecurityInfo()
     __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
-
 
     # This name appears in the 'add' box
     archetype_name = 'Project'
@@ -103,8 +97,8 @@ class Project(OrderedBaseFolder):
     ##code-section class-header #fill in your manual code here
     ##/code-section class-header
 
-
     # Methods
+
     security.declarePublic('getProject')
     def getProject(self):
         """

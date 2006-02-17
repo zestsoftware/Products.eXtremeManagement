@@ -29,28 +29,7 @@ __docformat__ = 'plaintext'
 
 from Products.CMFCore.utils import getToolByName
 from Products.ExternalMethod.ExternalMethod import ExternalMethod
-from Products.eXtremeManagement.config import PROJECTNAME
 from zExceptions import NotFound
-
-
-def uninstallWorkflows(self, package, out):
-    """Uninstall the custom workflows for this product."""
-    # First see if we need to do migration before uninstalling.
-    # Try to call a custom method
-    # in 'MigrateWorkflow.py', method 'migratePreWorkflowUninstall'
-    try:
-        preUninstall = ExternalMethod('temp','temp',PROJECTNAME+'.MigrateWorkflow', 'migratePreWorkflowUninstall')
-    except NotFound:
-        preUninstall = None
-
-    if preUninstall:
-        print >>out,'Custom Pre Workflow Uninstall:'
-        res = preUninstall(self, out)
-        if res:
-            print >>out, res
-        else:
-            print >>out, 'no output'
-    return out.getvalue()
 
 def installWorkflows(self, package, out):
     """Install the custom workflows for this product."""
@@ -99,13 +78,16 @@ def installWorkflows(self, package, out):
     workflow = ourProductWorkflow(self, 'eXtreme_Booking_Workflow')
     workflowTool._setObject('eXtreme_Booking_Workflow', workflow)
     workflowTool.setChainForPortalTypes(['Booking'], workflow.getId())
+    ##code-section after-workflow-install #fill in your manual code here
 
     # Finally, see if we need to do migration after installing.
     # Try to call a custom method
     # in 'MigrateWorkflow.py', method 'migrateAfterWorkflowInstall'
 
     try:
-        afterInstall = ExternalMethod('temp','temp',PROJECTNAME+'.MigrateWorkflow', 'migrateAfterWorkflowInstall')
+        afterInstall = ExternalMethod('temp', 'temp',
+                                      productname+'.MigrateWorkflow',
+                                      'migrateAfterWorkflowInstall')
     except NotFound:
         afterInstall = None
 
@@ -116,6 +98,36 @@ def installWorkflows(self, package, out):
             print >>out, res
         else:
             print >>out, 'no output'
-    return out.getvalue()
+    ##/code-section after-workflow-install
+
 
     return workflowTool
+
+def uninstallWorkflows(self, package, out):
+    """Deinstall the workflows.
+
+    This code doesn't really do anything, but you can place custom
+    code here in the protected section.
+    """
+
+    ##code-section workflow-uninstall #fill in your manual code here
+    # First see if we need to do migration before uninstalling.
+    # Try to call a custom method
+    # in 'MigrateWorkflow.py', method 'migratePreWorkflowUninstall'
+    productname = 'eXtremeManagement'
+    try:
+        preUninstall = ExternalMethod('temp','temp',
+                                      productname+'.MigrateWorkflow',
+                                      'migratePreWorkflowUninstall')
+    except NotFound:
+        preUninstall = None
+
+    if preUninstall:
+        print >>out,'Custom Pre Workflow Uninstall:'
+        res = preUninstall(self, out)
+        if res:
+            print >>out, res
+        else:
+            print >>out, 'no output'
+    return out.getvalue()
+    ##/code-section workflow-uninstall

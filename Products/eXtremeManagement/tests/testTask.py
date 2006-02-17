@@ -75,6 +75,7 @@ class testTask(eXtremeManagementTestCase):
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
 
+
     # from class Task:
     def test__get_assignees(self):
         """

@@ -61,11 +61,11 @@ class testpermissions(eXtremeManagementTestCase):
 def test_suite():
     from unittest import TestSuite
     from Testing.ZopeTestCase.zopedoctest import ZopeDocFileSuite
-    
+
     ##code-section test-suite-in-between #fill in your manual code here
 ##/code-section test-suite-in-between
 
-    
+
     return TestSuite((
         ZopeDocFileSuite('testpermissions.txt',
                          package='Products.eXtremeManagement.doc',

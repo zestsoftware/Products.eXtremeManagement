@@ -65,6 +65,7 @@ class testProjectFolder(eXtremeManagementTestCase):
         self.projects.invokeFactory('Project', id='project')
         self.project = self.projects.project
 
+
     # from class ProjectFolder:
     def test_formatTime(self):
         """
@@ -94,6 +95,7 @@ class testProjectFolder(eXtremeManagementTestCase):
         self.assertEqual(self.project.formatMinutes(60),False)
 
     # Manually created methods
+
     def test_projectFolder(self):
         """Test adding a ProjectFolder in the portal root
         """
@@ -101,7 +103,6 @@ class testProjectFolder(eXtremeManagementTestCase):
         p=ProjectFolder('projects01')
         self.portal._setObject('projects01',p)
         self.failUnless( self.portal.projects01.portal_type == 'ProjectFolder')
-
 
 
 def test_suite():
