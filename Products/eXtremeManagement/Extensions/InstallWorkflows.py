@@ -29,7 +29,10 @@ __docformat__ = 'plaintext'
 
 from Products.CMFCore.utils import getToolByName
 from Products.ExternalMethod.ExternalMethod import ExternalMethod
+##code-section module-header #fill in your manual code here
 from zExceptions import NotFound
+##/code-section module-header
+
 
 def installWorkflows(self, package, out):
     """Install the custom workflows for this product."""
@@ -131,3 +134,5 @@ def uninstallWorkflows(self, package, out):
             print >>out, 'no output'
     return out.getvalue()
     ##/code-section workflow-uninstall
+
+    pass
