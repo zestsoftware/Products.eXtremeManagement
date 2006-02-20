@@ -56,15 +56,12 @@ def emailContact(portal, memberid, allowPortalContact=False):
     emailContact = '%s <%s>' % (fullname, email)
     return emailContact
 
-def mailMessage(portal, state_change, subject):
+def mailMessage(portal, obj, subject):
     """Mail a message in reaction to a transition.
 
     Thanks to Alan Runyan.  Adapted from:
     http://plone.org/documentation/how-to/send-mail-on-workflow-transition
     """
-
-    obj=state_change.object
-    #history = state_change.getHistory()
 
     membership = getToolByName(portal, 'portal_membership')
     wf_tool = getToolByName(portal, 'portal_workflow')
@@ -129,14 +126,7 @@ with the following comments:
             try:
                 mailhost.simple_send(mTo, mFrom, mSubj, message)
             except:
-                return False
-        else:
-            return False
-
-    # Send email to initializer:
-    mSubj = '%s by you: %s' % (subject, mTitle)
-    if mTransitioner and mTransitioner != 'unknown':
-        mailhost.simple_send(mTransitioner, mFrom, mSubj, message)
+                print'WARNING: mailing to %s failed.' % mTo
 
     return True
 
@@ -148,7 +138,8 @@ def notify_completed(self, state_change, **kw):
     Notify interested people that a task has been completed.
     """
     portal = self
-    mailMessage(portal, state_change, 'Task completed')
+    obj=state_change.object
+    mailMessage(portal, obj, 'Task completed')
 
 
 

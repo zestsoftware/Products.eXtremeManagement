@@ -37,6 +37,8 @@ from Products.CMFPlone.interfaces.NonStructuralFolder import INonStructuralFolde
 
 from Products.CMFCore.utils import getToolByName
 from sets import Set
+from Products.eXtremeManagement.Extensions.eXtreme_Task_Workflow_scripts import mailMessage
+
 ##/code-section module-header
 
 schema = Schema((
@@ -171,6 +173,15 @@ class Task(BaseFolder):
                     uids.append((userid, name))
 
         return DisplayList(uids)
+
+    security.declarePublic('setAssignees')
+    def setAssignees(self, value, **kw):
+        """
+        Overwrite the default setter.  An email should be sent on assignment.
+        """
+        self.schema['assignees'].set(self, value)
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        mailMessage(portal, self, 'New Task assigned')
 
     security.declarePublic('getRawEstimate')
     def getRawEstimate(self):

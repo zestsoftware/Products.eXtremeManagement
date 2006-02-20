@@ -94,6 +94,10 @@ class testTask(eXtremeManagementTestCase):
         self.assertEqual(self.task.getAssignees(), ())
 
     # from class Task:
+    def test_setAssignees(self):
+        pass
+
+    # from class Task:
     def test_getRawEstimate(self):
         """
         """
