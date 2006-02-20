@@ -183,7 +183,7 @@ class Task(BaseFolder):
         """
         Overwrite the default setter.  An email should be sent on assignment.
         """
-        old_assigneed = self.getAssignees()
+        old_assignees = self.getAssignees()
         if old_assignees != value:
             self.schema['assignees'].set(self, value)
             portal = getToolByName(self, 'portal_url').getPortalObject()
