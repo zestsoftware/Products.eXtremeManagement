@@ -183,9 +183,11 @@ class Task(BaseFolder):
         """
         Overwrite the default setter.  An email should be sent on assignment.
         """
-        self.schema['assignees'].set(self, value)
-        portal = getToolByName(self, 'portal_url').getPortalObject()
-        mailMessage(portal, self, 'New Task assigned')
+        old_assigneed = self.getAssignees()
+        if old_assignees != value:
+            self.schema['assignees'].set(self, value)
+            portal = getToolByName(self, 'portal_url').getPortalObject()
+            mailMessage(portal, self, 'New Task assigned')
 
     security.declarePublic('getRawEstimate')
     def getRawEstimate(self):
