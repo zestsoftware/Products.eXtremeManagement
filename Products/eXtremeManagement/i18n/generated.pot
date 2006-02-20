@@ -238,6 +238,7 @@ msgstr ""
 #. minutes
 #: Booking.py
 #: content/Booking.py
+#: content/Task.py
 msgid "eXtremeManagement_help_minutes"
 msgstr ""
 

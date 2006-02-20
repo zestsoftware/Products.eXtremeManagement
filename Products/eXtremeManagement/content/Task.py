@@ -54,6 +54,36 @@ schema = Schema((
         default_output_type='text/html'
     ),
 
+    IntegerField(
+        name='hours',
+        default="0",
+        index="FieldIndex",
+        widget=IntegerWidget(
+            description="Enter the estimated time (in hours).",
+            label='Hours',
+            label_msgid='eXtremeManagement_label_hours',
+            description_msgid='eXtremeManagement_help_hours',
+            i18n_domain='eXtremeManagement',
+        ),
+        label="Estimated hours"
+    ),
+
+    IntegerField(
+        name='minutes',
+        default="0",
+        index="FieldIndex",
+        widget=SelectionWidget
+        (
+            description="Enter the rest of the estimated time in minutes",
+            label='Minutes',
+            label_msgid='eXtremeManagement_label_minutes',
+            description_msgid='eXtremeManagement_help_minutes',
+            i18n_domain='eXtremeManagement',
+        ),
+        vocabulary=(0, 15, 30, 45),
+        label="Estimated minutes"
+    ),
+
     LinesField(
         name='assignees',
         index="FieldIndex",
@@ -66,32 +96,6 @@ schema = Schema((
         ),
         multiValued=1,
         vocabulary='_get_assignees'
-    ),
-
-    IntegerField(
-        name='hours',
-        default="0",
-        index="FieldIndex",
-        widget=IntegerWidget(
-            description="Enter the estimated time (in hours).",
-            label='Hours',
-            label_msgid='eXtremeManagement_label_hours',
-            description_msgid='eXtremeManagement_help_hours',
-            i18n_domain='eXtremeManagement',
-        )
-    ),
-
-    IntegerField(
-        name='minutes',
-        default="0",
-        index="FieldIndex",
-        widget=SelectionWidget
-        (
-            label='Minutes',
-            label_msgid='eXtremeManagement_label_minutes',
-            i18n_domain='eXtremeManagement',
-        ),
-        vocabulary=(0, 15, 30, 45)
     ),
 
 ),
