@@ -91,7 +91,7 @@ def setupeXtreme_Story_Workflow(self, workflow):
                            ['Customer', 'Employee', 'Manager', 'Owner'])
     stateDef.setPermission('Modify portal content',
                            0,
-                           ['Employee', 'Manager', 'Owner'])
+                           ['Employee', 'Manager'])
     stateDef.setPermission('View',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
@@ -141,7 +141,7 @@ def setupeXtreme_Story_Workflow(self, workflow):
                            ['Customer', 'Employee', 'Manager', 'Owner'])
     stateDef.setPermission('Modify portal content',
                            0,
-                           ['Employee', 'Manager', 'Owner'])
+                           ['Manager'])
     stateDef.setPermission('View',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
@@ -163,7 +163,7 @@ def setupeXtreme_Story_Workflow(self, workflow):
                            ['Customer', 'Employee', 'Manager', 'Owner'])
     stateDef.setPermission('Modify portal content',
                            0,
-                           ['Manager', 'Owner'])
+                           ['Manager'])
     stateDef.setPermission('View',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])

@@ -95,12 +95,15 @@ def installWorkflows(self, package, out):
         afterInstall = None
 
     if afterInstall:
-        print >>out,'Custom After Workflow Install:'
+        print >> out,'Custom After Workflow Install:'
         res = afterInstall(self, out)
         if res:
-            print >>out, res
+            print >> out, res
         else:
-            print >>out, 'no output'
+            print >> out, 'no output'
+
+    print >> out, 'Updating role mappings (security settings)'
+    workflowTool.updateRoleMappings()
     ##/code-section after-workflow-install
 
 
@@ -126,12 +129,12 @@ def uninstallWorkflows(self, package, out):
         preUninstall = None
 
     if preUninstall:
-        print >>out,'Custom Pre Workflow Uninstall:'
+        print >> out,'Custom Pre Workflow Uninstall:'
         res = preUninstall(self, out)
         if res:
-            print >>out, res
+            print >> out, res
         else:
-            print >>out, 'no output'
+            print >> out, 'no output'
     return out.getvalue()
     ##/code-section workflow-uninstall
 

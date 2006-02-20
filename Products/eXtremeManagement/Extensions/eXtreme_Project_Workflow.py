@@ -103,7 +103,7 @@ def setupeXtreme_Project_Workflow(self, workflow):
                            ['Customer', 'Employee', 'Manager', 'Owner'])
     stateDef.setPermission('Modify portal content',
                            0,
-                           ['Employee', 'Manager', 'Owner'])
+                           ['Employee', 'Manager'])
     stateDef.setPermission('Request review',
                            1,
                            ['Customer'])
