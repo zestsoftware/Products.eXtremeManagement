@@ -120,12 +120,19 @@ class testStory(eXtremeManagementTestCase):
     # from class Story:
     def test_getRawEstimate(self):
         """
+        When a story has tasks, get their estimates.
+        If not, get the roughEstimate of this story.
+        HOURS_PER_DAY is set in AppConfig.py (probably 8).
         """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Story('temp_Story')
-        ##self.folder._setObject('temp_Story', o)
-        pass
+        self.assertEqual(self.story.getRoughEstimate(), 4.5)
+        self.assertEqual(HOURS_PER_DAY, 8)
+        self.assertEqual(self.story.getRawEstimate(), 4.5 * HOURS_PER_DAY)
+        self.task.setHours(4)
+        self.assertEqual(self.story.getRawEstimate(), 4)
+        self.iteration.invokeFactory('Story', id='story2')
+        self.story2 = self.iteration.story2
+        #self.assertEqual(self.story2.getRoughEstimate(), None)
+        self.assertEqual(self.story2.getRawEstimate(), 0)
 
     # from class Story:
     def test_getEstimate(self):
