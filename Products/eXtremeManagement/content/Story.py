@@ -173,7 +173,10 @@ class Story(OrderedBaseFolder):
                 estimates.append(task.getRawEstimate())
             estimated = sum(estimates)
         if estimated == 0:
-            estimated = self.getRoughEstimate() * HOURS_PER_DAY
+            try:
+                estimated = self.getRoughEstimate() * HOURS_PER_DAY
+            except:
+                estimated = 0
         return estimated
 
     security.declarePublic('getEstimate')
