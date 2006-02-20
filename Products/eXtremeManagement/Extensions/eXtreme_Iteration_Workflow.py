@@ -92,7 +92,7 @@ def setupeXtreme_Iteration_Workflow(self, workflow):
                            ['Manager', 'Owner'])
     stateDef.setPermission('Modify portal content',
                            0,
-                           ['Manager', 'Owner'])
+                           ['Manager'])
     stateDef.setPermission('View',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
@@ -111,7 +111,7 @@ def setupeXtreme_Iteration_Workflow(self, workflow):
                            ['Manager', 'Owner'])
     stateDef.setPermission('Modify portal content',
                            0,
-                           ['Manager', 'Owner'])
+                           ['Manager'])
     stateDef.setPermission('View',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
@@ -130,7 +130,7 @@ def setupeXtreme_Iteration_Workflow(self, workflow):
                            ['Owner'])
     stateDef.setPermission('Modify portal content',
                            0,
-                           ['Owner'])
+                           [])
     stateDef.setPermission('View',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
@@ -149,7 +149,7 @@ def setupeXtreme_Iteration_Workflow(self, workflow):
                            ['Customer', 'Employee', 'Manager', 'Owner'])
     stateDef.setPermission('Modify portal content',
                            0,
-                           ['Manager', 'Owner'])
+                           ['Manager', 'Employee'])
     stateDef.setPermission('View',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
