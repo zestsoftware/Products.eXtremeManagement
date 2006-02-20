@@ -161,7 +161,9 @@ class Story(OrderedBaseFolder):
     security.declarePublic('getRawEstimate')
     def getRawEstimate(self):
         """
-        
+        When a story has tasks, get their estimates.
+        If not, get the roughEstimate of this story.
+        HOURS_PER_DAY is set in AppConfig.py (probably 8).
         """
         tasks = self.contentValues()
         estimated = 0.0
@@ -170,6 +172,8 @@ class Story(OrderedBaseFolder):
             for task in tasks:
                 estimates.append(task.getRawEstimate())
             estimated = sum(estimates)
+        if estimated == 0:
+            estimated = self.getRoughEstimate() * HOURS_PER_DAY
         return estimated
 
     security.declarePublic('getEstimate')
