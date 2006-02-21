@@ -222,9 +222,13 @@ class Story(OrderedBaseFolder):
     security.declarePublic('isEstimated')
     def isEstimated(self):
         """
-        True when roughEstimate is set
+        True when roughEstimate is set.  Actually, it could be an old
+        Story which does not have a roughEstimate.  That is okay, as
+        long as the story has tasks that have an estimate.  The
+        roughEstimate is superfluous in that case.  So checking the
+        raw estimate is good.
         """
-        if self.getRoughEstimate() > 0:
+        if self.getRawEstimate() > 0:
             return True
         else:
             return False
