@@ -271,7 +271,7 @@ def setupeXtreme_Story_Workflow(self, workflow):
     transitionDef = workflow.transitions['estimate']
     transitionDef.setProperties(title="""Estimate""",
                                 new_state_id="""estimated""",
-                                trigger_type=0,
+                                trigger_type=1,
                                 script_name="""""",
                                 after_script_name="""""",
                                 actbox_name="""Estimate""",
