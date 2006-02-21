@@ -266,6 +266,11 @@ msgstr ""
 msgid "eXtremeManagement_help_phoneNumber"
 msgstr ""
 
+#. Default: "Enter a rough estimate in days (tip: use multiples of 0.5 days)"
+#: content/Story.py
+msgid "eXtremeManagement_help_roughEstimate"
+msgstr ""
+
 #. Default: "startDate"
 #. startDate
 #: content/Iteration.py

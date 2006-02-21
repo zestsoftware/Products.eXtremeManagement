@@ -57,8 +57,10 @@ schema = Schema((
     FloatField(
         name='roughEstimate',
         widget=DecimalWidget(
+            description="Enter a rough estimate in days (tip: use multiples of 0.5 days)",
             label='Roughestimate',
             label_msgid='eXtremeManagement_label_roughEstimate',
+            description_msgid='eXtremeManagement_help_roughEstimate',
             i18n_domain='eXtremeManagement',
         ),
         write_permission="eXtremeManagement: Edit roughEstimate"
