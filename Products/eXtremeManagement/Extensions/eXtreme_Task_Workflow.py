@@ -1,7 +1,7 @@
 # File: eXtremeManagement.py
 #
 # Copyright (c) 2006 by Zest software
-# Generator: ArchGenXML Version 1.4.1 svn/devel
+# Generator: ArchGenXML Version 1.4.2 svn/maintenance
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -89,7 +89,7 @@ def setupeXtreme_Task_Workflow(self, workflow):
                            ['Customer', 'Employee', 'Manager', 'Owner'])
     stateDef.setPermission('Modify portal content',
                            0,
-                           ['Manager'])
+                           ['Manager', 'Employee'])
     stateDef.setPermission('View',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
