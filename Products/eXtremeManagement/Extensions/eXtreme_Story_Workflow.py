@@ -265,7 +265,7 @@ def setupeXtreme_Story_Workflow(self, workflow):
                                 actbox_name="""Retract""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
-                                props={'guard_expr': 'not:here/isEstimated', 'guard_roles': 'Customer;Employee;Manager'},
+                                props={'guard_roles': 'Customer;Employee;Manager'},
                                 )
 
     transitionDef = workflow.transitions['estimate']
