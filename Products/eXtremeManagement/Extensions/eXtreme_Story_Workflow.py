@@ -269,12 +269,12 @@ def setupeXtreme_Story_Workflow(self, workflow):
                                 )
 
     transitionDef = workflow.transitions['estimate']
-    transitionDef.setProperties(title="""Estimate""",
+    transitionDef.setProperties(title="""Mark as estimated""",
                                 new_state_id="""estimated""",
                                 trigger_type=1,
                                 script_name="""""",
                                 after_script_name="""""",
-                                actbox_name="""Estimate""",
+                                actbox_name="""Mark as estimated""",
                                 actbox_url="""""",
                                 actbox_category="""workflow""",
                                 props={'guard_expr': 'here/isEstimated', 'guard_roles': 'Employee;Manager'},
