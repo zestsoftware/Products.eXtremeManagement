@@ -67,7 +67,7 @@ class Project(OrderedBaseFolder):
     portal_type = 'Project'
     allowed_content_types = ['Iteration', 'Story', 'PoiTracker']
     filter_content_types = 1
-    global_allow = 0
+    global_allow = 1
     allow_discussion = False
     content_icon = 'project_icon.gif'
     immediate_view = 'base_view'
