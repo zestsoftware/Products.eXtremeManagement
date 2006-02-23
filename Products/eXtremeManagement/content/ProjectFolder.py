@@ -72,6 +72,20 @@ class ProjectFolder(OrderedBaseFolder):
     typeDescription = "ProjectFolder"
     typeDescMsgId = 'description_edit_projectfolder'
 
+    actions =  (
+
+
+       {'action': "string:${object_url}/project_listing",
+        'category': "object",
+        'id': 'view',
+        'name': 'view',
+        'permissions': ("View",),
+        'condition': 'python:1'
+       },
+
+
+    )
+
     _at_rename_after_creation = True
 
     schema = ProjectFolder_schema

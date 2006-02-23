@@ -94,6 +94,10 @@ class testProjectFolder(eXtremeManagementTestCase):
         self.assertEqual(self.project.formatMinutes(59),':59')
         self.assertEqual(self.project.formatMinutes(60),False)
 
+    # from class ProjectFolder:
+    def test_project_listing(self):
+        pass
+
     # Manually created methods
 
     def test_projectFolder(self):
