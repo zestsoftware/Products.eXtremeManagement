@@ -81,7 +81,6 @@ class testSetup(eXtremeManagementTestCase):
         """
         ids = self.portal.portal_skins.objectIds()
         self.failUnless('eXtremeManagement' in ids)
-        self.failUnless('eXtremeManagement_public' in ids)
 
     def test_workflows(self):
         ids = self.portal.portal_workflow.objectIds()
