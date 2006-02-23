@@ -82,7 +82,7 @@ class CustomerFolder(OrderedBaseFolder):
     # Methods
 
 
-registerType(CustomerFolder,PROJECTNAME)
+registerType(CustomerFolder, PROJECTNAME)
 # end of class CustomerFolder
 
 ##code-section module-footer #fill in your manual code here

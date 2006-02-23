@@ -253,7 +253,7 @@ class Task(BaseFolder):
             return False
 
 
-registerType(Task,PROJECTNAME)
+registerType(Task, PROJECTNAME)
 # end of class Task
 
 ##code-section module-footer #fill in your manual code here

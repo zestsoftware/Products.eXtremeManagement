@@ -206,7 +206,7 @@ class Customer(OrderedBaseFolder):
     # Methods
 
 
-registerType(Customer,PROJECTNAME)
+registerType(Customer, PROJECTNAME)
 # end of class Customer
 
 ##code-section module-footer #fill in your manual code here

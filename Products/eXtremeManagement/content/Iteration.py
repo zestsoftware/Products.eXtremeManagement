@@ -197,7 +197,7 @@ class Iteration(OrderedBaseFolder):
         return True
 
 
-registerType(Iteration,PROJECTNAME)
+registerType(Iteration, PROJECTNAME)
 # end of class Iteration
 
 ##code-section module-footer #fill in your manual code here

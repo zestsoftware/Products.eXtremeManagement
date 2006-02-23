@@ -274,7 +274,7 @@ class Story(OrderedBaseFolder):
         return True
 
 
-registerType(Story,PROJECTNAME)
+registerType(Story, PROJECTNAME)
 # end of class Story
 
 ##code-section module-footer #fill in your manual code here

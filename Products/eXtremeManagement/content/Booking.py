@@ -177,7 +177,7 @@ class Booking(BaseContent):
         return self.formatTime(self.getRawActualHours())
 
 
-registerType(Booking,PROJECTNAME)
+registerType(Booking, PROJECTNAME)
 # end of class Booking
 
 ##code-section module-footer #fill in your manual code here

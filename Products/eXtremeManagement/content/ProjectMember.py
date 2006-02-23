@@ -123,7 +123,7 @@ class ProjectMember(BaseContent):
     # Methods
 
 
-registerType(ProjectMember,PROJECTNAME)
+registerType(ProjectMember, PROJECTNAME)
 # end of class ProjectMember
 
 ##code-section module-footer #fill in your manual code here

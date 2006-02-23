@@ -139,7 +139,7 @@ class ProjectFolder(OrderedBaseFolder):
         return minutes
 
 
-registerType(ProjectFolder,PROJECTNAME)
+registerType(ProjectFolder, PROJECTNAME)
 # end of class ProjectFolder
 
 ##code-section module-footer #fill in your manual code here

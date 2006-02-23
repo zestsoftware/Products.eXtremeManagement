@@ -134,7 +134,7 @@ class Project(OrderedBaseFolder):
         return list1
 
 
-registerType(Project,PROJECTNAME)
+registerType(Project, PROJECTNAME)
 # end of class Project
 
 ##code-section module-footer #fill in your manual code here

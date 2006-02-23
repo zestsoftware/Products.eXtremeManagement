@@ -1,7 +1,7 @@
 # File: Install.py
 #
 # Copyright (c) 2006 by Zest software
-# Generator: ArchGenXML Version 1.4.2 svn/maintenance
+# Generator: ArchGenXML Version 1.5.0 svn/devel
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
