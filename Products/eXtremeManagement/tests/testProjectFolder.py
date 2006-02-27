@@ -65,7 +65,6 @@ class testProjectFolder(eXtremeManagementTestCase):
         self.projects.invokeFactory('Project', id='project')
         self.project = self.projects.project
 
-
     # from class ProjectFolder:
     def test_formatTime(self):
         """

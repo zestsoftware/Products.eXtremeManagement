@@ -76,7 +76,6 @@ class testStory(eXtremeManagementTestCase):
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
 
-
     # from class Story:
     def test_CookedBody(self):
         """

@@ -118,7 +118,6 @@ class testWorkflow(eXtremeManagementTestCase):
         self.logout()
         self.login(self.default_user)
 
-
     def test_initial_states(self):
         """Test if the initial states for the CTs are what we expect
         them to be.

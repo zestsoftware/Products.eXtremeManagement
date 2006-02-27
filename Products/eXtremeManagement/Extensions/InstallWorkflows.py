@@ -29,10 +29,10 @@ __docformat__ = 'plaintext'
 
 from Products.CMFCore.utils import getToolByName
 from Products.ExternalMethod.ExternalMethod import ExternalMethod
+
 ##code-section module-header #fill in your manual code here
 from zExceptions import NotFound
 ##/code-section module-header
-
 
 def installWorkflows(self, package, out):
     """Install the custom workflows for this product."""
@@ -81,6 +81,7 @@ def installWorkflows(self, package, out):
     workflow = ourProductWorkflow(self, 'eXtreme_Booking_Workflow')
     workflowTool._setObject('eXtreme_Booking_Workflow', workflow)
     workflowTool.setChainForPortalTypes(['Booking'], workflow.getId())
+
     ##code-section after-workflow-install #fill in your manual code here
 
     # Finally, see if we need to do migration after installing.
@@ -105,7 +106,6 @@ def installWorkflows(self, package, out):
     print >> out, 'Updating role mappings (security settings)'
     workflowTool.updateRoleMappings()
     ##/code-section after-workflow-install
-
 
     return workflowTool
 

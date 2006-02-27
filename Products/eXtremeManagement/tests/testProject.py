@@ -61,7 +61,6 @@ class testProject(eXtremeManagementTestCase):
         """
         pass
 
-
     # from class Project:
     def test_getProject(self):
         """ Test that you can add and call a Project item
