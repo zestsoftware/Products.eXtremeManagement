@@ -1,3 +1,8 @@
+Installation
+
+  Just install eXtremeManagement like you would any other Plone
+  product: put it in its own directory within the Products dir of your
+  zope instance.
 
 
 Dependencies
@@ -10,6 +15,9 @@ Dependencies
 
  * AddRemoveWidget (http://svn.plone.org/svn/archetypes/MoreFieldsAndWidgets/DataGridField/trunk)
 
+ * and of course Plone (tested with 2.1 series) and Zope (tested with
+   2.8 series).
+
 
 Additional dependencies for development
 
@@ -19,6 +27,13 @@ Additional dependencies for development
 
  * ZopeTestCase: http://www.zope.org/Members/shh/ZopeTestCase/0.9.6
    (needs to be installed in ZOPE_HOME/lib/python/Testing/ZopeTestCase)
+   This is installed automatically for Zope 2.8.
+
+
+Skins
+
+   Just so you know: eXtremeManagement by default installs its own
+   skin.
 
 
 Migration from before release 1.0
