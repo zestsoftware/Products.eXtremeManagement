@@ -18,15 +18,8 @@
     <metal:block metal:define-macro="body"
                  tal:define="idIndex python:Iterator(pos=-1);
                             physical_path python: '/'.join(context.getPhysicalPath());
-                            iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
-                                                                                review_state=['completed', 'invoiced'], 
-                                                                                path=physical_path);
-                            current_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
-                                                                                        sort_on='created',
-                                                                                        sort_order='normal',
-                                                                                        review_state='in-progress',
-                                                                                        path=physical_path)[:1]">
-
+                            iterations python:context.getIterations(('completed','invoiced',));
+                            current_iterations python:context.getIterations(('in-progress',))">
 
         <tal:block tal:condition="iterations">
             <h1 i18n:translate="heading_iterations">Iterations</h1>
@@ -184,18 +177,14 @@
         </tal:block>
 
         <tal:block tal:define="project_path python:'/'.join(context.getPhysicalPath());
-                            open_iterations python:here.portal_catalog.searchResults(portal_type='Iteration',
-                                                                                        review_state='new',
-                                                                                        path=project_path,
-                                                                                        sort_on='created',
-                                                                                        sort_order='normal')"
+                               open_iterations python:context.getIterations(('new',))"
                    tal:condition="python:open_iterations">
 
         <h1 i18n:translate="header_iterations">Iterations</h1>
 
         <p class="discreet" 
             i18n:translate="description_new_iterations">
-            Here is a list of all iterations with the status <strong>Open</strong>. 
+            Here is a list of all iterations with the status <strong>New</strong>. 
             The stories assigned to these iterations are also displayed. 
             This makes it easier to see which stories are assigned to which iteration.
         </p> 
