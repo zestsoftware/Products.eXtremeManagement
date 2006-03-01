@@ -22,6 +22,11 @@
       </h5>
       <span tal:content="here/getActualHours">3:14</span>
 
+      <h5 class="header-booking-date" 
+          i18n:translate="heading-booking-date">Booking date
+      </h5>
+      <span tal:content="here/getBookingDate">2006-01-01</span>
+
     </metal:block>
     <metal:block metal:define-macro="folderlisting" />
   </body>
