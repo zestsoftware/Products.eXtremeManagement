@@ -112,7 +112,7 @@
 
             <tal:block tal:define="items python:context.getOwnOpenTasks();">
             <tal:block tal:condition="items">
-            <h1 i18n:translate="heading-in-progress-tasks">My open tasks</h1>
+            <h1 i18n:translate="heading-open-tasks">My open tasks</h1>
                <table
                metal:use-macro="here/iteration_view/macros/tasklist_table_with_story">
                </table>

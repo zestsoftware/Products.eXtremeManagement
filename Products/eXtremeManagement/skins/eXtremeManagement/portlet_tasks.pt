@@ -13,14 +13,16 @@
 
      <dl class="portlet" id="portlet-project-administration">
 
-        <dt class="portletHeader"
-            i18n:translate="project_administration">
-            <a i18n:translate="project_administration" 
-               tal:condition="python: member.has_role('Manager')"  
-               tal:attributes="href string:${portal_url}/project_administration">Project administration
+        <dt class="portletHeader" >
+            <a tal:condition="python: member.has_role('Manager')"  
+               tal:attributes="href
+               string:${portal_url}/project_administration">
+               <span tal:omit-tag="" i18n:translate="project_administration">
+                  Project administration</span>
             </a>
             <span tal:condition="python: not
                   member.has_role('Manager')"
+                  i18n:translate="project_administration"
                   tal:omit-tag="" >
                 Project administration</span>
         </dt>
@@ -82,7 +84,7 @@
                 tal:content="python:here.toPortalTime(moddate)">July 7, 08:11</div>
         </dd>
         </tal:block>
-                
+     </dl>
     </div>
     </body>
 </html>

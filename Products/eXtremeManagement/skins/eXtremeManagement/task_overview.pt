@@ -13,7 +13,7 @@
     <div metal:fill-slot="main"
          tal:define="projects python:portal.getProjects();"
          tal:omit-tag="">
-    <h1 i18n:translate="heading-in-progress-tasks">My open tasks</h1>
+    <h1 i18n:translate="heading-open-tasks">My open tasks</h1>
 
     <p>These are all tasks that have been assigned to me and are not
     yet worked on (so no to-do or completed status).</p>
