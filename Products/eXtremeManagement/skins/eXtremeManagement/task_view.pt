@@ -70,15 +70,24 @@
                    class="listing" 
                    with="100%">
                 <tr>
+                    <th i18n:translate="listingheader-bookingdate">
+                        Date
+                    </th>
                     <th i18n:translate="listingheader-booking">
                         Booking
                     </th>
                     <th i18n:translate="listingheader-time">
                         Time
                     </th>
+                    <th i18n:translate="listingheader-booked-by">
+                        Booked by
+                    </th>
                 </tr>
             
                 <tr tal:repeat="booking bookings">
+                    <td tal:content="booking/getBookingDate">
+                        2006-01-01
+                    </td>
                     <td>
                         <a tal:attributes="href string:${booking/absolute_url}"
                            class="booking_title"
@@ -92,6 +101,9 @@
                     </td>
                     <td tal:content="booking/getActualHours">
                         4:45
+                    </td>
+                    <td tal:content="booking/Creator">
+                        Maurits
                     </td>
                 </tr>
             </table>
