@@ -70,10 +70,6 @@ def mailMessage(portal, obj, subject):
     # This is the original creator of the task:
     creatorid = obj.Creator()
     
-    # This is the person that marked this task as completed:
-    transitionerId = wf_tool.getInfoFor(obj, 'actor')
-
-    
     mMsg = """
 The url is:
 %s.
@@ -81,30 +77,21 @@ The url is:
 The original creator of this task is:
 %s
 
-The description of the task is:
 %s
 
-This estimate for this task is: %s hours.
+This estimate for this task is currently: %s hours.
 
 This task is assigned to:
 %s
 
-This transition was done by:
-%s
-
-with the following comments:
-%s
+You can do it!
 """
 
     mTitle = obj.Title()
     mSubj = '%s: %s' % (subject, mTitle)
     obj_url = obj.absolute_url() #use portal_url + relative_url
-    comments = wf_tool.getInfoFor(obj, 'comments')
     mCreator = emailContact(portal, creatorid, allowPortalContact=True)
-    mFrom = emailContact(portal, transitionerId, allowPortalContact=True)
-    mTransitioner = emailContact(portal, transitionerId)
-    if mTransitioner is None or mTransitioner == '':
-        mTransitioner = 'unknown'
+    mFrom = mCreator
 
     # These are the persons that this task is now assigned to:
     assignees = obj.getAssignees()
@@ -113,16 +100,18 @@ with the following comments:
         listofAssignees += emailContact(portal, assignee)
         listofAssignees += '\n'
 
+    description = obj.Description()
+    if description != '':
+        description = """The description of the task is:
+""" + description
 
-    message = mMsg % (obj_url, mCreator, obj.Description(),
-                      obj.getEstimate(), listofAssignees,
-                      mTransitioner, comments)
+    message = mMsg % (obj_url, mCreator, description,
+                      obj.getEstimate(), listofAssignees)
 
     for assignee in assignees:
         mTo = emailContact(portal, assignee)
         # If email address is known:
-        if mTo and mTo != '' and mTo != mCreator \
-               and mTo != mTransitioner:
+        if mTo and mTo != '' and mTo != mCreator:
             try:
                 mailhost.simple_send(mTo, mFrom, mSubj, message)
             except:
