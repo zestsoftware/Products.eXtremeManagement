@@ -134,7 +134,6 @@ class testBooking(eXtremeManagementTestCase):
         self.task.invokeFactory('Booking', id='booking2', hours=1, minutes='')
         self.assertEqual(self.task.booking2.getActualHours(), '1:00')
 
-
     # Manually created methods
 
 

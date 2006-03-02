@@ -34,6 +34,15 @@
                 </td>
             </tr>
             <tr>
+                <th class="customer_info_header" 
+                    i18n:translate="listingheader_total_actual">
+                    Total actual
+                </th>
+                <td tal:content="here/getActualHours">
+                    0:00
+                </td>
+            </tr>
+            <tr>
                 <th class="customer_info_header"
                     i18n:translate="listingheader_state">
                     Status
