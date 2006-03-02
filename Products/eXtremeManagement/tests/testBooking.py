@@ -112,6 +112,12 @@ class testBooking(eXtremeManagementTestCase):
         self.task.invokeFactory('Booking', id='booking5', hours=4, minutes=75)
         self.assertEqual(self.task.booking5.getRawActualHours(), 5.25)
 
+        # What happens if hours or minutes are empty strings?
+        self.task.invokeFactory('Booking', id='booking6', hours='', minutes=30)
+        self.assertEqual(self.task.booking6.getRawActualHours(), 0.5)
+        self.task.invokeFactory('Booking', id='booking7', hours=1, minutes='')
+        self.assertEqual(self.task.booking7.getRawActualHours(), 1)
+
     # from class Booking:
     def test_getActualHours(self):
         """
@@ -121,6 +127,13 @@ class testBooking(eXtremeManagementTestCase):
         ##o=Booking('temp_Booking')
         ##self.folder._setObject('temp_Booking', o)
         self.assertEqual(self.booking.getActualHours(), '3:15')
+
+        # What happens if hours or minutes are empty strings?
+        self.task.invokeFactory('Booking', id='booking1', hours='', minutes=30)
+        self.assertEqual(self.task.booking1.getActualHours(), '0:30')
+        self.task.invokeFactory('Booking', id='booking2', hours=1, minutes='')
+        self.assertEqual(self.task.booking2.getActualHours(), '1:00')
+
 
     # Manually created methods
 
