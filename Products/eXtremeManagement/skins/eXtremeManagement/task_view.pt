@@ -82,6 +82,9 @@
                     <th i18n:translate="listingheader-booked-by">
                         Booked by
                     </th>
+                    <th i18n:translate="listingheader-billable">
+                        Billable
+                    </th>
                 </tr>
             
                 <tr tal:repeat="booking bookings">
@@ -104,6 +107,9 @@
                     </td>
                     <td tal:content="booking/Creator">
                         Maurits
+                    </td>
+                    <td tal:content="booking/getBillable">
+                        True
                     </td>
                 </tr>
             </table>

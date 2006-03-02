@@ -27,6 +27,11 @@
       </h5>
       <span tal:content="here/getBookingDate">2006-01-01</span>
 
+      <h5 class="header-billable" 
+          i18n:translate="heading-billable">Billable
+      </h5>
+      <span tal:content="here/getBillable">True</span>
+
     </metal:block>
     <metal:block metal:define-macro="folderlisting" />
   </body>
