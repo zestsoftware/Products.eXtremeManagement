@@ -13,6 +13,23 @@
     <div metal:fill-slot="main"
          tal:define="projects python:portal.getProjects();"
          tal:omit-tag="">
+    <h1 i18n:translate="heading-to-do-tasks">My to-do tasks</h1>
+
+    <p>These are all tasks that have been assigned to me and that I
+    should currently work on.</p>
+    
+    <tal:loop tal:repeat="project projects">
+            <tal:block tal:define="items python:project.getOwnToDoTasks();">
+            <tal:block tal:condition="items">
+            <h2 tal:content="project/Title" />
+               <table
+               metal:use-macro="here/iteration_view/macros/tasklist_table_with_story">
+               </table>
+            </tal:block>
+            </tal:block>
+
+    </tal:loop>
+
     <h1 i18n:translate="heading-open-tasks">My open tasks</h1>
 
     <p>These are all tasks that have been assigned to me and are not
