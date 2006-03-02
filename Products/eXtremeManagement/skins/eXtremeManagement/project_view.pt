@@ -127,13 +127,15 @@
                     <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
                 </tr>
 
-                <tr tal:define="stories python:obj.contentValues('Story');"
-                    tal:repeat="story stories">
+                <tr tal:define="stories obj/getStateSortedContents"
+                    tal:repeat="story_brain stories">
 
-                    <tal:block tal:define="progress python:story.get_progress_perc();
-                                    openTasks python:story.getUnfinishedTaskCount();
-                                    completedTasks python:story.getCompletedTaskCount();
-                                    storyIsCompleted python:story.isCompleted()">
+                    <tal:block
+                     tal:define="story python:story_brain.getObject();
+                                 progress python:story.get_progress_perc();
+                                 openTasks python:story.getUnfinishedTaskCount();
+                                 completedTasks python:story.getCompletedTaskCount();
+                                 storyIsCompleted python:story.isCompleted()">
     
                     <td width="30%">
                         <a class="storyTitle_project_overview"

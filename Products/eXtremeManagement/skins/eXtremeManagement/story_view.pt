@@ -20,7 +20,7 @@
                         totalActual python:here.getActualHours();
                         totalDifference python:here.getDifference();
                         item_path python:'/'.join(context.getPhysicalPath());
-                        items python:context.getTasks();">
+                        items context/getStateSortedContents;">
     
         <div tal:replace="structure context/CookedBody" />
 
