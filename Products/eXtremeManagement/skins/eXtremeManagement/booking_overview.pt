@@ -3,77 +3,77 @@
       i18n:domain="eXtremeManagement"
       metal:use-macro="here/main_template/macros/master">
 
-    <head>
-        <metal:block fill-slot="top_slot"
-                     tal:define="dummy python:request.set('disable_border', 1)" />
-    </head>
+  <head>
+    <metal:block fill-slot="top_slot"
+		 tal:define="dummy python:request.set('disable_border', 1)" />
+  </head>
 
-    <body>
+  <body>
 
     <div metal:fill-slot="main"
-         tal:omit-tag="">
+	 tal:omit-tag="">
 
-         <p tal:condition="not:request/previous|nothing">
-           Go to <a
-           tal:attributes="href
-           string:${template/absolute_url}?previous=1">previous</a> month.
-         </p>
-         <p tal:condition="request/previous|nothing"> Back to <a
-               tal:attributes="href
-               string:${template/absolute_url}">current</a> month.</p>
+      <p tal:condition="not:request/previous|nothing">
+	Go to <a
+	tal:attributes="href
+	string:${template/absolute_url}?previous=1">previous</a> month.
+      </p>
+      <p tal:condition="request/previous|nothing"> Back to <a
+      tal:attributes="href
+      string:${template/absolute_url}">current</a> month.</p>
 
-        <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
-                                bookings python:context.getBookings()"
-                   tal:condition="bookings">
-            <h1 i18n:translate="heading-bookings">Bookings</h1>
-            
-            <table border="1" 
-                   class="listing" 
-                   with="100%">
-                <tr>
-                    <th i18n:translate="listingheader-date">
-                        Date
-                    </th>
-                    <th i18n:translate="listingheader-story">
-                        Story
-                    </th>
-                    <th i18n:translate="listingheader-booking">
-                        Booking
-                    </th>
-                    <th i18n:translate="listingheader-time">
-                        Time
-                    </th>
-                </tr>
-            
-                <tr tal:repeat="booking bookings">
-                    <td tal:content="python:context.toLocalizedTime(booking.getBookingDate(), long_format=0)">
-                        2006-01-25
-                    </td>
-                    <td>
-                        <a tal:attributes="href string:${booking/aq_parent/absolute_url}"
-                           class="booking_title"
-                           tal:content="booking/aq_parent/Title">
-                            Title
-                        </a>
-                    </td>
-                    <td>
-                        <a tal:attributes="href string:${booking/absolute_url}"
-                           class="booking_title"
-                           tal:content="booking/Title">
-                            Title
-                        </a>
-                        <div class="booking_description" 
-                             tal:content="booking/Description">
-                            Description
-                        </div>
-                    </td>
-                    <td tal:content="booking/getActualHours">
-                        4:45
-                    </td>
-                </tr>
-            </table>
-        </tal:block>
+      <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
+			     bookings python:context.getBookings()"
+		 tal:condition="bookings">
+	<h1 i18n:translate="heading-bookings">Bookings</h1>
+	
+	<table border="1" 
+	       class="listing" 
+	       with="100%">
+	  <tr>
+	    <th i18n:translate="listingheader-date">
+	      Date
+	    </th>
+	    <th i18n:translate="listingheader-story">
+	      Story
+	    </th>
+	    <th i18n:translate="listingheader-booking">
+	      Booking
+	    </th>
+	    <th i18n:translate="listingheader-time">
+	      Time
+	    </th>
+	  </tr>
+	  
+	  <tr tal:repeat="booking bookings">
+	    <td tal:content="python:context.toLocalizedTime(booking.getBookingDate(), long_format=0)">
+	      2006-01-25
+	    </td>
+	    <td>
+	      <a tal:attributes="href string:${booking/aq_parent/absolute_url}"
+		 class="booking_title"
+		 tal:content="booking/aq_parent/Title">
+		Title
+	      </a>
+	    </td>
+	    <td>
+	      <a tal:attributes="href string:${booking/absolute_url}"
+		 class="booking_title"
+		 tal:content="booking/Title">
+		Title
+	      </a>
+	      <div class="booking_description" 
+		   tal:content="booking/Description">
+		Description
+	      </div>
+	    </td>
+	    <td tal:content="booking/getActualHours">
+	      4:45
+	    </td>
+	  </tr>
+	</table>
+      </tal:block>
     </div>
-    </body>
+  </body>
 </html>
 
