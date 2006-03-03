@@ -45,14 +45,22 @@
 	    </th>
 	  </tr>
 	  
-	  <tr tal:repeat="booking bookings">
-	    <td tal:content="python:context.toLocalizedTime(booking.getBookingDate(), long_format=0)">
-	      2006-01-25
+	  <tr tal:repeat="booking bookings"
+	      tal:define="story booking/aq_parent;
+			  iteration story/aq_parent;
+			  project iteration/aq_parent;">
+	    <td>
+	      <span tal:content="python:context.toLocalizedTime(booking.getBookingDate(), long_format=0)">
+		2006-01-25
+	      </span>
+	      <br />
+	      <span class="discreet"
+		    tal:content="project/Title"/>
 	    </td>
 	    <td>
-	      <a tal:attributes="href string:${booking/aq_parent/absolute_url}"
+	      <a tal:attributes="href string:${story/absolute_url}"
 		 class="booking_title"
-		 tal:content="booking/aq_parent/Title">
+		 tal:content="story/Title">
 		Title
 	      </a>
 	    </td>
