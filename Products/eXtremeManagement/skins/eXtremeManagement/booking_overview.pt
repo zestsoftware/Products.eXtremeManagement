@@ -34,8 +34,8 @@
 	    <th i18n:translate="listingheader-date">
 	      Date
 	    </th>
-	    <th i18n:translate="listingheader-story">
-	      Story
+	    <th i18n:translate="listingheader-task">
+	      Task
 	    </th>
 	    <th i18n:translate="listingheader-booking">
 	      Booking
@@ -45,22 +45,19 @@
 	    </th>
 	  </tr>
 	  
-	  <tr tal:repeat="booking bookings"
-	      tal:define="story booking/aq_parent;
-			  iteration story/aq_parent;
-			  project iteration/aq_parent;">
+	  <tr tal:repeat="booking bookings">
 	    <td>
 	      <span tal:content="python:context.toLocalizedTime(booking.getBookingDate(), long_format=0)">
 		2006-01-25
 	      </span>
 	      <br />
 	      <span class="discreet"
-		    tal:content="project/Title"/>
+		    tal:content="booking/aq_parent/aq_parent/aq_parent/aq_parent/Title"/>
 	    </td>
 	    <td>
-	      <a tal:attributes="href string:${story/absolute_url}"
+	      <a tal:attributes="href string:${booking/aq_parent/absolute_url}"
 		 class="booking_title"
-		 tal:content="story/Title">
+		 tal:content="booking/aq_parent/Title">
 		Title
 	      </a>
 	    </td>
