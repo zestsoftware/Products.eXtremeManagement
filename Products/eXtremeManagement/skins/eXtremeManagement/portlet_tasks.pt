@@ -4,16 +4,13 @@
 
     <body>
 
-    <!-- The open tasks box -->
-    
     <div metal:define-macro="portlet"
-        tal:define="DateTime python:modules['DateTime'].DateTime;
-                    results  python:portal.getOwnToDoTasks();"
         tal:omit-tag="">
 
      <dl class="portlet" id="portlet-project-administration">
 
         <dt class="portletHeader" >
+            <!-- Make the header a link for Managers. -->
             <a tal:condition="python: member.has_role('Manager')"  
                tal:attributes="href
                string:${portal_url}/project_administration">
@@ -40,50 +37,21 @@
             </a>
         </dd>
 
-        <!-- keep the following as the last one -->
-        <dd tal:define="itemClass python:test(results, 'portletItem', 'portletItemLast');
-                        class python:itemClass + ' odd';"
-            tal:attributes="class class">
+        <dd class="portletItem odd">
             <a i18n:translate="task_overview" 
                tal:attributes="href
                string:${portal_url}/task_overview">Task overview
             </a>
         </dd> 
 
-        <dd tal:condition="results" 
-             class="portletItem even">
+        <!-- keep the following as the last one -->
+        <dd class="portletItemLast even">
             <a i18n:translate="header_time_registration"
                tal:attributes="href string:${portal_url}/update_hours_form">
                 Time registration
             </a> 
         </dd>  
 
-        <tal:block repeat="item results">
-
-        <dd tal:define="oddrow repeat/item/odd;
-                        taskObj item/getObject;
-                        end repeat/item/end;
-                        itemClass python:test(end, 'portletItemLast', 'portletItem');
-                        class python:itemClass + test(oddrow, ' even', ' odd')"
-            tal:attributes="class class">
-
-            <a class="marker"
-               tal:attributes="href taskObj/absolute_url"> 
-                <img alt="" 
-                     height="16" 
-                     width="16"
-                    tal:attributes="src string:${here/portal_url}/${item/getIcon};" />
-
-                <span tal:replace="item/Title">
-                    Title
-                </span>
-            </a>
-
-            <div class="portletDetails"
-                tal:define="moddate item/ModificationDate;"
-                tal:content="python:here.toPortalTime(moddate)">July 7, 08:11</div>
-        </dd>
-        </tal:block>
      </dl>
     </div>
     </body>
