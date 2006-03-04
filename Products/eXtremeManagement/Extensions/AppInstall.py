@@ -17,16 +17,21 @@ from Products.eXtremeManagement.config import *
 def configurePortalProps(portal):
     # customize portal props (slots)
     left_slots = portal.getProperty('left_slots', None)
-    newSlots = ('here/portlet_stories/macros/portlet',)
-    for slot in newSlots:
+    ourLeftSlots = ('here/portlet_stories/macros/portlet',)
+    newSlots = ()
+    for slot in ourLeftSlots:
         if slot not in left_slots:
-            portal._updateProperty('left_slots', tuple(left_slots) + (slot,)) 
+            newSlots = newSlots + (slot,)
+    portal._updateProperty('left_slots', tuple(left_slots) + newSlots) 
 
     right_slots = portal.getProperty('right_slots', None)
-    newSlots = ('here/portlet_tasks/macros/portlet',)
-    for slot in newSlots:
+    ourRightSlots = ('here/portlet_tasks/macros/portlet',
+                     'here/portlet_my_projects/macros/portlet',)
+    newSlots = ()
+    for slot in ourRightSlots:
         if slot not in right_slots:
-            portal._updateProperty('right_slots', tuple(right_slots) + (slot,)) 
+            newSlots = newSlots + (slot,)
+    portal._updateProperty('right_slots', tuple(right_slots) + newSlots) 
 
     # update navtree_props
     props_tool = getToolByName(portal, 'portal_properties')
