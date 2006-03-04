@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+#
 # File: testCustomer.py
 #
 # Copyright (c) 2006 by Zest software

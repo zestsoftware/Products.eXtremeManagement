@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+#
 # File: Project.py
 #
 # Copyright (c) 2006 by Zest software
