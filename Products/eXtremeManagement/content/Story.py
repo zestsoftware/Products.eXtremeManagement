@@ -126,7 +126,7 @@ class Story(OrderedBaseFolder):
         MAXIMUM_NOT_COMPLETED_PERCENTAGE, and your story still is not
         completed, we deem it safer to display this percentage.
         """
-        maximumUnCompletedPercentage = 90
+        
         if self.isCompleted():
             return 100
         estimated = self.getRawEstimate()
