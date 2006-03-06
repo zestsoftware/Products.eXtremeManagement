@@ -121,14 +121,22 @@ class Story(OrderedBaseFolder):
     security.declarePublic('get_progress_perc')
     def get_progress_perc(self):
         """
-        
+        We cheat a bit: When a story is completed, the progress is
+        100% by definition.  When you get above
+        MAXIMUM_NOT_COMPLETED_PERCENTAGE, and your story still is not
+        completed, we deem it safer to display this percentage.
         """
+        maximumUnCompletedPercentage = 90
         if self.isCompleted():
             return 100
         estimated = self.getRawEstimate()
         actual = self.getRawActualHours()
         if estimated > 0:
-            return round(actual/estimated*100, 1)
+            percentage = round(actual/estimated*100, 1)
+            if percentage > MAXIMUM_NOT_COMPLETED_PERCENTAGE:
+                return MAXIMUM_NOT_COMPLETED_PERCENTAGE
+            else:
+                return round(actual/estimated*100, 1)
         else:
             return 0
 

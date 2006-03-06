@@ -62,6 +62,7 @@ class testStory(eXtremeManagementTestCase):
         self.workflow = self.portal.portal_workflow
         self.userfolder = self.portal.acl_users
         self.userfolder._doAddUser('customer', 'secret', ['Customer'], [])
+        self.userfolder._doAddUser('employee', 'secret', ['Employee'], [])
         self.setRoles(['Manager'])
         self.portal.invokeFactory('ProjectFolder', id='projects')
         self.projects = self.folder.projects
@@ -96,7 +97,20 @@ class testStory(eXtremeManagementTestCase):
         ##self.loginAsPortalOwner()
         ##o=Story('temp_Story')
         ##self.folder._setObject('temp_Story', o)
-        pass
+        self.assertEqual(MAXIMUM_NOT_COMPLETED_PERCENTAGE, 90)
+        self.task.setHours(1)
+        self.assertEqual(self.story.get_progress_perc(), 0)
+        self.task.invokeFactory('Booking', id='booking1', hours=0, minutes=15)
+        self.assertEqual(self.story.getRawActualHours(), 0.25)
+        self.assertEqual(self.story.get_progress_perc(), 25)
+        self.task.invokeFactory('Booking', id='booking2', hours=0, minutes=45)
+        self.assertEqual(self.story.getRawActualHours(), 1.0)
+        self.assertEqual(self.story.get_progress_perc(), 90)
+        self.login('employee')
+        self.task.setAssignees('employee')
+        self.workflow.doActionFor(self.story, 'activate')
+        self.workflow.doActionFor(self.task, 'complete')
+        self.assertEqual(self.story.get_progress_perc(), 100)
 
     # from class Story:
     def test_generateUniqueId(self):
@@ -132,7 +146,6 @@ class testStory(eXtremeManagementTestCase):
         self.assertEqual(self.story.getRawEstimate(), 4)
         self.iteration.invokeFactory('Story', id='story2')
         self.story2 = self.iteration.story2
-        #self.assertEqual(self.story2.getRoughEstimate(), None)
         self.assertEqual(self.story2.getRawEstimate(), 0)
 
     # from class Story:
