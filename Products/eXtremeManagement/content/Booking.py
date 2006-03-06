@@ -104,6 +104,8 @@ Booking_schema = BaseSchema.copy() + \
 ##/code-section after-schema
 
 class Booking(BaseContent):
+    """
+    """
     security = ClassSecurityInfo()
     __implements__ = (getattr(BaseContent,'__implements__',()),)
 

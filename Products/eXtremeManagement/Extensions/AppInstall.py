@@ -157,17 +157,6 @@ def configureKupu(portal):
                                    'portal_types'  :  collection},))
 
 
-def enablePortalFactory(portal):
-    # enable portal_factory for given types
-    factory_tool = getToolByName(portal,'portal_factory')
-    factory_types=[
-        ] + factory_tool.getFactoryTypes().keys()
-    for type in OUR_FACTORY_TYPES:
-        if type not in factory_types:
-            factory_types.append(type)
-    factory_tool.manage_setPortalFactoryTypes(listOfTypeIds=factory_types)
-
-
 def install(self):
     out = StringIO()
     installTypes(self, out,
@@ -194,8 +183,5 @@ def install(self):
 
     print >> out, "Migrating content"
     migrate_ct(self, out)
-
-    print >> out, "Enabling portal_factory for our types"
-    enablePortalFactory(self)
 
     return out.getvalue()

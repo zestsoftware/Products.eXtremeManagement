@@ -85,6 +85,8 @@ Iteration_schema = OrderedBaseFolderSchema.copy() + \
 ##/code-section after-schema
 
 class Iteration(OrderedBaseFolder):
+    """
+    """
     security = ClassSecurityInfo()
     __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
 

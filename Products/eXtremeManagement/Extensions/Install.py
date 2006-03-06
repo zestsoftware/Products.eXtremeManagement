@@ -96,6 +96,28 @@ def install(self):
     # enable portal_factory for given types
     factory_tool = getToolByName(self,'portal_factory')
     factory_types=[
+        "eXtremeManagementTestCase",
+        "testSetup",
+        "testBooking",
+        "testTask",
+        "testStory",
+        "testIteration",
+        "testProject",
+        "testProjectFolder",
+        "testCustomerFolder",
+        "testCustomer",
+        "testProjectMember",
+        "testpermissions",
+        "testWorkflow",
+        "Project",
+        "Iteration",
+        "Story",
+        "Task",
+        "ProjectMember",
+        "Customer",
+        "CustomerFolder",
+        "ProjectFolder",
+        "Booking",
         ] + factory_tool.getFactoryTypes().keys()
     factory_tool.manage_setPortalFactoryTypes(listOfTypeIds=factory_types)
 

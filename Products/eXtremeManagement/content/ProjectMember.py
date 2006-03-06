@@ -96,6 +96,8 @@ ProjectMember_schema = schema + BaseSchema
 ##/code-section after-schema
 
 class ProjectMember(BaseContent):
+    """
+    """
     security = ClassSecurityInfo()
     __implements__ = (getattr(BaseContent,'__implements__',()),)
 

@@ -118,6 +118,8 @@ Task_schema = BaseFolderSchema.copy() + \
 ##/code-section after-schema
 
 class Task(BaseFolder):
+    """
+    """
     security = ClassSecurityInfo()
     __implements__ = (getattr(BaseFolder,'__implements__',()),)
 

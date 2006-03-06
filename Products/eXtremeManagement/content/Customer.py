@@ -165,6 +165,8 @@ Customer_schema = schema + BaseFolderSchema
 ##/code-section after-schema
 
 class Customer(OrderedBaseFolder):
+    """
+    """
     security = ClassSecurityInfo()
     __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
 

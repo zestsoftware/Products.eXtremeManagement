@@ -55,6 +55,8 @@ ProjectFolder_schema = OrderedBaseFolderSchema.copy() + \
 ##/code-section after-schema
 
 class ProjectFolder(OrderedBaseFolder):
+    """
+    """
     security = ClassSecurityInfo()
     __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
 
