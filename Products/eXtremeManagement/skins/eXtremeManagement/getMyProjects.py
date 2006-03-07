@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=states=None
+##parameters=states=('open', 'to-do',)
 ##title=Return the projects that I have tasks in.
 ##
 
@@ -12,7 +12,7 @@
 Parameters:
 
 states: Only projects with tasks for me with these states will be
-returned.
+returned.  Standard: open and to-do, not completed.
 
 """
 
