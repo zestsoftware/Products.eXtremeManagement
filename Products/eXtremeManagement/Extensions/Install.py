@@ -96,19 +96,6 @@ def install(self):
     # enable portal_factory for given types
     factory_tool = getToolByName(self,'portal_factory')
     factory_types=[
-        "eXtremeManagementTestCase",
-        "testSetup",
-        "testBooking",
-        "testTask",
-        "testStory",
-        "testIteration",
-        "testProject",
-        "testProjectFolder",
-        "testCustomerFolder",
-        "testCustomer",
-        "testProjectMember",
-        "testpermissions",
-        "testWorkflow",
         "Project",
         "Iteration",
         "Story",
