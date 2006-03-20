@@ -13,7 +13,7 @@ Dependencies
 
  * DataGridField (http://svn.plone.org/svn/archetypes/MoreFieldsAndWidgets/DataGridField/trunk)
 
- * AddRemoveWidget (http://svn.plone.org/svn/archetypes/MoreFieldsAndWidgets/DataGridField/trunk)
+ * AddRemoveWidget (http://svn.plone.org/svn/archetypes/MoreFieldsAndWidgets/AddRemoveWidget/trunk)
 
  * and of course Plone (tested with 2.1 series) and Zope (tested with
    2.8 series).
