@@ -25,9 +25,9 @@
         </dt>
     
         <dd class="portletItem odd">
-            <a i18n:translate="booking_month" 
+            <a i18n:translate="task_overview" 
                tal:attributes="href
-               string:${portal_url}/booking_month">Bookings per month
+               string:${portal_url}/task_overview">Task overview
             </a>
         </dd> 
 
@@ -38,14 +38,20 @@
         </dd>
 
         <dd class="portletItem odd">
-            <a i18n:translate="task_overview" 
+            <a i18n:translate="booking_month" 
                tal:attributes="href
-               string:${portal_url}/task_overview">Task overview
+               string:${portal_url}/booking_month">Bookings per month
             </a>
         </dd> 
 
-        <!-- keep the following as the last one -->
-        <dd class="portletItemLast even">
+        <dd class="portletItem even"
+            i18n:translate="hours_booked_today">
+            Hours booked for today:
+            <span i18n:name="total_booked" tal:replace="context/getDailyBookings" />
+        </dd>
+
+        <!-- The last one must have class portletItemLast. -->
+        <dd class="portletItemLast odd">
             <a i18n:translate="header_time_registration"
                tal:attributes="href string:${portal_url}/update_hours_form">
                 Time registration

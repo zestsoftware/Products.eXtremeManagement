@@ -1009,3 +1009,7 @@ msgstr "titel"
 msgid "total"
 msgstr "Totaal"
 
+#. Default: "Hours booked for today: ${total_booked}"
+#: skins/eXtremeManagement/portlet_tasks.pt
+msgid "hours_booked_today"
+msgstr "Uren geboekt voor deze dag: ${total_booked}"
