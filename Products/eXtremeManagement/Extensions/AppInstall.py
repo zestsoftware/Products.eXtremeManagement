@@ -104,7 +104,16 @@ def _migrateStorySchema(self):
     _migrateSchema(self, 'eXtremeManagement.Story')
 
 def _migrateTaskSchema(self):
+    """
+    Add a property to the portal so that other parts now that there is
+    a schema update going on for the Tasks.  Main reason: if this is
+    True, then _do not_ send an email for every Task that is getting
+    assigned.  See Task.setAssigned()
+    """
+    propertyName = 'xm_task_schema_updating'
+    self.manage_addProperty(propertyName, True, 'boolean')
     _migrateSchema(self, 'eXtremeManagement.Task')
+    self.manage_delProperties((propertyName,))
 
 def _migrateBookingSchema(self):
     _migrateSchema(self, 'eXtremeManagement.Booking')

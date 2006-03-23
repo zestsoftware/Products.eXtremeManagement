@@ -41,6 +41,7 @@ from Products.CMFCore.utils import getToolByName
 from sets import Set
 from Products.eXtremeManagement.Extensions.eXtreme_Task_Workflow_scripts import mailMessage
 import logging
+from types import StringTypes
 
 ##/code-section module-header
 
@@ -189,13 +190,41 @@ class Task(BaseFolder):
     def setAssignees(self, value, **kw):
         """
         Overwrite the default setter.  An email should be sent on assignment.
+
+        But not when the Task is edited and the assignees don't
+        change.  And if they _do_ change, then don't mail the people
+        that were already assigned.
+
+        Now why does setAssignees get called *three* times when a new
+        Task is made???
+
+        And why is the value a list which contains an empty item ''???
+
+        Anyway, we need to do some serious checking.
         """
-        old_assignees = self.getAssignees()
+        if isinstance(value, StringTypes):
+            value = [value]
+        self.log.debug('New assignees value=%s.', value)
+        #if value is None or value == '' or value == [] or value == ['']:
+        #    return
+        old_assignees = list(self.getAssignees())
+        self.schema['assignees'].set(self, value)
+        while '' in value:
+             value.remove('')
         if old_assignees != value:
-            self.schema['assignees'].set(self, value)
+            self.log.debug('old_assignees=%s.', old_assignees)
             portal = getToolByName(self, 'portal_url').getPortalObject()
-            self.log.warn('Not sending email to %s for task %s.', value, self.id)
-            #mailMessage(portal, self, 'New Task assigned')
+            if portal.hasProperty('xm_task_schema_updating'):
+                self.log.debug('Task schema update, so not sending email to %s for task %s.',
+                               value, self.id)
+            else:
+                for employee in value:
+                    if employee not in old_assignees:
+                        self.log.debug('Sending email to %s for task %s.', employee, self.id)
+                        mailMessage(portal, self, 'New Task assigned', employee, self.log)
+                    else:
+                        self.log.debug('Not sending email: %s was already assigned to task %s.',
+                                       employee, self.id)
 
     security.declarePublic('getRawEstimate')
     def getRawEstimate(self):

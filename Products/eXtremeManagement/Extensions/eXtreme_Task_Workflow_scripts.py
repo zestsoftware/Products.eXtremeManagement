@@ -34,6 +34,8 @@ __docformat__ = 'plaintext'
 ##code-section workflow-script-header #fill in your manual code here
 
 from Products.CMFCore.utils import getToolByName
+from types import StringTypes
+import logging
 
 
 def emailContact(portal, memberid, allowPortalContact=False):
@@ -58,12 +60,23 @@ def emailContact(portal, memberid, allowPortalContact=False):
     emailContact = '%s <%s>' % (fullname, email)
     return emailContact
 
-def mailMessage(portal, obj, subject):
+def mailMessage(portal, obj, subject, destination=None, log=None):
     """Mail a message in reaction to a transition.
 
     Thanks to Alan Runyan.  Adapted from:
     http://plone.org/documentation/how-to/send-mail-on-workflow-transition
+
+    If destination is not None, then only mail to destination, which
+    should be just 1 person.
     """
+    if log is None:
+        # FIXME: defining log here doesn't seem to be working
+        log = logging.getLogger("eXtremeManagement Task mail")
+    if destination is not None and not isinstance(destination, StringTypes):
+        log.warn('destination should be a string, but is %s.', destination)
+        return
+    else:
+        log.info('Will mail to destination=%s.', destination)
 
     membership = getToolByName(portal, 'portal_membership')
     wf_tool = getToolByName(portal, 'portal_workflow')
@@ -110,6 +123,8 @@ You can do it!
     message = mMsg % (obj_url, mCreator, description,
                       obj.getEstimate(), listofAssignees)
 
+    if destination:
+        assignees = [destination]
     for assignee in assignees:
         mTo = emailContact(portal, assignee)
         # If email address is known:
@@ -117,7 +132,7 @@ You can do it!
             try:
                 mailhost.simple_send(mTo, mFrom, mSubj, message)
             except:
-                print'WARNING: mailing to %s failed.' % mTo
+                log.warn('Mailing to %s failed.', mTo)
 
     return True
 
@@ -127,11 +142,11 @@ You can do it!
 def notify_completed(self, state_change, **kw):
     """
     Notify interested people that a task has been completed.
+
+    Has been disabled at the moment.
     """
     portal = self
     obj=state_change.object
-    mailMessage(portal, obj, 'Task completed')
-
 
 
 def tryToCompleteStory(self, state_change, **kw):
