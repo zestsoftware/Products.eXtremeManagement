@@ -88,6 +88,7 @@ schema = Schema((
 
     LinesField(
         name='assignees',
+        default_method='getDefaultAssignee',
         index="FieldIndex",
         widget=MultiSelectionWidget(
             description="Select the member(s) to assign this task to.",
@@ -131,13 +132,13 @@ class Task(BaseFolder):
     allowed_content_types = ['Booking']
     filter_content_types = 1
     global_allow = 0
-    allow_discussion = True
     content_icon = 'task_icon.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
     typeDescription = "Task"
     typeDescMsgId = 'description_edit_task'
+    allow_discussion = True
 
     _at_rename_after_creation = True
 
@@ -255,6 +256,17 @@ class Task(BaseFolder):
             return True
         else:
             return False
+
+    # Manually created methods
+
+    def getDefaultAssignee(self):
+        mem = getToolByName(self, 'portal_membership')
+        currentUser = mem.getAuthenticatedMember().getId()
+        if currentUser in self._get_assignees():
+            return currentUser
+        else:
+            return ''
+
 
 
 registerType(Task, PROJECTNAME)

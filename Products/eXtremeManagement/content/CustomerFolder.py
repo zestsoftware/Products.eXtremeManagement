@@ -68,7 +68,6 @@ class CustomerFolder(OrderedBaseFolder):
     allowed_content_types = ['Customer']
     filter_content_types = 1
     global_allow = 1
-    allow_discussion = False
     content_icon = 'group_icon.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'

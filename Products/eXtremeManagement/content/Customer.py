@@ -178,13 +178,13 @@ class Customer(OrderedBaseFolder):
     allowed_content_types = ['ProjectMember']
     filter_content_types = 1
     global_allow = 0
-    allow_discussion = False
     content_icon = 'group_icon.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
     typeDescription = "Customer"
     typeDescMsgId = 'description_edit_customer'
+
 
     actions =  (
 

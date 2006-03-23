@@ -72,13 +72,13 @@ class Project(OrderedBaseFolder):
     allowed_content_types = ['Iteration', 'Story', 'PoiTracker']
     filter_content_types = 1
     global_allow = 1
-    allow_discussion = False
     content_icon = 'project_icon.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
     typeDescription = "Project"
     typeDescMsgId = 'description_edit_project'
+
 
     actions =  (
 

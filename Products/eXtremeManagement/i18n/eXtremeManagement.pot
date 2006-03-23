@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2006-03-02 15:21+0000\n"
+"POT-Creation-Date: 2006-03-23 13:16+0000\n"
 "PO-Revision-Date: Mon Sep  5 16:31:19 2005\n"
 "Last-Translator: ['Ahmad Hadi'] <['a.hadi@zestsoftware.nl']>\n"
 "Language-Team: ['Ahmad Hadi'] <['a.hadi@zestsoftware.nl']>\n"
@@ -741,6 +741,11 @@ msgstr ""
 msgid "heading_tasks"
 msgstr ""
 
+#. Default: "Hours booked for today: ${total_booked}"
+#: skins/eXtremeManagement/portlet_tasks.pt
+msgid "hours_booked_today"
+msgstr ""
+
 #. Default: "Date to book this on"
 #: skins/eXtremeManagement/update_hours_form.cpt
 msgid "label_bookingdate"
@@ -793,9 +798,9 @@ msgstr ""
 msgid "listingheader-date"
 msgstr ""
 
-#. Default: "Story"
+#. Default: "Task"
 #: skins/eXtremeManagement/booking_overview.pt
-msgid "listingheader-story"
+msgid "listingheader-task"
 msgstr ""
 
 #. Default: "Time"
@@ -830,8 +835,8 @@ msgid "listingheader_address"
 msgstr ""
 
 #. Default: "Assignee(s)"
-#: skins/eXtremeManagement/task_view.pt
 #: skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/task_view.pt
 msgid "listingheader_assignees"
 msgstr ""
 
@@ -867,9 +872,9 @@ msgid "listingheader_enddate"
 msgstr ""
 
 #. Default: "Estimate"
-#: skins/eXtremeManagement/task_view.pt
 #: skins/eXtremeManagement/update_hours_form.cpt
 #: skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/project_administration.pt
 msgid "listingheader_estimate"
 msgstr ""
 
@@ -909,9 +914,9 @@ msgid "listingheader_startdate"
 msgstr ""
 
 #. Default: "Status"
-#: skins/eXtremeManagement/task_view.pt
 #: skins/eXtremeManagement/story_view.pt
 #: skins/eXtremeManagement/project_administration.pt
+#: skins/eXtremeManagement/task_view.pt
 msgid "listingheader_state"
 msgstr ""
 

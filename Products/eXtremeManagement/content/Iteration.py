@@ -98,7 +98,6 @@ class Iteration(OrderedBaseFolder):
     allowed_content_types = ['Story']
     filter_content_types = 1
     global_allow = 0
-    allow_discussion = False
     content_icon = 'iteration_icon.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'

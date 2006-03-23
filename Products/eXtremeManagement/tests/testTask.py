@@ -64,6 +64,7 @@ class testTask(eXtremeManagementTestCase):
         self.setRoles(['Manager'])
         self.userfolder._doAddUser('employee', 'secret', ['Employee'], [])
         self.userfolder._doAddUser('developer', 'secret', ['Employee'], [])
+        self.userfolder._doAddUser('klant', 'secret', ['Customer'], [])
         self.portal.invokeFactory('ProjectFolder', id='projects')
         self.projects = self.folder.projects
         self.projects.invokeFactory('Project', id='project')
@@ -80,12 +81,14 @@ class testTask(eXtremeManagementTestCase):
     # from class Task:
     def test__get_assignees(self):
         """
+        FIXME
+        self.assertEqual(self.task._get_assignees(),
+                         [('developer', 'developer'), ('employee', 'employee')])
+
+        results in:
+        TypeError: Cant compare DisplayList to <type 'list'>
+        Improve at will. :)
         """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Task('temp_Task')
-        ##self.folder._setObject('temp_Task', o)
-        
         self.assertEqual(self.task.getAssignees(), ())
         self.task.setAssignees('developer')
         self.assertEqual(self.task.getAssignees(), ('developer',))
@@ -112,70 +115,42 @@ class testTask(eXtremeManagementTestCase):
     def test_getEstimate(self):
         """
         """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Task('temp_Task')
-        ##self.folder._setObject('temp_Task', o)
         pass
 
     # from class Task:
     def test_getRawActualHours(self):
         """
         """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Task('temp_Task')
-        ##self.folder._setObject('temp_Task', o)
         pass
 
     # from class Task:
     def test_getActualHours(self):
         """
         """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Task('temp_Task')
-        ##self.folder._setObject('temp_Task', o)
         pass
 
     # from class Task:
     def test_getRawDifference(self):
         """
         """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Task('temp_Task')
-        ##self.folder._setObject('temp_Task', o)
         pass
 
     # from class Task:
     def test_getDifference(self):
         """
         """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Task('temp_Task')
-        ##self.folder._setObject('temp_Task', o)
         pass
 
     # from class Task:
     def test_CookedBody(self):
         """
         """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Task('temp_Task')
-        ##self.folder._setObject('temp_Task', o)
         pass
 
     # from class Task:
     def test_startable(self):
         """
         """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Task('temp_Task')
-        ##self.folder._setObject('temp_Task', o)
         self.assertEqual(self.workflow.getInfoFor(self.task,'review_state'),
                          'open')
         self.assertEqual(self.task.startable(), False)
@@ -198,6 +173,21 @@ class testTask(eXtremeManagementTestCase):
 
     # Manually created methods
 
+    def test_getDefaultAssignee(self):
+        """
+        """
+        self.assertEqual(self.task.getDefaultAssignee(), '')
+        self.story.invokeFactory('Task', id='task1')
+        self.assertEqual(self.story.task1.getAssignees(), ())
+
+        self.login('employee')
+        self.assertEqual(self.task.getDefaultAssignee(), 'employee')
+        self.story.invokeFactory('Task', id='task2')
+        self.assertEqual(self.story.task2.getAssignees(), ('employee',))
+
+        self.login('klant')
+        self.assertEqual(self.task.getDefaultAssignee(), '')
+        
 
 def test_suite():
     from unittest import TestSuite, makeSuite
