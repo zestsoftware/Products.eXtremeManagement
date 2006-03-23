@@ -40,6 +40,7 @@ from Products.CMFPlone.interfaces.NonStructuralFolder import INonStructuralFolde
 from Products.CMFCore.utils import getToolByName
 from sets import Set
 from Products.eXtremeManagement.Extensions.eXtreme_Task_Workflow_scripts import mailMessage
+import logging
 
 ##/code-section module-header
 
@@ -145,6 +146,7 @@ class Task(BaseFolder):
     schema = Task_schema
 
     ##code-section class-header #fill in your manual code here
+    log = logging.getLogger("eXtremeManagement Task")
     ##/code-section class-header
 
     # Methods
@@ -192,7 +194,8 @@ class Task(BaseFolder):
         if old_assignees != value:
             self.schema['assignees'].set(self, value)
             portal = getToolByName(self, 'portal_url').getPortalObject()
-            mailMessage(portal, self, 'New Task assigned')
+            self.log.warn('Not sending email to %s for task %s.', value, self.id)
+            #mailMessage(portal, self, 'New Task assigned')
 
     security.declarePublic('getRawEstimate')
     def getRawEstimate(self):
