@@ -282,9 +282,12 @@ class Task(BaseFolder):
     security.declarePublic('startable')
     def startable(self):
         """
-        A task should have an assignee and an estimate.
+        A task should have an assignee and either an estimate or a
+        booking.
         """
-        if self.getAssignees() and self.getRawEstimate() > 0:
+        if not self.getAssignees():
+            return False
+        if self.getRawEstimate() > 0 or self.getRawActualHours() > 0:
             return True
         else:
             return False

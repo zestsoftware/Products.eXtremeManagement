@@ -171,6 +171,13 @@ class testTask(eXtremeManagementTestCase):
         self.task.setAssignees('')
         self.assertEqual(self.task.startable(), False)
 
+        self.story.invokeFactory('Task', id='task2')
+        self.task2 = self.story.task2
+        self.task2.setAssignees('developer')
+        self.assertEqual(self.task2.startable(), False)
+        self.task2.invokeFactory('Booking', id='booking', minutes=15)
+        self.assertEqual(self.task2.startable(), True)
+
     # Manually created methods
 
     def test_getDefaultAssignee(self):
