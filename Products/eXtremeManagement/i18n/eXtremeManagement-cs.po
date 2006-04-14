@@ -1,0 +1,894 @@
+# ArchGenXML generated POT File
+# ['Ahmad Hadi'] <['a.hadi@zestsoftware.nl']>, 2005.
+msgid ""
+msgstr ""
+"Project-Id-Version: eXtremeManagement\n"
+"POT-Creation-Date: 2005-05-19 21:13+0000\n"
+"PO-Revision-Date: 2005-05-19 13:15 +GMT+1\n"
+"Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
+"Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: cs\n"
+"Language-Name: Czech\n"
+"Preferred-Encodings: utf-8 latin2\n"
+"Domain: eXtremeManagement\n"
+
+#. Default: "Send"
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "Send"
+msgstr "Odeslat"
+
+#. Default: "Send a mail to this user"
+#: skins/eXtremeManagement/projectmember_view.pt
+#: skins/eXtremeManagement/customer_view.pt
+msgid "Send a mail to this user"
+msgstr "Odeslat email tomuto uživateli"
+
+#. Default: "Here is a list of all iterations with the status <strong>Open</strong>. The stories assigned to these iterations are also displayed. This makes it easier to see which stories are assigned to which iteration."
+#: skins/eXtremeManagement/project_view.pt
+msgid "description_new_iterations"
+msgstr "Toto je seznam všech iterací ve stavu <strong>Otevřeno</strong> včetně k nim přiděleným nápadům."
+
+#. Default: "This is a list of all projects. Also the iterations which are completed with state, estimated and actual time. Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>. This way the administration has an overview with all iterations which are invoiced."
+#: skins/eXtremeManagement/project_administration.pt
+msgid "description_project_administration"
+msgstr "Toto je seznam všech projektů a iterací, které jsou dokončeny s odhadem a aktuálním časem. Jakmile je iterace dokončena a vyfakturována, její stav může být změněn na <strong>Vyfakturováno</strong>"
+
+#. Default: "These stories are not estimated yet. After estimating these stories, they get the status \"estimated\" <br/> and will be visible in the list above to be assigned to an iteration."
+#: skins/eXtremeManagement/project_view.pt
+msgid "description_stories_not_estimated"
+msgstr "Tyto nápady zatím nejsou odhadnuty. Po jejich odhadnutí dostanou stav \"odhadnuto\" <br/> a budou přístupné v horním seznamu pro přiřazení k iteraci."
+
+#. Default: "To register your time (hours), use the form below and press 'Send'."
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "description_time_registration"
+msgstr "Použijte formulář umístěný níže pro zaznamenání vašeho času (hodin) a stiskněte 'Send'."
+
+#. Default: "actual"
+#. actual
+#: Task.py
+msgid "eXtremeManagement_help_actual"
+msgstr "aktuální"
+
+## 1 more: content/Customer.py
+#. Default: "Enter address."
+#. Enter address.
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_help_address"
+msgstr "Zadejte adresu."
+
+#. Default: "adress"
+#. adress
+#: Customer.py
+msgid "eXtremeManagement_help_adress"
+msgstr "adresa"
+
+#. Default: "assignTo"
+#. assignTo
+#: Task.py
+msgid "eXtremeManagement_help_assignTo"
+msgstr "někomu přidelit"
+
+#. Default: "assignees"
+#. Select the member(s) to assign this task to.
+#. assignees
+#: content/Task.py
+#: Task.py
+msgid "eXtremeManagement_help_assignees"
+msgstr "Vyberte jednoho nebo více uživatelů, kterým má být tento úkol přidělen."
+
+#. Default: "attribute_25"
+#. attribute_25
+#: Story.py
+msgid "eXtremeManagement_help_attribute_25"
+msgstr ""
+
+#. Default: "attribute_30"
+#. attribute_30
+#: Project.py
+msgid "eXtremeManagement_help_attribute_30"
+msgstr ""
+
+#. Default: "attribute_33"
+#. attribute_33
+#: Task.py
+msgid "eXtremeManagement_help_attribute_33"
+msgstr ""
+
+## 1 more: content/Booking.py
+#. Default: "billable"
+#. billable
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_help_billable"
+msgstr "zúčtovatelné"
+
+#. Default: "city"
+#. Enter city name.
+#. city
+#: content/Customer.py
+#: Customer.py
+msgid "eXtremeManagement_help_city"
+msgstr "město"
+
+#. Default: "comments"
+#. Enter some comments.
+#. comments
+#: ProjectMember.py
+#: Customer.py
+msgid "eXtremeManagement_help_comments"
+msgstr "Poznámky"
+
+#. Default: "country"
+#. Enter country.
+#. country
+#: content/Customer.py
+#: Customer.py
+msgid "eXtremeManagement_help_country"
+msgstr "země"
+
+#. Default: "customerfolders"
+#. customerfolders
+#: ProjectFolder.py
+msgid "eXtremeManagement_help_customerfolders"
+msgstr "složka zákazníků"
+
+#. Default: "customers"
+#. customers
+#: Project.py
+msgid "eXtremeManagement_help_customers"
+msgstr "zákazníci"
+
+#. Default: "descriptino"
+#. descriptino
+#: Story.py
+msgid "eXtremeManagement_help_descriptino"
+msgstr "popis"
+
+#. Default: "description"
+#. description
+#: Customer.py
+msgid "eXtremeManagement_help_description"
+msgstr "popis"
+
+## 1 more: content/ProjectMember.py
+#. Default: "email"
+#. Enter your email address.
+#. email
+#: ProjectMember.py
+#: Customer.py
+#: content/ProjectMember.py
+msgid "eXtremeManagement_help_email"
+msgstr "Zadejte vaší emailovou adresu."
+
+#. Default: "emailAddress"
+#. emailAddress
+#: Customer.py
+msgid "eXtremeManagement_help_emailAddress"
+msgstr "emailová adresa"
+
+#. Default: "endDate"
+#. endDate
+#: content/Iteration.py
+msgid "eXtremeManagement_help_endDate"
+msgstr "datum dokončení"
+
+#. Default: "estimate"
+#. Enter the estimated time (in hours).
+#. estimate
+#: content/Task.py
+#: Task.py
+msgid "eXtremeManagement_help_estimate"
+msgstr "Zadejte odhadovaný čas (v hodinách)."
+
+#. Default: "fax"
+#. Enter your fax number.
+#. fax
+#: content/Customer.py
+#: Customer.py
+msgid "eXtremeManagement_help_fax"
+msgstr "fax"
+
+#. Default: "faxNumber"
+#. faxNumber
+#: Customer.py
+msgid "eXtremeManagement_help_faxNumber"
+msgstr "faxové číslo"
+
+#. Default: "firstName"
+#. firstName
+#: ProjectMember.py
+msgid "eXtremeManagement_help_firstName"
+msgstr "křestní jméno"
+
+#. Default: "fullname"
+#. Enter a name, eg. John Smith.
+#. fullname
+#: content/ProjectMember.py
+#: ProjectMember.py
+msgid "eXtremeManagement_help_fullname"
+msgstr "celé jméno"
+
+## 1 more: content/Booking.py
+#. Default: "hours"
+#. hours
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_help_hours"
+msgstr "hodiny"
+
+#. Default: "id"
+#. id
+#: Customer.py
+msgid "eXtremeManagement_help_id"
+msgstr "id"
+
+#. Default: "lastName"
+#. lastName
+#: ProjectMember.py
+msgid "eXtremeManagement_help_lastName"
+msgstr "Příjmení"
+
+#. Default: "lastTaskId"
+#: content/Story.py
+msgid "eXtremeManagement_help_lastTaskId"
+msgstr "Id posledního úkolu"
+
+#. Default: "location"
+#. location
+#: Customer.py
+msgid "eXtremeManagement_help_location"
+msgstr "umístění"
+
+#. Default: "mainText"
+#. mainText
+#. Enter the main description for this object.
+#: Story.py
+#: content/Story.py
+msgid "eXtremeManagement_help_mainText"
+msgstr "Hlavní text"
+
+#. Default: "manHours"
+#. manHours
+#: content/Iteration.py
+msgid "eXtremeManagement_help_manHours"
+msgstr "Hodiny ručně"
+
+## 1 more: content/Booking.py
+#. Default: "minutes"
+#. minutes
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_help_minutes"
+msgstr "minuty"
+
+#. Default: "name"
+#. Enter full name, eg. John Smith.
+#. name
+#: content/Customer.py
+#: Customer.py
+msgid "eXtremeManagement_help_name"
+msgstr "Zadejte celé jméno, např. Josef Novák."
+
+## 2 more: content/ProjectMember.py, content/Customer.py
+#. Default: "phone"
+#. Enter your phone number.
+#. phone
+#: ProjectMember.py
+#: Customer.py
+#: content/ProjectMember.py
+msgid "eXtremeManagement_help_phone"
+msgstr "Zadejte vaše telefoní číslo."
+
+#. Default: "phoneNumber"
+#. phoneNumber
+#: Customer.py
+msgid "eXtremeManagement_help_phoneNumber"
+msgstr "Telefoní číslo"
+
+#. Default: "startDate"
+#. startDate
+#: content/Iteration.py
+msgid "eXtremeManagement_help_startDate"
+msgstr "Datum začátku"
+
+#. Default: "task"
+#. task
+#: Task.py
+msgid "eXtremeManagement_help_task"
+msgstr "úkol"
+
+#. Default: "taskDescription"
+#. taskDescription
+#: Task.py
+msgid "eXtremeManagement_help_taskDescription"
+msgstr "Popis úkolu"
+
+#. Default: "title"
+#. title
+#: Customer.py
+msgid "eXtremeManagement_help_title"
+msgstr "Název"
+
+#. Default: "website"
+#. Enter your website address.
+#. website
+#: content/Customer.py
+#: Customer.py
+msgid "eXtremeManagement_help_website"
+msgstr "webová stránka"
+
+#. Default: "zipCode"
+#. Enter zip code.
+#. zipCode
+#: content/Customer.py
+#: Customer.py
+msgid "eXtremeManagement_help_zipCode"
+msgstr "PSČ"
+
+#. Default: "Actual"
+#. Actual
+#: Task.py
+msgid "eXtremeManagement_label_actual"
+msgstr "Aktuální"
+
+## 1 more: content/Customer.py
+#. Default: "Address"
+#. Address
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_address"
+msgstr "Adresa"
+
+#. Default: "Adress"
+#. Adress
+#: Customer.py
+msgid "eXtremeManagement_label_adress"
+msgstr "Adresa"
+
+#. Default: "Assignto"
+#. Assignto
+#: Task.py
+msgid "eXtremeManagement_label_assignTo"
+msgstr "Přiděleno"
+
+## 1 more: content/Task.py
+#. Default: "Assignees"
+#. Assignees
+#: Task.py
+#: content/Task.py
+msgid "eXtremeManagement_label_assignees"
+msgstr "Přidělení"
+
+#. Default: "Attribute_25"
+#. Attribute_25
+#: Story.py
+msgid "eXtremeManagement_label_attribute_25"
+msgstr ""
+
+#. Default: "Attribute_30"
+#. Attribute_30
+#: Project.py
+msgid "eXtremeManagement_label_attribute_30"
+msgstr ""
+
+#. Default: "Attribute_33"
+#. Attribute_33
+#: Task.py
+msgid "eXtremeManagement_label_attribute_33"
+msgstr ""
+
+## 1 more: content/Booking.py
+#. Default: "Billable"
+#. Billable
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_label_billable"
+msgstr "Zúčtovatelé"
+
+## 1 more: content/Customer.py
+#. Default: "City"
+#. City
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_city"
+msgstr "Město"
+
+#. Default: "Comments"
+#. Comments
+#: Customer.py
+msgid "eXtremeManagement_label_comments"
+msgstr "Poznámky"
+
+## 1 more: content/Customer.py
+#. Default: "Country"
+#. Country
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_country"
+msgstr "Země"
+
+#. Default: "Customerfolders"
+#. Customerfolders
+#: ProjectFolder.py
+msgid "eXtremeManagement_label_customerfolders"
+msgstr "Složka zákazníků"
+
+#. Default: "Customers"
+#. Customers
+#: Project.py
+msgid "eXtremeManagement_label_customers"
+msgstr "Zákazníci"
+
+#. Default: "Descriptino"
+#. Descriptino
+#: Story.py
+msgid "eXtremeManagement_label_descriptino"
+msgstr "Popis"
+
+#. Default: "Description"
+#. Description
+#: Customer.py
+msgid "eXtremeManagement_label_description"
+msgstr "Popis"
+
+## 1 more: content/ProjectMember.py
+#. Default: "Email"
+#. Email
+#: Customer.py
+#: content/ProjectMember.py
+msgid "eXtremeManagement_label_email"
+msgstr "Email"
+
+#. Default: "Emailaddress"
+#. Emailaddress
+#: Customer.py
+msgid "eXtremeManagement_label_emailAddress"
+msgstr "Emailová adresa"
+
+#. Default: "Enddate"
+#. Enddate
+#: content/Iteration.py
+msgid "eXtremeManagement_label_endDate"
+msgstr "Datum dokončení"
+
+## 1 more: content/Task.py
+#. Default: "Estimate"
+#. Estimate
+#: Task.py
+#: content/Task.py
+msgid "eXtremeManagement_label_estimate"
+msgstr "Odhadnout"
+
+## 1 more: content/Customer.py
+#. Default: "Fax"
+#. Fax
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_fax"
+msgstr "Fax"
+
+#. Default: "Faxnumber"
+#. Faxnumber
+#: Customer.py
+msgid "eXtremeManagement_label_faxNumber"
+msgstr "Faxové číslo"
+
+#. Default: "Firstname"
+#. Firstname
+#: ProjectMember.py
+msgid "eXtremeManagement_label_firstName"
+msgstr "Křestní jméno"
+
+## 1 more: content/ProjectMember.py
+#. Default: "Fullname"
+#. Fullname
+#: ProjectMember.py
+#: content/ProjectMember.py
+msgid "eXtremeManagement_label_fullname"
+msgstr "Celé jméno"
+
+## 1 more: content/Booking.py
+#. Default: "Hours"
+#. Hours
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_label_hours"
+msgstr "Hodiny"
+
+#. Default: "Id"
+#. Id
+#: Customer.py
+msgid "eXtremeManagement_label_id"
+msgstr "Id"
+
+#. Default: "Lastname"
+#. Lastname
+#: ProjectMember.py
+msgid "eXtremeManagement_label_lastName"
+msgstr "Příjmení"
+
+#. Default: "Lasttaskid"
+#: content/Story.py
+msgid "eXtremeManagement_label_lastTaskId"
+msgstr "Id posledního úkolu"
+
+#. Default: "Location"
+#. Location
+#: Customer.py
+msgid "eXtremeManagement_label_location"
+msgstr "Umístění"
+
+## 1 more: content/Story.py
+#. Default: "Maintext"
+#. Maintext
+#: Story.py
+#: content/Story.py
+#: content/Task.py
+msgid "eXtremeManagement_label_mainText"
+msgstr "Hlavní text"
+
+#. Default: "Manhours"
+#. Manhours
+#: content/Iteration.py
+msgid "eXtremeManagement_label_manHours"
+msgstr "Hodiny manuálně"
+
+## 1 more: content/Booking.py
+#. Default: "Minutes"
+#. Minutes
+#: Booking.py
+#: content/Booking.py
+msgid "eXtremeManagement_label_minutes"
+msgstr "Minuty"
+
+## 1 more: content/Customer.py
+#. Default: "Name"
+#. Name
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_name"
+msgstr "Jméno"
+
+## 2 more: content/ProjectMember.py, content/Customer.py
+#. Default: "Phone"
+#. Phone
+#: Customer.py
+#: content/ProjectMember.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_phone"
+msgstr "Telefon"
+
+#. Default: "Phonenumber"
+#. Phonenumber
+#: Customer.py
+msgid "eXtremeManagement_label_phoneNumber"
+msgstr "Telefoní číslo"
+
+#. Default: "Startdate"
+#. Startdate
+#: content/Iteration.py
+msgid "eXtremeManagement_label_startDate"
+msgstr "Datum začátku"
+
+#. Default: "Task"
+#. Task
+#: Task.py
+msgid "eXtremeManagement_label_task"
+msgstr "Úkol"
+
+#. Default: "Taskdescription"
+#. Taskdescription
+#: Task.py
+msgid "eXtremeManagement_label_taskDescription"
+msgstr "Popis úkolu"
+
+#. Default: "Title"
+#. Title
+#: Customer.py
+msgid "eXtremeManagement_label_title"
+msgstr "Název"
+
+## 1 more: content/Customer.py
+#. Default: "Website"
+#. Website
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_website"
+msgstr "Webová stránka"
+
+## 1 more: content/Customer.py
+#. Default: "Zipcode"
+#. Zipcode
+#: Customer.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_zipCode"
+msgstr "PSČ"
+
+#. Default: "Customer info"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "header_customers"
+msgstr "Zákaznické informace"
+
+#. Default: "Iterations"
+#: skins/eXtremeManagement/project_view.pt
+msgid "header_iterations"
+msgstr "Iterace"
+
+#. Default: "Project member info"
+#: skins/eXtremeManagement/projectmember_view.pt
+msgid "header_memberinfo"
+msgstr "Informace o členu projektu"
+
+#. Default: "Project administration"
+#: skins/eXtremeManagement/project_administration.pt
+msgid "header_project_administration"
+msgstr "Správa projektu"
+
+#. Default: "Project members"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "header_project_members"
+msgstr "Členové projektu"
+
+#. Default: "Stories"
+#: skins/eXtremeManagement/project_view.pt
+msgid "header_stories"
+msgstr "Nápady"
+
+#. Default: "Time registration"
+#: skins/eXtremeManagement/update_hours_form.cpt
+#: skins/eXtremeManagement/portlet_tasks.pt
+msgid "header_time_registration"
+msgstr "Časový záznam"
+
+#. Default: "Iterations"
+#: skins/eXtremeManagement/project_view.pt
+msgid "headerlisting_new_iterations"
+msgstr "Iterace"
+
+#. Default: "Booking"
+#: skins/eXtremeManagement/booking_view.pt
+msgid "heading-booking"
+msgstr "Záznam"
+
+#. Default: "Bookings"
+#: skins/eXtremeManagement/task_view.pt
+msgid "heading-bookings"
+msgstr "Záznamy"
+
+#. Default: "Stories"
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "heading-stories"
+msgstr "Nápady"
+
+#. Default: "Iterations"
+#: skins/eXtremeManagement/project_view.pt
+msgid "heading_iterations"
+msgstr "Iterace"
+
+#. Default: "Tasks"
+#: skins/eXtremeManagement/story_view.pt
+msgid "heading_tasks"
+msgstr "Úkoly"
+
+#. Default: "Comments:"
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "label_description"
+msgstr "Poznámky:"
+
+#. Default: "Hours"
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "label_hours"
+msgstr "Hodiny"
+
+#. Default: "Minutes"
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "label_minutes"
+msgstr "Minuty"
+
+#. Default: "Booking"
+#: skins/eXtremeManagement/task_view.pt
+msgid "listingheader-booking"
+msgstr "Záznam"
+
+#. Default: "Time"
+#: skins/eXtremeManagement/task_view.pt
+msgid "listingheader-time"
+msgstr "Čas"
+
+#. Default: "Fullname"
+#: skins/eXtremeManagement/projectmember_view.pt
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_Fullname"
+msgstr "Celé jméno"
+
+#. Default: "Phone"
+#: skins/eXtremeManagement/projectmember_view.pt
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_Phone"
+msgstr "Telefon"
+
+#. Default: "Actual"
+#: skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/project_administration.pt
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "listingheader_actual"
+msgstr "Aktuální"
+
+#. Default: "Address"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_address"
+msgstr "Adresa"
+
+#. Default: "Assignee(s)"
+#: skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/task_view.pt
+msgid "listingheader_assignees"
+msgstr "Přidělený(í)"
+
+#. Default: "City"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_city"
+msgstr "Město"
+
+#. Default: "Comments"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_comments"
+msgstr "Poznámky"
+
+#. Default: "Country"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_country"
+msgstr "Země"
+
+#. Default: "Difference"
+#: skins/eXtremeManagement/story_view.pt
+msgid "listingheader_diff"
+msgstr "Rozdíl"
+
+#. Default: "email"
+#: skins/eXtremeManagement/projectmember_view.pt
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_email"
+msgstr "email"
+
+#. Default: "End date"
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "listingheader_enddate"
+msgstr "Datum ukončení"
+
+#. Default: "Estimate"
+#: skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/project_administration.pt
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "listingheader_estimate"
+msgstr "Odhadnout"
+
+#. Default: "Fax"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_fax"
+msgstr "Fax"
+
+#. Default: "id"
+#: skins/eXtremeManagement/story_view.pt
+msgid "listingheader_id"
+msgstr "id"
+
+#. Default: "Man hours"
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "listingheader_man_uren"
+msgstr "Hodiny ručně"
+
+#. Default: "name"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_name"
+msgstr "jméno"
+
+#. Default: "phone"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_phone"
+msgstr "telefon"
+
+#. Default: "Progress"
+#: skins/eXtremeManagement/project_view.pt
+msgid "listingheader_progress"
+msgstr "Průběh"
+
+#. Default: "Project"
+#: skins/eXtremeManagement/project_administration.pt
+msgid "listingheader_projects"
+msgstr "Projekt"
+
+#. Default: "Start date"
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "listingheader_startdate"
+msgstr "Datum začátku"
+
+#. Default: "Status"
+#: skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/project_administration.pt
+#: skins/eXtremeManagement/task_view.pt
+msgid "listingheader_state"
+msgstr "Stav"
+
+#. Default: "Story"
+#: skins/eXtremeManagement/project_view.pt
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "listingheader_story"
+msgstr "Nápad"
+
+#. Default: "Tasks completed"
+#: skins/eXtremeManagement/project_view.pt
+msgid "listingheader_tasks_completed"
+msgstr "Dokončené úkoly"
+
+#. Default: "Tasks open"
+#: skins/eXtremeManagement/project_view.pt
+msgid "listingheader_tasks_open"
+msgstr "Otevřené úkoly"
+
+#. Default: "Title"
+#: skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "listingheader_title"
+msgstr "Název"
+
+#. Default: "Website"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_website"
+msgstr "Webová stránka"
+
+#. Default: "Zip code"
+#: skins/eXtremeManagement/customer_view.pt
+msgid "listingheader_zipCode"
+msgstr "PSČ"
+
+#. Default: "No projects are published yet!"
+#: skins/eXtremeManagement/project_administration.pt
+msgid "no_projects_found"
+msgstr "Zatím nebyli zveřejněny žádné projekty!"
+
+#. Default: "No stories published yet!"
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "no_stories_published"
+msgstr "Zatím nebyli zveřejněny žádné nápady!"
+
+#. Default: "No tasks are assigned to you!"
+#: skins/eXtremeManagement/update_hours_form.cpt
+msgid "no_tasks_assigned"
+msgstr "Nejsou vám přiděleny žádné úkoly!"
+
+#. Default: "No tasks defined yet."
+#: skins/eXtremeManagement/story_view.pt
+msgid "no_tasks_defined"
+msgstr "Zatím nebyli zadány žádné úkoly."
+
+#. Default: "Project administration"
+#: skins/eXtremeManagement/portlet_tasks.pt
+msgid "project_administration"
+msgstr "Správa projektu"
+
+#. Default: "Stories estimated"
+#: skins/eXtremeManagement/project_view.pt
+msgid "stories_estimated"
+msgstr "Odhadnuté nápady"
+
+#. Default: "Stories not estimated"
+#: skins/eXtremeManagement/project_view.pt
+msgid "stories_not_estimated"
+msgstr "Neodhadnuté nápady"
+
+#: skins/eXtremeManagement/customer_view.pt
+msgid "title"
+msgstr "název"
+
+#. Default: "Total"
+#: skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "total"
+msgstr "Celkem"
+
