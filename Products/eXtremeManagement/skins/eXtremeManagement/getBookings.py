@@ -36,6 +36,7 @@ month = None
 previous = None
 next = None
 memberid = None
+
 for attr in REQUEST.form.keys():
     try:
         value = int(REQUEST.form[attr])
@@ -51,8 +52,6 @@ for attr in REQUEST.form.keys():
         month = value
     elif attr == 'memberid':
         memberid = value
-    else:
-        return None
 
 if year is None:
     year = DateTime().year()
