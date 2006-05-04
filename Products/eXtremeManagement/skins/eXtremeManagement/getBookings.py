@@ -69,12 +69,9 @@ if previous:
 if next:
     year, month = getNextYearMonth(year, month)
 
-
-
 startDate = DateTime(year, month, 1)
 nextyear, nextmonth = getNextYearMonth(year, month)
-endDate = DateTime(nextyear, nextmonth, 1) - 0.00001
-
+endDate = DateTime.latestTime(DateTime(nextyear, nextmonth, 1))
 
 # Where do we want to search?
 object = context
@@ -84,12 +81,13 @@ if memberid is None:
     member = context.portal_membership.getAuthenticatedMember()
     memberid = member.id
 
+bookings = context.portal_catalog.searchResults(
+    portal_type='Booking',
+    getBookingDate={ "query": [startDate, endDate], "range": "minmax"},
+    sort_on='getBookingDate',
+    Creator=memberid,
+    path=searchpath)
 
-bookings = context.portal_catalog.searchResults(portal_type='Booking',
-                                                getBookingDate={ "query": [startDate, endDate], "range": "minmax"},
-                                                sort_on='getBookingDate',
-                                                Creator=memberid,
-                                                path=searchpath)
 list = []
 
 for booking in bookings:

@@ -38,14 +38,17 @@ if date is None:
 # Batlogg is busy putting that function somewhere else, which is good. :)
 pf = context.portal_catalog.searchResults(portal_type='ProjectFolder')
 projectFolder = pf[0].getObject()
+formatTime = projectFolder.formatTime
 
 startDate = DateTime.earliestTime(date)
 endDate = DateTime.latestTime(date)
 
-bookingbrains = context.portal_catalog.searchResults(portal_type='Booking',
-                                                     getBookingDate={ "query": [startDate, endDate], "range": "minmax"},
-                                                     Creator=memberid,
-                                                     path=searchpath)
+bookingbrains = context.portal_catalog.searchResults(
+    portal_type='Booking',
+    getBookingDate={ "query": [startDate, endDate], "range": "minmax"},
+    Creator=memberid,
+    path=searchpath)
+
 total = 0
 if bookingbrains:
     actualList = []
@@ -53,6 +56,6 @@ if bookingbrains:
         booking = bb.getObject()
         actualList.append(booking.getRawActualHours())
     total = sum(actualList)
-    total = projectFolder.formatTime(total)
+    total = formatTime(total)
 
 return total
