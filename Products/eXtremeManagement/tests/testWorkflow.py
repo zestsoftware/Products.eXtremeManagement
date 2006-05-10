@@ -377,7 +377,7 @@ class testWorkflow(eXtremeManagementTestCase):
         Test a transition.
         ctObject = Content Type object to perform the transition on
         ctId = id of object in the plone portal
-        originalState = currect state of the object
+        originalState = current state of the object
         workflowTransition = transition to perform
         newState = desired new state after the transition
         """
@@ -418,7 +418,7 @@ class testWorkflow(eXtremeManagementTestCase):
         """
         Try to execute a transaction that you are not allowed to do
         ctObject = Content Type object to perform the transition on
-        originalState = currect state of the object
+        originalState = current state of the object
         workflowTransition = transition to perform
         """
         self.assertEqual(self.workflow.getInfoFor(ctObject, 'review_state'),
