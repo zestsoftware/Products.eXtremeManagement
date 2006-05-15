@@ -35,18 +35,24 @@ def configurePortalProps(portal):
 
     # update navtree_props
     props_tool = getToolByName(portal, 'portal_properties')
-    rolesSeeUnpublishedContent = props_tool.navtree_properties.getProperty('rolesSeeUnpublishedContent', None)
-    roles = ('Customer',)
-    for role in roles:
-        if role not in rolesSeeUnpublishedContent:
-            props_tool.navtree_properties._updateProperty('rolesSeeUnpublishedContent', 
-                                                          tuple(rolesSeeUnpublishedContent) + tuple(roles))
-    metaTypesNotToList = props_tool.navtree_properties.getProperty('metaTypesNotToList', None)
-    ptypes = ('ProjectMember','Booking','Task')
-    for ptype in ptypes:
-        if ptype not in metaTypesNotToList:
-            props_tool.navtree_properties._updateProperty('metaTypesNotToList', 
-                                                          tuple(metaTypesNotToList) + ptypes)
+    if props_tool.navtree_properties.hasProperty('rolesSeeUnpublishedContent'):
+        rolesSeeUnpublishedContent = props_tool.navtree_properties.getProperty(
+            'rolesSeeUnpublishedContent')
+        roles = ('Customer',)
+        newroles = [role for role in roles if role not in rolesSeeUnpublishedContent]
+
+        props_tool.navtree_properties._updateProperty(
+            'rolesSeeUnpublishedContent',
+            tuple(rolesSeeUnpublishedContent) + tuple(newroles))
+
+    if props_tool.navtree_properties.hasProperty('metaTypesNotToList'):
+        metaTypesNotToList = props_tool.navtree_properties.getProperty(
+            'metaTypesNotToList')
+        ptypes = ('ProjectMember','Booking','Task')
+        newptypes = [ptype for ptype in ptypes if ptype not in metaTypesNotToList]
+        props_tool.navtree_properties._updateProperty(
+            'metaTypesNotToList',
+            tuple(metaTypesNotToList) + tuple(ptypes))
 
 
 def setupSkin(portal):

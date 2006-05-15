@@ -110,12 +110,16 @@ class testSetup(eXtremeManagementTestCase):
         """
         """
         props_tool = getToolByName(self.portal, 'portal_properties')
-        rolesSeeUnpublishedContent = props_tool.navtree_properties.getProperty('rolesSeeUnpublishedContent', None)
-        self.failUnless('Customer' in rolesSeeUnpublishedContent)
+        if props_tool.navtree_properties.hasProperty('rolesSeeUnpublishedContent'):
+            rolesSeeUnpublishedContent = props_tool.navtree_properties.getProperty('rolesSeeUnpublishedContent')
+            self.failUnless('Customer' in rolesSeeUnpublishedContent)
 
-        metaTypesNotToList = props_tool.navtree_properties.getProperty('metaTypesNotToList', None)
-        for ptype in ('Booking','Task','ProjectMember'):
-            self.failUnless(ptype in metaTypesNotToList)
+        if props_tool.navtree_properties.hasProperty('metaTypesNotToList'):
+            metaTypesNotToList = props_tool.navtree_properties.getProperty(
+                'metaTypesNotToList')
+            for ptype in ('Booking','Task','ProjectMember'):
+                self.failUnless(ptype in metaTypesNotToList)
+
 
     # Manually created methods
 
