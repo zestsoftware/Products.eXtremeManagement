@@ -87,7 +87,7 @@ def mailMessage(portal, obj, subject, destination=None, log=None):
     
     mMsg = """
 The url is:
-%s.
+%s
 
 The original creator of this task is:
 %s
