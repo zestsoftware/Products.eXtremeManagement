@@ -117,7 +117,11 @@
 
 
             <tal:block tal:define="items python:context.getOwnOpenTasks();">
-            <tal:block tal:condition="items">
+            <tal:block tal:condition="items"
+                       tal:define="tot python:context.getTotalOwnTasks('open');
+                                   totalEstimate python:tot[0];
+                                   totalActual python:tot[1];
+                                   totalDifference python:tot[2];">
             <h1 i18n:translate="heading-open-tasks">My open tasks</h1>
                <table
                metal:use-macro="here/iteration_view/macros/tasklist_table_with_story">
