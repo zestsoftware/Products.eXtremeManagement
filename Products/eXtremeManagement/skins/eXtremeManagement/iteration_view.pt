@@ -87,23 +87,29 @@
 
 
 
-            <tal:block tal:define="items
-                        python:context.getOwnToDoTasks();">
-            <tal:block tal:condition="items">
-            <h1 i18n:translate="heading-in-progress-tasks">My to-do tasks</h1>
+            <tal:block tal:define="items python:context.getOwnToDoTasks();">
+            <tal:block tal:condition="items"
+                       tal:define="tot python:context.getTotalOwnTasks('to-do');
+                                   totalEstimate python:tot[0];
+                                   totalActual python:tot[1];
+                                   totalDifference python:tot[2];">
+            <h1 i18n:translate="heading-in-progress-tasks">My to-do
+            tasks</h1>
               <metal:block metal:define-macro="tasklist_table_with_story">
                 <table metal:use-macro="here/story_view/macros/tasklist_table">
                     <metal:block fill-slot="extra_column_header">
                     <th i18n:translate="listingheader_story">Story</th></metal:block>
                     <metal:block fill-slot="extra_column_data">
-                    <td class="td-story-title">
+                      <td tal:condition="taskObj|nothing"
+                          class="td-story-title">
                         <a tal:attributes="href string:${taskObj/aq_parent/absolute_url}"
                            tal:content="taskObj/aq_parent/title">
                             Title
                         </a>
-                    </td>
+                      </td>
+                      <td tal:condition="not:taskObj|nothing">
+                      </td>
                     </metal:block>
-                    <metal:block fill-slot="total_row"></metal:block>
                 </table>
               </metal:block>
             </tal:block>

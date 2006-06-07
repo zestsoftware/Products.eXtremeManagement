@@ -97,6 +97,7 @@
    
                 <metal:block define-slot="total_row">
                 <tr id="totalTasks">
+                    <metal:block define-slot="extra_column_data"></metal:block>
                     <td class="td-story-title" 
                         i18n:translate="total">
                         Total
