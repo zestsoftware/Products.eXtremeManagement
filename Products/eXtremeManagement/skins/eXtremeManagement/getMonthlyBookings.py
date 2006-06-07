@@ -103,11 +103,6 @@ if memberid is None:
 list = []
 date = startDate
 
-# HACK: find a ProjectFolder so we can call the formatTime() function
-# from that projectfolder later.
-pf = context.portal_catalog.searchResults(portal_type='ProjectFolder')
-projectFolder = pf[0].getObject()
-
 while date < endDate:
     total = context.getDailyBookings(date=date, memberid=memberid)
     if total > 0:
