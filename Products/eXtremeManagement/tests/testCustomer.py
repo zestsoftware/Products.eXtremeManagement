@@ -61,17 +61,11 @@ class testCustomer(eXtremeManagementTestCase):
         """
         """
         pass
-
     # from class Customer:
     def test_Sharing(self):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Customer('temp_Customer')
-        ##self.folder._setObject('temp_Customer', o)
-        pass
-
     # Manually created methods
 
 

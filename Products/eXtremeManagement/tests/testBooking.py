@@ -84,12 +84,6 @@ class testBooking(eXtremeManagementTestCase):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Booking('temp_Booking')
-        ##self.folder._setObject('temp_Booking', o)
-        #self.assertEqual(self.booking.getId(), 1)
-        pass
-
     # from class Booking:
     def test_getRawActualHours(self):
         """

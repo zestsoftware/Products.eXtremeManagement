@@ -62,7 +62,6 @@ class testProject(eXtremeManagementTestCase):
         """
         """
         pass
-
     # from class Project:
     def test_getProject(self):
         """ Test that you can add and call a Project item
@@ -81,21 +80,11 @@ class testProject(eXtremeManagementTestCase):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Project('temp_Project')
-        ##self.folder._setObject('temp_Project', o)
-        pass
-
     # from class Project:
     def test_Projectteam(self):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Project('temp_Project')
-        ##self.folder._setObject('temp_Project', o)
-        pass
-
     # Manually created methods
 
 

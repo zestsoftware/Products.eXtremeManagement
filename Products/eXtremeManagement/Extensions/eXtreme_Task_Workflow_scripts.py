@@ -149,6 +149,7 @@ def notify_completed(self, state_change, **kw):
     obj=state_change.object
 
 
+
 def tryToCompleteStory(self, state_change, **kw):
     portal = self
     task=state_change.object
@@ -160,5 +161,4 @@ def tryToCompleteStory(self, state_change, **kw):
     except WorkflowException:
         pass
     pass
-
 

@@ -39,9 +39,9 @@ __docformat__ = 'plaintext'
 #   - To register a customisation policy, create a file CustomizationPolicy.py
 #       with a method register(context) to register the policy.
 
-from zLOG import LOG, INFO
+from zLOG import LOG, INFO, DEBUG
 
-LOG('eXtremeManagement',INFO, 'Installing Product')
+LOG('eXtremeManagement', DEBUG, 'Installing Product')
 
 try:
     import CustomizationPolicy

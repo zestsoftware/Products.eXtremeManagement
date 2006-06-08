@@ -320,9 +320,6 @@ class testWorkflow(eXtremeManagementTestCase):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        pass
-
     # Manually created methods
 
     def tryFullStoryRoute(self):

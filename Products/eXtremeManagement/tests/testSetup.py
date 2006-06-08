@@ -57,7 +57,6 @@ class testSetup(eXtremeManagementTestCase):
         """
         """
         pass
-
     def test_tools(self):
         """
         """
@@ -120,16 +119,12 @@ class testSetup(eXtremeManagementTestCase):
             for ptype in ('Booking','Task','ProjectMember'):
                 self.failUnless(ptype in metaTypesNotToList)
 
-
     # Manually created methods
 
     def test_testCustomizePortal(self):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        pass
-
 
 def test_suite():
     from unittest import TestSuite, makeSuite

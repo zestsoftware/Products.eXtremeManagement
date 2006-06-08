@@ -84,11 +84,6 @@ class testStory(eXtremeManagementTestCase):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Story('temp_Story')
-        ##self.folder._setObject('temp_Story', o)
-        pass
-
     # from class Story:
     def test_get_progress_perc(self):
         """
@@ -117,21 +112,11 @@ class testStory(eXtremeManagementTestCase):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Story('temp_Story')
-        ##self.folder._setObject('temp_Story', o)
-        pass
-
     # from class Story:
     def test_isCompleted(self):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Story('temp_Story')
-        ##self.folder._setObject('temp_Story', o)
-        pass
-
     # from class Story:
     def test_getRawEstimate(self):
         """
@@ -153,51 +138,26 @@ class testStory(eXtremeManagementTestCase):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Story('temp_Story')
-        ##self.folder._setObject('temp_Story', o)
-        pass
-
     # from class Story:
     def test_getRawActualHours(self):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Story('temp_Story')
-        ##self.folder._setObject('temp_Story', o)
-        pass
-
     # from class Story:
     def test_getActualHours(self):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Story('temp_Story')
-        ##self.folder._setObject('temp_Story', o)
-        pass
-
     # from class Story:
     def test_getRawDifference(self):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Story('temp_Story')
-        ##self.folder._setObject('temp_Story', o)
-        pass
-
     # from class Story:
     def test_getDifference(self):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Story('temp_Story')
-        ##self.folder._setObject('temp_Story', o)
-        pass
-
     # from class Story:
     def test_isEstimated(self):
         """
@@ -213,21 +173,11 @@ class testStory(eXtremeManagementTestCase):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Story('temp_Story')
-        ##self.folder._setObject('temp_Story', o)
-        pass
-
     # from class Story:
     def test_completable(self):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Story('temp_Story')
-        ##self.folder._setObject('temp_Story', o)
-        pass
-
     # Manually created methods
 
 

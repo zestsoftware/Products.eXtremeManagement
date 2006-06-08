@@ -106,47 +106,36 @@ class testTask(eXtremeManagementTestCase):
         """
         """
         #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Task('temp_Task')
-        ##self.folder._setObject('temp_Task', o)
-        pass
-
     # from class Task:
     def test_getEstimate(self):
         """
         """
         pass
-
     # from class Task:
     def test_getRawActualHours(self):
         """
         """
         pass
-
     # from class Task:
     def test_getActualHours(self):
         """
         """
         pass
-
     # from class Task:
     def test_getRawDifference(self):
         """
         """
         pass
-
     # from class Task:
     def test_getDifference(self):
         """
         """
         pass
-
     # from class Task:
     def test_CookedBody(self):
         """
         """
         pass
-
     # from class Task:
     def test_startable(self):
         """

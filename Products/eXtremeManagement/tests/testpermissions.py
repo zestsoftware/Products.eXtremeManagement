@@ -56,7 +56,6 @@ class testpermissions(eXtremeManagementTestCase):
         """
         """
         pass
-
     # Manually created methods
 
 
