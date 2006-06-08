@@ -17,8 +17,7 @@ will be reported.
 """
 
 # Where do we want to search?
-object = context
-searchpath = '/'.join(object.getPhysicalPath())
+searchpath = '/'.join(context.getPhysicalPath())
 
 if states is None:
     taskbrains = context.portal_catalog.searchResults(portal_type='Task',
@@ -27,14 +26,13 @@ else:
     taskbrains = context.portal_catalog.searchResults(portal_type='Task',
                                                  review_state=states,
                                                  path=searchpath)
+
 list = []
 if showEveryonesTasks:
     list = taskbrains
 else:
     member = context.portal_membership.getAuthenticatedMember()
-    for taskbrain in taskbrains:
-        task = taskbrain.getObject()
-        if task.getAssignees():
-            if member.id in task.getAssignees():
-                list.append(taskbrain)
+    memberid = member.id
+    list = [taskbrain for taskbrain in taskbrains
+            if memberid in taskbrain.getAssignees]
 return list

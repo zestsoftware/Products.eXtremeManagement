@@ -74,8 +74,7 @@ nextyear, nextmonth = getNextYearMonth(year, month)
 endDate = DateTime.latestTime(DateTime(nextyear, nextmonth, 1))
 
 # Where do we want to search?
-object = context
-searchpath = '/'.join(object.getPhysicalPath())
+searchpath = '/'.join(context.getPhysicalPath())
 
 if memberid is None:
     member = context.portal_membership.getAuthenticatedMember()

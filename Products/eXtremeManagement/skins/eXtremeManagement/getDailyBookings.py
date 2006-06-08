@@ -23,8 +23,7 @@ log = logging.getLogger("Daily Bookings")
 
 
 # Where do we want to search?
-object = context
-searchpath = '/'.join(object.getPhysicalPath())
+searchpath = '/'.join(context.getPhysicalPath())
 
 if memberid is None:
     member = context.portal_membership.getAuthenticatedMember()
@@ -53,8 +52,7 @@ total = 0
 if bookingbrains:
     actualList = []
     for bb in bookingbrains:
-        booking = bb.getObject()
-        actualList.append(booking.getRawActualHours())
+        actualList.append(bb.getRawActualHours)
     total = sum(actualList)
     total = formatTime(total)
 

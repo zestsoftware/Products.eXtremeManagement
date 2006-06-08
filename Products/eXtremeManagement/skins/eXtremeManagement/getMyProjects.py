@@ -17,13 +17,13 @@ returned.  Standard: open and to-do, not completed.
 """
 
 # Where do we want to search?
-object = context
-searchpath = '/'.join(object.getPhysicalPath())
+searchpath = '/'.join(context.getPhysicalPath())
 
 projectbrains = context.portal_catalog.searchResults(portal_type='Project',
                                                      path=searchpath)
 
 member = context.portal_membership.getAuthenticatedMember()
+memberid = member.id
 list = []
 for projectbrain in projectbrains:
     project = projectbrain.getObject()
@@ -38,10 +38,8 @@ for projectbrain in projectbrains:
     
     # Search for the first assigned Task with member as assignee.
     for taskbrain in taskbrains:
-        task = taskbrain.getObject()
-        if task.getAssignees():
-            if member.id in task.getAssignees():
-                list.append(project)
-                break
+        if memberid in taskbrain.getAssignees:
+            list.append(project)
+            break
 
 return list

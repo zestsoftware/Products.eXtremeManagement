@@ -90,8 +90,7 @@ schema = Schema((
 
     LinesField(
         name='assignees',
-        default_method='getDefaultAssignee',
-        index="FieldIndex",
+        index="FieldIndex:brains",
         widget=MultiSelectionWidget(
             description="Select the member(s) to assign this task to.",
             label='Assignees',
@@ -100,7 +99,38 @@ schema = Schema((
             i18n_domain='eXtremeManagement',
         ),
         multiValued=1,
-        vocabulary='_get_assignees'
+        vocabulary='_get_assignees',
+        default_method='getDefaultAssignee'
+    ),
+
+    ComputedField(
+        name='rawEstimate',
+        index="FieldIndex:brains",
+        widget=ComputedWidget(
+            label='Rawestimate',
+            label_msgid='eXtremeManagement_label_rawEstimate',
+            i18n_domain='eXtremeManagement',
+        )
+    ),
+
+    ComputedField(
+        name='rawActualHours',
+        index="FieldIndex:brains",
+        widget=ComputedWidget(
+            label='Rawactualhours',
+            label_msgid='eXtremeManagement_label_rawActualHours',
+            i18n_domain='eXtremeManagement',
+        )
+    ),
+
+    ComputedField(
+        name='rawDifference',
+        index="FieldIndex:brains",
+        widget=ComputedWidget(
+            label='Rawdifference',
+            label_msgid='eXtremeManagement_label_rawDifference',
+            i18n_domain='eXtremeManagement',
+        )
     ),
 
 ),

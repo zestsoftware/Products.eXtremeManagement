@@ -18,8 +18,6 @@ required_states = states
 # showEveryonesTasks: if False, only tasks assigned to the current user
 # will be reported.
 showEveryonesTasks = False
-taskbrains = context.getTasks(required_states, showEveryonesTasks)
-tasks = [taskbrain.getObject() for taskbrain in taskbrains]
 
 # HACK: find a ProjectFolder so we can call the formatTime() function
 # from that projectfolder later.
@@ -29,12 +27,20 @@ projectFolder = pf[0].getObject()
 formatTime = projectFolder.formatTime
 
 def myPortion(task):
-    return 1.0/len(task.getAssignees())
+    return 1.0/len(task.getAssignees)
 
-rawEstimate = sum([task.getRawEstimate() * myPortion(task)
+tasks = context.getTasks(required_states, showEveryonesTasks)
+
+"""
+for task in tasks:
+    print 'gre = %r; gra = %r; grd = %s; ass = %r' % (task.getRawEstimate, task.getRawActualHours, task.getRawDifference, task.getAssignees)
+
+"""
+
+rawEstimate = sum([task.getRawEstimate * myPortion(task)
                    for task in tasks])
-rawActualHours = sum([task.getRawActualHours() * myPortion(task)
+rawActualHours = sum([task.getRawActualHours * myPortion(task)
                       for task in tasks])
-rawDifference = sum([task.getRawDifference() * myPortion(task)
+rawDifference = sum([task.getRawDifference * myPortion(task)
                      for task in tasks])
 return map(formatTime, (rawEstimate, rawActualHours, rawDifference))
