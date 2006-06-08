@@ -57,41 +57,37 @@
 
 
             <metal:block metal:define-macro="tasklist_body">
-              <tr tal:repeat="item items"
+              <tr tal:repeat="task items"
                   class="list-in-iteration">
-                <tal:block tal:define="taskObj item/getObject;">
                   <metal:block define-slot="extra_column_data"></metal:block>
                   <td class="td-story-title">
-                    <a tal:attributes="href string:${taskObj/absolute_url}"
-                       tal:content="taskObj/title">
+                    <a tal:attributes="href string:${task/getPath}"
+                       tal:content="task/Title">
                       Title
                     </a>
                   </td>
-                  <td tal:content="taskObj/getEstimate">
+                  <td tal:content="task/getRawEstimate">
                     estimate
                   </td>
-                  <td tal:content="taskObj/getActualHours">
+                  <td tal:content="task/getRawActualHours">
                     actual
                   </td>
-                  <td tal:content="taskObj/getDifference">
+                  <td tal:content="task/getRawDifference">
                     diff
                   </td>
-                  <td tal:define="wtool here/portal_workflow;
-                                  review_state python:wtool.getInfoFor(taskObj, 'review_state')"
-                      tal:content="review_state"
+                  <td tal:content="task/review_state"
                       class="td-center">
                     Status
                   </td>
                   <td class="td-center">
                     <span tal:omit-tag="" 
-                          tal:repeat="newItem taskObj/getAssignees">
+                          tal:repeat="newItem task/getAssignees">
                       <img src="user.gif"
                            alt="user" />
                       <span tal:replace="newItem">Assignee</span>
                       <br />
                     </span>
                   </td>
-                </tal:block>
               </tr>
             </metal:block>
             

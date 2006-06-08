@@ -93,6 +93,12 @@
                                    totalEstimate python:tot[0];
                                    totalActual python:tot[1];
                                    totalDifference python:tot[2];">
+    <p>
+      Overview of tasks that belong to me.  The totals mentioned are
+      the total time for myself, so they will usually differ from
+      adding the numbers of the column above it.
+    </p>
+
             <h1 i18n:translate="heading-in-progress-tasks">My to-do
             tasks</h1>
               <metal:block metal:define-macro="tasklist_table_with_story">
@@ -100,14 +106,16 @@
                     <metal:block fill-slot="extra_column_header">
                     <th i18n:translate="listingheader_story">Story</th></metal:block>
                     <metal:block fill-slot="extra_column_data">
-                      <td tal:condition="taskObj|nothing"
+                      <td tal:condition="task|nothing"
                           class="td-story-title">
-                        <a tal:attributes="href string:${taskObj/aq_parent/absolute_url}"
-                           tal:content="taskObj/aq_parent/title">
+                        <a tal:define="storyPath string:${task/getPath}/..;
+                                       story python:context.restrictedTraverse(storyPath)"
+                           tal:attributes="href storyPath"
+                           tal:content="story/Title">
                             Title
                         </a>
                       </td>
-                      <td tal:condition="not:taskObj|nothing">
+                      <td tal:condition="not:task|nothing">
                       </td>
                     </metal:block>
                 </table>

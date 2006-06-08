@@ -13,6 +13,14 @@
     <div metal:fill-slot="main"
          tal:define="projects python:portal.getProjects();"
          tal:omit-tag="">
+    <h1>My task overview</h1>
+
+    <p>
+      Overview of tasks that belong to me.  The totals mentioned are
+      the total time for myself, so they will usually differ from
+      adding the numbers of the column above it.
+    </p>
+
     <h1 i18n:translate="heading-to-do-tasks">My to-do tasks</h1>
 
     <p>These are all tasks that have been assigned to me and that I
