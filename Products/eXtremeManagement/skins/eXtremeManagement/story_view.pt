@@ -2,126 +2,126 @@
       lang="en-US"
       i18n:domain="eXtremeManagement">
 
-    <metal:block use-macro="context/global_defines/macros/defines" />
-    
-    <body>
+  <metal:block use-macro="context/global_defines/macros/defines" />
+  
+  <body>
     <metal:block metal:define-macro="header">
-        <h1 tal:content="here/title_or_id" class="documentFirstHeading">
-            Title or id
-        </h1>
-        <div class="documentDescription" 
-             tal:condition="here/Description" 
-             tal:content="here/Description">description
-        </div>
+      <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+        Title or id
+      </h1>
+      <div class="documentDescription"
+           tal:condition="here/Description"
+           tal:content="here/Description">description
+      </div>
     </metal:block>
     
     <metal:block metal:define-macro="body"
                  tal:define="totalEstimate python:here.getEstimate();
-                        totalActual python:here.getActualHours();
-                        totalDifference python:here.getDifference();
-                        item_path python:'/'.join(context.getPhysicalPath());
-                        items context/getStateSortedContents;">
-    
-        <div tal:replace="structure context/CookedBody" />
+                             totalActual python:here.getActualHours();
+                             totalDifference python:here.getDifference();
+                             item_path python:'/'.join(context.getPhysicalPath());
+                             items context/getStateSortedContents;">
+      
+      <div tal:replace="structure context/CookedBody" />
 
-        <p tal:condition="context/getRoughEstimate"
-           i18n:translate="label_roughestimate">
-            Rough Estimate:
-            <span i18n:name="rough" tal:replace="structure context/getRoughEstimate" />
-            days.
-        </p>
+      <p tal:condition="context/getRoughEstimate"
+         i18n:translate="label_roughestimate">
+        Rough Estimate:
+        <span i18n:name="rough" tal:replace="structure context/getRoughEstimate" />
+        days.
+      </p>
 
-        <tal:block tal:condition="items">
-            <h1 class="documentFirstHeading" 
-                i18n:translate="heading_tasks">Tasks</h1>
-    
-            <metal:block metal:define-macro="tasklist_table">
-            <table class="listing nosort"
-                   border="1"
-                   width="100%"
-                   cellpadding="0" 
-                   cellspacing="0">
-              <metal:block metal:define-macro="tasklist_header">
-                <thead>
+      <tal:block tal:condition="items">
+        <h1 class="documentFirstHeading" 
+            i18n:translate="heading_tasks">Tasks</h1>
+        
+        <metal:block metal:define-macro="tasklist_table">
+          <table class="listing nosort"
+                 border="1"
+                 width="100%"
+                 cellpadding="0" 
+                 cellspacing="0">
+            <metal:block metal:define-macro="tasklist_header">
+              <thead>
                 <tr>
-                    <metal:block define-slot="extra_column_header"></metal:block>
-                    <th i18n:translate="listingheader_title">Title</th>
-                    <th i18n:translate="listingheader_estimate">Estimate</th>                  
-                    <th i18n:translate="listingheader_actual">Actual</th>
-                    <th i18n:translate="listingheader_diff">Difference</th>
-                    <th i18n:translate="listingheader_state">Status</th>
-                    <th i18n:translate="listingheader_assignees">Assignee(s)</th>
+                  <metal:block define-slot="extra_column_header"></metal:block>
+                  <th i18n:translate="listingheader_title">Title</th>
+                  <th i18n:translate="listingheader_estimate">Estimate</th>                  
+                  <th i18n:translate="listingheader_actual">Actual</th>
+                  <th i18n:translate="listingheader_diff">Difference</th>
+                  <th i18n:translate="listingheader_state">Status</th>
+                  <th i18n:translate="listingheader_assignees">Assignee(s)</th>
                 </tr>
-                </thead>
-              </metal:block>
-
-
-              <metal:block metal:define-macro="tasklist_body">
-                <tr tal:repeat="item items"
-                    class="list-in-iteration">
-                <tal:block tal:define="taskObj item/getObject;">
-                    <metal:block define-slot="extra_column_data"></metal:block>
-                    <td class="td-story-title">
-                        <a tal:attributes="href string:${taskObj/absolute_url}"
-                           tal:content="taskObj/title">
-                            Title
-                        </a>
-                    </td>
-                    <td tal:content="taskObj/getEstimate">
-                        estimate
-                    </td>
-                    <td tal:content="taskObj/getActualHours">
-                        actual
-                    </td>
-                    <td tal:content="taskObj/getDifference">
-                        diff
-                    </td>
-                   <td tal:define="wtool here/portal_workflow;
-                            review_state python:wtool.getInfoFor(taskObj, 'review_state')"
-                       tal:content="review_state"
-                       class="td-center">
-                        Status
-                    </td>
-                    <td class="td-center">
-                        <span tal:omit-tag="" 
-                              tal:repeat="newItem taskObj/getAssignees">
-                            <img src="user.gif"
-                                 alt="user" />
-                            <span tal:replace="newItem">Assignee</span>
-                            <br />
-                        </span>
-                    </td>
-                </tal:block>
-                </tr>
-              </metal:block>
-   
-                <metal:block define-slot="total_row">
-                <tr id="totalTasks">
-                    <metal:block define-slot="extra_column_data"></metal:block>
-                    <td class="td-story-title" 
-                        i18n:translate="total">
-                        Total
-                    </td>
-                    <td tal:content="totalEstimate">
-                        total estimate
-                    </td>
-                    <td tal:content="totalActual">
-                        total actual
-                    </td>
-                    <td tal:content="totalDifference">
-                        total diff
-                    </td>
-                    <td>&nbsp;</td>  
-                    <td>&nbsp;</td>  
-                </tr>
-                </metal:block>
-            </table>
+              </thead>
             </metal:block>
-            </tal:block>
+
+
+            <metal:block metal:define-macro="tasklist_body">
+              <tr tal:repeat="item items"
+                  class="list-in-iteration">
+                <tal:block tal:define="taskObj item/getObject;">
+                  <metal:block define-slot="extra_column_data"></metal:block>
+                  <td class="td-story-title">
+                    <a tal:attributes="href string:${taskObj/absolute_url}"
+                       tal:content="taskObj/title">
+                      Title
+                    </a>
+                  </td>
+                  <td tal:content="taskObj/getEstimate">
+                    estimate
+                  </td>
+                  <td tal:content="taskObj/getActualHours">
+                    actual
+                  </td>
+                  <td tal:content="taskObj/getDifference">
+                    diff
+                  </td>
+                  <td tal:define="wtool here/portal_workflow;
+                                  review_state python:wtool.getInfoFor(taskObj, 'review_state')"
+                      tal:content="review_state"
+                      class="td-center">
+                    Status
+                  </td>
+                  <td class="td-center">
+                    <span tal:omit-tag="" 
+                          tal:repeat="newItem taskObj/getAssignees">
+                      <img src="user.gif"
+                           alt="user" />
+                      <span tal:replace="newItem">Assignee</span>
+                      <br />
+                    </span>
+                  </td>
+                </tal:block>
+              </tr>
+            </metal:block>
             
-            <p class="discreet"
-               tal:condition="python: not items"
-               i18n:translate="no_tasks_defined">
+            <metal:block define-slot="total_row">
+              <tr id="totalTasks">
+                <metal:block define-slot="extra_column_data"></metal:block>
+                <td class="td-story-title" 
+                    i18n:translate="total">
+                  Total
+                </td>
+                <td tal:content="totalEstimate">
+                  total estimate
+                </td>
+                <td tal:content="totalActual">
+                  total actual
+                </td>
+                <td tal:content="totalDifference">
+                  total diff
+                </td>
+                <td>&nbsp;</td>  
+                <td>&nbsp;</td>  
+              </tr>
+            </metal:block>
+          </table>
+        </metal:block>
+      </tal:block>
+      
+      <p class="discreet"
+         tal:condition="python: not items"
+         i18n:translate="no_tasks_defined">
                 No tasks defined yet.
             </p>
             <br />
