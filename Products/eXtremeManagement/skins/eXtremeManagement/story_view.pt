@@ -66,13 +66,13 @@
                       Title
                     </a>
                   </td>
-                  <td tal:content="task/getRawEstimate">
+                  <td tal:content="python:context.formatTime(task.getRawEstimate)">
                     estimate
                   </td>
-                  <td tal:content="task/getRawActualHours">
+                  <td tal:content="python:context.formatTime(task.getRawActualHours)">
                     actual
                   </td>
-                  <td tal:content="task/getRawDifference">
+                  <td tal:content="python:context.formatTime(task.getRawDifference)">
                     diff
                   </td>
                   <td tal:content="task/review_state"
