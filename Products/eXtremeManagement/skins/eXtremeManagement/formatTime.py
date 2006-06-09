@@ -21,5 +21,4 @@ solve it better.
 pf = context.portal_catalog.searchResults(portal_type='ProjectFolder')
 projectFolder = pf[0].getObject()
 formatTime = projectFolder.formatTime
-time = 0.0
 return formatTime(time)
