@@ -46,42 +46,60 @@ def installWorkflows(self, package, out):
                          productname+'.'+'eXtreme_Project_Workflow',
                          'createeXtreme_Project_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Project_Workflow')
-    workflowTool._setObject('eXtreme_Project_Workflow', workflow)
+    if 'eXtreme_Project_Workflow' in workflowTool.listWorkflows():
+        print >> out, 'eXtreme_Project_Workflow already in workflows.'
+    else:
+        workflowTool._setObject('eXtreme_Project_Workflow', workflow)
     workflowTool.setChainForPortalTypes(['Project'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
                          productname+'.'+'eXtreme_Iteration_Workflow',
                          'createeXtreme_Iteration_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Iteration_Workflow')
-    workflowTool._setObject('eXtreme_Iteration_Workflow', workflow)
+    if 'eXtreme_Iteration_Workflow' in workflowTool.listWorkflows():
+        print >> out, 'eXtreme_Iteration_Workflow already in workflows.'
+    else:
+        workflowTool._setObject('eXtreme_Iteration_Workflow', workflow)
     workflowTool.setChainForPortalTypes(['Iteration'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
                          productname+'.'+'eXtreme_Story_Workflow',
                          'createeXtreme_Story_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Story_Workflow')
-    workflowTool._setObject('eXtreme_Story_Workflow', workflow)
+    if 'eXtreme_Story_Workflow' in workflowTool.listWorkflows():
+        print >> out, 'eXtreme_Story_Workflow already in workflows.'
+    else:
+        workflowTool._setObject('eXtreme_Story_Workflow', workflow)
     workflowTool.setChainForPortalTypes(['Story'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
                          productname+'.'+'eXtreme_Task_Workflow',
                          'createeXtreme_Task_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Task_Workflow')
-    workflowTool._setObject('eXtreme_Task_Workflow', workflow)
+    if 'eXtreme_Task_Workflow' in workflowTool.listWorkflows():
+        print >> out, 'eXtreme_Task_Workflow already in workflows.'
+    else:
+        workflowTool._setObject('eXtreme_Task_Workflow', workflow)
     workflowTool.setChainForPortalTypes(['Task'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
                          productname+'.'+'eXtreme_Default_Workflow',
                          'createeXtreme_Default_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Default_Workflow')
-    workflowTool._setObject('eXtreme_Default_Workflow', workflow)
+    if 'eXtreme_Default_Workflow' in workflowTool.listWorkflows():
+        print >> out, 'eXtreme_Default_Workflow already in workflows.'
+    else:
+        workflowTool._setObject('eXtreme_Default_Workflow', workflow)
     workflowTool.setChainForPortalTypes(['WorkflowStub', 'ProjectMember', 'Customer'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
                          productname+'.'+'eXtreme_Booking_Workflow',
                          'createeXtreme_Booking_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Booking_Workflow')
-    workflowTool._setObject('eXtreme_Booking_Workflow', workflow)
+    if 'eXtreme_Booking_Workflow' in workflowTool.listWorkflows():
+        print >> out, 'eXtreme_Booking_Workflow already in workflows.'
+    else:
+        workflowTool._setObject('eXtreme_Booking_Workflow', workflow)
     workflowTool.setChainForPortalTypes(['Booking'], workflow.getId())
 
     ##code-section after-workflow-install #fill in your manual code here
