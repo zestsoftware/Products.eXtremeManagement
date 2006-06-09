@@ -47,6 +47,7 @@ from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeMa
 from Products.eXtremeManagement.content.Task import Task
 
 ##code-section module-beforeclass #fill in your manual code here
+from Products.CMFCore.utils import getToolByName
 ##/code-section module-beforeclass
 
 
@@ -58,7 +59,7 @@ class testTask(eXtremeManagementTestCase):
     ##/code-section class-header_testTask
 
     def afterSetUp(self):
-        self.catalog = self.portal.portal_catalog
+        self.catalog =  getToolByName(self.portal, 'portal_catalog')
         self.workflow = self.portal.portal_workflow
         self.userfolder = self.portal.acl_users
         self.setRoles(['Manager'])
@@ -89,13 +90,16 @@ class testTask(eXtremeManagementTestCase):
         TypeError: Cant compare DisplayList to <type 'list'>
         Improve at will. :)
         """
-        self.assertEqual(self.task.getAssignees(), ())
+        self.assertTaskBrainEquality('getAssignees', ())
+
         self.task.setAssignees('developer')
-        self.assertEqual(self.task.getAssignees(), ('developer',))
+        self.assertTaskBrainEquality('getAssignees', ('developer',))
+
         self.task.setAssignees(('developer','employee',))
-        self.assertEqual(self.task.getAssignees(), ('developer','employee',))
+        self.assertTaskBrainEquality('getAssignees', ('developer','employee',))
+
         self.task.setAssignees('')
-        self.assertEqual(self.task.getAssignees(), ())
+        self.assertTaskBrainEquality('getAssignees', ())
 
     # from class Task:
     def test_setAssignees(self):
@@ -103,9 +107,18 @@ class testTask(eXtremeManagementTestCase):
 
     # from class Task:
     def test_getRawEstimate(self):
+        """Make sure rawEstimate returns the expected value.
+
+        Also make sure the same value is stored in the catalog.
         """
-        """
-        #Uncomment one of the following lines as needed
+        self.assertTaskBrainEquality('getRawEstimate', 0)
+        
+        self.task.setHours(4)
+        self.assertTaskBrainEquality('getRawEstimate', 4)
+
+        self.task.setMinutes(15)
+        self.assertTaskBrainEquality('getRawEstimate', 4.25)
+
     # from class Task:
     def test_getEstimate(self):
         """
@@ -113,9 +126,18 @@ class testTask(eXtremeManagementTestCase):
         pass
     # from class Task:
     def test_getRawActualHours(self):
+        """Make sure rawActualHours returns the expected value.
+
+        Also make sure the same value is stored in the catalog.
         """
-        """
-        pass
+        self.assertTaskBrainEquality('getRawActualHours', 0)
+        
+        self.task.invokeFactory('Booking', id='booking', hours=1)
+        self.assertTaskBrainEquality('getRawActualHours', 1)
+
+        self.task.invokeFactory('Booking', id='booking2', minutes=15)
+        self.assertTaskBrainEquality('getRawActualHours', 1.25)
+
     # from class Task:
     def test_getActualHours(self):
         """
@@ -123,9 +145,21 @@ class testTask(eXtremeManagementTestCase):
         pass
     # from class Task:
     def test_getRawDifference(self):
+        """Make sure rawDifference returns the expected value.
+
+        Also make sure the same value is stored in the catalog.
         """
-        """
-        pass
+        self.assertTaskBrainEquality('getRawDifference', 0)
+        
+        self.task.setHours(4)
+        self.assertTaskBrainEquality('getRawDifference', -4)
+
+        self.task.invokeFactory('Booking', id='booking', hours=1)
+        self.assertTaskBrainEquality('getRawDifference', -3)
+
+        self.task.invokeFactory('Booking', id='booking2', minutes=15)
+        self.assertTaskBrainEquality('getRawDifference', -2.75)
+
     # from class Task:
     def test_getDifference(self):
         """
@@ -184,6 +218,17 @@ class testTask(eXtremeManagementTestCase):
         self.login('klant')
         self.assertEqual(self.task.getDefaultAssignee(), '')
         
+    def assertTaskBrainEquality(self, attribute, value):
+        """Test equality of Task and taskbrain from catalog.
+        """
+        taskbrains = self.catalog.searchResults(portal_type='Task')
+        # Test if there really is only one Task in the catalog.
+        self.assertEqual(len(taskbrains), 1)
+
+        taskbrain = taskbrains[0]
+        self.assertEqual(self.task[attribute](), value)
+        self.assertEqual(self.task[attribute](),
+                         taskbrain[attribute])
 
 def test_suite():
     from unittest import TestSuite, makeSuite

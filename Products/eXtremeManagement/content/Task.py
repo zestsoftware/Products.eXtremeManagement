@@ -218,8 +218,7 @@ class Task(BaseFolder):
 
     security.declarePublic('setAssignees')
     def setAssignees(self, value, **kw):
-        """
-        Overwrite the default setter.  An email should be sent on assignment.
+        """Overwrite the default setter.  Send an email should on assignment.
 
         But not when the Task is edited and the assignees don't
         change.  And if they _do_ change, then don't mail the people
@@ -239,6 +238,7 @@ class Task(BaseFolder):
         #    return
         old_assignees = list(self.getAssignees())
         self.schema['assignees'].set(self, value)
+        self._reindex(idxs=['getAssignees',])
         while '' in value:
              value.remove('')
         if old_assignees != value:
@@ -332,6 +332,32 @@ class Task(BaseFolder):
         else:
             return ''
 
+
+    security.declarePublic('setHours')
+    def setHours(self, value, **kw):
+        """Custom setter for hours.
+
+        We reindex the Task here so the getRawEstimate in the catalog
+        gets updated.
+        """
+        self.schema['hours'].set(self, value)
+        self._reindex(idxs=['getRawEstimated', 'getRawDifference'])
+
+    security.declarePublic('setMinutes')
+    def setMinutes(self, value, **kw):
+        """Custom setter for minutes.
+
+        We reindex the Task here so the getRawEstimate in the catalog
+        gets updated.
+        """
+        self.schema['minutes'].set(self, value)
+        self._reindex(idxs=['getRawEstimated', 'getRawDifference'])
+
+
+    security.declarePrivate('_reindex')
+    def _reindex(self, idxs=[]):
+        cat = getToolByName(self, 'portal_catalog')
+        cat.reindexObject(self, idxs=idxs)
 
 
 registerType(Task, PROJECTNAME)

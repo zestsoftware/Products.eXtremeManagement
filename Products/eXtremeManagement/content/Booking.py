@@ -33,11 +33,10 @@ from Products.Archetypes.atapi import *
 from Products.eXtremeManagement.config import *
 
 ##code-section module-header #fill in your manual code here
-
 BaseSchema = BaseSchema.copy()
 BaseSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-#BaseSchema['title'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 from DateTime import DateTime
+from Products.CMFCore.utils import getToolByName
 ##/code-section module-header
 
 schema = Schema((
@@ -178,6 +177,34 @@ class Booking(BaseContent):
         
         """
         return self.formatTime(self.getRawActualHours())
+
+    security.declarePublic('setHours')
+    def setHours(self, value, **kw):
+        """Custom setter for hours.
+
+        We reindex the parent Task here so the getRawActualHours and
+        getRawDifference in the catalog get updated.
+        """
+        self.schema['hours'].set(self, value)
+        self._reindexTask()
+
+    security.declarePublic('setMinutes')
+    def setMinutes(self, value, **kw):
+        """Custom setter for minutes.
+
+        We reindex the parent Task here so the getRawActualHours and
+        getRawDifference in the catalog get updated.
+        """
+        self.schema['minutes'].set(self, value)
+        self._reindexTask()
+
+    security.declarePrivate('_reindexTask')
+    def _reindexTask(self):
+        parent = self.aq_inner.aq_parent
+        cat = getToolByName(self, 'portal_catalog')
+        cat.reindexObject(parent,
+                          idxs=['getRawActualHours',
+                               'getRawDifference'])
 
 
 registerType(Booking, PROJECTNAME)
