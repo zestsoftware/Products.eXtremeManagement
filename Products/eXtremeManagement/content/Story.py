@@ -126,7 +126,7 @@ class Story(OrderedBaseFolder):
         MAXIMUM_NOT_COMPLETED_PERCENTAGE, and your story still is not
         completed, we deem it safer to display this percentage.
         """
-        
+
         if self.isCompleted():
             return 100
         estimated = self.getRawEstimate()
@@ -196,14 +196,14 @@ class Story(OrderedBaseFolder):
     security.declarePublic('getEstimate')
     def getEstimate(self):
         """
-        
+
         """
         return self.formatTime(self.getRawEstimate())
 
     security.declarePublic('getRawActualHours')
     def getRawActualHours(self):
         """
-        
+
         """
         tasks = self.contentValues()
         actual = 0.0
@@ -215,21 +215,21 @@ class Story(OrderedBaseFolder):
     security.declarePublic('getActualHours')
     def getActualHours(self):
         """
-        
+
         """
         return self.formatTime(self.getRawActualHours())
 
     security.declarePublic('getRawDifference')
     def getRawDifference(self):
         """
-        
+
         """
         return self.getRawActualHours() -  self.getRawEstimate()
-        
+
     security.declarePublic('getDifference')
     def getDifference(self):
         """
-        
+
         """
         return self.formatTime(self.getRawDifference())
 

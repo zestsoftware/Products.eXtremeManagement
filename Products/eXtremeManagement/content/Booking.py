@@ -146,7 +146,7 @@ class Booking(BaseContent):
         # Can't rename without a subtransaction commit when using
         # portal_factory!
         get_transaction().commit(1)
-        self.setId(newId)        
+        self.setId(newId)
 
     security.declarePublic('getRawActualHours')
     def getRawActualHours(self):
@@ -174,9 +174,28 @@ class Booking(BaseContent):
     security.declarePublic('getActualHours')
     def getActualHours(self):
         """
-        
+
         """
         return self.formatTime(self.getRawActualHours())
+
+    # Manually created methods
+
+    security.declarePrivate('_reindexTask')
+    def _reindexTask(self):
+        parent = self.aq_inner.aq_parent
+        cat = getToolByName(self, 'portal_catalog')
+        cat.reindexObject(parent,
+                          idxs=['getRawActualHours',
+                               'getRawDifference'])
+    security.declarePublic('setMinutes')
+    def setMinutes(self, value, **kw):
+        """Custom setter for minutes.
+
+        We reindex the parent Task here so the getRawActualHours and
+        getRawDifference in the catalog get updated.
+        """
+        self.schema['minutes'].set(self, value)
+        self._reindexTask()
 
     security.declarePublic('setHours')
     def setHours(self, value, **kw):
@@ -188,23 +207,6 @@ class Booking(BaseContent):
         self.schema['hours'].set(self, value)
         self._reindexTask()
 
-    security.declarePublic('setMinutes')
-    def setMinutes(self, value, **kw):
-        """Custom setter for minutes.
-
-        We reindex the parent Task here so the getRawActualHours and
-        getRawDifference in the catalog get updated.
-        """
-        self.schema['minutes'].set(self, value)
-        self._reindexTask()
-
-    security.declarePrivate('_reindexTask')
-    def _reindexTask(self):
-        parent = self.aq_inner.aq_parent
-        cat = getToolByName(self, 'portal_catalog')
-        cat.reindexObject(parent,
-                          idxs=['getRawActualHours',
-                               'getRawDifference'])
 
 
 registerType(Booking, PROJECTNAME)

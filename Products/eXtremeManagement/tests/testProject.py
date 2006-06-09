@@ -63,6 +63,7 @@ class testProject(eXtremeManagementTestCase):
         """
         pass
     # from class Project:
+    # from class Project:
     def test_getProject(self):
         """ Test that you can add and call a Project item
         """
@@ -70,7 +71,7 @@ class testProject(eXtremeManagementTestCase):
         p=ProjectFolder('projects01')
         self.portal._setObject('projects01',p)
         self.failUnless( self.portal.projects01.portal_type == 'ProjectFolder')
-        
+
         o=Project('temp_Project')
         self.portal.projects01._setObject('temp_Project', o)
         self.failUnless( self.portal.projects01.temp_Project.portal_type == 'Project')

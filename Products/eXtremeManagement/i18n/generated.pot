@@ -557,6 +557,21 @@ msgstr ""
 msgid "eXtremeManagement_label_phoneNumber"
 msgstr ""
 
+#. Default: "Rawactualhours"
+#: content/Task.py
+msgid "eXtremeManagement_label_rawActualHours"
+msgstr ""
+
+#. Default: "Rawdifference"
+#: content/Task.py
+msgid "eXtremeManagement_label_rawDifference"
+msgstr ""
+
+#. Default: "Rawestimate"
+#: content/Task.py
+msgid "eXtremeManagement_label_rawEstimate"
+msgstr ""
+
 #. Default: "Roughestimate"
 #: content/Story.py
 msgid "eXtremeManagement_label_roughEstimate"

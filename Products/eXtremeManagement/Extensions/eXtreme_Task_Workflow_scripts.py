@@ -84,7 +84,7 @@ def mailMessage(portal, obj, subject, destination=None, log=None):
 
     # This is the original creator of the task:
     creatorid = obj.Creator()
-    
+
     mMsg = """
 The url is:
 %s
@@ -161,4 +161,5 @@ def tryToCompleteStory(self, state_change, **kw):
     except WorkflowException:
         pass
     pass
+
 

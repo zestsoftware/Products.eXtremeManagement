@@ -155,7 +155,7 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryForbiddenTransition(self.project, 'private', 'activate')
         self.login('customer')
         self.tryForbiddenTransition(self.project, 'private', 'activate')
-        
+
         # Try some transactions that don't belong to the current state
         self.login('manager')
         self.tryForbiddenTransition(self.project, 'private', 'reactivate')
@@ -221,7 +221,7 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(self.iteration, 'iteration',
                                   'completed', 'invoice', 'invoiced')
 
-        
+
         # Try some transactions that don't belong to the current state
         self.tryForbiddenTransition(self.iteration, 'invoiced', 'reactivate')
 
@@ -295,7 +295,7 @@ class testWorkflow(eXtremeManagementTestCase):
 
     def test_task_transitions_customer(self):
         """Test transitions of the Task Content Type as Customer.
-        
+
         Some tests for the customer, who has no rights here:
         """
         self.twoStepTransition(self.task, 'task', 'open', 'activate',

@@ -160,7 +160,7 @@ Customer_schema = OrderedBaseFolderSchema.copy() + \
 
 ##code-section after-schema #fill in your manual code here
 
-Customer_schema = schema + BaseFolderSchema 
+Customer_schema = schema + BaseFolderSchema
 
 ##/code-section after-schema
 

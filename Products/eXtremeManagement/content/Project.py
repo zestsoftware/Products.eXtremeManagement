@@ -119,7 +119,7 @@ class Project(OrderedBaseFolder):
         # PAS doesn't use prefixes at all
         # TODO: probably we want a global switch for PAS
         try:
-            import Products.PlonePAS 
+            import Products.PlonePAS
         except ImportError:
             prefix=self.acl_users.getGroupPrefix()
         else:

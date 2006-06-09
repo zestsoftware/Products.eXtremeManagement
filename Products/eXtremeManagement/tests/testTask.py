@@ -112,7 +112,7 @@ class testTask(eXtremeManagementTestCase):
         Also make sure the same value is stored in the catalog.
         """
         self.assertTaskBrainEquality('getRawEstimate', 0)
-        
+
         self.task.setHours(4)
         self.assertTaskBrainEquality('getRawEstimate', 4)
 
@@ -125,13 +125,14 @@ class testTask(eXtremeManagementTestCase):
         """
         pass
     # from class Task:
+    # from class Task:
     def test_getRawActualHours(self):
         """Make sure rawActualHours returns the expected value.
 
         Also make sure the same value is stored in the catalog.
         """
         self.assertTaskBrainEquality('getRawActualHours', 0)
-        
+
         self.task.invokeFactory('Booking', id='booking', hours=1)
         self.assertTaskBrainEquality('getRawActualHours', 1)
 
@@ -144,13 +145,14 @@ class testTask(eXtremeManagementTestCase):
         """
         pass
     # from class Task:
+    # from class Task:
     def test_getRawDifference(self):
         """Make sure rawDifference returns the expected value.
 
         Also make sure the same value is stored in the catalog.
         """
         self.assertTaskBrainEquality('getRawDifference', 0)
-        
+
         self.task.setHours(4)
         self.assertTaskBrainEquality('getRawDifference', -4)
 
@@ -166,10 +168,12 @@ class testTask(eXtremeManagementTestCase):
         """
         pass
     # from class Task:
+    # from class Task:
     def test_CookedBody(self):
         """
         """
         pass
+    # from class Task:
     # from class Task:
     def test_startable(self):
         """
@@ -203,6 +207,18 @@ class testTask(eXtremeManagementTestCase):
 
     # Manually created methods
 
+    def assertTaskBrainEquality(self, attribute, value):
+        """Test equality of Task and taskbrain from catalog.
+        """
+        taskbrains = self.catalog.searchResults(portal_type='Task')
+        # Test if there really is only one Task in the catalog.
+        self.assertEqual(len(taskbrains), 1)
+
+        taskbrain = taskbrains[0]
+        self.assertEqual(self.task[attribute](), value)
+        self.assertEqual(self.task[attribute](),
+                         taskbrain[attribute])
+
     def test_getDefaultAssignee(self):
         """
         """
@@ -217,18 +233,7 @@ class testTask(eXtremeManagementTestCase):
 
         self.login('klant')
         self.assertEqual(self.task.getDefaultAssignee(), '')
-        
-    def assertTaskBrainEquality(self, attribute, value):
-        """Test equality of Task and taskbrain from catalog.
-        """
-        taskbrains = self.catalog.searchResults(portal_type='Task')
-        # Test if there really is only one Task in the catalog.
-        self.assertEqual(len(taskbrains), 1)
 
-        taskbrain = taskbrains[0]
-        self.assertEqual(self.task[attribute](), value)
-        self.assertEqual(self.task[attribute](),
-                         taskbrain[attribute])
 
 def test_suite():
     from unittest import TestSuite, makeSuite

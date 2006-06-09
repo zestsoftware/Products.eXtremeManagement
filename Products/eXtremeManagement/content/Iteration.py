@@ -117,7 +117,7 @@ class Iteration(OrderedBaseFolder):
     security.declarePublic('getRawEstimate')
     def getRawEstimate(self):
         """
-        
+
         """
         stories = self.contentValues()
         estimated = 0.0
@@ -131,14 +131,14 @@ class Iteration(OrderedBaseFolder):
     security.declarePublic('getEstimate')
     def getEstimate(self):
         """
-        
+
         """
         return self.formatTime(self.getRawEstimate())
-    
+
     security.declarePublic('getRawActualHours')
     def getRawActualHours(self):
         """
-        
+
         """
         stories = self.contentValues()
         actual = 0.0
@@ -146,25 +146,25 @@ class Iteration(OrderedBaseFolder):
             for story in stories:
                 actual = actual + story.getRawActualHours()
         return actual
-        
+
     security.declarePublic('getActualHours')
     def getActualHours(self):
         """
-        
+
         """
-        return self.formatTime(self.getRawActualHours())        
+        return self.formatTime(self.getRawActualHours())
 
     security.declarePublic('getRawDifference')
     def getRawDifference(self):
         """
-        
+
         """
         return self.getRawActualHours() -  self.getRawEstimate()
-        
+
     security.declarePublic('getDifference')
     def getDifference(self):
         """
-        
+
         """
         return self.formatTime(self.getRawDifference())
 

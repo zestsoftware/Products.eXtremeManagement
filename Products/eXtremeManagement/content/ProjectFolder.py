@@ -105,7 +105,7 @@ class ProjectFolder(OrderedBaseFolder):
         Returns time as a formatted string
         e.g. 3:15
         """
-        hours = int(time)        
+        hours = int(time)
         minutes = int(round((time - hours)*60))
         # Adjust for rounding:
         if minutes == 60:

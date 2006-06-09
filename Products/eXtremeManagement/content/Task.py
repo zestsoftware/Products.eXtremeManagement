@@ -204,7 +204,7 @@ class Task(BaseFolder):
                         users[userid] = roles
                     roles.update(user.getRoles())
             current = getattr(current, 'aq_parent', None)
-            
+
         possibleUids = list(users.keys())
         possibleUids.sort()
         for userid in possibleUids:
@@ -262,7 +262,7 @@ class Task(BaseFolder):
         Return hours + minutes as a single float.
         """
         return self.getHours() + (self.getMinutes() / 60.0)
-        
+
     security.declarePublic('getEstimate')
     def getEstimate(self):
         """
@@ -273,9 +273,9 @@ class Task(BaseFolder):
     security.declarePublic('getRawActualHours')
     def getRawActualHours(self):
         """ Returns a float for further calculation.
-        
-        """  
-        actual = 0.0     
+
+        """
+        actual = 0.0
         bookings = self.contentValues('Booking')
         for booking in bookings:
              actual = actual + booking.getRawActualHours()
@@ -291,14 +291,14 @@ class Task(BaseFolder):
     security.declarePublic('getRawDifference')
     def getRawDifference(self):
         """
-        
+
         """
         return self.getRawActualHours() -  self.getRawEstimate()
-          
+
     security.declarePublic('getDifference')
     def getDifference(self):
         """
-        
+
         """
         return self.formatTime(self.getRawDifference())
 
@@ -324,6 +324,11 @@ class Task(BaseFolder):
 
     # Manually created methods
 
+    security.declarePrivate('_reindex')
+    def _reindex(self, idxs=[]):
+        cat = getToolByName(self, 'portal_catalog')
+        cat.reindexObject(self, idxs=idxs)
+
     def getDefaultAssignee(self):
         mem = getToolByName(self, 'portal_membership')
         currentUser = mem.getAuthenticatedMember().getId()
@@ -331,17 +336,6 @@ class Task(BaseFolder):
             return currentUser
         else:
             return ''
-
-
-    security.declarePublic('setHours')
-    def setHours(self, value, **kw):
-        """Custom setter for hours.
-
-        We reindex the Task here so the getRawEstimate in the catalog
-        gets updated.
-        """
-        self.schema['hours'].set(self, value)
-        self._reindex(idxs=['getRawEstimated', 'getRawDifference'])
 
     security.declarePublic('setMinutes')
     def setMinutes(self, value, **kw):
@@ -353,11 +347,16 @@ class Task(BaseFolder):
         self.schema['minutes'].set(self, value)
         self._reindex(idxs=['getRawEstimated', 'getRawDifference'])
 
+    security.declarePublic('setHours')
+    def setHours(self, value, **kw):
+        """Custom setter for hours.
 
-    security.declarePrivate('_reindex')
-    def _reindex(self, idxs=[]):
-        cat = getToolByName(self, 'portal_catalog')
-        cat.reindexObject(self, idxs=idxs)
+        We reindex the Task here so the getRawEstimate in the catalog
+        gets updated.
+        """
+        self.schema['hours'].set(self, value)
+        self._reindex(idxs=['getRawEstimated', 'getRawDifference'])
+
 
 
 registerType(Task, PROJECTNAME)
