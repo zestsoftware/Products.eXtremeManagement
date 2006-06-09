@@ -43,8 +43,8 @@ def installWorkflows(self, package, out):
     workflowTool = getToolByName(self, 'portal_workflow')
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
-                         productname+'.'+'eXtreme_Project_Workflow',
-                         'createeXtreme_Project_Workflow')
+                                        productname+'.'+'eXtreme_Project_Workflow',
+                                        'createeXtreme_Project_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Project_Workflow')
     if 'eXtreme_Project_Workflow' in workflowTool.listWorkflows():
         print >> out, 'eXtreme_Project_Workflow already in workflows.'
@@ -53,8 +53,8 @@ def installWorkflows(self, package, out):
     workflowTool.setChainForPortalTypes(['Project'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
-                         productname+'.'+'eXtreme_Iteration_Workflow',
-                         'createeXtreme_Iteration_Workflow')
+                                        productname+'.'+'eXtreme_Iteration_Workflow',
+                                        'createeXtreme_Iteration_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Iteration_Workflow')
     if 'eXtreme_Iteration_Workflow' in workflowTool.listWorkflows():
         print >> out, 'eXtreme_Iteration_Workflow already in workflows.'
@@ -63,8 +63,8 @@ def installWorkflows(self, package, out):
     workflowTool.setChainForPortalTypes(['Iteration'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
-                         productname+'.'+'eXtreme_Story_Workflow',
-                         'createeXtreme_Story_Workflow')
+                                        productname+'.'+'eXtreme_Story_Workflow',
+                                        'createeXtreme_Story_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Story_Workflow')
     if 'eXtreme_Story_Workflow' in workflowTool.listWorkflows():
         print >> out, 'eXtreme_Story_Workflow already in workflows.'
@@ -73,8 +73,8 @@ def installWorkflows(self, package, out):
     workflowTool.setChainForPortalTypes(['Story'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
-                         productname+'.'+'eXtreme_Task_Workflow',
-                         'createeXtreme_Task_Workflow')
+                                        productname+'.'+'eXtreme_Task_Workflow',
+                                        'createeXtreme_Task_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Task_Workflow')
     if 'eXtreme_Task_Workflow' in workflowTool.listWorkflows():
         print >> out, 'eXtreme_Task_Workflow already in workflows.'
@@ -83,8 +83,8 @@ def installWorkflows(self, package, out):
     workflowTool.setChainForPortalTypes(['Task'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
-                         productname+'.'+'eXtreme_Default_Workflow',
-                         'createeXtreme_Default_Workflow')
+                                        productname+'.'+'eXtreme_Default_Workflow',
+                                        'createeXtreme_Default_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Default_Workflow')
     if 'eXtreme_Default_Workflow' in workflowTool.listWorkflows():
         print >> out, 'eXtreme_Default_Workflow already in workflows.'
@@ -93,8 +93,8 @@ def installWorkflows(self, package, out):
     workflowTool.setChainForPortalTypes(['WorkflowStub', 'ProjectMember', 'Customer'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
-                         productname+'.'+'eXtreme_Booking_Workflow',
-                         'createeXtreme_Booking_Workflow')
+                                        productname+'.'+'eXtreme_Booking_Workflow',
+                                        'createeXtreme_Booking_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Booking_Workflow')
     if 'eXtreme_Booking_Workflow' in workflowTool.listWorkflows():
         print >> out, 'eXtreme_Booking_Workflow already in workflows.'
