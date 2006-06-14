@@ -109,8 +109,9 @@
                       <td tal:condition="task|nothing"
                           class="td-story-title">
                         <a tal:define="storyPath string:${task/getPath}/..;
-                                       story python:context.restrictedTraverse(storyPath)"
-                           tal:attributes="href storyPath"
+                                       story     python:context.restrictedTraverse(storyPath);
+                                       storyURL  string:${task/getURL}/..;"
+                           tal:attributes="href storyURL"
                            tal:content="story/Title">
                             Title
                         </a>
