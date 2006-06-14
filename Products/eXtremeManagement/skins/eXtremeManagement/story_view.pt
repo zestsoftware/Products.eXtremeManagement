@@ -19,7 +19,6 @@
                  tal:define="totalEstimate python:here.getEstimate();
                              totalActual python:here.getActualHours();
                              totalDifference python:here.getDifference();
-                             item_path python:'/'.join(context.getPhysicalPath());
                              items context/getStateSortedContents;">
       
       <div tal:replace="structure context/CookedBody" />
@@ -61,7 +60,7 @@
                   class="list-in-iteration">
                   <metal:block define-slot="extra_column_data"></metal:block>
                   <td class="td-story-title">
-                    <a tal:attributes="href string:${task/getPath}"
+                    <a tal:attributes="href task/getURL"
                        tal:content="task/Title">
                       Title
                     </a>
