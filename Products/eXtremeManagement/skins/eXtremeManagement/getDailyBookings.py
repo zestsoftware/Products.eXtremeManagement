@@ -36,8 +36,11 @@ if date is None:
 # from that projectfolder later.
 # Batlogg is busy putting that function somewhere else, which is good. :)
 pf = context.portal_catalog.searchResults(portal_type='ProjectFolder')
-projectFolder = pf[0].getObject()
-formatTime = projectFolder.formatTime
+if len(pf) > 0:
+    projectFolder = pf[0].getObject()
+    formatTime = projectFolder.formatTime
+else:
+    formatTime = lambda x: x
 
 startDate = DateTime.earliestTime(date)
 endDate = DateTime.latestTime(date)
