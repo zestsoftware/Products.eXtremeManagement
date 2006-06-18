@@ -80,3 +80,10 @@ Migration from before release 1.0
    like that, you can fix those tasks by hand either before or after
    the migration.  The reinstall will leave a url and explanation for
    each offending task in the install log.
+
+CONFLICTING PRODUCTS
+
+  * eXtremeManagement is known not to work with ZEPP, another project
+  management product.  It uses a Task content type, just like
+  eXtremeManagement does.  This causes problems.  If you want to try
+  out both, do that in separate Zope instances.
