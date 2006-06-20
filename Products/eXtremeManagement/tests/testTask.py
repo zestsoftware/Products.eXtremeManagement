@@ -139,6 +139,13 @@ class testTask(eXtremeManagementTestCase):
         self.task.invokeFactory('Booking', id='booking2', minutes=15)
         self.assertTaskBrainEquality('getRawActualHours', 1.25)
 
+        # If a Booking gets deleted, its parent task should be
+        # reindexed.
+        self.task.manage_delObjects('booking2')
+        self.assertTaskBrainEquality('getRawActualHours', 1)
+        self.task.manage_delObjects('booking')
+        self.assertTaskBrainEquality('getRawActualHours', 0)
+
     # from class Task:
     def test_getActualHours(self):
         """

@@ -207,7 +207,13 @@ class Booking(BaseContent):
         self.schema['hours'].set(self, value)
         self._reindexTask()
 
-
+    security.declarePrivate('manage_beforeDelete')
+    def manage_beforeDelete(self, item, container):
+        super(Booking, self).manage_beforeDelete(item, container)
+        self.setHours(0)
+        self.setMinutes(0)
+        # The following is already handled by setHours/setMinutes
+        #self._reindexTask()
 
 registerType(Booking, PROJECTNAME)
 # end of class Booking
