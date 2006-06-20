@@ -210,8 +210,8 @@ class Booking(BaseContent):
     security.declarePrivate('manage_beforeDelete')
     def manage_beforeDelete(self, item, container):
         super(Booking, self).manage_beforeDelete(item, container)
-        self.setHours(0)
-        self.setMinutes(0)
+        #self.setHours(0)
+        #self.setMinutes(0)
         # The following is already handled by setHours/setMinutes
         #self._reindexTask()
 
