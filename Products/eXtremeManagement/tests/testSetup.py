@@ -57,7 +57,6 @@ class testSetup(eXtremeManagementTestCase):
         """
         """
         pass
-
     def test_tools(self):
         """
         """

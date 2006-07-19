@@ -180,13 +180,17 @@ class Booking(BaseContent):
 
     # Manually created methods
 
+    security.declarePrivate('manage_beforeDelete')
+    def manage_beforeDelete(self, item, container):
+        super(Booking, self).manage_beforeDelete(item, container)
+
     security.declarePrivate('_reindexTask')
     def _reindexTask(self):
         parent = self.aq_inner.aq_parent
         cat = getToolByName(self, 'portal_catalog')
         cat.reindexObject(parent,
                           idxs=['getRawActualHours',
-                               'getRawDifference'])
+                                'getRawDifference'])
     security.declarePublic('setMinutes')
     def setMinutes(self, value, **kw):
         """Custom setter for minutes.
@@ -207,13 +211,7 @@ class Booking(BaseContent):
         self.schema['hours'].set(self, value)
         self._reindexTask()
 
-    security.declarePrivate('manage_beforeDelete')
-    def manage_beforeDelete(self, item, container):
-        super(Booking, self).manage_beforeDelete(item, container)
-        #self.setHours(0)
-        #self.setMinutes(0)
-        # The following is already handled by setHours/setMinutes
-        #self._reindexTask()
+
 
 registerType(Booking, PROJECTNAME)
 # end of class Booking

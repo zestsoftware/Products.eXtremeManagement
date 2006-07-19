@@ -125,7 +125,6 @@ class testTask(eXtremeManagementTestCase):
         """
         pass
     # from class Task:
-    # from class Task:
     def test_getRawActualHours(self):
         """Make sure rawActualHours returns the expected value.
 
@@ -154,7 +153,6 @@ class testTask(eXtremeManagementTestCase):
         """
         pass
     # from class Task:
-    # from class Task:
     def test_getRawDifference(self):
         """Make sure rawDifference returns the expected value.
 
@@ -177,12 +175,10 @@ class testTask(eXtremeManagementTestCase):
         """
         pass
     # from class Task:
-    # from class Task:
     def test_CookedBody(self):
         """
         """
         pass
-    # from class Task:
     # from class Task:
     def test_startable(self):
         """

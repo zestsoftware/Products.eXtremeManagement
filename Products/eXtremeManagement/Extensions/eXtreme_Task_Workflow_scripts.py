@@ -162,4 +162,3 @@ def tryToCompleteStory(self, state_change, **kw):
         pass
     pass
 
-

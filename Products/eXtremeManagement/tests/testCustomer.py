@@ -62,7 +62,6 @@ class testCustomer(eXtremeManagementTestCase):
         """
         pass
     # from class Customer:
-    # from class Customer:
     def test_Sharing(self):
         """
         """

@@ -61,7 +61,6 @@ class testCustomerFolder(eXtremeManagementTestCase):
         """
         """
         pass
-
     def test_call_customerFolder(self):
         """ Test if the customers folder is created
         """

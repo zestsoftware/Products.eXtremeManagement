@@ -63,7 +63,6 @@ class testIteration(eXtremeManagementTestCase):
         """
         """
         pass
-
     def test_call_iteration(self):
         """ Test that you can add and call an Iteration
         """
