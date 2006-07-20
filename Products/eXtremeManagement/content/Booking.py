@@ -182,6 +182,18 @@ class Booking(BaseContent):
 
     security.declarePrivate('manage_beforeDelete')
     def manage_beforeDelete(self, item, container):
+        """Reindex the parent Task when you delete a Booking.
+
+        We need to do something like this, except that these lines
+        cause Bookings to be set to 0:00 not only when they are
+        deleted, but also apparently when they are moved from the
+        portalFactory to their desired spot...
+
+        self.setHours(0)
+        self.setMinutes(0)
+        # The following is already handled by setHours/setMinutes
+        # self._reindexTask()
+        """
         super(Booking, self).manage_beforeDelete(item, container)
 
     security.declarePrivate('_reindexTask')
