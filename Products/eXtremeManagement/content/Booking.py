@@ -128,6 +128,14 @@ class Booking(BaseContent):
     schema = Booking_schema
 
     ##code-section class-header #fill in your manual code here
+
+    actions=  ({'action':      '''string:${object_url}/../base_view''',
+                'category':    '''object''',
+                'id':          'view',
+                'name':        'view',
+                'permissions': ('''View''',)},
+              )
+
     ##/code-section class-header
 
     # Methods
