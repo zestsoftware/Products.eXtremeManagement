@@ -101,7 +101,7 @@
                         2006-01-01
                     </td>
                     <td>
-                        <a tal:attributes="href string:${booking/absolute_url}"
+                        <a tal:attributes="href string:${booking/absolute_url}/base_edit"
                            class="booking_title"
                            tal:content="booking/Title">
                             Title
