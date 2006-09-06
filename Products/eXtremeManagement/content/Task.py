@@ -273,12 +273,15 @@ class Task(BaseFolder):
     security.declarePublic('getRawActualHours')
     def getRawActualHours(self):
         """ Returns a float for further calculation.
-
         """
         actual = 0.0
-        bookings = self.contentValues('Booking')
+        catalog = getToolByName(self, 'portal_catalog')
+        searchpath = '/'.join(self.getPhysicalPath())
+        bookings = catalog.searchResults(
+            portal_type='Booking',
+            path=searchpath)
         for booking in bookings:
-             actual = actual + booking.getRawActualHours()
+            actual = actual + booking.getRawActualHours
         return actual
 
     security.declarePublic('getActualHours')
@@ -345,7 +348,7 @@ class Task(BaseFolder):
         gets updated.
         """
         self.schema['minutes'].set(self, value)
-        self._reindex(idxs=['getRawEstimated', 'getRawDifference'])
+        self._reindex(idxs=['getRawEstimate', 'getRawDifference'])
 
     security.declarePublic('setHours')
     def setHours(self, value, **kw):
@@ -355,7 +358,7 @@ class Task(BaseFolder):
         gets updated.
         """
         self.schema['hours'].set(self, value)
-        self._reindex(idxs=['getRawEstimated', 'getRawDifference'])
+        self._reindex(idxs=['getRawEstimate', 'getRawDifference'])
 
 
 

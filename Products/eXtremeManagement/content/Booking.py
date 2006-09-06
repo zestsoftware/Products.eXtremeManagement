@@ -188,6 +188,13 @@ class Booking(BaseContent):
 
     # Manually created methods
 
+    security.declarePrivate('manage_afterAdd')
+    def manage_afterAdd(self, item, container):
+        """Reindex the parent Task when you add a Booking.
+        """
+        super(Booking, self).manage_afterAdd(item, container)
+        self._reindexTask()
+
     security.declarePrivate('manage_beforeDelete')
     def manage_beforeDelete(self, item, container):
         """Reindex the parent Task when you delete a Booking.
@@ -203,14 +210,21 @@ class Booking(BaseContent):
         # self._reindexTask()
         """
         super(Booking, self).manage_beforeDelete(item, container)
+        catalog = getToolByName(self, 'portal_catalog')
+        catalog.unindexObject(self)
+        self._reindexTask(reindexSelf=False)
 
     security.declarePrivate('_reindexTask')
-    def _reindexTask(self):
+    def _reindexTask(self, reindexSelf=True):
         parent = self.aq_inner.aq_parent
         cat = getToolByName(self, 'portal_catalog')
+        if reindexSelf:
+            # first reindex self!
+            cat.reindexObject(self)
         cat.reindexObject(parent,
                           idxs=['getRawActualHours',
                                 'getRawDifference'])
+
     security.declarePublic('setMinutes')
     def setMinutes(self, value, **kw):
         """Custom setter for minutes.

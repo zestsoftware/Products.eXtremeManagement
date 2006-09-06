@@ -141,7 +141,6 @@ class testTask(eXtremeManagementTestCase):
         # If a Booking gets deleted, its parent task should be
         # reindexed.
 
-        # XXX FIXME This is known to fail now and needs more work.
         self.task.manage_delObjects('booking2')
         self.assertTaskBrainEquality('getRawActualHours', 1)
         self.task.manage_delObjects('booking')
