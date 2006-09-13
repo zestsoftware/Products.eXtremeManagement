@@ -89,6 +89,9 @@ class testTask(eXtremeManagementTestCase):
                          (('klant', 'klant'),
                           ('developer', 'developer'),
                           ('employee', 'employee')))
+        # And a little trick to please ArchGenXML, as it doesn't like
+        # the previous line.
+        assert(True)
 
     def test_getAssignees(self):
         self.assertTaskBrainEquality('getAssignees', ())
