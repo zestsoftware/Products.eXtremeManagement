@@ -2,7 +2,7 @@
 #
 # File: eXtremeManagement.py
 #
-# Copyright (c) 2006 by Zest software
+# Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML Version 1.5.0 svn/devel
 #            http://plone.org/products/archgenxml
 #
@@ -25,7 +25,7 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 
@@ -90,11 +90,18 @@ def installWorkflows(self, package, out):
         print >> out, 'eXtreme_Default_Workflow already in workflows.'
     else:
         workflowTool._setObject('eXtreme_Default_Workflow', workflow)
-    workflowTool.setChainForPortalTypes(['WorkflowStub', 'ProjectMember', 'Customer'], workflow.getId())
+    workflowTool.setChainForPortalTypes(['WorkflowStub', 'ProjectMember'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
-                                        productname+'.'+'eXtreme_Booking_Workflow',
-                                        'createeXtreme_Booking_Workflow')
+                         productname+'.'+'eXtreme_Customer_Workflow',
+                         'createeXtreme_Customer_Workflow')
+    workflow = ourProductWorkflow(self, 'eXtreme_Customer_Workflow')
+    workflowTool._setObject('eXtreme_Customer_Workflow', workflow)
+    workflowTool.setChainForPortalTypes(['Customer'], workflow.getId())
+
+    ourProductWorkflow = ExternalMethod('temp', 'temp',
+                         productname+'.'+'eXtreme_Booking_Workflow',
+                         'createeXtreme_Booking_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Booking_Workflow')
     if 'eXtreme_Booking_Workflow' in workflowTool.listWorkflows():
         print >> out, 'eXtreme_Booking_Workflow already in workflows.'

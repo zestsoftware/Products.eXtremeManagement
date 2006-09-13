@@ -2,7 +2,7 @@
 #
 # File: testBooking.py
 #
-# Copyright (c) 2006 by Zest software
+# Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML 
 #            http://plone.org/products/archgenxml
 #
@@ -25,7 +25,7 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 import os, sys
@@ -60,10 +60,11 @@ class testBooking(eXtremeManagementTestCase):
     def afterSetUp(self):
         self.catalog = self.portal.portal_catalog
         self.workflow = self.portal.portal_workflow
-        self.userfolder = self.portal.acl_users
+        self.membership = self.portal.portal_membership
+
         self.setRoles(['Manager'])
-        self.userfolder._doAddUser('employee', 'secret', ['Employee'], [])
-        self.userfolder._doAddUser('developer', 'secret', ['Employee'], [])
+        self.membership.addMember('employee', 'secret', ['Employee'], [])
+        self.membership.addMember('developer', 'secret', ['Employee'], [])
         self.portal.invokeFactory('ProjectFolder', id='projects')
         self.projects = self.folder.projects
         self.projects.invokeFactory('Project', id='project')

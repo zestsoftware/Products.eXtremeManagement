@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: testProjectMember.py
+# File: testTool.py
 #
 # Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML 
@@ -36,7 +36,7 @@ if __name__ == '__main__':
 ##/code-section module-header
 
 #
-# Test-cases for class(es) ProjectMember
+# Test-cases for class(es) eXtremeManagementTool
 #
 
 from Testing import ZopeTestCase
@@ -44,30 +44,57 @@ from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 
 # Import the tested classes
-from Products.eXtremeManagement.content.ProjectMember import ProjectMember
+from Products.eXtremeManagement.tools.eXtremeManagementTool import eXtremeManagementTool
 
 ##code-section module-beforeclass #fill in your manual code here
+from Products.CMFCore.utils import getToolByName
 ##/code-section module-beforeclass
 
 
-class testProjectMember(eXtremeManagementTestCase):
-    """ test-cases for class(es) ProjectMember
-    """
+class testTool(eXtremeManagementTestCase):
+    """Test-cases for class(es) eXtremeManagementTool."""
 
-    ##code-section class-header_testProjectMember #fill in your manual code here
-    ##/code-section class-header_testProjectMember
+    ##code-section class-header_testTool #fill in your manual code here
+    ##/code-section class-header_testTool
 
     def afterSetUp(self):
-        """
-        """
+        self.xm_tool = self.portal.xm_tool
+        
+    # from class eXtremeManagementTool:
+    def test_formatTime(self):
+        self.assertEqual(self.xm_tool.formatTime(0),'0:00')
+        self.assertEqual(self.xm_tool.formatTime(-0.6),'-0:36')
+        self.assertEqual(self.xm_tool.formatTime(0.6),'0:36')
+        self.assertEqual(self.xm_tool.formatTime(-1),'-1:00')
+        self.assertEqual(self.xm_tool.formatTime(1),'1:00')
+        self.assertEqual(self.xm_tool.formatTime(1.5),'1:30')
+        self.assertEqual(self.xm_tool.formatTime(-1.5),'-1:30')
+        # .04*60 == 2.3999999999999999, which should be rounded down:
+        self.assertEqual(self.xm_tool.formatTime(0.04),'0:02')
+        self.assertEqual(self.xm_tool.formatTime(8.05),'8:03')
+        self.assertEqual(self.xm_tool.formatTime(44.5),'44:30')
+        self.assertEqual(self.xm_tool.formatTime(0.999),'1:00')
+
+    # from class eXtremeManagementTool:
+    def test_formatMinutes(self):
+        self.assertEqual(self.xm_tool.formatMinutes(-1),False)
+        self.assertEqual(self.xm_tool.formatMinutes(0),':00')
+        self.assertEqual(self.xm_tool.formatMinutes(5),':05')
+        self.assertEqual(self.xm_tool.formatMinutes(24),':24')
+        self.assertEqual(self.xm_tool.formatMinutes(59),':59')
+        self.assertEqual(self.xm_tool.formatMinutes(60),False)
+
+    # from class eXtremeManagementTool:
+    def test_getProjectsToList(self):
         pass
+
     # Manually created methods
 
 
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
-    suite.addTest(makeSuite(testProjectMember))
+    suite.addTest(makeSuite(testTool))
     return suite
 
 ##code-section module-footer #fill in your manual code here

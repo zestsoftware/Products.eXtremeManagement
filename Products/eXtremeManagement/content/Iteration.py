@@ -2,7 +2,7 @@
 #
 # File: Iteration.py
 #
-# Copyright (c) 2006 by Zest software
+# Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML 
 #            http://plone.org/products/archgenxml
 #
@@ -25,7 +25,7 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
@@ -133,7 +133,8 @@ class Iteration(OrderedBaseFolder):
         """
 
         """
-        return self.formatTime(self.getRawEstimate())
+        xt = getToolByName(self, 'xm_tool')
+        return xt.formatTime(self.getRawEstimate())
 
     security.declarePublic('getRawActualHours')
     def getRawActualHours(self):
@@ -152,7 +153,8 @@ class Iteration(OrderedBaseFolder):
         """
 
         """
-        return self.formatTime(self.getRawActualHours())
+        xt = getToolByName(self, 'xm_tool')
+        return xt.formatTime(self.getRawActualHours())        
 
     security.declarePublic('getRawDifference')
     def getRawDifference(self):
@@ -166,7 +168,8 @@ class Iteration(OrderedBaseFolder):
         """
 
         """
-        return self.formatTime(self.getRawDifference())
+        xt = getToolByName(self, 'xm_tool')
+        return xt.formatTime(self.getRawDifference())
 
     security.declarePublic('startable')
     def startable(self):

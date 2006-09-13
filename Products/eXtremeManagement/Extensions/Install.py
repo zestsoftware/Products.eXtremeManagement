@@ -2,7 +2,7 @@
 #
 # File: Install.py
 #
-# Copyright (c) 2006 by Zest software
+# Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML Version 1.5.0 svn/devel
 #            http://plone.org/products/archgenxml
 #
@@ -25,7 +25,7 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 
@@ -71,6 +71,27 @@ def install(self):
                  PROJECTNAME)
     install_subskin(self, out, GLOBALS)
 
+    #autoinstall tools
+    portal = getToolByName(self,'portal_url').getPortalObject()
+    for t in ['eXtremeManagementTool']:
+        try:
+            portal.manage_addProduct[PROJECTNAME].manage_addTool(t)
+        except BadRequest:
+            # if an instance with the same name already exists this error will
+            # be swallowed. Zope raises in an unelegant manner a 'Bad Request' error
+            pass
+        except:
+            e = sys.exc_info()
+            if e[0] != 'Bad Request':
+                raise
+    #hide tools in the navigation
+    portalProperties = getToolByName(self, 'portal_properties', None)
+    if portalProperties is not None:
+        navtreeProperties = getattr(portalProperties, 'navtree_properties', None)
+        if navtreeProperties:
+            navtreeProperties.idsNotToList = list(navtreeProperties.idsNotToList) + \
+                                  [toolname for toolname in ['xm_tool'] \
+                                            if toolname not in navtreeProperties.idsNotToList]
 
     # try to call a workflow install method
     # in 'InstallWorkflows.py' method 'installWorkflows'
@@ -105,6 +126,7 @@ def install(self):
         "CustomerFolder",
         "ProjectFolder",
         "Booking",
+        "eXtremeManagementTool",
         ] + factory_tool.getFactoryTypes().keys()
     factory_tool.manage_setPortalFactoryTypes(listOfTypeIds=factory_types)
 
@@ -160,6 +182,17 @@ def install(self):
 
 def uninstall(self):
     out = StringIO()
+
+    # unhide tools
+    portalProperties = getToolByName(self, 'portal_properties', None)
+    if portalProperties is not None:
+        navtreeProperties = getattr(portalProperties, 'navtree_properties', None)
+        if navtreeProperties:
+            navtreeProperties.idsNotToList = list(navtreeProperties.idsNotToList)
+            for toolname in [toolname for toolname in ['xm_tool'] \
+                                      if toolname not in navtreeProperties.idsNotToList]:
+                if toolname in navtreeProperties.idsNotToList:
+                    navtreeProperties.idsNotToList.remove(toolname)
 
     # try to call a workflow uninstall method
     # in 'InstallWorkflows.py' method 'uninstallWorkflows'

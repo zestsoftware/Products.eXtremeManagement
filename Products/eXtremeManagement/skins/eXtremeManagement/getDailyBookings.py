@@ -32,15 +32,7 @@ if memberid is None:
 if date is None:
     date = DateTime()
 
-# HACK: find a ProjectFolder so we can call the formatTime() function
-# from that projectfolder later.
-# Batlogg is busy putting that function somewhere else, which is good. :)
-pf = context.portal_catalog.searchResults(portal_type='ProjectFolder')
-if len(pf) > 0:
-    projectFolder = pf[0].getObject()
-    formatTime = projectFolder.formatTime
-else:
-    formatTime = lambda x: x
+xt = context.xm_tool
 
 startDate = DateTime.earliestTime(date)
 endDate = DateTime.latestTime(date)
@@ -57,6 +49,6 @@ if bookingbrains:
     for bb in bookingbrains:
         actualList.append(bb.getRawActualHours)
     total = sum(actualList)
-    total = formatTime(total)
+    total = xt.formatTime(total)
 
 return total

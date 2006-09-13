@@ -2,7 +2,7 @@
 #
 # File: testProject.py
 #
-# Copyright (c) 2006 by Zest software
+# Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML 
 #            http://plone.org/products/archgenxml
 #
@@ -25,7 +25,7 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 import os, sys
@@ -61,7 +61,12 @@ class testProject(eXtremeManagementTestCase):
     def afterSetUp(self):
         """
         """
-        pass
+        self.setRoles(['Manager'])
+        self.portal.invokeFactory('ProjectFolder', id='projects')
+        self.projects = self.folder.projects
+        self.projects.invokeFactory('Project', id='project')
+        self.project = self.projects.project
+
     # from class Project:
     def test_getProject(self):
         """ Test that you can add and call a Project item
@@ -79,7 +84,19 @@ class testProject(eXtremeManagementTestCase):
     def test_getMembers(self):
         """
         """
-        #Uncomment one of the following lines as needed
+        self.assertEqual(self.project.getMembers(), [])
+        self.setRoles(['Manager'])
+        self.membership = self.portal.portal_membership
+        self.membership.addMember('employee1', 'secret', ['Employee'], [])
+        self.membership.addMember('employee2', 'secret', [], [])
+        self.project.manage_addLocalRoles('employee2',['Employee'])
+        # Local roles are mentioned before global roles.
+        # By default global and local roles are included.
+        self.assertEqual(self.project.getMembers(), ['employee2', 'employee1'])
+
+        self.project.setIncludeGlobalMembers(False)
+        self.assertEqual(self.project.getMembers(), ['employee2'])
+
     # from class Project:
     def test_Projectteam(self):
         """

@@ -2,7 +2,7 @@
 #
 # File: Project.py
 #
-# Copyright (c) 2006 by Zest software
+# Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML 
 #            http://plone.org/products/archgenxml
 #
@@ -25,7 +25,7 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
@@ -56,6 +56,25 @@ Project_schema = OrderedBaseFolderSchema.copy() + \
     schema.copy()
 
 ##code-section after-schema #fill in your manual code here
+Project_schema = Project_schema +  MetadataSchema((
+    BooleanField('includeGlobalMembers',
+        default = True,
+        languageIndependent = True,
+        schemata = 'metadata', # moved to 'default' for folders
+        widget = BooleanWidget(
+            description="If selected, Members with a global role 'Employee' will appear in the assignees list of a Task.",
+            description_msgid = "help_include_global_members",
+            label = "Include global Employees",
+            label_msgid = "label_include_global_members",
+            i18n_domain = "eXtremeManagement",
+            visible={'view' : 'hidden',
+                     'edit' : 'visible'},
+            ),
+        ),
+    ),)
+
+Project_schema.moveField('includeGlobalMembers', pos='top')
+
 ##/code-section after-schema
 
 class Project(OrderedBaseFolder):
@@ -69,9 +88,9 @@ class Project(OrderedBaseFolder):
 
     meta_type = 'Project'
     portal_type = 'Project'
-    allowed_content_types = ['Iteration', 'Story', 'PoiTracker']
+    allowed_content_types = ['Iteration', 'Story', 'Folder', 'PoiTracker']
     filter_content_types = 1
-    global_allow = 1
+    global_allow = 0
     content_icon = 'project_icon.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'
@@ -113,29 +132,62 @@ class Project(OrderedBaseFolder):
     security.declarePublic('getMembers')
     def getMembers(self, role='Employee'):
         """
+        get a list of all memberids that have the role ``role``
+        on this project.
         """
-        grp = getToolByName(self, 'portal_groups')
-        mem = getToolByName(self, 'portal_membership')
-        # PAS doesn't use prefixes at all
-        # TODO: probably we want a global switch for PAS
-        try:
-            import Products.PlonePAS
-        except ImportError:
-            prefix=self.acl_users.getGroupPrefix()
-        else:
-            prefix=''
-        list1 = []
-        for user, roles in self.get_local_roles():
-            if role in roles:
-                if prefix != '' and string.find(user, prefix) == 0:
-                    for i1 in grp.getGroupById(user).getGroupMembers():
-                        list1.append(i1.getId())
-                else:
-                    m1 = mem.getMemberById(user)
-                    if m1:
-                        list1.append(m1.getId())
+        portal = getToolByName(self, 'portal_url').getPortalObject()
 
-        return list1
+        grp = getToolByName(self, 'portal_groups')
+        pu = getToolByName(self, 'plone_utils')
+
+        memberIds=[]
+
+        def _appendGroupsAndUsers(currentIds, extraIds):
+            extraUserids = []
+            for id in extraIds:
+                groupdataobject = grp.getGroupById(id)
+                if groupdataobject:
+                    #this is a group, we need it's member ids
+                    extraUserids += groupdataobject.getMemberIds()
+                else:
+                    #this is a member, just append it's id
+                    extraUserids.append(id)
+            for id in extraUserids:
+                if id not in currentIds:
+                    currentIds.append(id)
+            return currentIds
+
+        # member with local role ``role`` on this project
+        usersandgroups = self.users_with_local_role(role)
+        memberIds = _appendGroupsAndUsers(memberIds, usersandgroups)
+        # members that aquired this role
+        aquiredGroupsAndUsers = pu.getInheritedLocalRoles(self)
+        for name, roles, type, id in aquiredGroupsAndUsers:
+            if role in roles:
+                if type=='user':
+                    memberIds.append(id)
+                elif type=='group':
+                    memberIds += grp.getGroupById(id).getMemberIds()
+
+        if self.getIncludeGlobalMembers():
+            # members that have this role globally
+            globalUsers = []
+            if HAS_PAS:
+                roleman = portal.acl_users.portal_role_manager
+                for userid, loginname in roleman.listAssignedPrincipals(role):
+                    globalUsers.append(userid)
+            else:
+               current = portal.aq_inner
+               while current is not None:
+                   if hasattr(current, 'aq_base') and \
+                          hasattr(current.aq_base, 'acl_users'):
+                       for user in current.acl_users.getUsers():
+                           if role in user.getRoles():
+                               globalUsers.append(user.getId())
+                   current = getattr(current, 'aq_parent', None)
+            memberIds = _appendGroupsAndUsers(memberIds, globalUsers)
+
+        return memberIds
 
 
 registerType(Project, PROJECTNAME)

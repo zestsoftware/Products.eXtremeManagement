@@ -2,7 +2,7 @@
 #
 # File: testProjectFolder.py
 #
-# Copyright (c) 2006 by Zest software
+# Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML 
 #            http://plone.org/products/archgenxml
 #
@@ -25,7 +25,7 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 import os, sys
@@ -66,34 +66,6 @@ class testProjectFolder(eXtremeManagementTestCase):
 
         self.projects.invokeFactory('Project', id='project')
         self.project = self.projects.project
-
-    # from class ProjectFolder:
-    def test_formatTime(self):
-        """
-        """
-        self.assertEqual(self.project.formatTime(0),'0:00')
-        self.assertEqual(self.project.formatTime(-0.6),'-0:36')
-        self.assertEqual(self.project.formatTime(0.6),'0:36')
-        self.assertEqual(self.project.formatTime(-1),'-1:00')
-        self.assertEqual(self.project.formatTime(1),'1:00')
-        self.assertEqual(self.project.formatTime(1.5),'1:30')
-        self.assertEqual(self.project.formatTime(-1.5),'-1:30')
-        # .04*60 == 2.3999999999999999, which should be rounded down:
-        self.assertEqual(self.project.formatTime(0.04),'0:02')
-        self.assertEqual(self.project.formatTime(8.05),'8:03')
-        self.assertEqual(self.project.formatTime(44.5),'44:30')
-        self.assertEqual(self.project.formatTime(0.999),'1:00')
-
-    # from class ProjectFolder:
-    def test_formatMinutes(self):
-        """
-        """
-        self.assertEqual(self.project.formatMinutes(-1),False)
-        self.assertEqual(self.project.formatMinutes(0),':00')
-        self.assertEqual(self.project.formatMinutes(5),':05')
-        self.assertEqual(self.project.formatMinutes(24),':24')
-        self.assertEqual(self.project.formatMinutes(59),':59')
-        self.assertEqual(self.project.formatMinutes(60),False)
 
     # from class ProjectFolder:
     def test_project_listing(self):

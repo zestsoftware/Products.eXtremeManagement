@@ -2,7 +2,7 @@
 #
 # File: eXtremeManagement.py
 #
-# Copyright (c) 2006 by Zest software
+# Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML Version 1.5.0 svn/devel
 #            http://plone.org/products/archgenxml
 #
@@ -25,7 +25,7 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 
@@ -75,7 +75,16 @@ def initialize(context):
 
     # imports packages and types for registration
     import content
+    import tools
+    import interfaces
 
+
+    # Initialize portal tools
+    tools = [tools.eXtremeManagementTool.eXtremeManagementTool]
+    ToolInit( PROJECTNAME +' Tools',
+                tools = tools,
+                icon='tool.gif'
+                ).initialize( context )
 
     # Initialize portal content
     all_content_types, all_constructors, all_ftis = process_types(

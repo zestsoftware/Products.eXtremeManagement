@@ -2,7 +2,7 @@
 #
 # File: testTask.py
 #
-# Copyright (c) 2006 by Zest software
+# Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML 
 #            http://plone.org/products/archgenxml
 #
@@ -25,7 +25,7 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 import os, sys
@@ -61,11 +61,11 @@ class testTask(eXtremeManagementTestCase):
     def afterSetUp(self):
         self.catalog =  getToolByName(self.portal, 'portal_catalog')
         self.workflow = self.portal.portal_workflow
-        self.userfolder = self.portal.acl_users
         self.setRoles(['Manager'])
-        self.userfolder._doAddUser('employee', 'secret', ['Employee'], [])
-        self.userfolder._doAddUser('developer', 'secret', ['Employee'], [])
-        self.userfolder._doAddUser('klant', 'secret', ['Customer'], [])
+        self.membership = self.portal.portal_membership
+        self.membership.addMember('employee', 'secret', ['Employee'], [])
+        self.membership.addMember('developer', 'secret', ['Employee'], [])
+        self.membership.addMember('klant', 'secret', ['Customer'], [])
         self.portal.invokeFactory('ProjectFolder', id='projects')
         self.projects = self.folder.projects
         self.projects.invokeFactory('Project', id='project')
@@ -81,15 +81,16 @@ class testTask(eXtremeManagementTestCase):
 
     # from class Task:
     def test__get_assignees(self):
-        """
-        FIXME
-        self.assertEqual(self.task._get_assignees(),
-                         [('developer', 'developer'), ('employee', 'employee')])
+        self.assertEqual(self.task._get_assignees().items(),
+                         (('developer', 'developer'),
+                          ('employee', 'employee')))
+        self.project.manage_addLocalRoles('klant',['Employee'])
+        self.assertEqual(self.task._get_assignees().items(),
+                         (('klant', 'klant'),
+                          ('developer', 'developer'),
+                          ('employee', 'employee')))
 
-        results in:
-        TypeError: Cant compare DisplayList to <type 'list'>
-        Improve at will. :)
-        """
+    def test_getAssignees(self):
         self.assertTaskBrainEquality('getAssignees', ())
 
         self.task.setAssignees('developer')
@@ -231,6 +232,7 @@ class testTask(eXtremeManagementTestCase):
         self.assertEqual(self.story.task1.getAssignees(), ())
 
         self.login('employee')
+        self.project.manage_addLocalRoles('employee',['Employee'])
         self.assertEqual(self.task.getDefaultAssignee(), 'employee')
         self.story.invokeFactory('Task', id='task2')
         self.assertEqual(self.story.task2.getAssignees(), ('employee',))

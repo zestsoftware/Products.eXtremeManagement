@@ -171,9 +171,24 @@ def configureKupu(portal):
                                    'old_type'      : 'collection',
                                    'portal_types'  :  collection},))
 
+def addOurRoles(portal):
+    """Add our extra roles to Plone.
+    """
+
+    defined_roles = getattr(portal, '__acl_roles__', ())
+    if HAS_PAS:
+        role_manager = portal.acl_users.portal_role_manager
+        pas_roles = role_manager.listRoleIds()
+
+    for role in NEW_ROLES:
+        if role not in defined_roles:
+            portal._addRole(role)
+        if HAS_PAS and role not in pas_roles:
+            role_manager.addRole(role)
 
 def install(self):
     out = StringIO()
+
     installTypes(self, out,
                  listTypes(PROJECTNAME),
                  PROJECTNAME)
@@ -181,6 +196,9 @@ def install(self):
     install_subskin(self, out, GLOBALS)
 
     out.write("Successfully installed %s." % PROJECTNAME)
+
+    addOurRoles(self)
+    out.write("Added our extra roles.")
    
     print >> out, "Customize the portal"
     setupSkin(self)
@@ -198,5 +216,6 @@ def install(self):
 
     print >> out, "Migrating content"
     migrate_ct(self, out)
+
 
     return out.getvalue()

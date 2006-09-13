@@ -1,3 +1,5 @@
+from Products.CMFCore.utils import getToolByName
+
 STYLESHEETS = [{'id': 'eXtreme.css'}]
 
 DEPENDENCIES = ['Poi','AddRemoveWidget','DataGridField','kupu']
@@ -15,3 +17,15 @@ HOURS_PER_DAY = 8
 # get progress percentages of over 100 %.  And we don't give a false
 # sense of being almost finished.
 MAXIMUM_NOT_COMPLETED_PERCENTAGE = 90
+
+# GRUF and PAS are not 100% compatible, at several places we need to
+# know, which of them is currently used
+try:
+  from Products.PlonePAS.pas import getUsers
+except ImportError:
+  HAS_PAS = False
+else:
+  HAS_PAS = True
+  del getUsers
+
+NEW_ROLES = ['Employee', 'Customer']

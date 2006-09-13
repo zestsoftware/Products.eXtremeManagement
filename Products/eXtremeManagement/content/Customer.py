@@ -2,7 +2,7 @@
 #
 # File: Customer.py
 #
-# Copyright (c) 2006 by Zest software
+# Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML 
 #            http://plone.org/products/archgenxml
 #
@@ -25,11 +25,12 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
+from Products.eXtremeManagement.interfaces.IXMCustomer import IXMCustomer
 from Products.eXtremeManagement.config import *
 
 ##code-section module-header #fill in your manual code here
@@ -168,7 +169,7 @@ class Customer(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
+    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),) + (IXMCustomer,)
 
     # This name appears in the 'add' box
     archetype_name = 'Customer'
@@ -208,6 +209,14 @@ class Customer(OrderedBaseFolder):
     ##/code-section class-header
 
     # Methods
+
+    # Methods from Interface IXMCustomer
+
+    security.declarePublic('getName')
+    def getName(self):
+        """
+        """
+        pass
 
 
 registerType(Customer, PROJECTNAME)

@@ -3,3 +3,23 @@
 
 * Check and double-check newly generated code in directory Extensions
   with old dumped code in directory workflow.
+
+
+Branch specific TODOS:
+
+* Tasks should have an optional deadline
+
+* Permission for Assigning Tasks:
+  ATM this is bound to the role Employee.
+  - assignable roles shall be defined in the XMTool
+  - refactor Task._get_assignees to search for users with roles
+    set in XMTool
+
+* Project.getMembers:
+  Should work for pas and gruf setup.
+  Write testcases for both setups
+
+* Task._get_assignees:
+  This method should work for users defined in arbitrary userfolders
+  up the aquisition hierarchy.
+  Write a testcase and refactor method if necessary.

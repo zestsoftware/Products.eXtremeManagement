@@ -2,7 +2,7 @@
 #
 # File: Story.py
 #
-# Copyright (c) 2006 by Zest software
+# Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML 
 #            http://plone.org/products/archgenxml
 #
@@ -25,7 +25,7 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
@@ -118,6 +118,7 @@ class Story(OrderedBaseFolder):
         """
         return self.getMainText()
 
+
     security.declarePublic('get_progress_perc')
     def get_progress_perc(self):
         """
@@ -146,7 +147,7 @@ class Story(OrderedBaseFolder):
         With thanks to Upfront Systems for their code from Upfront Project
         """
         if type_name == 'Task':
-            tasks = self.contentValues()
+            tasks = self.getStoryTasks()
             taskids = [0]
             for task in tasks:
                 try:
@@ -179,7 +180,9 @@ class Story(OrderedBaseFolder):
         If not, get the roughEstimate of this story.
         HOURS_PER_DAY is set in AppConfig.py (probably 8).
         """
-        tasks = self.contentValues()
+        
+        
+        tasks = self.getStoryTasks()
         estimated = 0.0
         estimates = []
         if tasks:
@@ -198,14 +201,15 @@ class Story(OrderedBaseFolder):
         """
 
         """
-        return self.formatTime(self.getRawEstimate())
+        xt = getToolByName(self, 'xm_tool')
+        return xt.formatTime(self.getRawEstimate())
 
     security.declarePublic('getRawActualHours')
     def getRawActualHours(self):
         """
 
         """
-        tasks = self.contentValues()
+        tasks = self.getStoryTasks()
         actual = 0.0
         if tasks:
             for task in tasks:
@@ -217,7 +221,8 @@ class Story(OrderedBaseFolder):
         """
 
         """
-        return self.formatTime(self.getRawActualHours())
+        xt = getToolByName(self, 'xm_tool')
+        return xt.formatTime(self.getRawActualHours())
 
     security.declarePublic('getRawDifference')
     def getRawDifference(self):
@@ -231,7 +236,8 @@ class Story(OrderedBaseFolder):
         """
 
         """
-        return self.formatTime(self.getRawDifference())
+        xt = getToolByName(self, 'xm_tool')
+        return xt.formatTime(self.getRawDifference())
 
     security.declarePublic('isEstimated')
     def isEstimated(self):
@@ -262,7 +268,7 @@ class Story(OrderedBaseFolder):
             return False
         if not self.isEstimated():
             return False
-        tasks = self.contentValues('Task')
+        tasks = self.getStoryTasks()
         if not tasks:
             return False
         else:
@@ -278,14 +284,20 @@ class Story(OrderedBaseFolder):
         """
         portal = getToolByName(self,'portal_url').getPortalObject()
         wf_tool = getToolByName(portal, 'portal_workflow')
-        tasks = self.contentValues('Task')
+        tasks = self.getStoryTasks()
         for task in tasks:
             review_state = wf_tool.getInfoFor(task,'review_state')
             if review_state != 'completed':
                 return False
         return True
 
-
+    security.declarePublic('getStoryTasks')
+    def getStoryTasks(self):
+        """return the tasks of this story
+        """
+        return self.contentValues(filter={'portal_type': 'Task'})
+        
+        
 registerType(Story, PROJECTNAME)
 # end of class Story
 

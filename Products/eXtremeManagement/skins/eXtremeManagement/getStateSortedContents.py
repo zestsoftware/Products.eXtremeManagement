@@ -8,7 +8,7 @@
 ##title=Get completed/invoiced items first, then rest of ordered folder contents
 ##
 
-items = context.getFolderContents()
+items = context.getFolderContents({'portal_type': ['Story', 'Task']})
 
 firstStates = ['completed', 'invoiced']
 firstItems = []

@@ -2,7 +2,7 @@
 #
 # File: Task.py
 #
-# Copyright (c) 2006 by Zest software
+# Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML 
 #            http://plone.org/products/archgenxml
 #
@@ -25,7 +25,7 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
@@ -187,34 +187,24 @@ class Task(BaseFolder):
         """
         returns a list of team members
         """
-        portal = getToolByName(self, 'portal_url').getPortalObject()
-        mem = getToolByName(self, 'portal_membership')
-        uids = []
-        members = self.getProject().getMembers()
 
-        users = {}
-        current = portal.aq_inner
-        while current is not None:
-            if hasattr(current, 'aq_base') and hasattr(current.aq_base, 'acl_users'):
-                for user in current.acl_users.getUsers():
-                    userid = user.getId()
-                    roles = users.get(userid, None)
-                    if roles is None:
-                        roles = Set()
-                        users[userid] = roles
-                    roles.update(user.getRoles())
-            current = getattr(current, 'aq_parent', None)
+        mt = getToolByName(self, 'portal_membership')
+        md = getToolByName(self, 'portal_memberdata')
+        # all the member that work on this project
+        # XXX test if user folders somewhere else are recognized too
 
-        possibleUids = list(users.keys())
-        possibleUids.sort()
-        for userid in possibleUids:
-            if 'Employee' in users[userid] or userid in members:
-                member = mem.getMemberById(userid)
-                if member is not None:
-                    name = hasattr(member, 'fullname') and member.fullname.strip() or member.getId()
-                    uids.append((userid, name))
+        employees = self.getProject().getMembers(role='Employee')
 
-        return DisplayList(uids)
+        assignables = []
+        # build displaylist
+        for memberId in employees:
+            member = mt.getMemberById(memberId)
+            fullname =  member.getProperty('fullname', None)
+            # if fullname is '' or None, return the id
+            name = fullname and fullname.strip() or member.getId()
+            assignables.append((memberId, name))
+
+        return DisplayList(assignables)
 
     security.declarePublic('setAssignees')
     def setAssignees(self, value, **kw):
@@ -268,7 +258,8 @@ class Task(BaseFolder):
         """
         Return the formatted estimate.
         """
-        return self.formatTime(self.getRawEstimate())
+        xt = getToolByName(self, 'xm_tool')
+        return xt.formatTime(self.getRawEstimate())
 
     security.declarePublic('getRawActualHours')
     def getRawActualHours(self):
@@ -289,7 +280,8 @@ class Task(BaseFolder):
         """Returns a formatted string
            e.g. 3:15
         """
-        return self.formatTime(self.getRawActualHours())
+        xt = getToolByName(self, 'xm_tool')
+        return xt.formatTime(self.getRawActualHours())
 
     security.declarePublic('getRawDifference')
     def getRawDifference(self):
@@ -303,7 +295,8 @@ class Task(BaseFolder):
         """
 
         """
-        return self.formatTime(self.getRawDifference())
+        xt = getToolByName(self, 'xm_tool')
+        return xt.formatTime(self.getRawDifference())
 
     security.declarePublic('CookedBody')
     def CookedBody(self):

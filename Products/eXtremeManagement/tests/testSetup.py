@@ -2,7 +2,7 @@
 #
 # File: testSetup.py
 #
-# Copyright (c) 2006 by Zest software
+# Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML 
 #            http://plone.org/products/archgenxml
 #
@@ -25,7 +25,7 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 import os, sys
@@ -57,11 +57,13 @@ class testSetup(eXtremeManagementTestCase):
         """
         """
         pass
+
     def test_tools(self):
         """
         """
         ids = self.portal.objectIds()
         self.failUnless('archetype_tool' in ids)
+        self.failUnless('xm_tool' in ids)
 
     def test_types(self):
         """
@@ -101,7 +103,7 @@ class testSetup(eXtremeManagementTestCase):
         self.failUnless('eXtreme_Task_Workflow' in getChain('Task'))
         self.failUnless('folder_workflow' in getChain('CustomerFolder'))
         self.failUnless('folder_workflow' in getChain('ProjectFolder'))
-        self.failUnless('eXtreme_Default_Workflow' in getChain('Customer'))
+        self.failUnless('eXtreme_Customer_Workflow' in getChain('Customer'))
         self.failUnless('eXtreme_Booking_Workflow' in getChain('Booking'))
         self.failUnless('eXtreme_Default_Workflow' in getChain('ProjectMember'))
 

@@ -1,3 +1,36 @@
+2006-05-05 - friessnegger
+
+  - content/story.py
+    getRawEstimate was accessing tasks by calling contentValues()
+    we also want to allow other content apart from tasks in
+    stories so i refactored the code in story
+    to use the new method getStoryTasks that is aware of that.
+    
+  - skins/getStateSortedContent.py
+    set the filter on Story and Task objects, to make a story
+    containing other types than tasks beeing displayable.
+    since the script is also used in a project to display stories
+    i added  story as a type too.
+    
+
+2006-04-06 - friessnegger
+
+  - tools/xmtool.py:
+    added filtering capability to ``getFilteredIssues``
+  
+  - skins/xm_dashboard.pt
+    refactored dashboard using a script rather than the tools-method
+    to be able to call it anywhere in the portal and get all issues
+    and tasks in the current path.
+    dashboard only shows todo issues/tasks ('open', 'in-progress', ...)
+    
+2006-03-10 - batlogg, friessnegger
+
+  - added support to assign members out of PAS to tasks
+
+  - refactored Task._get_assignees, Project.getMembers
+
+
 2005-10-23 - jladage
 
   - Release 1.0 

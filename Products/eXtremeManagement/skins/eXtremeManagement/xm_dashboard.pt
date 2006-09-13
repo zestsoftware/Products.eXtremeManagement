@@ -1,0 +1,439 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="extrememanagement">
+
+<head>
+<!--
+    <metal:css fill-slot="css_slot">
+        <style type="text/css" media="all"
+               tal:content="string:@import url($portal_url/plonesoftwarecenter.css);"></style>
+    </metal:css>
+-->
+    <metal:override fill-slot="column_two_slot" />
+
+    <metal:block fill-slot="top_slot">
+      <tal:noborder condition="python:not user.has_permission('Modify portal content', context)">
+        <tal:noborderset tal:define="dummy python:request.set('disable_border', 1)" />
+      </tal:noborder>
+    </metal:block>
+</head>
+
+<body>
+
+  <div metal:fill-slot="main"
+       tal:define="global getInfoFor nocall:here/portal_workflow/getInfoFor;
+                   catalog nocall:here/portal_catalog;
+                   herePath python:'/'.join(here.getPhysicalPath())">
+                   
+
+    <div metal:use-macro="here/document_actions/macros/document_actions">
+        Document actions (print, sendto etc)
+    </div>
+
+    <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+      Title or id
+    </h1>
+    
+    <!-- 
+    <p> what does this help me in dashboard view? </p>
+    <p class="discreet" tal:define="customersCount python:len(catalog(portal_type = ['Customer', 'LdapCustomer']));
+                                    projectsCount python:len(catalog(portal_type = 'Project'))">
+      Currently listing <span tal:replace="customersCount" /> customers with <span tal:replace="projectsCount" /> projects.
+    </p>
+    -->
+    
+    <div class="documentDescription"
+         tal:content="here/Description">
+      Description.
+    </div>
+    
+    <p class="discreet">
+    XXX make macros out of my issues and my tasks and reuse them
+    in reported issus and created tasks portlet;
+    
+    navigation for items using javascript and display:None
+    (similar to https://svn.lovelysystems.com/repos/customers/walser/walseralps/Walseralps/trunk/skins/Walseralps/portlet_articles.pt)
+    
+    </p>
+
+    <dl class="portlet portletThirdWidth"
+        tal:define="issues python:here.getFilteredIssues(onlyTodo=True, assignedToMe=True)">
+        <dt class="portletHeader">
+            <tal:comment tal:replace="nothing">
+                XXX assigned to me is missing in rss query
+            </tal:comment>
+            <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
+                <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=PoiIssue&sort_on=Date&sort_order=reverse&path=${herePath}&review_state=open,in-progress,unconfirmed">
+                   <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
+                        tal:attributes="src string:$portal_url/rss.gif"
+                        src="rss.gif"
+                        alt="RSS Feed"
+                        title="RSS feed of the issues assigned to me" />
+                </a>
+            </tal:syndicate>
+            <tal:comment tal:replace="nothing">XXX what is the link for? (planned overviewtemplate?)</tal:comment>
+            <a href=""
+               tal:attributes="href string:${here/absolute_url}/xm_issues/by-category/my"
+               i18n:translate="XXX_xm_myIssues">
+                Issues assigned to me
+            </a>                 
+        </dt>
+        
+
+        <tal:issue_groups tal:repeat="issue issues">
+            <dd class="portletItem" 
+                tal:define="oddrow repeat/issue/odd;
+                            review_state issue/review_state"
+                tal:attributes="class python:test(oddrow, 'portletItem even', 'portletItem odd')">
+                
+                <a href=""
+                   tal:attributes="href issue/getURL;
+                                   title issue/Description;
+                                   class string:state-$review_state">
+                    <img tal:replace="structure here/PoiIssue.gif" />
+                    <span tal:replace="issue/Title">Issue</span>
+                </a>
+                
+                <p class="discreet"
+                   tal:define="severity issue/getSeverity;
+                               projectUrl string: XXX;
+                               projectName string: XXX">
+                    project: 
+                      <a href="projectURL"
+                         tal:attributes="href projectUrl"
+                         class="XXX: no underline">
+                        <span tal:replace="projectName"/>
+                      </a>;
+                    severity: <span tal:replace="severity"/>;
+                    state: <span tal:replace="review_state"/>
+                </p>
+            </dd>   
+        </tal:issue_groups>
+        
+        <tal:nolist condition="not: issues">
+            <dd class="portletItem odd">
+                <span class="discreet" i18n:translate="no_issues_found">
+                    No issues found.
+                </span>
+            </dd>
+        </tal:nolist>
+                
+        <dd class="portletFooter">
+            navigation here
+        </dd>
+    </dl>
+    
+    <dl class="portlet portletThirdWidth"
+        tal:define="tasks python:here.getFilteredTasks(assignedToMe=True,onlyTodo=True)">
+        
+        <dt class="portletHeader">
+            <tal:comment tal:replace="nothing">
+                XXX assigned to me is missing in rss query
+            </tal:comment>
+            <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
+                <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=Task&sort_on=Date&sort_order=reverse&path=${herePath}&review_state=to-do,open">
+                   <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
+                        tal:attributes="src string:$portal_url/rss.gif"
+                        src="rss.gif"
+                        alt="RSS Feed"
+                        title="RSS feed of the issues assigned to me" />
+                </a>
+            </tal:syndicate>
+            <tal:comment tal:replace="nothing">XXX what is the link for? (planned overviewtemplate?)</tal:comment>
+            <a href=""
+               tal:attributes="href string:${here/absolute_url}/xm_issues/by-category/my"
+               i18n:translate="XXX_xm_myIssues">
+                Tasks assigned to me
+            </a>                 
+        </dt>
+
+
+        <tal:task_groups tal:repeat="task tasks">
+            <dd class="portletItem" 
+                tal:define="oddrow repeat/task/odd;
+                            review_state task/review_state"
+                tal:attributes="class python:test(oddrow, 'portletItem even', 'portletItem odd')">
+                
+                <a href=""
+                   tal:attributes="href task/getURL;
+                                   title task/Description;
+                                   class string:state-$review_state">
+                    <img tal:replace="structure here/task_icon.gif" />
+                    <span tal:replace="task/Title">Issue</span>
+                </a>
+ 
+                <p class="discreet"
+                   tal:define="obj task/getObject">
+                    project:
+                    <span tal:replace="python: obj.getProject().title_or_id()"/>
+                    story:
+                    <span tal:replace="python: obj.aq_parent.title_or_id()"/>;
+                </p>
+
+            </dd>   
+        </tal:task_groups>
+        
+        <tal:nolist condition="not: tasks">
+            <dd class="portletItem odd">
+                <span class="discreet" i18n:translate="no_tasks_found">
+                    No tasks found.
+                </span>
+            </dd>
+        </tal:nolist>
+                    
+        
+        <dd class="portletFooter">
+            navigation here
+        </dd>    
+    </dl>
+    
+
+    
+    <dl class="portlet portletThirdWidth">
+        <dt class="portletHeader">
+            <tal:comment tal:replace="nothing">
+                XXX created by me is missing in rss query
+            </tal:comment>
+            <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
+                <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=Task&sort_on=Date&sort_order=reverse&path=${herePath}&review_state=to-do,open">
+                   <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
+                        tal:attributes="src string:$portal_url/rss.gif"
+                        src="rss.gif"
+                        alt="RSS Feed"
+                        title="RSS feed of the issues assigned to me" />
+                </a>
+            </tal:syndicate>
+            <tal:comment tal:replace="nothing">XXX what is the link for? (planned overviewtemplate?)</tal:comment>
+            <a href=""
+               tal:attributes="href string:${here/absolute_url}/xm_issues/by-category/my"
+               i18n:translate="XXX_xm_myIssues">
+                Tasks created by me
+            </a>                 
+        </dt>
+
+        <dd class="portletItem odd">
+        <p class="discrete">
+        Click here to show all pending Tasks you created.
+        </p>
+        </dd>
+        
+        <dd class="portletFooter">
+          navigation here
+        </dd>
+                
+    </dl> 
+     
+    if possible, show portlet with pending issues below the tasks
+    <div class="visualClear" />
+   
+    <!-- 
+    <tal:issue_groups tal:define="interestingStates python:['open', 'in-progress', 'unconfirmed'];
+                                  filter python:{'review_state':interestingStates}"
+                      tal:repeat="issue_group python:portal.xm_tool.getFilteredIssues(filter)">
+        <dl class="portlet portletThirdWidth">
+            <dt class="portletHeader">
+               <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
+                    <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=PoiIssue&sort_on=Date&sort_order=reverse&path=${herePath}&review_state=published">
+                       <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
+                            tal:attributes="src string:$portal_url/rss.gif"
+                            src="rss.gif"
+                            alt="RSS Feed"
+                            title="RSS feed of the issues assigned to me" />
+                    </a>
+                 </tal:syndicate>
+                 <a href=""
+                    tal:content="issue_group/title"
+                    tal:attributes="href string:${here/absolute_url}/xm_issues/by-category/my"
+                    i18n:translate="">
+                     My Issues
+                 </a>
+            </dt>
+            <tal:list repeat="issue issue_group/issues"
+                      condition="nocall:issue_group/issues">
+                
+                <dd class="portletItem" 
+                     tal:define="oddrow repeat/issue/odd"
+                     tal:attributes="class python:test(oddrow, 'portletItem even', 'portletItem odd')">
+
+                    <a href=""
+                       tal:define="review_state issue/review_state"
+                       tal:attributes="href issue/getURL;
+                                       title issue/Description;
+                                       class string:state-$review_state">
+                        <img tal:replace="structure here/PoiIssue.gif" />
+                        <span tal:replace="issue/Title">Issue</span>
+                    </a>
+                    
+                     
+                    <p class="discreet"
+                       tal:define="severity issue/getSeverity;
+                                   projectUrl string: XXX;
+                                   projectName string: XXX">
+                        project: 
+                          <a href="projectURL"
+                             tal:attributes="href projectUrl"
+                             tal:class="XXX: no underline">
+                            <span tal:replace="projectName"/>
+                          </a>;
+                        severity: <span tal:replace="severity"/>
+                    </p>
+                    
+       
+                    
+                </dd>
+            </tal:list>
+                
+            <tal:nolist condition="not:nocall:issue_group/issues">
+                <dd class="portletItem odd">
+                    <span class="discreet" i18n:translate="no_issues_found">
+                        No issues made in this category yet
+                    </span>
+                </dd>
+            </tal:nolist>
+
+            <dd class="portletFooter">
+
+                    <a href=""
+                       tal:attributes="href string:${here/absolute_url}/by-category/${categoryId}">
+                    Show all projects in this category&#8230;
+                    </a>
+
+show all
+            </dd>
+        </dl>
+        
+    </tal:issue_groups>
+    -->
+    
+    <div class="visualClear" />
+
+
+<!--
+    <div tal:repeat="project python:here.xm_tool.getProjectsToList()">
+        <dl class="portlet portletThirdWidth"
+                tal:define="category python:here.getCategoryName(categoryId)">
+            <dt class="portletHeader">
+               <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
+                    <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=PSCRelease&sort_on=Date&sort_order=reverse&path=${herePath}&getCategories=${categoryId}&review_state=published">
+                       <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
+                            tal:attributes="src string:$portal_url/rss.gif"
+                            src="rss.gif"
+                            alt="RSS Feed"
+                            title="RSS feed of the latest releaes in this category" />
+                    </a>
+                 </tal:syndicate>
+                 <a href=""
+                    tal:content="category"
+                    tal:attributes="href string:${here/absolute_url}/by-category/${categoryId}"
+                    i18n:translate="">
+                     Category heading
+                 </a>
+            </dt>
+            <tal:releases tal:define="releases python:here.getReleasesByCategory(categoryId, limit = 5)">
+                 
+                <tal:list repeat="release releases"
+                          condition="nocall:releases">
+                
+                <dd class="portletItem" 
+                     tal:define="oddrow repeat/release/odd"
+                     tal:attributes="class python:test(oddrow, 'portletItem even', 'portletItem odd')">
+                    <a href=""
+                       tal:define="review_state release/review_state"
+                       tal:attributes="href release/getURL;
+                                       title release/Description;
+                                       class string:state-$review_state">
+                        <img tal:replace="structure here/product_icon.gif" />
+                        <span tal:replace="release/Title">Project</span>
+                    </a>
+                </dd>
+                </tal:list>
+                
+                <tal:nolist condition="not:nocall:releases">
+                    <dd class="portletItem odd">
+                        <span class="discreet" i18n:translate="no_releases_found">
+                            No releases made in this category yet
+                        </span>
+                    </dd>
+                </tal:nolist>
+
+                <dd class="portletFooter">
+                    <a href=""
+                       tal:attributes="href string:${here/absolute_url}/by-category/${categoryId}">
+                    Show all projects in this category&#8230;
+                    </a>
+                </dd>
+            </tal:releases>
+        </dl>
+    
+        <div class="visualClear" tal:condition="python: repeat['categoryId'].number() % 3 == 0" />
+
+        <dl class="portlet portletThirdWidth"
+                tal:define="projectId project/Id">
+            <dt class="portletHeader">
+               <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
+                    <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=PSCRelease&sort_on=Date&sort_order=reverse&path=${herePath}&review_state=published">
+                       <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
+                            tal:attributes="src string:$portal_url/rss.gif"
+                            src="rss.gif"
+                            alt="RSS Feed"
+                            title="RSS feed of the latest releases in this category" />
+                    </a>
+                 </tal:syndicate>
+                 <a href=""
+                    tal:content="project/Title"
+                    tal:attributes="href string:${here/absolute_url}/by-category/${projectId}"
+                    i18n:translate="">
+                     Project heading
+                 </a>
+            </dt>
+            <tal:issues tal:define="issues python:['issue1','issue2']">
+                 
+                <tal:list repeat="issue issues"
+                          condition="nocall:issues">
+                
+                <dd class="portletItem" 
+                     tal:define="oddrow repeat/issue/odd"
+                     tal:attributes="class python:test(oddrow, 'portletItem even', 'portletItem odd')">
+
+                    <a href=""
+                       tal:define="review_state release/review_state"
+                       tal:attributes="href release/getURL;
+                                       title release/Description;
+                                       class string:state-$review_state">
+                        <img tal:replace="structure here/product_icon.gif" />
+                        <span tal:replace="release/Title">Project</span>
+                    </a>
+Issue
+                </dd>
+                </tal:list>
+                
+                <tal:nolist condition="not:nocall:issues">
+                    <dd class="portletItem odd">
+                        <span class="discreet" i18n:translate="no_issues_found">
+                            No issues made in this category yet
+                        </span>
+                    </dd>
+                </tal:nolist>
+
+                <dd class="portletFooter">
+                    <a href=""
+                       tal:attributes="href string:${here/absolute_url}/by-category/${categoryId}">
+                    Show all projects in this category&#8230;
+                    </a>
+show all
+                </dd>
+            </tal:issues>
+        </dl>
+
+        <div class="visualClear" tal:condition="python: repeat['project'].number() % 3 == 0" />
+
+    </div>
+-->
+
+
+  </div>
+
+</body>
+</html>

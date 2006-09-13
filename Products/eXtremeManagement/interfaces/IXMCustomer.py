@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: tests.py
+# File: IXMCustomer.py
 #
 # Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML 
@@ -28,16 +28,19 @@ __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
 <m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
-
-##code-section init-module-header #fill in your manual code here
-##/code-section init-module-header
+from Interface import Base
 
 
-# Subpackages
-# Additional
+class IXMCustomer(Base):
+    """
+    """
 
-# Classes
+    # Methods
 
-##code-section init-module-footer #fill in your manual code here
-##/code-section init-module-footer
+    def getName():
+        """
+        """
+        pass
+
+# end of class IXMCustomer
 

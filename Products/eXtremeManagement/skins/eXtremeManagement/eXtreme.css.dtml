@@ -183,5 +183,21 @@
 
 /* ---- end hours view ---- */
 
+
+/* ---- dashboard ---- */
+
+.portletHalfWidth {
+    width: 45%; 
+    float: left; 
+    margin: 0 1em 1em 0 !important;
+}
+
+.portletThirdWidth {
+    width: 30%; 
+    float: left; 
+    margin: 0 1em 1em 0 !important;
+}
+
+
 /* </dtml-with> */
 

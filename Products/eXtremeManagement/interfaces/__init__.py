@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: tests.py
+# File: interfaces.py
 #
 # Copyright (c) 2006 by Zest software, Lovely Systems
 # Generator: ArchGenXML 
@@ -34,9 +34,9 @@ __docformat__ = 'plaintext'
 
 
 # Subpackages
-# Additional
 
 # Classes
+import IXMCustomer
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer

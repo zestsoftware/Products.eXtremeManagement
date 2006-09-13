@@ -41,8 +41,8 @@ from Products.eXtremeManagement.config import *
 
 productname = 'eXtremeManagement'
 
-def setupeXtreme_Booking_Workflow(self, workflow):
-    """Define the eXtreme_Booking_Workflow workflow.
+def setupeXtreme_Customer_Workflow(self, workflow):
+    """Define the eXtreme_Customer_Workflow workflow.
     """
     # Add additional roles to portal
     portal = getToolByName(self,'portal_url').getPortalObject()
@@ -52,13 +52,13 @@ def setupeXtreme_Booking_Workflow(self, workflow):
             data.append(role)
     portal.__ac_roles__ = tuple(data)
 
-    workflow.setProperties(title='eXtreme_Booking_Workflow')
+    workflow.setProperties(title='eXtreme_Customer_Workflow')
 
     ##code-section create-workflow-setup-method-header #fill in your manual code here
     ##/code-section create-workflow-setup-method-header
 
 
-    for s in ['booking']:
+    for s in ['active']:
         workflow.states.addState(s)
 
     for t in []:
@@ -68,9 +68,13 @@ def setupeXtreme_Booking_Workflow(self, workflow):
         workflow.variables.addVariable(v)
 
     workflow.addManagedPermission('Access contents information')
-    workflow.addManagedPermission('View')
-    workflow.addManagedPermission('Modify portal content')
+    workflow.addManagedPermission('Add portal content')
+    workflow.addManagedPermission('Delete objects')
     workflow.addManagedPermission('List folder contents')
+    workflow.addManagedPermission('Modify portal content')
+    workflow.addManagedPermission('Request review')
+    workflow.addManagedPermission('View')
+    workflow.addManagedPermission('View management screens')
 
     for l in []:
         if not l in workflow.worklists.objectValues():
@@ -78,25 +82,37 @@ def setupeXtreme_Booking_Workflow(self, workflow):
 
     ## Initial State
 
-    workflow.states.setInitialState('booking')
+    workflow.states.setInitialState('active')
 
     ## States initialization
 
-    stateDef = workflow.states['booking']
-    stateDef.setProperties(title="""booking""",
+    stateDef = workflow.states['active']
+    stateDef.setProperties(title="""Active""",
                            transitions=[])
     stateDef.setPermission('Access contents information',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
-    stateDef.setPermission('View',
+    stateDef.setPermission('Add portal content',
+                           1,
+                           ['Customer', 'Employee'])
+    stateDef.setPermission('Delete objects',
+                           1,
+                           ['Customer', 'Employee'])
+    stateDef.setPermission('List folder contents',
                            0,
                            ['Customer', 'Employee', 'Manager', 'Owner'])
     stateDef.setPermission('Modify portal content',
                            0,
-                           ['Employee', 'Manager', 'Owner'])
-    stateDef.setPermission('List folder contents',
+                           ['Employee', 'Manager'])
+    stateDef.setPermission('Request review',
+                           1,
+                           ['Customer'])
+    stateDef.setPermission('View',
                            0,
-                           ['Employee', 'Manager', 'Owner'])
+                           ['Customer', 'Employee', 'Manager', 'Owner'])
+    stateDef.setPermission('View management screens',
+                           1,
+                           ['Customer', 'Employee'])
 
     ## Transitions initialization
 
@@ -160,17 +176,17 @@ def setupeXtreme_Booking_Workflow(self, workflow):
 
 
 
-def createeXtreme_Booking_Workflow(self, id):
+def createeXtreme_Customer_Workflow(self, id):
     """Create the workflow for eXtremeManagement.
     """
 
     ob = DCWorkflowDefinition(id)
-    setupeXtreme_Booking_Workflow(self, ob)
+    setupeXtreme_Customer_Workflow(self, ob)
     return ob
 
-addWorkflowFactory(createeXtreme_Booking_Workflow,
-                   id='eXtreme_Booking_Workflow',
-                   title='eXtreme_Booking_Workflow')
+addWorkflowFactory(createeXtreme_Customer_Workflow,
+                   id='eXtreme_Customer_Workflow',
+                   title='eXtreme_Customer_Workflow')
 
 ##code-section create-workflow-module-footer #fill in your manual code here
 ##/code-section create-workflow-module-footer
