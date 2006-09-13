@@ -3,7 +3,7 @@
 # File: eXtremeManagement.py
 #
 # Copyright (c) 2006 by Zest software, Lovely Systems
-# Generator: ArchGenXML Version 1.5.0 svn/devel
+# Generator: ArchGenXML Version 1.5.1-svn
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -90,18 +90,21 @@ def installWorkflows(self, package, out):
         print >> out, 'eXtreme_Default_Workflow already in workflows.'
     else:
         workflowTool._setObject('eXtreme_Default_Workflow', workflow)
-    workflowTool.setChainForPortalTypes(['WorkflowStub', 'ProjectMember'], workflow.getId())
+    workflowTool.setChainForPortalTypes(['WorkflowStub', 'ProjectMember', 'Customer'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
-                         productname+'.'+'eXtreme_Customer_Workflow',
-                         'createeXtreme_Customer_Workflow')
+                                        productname+'.'+'eXtreme_Customer_Workflow',
+                                        'createeXtreme_Customer_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Customer_Workflow')
-    workflowTool._setObject('eXtreme_Customer_Workflow', workflow)
+    if 'eXtreme_Customer_Workflow' in workflowTool.listWorkflows():
+        print >> out, 'eXtreme_Customer_Workflow already in workflows.'
+    else:
+        workflowTool._setObject('eXtreme_Customer_Workflow', workflow)
     workflowTool.setChainForPortalTypes(['Customer'], workflow.getId())
 
     ourProductWorkflow = ExternalMethod('temp', 'temp',
-                         productname+'.'+'eXtreme_Booking_Workflow',
-                         'createeXtreme_Booking_Workflow')
+                                        productname+'.'+'eXtreme_Booking_Workflow',
+                                        'createeXtreme_Booking_Workflow')
     workflow = ourProductWorkflow(self, 'eXtreme_Booking_Workflow')
     if 'eXtreme_Booking_Workflow' in workflowTool.listWorkflows():
         print >> out, 'eXtreme_Booking_Workflow already in workflows.'

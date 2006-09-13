@@ -154,7 +154,7 @@ class Iteration(OrderedBaseFolder):
 
         """
         xt = getToolByName(self, 'xm_tool')
-        return xt.formatTime(self.getRawActualHours())        
+        return xt.formatTime(self.getRawActualHours())
 
     security.declarePublic('getRawDifference')
     def getRawDifference(self):

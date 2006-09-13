@@ -67,7 +67,6 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
     allowed_content_types = []
     filter_content_types = 0
     global_allow = 0
-    allow_discussion = False
     #content_icon = 'eXtremeManagementTool.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'
@@ -93,6 +92,14 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         ##/code-section constructor-footer
 
 
+    # tool should not appear in portal_catalog
+    def at_post_edit_script(self):
+        self.unindexObject()
+        
+        ##code-section post-edit-method-footer #fill in your manual code here
+        ##/code-section post-edit-method-footer
+
+
     # Methods
 
     security.declarePublic('formatTime')
@@ -101,7 +108,7 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         Returns time as a formatted string
         e.g. 3:15
         """
-        hours = int(time)        
+        hours = int(time)
         minutes = int(round((time - hours)*60))
         # Adjust for rounding:
         if minutes == 60:
@@ -151,18 +158,25 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         return projects
 
     security.declarePublic('getIssues')
+    def getIssues(self,filter):
+        """
+        """
+        pass
+
+    # Manually created methods
+
     def getFilteredIssues(self, filter={}):
         """
         return issues (POI) that match the given filter.
-    
+
         filter is a dictionary containing portal_catalog queries, eg:
-            
+
         * filter = {} -> all issues are returned
         * filter = {'state': ['open','unconfirmed']} -> all
           open or unconfirmed issues are returned
-        
+
         returs:
-        { {'title':'issues for me', 'issues':[issue1,...]}, {'title':'issues from me', 'issues':[issue1,...]} } 
+        { {'title':'issues for me', 'issues':[issue1,...]}, {'title':'issues from me', 'issues':[issue1,...]} }
         """
         pc = getToolByName(self, 'portal_catalog')
         mtool = getToolByName(self, 'portal_membership')
@@ -174,24 +188,26 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         # issues assigned to me
         issue_group = {'title': 'Issues assigned to me'}
         grouped_issues.append(issue_group)
-        
+
         searchFilter = filter
         searchFilter['portal_type'] = 'PoiIssue'
         searchFilter['getResponsibleManager'] = currentUser
-        
+
         issue_group['issues'] = pc(searchFilter)
 
         # issues created by me
         issue_group = {'title': 'Issues created by me'}
         grouped_issues.append(issue_group)
-        
+
         searchFilter = filter
         searchFilter['portal_type'] = 'PoiIssue'
         searchFilter['Creator'] = currentUser
-        
+
         issue_group['issues'] = pc(searchFilter)
 
         return grouped_issues
+
+
 
 registerType(eXtremeManagementTool, PROJECTNAME)
 # end of class eXtremeManagementTool

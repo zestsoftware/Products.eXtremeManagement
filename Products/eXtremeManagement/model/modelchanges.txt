@@ -1,9 +1,0 @@
-CHANGES SINCE VERSION 1.0:
-
-* Task.assignees: added default_method='getDefaultAssignee'
-
-* Task: added ComputedFields rawEstimate, rawActualHours and
-  rawDifference.
-
-* Task: added FieldIndex:brains to those computed fields and
-  assignees.

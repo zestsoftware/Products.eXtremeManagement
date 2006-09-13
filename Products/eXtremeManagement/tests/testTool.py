@@ -59,7 +59,7 @@ class testTool(eXtremeManagementTestCase):
 
     def afterSetUp(self):
         self.xm_tool = self.portal.xm_tool
-        
+
     # from class eXtremeManagementTool:
     def test_formatTime(self):
         self.assertEqual(self.xm_tool.formatTime(0),'0:00')
@@ -86,6 +86,10 @@ class testTool(eXtremeManagementTestCase):
 
     # from class eXtremeManagementTool:
     def test_getProjectsToList(self):
+        pass
+
+    # from class eXtremeManagementTool:
+    def test_getIssues(self):
         pass
 
     # Manually created methods

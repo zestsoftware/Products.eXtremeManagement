@@ -42,5 +42,6 @@ class IXMCustomer(Base):
         """
         pass
 
+
 # end of class IXMCustomer
 

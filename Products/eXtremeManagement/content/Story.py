@@ -118,7 +118,6 @@ class Story(OrderedBaseFolder):
         """
         return self.getMainText()
 
-
     security.declarePublic('get_progress_perc')
     def get_progress_perc(self):
         """
@@ -180,8 +179,8 @@ class Story(OrderedBaseFolder):
         If not, get the roughEstimate of this story.
         HOURS_PER_DAY is set in AppConfig.py (probably 8).
         """
-        
-        
+
+
         tasks = self.getStoryTasks()
         estimated = 0.0
         estimates = []
@@ -291,13 +290,16 @@ class Story(OrderedBaseFolder):
                 return False
         return True
 
+    # Manually created methods
+
     security.declarePublic('getStoryTasks')
     def getStoryTasks(self):
         """return the tasks of this story
         """
         return self.contentValues(filter={'portal_type': 'Task'})
-        
-        
+
+
+
 registerType(Story, PROJECTNAME)
 # end of class Story
 

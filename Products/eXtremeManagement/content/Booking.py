@@ -225,7 +225,6 @@ class Booking(BaseContent):
         cat.reindexObject(parent,
                           idxs=['getRawActualHours',
                                 'getRawDifference'])
-
     security.declarePublic('setMinutes')
     def setMinutes(self, value, **kw):
         """Custom setter for minutes.

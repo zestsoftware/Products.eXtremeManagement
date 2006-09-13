@@ -93,18 +93,6 @@ class testTask(eXtremeManagementTestCase):
         # the previous line.
         assert(True)
 
-    def test_getAssignees(self):
-        self.assertTaskBrainEquality('getAssignees', ())
-
-        self.task.setAssignees('developer')
-        self.assertTaskBrainEquality('getAssignees', ('developer',))
-
-        self.task.setAssignees(('developer','employee',))
-        self.assertTaskBrainEquality('getAssignees', ('developer','employee',))
-
-        self.task.setAssignees('')
-        self.assertTaskBrainEquality('getAssignees', ())
-
     # from class Task:
     def test_setAssignees(self):
         pass
@@ -214,6 +202,18 @@ class testTask(eXtremeManagementTestCase):
         self.assertEqual(self.task2.startable(), True)
 
     # Manually created methods
+
+    def test_getAssignees(self):
+        self.assertTaskBrainEquality('getAssignees', ())
+
+        self.task.setAssignees('developer')
+        self.assertTaskBrainEquality('getAssignees', ('developer',))
+
+        self.task.setAssignees(('developer','employee',))
+        self.assertTaskBrainEquality('getAssignees', ('developer','employee',))
+
+        self.task.setAssignees('')
+        self.assertTaskBrainEquality('getAssignees', ())
 
     def assertTaskBrainEquality(self, attribute, value):
         """Test equality of Task and taskbrain from catalog.
