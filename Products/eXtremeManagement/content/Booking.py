@@ -153,7 +153,8 @@ class Booking(BaseContent):
         newId = str(maxId + 1)
         # Can't rename without a subtransaction commit when using
         # portal_factory!
-        get_transaction().commit(1)
+        import transaction
+        transaction.savepoint(optimistic=True)
         self.setId(newId)
 
     security.declarePublic('getRawActualHours')
