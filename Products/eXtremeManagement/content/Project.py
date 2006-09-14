@@ -75,6 +75,10 @@ Project_schema = Project_schema +  MetadataSchema((
 
 Project_schema.moveField('includeGlobalMembers', pos='top')
 
+extraContentTypes = []
+if HAS_POI:
+    extraContentTypes.append('PoiTracker')
+
 ##/code-section after-schema
 
 class Project(OrderedBaseFolder):
@@ -88,7 +92,7 @@ class Project(OrderedBaseFolder):
 
     meta_type = 'Project'
     portal_type = 'Project'
-    allowed_content_types = ['Iteration', 'Story', 'Folder', 'PoiTracker']
+    allowed_content_types = ['Iteration', 'Story', 'Folder'] + extraContentTypes
     filter_content_types = 1
     global_allow = 0
     content_icon = 'project_icon.gif'

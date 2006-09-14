@@ -1,4 +1,5 @@
 Installation
+============
 
   Just install eXtremeManagement like you would any other Plone
   product: put it in its own directory within the Products dir of your
@@ -9,64 +10,52 @@ Installation
   https://svn.zestsoftware.nl/svn/zest/eXtremeManagement/integration/trunk/instancemanager.py
 
 
-RECOMMENDED PRODUCTS:
+Dependencies
+============
 
-  * Plone 2.1.3:
+  * Plone 2.1 series with Zope 2.8 OR
 
-  http://plone.org/products/plone/releases/2.1.3
+  * Plone 2.5 series with Zope 2.9
 
-  This already contains the needed Archetypes mentioned in the
-  dependencies.
+  It might work with other versions, but we don't test that.
+
+
+Recommended Products
+====================
 
   * Poi bundle; at Zest Software we are using
 
   http://plone.org/products/poi/releases/1.0/poi-1-0rc2pre1-bundle-tar.gz
 
-  This already contains DataGridField and AddRemoveWidget (and
-  intelligenttext) which we depend upon.
-
-DEPENDENCIES
-
-  The products mentioned above should give you all you need.  To spell
-  them out:
-
-  * Archetypes 1.3.x (used 1.3.7-final from Plone 2.1.3)
-
-  * Poi (see above)
-
-  * DataGridField:
-    http://svn.plone.org/svn/archetypes/MoreFieldsAndWidgets/DataGridField/trunk
-
-  * AddRemoveWidget:  
-    http://svn.plone.org/svn/archetypes/MoreFieldsAndWidgets/AddRemoveWidget/trunk
-
-  * and of course Plone (tested with 2.1 series) and Zope (tested with
-  2.8 series).
+  If you install Poi, eXtremeManagement will allow you to add an issue
+  tracker in a project.  Also there is a page xm_dashboard that lists
+  Poi issues.  Expect more integration in the future.  We hope to be
+  flexible enough to make integration with other issue trackers
+  (e.g. trac) possible.  But the current eXtremeManagement developers
+  like Poi. :)
 
 
 Additional dependencies for development
+=======================================
 
  * PloneTestCase:
    https://svn.plone.org/svn/collective/PloneTestCase/trunk/ or the
-   latest tar.gz (install as a product).
+   latest tar.gz (install as a product).  Make sure that all tests run
+   before you check in changes.
 
- * ZopeTestCase:
-   http://www.zope.org/Members/shh/ZopeTestCase/0.9.6
-   (needs to be installed in ZOPE_HOME/lib/python/Testing/ZopeTestCase)
-   This is included in Zope 2.8 and above.  Never mind the version
-   number then.
-
- * DocFinderTab is also recommended.:
+ * DocFinderTab is recommended:
    http://plone.org/products/DocfinderTab
 
 
 Skins
+=====
 
    Just so you know: eXtremeManagement by default installs its own
    skin.
 
 
 Migration from before release 1.0
+=================================
 
  * If you have been using the subversion trunk from before the first
    official release, then you may have a migration issue.  The
@@ -81,7 +70,8 @@ Migration from before release 1.0
    the migration.  The reinstall will leave a url and explanation for
    each offending task in the install log.
 
-CONFLICTING PRODUCTS
+Conflicting Products
+====================
 
   * eXtremeManagement is known not to work with ZEPP, another project
   management product.  It uses a Task content type, just like

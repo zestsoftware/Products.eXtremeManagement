@@ -149,7 +149,11 @@ def migrate_ct(portal, out):
     migrate_tasks(portal, out)
 
 def configureKupu(portal):
-    kupuTool = getToolByName(portal, 'kupu_library_tool')
+    try:
+        kupuTool = getToolByName(portal, 'kupu_library_tool')
+    except AttributeError:
+        # kupu is not installed apparently, so no need to configure it
+        return
     linkable = list(kupuTool.getPortalTypesForResourceType('linkable'))
     #mediaobject = list(kupuTool.getPortalTypesForResourceType('mediaobject'))
     collection = list(kupuTool.getPortalTypesForResourceType('collection'))
@@ -211,7 +215,7 @@ def install(self):
     #addFolders(self)
     disableJoinLink(self)
 
-    print >> out, "Integrate our types in kupu"
+    print >> out, "Integrate our types in kupu, if it is installed."
     configureKupu(self)
 
     print >> out, "Migrating content"

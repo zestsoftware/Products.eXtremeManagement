@@ -165,6 +165,7 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
 
     # Manually created methods
 
+    security.declarePublic('getFilteredIssues')
     def getFilteredIssues(self, filter={}):
         """
         return issues (POI) that match the given filter.
@@ -177,7 +178,13 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
 
         returs:
         { {'title':'issues for me', 'issues':[issue1,...]}, {'title':'issues from me', 'issues':[issue1,...]} }
+
+        XXX At the moment this function never gets called.  Instead
+        there is a getFilteredIssues python script in the skins dir.
+        One of the two should be removed.  Maurits.
         """
+        if not self.hasPoi():
+            return []
         pc = getToolByName(self, 'portal_catalog')
         mtool = getToolByName(self, 'portal_membership')
 
@@ -207,6 +214,14 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
 
         return grouped_issues
 
+    security.declarePublic('hasPoi')
+    def hasPoi(self):
+        """True if Poi is available (though not necessarily installed,
+        unfortonuately); False otherwise.
+        """
+        if HAS_POI:
+            return True
+        return False
 
 
 registerType(eXtremeManagementTool, PROJECTNAME)

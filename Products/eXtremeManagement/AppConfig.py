@@ -2,7 +2,7 @@ from Products.CMFCore.utils import getToolByName
 
 STYLESHEETS = [{'id': 'eXtreme.css'}]
 
-DEPENDENCIES = ['Poi','AddRemoveWidget','DataGridField','kupu']
+DEPENDENCIES = []
 GLOBALS = globals()
 
 # For kupu:
@@ -27,5 +27,12 @@ except ImportError:
 else:
   HAS_PAS = True
   del getUsers
+
+try:
+  from Products.Poi.content.PoiTracker import PoiTracker
+except ImportError:
+  HAS_POI = False
+else:
+  HAS_POI = True
 
 NEW_ROLES = ['Employee', 'Customer']

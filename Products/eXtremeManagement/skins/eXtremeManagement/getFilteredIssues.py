@@ -17,6 +17,11 @@
 
 
 from Products.CMFCore.utils import getToolByName
+xt = getToolByName(context, 'xm_tool')
+#from Products.eXtremeManagement.config import HAS_POI
+if not xt.hasPoi():
+    return []
+
 
 pc = getToolByName(context, 'portal_catalog')
 
