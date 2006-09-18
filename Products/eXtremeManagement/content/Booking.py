@@ -194,7 +194,6 @@ class Booking(BaseContent):
     def manage_afterAdd(self, item, container):
         """Reindex the parent Task when you add a Booking.
         """
-        super(Booking, self).manage_afterAdd(item, container)
         self._reindexTask()
 
     security.declarePrivate('manage_beforeDelete')
@@ -211,7 +210,6 @@ class Booking(BaseContent):
         # The following is already handled by setHours/setMinutes
         # self._reindexTask()
         """
-        super(Booking, self).manage_beforeDelete(item, container)
         catalog = getToolByName(self, 'portal_catalog')
         catalog.unindexObject(self)
         self._reindexTask(reindexSelf=False)

@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five">
+
+  <five:deprecatedManageAddDelete
+      class="Products.eXtremeManagement.content.CustomerFolder.CustomerFolder"/>
+  <five:deprecatedManageAddDelete
+      class="Products.eXtremeManagement.content.Customer.Customer"/>
+  <five:deprecatedManageAddDelete
+      class="Products.eXtremeManagement.content.ProjectFolder.ProjectFolder"/>
+  <five:deprecatedManageAddDelete
+      class="Products.eXtremeManagement.content.Project.Project"/>
+  <five:deprecatedManageAddDelete
+      class="Products.eXtremeManagement.content.Iteration.Iteration"/>
+  <five:deprecatedManageAddDelete
+      class="Products.eXtremeManagement.content.Story.Story"/>
+  <five:deprecatedManageAddDelete
+      class="Products.eXtremeManagement.content.Task.Task"/>
+  <five:deprecatedManageAddDelete
+      class="Products.eXtremeManagement.content.Booking.Booking"/>
+
+</configure>
