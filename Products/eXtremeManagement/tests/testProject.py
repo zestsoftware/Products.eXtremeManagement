@@ -104,6 +104,34 @@ class testProject(eXtremeManagementTestCase):
         #Uncomment one of the following lines as needed
     # Manually created methods
 
+    def test_CurrentIteration(self):
+        # Add three iterations
+        self.project.invokeFactory('Iteration', id='iteration1')
+        self.project.invokeFactory('Iteration', id='iteration2')
+        self.project.invokeFactory('Iteration', id='iteration3')
+        iteration1 = self.project.iteration1
+        iteration2 = self.project.iteration2
+        iteration3 = self.project.iteration3
+
+        self.workflow = self.portal.portal_workflow
+        self.assertEqual(self.project.currentIteration(), None)
+
+        self.workflow.doActionFor(iteration1, 'start')
+        self.assertEqual(self.project.currentIteration(), iteration1)
+        self.workflow.doActionFor(iteration1, 'complete')
+        self.assertEqual(self.project.currentIteration(), None)
+        self.workflow.doActionFor(iteration1, 'invoice')
+        self.assertEqual(self.project.currentIteration(), None)
+
+        # What happens if two iterations are in-progress?
+        self.workflow.doActionFor(iteration2, 'start')
+        self.assertEqual(self.project.currentIteration(), iteration2)
+        self.workflow.doActionFor(iteration3, 'start')
+        self.assertEqual(self.project.currentIteration(), iteration2)
+        self.workflow.doActionFor(iteration2, 'complete')
+        self.assertEqual(self.project.currentIteration(), iteration3)
+
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite

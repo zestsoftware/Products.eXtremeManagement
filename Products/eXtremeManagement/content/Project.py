@@ -188,6 +188,22 @@ class Project(OrderedBaseFolder):
 
         return memberIds
 
+    def currentIteration(self):
+        """Return the currently in-progress iteration.
+
+        If two iterations are in-progress, for now return the first
+        one.
+        """
+        catalog = getToolByName(self, 'portal_catalog')
+        searchpath = '/'.join(self.getPhysicalPath())
+        iterations = catalog.searchResults(
+            portal_type='Iteration',
+            review_state='in-progress',
+            path=searchpath)
+        if len(iterations) == 0:
+            return None
+        else:
+            return iterations[0].getObject()
 
 registerType(Project, PROJECTNAME)
 # end of class Project
