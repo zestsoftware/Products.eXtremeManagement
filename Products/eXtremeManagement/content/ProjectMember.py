@@ -99,7 +99,6 @@ class ProjectMember(BaseContent):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseContent,'__implements__',()),)
 
     # This name appears in the 'add' box
     archetype_name = 'ProjectMember'

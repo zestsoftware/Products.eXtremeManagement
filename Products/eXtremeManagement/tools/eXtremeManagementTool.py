@@ -57,7 +57,6 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(UniqueObject,'__implements__',()),) + (getattr(BaseContent,'__implements__',()),)
 
     # This name appears in the 'add' box
     archetype_name = 'eXtremeManagementTool'
@@ -222,6 +221,7 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         if HAS_POI:
             return True
         return False
+
 
 
 registerType(eXtremeManagementTool, PROJECTNAME)

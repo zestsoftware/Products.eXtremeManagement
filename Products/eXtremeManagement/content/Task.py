@@ -154,7 +154,6 @@ class Task(BaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseFolder,'__implements__',()),)
 
     # This name appears in the 'add' box
     archetype_name = 'Task'

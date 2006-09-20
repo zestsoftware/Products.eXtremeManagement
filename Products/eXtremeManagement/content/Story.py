@@ -84,7 +84,6 @@ class Story(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
 
     # This name appears in the 'add' box
     archetype_name = 'Story'

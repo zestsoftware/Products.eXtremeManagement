@@ -75,24 +75,19 @@ Project_schema = Project_schema +  MetadataSchema((
 
 Project_schema.moveField('includeGlobalMembers', pos='top')
 
-extraContentTypes = []
-if HAS_POI:
-    extraContentTypes.append('PoiTracker')
-
 ##/code-section after-schema
 
 class Project(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
 
     # This name appears in the 'add' box
     archetype_name = 'Project'
 
     meta_type = 'Project'
     portal_type = 'Project'
-    allowed_content_types = ['Iteration', 'Story', 'Folder'] + extraContentTypes
+    allowed_content_types = ['Iteration', 'Story', 'Folder', 'PoiTracker']
     filter_content_types = 1
     global_allow = 0
     content_icon = 'project_icon.gif'

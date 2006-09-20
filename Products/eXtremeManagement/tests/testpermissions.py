@@ -29,6 +29,11 @@ __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
 __docformat__ = 'plaintext'
 
 import os, sys
+try:
+    from Products.PloneTestCase.layer import ZCMLLayer
+    USELAYER = True
+except:
+    USELAYER = False
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
@@ -67,11 +72,13 @@ def test_suite():
 ##/code-section test-suite-in-between
 
 
-    return TestSuite((
-        ZopeDocFileSuite('testpermissions.txt',
+    s = ZopeDocFileSuite('testpermissions.txt',
                          package='Products.eXtremeManagement.doc',
-                         test_class=testpermissions),
-    ))
+                         test_class=testpermissions)
+    if USELAYER:
+        s.layer=ZCMLLayer
+    return TestSuite((s,
+                      ))
 
 ##code-section module-footer #fill in your manual code here
 ##/code-section module-footer
