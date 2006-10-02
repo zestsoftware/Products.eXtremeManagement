@@ -2,18 +2,18 @@
       lang="en-US"
       i18n:domain="eXtremeManagement">
     <metal:block use-macro="context/global_defines/macros/defines" />
+    <metal:block metal:use-macro="header" />
 
     <body>
-    <metal:block metal:define-macro="header">
-        <h1 tal:content="here/title_or_id" 
-            class="documentFirstHeading">
-            Title or id
-        </h1>
-        <div class="discreet" 
-            tal:content="here/Description">
-            Description
+
+    <metal:block metal:define-macro="body" 
+                 tal:define="stories here/getStateSortedContents;">
+    
+        <div class="documentDescription"
+             tal:condition="here/Description"
+             tal:content="here/Description">
+            description
         </div>
-        <br />
         <table class="listing"
                 border="1">
             <tr class="header_projectmember_listing">
@@ -28,12 +28,7 @@
             </tr>
         </table>
         <br />
-    </metal:block>
-    
 
-    <metal:block metal:define-macro="body" 
-                 tal:define="stories here/getStateSortedContents;">
-    
         <tal:block tal:condition="stories">
             <h1 i18n:translate="heading-stories">Stories</h1>
 

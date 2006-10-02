@@ -3,24 +3,20 @@
       i18n:domain="eXtremeManagement">
 
   <metal:block use-macro="context/global_defines/macros/defines" />
+  <metal:block metal:use-macro="header" />
   
   <body>
-    <metal:block metal:define-macro="header">
-      <h1 tal:content="here/title_or_id" class="documentFirstHeading">
-        Title or id
-      </h1>
-      <div class="documentDescription"
-           tal:condition="here/Description"
-           tal:content="here/Description">description
-      </div>
-    </metal:block>
-    
     <metal:block metal:define-macro="body"
                  tal:define="totalEstimate python:here.getEstimate();
                              totalActual python:here.getActualHours();
                              totalDifference python:here.getDifference();
                              items context/getStateSortedContents;">
       
+      <div class="documentDescription"
+           tal:condition="here/Description"
+           tal:content="here/Description">
+        description
+      </div>
       <div tal:replace="structure context/CookedBody" />
 
       <p tal:condition="context/getRoughEstimate"

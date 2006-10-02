@@ -2,23 +2,16 @@
       lang="en-US"
       i18n:domain="eXtremeManagement">
     <metal:block use-macro="context/global_defines/macros/defines" />
+    <metal:block metal:use-macro="header" />
     
     <body>
-    <metal:block metal:define-macro="header">
-        <h1 tal:content="here/title_or_id" 
-            class="documentFirstHeading">
-            Title or id
-        </h1>
+    <metal:block metal:define-macro="body">
         <div class="documentDescription"
              tal:condition="here/Description"
              tal:content="here/Description">
             description
         </div>
         <div tal:replace="structure context/CookedBody" />
-    </metal:block>
-    
-    <metal:block metal:define-macro="body">
-
         <table class="listing"
                 border="1" 
                 width="100%"
