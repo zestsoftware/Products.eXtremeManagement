@@ -17,18 +17,15 @@ from Products.eXtremeManagement.config import *
 def configurePortalProps(portal):
     # customize portal props (slots)
     left_slots = portal.getProperty('left_slots', None)
-    ourLeftSlots = ('here/portlet_stories/macros/portlet',)
     newSlots = ()
-    for slot in ourLeftSlots:
+    for slot in XM_LEFT_SLOTS:
         if slot not in left_slots:
             newSlots = newSlots + (slot,)
     portal._updateProperty('left_slots', tuple(left_slots) + newSlots) 
 
     right_slots = portal.getProperty('right_slots', None)
-    ourRightSlots = ('here/portlet_tasks/macros/portlet',
-                     'here/portlet_my_projects/macros/portlet',)
     newSlots = ()
-    for slot in ourRightSlots:
+    for slot in XM_RIGHT_SLOTS:
         if slot not in right_slots:
             newSlots = newSlots + (slot,)
     portal._updateProperty('right_slots', tuple(right_slots) + newSlots) 
@@ -189,6 +186,16 @@ def addOurRoles(portal):
             portal._addRole(role)
         if HAS_PAS and role not in pas_roles:
             role_manager.addRole(role)
+
+def uninstall(portal):
+    """Custom uninstall method for eXtremeManagement."""
+    left_slots = portal.getProperty('left_slots', None)
+    remainingSlots = [slot for slot in left_slots if slot not in XM_LEFT_SLOTS]
+    portal._updateProperty('left_slots', tuple(remainingSlots)) 
+
+    right_slots = portal.getProperty('right_slots', None)
+    remainingSlots = [slot for slot in right_slots if slot not in XM_RIGHT_SLOTS]
+    portal._updateProperty('right_slots', tuple(remainingSlots)) 
 
 def install(self):
     out = StringIO()
