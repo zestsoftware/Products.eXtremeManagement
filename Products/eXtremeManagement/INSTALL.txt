@@ -107,3 +107,5 @@ Conflicting Products
   management product.  It uses a Task content type, just like
   eXtremeManagement does.  This causes problems.  If you want to try
   out both, do that in separate Zope instances.
+
+  * Same is true for PloneBooking.
