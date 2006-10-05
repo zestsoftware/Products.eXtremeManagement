@@ -65,7 +65,8 @@ schema = Schema((
             description_msgid='eXtremeManagement_help_roughEstimate',
             i18n_domain='eXtremeManagement',
         ),
-        write_permission="eXtremeManagement: Edit roughEstimate"
+        write_permission="eXtremeManagement: Edit roughEstimate",
+        validators=('isDecimal',)
     ),
 
 ),
@@ -84,6 +85,7 @@ class Story(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
+    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
 
     # This name appears in the 'add' box
     archetype_name = 'Story'

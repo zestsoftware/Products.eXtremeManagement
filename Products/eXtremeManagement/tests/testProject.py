@@ -102,6 +102,10 @@ class testProject(eXtremeManagementTestCase):
         """
         """
         #Uncomment one of the following lines as needed
+    # from class Project:
+    def test_currentIteration(self):
+        pass
+
     # Manually created methods
 
     def test_CurrentIteration(self):
@@ -130,7 +134,6 @@ class testProject(eXtremeManagementTestCase):
         self.assertEqual(self.project.currentIteration(), iteration2)
         self.workflow.doActionFor(iteration2, 'complete')
         self.assertEqual(self.project.currentIteration(), iteration3)
-
 
 
 def test_suite():

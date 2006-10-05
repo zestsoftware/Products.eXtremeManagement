@@ -50,7 +50,8 @@ schema = Schema((
             label_msgid='eXtremeManagement_label_hours',
             i18n_domain='eXtremeManagement',
         ),
-        vocabulary=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        vocabulary=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+        validators=('isInt',)
     ),
 
     IntegerField(
@@ -62,7 +63,8 @@ schema = Schema((
             label_msgid='eXtremeManagement_label_minutes',
             i18n_domain='eXtremeManagement',
         ),
-        vocabulary=(0, 15, 30, 45)
+        vocabulary=(0, 15, 30, 45),
+        validators=('isInt',)
     ),
 
     BooleanField(
@@ -87,7 +89,8 @@ schema = Schema((
             i18n_domain='eXtremeManagement',
         ),
         required=1,
-        default_method=DateTime
+        default_method=DateTime,
+        validators=('isValidDate',)
     ),
 
 ),
@@ -106,6 +109,7 @@ class Booking(BaseContent):
     """
     """
     security = ClassSecurityInfo()
+    __implements__ = (getattr(BaseContent,'__implements__',()),)
 
     # This name appears in the 'add' box
     archetype_name = 'Booking'

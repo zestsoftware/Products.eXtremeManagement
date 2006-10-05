@@ -81,6 +81,7 @@ class Project(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
+    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
 
     # This name appears in the 'add' box
     archetype_name = 'Project'
@@ -188,6 +189,7 @@ class Project(OrderedBaseFolder):
 
         return memberIds
 
+    security.declarePublic('currentIteration')
     def currentIteration(self):
         """Return the currently in-progress iteration.
 
@@ -204,6 +206,7 @@ class Project(OrderedBaseFolder):
             return None
         else:
             return iterations[0].getObject()
+
 
 registerType(Project, PROJECTNAME)
 # end of class Project

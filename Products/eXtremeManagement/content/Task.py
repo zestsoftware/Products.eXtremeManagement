@@ -69,12 +69,12 @@ schema = Schema((
             description_msgid='eXtremeManagement_help_hours',
             i18n_domain='eXtremeManagement',
         ),
-        label="Estimated hours"
+        label="Estimated hours",
+        validators=('isInt',)
     ),
 
     IntegerField(
         name='minutes',
-        default="0",
         index="FieldIndex",
         widget=SelectionWidget
         (
@@ -85,6 +85,8 @@ schema = Schema((
             i18n_domain='eXtremeManagement',
         ),
         vocabulary=(0, 15, 30, 45),
+        validators=('isInt',),
+        default="0",
         label="Estimated minutes"
     ),
 
@@ -154,6 +156,7 @@ class Task(BaseFolder):
     """
     """
     security = ClassSecurityInfo()
+    __implements__ = (getattr(BaseFolder,'__implements__',()),)
 
     # This name appears in the 'add' box
     archetype_name = 'Task'

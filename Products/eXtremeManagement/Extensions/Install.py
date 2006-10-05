@@ -46,7 +46,7 @@ from Products.Archetypes.atapi import listTypes
 from Products.eXtremeManagement.config import PROJECTNAME
 from Products.eXtremeManagement.config import product_globals as GLOBALS
 
-def install(self):
+def install(self, reinstall=False):
     """ External Method to install eXtremeManagement """
     out = StringIO()
     print >> out, "Installation log of %s:" % PROJECTNAME
@@ -63,8 +63,7 @@ def install(self):
     for dependency in DEPENDENCIES:
         print >> out, "Installing dependency %s:" % dependency
         quickinstaller.installProduct(dependency)
-        import transaction
-        transaction.savepoint(optimistic=True)
+        get_transaction().commit(1)
 
     classes = listTypes(PROJECTNAME)
     installTypes(self, out,
@@ -199,7 +198,10 @@ def install(self):
 
     if install:
         print >>out,'Custom Install:'
-        res = install(self)
+        try:
+            res = install(self, reinstall)
+        except TypeError:
+            res = install(self)
         if res:
             print >>out,res
         else:
@@ -208,7 +210,7 @@ def install(self):
         print >>out,'no custom install'
     return out.getvalue()
 
-def uninstall(self):
+def uninstall(self, reinstall=False):
     out = StringIO()
 
     # unhide tools in the search form
@@ -259,7 +261,10 @@ def uninstall(self):
 
     if uninstall:
         print >>out,'Custom Uninstall:'
-        res = uninstall(self)
+        try:
+            res = uninstall(self, reinstall)
+        except TypeError:
+            res = uninstall(self)
         if res:
             print >>out,res
         else:

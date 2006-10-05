@@ -45,7 +45,8 @@ schema = Schema((
             label='Startdate',
             label_msgid='eXtremeManagement_label_startDate',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        validators=('isValidDate',)
     ),
 
     DateTimeField(
@@ -55,7 +56,8 @@ schema = Schema((
             label='Enddate',
             label_msgid='eXtremeManagement_label_endDate',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        validators=('isValidDate',)
     ),
 
     IntegerField(
@@ -64,7 +66,8 @@ schema = Schema((
             label='Manhours',
             label_msgid='eXtremeManagement_label_manHours',
             i18n_domain='eXtremeManagement',
-        )
+        ),
+        validators=('isInt',)
     ),
 
 ),
@@ -88,6 +91,7 @@ class Iteration(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
+    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
 
     # This name appears in the 'add' box
     archetype_name = 'Iteration'
