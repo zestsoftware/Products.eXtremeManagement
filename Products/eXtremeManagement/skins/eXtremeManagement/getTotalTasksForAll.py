@@ -39,10 +39,17 @@ for memberid in members:
     rawEstimate = sum([task.getRawEstimate * myPortion(task)
                        for task in tasks])
     if rawEstimate > 0:
-        rawActualHours = sum([task.getRawActualHours * myPortion(task)
-                              for task in tasks])
-        rawDifference = sum([task.getRawDifference * myPortion(task)
-                             for task in tasks])
+        # We should get bookings here.
+        bookings = context.portal_catalog.searchResults(
+            portal_type='Booking',
+            Creator=memberid,
+            path=searchpath)
+        #rawActualHours = sum([task.getRawActualHours * myPortion(task)
+        #                      for task in tasks])
+        #rawDifference = sum([task.getRawDifference * myPortion(task)
+        #                     for task in tasks])
+        rawActualHours = sum([booking.getRawActualHours for booking in bookings])
+        rawDifference = rawEstimate - rawActualHours
         list.append((memberid,
                      map(xt.formatTime, (rawEstimate, rawActualHours, rawDifference))))
 
