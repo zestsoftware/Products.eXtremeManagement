@@ -16,7 +16,7 @@ states: Iterations with these states will be returned.
 # Where do we want to search?
 object = context
 
-brains = object.getFolderContents()
+brains = object.getFolderContents({'portal_type':'Iteration'})
 
 #states = 'in-progress'
 list = []
