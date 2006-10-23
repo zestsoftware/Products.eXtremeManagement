@@ -81,6 +81,40 @@
             </table>
 
 
+            <tal:membertasks
+                tal:define="membertasks python:context.getTotalTasksForAll();">
+              <table class="listing"
+                     width="100%"
+                     border="1"
+                     cellpadding="0"
+                     cellspacing="0"
+                     tal:condition="membertasks">
+                
+                <tr>
+                  <th i18n:translate="listingheader_story">Member</th>
+                  <th i18n:translate="listingheader_total_estimate">
+                  Total Estimate</th>
+                  <th i18n:translate="listingheader_total_actual">
+                  Total Actual</th>
+                  <th i18n:translate="listingheader_total_difference">
+                  Total Difference</th>
+                </tr>
+                
+                <tr tal:repeat="membertask membertasks">
+                  <tal:member
+                      tal:define="memberid python:membertask[0];
+                                  tot python:membertask[1];
+                                  totalEstimate python:tot[0];
+                                  totalActual python:tot[1];
+                                  totalDifference python:tot[2];">
+                    <td tal:content="memberid" />
+                    <td tal:content="totalEstimate" />
+                    <td tal:content="totalActual" />
+                    <td tal:content="totalDifference" />
+                  </tal:member>
+                </tr>
+              </table>
+            </tal:membertasks>
 
             <tal:block tal:define="items python:context.getOwnToDoTasks();">
             <tal:block tal:condition="items"
