@@ -83,6 +83,8 @@
 
             <tal:membertasks
                 tal:define="membertasks python:context.getTotalTasksForAll();">
+              <h1 i18n:translate="heading-hours-per-employee">
+              Hours per employee</h1>
               <table class="listing"
                      border="1"
                      cellpadding="0"
