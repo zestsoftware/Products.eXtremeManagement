@@ -84,14 +84,13 @@
             <tal:membertasks
                 tal:define="membertasks python:context.getTotalTasksForAll();">
               <table class="listing"
-                     width="100%"
                      border="1"
                      cellpadding="0"
                      cellspacing="0"
                      tal:condition="membertasks">
                 
                 <tr>
-                  <th i18n:translate="listingheader_story">Member</th>
+                  <th i18n:translate="listingheader_employee">Employee</th>
                   <th i18n:translate="listingheader_total_estimate">
                   Total Estimate</th>
                   <th i18n:translate="listingheader_total_actual">
@@ -100,14 +99,16 @@
                   Total Difference</th>
                 </tr>
                 
-                <tr tal:repeat="membertask membertasks">
+                <tr tal:repeat="membertask membertasks"
+                    tal:attributes="class string:list-in-iteration">
                   <tal:member
                       tal:define="memberid python:membertask[0];
                                   tot python:membertask[1];
                                   totalEstimate python:tot[0];
                                   totalActual python:tot[1];
                                   totalDifference python:tot[2];">
-                    <td tal:content="memberid" />
+                    <td tal:content="memberid"
+                        class="td-memberid" />
                     <td tal:content="totalEstimate" />
                     <td tal:content="totalActual" />
                     <td tal:content="totalDifference" />
@@ -122,14 +123,15 @@
                                    totalEstimate python:tot[0];
                                    totalActual python:tot[1];
                                    totalDifference python:tot[2];">
-    <p>
-      Overview of tasks that belong to me.  The totals mentioned are
-      the total time for myself, so they will usually differ from
-      adding the numbers of the column above it.
-    </p>
-
-            <h1 i18n:translate="heading-in-progress-tasks">My to-do
-            tasks</h1>
+              <h1 i18n:translate="heading-in-progress-tasks">My to-do
+              tasks</h1>
+              <p>
+                Overview of tasks that belong to me.  The totals
+                mentioned are the total time for myself, so they will
+                usually differ from adding the numbers of the column
+                above it.
+              </p>
+              
               <metal:block metal:define-macro="tasklist_table_with_story">
                 <table metal:use-macro="here/story_view/macros/tasklist_table">
                     <metal:block fill-slot="extra_column_header">
