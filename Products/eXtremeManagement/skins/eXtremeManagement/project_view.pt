@@ -192,6 +192,25 @@
         </dd>
       </dl>
 
+      <br />
+      <br />
+
+      <dl id="non_iterations"
+          class="collapsible inline collapsedOnLoad"
+          tal:define="non_iterations context/getNonIterations;"
+          tal:condition="non_iterations">
+        <dt i18n:translate="heading_other_content"
+            class="collapsibleHeader">
+        Other Content</dt>
+        <dd tal:attributes="class python:'visualIcon contenttype-' + ni.portal_type.lower() + ' collapsibleContent';" 
+            tal:repeat="ni non_iterations">
+          <div class="visualIconPadding">
+            <a tal:attributes="href ni/id;"
+               tal:content="ni/Title"/>
+          </div>
+        </dd>
+      </dl>
+
     </metal:block>
 
     <metal:block metal:define-macro="folderlisting" />
