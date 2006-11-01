@@ -49,8 +49,8 @@
     text-align: left;
 }
 
-.tasks {
-    text-align: center;
+.tasks, .td-center {
+    text-align: center !important;
 }
 
 .listStories {
@@ -62,21 +62,22 @@
     border-left: none;
 }
 
-#totalTasks {
-    font-weight: bold;
+#totalTasks, .customer_info_header,
+#task_header {
+    font-weight: bold !important;
     text-align: right;
 }
 
-.td-story-title {
-    text-align: left !important;
+.customer_info_header {
+   width: 20%;
 }
 
-.td-memberid {
-    text-align: left !important;
+#task_header {
+    width: 40%;
 }
 
-.td-center {
-    text-align: center !important;
+.td-story-title, .td-memberid {
+    text-align: left !important;
 }
 
 .list-in-iteration {
@@ -89,25 +90,13 @@
     padding: 0;
 }
 
-.customer_info_header {
-   text-align: right;
-   font-weight: bold !important;
-   width: 20%;
-}
-
 .iteration-description {
     color: &dtml-discreetColor;;
     font-weight: normal;
 }
 
-#task_header {
-    text-align: right;
-    font-weight: bold;
-    width: 40%;
-}
-
 #iteration-item {
-    padding: 0px 0px 0px 40px;
+    padding: 0 0 0 40px;
 }
 
 .iteration-table {
@@ -118,12 +107,14 @@
 /* ----project administration view ---- */
 
 
-.project_title {
+.project_title, .booking_title,
+.header_projectmember_listing th,
+.hours-comments {
     font-weight: bold;
 }
 
 .project_iterations {
-    margin: 10px 0px 0px 30px;
+    margin: 10px 0 0 30px;
 }
 
 .td-project {
@@ -135,22 +126,14 @@
     color: &dtml-discreetColor;;
 }
 
-.iteration-table-header th {
-    border: none;
-    text-align: center;
-}
-
-.project-list-info {
-    padding:0px 0px 5px 0px;
-}
-
+.iteration-table-header th,
 .project-list-info td {
     border: none;
     text-align: center;
 }
 
-.header_projectmember_listing th {
-    font-weight: bold !important;
+.project-list-info {
+    padding: 0 0 5px 0;
 }
 
 /* ----end project administration view ---- */
@@ -161,20 +144,11 @@
     padding-bottom: 2px;
 }
 
-.booking_title {
-    font-weight: bold;
-}
-
 .booking_description {
     margin-left: 20px;
 }
 
-
 /* ---- hours view ---- */
-
-.hours-comments {
-    font-weight: bold;
-}
 
 .hours-comments textarea {
     margin-right: 15px; 
@@ -190,18 +164,18 @@
 
 /* ---- dashboard ---- */
 
-.portletHalfWidth {
-    width: 45%; 
+.portletHalfWidth, .portletThirdWidth {
     float: left; 
     margin: 0 1em 1em 0 !important;
+}
+
+.portletHalfWidth {
+    width: 45%; 
 }
 
 .portletThirdWidth {
     width: 30%; 
-    float: left; 
-    margin: 0 1em 1em 0 !important;
 }
 
 
 /* </dtml-with> */
-
