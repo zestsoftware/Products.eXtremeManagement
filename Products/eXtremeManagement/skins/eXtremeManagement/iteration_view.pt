@@ -67,7 +67,7 @@
                     <td tal:content="python:storyObj.getEstimate()">
                         Estimate
                     </td>
-                    <td tal:content="totalActual">
+                    <td tal:content="python:storyObj.getActualHours()">
                         Actual
                     </td>
                     </tal:block>
@@ -78,8 +78,7 @@
                         i18n:translate="total">Total</td>
                     <td tal:define="totalEstimate python:here.getEstimate();"
                         tal:content="totalEstimate">Total estimate</td>
-                    <td tal:define="totalActual python:here.getActualHours();"
-                        tal:content="totalActual">Total actual</td>
+                    <td tal:content="totalActual">Total actual</td>
                 </tr>
             </table>
 
