@@ -1,0 +1,332 @@
+<?xml version="1.0"?>
+<dc-workflow workflow_id="eXtreme_Story_Workflow"
+             title="eXtreme_Story_Workflow"
+             state_variable="review_state"
+             initial_state="draft">
+ <permission>Access contents information</permission>
+ <permission>Modify portal content</permission>
+ <permission>View</permission>
+ <permission>List folder contents</permission>
+ <permission>Review portal content</permission>
+ <permission>eXtremeManagement: Add Task</permission>
+ <permission>eXtremeManagement: Edit roughEstimate</permission>
+ <state state_id="completed" title="Completed">
+  <exit-transition transition_id="improve"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="List folder contents"
+                  acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Review portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="eXtremeManagement: Add Task"
+                  acquired="False">
+  </permission-map>
+ </state>
+ <state state_id="draft" title="Draft">
+  <exit-transition transition_id="estimate"/>
+  <exit-transition transition_id="submit"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="List folder contents"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Review portal content"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="eXtremeManagement: Add Task"
+                  acquired="False">
+  </permission-map>
+  <permission-map name="eXtremeManagement: Edit roughEstimate"
+                  acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="estimated" title="Estimated">
+  <exit-transition transition_id="activate"/>
+  <exit-transition transition_id="retract"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="List folder contents"
+                  acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Review portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="eXtremeManagement: Add Task"
+                  acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="eXtremeManagement: Edit roughEstimate"
+                  acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="in-progress" title="In progress">
+  <exit-transition transition_id="complete"/>
+  <exit-transition transition_id="deactivate"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="List folder contents"
+                  acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Review portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="eXtremeManagement: Add Task"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="pending" title="Pending estimate">
+  <exit-transition transition_id="estimate"/>
+  <exit-transition transition_id="retract"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="List folder contents"
+                  acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Review portal content"
+                  acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="eXtremeManagement: Add Task"
+                  acquired="False">
+  </permission-map>
+  <permission-map name="eXtremeManagement: Edit roughEstimate"
+                  acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+ </state>
+ <transition transition_id="activate" title="Activate"
+             new_state="in-progress" trigger="USER"
+             before_script="" after_script="startStory">
+  <action url="" category="workflow">Activate</action>
+  <guard>
+   <guard-role>Employee</guard-role>
+   <guard-role>Manager</guard-role>
+   <guard-expression>here/startable</guard-expression>
+  </guard>
+ </transition>
+ <transition transition_id="complete" title="complete"
+             new_state="completed" trigger="USER"
+             before_script=""
+             after_script="tryToCompleteIteration">
+  <action url="" category="workflow">complete</action>
+  <guard>
+   <guard-role>Employee</guard-role>
+   <guard-role>Manager</guard-role>
+   <guard-expression>here/completable</guard-expression>
+  </guard>
+ </transition>
+ <transition transition_id="deactivate" title="Deactivate"
+             new_state="estimated" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Deactivate</action>
+  <guard>
+   <guard-role>Employee</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="estimate"
+             title="Mark as estimated" new_state="estimated"
+             trigger="USER" before_script="" after_script="">
+  <action url="" category="workflow">Mark as estimated</action>
+  <guard>
+   <guard-role>Employee</guard-role>
+   <guard-role>Manager</guard-role>
+   <guard-expression>here/isEstimated</guard-expression>
+  </guard>
+ </transition>
+ <transition transition_id="improve" title="Improve"
+             new_state="in-progress" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Improve</action>
+  <guard>
+   <guard-role>Employee</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="retract" title="Retract"
+             new_state="draft" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Retract</action>
+  <guard>
+   <guard-role>Customer</guard-role>
+   <guard-role>Employee</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="submit"
+             title="Submit for estimate" new_state="pending"
+             trigger="USER" before_script="" after_script="">
+  <action url="" category="workflow">Submit for estimate</action>
+  <guard>
+   <guard-permission>Request review</guard-permission>
+  </guard>
+ </transition>
+ <variable variable_id="action" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The last transition</description>
+  <default>
+   
+   <expression>transition/getId|nothing</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="actor" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The ID of the user who performed the last transition</description>
+  <default>
+   
+   <expression>user/getId</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="comments" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Comments about the last transition</description>
+  <default>
+   
+   <expression>python:state_change.kwargs.get('comment', '')</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="review_history" for_catalog="False"
+           for_status="False" update_always="False">
+  <description>Provides access to workflow history</description>
+  <default>
+   
+   <expression>state_change/getHistory</expression>
+  </default>
+  <guard>
+   <guard-permission>Request review</guard-permission>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </variable>
+ <variable variable_id="time" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Time of the last transition</description>
+  <default>
+   
+   <expression>state_change/getDateTime</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <script script_id="startStory" type="External Method"
+         filename=""
+         module="eXtremeManagement.eXtreme_Story_Workflow_scripts"
+         function="startStory"/>
+ <script script_id="tryToCompleteIteration"
+         type="External Method" filename=""
+         module="eXtremeManagement.eXtreme_Story_Workflow_scripts"
+         function="tryToCompleteIteration"/>
+</dc-workflow>

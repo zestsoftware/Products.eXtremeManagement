@@ -48,16 +48,19 @@ try:
 except ImportError:
     CustomizationPolicy = None
 
+import os, os.path
+
 from Globals import package_home
 from Products.CMFCore import utils as cmfutils
 from Products.CMFCore import CMFCorePermissions
 from Products.CMFCore import DirectoryView
+from Products.GenericSetup import EXTENSION
+from Products.GenericSetup import profile_registry
 from Products.CMFPlone.utils import ToolInit
+import Products.CMFPlone.interfaces
 from Products.Archetypes.atapi import *
 from Products.Archetypes import listTypes
 from Products.Archetypes.utils import capitalize
-
-import os, os.path
 
 from Products.eXtremeManagement.config import *
 
@@ -65,19 +68,11 @@ DirectoryView.registerDirectory('skins', product_globals)
 DirectoryView.registerDirectory('skins/eXtremeManagement',
                                     product_globals)
 
-##code-section custom-init-head #fill in your manual code here
-##/code-section custom-init-head
-
-
 def initialize(context):
-    ##code-section custom-init-top #fill in your manual code here
-    ##/code-section custom-init-top
-
     # imports packages and types for registration
     import content
     import tools
     import interfaces
-
 
     # Initialize portal tools
     tools = [tools.eXtremeManagementTool.eXtremeManagementTool]
@@ -109,11 +104,12 @@ def initialize(context):
                               constructors= (all_constructors[i],),
                               permission  = ADD_CONTENT_PERMISSIONS[klassname])
 
-    # Apply customization-policy, if theres any
-    if CustomizationPolicy and hasattr(CustomizationPolicy, 'register'):
-        CustomizationPolicy.register(context)
-        print 'Customization policy for eXtremeManagement installed'
-
-    ##code-section custom-init-bottom #fill in your manual code here
-    ##/code-section custom-init-bottom
-
+    # Register generic setup profile
+    profile_registry.registerProfile(
+        name='default',
+        title='Extreme Management',
+        description='Profile for Extreme Management',
+        path='profiles/default',
+        product='preusetup',
+        profile_type=EXTENSION,
+        for_=Products.CMFPlone.interfaces.IPloneSiteRoot)

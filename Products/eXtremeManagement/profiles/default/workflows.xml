@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<object name="portal_workflow" meta_type="Plone Workflow Tool">
+ <property
+    name="title">Contains workflow definitions for your portal</property>
+ <object name="eXtreme_Booking_Workflow" meta_type="Workflow"/>
+ <object name="eXtreme_Customer_Workflow" meta_type="Workflow"/>
+ <object name="eXtreme_Default_Workflow" meta_type="Workflow"/>
+ <object name="eXtreme_Iteration_Workflow" meta_type="Workflow"/>
+ <object name="eXtreme_Project_Workflow" meta_type="Workflow"/>
+ <object name="eXtreme_Story_Workflow" meta_type="Workflow"/>
+ <object name="eXtreme_Task_Workflow" meta_type="Workflow"/>
+ <object name="poi_issue_workflow" meta_type="Workflow"/>
+ <object name="poi_response_workflow" meta_type="Workflow"/>
+ <object name="poi_tracker_workflow" meta_type="Workflow"/>
+ <bindings>
+  <type type_id="Booking">
+   <bound-workflow workflow_id="eXtreme_Booking_Workflow"/>
+  </type>
+  <type type_id="Customer">
+   <bound-workflow workflow_id="eXtreme_Customer_Workflow"/>
+  </type>
+  <type type_id="CustomerFolder">
+   <bound-workflow workflow_id="folder_workflow"/>
+  </type>
+  <type type_id="Iteration">
+   <bound-workflow workflow_id="eXtreme_Iteration_Workflow"/>
+  </type>
+  <type type_id="PoiIssue">
+   <bound-workflow workflow_id="poi_issue_workflow"/>
+  </type>
+  <type type_id="PoiPscTracker">
+   <bound-workflow workflow_id="poi_tracker_workflow"/>
+  </type>
+  <type type_id="PoiResponse">
+   <bound-workflow workflow_id="poi_response_workflow"/>
+  </type>
+  <type type_id="PoiTracker">
+   <bound-workflow workflow_id="poi_tracker_workflow"/>
+  </type>
+  <type type_id="Project">
+   <bound-workflow workflow_id="eXtreme_Project_Workflow"/>
+  </type>
+  <type type_id="ProjectFolder">
+   <bound-workflow workflow_id="folder_workflow"/>
+  </type>
+  <type type_id="ProjectMember">
+   <bound-workflow workflow_id="eXtreme_Default_Workflow"/>
+  </type>
+  <type type_id="Story">
+   <bound-workflow workflow_id="eXtreme_Story_Workflow"/>
+  </type>
+  <type type_id="Task">
+   <bound-workflow workflow_id="eXtreme_Task_Workflow"/>
+  </type>
+  <type type_id="eXtremeManagementTool"/>
+ </bindings>
+</object>
