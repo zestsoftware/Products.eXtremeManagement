@@ -189,7 +189,7 @@ def addOurRoles(portal):
 
 def applyGenericSetupProfile(portal, out):
     setup_tool = getToolByName(portal, 'portal_setup')
-    setup_tool.setImportContext('profile-eXtremeManagement:default'
+    setup_tool.setImportContext('profile-eXtremeManagement:default')
     print >> out, "Applied the generic setup profile for eXtremeManagement"
     setup_tool.runAllImportSteps(purge_old=False)
     setup_tool.setImportContext('profile-CMFPlone:plone')
