@@ -187,6 +187,13 @@ def addOurRoles(portal):
         if HAS_PAS and role not in pas_roles:
             role_manager.addRole(role)
 
+def applyGenericSetupProfile(portal, out):
+    setup_tool = getToolByName(portal, 'portal_setup')
+    setup_tool.setImportContext('profile-eXtremeManagement:default'
+    print >> out, "Applied the generic setup profile for eXtremeManagement"
+    setup_tool.runAllImportSteps(purge_old=False)
+    setup_tool.setImportContext('profile-CMFPlone:plone')
+
 def uninstall(portal):
     """Custom uninstall method for eXtremeManagement."""
     left_slots = portal.getProperty('left_slots', None)
@@ -227,6 +234,9 @@ def install(self):
 
     print >> out, "Migrating content"
     migrate_ct(self, out)
+    
+    print >> out, "Apply the generic setup profile"
+    applyGenericSetupProfile(self, out)
 
 
     return out.getvalue()
