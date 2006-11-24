@@ -33,6 +33,11 @@ if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
 ##code-section module-header #fill in your manual code here
+try:
+    from Products.PloneTestCase.PloneTestCase import USELAYER
+    from Products.PloneTestCase.layer import PloneSite
+except:
+    USELAYER = False
 ##/code-section module-header
 
 #
@@ -67,11 +72,14 @@ def test_suite():
 ##/code-section test-suite-in-between
 
 
-    return TestSuite((
-        ZopeDocFileSuite('testpermissions.txt',
+    s = ZopeDocFileSuite('testpermissions.txt',
                          package='Products.eXtremeManagement.doc',
-                         test_class=testpermissions),
-    ))
+                         test_class=testpermissions)
+    if USELAYER:
+        s.layer=PloneSite
+    return TestSuite((s,
+                      ))
+
 
 ##code-section module-footer #fill in your manual code here
 ##/code-section module-footer

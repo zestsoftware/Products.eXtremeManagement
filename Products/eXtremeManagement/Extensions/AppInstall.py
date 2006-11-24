@@ -235,8 +235,9 @@ def install(self):
     print >> out, "Migrating content"
     migrate_ct(self, out)
     
-    print >> out, "Apply the generic setup profile"
-    applyGenericSetupProfile(self, out)
+    if HAS_GENERIC_SETUP:
+        print >> out, "Apply the generic setup profile"
+        applyGenericSetupProfile(self, out)
 
 
     return out.getvalue()
