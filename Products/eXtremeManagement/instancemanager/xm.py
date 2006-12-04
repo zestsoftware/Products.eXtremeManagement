@@ -2,7 +2,7 @@ python = 'python2.4'
 zope_version = '2.9.4'
 
 symlink_sources = [
-    'eXtremeManagement/eXtremeManagement',
+    'eXtremeManagement',
     ]
 symlink_basedir_template = '%(user_dir)s/svn'
 archive_sources = [
