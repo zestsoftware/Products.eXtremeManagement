@@ -26,4 +26,6 @@ archivebundle_sources = [
     ]
 plone_site_name = 'projects.zestsoftware.nl'
 main_products = ['eXtremeManagement',
+                 {'source': 'developerconfig',
+                  'develop': True},
                  'Poi']
