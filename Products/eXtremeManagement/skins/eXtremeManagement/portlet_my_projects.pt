@@ -13,22 +13,23 @@
                 i18n:translate="box__my_projects">
                 My Projects
             </dt>
-            <tal:block tal:repeat="obj results">
-            <dd tal:define="oddrow repeat/obj/odd;
-                            end repeat/obj/end;
+            <tal:block tal:repeat="item results">
+            <dd tal:define="oddrow repeat/item/odd;
+                            end repeat/item/end;
                             itemClass python:test(end, 'portletItemLast', 'portletItem');
                             class python:itemClass + test(oddrow, ' even', ' odd')"
                 tal:attributes="class class">
-    
-                <a tal:attributes="href obj/absolute_url">
+              <span class="visualIcon contenttype-project">    
+                <a tal:attributes="href item/getURL">
                     <img alt=""
                             height="16" 
                             width="16"
-                            tal:attributes="src string:${here/portal_url}/${obj/getIcon};" />
-                    <span tal:replace="python:test(obj.Title(), obj.Title(), obj.getId())"> 
+                            tal:attributes="src string:${here/portal_url}/${item/getIcon};" />
+                    <span tal:replace="item/Title"> 
                         ECP 
                     </span>
                 </a>
+              </span>
             </dd>
             </tal:block>
         </dl>

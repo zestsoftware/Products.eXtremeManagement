@@ -26,8 +26,7 @@ member = context.portal_membership.getAuthenticatedMember()
 memberid = member.id
 list = []
 for projectbrain in projectbrains:
-    project = projectbrain.getObject()
-    searchpath = '/'.join(project.getPhysicalPath())
+    searchpath = '/'.join(context.REQUEST.physicalPathFromURL(projectbrain.getURL()))
     if states is None:
         taskbrains = context.portal_catalog.searchResults(portal_type='Task',
                                                           path=searchpath)
@@ -39,7 +38,7 @@ for projectbrain in projectbrains:
     # Search for the first assigned Task with member as assignee.
     for taskbrain in taskbrains:
         if memberid in taskbrain.getAssignees:
-            list.append(project)
+            list.append(projectbrain)
             break
 
 return list
