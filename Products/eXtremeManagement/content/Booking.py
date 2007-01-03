@@ -192,63 +192,15 @@ class Booking(BaseContent):
         return xt.formatTime(self.getRawActualHours())
 
     # Manually created methods
-
-    security.declarePrivate('manage_afterAdd')
-    def manage_afterAdd(self, item, container):
-        """Reindex the parent Task when you add a Booking.
-        """
-        super(Booking, self).manage_afterAdd(item, container)
-        self._reindexTask()
-
-    security.declarePrivate('manage_beforeDelete')
-    def manage_beforeDelete(self, item, container):
-        """Reindex the parent Task when you delete a Booking.
-
-        We need to do something like this, except that these lines
-        cause Bookings to be set to 0:00 not only when they are
-        deleted, but also apparently when they are moved from the
-        portalFactory to their desired spot...
-
-        self.setHours(0)
-        self.setMinutes(0)
-        # The following is already handled by setHours/setMinutes
-        # self._reindexTask()
-        """
-        super(Booking, self).manage_beforeDelete(item, container)
-        catalog = getToolByName(self, 'portal_catalog')
-        catalog.unindexObject(self)
-        self._reindexTask(reindexSelf=False)
-
-    security.declarePrivate('_reindexTask')
-    def _reindexTask(self, reindexSelf=True):
-        parent = self.aq_inner.aq_parent
-        cat = getToolByName(self, 'portal_catalog')
-        if reindexSelf:
-            # first reindex self!
-            cat.reindexObject(self)
-        cat.reindexObject(parent,
-                          idxs=['getRawActualHours',
-                                'getRawDifference'])
-    security.declarePublic('setMinutes')
-    def setMinutes(self, value, **kw):
-        """Custom setter for minutes.
-
-        We reindex the parent Task here so the getRawActualHours and
-        getRawDifference in the catalog get updated.
-        """
-        self.schema['minutes'].set(self, value)
-        self._reindexTask()
-
-    security.declarePublic('setHours')
-    def setHours(self, value, **kw):
-        """Custom setter for hours.
-
-        We reindex the parent Task here so the getRawActualHours and
-        getRawDifference in the catalog get updated.
-        """
-        self.schema['hours'].set(self, value)
-        self._reindexTask()
-
+    def reindexObject(self, *args, **kwargs):
+        # making eXtremeManagement portal_factory-aware is a bit gross but
+        # as long as a Booking's state influences it's parent Task, we need
+        # to make speed optimizations like this - Rocky
+        factory = getToolByName(self, 'portal_factory')
+        if not factory.isTemporary(self):
+            super(Booking, self).reindexObject(*args, **kwargs)
+            parent = self.aq_inner.aq_parent
+            parent.reindexObject()
 
 
 registerType(Booking, PROJECTNAME)

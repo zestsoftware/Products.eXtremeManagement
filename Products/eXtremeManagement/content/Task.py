@@ -355,7 +355,9 @@ class Task(BaseFolder):
         self.schema['hours'].set(self, value)
         self._reindex(idxs=['getRawEstimate', 'getRawDifference'])
 
-
+    def manage_delObjects(self, *args, **kwargs):
+        super(Task, self).manage_delObjects(*args, **kwargs)
+        self.reindexObject()
 
 registerType(Task, PROJECTNAME)
 # end of class Task
