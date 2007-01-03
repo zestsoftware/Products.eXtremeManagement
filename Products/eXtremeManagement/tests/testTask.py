@@ -130,6 +130,12 @@ class testTask(eXtremeManagementTestCase):
         self.task.invokeFactory('Booking', id='booking2', minutes=15)
         self.assertTaskBrainEquality('getRawActualHours', 1.25)
 
+        # make a copy to test later
+        
+        copydata = self.story.manage_copyObjects(self.task.getId())
+        self.story.manage_pasteObjects(copydata)
+        copy = self.story.copy_of_task
+
         # If a Booking gets deleted, its parent task should be
         # reindexed.
 
@@ -137,6 +143,10 @@ class testTask(eXtremeManagementTestCase):
         self.assertTaskBrainEquality('getRawActualHours', 1)
         self.task.manage_delObjects('booking')
         self.assertTaskBrainEquality('getRawActualHours', 0)
+
+        # Make sure the copy retained it's info
+        self.assertTaskBrainEquality('getRawActualHours', 1.25, task=copy)
+
 
     # from class Task:
     def test_getActualHours(self):
@@ -215,16 +225,17 @@ class testTask(eXtremeManagementTestCase):
         self.task.setAssignees('')
         self.assertTaskBrainEquality('getAssignees', ())
 
-    def assertTaskBrainEquality(self, attribute, value):
+    def assertTaskBrainEquality(self, attribute, value, task=None):
         """Test equality of Task and taskbrain from catalog.
         """
-        taskbrains = self.catalog.searchResults(portal_type='Task')
-        # Test if there really is only one Task in the catalog.
-        self.assertEqual(len(taskbrains), 1)
+        if task is None:
+            task = self.task
+        taskbrains = self.catalog(portal_type='Task',
+                                  path='/'.join(task.getPhysicalPath()))
 
         taskbrain = taskbrains[0]
-        self.assertEqual(self.task[attribute](), value)
-        self.assertEqual(self.task[attribute](),
+        self.assertEqual(task[attribute](), value)
+        self.assertEqual(task[attribute](),
                          taskbrain[attribute])
 
     def test_getDefaultAssignee(self):
