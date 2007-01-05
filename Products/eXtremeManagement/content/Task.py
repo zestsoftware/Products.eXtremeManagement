@@ -36,7 +36,6 @@ from Products.eXtremeManagement.config import *
 from Products.CMFPlone.interfaces.NonStructuralFolder import INonStructuralFolder
 
 ##code-section module-header #fill in your manual code here
-
 from Products.CMFCore.utils import getToolByName
 from sets import Set
 from Products.eXtremeManagement.Extensions.eXtreme_Task_Workflow_scripts import mailMessage
@@ -222,30 +221,34 @@ class Task(BaseFolder):
 
         Anyway, we need to do some serious checking.
         """
-        if isinstance(value, basestring):
+        if isinstance(value, basestring) and value:
             value = [value]
+        elif not value:
+            value = []
+        else:
+            value = list(Set([x for x in value if x]))
+            value.sort()
         self.log.debug('New assignees value=%s.', value)
-        #if value is None or value == '' or value == [] or value == ['']:
-        #    return
-        old_assignees = list(self.getAssignees())
+        old_assignees = list(Set([x for x in self.getAssignees()]))
+        old_assignees.sort()
         self.schema['assignees'].set(self, value)
-        self._reindex(idxs=['getAssignees',])
-        while '' in value:
-             value.remove('')
+
+        # TODO: this should definitely be moved out into a event handler
+        # as a content class should be pretty dumb, it should not know it
+        # needs to send out emails ... separation of concerns - Rocky
         if old_assignees != value:
             self.log.debug('old_assignees=%s.', old_assignees)
             portal = getToolByName(self, 'portal_url').getPortalObject()
             if portal.hasProperty('xm_task_schema_updating'):
-                self.log.debug('Task schema update, so not sending email to %s for task %s.',
-                               value, self.id)
+                self.log.debug('Task schema update, so not sending email '
+                               'to %s for task %s.', value, self.id)
             else:
-                for employee in value:
-                    if employee not in old_assignees:
-                        self.log.debug('Sending email to %s for task %s.', employee, self.id)
-                        mailMessage(portal, self, 'New Task assigned', employee, self.log)
-                    else:
-                        self.log.debug('Not sending email: %s was already assigned to task %s.',
-                                       employee, self.id)
+                new_employees = [x for x in value if x not in old_assignees]
+                for employee in new_employees:
+                    self.log.debug('Sending email to %s for task %s.',
+                                   employee, self.id)
+                    mailMessage(portal, self, 'New Task assigned',
+                                employee, self.log)
 
     security.declarePublic('getRawEstimate')
     def getRawEstimate(self):

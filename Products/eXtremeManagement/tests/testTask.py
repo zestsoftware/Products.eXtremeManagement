@@ -187,7 +187,7 @@ class testTask(eXtremeManagementTestCase):
         self.assertEqual(self.workflow.getInfoFor(self.task,'review_state'),
                          'open')
         self.assertEqual(self.task.startable(), False)
-        self.task.setAssignees('developer')
+        self.task.update(assignees='developer')
         self.assertEqual(self.task.startable(), False)
         self.task.update(hours=0)
         self.assertEqual(self.task.startable(), False)
@@ -206,7 +206,7 @@ class testTask(eXtremeManagementTestCase):
 
         self.story.invokeFactory('Task', id='task2')
         self.task2 = self.story.task2
-        self.task2.setAssignees('developer')
+        self.task2.update(assignees='developer')
         self.assertEqual(self.task2.startable(), False)
         self.task2.invokeFactory('Booking', id='booking', minutes=15)
         self.assertEqual(self.task2.startable(), True)
@@ -216,13 +216,13 @@ class testTask(eXtremeManagementTestCase):
     def test_getAssignees(self):
         self.assertTaskBrainEquality('getAssignees', ())
 
-        self.task.setAssignees('developer')
+        self.task.update(assignees='developer')
         self.assertTaskBrainEquality('getAssignees', ('developer',))
 
-        self.task.setAssignees(('developer','employee',))
+        self.task.update(assignees=('developer','employee',))
         self.assertTaskBrainEquality('getAssignees', ('developer','employee',))
 
-        self.task.setAssignees('')
+        self.task.update(assignees='')
         self.assertTaskBrainEquality('getAssignees', ())
 
     def assertTaskBrainEquality(self, attribute, value, task=None):
