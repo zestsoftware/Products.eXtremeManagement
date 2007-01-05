@@ -135,6 +135,10 @@ class testStory(eXtremeManagementTestCase):
 
         self.assertStoryBrainEquality('getRawEstimate', 4.0)
 
+        # make sure deleting a task updates the story's catalog entry
+        self.story.manage_delObjects(ids=['task'])
+        self.assertStoryBrainEquality('getRawEstimate', 4.5 * HOURS_PER_DAY)
+
         self.iteration.invokeFactory('Story', id='story2')
         self.story2 = self.iteration.story2
         self.assertEqual(self.story2.getRawEstimate(), 0)

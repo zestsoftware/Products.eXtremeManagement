@@ -41,7 +41,6 @@ from Products.CMFCore.utils import getToolByName
 from sets import Set
 from Products.eXtremeManagement.Extensions.eXtreme_Task_Workflow_scripts import mailMessage
 import logging
-from types import StringTypes
 
 ##/code-section module-header
 
@@ -223,7 +222,7 @@ class Task(BaseFolder):
 
         Anyway, we need to do some serious checking.
         """
-        if isinstance(value, StringTypes):
+        if isinstance(value, basestring):
             value = [value]
         self.log.debug('New assignees value=%s.', value)
         #if value is None or value == '' or value == [] or value == ['']:
@@ -335,29 +334,19 @@ class Task(BaseFolder):
         else:
             return ''
 
-    security.declarePublic('setMinutes')
-    def setMinutes(self, value, **kw):
-        """Custom setter for minutes.
-
-        We reindex the Task here so the getRawEstimate in the catalog
-        gets updated.
-        """
-        self.schema['minutes'].set(self, value)
-        self._reindex(idxs=['getRawEstimate', 'getRawDifference'])
-
-    security.declarePublic('setHours')
-    def setHours(self, value, **kw):
-        """Custom setter for hours.
-
-        We reindex the Task here so the getRawEstimate in the catalog
-        gets updated.
-        """
-        self.schema['hours'].set(self, value)
-        self._reindex(idxs=['getRawEstimate', 'getRawDifference'])
-
     def manage_delObjects(self, *args, **kwargs):
         super(Task, self).manage_delObjects(*args, **kwargs)
         self.reindexObject()
+
+    def reindexObject(self, *args, **kwargs):
+        # making eXtremeManagement portal_factory-aware is a bit gross but
+        # as long as a Booking's state influences it's parent Task, we need
+        # to make speed optimizations like this - Rocky
+        factory = getToolByName(self, 'portal_factory')
+        if not factory.isTemporary(self):
+            super(Task, self).reindexObject(*args, **kwargs)
+            parent = self.aq_inner.aq_parent
+            parent.reindexObject()
 
 registerType(Task, PROJECTNAME)
 # end of class Task

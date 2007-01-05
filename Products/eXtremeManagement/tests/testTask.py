@@ -105,10 +105,10 @@ class testTask(eXtremeManagementTestCase):
         """
         self.assertTaskBrainEquality('getRawEstimate', 0)
 
-        self.task.setHours(4)
+        self.task.update(hours=4)
         self.assertTaskBrainEquality('getRawEstimate', 4)
 
-        self.task.setMinutes(15)
+        self.task.update(minutes=15)
         self.assertTaskBrainEquality('getRawEstimate', 4.25)
 
     # from class Task:
@@ -161,7 +161,7 @@ class testTask(eXtremeManagementTestCase):
         """
         self.assertTaskBrainEquality('getRawDifference', 0)
 
-        self.task.setHours(4)
+        self.task.update(hours=4)
         self.assertTaskBrainEquality('getRawDifference', -4)
 
         self.task.invokeFactory('Booking', id='booking', hours=1)
@@ -189,17 +189,17 @@ class testTask(eXtremeManagementTestCase):
         self.assertEqual(self.task.startable(), False)
         self.task.setAssignees('developer')
         self.assertEqual(self.task.startable(), False)
-        self.task.setHours(0)
+        self.task.update(hours=0)
         self.assertEqual(self.task.startable(), False)
-        self.task.setHours(-1)
+        self.task.update(hours=-1)
         self.assertEqual(self.task.startable(), False)
-        self.task.setHours(1)
+        self.task.update(hours=1)
         self.assertEqual(self.task.startable(), True)
-        self.task.setHours(0)
+        self.task.update(hours=0)
         self.assertEqual(self.task.startable(), False)
-        self.task.setMinutes(-15)
+        self.task.update(minutes=-15)
         self.assertEqual(self.task.startable(), False)
-        self.task.setMinutes(15)
+        self.task.update(minutes=15)
         self.assertEqual(self.task.startable(), True)
         self.task.setAssignees('')
         self.assertEqual(self.task.startable(), False)
