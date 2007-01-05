@@ -80,6 +80,8 @@ class testStory(eXtremeManagementTestCase):
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
 
+        self.catalog = self.portal.portal_catalog
+
     # from class Story:
     def test_CookedBody(self):
         """
@@ -94,7 +96,7 @@ class testStory(eXtremeManagementTestCase):
         ##o=Story('temp_Story')
         ##self.folder._setObject('temp_Story', o)
         self.assertEqual(MAXIMUM_NOT_COMPLETED_PERCENTAGE, 90)
-        self.task.setHours(1)
+        self.task.update(hours=1)
         self.assertEqual(self.story.get_progress_perc(), 0)
         self.task.invokeFactory('Booking', id='booking1', hours=0, minutes=15)
         self.assertEqual(self.story.getRawActualHours(), 0.25)
@@ -128,8 +130,11 @@ class testStory(eXtremeManagementTestCase):
         self.assertEqual(self.story.getRoughEstimate(), 4.5)
         self.assertEqual(HOURS_PER_DAY, 8)
         self.assertEqual(self.story.getRawEstimate(), 4.5 * HOURS_PER_DAY)
-        self.task.setHours(4)
+        self.task.update(hours=4)
         self.assertEqual(self.story.getRawEstimate(), 4)
+
+        self.assertStoryBrainEquality('getRawEstimate', 4.0)
+
         self.iteration.invokeFactory('Story', id='story2')
         self.story2 = self.iteration.story2
         self.assertEqual(self.story2.getRawEstimate(), 0)
@@ -180,6 +185,19 @@ class testStory(eXtremeManagementTestCase):
         """
         #Uncomment one of the following lines as needed
     # Manually created methods
+
+    def assertStoryBrainEquality(self, attribute, value, story=None):
+        """Test equality of Story and storybrain from catalog.
+        """
+        if story is None:
+            story = self.story
+        storybrains = self.catalog(portal_type='Story',
+                                  path='/'.join(story.getPhysicalPath()))
+
+        storybrain = storybrains[0]
+        self.assertEqual(story[attribute](), value)
+        self.assertEqual(story[attribute](),
+                         storybrain[attribute])
 
 
 def test_suite():
