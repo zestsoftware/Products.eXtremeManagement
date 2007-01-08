@@ -199,10 +199,14 @@ class Task(BaseFolder):
         # build displaylist
         for memberId in employees:
             member = mt.getMemberById(memberId)
-            fullname =  member.getProperty('fullname', None)
-            # if fullname is '' or None, return the id
-            name = fullname and fullname.strip() or member.getId()
+            if member is not None:
+                fullname =  member.getProperty('fullname', None)
+                # if fullname is '' or None, return the id
+                name = fullname and fullname.strip() or member.getId()
+            else:
+                name = memberId
             assignables.append((memberId, name))
+                
 
         return DisplayList(assignables)
 
