@@ -1,5 +1,5 @@
 python = 'python2.4'
-zope_version = '2.9.4'
+zope_version = '2.9.5'
 
 symlink_sources = [
     'eXtremeManagement',
