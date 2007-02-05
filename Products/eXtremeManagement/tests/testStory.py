@@ -32,9 +32,6 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
-##code-section module-header #fill in your manual code here
-##/code-section module-header
-
 #
 # Test-cases for class(es) Story
 #
@@ -51,9 +48,6 @@ from Products.eXtremeManagement.content.Story import Story
 class testStory(eXtremeManagementTestCase):
     """ test-cases for class(es) Story
     """
-
-    ##code-section class-header_testStory #fill in your manual code here
-    ##/code-section class-header_testStory
 
     def afterSetUp(self):
         self.workflow = self.portal.portal_workflow
@@ -79,19 +73,9 @@ class testStory(eXtremeManagementTestCase):
 
         self.catalog = self.portal.portal_catalog
 
-    # from class Story:
-    def test_CookedBody(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Story:
     def test_get_progress_perc(self):
         """
         """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Story('temp_Story')
-        ##self.folder._setObject('temp_Story', o)
         self.assertEqual(MAXIMUM_NOT_COMPLETED_PERCENTAGE, 90)
         self.task.update(hours=1)
         self.assertEqual(self.story.get_progress_perc(), 0)
@@ -107,17 +91,6 @@ class testStory(eXtremeManagementTestCase):
         self.workflow.doActionFor(self.task, 'complete')
         self.assertEqual(self.story.get_progress_perc(), 100)
 
-    # from class Story:
-    def test_generateUniqueId(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Story:
-    def test_isCompleted(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Story:
     def test_getRawEstimate(self):
         """
         When a story has tasks, get their estimates.
@@ -165,32 +138,11 @@ class testStory(eXtremeManagementTestCase):
         self.assertStoryBrainEquality('getRawEstimate', 4.5 * HOURS_PER_DAY)
         self.assertStoryBrainEquality('getRawEstimate', 2, story=self.story2)
 
-    # from class Story:
-    def test_getEstimate(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Story:
     def test_getRawActualHours(self):
         """
         """
         #Uncomment one of the following lines as needed
-    # from class Story:
-    def test_getActualHours(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Story:
-    def test_getRawDifference(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Story:
-    def test_getDifference(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Story:
+
     def test_isEstimated(self):
         """
         """
@@ -199,18 +151,6 @@ class testStory(eXtremeManagementTestCase):
         self.story.setRoughEstimate(0)
         self.assertEqual(self.story.isEstimated(), False)
         self.logout()
-
-    # from class Story:
-    def test_startable(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Story:
-    def test_completable(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # Manually created methods
 
     def assertStoryBrainEquality(self, attribute, value, story=None):
         """Test equality of Story and storybrain from catalog.
@@ -231,9 +171,6 @@ def test_suite():
     suite = TestSuite()
     suite.addTest(makeSuite(testStory))
     return suite
-
-##code-section module-footer #fill in your manual code here
-##/code-section module-footer
 
 if __name__ == '__main__':
     framework()
