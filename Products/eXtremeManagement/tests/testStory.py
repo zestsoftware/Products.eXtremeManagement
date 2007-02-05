@@ -40,15 +40,12 @@ if __name__ == '__main__':
 #
 
 from Testing import ZopeTestCase
+import transaction
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 
 # Import the tested classes
 from Products.eXtremeManagement.content.Story import Story
-
-##code-section module-beforeclass #fill in your manual code here
-from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
-##/code-section module-beforeclass
 
 
 class testStory(eXtremeManagementTestCase):
@@ -135,13 +132,29 @@ class testStory(eXtremeManagementTestCase):
 
         self.assertStoryBrainEquality('getRawEstimate', 4.0)
 
+        # Add a task.
+        self.story.invokeFactory('Task', id='task2')
+        self.task2 = self.story.task2
+        self.task.update(hours=2)
+        self.assertEqual(self.story.getRawEstimate(), 6)
+
         # make sure deleting a task updates the story's catalog entry
         self.story.manage_delObjects(ids=['task'])
-        self.assertStoryBrainEquality('getRawEstimate', 4.5 * HOURS_PER_DAY)
+        self.assertStoryBrainEquality('getRawEstimate', 2)
 
+        # Check that cutting and pasting also works correctly with
+        # respect to the estimates (and the booked hours, etc, but
+        # that should be fine.
         self.iteration.invokeFactory('Story', id='story2')
         self.story2 = self.iteration.story2
         self.assertEqual(self.story2.getRawEstimate(), 0)
+
+        # We need to commit a few times, before this works in tests.
+        cut_data = self.story.manage_cutObjects(ids=['task'])
+        transaction.savepoint(optimistic=True)
+        self.story2.manage_pasteObjects(cut_data)
+        self.assertStoryBrainEquality('getRawEstimate', 4.5 * HOURS_PER_DAY)
+        self.assertEqual(self.story2.getRawEstimate(), 2)
 
     # from class Story:
     def test_getEstimate(self):
