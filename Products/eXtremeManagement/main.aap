@@ -15,10 +15,6 @@ version.txt: $MODEL $CONFIG
     :sys cd ..; $AGX -c $PRODUCT/$CONFIG $PRODUCT/$MODEL
     # :sys i18ndude sync --pot i18n/generated.pot i18n/eXtremeManagement-*.po
 
-test: $MODEL $PYTHONFILES $TESTFILES
-    :sys cd $INSTANCE_HOME/Products/${PRODUCT}/tests;\
-	 python runalltests.py
-
 pydoc:
     :sys cd doc/pydoc;\
          export PYTHONPATH=$SOFTWARE_HOME:$INSTANCE_HOME/Products;\
