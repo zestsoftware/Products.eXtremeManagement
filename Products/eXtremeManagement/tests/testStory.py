@@ -91,25 +91,30 @@ class testStory(eXtremeManagementTestCase):
         self.workflow.doActionFor(self.task, 'complete')
         self.assertEqual(self.story.get_progress_perc(), 100)
 
-    def test_getRawEstimate(self):
+    def test_getRawEstimateAndActual(self):
         """
         When a story has tasks, get their estimates.
         If not, get the roughEstimate of this story.
         HOURS_PER_DAY is set in AppConfig.py (probably 8).
+
+        Also test getRawActualHours while we are at it.
         """
         self.assertEqual(self.story.getRoughEstimate(), 4.5)
         self.assertEqual(HOURS_PER_DAY, 8)
         self.assertEqual(self.story.getRawEstimate(), 4.5 * HOURS_PER_DAY)
         self.task.update(hours=4)
         self.assertEqual(self.story.getRawEstimate(), 4)
-
         self.assertStoryBrainEquality('getRawEstimate', 4.0)
+        self.task.invokeFactory('Booking', id='booking1', hours=1)
+        self.assertStoryBrainEquality('getRawActualHours', 1)
 
         # Add a task.
         self.story.invokeFactory('Task', id='task2')
         self.task2 = self.story.task2
         self.task2.update(hours=2)
         self.assertEqual(self.story.getRawEstimate(), 6)
+        self.task2.invokeFactory('Booking', id='booking1', hours=1)
+        self.assertStoryBrainEquality('getRawActualHours', 2)
 
         # make a copy to test later
         
@@ -120,28 +125,29 @@ class testStory(eXtremeManagementTestCase):
         # make sure deleting a task updates the story's catalog entry
         self.story.manage_delObjects(ids=['task'])
         self.assertStoryBrainEquality('getRawEstimate', 2)
+        self.assertStoryBrainEquality('getRawActualHours', 1)
 
         # Make sure the copy retained it's info
         self.assertStoryBrainEquality('getRawEstimate', 6, story=copy)
+        self.assertStoryBrainEquality('getRawActualHours', 2, story=copy)
 
         # Check that cutting and pasting also works correctly with
         # respect to the estimates (and the booked hours, etc, but
         # that should be fine.
+        # First make a second story for pasting into.
         self.iteration.invokeFactory('Story', id='story2')
-        self.story2 = self.iteration.story2
-        self.assertEqual(self.story2.getRawEstimate(), 0)
+        story2 = self.iteration.story2
+        self.assertStoryBrainEquality('getRawEstimate', 0, story=story2)
+        self.assertStoryBrainEquality('getRawActualHours', 0, story=story2)
 
         # We need to commit a few times, before this works in tests.
         transaction.savepoint(optimistic=True)
         cut_data = self.story.manage_cutObjects(ids=['task2'])
-        self.story2.manage_pasteObjects(cut_data)
+        story2.manage_pasteObjects(cut_data)
         self.assertStoryBrainEquality('getRawEstimate', 4.5 * HOURS_PER_DAY)
-        self.assertStoryBrainEquality('getRawEstimate', 2, story=self.story2)
-
-    def test_getRawActualHours(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
+        self.assertStoryBrainEquality('getRawActualHours', 0)
+        self.assertStoryBrainEquality('getRawEstimate', 2, story2)
+        self.assertStoryBrainEquality('getRawActualHours', 1, story=story2)
 
     def test_isEstimated(self):
         """
