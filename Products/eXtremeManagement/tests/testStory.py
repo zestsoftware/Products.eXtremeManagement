@@ -154,7 +154,7 @@ class testStory(eXtremeManagementTestCase):
         cut_data = self.story.manage_cutObjects(ids=['task2'])
         self.story2.manage_pasteObjects(cut_data)
         self.assertStoryBrainEquality('getRawEstimate', 4.5 * HOURS_PER_DAY)
-        self.assertEqual(self.story2.getRawEstimate(), 2)
+        self.assertStoryBrainEquality('getRawEstimate', 2, story=self.story2)
 
     # from class Story:
     def test_getEstimate(self):
