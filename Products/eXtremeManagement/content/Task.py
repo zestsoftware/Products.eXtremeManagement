@@ -341,8 +341,8 @@ class Task(BaseFolder):
         else:
             return ''
 
-    def manage_delObjects(self, *args, **kwargs):
-        super(Task, self).manage_delObjects(*args, **kwargs)
+    def _delObject(self, orig_id, *args, **kwargs):
+        super(Task, self)._delObject(orig_id, *args, **kwargs)
         self.reindexObject()
 
     def reindexObject(self, *args, **kwargs):

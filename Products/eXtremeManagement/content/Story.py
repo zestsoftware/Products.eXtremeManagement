@@ -299,8 +299,8 @@ class Story(OrderedBaseFolder):
         """
         return self.contentValues(filter={'portal_type': 'Task'})
 
-    def manage_delObjects(self, *args, **kwargs):
-        super(Story, self).manage_delObjects(*args, **kwargs)
+    def _delObject(self, orig_id, *args, **kwargs):
+        super(Story, self)._delObject(orig_id, *args, **kwargs)
         self.reindexObject()
 
 registerType(Story, PROJECTNAME)
