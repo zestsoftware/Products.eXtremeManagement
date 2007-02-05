@@ -135,7 +135,7 @@ class testStory(eXtremeManagementTestCase):
         # Add a task.
         self.story.invokeFactory('Task', id='task2')
         self.task2 = self.story.task2
-        self.task.update(hours=2)
+        self.task2.update(hours=2)
         self.assertEqual(self.story.getRawEstimate(), 6)
 
         # make sure deleting a task updates the story's catalog entry
@@ -150,8 +150,8 @@ class testStory(eXtremeManagementTestCase):
         self.assertEqual(self.story2.getRawEstimate(), 0)
 
         # We need to commit a few times, before this works in tests.
-        cut_data = self.story.manage_cutObjects(ids=['task'])
         transaction.savepoint(optimistic=True)
+        cut_data = self.story.manage_cutObjects(ids=['task2'])
         self.story2.manage_pasteObjects(cut_data)
         self.assertStoryBrainEquality('getRawEstimate', 4.5 * HOURS_PER_DAY)
         self.assertEqual(self.story2.getRawEstimate(), 2)

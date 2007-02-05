@@ -147,6 +147,14 @@ class testTask(eXtremeManagementTestCase):
         # Make sure the copy retained it's info
         self.assertTaskBrainEquality('getRawActualHours', 1.25, task=copy)
 
+        # Test cutting Bookings.
+        cutdata = copy.manage_cutObjects(ids=['booking', 'booking2'])
+        self.story.invokeFactory('Task', id='task3')
+        task3 = self.story.task3
+        task3.manage_pasteObjects(cutdata)
+        self.assertTaskBrainEquality('getRawActualHours', 0, task=copy)
+        self.assertTaskBrainEquality('getRawActualHours', 1.25, task=task3)
+
 
     # from class Task:
     def test_getActualHours(self):
