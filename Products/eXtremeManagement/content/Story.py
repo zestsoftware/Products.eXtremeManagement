@@ -299,6 +299,12 @@ class Story(OrderedBaseFolder):
         """
         return self.contentValues(filter={'portal_type': 'Task'})
 
+    def manage_afterAdd(self, item, container):
+        # With Plone 2.1 we cannot use events reliably, so for some
+        # cases we have to rely on manage_afterAdd. :(
+        super(Story, self).manage_afterAdd(item, container)
+        self.reindexObject()
+
     def _delObject(self, orig_id, *args, **kwargs):
         super(Story, self)._delObject(orig_id, *args, **kwargs)
         self.reindexObject()

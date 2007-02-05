@@ -138,9 +138,18 @@ class testStory(eXtremeManagementTestCase):
         self.task2.update(hours=2)
         self.assertEqual(self.story.getRawEstimate(), 6)
 
+        # make a copy to test later
+        
+        copydata = self.iteration.manage_copyObjects(self.story.getId())
+        self.iteration.manage_pasteObjects(copydata)
+        copy = self.story.copy_of_story
+
         # make sure deleting a task updates the story's catalog entry
         self.story.manage_delObjects(ids=['task'])
         self.assertStoryBrainEquality('getRawEstimate', 2)
+
+        # Make sure the copy retained it's info
+        self.assertStoryBrainEquality('getRawEstimate', 6, story=copy)
 
         # Check that cutting and pasting also works correctly with
         # respect to the estimates (and the booked hours, etc, but

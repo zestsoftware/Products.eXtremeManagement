@@ -341,6 +341,21 @@ class Task(BaseFolder):
         else:
             return ''
 
+    def manage_afterAdd(self, item, container):
+        # With Plone 2.1 we cannot use events reliably. :(
+        super(Task, self).manage_afterAdd(item, container)
+        self.reindexObject()
+
+    def manage_afterClone(self, item):
+        # With Plone 2.1 we cannot use events reliably. :(
+        super(Task, self).manage_afterClone(item)
+        self.reindexObject()
+
+    def manage_pasteObjects(self, cb_copy_data=None, REQUEST=None):
+        # With Plone 2.1 we cannot use events reliably. :(
+        super(Task, self).manage_pasteObjects(cb_copy_data, REQUEST)
+        self.reindexObject()
+
     def _delObject(self, orig_id, *args, **kwargs):
         super(Task, self)._delObject(orig_id, *args, **kwargs)
         self.reindexObject()
