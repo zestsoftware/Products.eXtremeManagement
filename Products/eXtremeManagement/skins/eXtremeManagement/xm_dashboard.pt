@@ -65,7 +65,7 @@
                 XXX assigned to me is missing in rss query
             </tal:comment>
             <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
-                <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=PoiIssue&sort_on=Date&sort_order=reverse&path=${herePath}&review_state=open,in-progress,unconfirmed">
+                <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=PoiIssue&amp;sort_on=Date&amp;sort_order=reverse&amp;path=${herePath}&amp;review_state=open,in-progress,unconfirmed">
                    <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
                         tal:attributes="src string:$portal_url/rss.gif"
                         src="rss.gif"
@@ -133,7 +133,7 @@
                 XXX assigned to me is missing in rss query
             </tal:comment>
             <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
-                <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=Task&sort_on=Date&sort_order=reverse&path=${herePath}&review_state=to-do,open">
+                <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=Task&amp;sort_on=Date&amp;sort_order=reverse&amp;path=${herePath}&amp;review_state=to-do,open">
                    <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
                         tal:attributes="src string:$portal_url/rss.gif"
                         src="rss.gif"
@@ -197,7 +197,7 @@
                 XXX created by me is missing in rss query
             </tal:comment>
             <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
-                <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=Task&sort_on=Date&sort_order=reverse&path=${herePath}&review_state=to-do,open">
+                <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=Task&amp;sort_on=Date&amp;sort_order=reverse&amp;path=${herePath}&amp;review_state=to-do,open">
                    <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
                         tal:attributes="src string:$portal_url/rss.gif"
                         src="rss.gif"
@@ -235,7 +235,7 @@
         <dl class="portlet portletThirdWidth">
             <dt class="portletHeader">
                <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
-                    <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=PoiIssue&sort_on=Date&sort_order=reverse&path=${herePath}&review_state=published">
+                    <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=PoiIssue&amp;sort_on=Date&amp;sort_order=reverse&amp;path=${herePath}&amp;review_state=published">
                        <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
                             tal:attributes="src string:$portal_url/rss.gif"
                             src="rss.gif"
@@ -316,7 +316,7 @@ show all
                 tal:define="category python:here.getCategoryName(categoryId)">
             <dt class="portletHeader">
                <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
-                    <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=PSCRelease&sort_on=Date&sort_order=reverse&path=${herePath}&getCategories=${categoryId}&review_state=published">
+                    <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=PSCRelease&amp;sort_on=Date&amp;sort_order=reverse&amp;path=${herePath}&amp;getCategories=${categoryId}&amp;review_state=published">
                        <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
                             tal:attributes="src string:$portal_url/rss.gif"
                             src="rss.gif"
@@ -373,7 +373,7 @@ show all
                 tal:define="projectId project/Id">
             <dt class="portletHeader">
                <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
-                    <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=PSCRelease&sort_on=Date&sort_order=reverse&path=${herePath}&review_state=published">
+                    <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=PSCRelease&amp;sort_on=Date&amp;sort_order=reverse&amp;path=${herePath}&amp;review_state=published">
                        <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
                             tal:attributes="src string:$portal_url/rss.gif"
                             src="rss.gif"
