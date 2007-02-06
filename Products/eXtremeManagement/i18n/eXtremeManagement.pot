@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2006-03-23 13:16+0000\n"
+"POT-Creation-Date: 2007-02-06 14:50+0000\n"
 "PO-Revision-Date: Mon Sep  5 16:31:19 2005\n"
 "Last-Translator: ['Ahmad Hadi'] <['a.hadi@zestsoftware.nl']>\n"
 "Language-Team: ['Ahmad Hadi'] <['a.hadi@zestsoftware.nl']>\n"
@@ -37,19 +37,9 @@ msgstr ""
 msgid "booking_overview"
 msgstr ""
 
-#. Default: "Here is a list of all iterations with the status <strong>New</strong>. The stories assigned to these iterations are also displayed. This makes it easier to see which stories are assigned to which iteration."
-#: skins/eXtremeManagement/project_view.pt
-msgid "description_new_iterations"
-msgstr ""
-
 #. Default: "This is a list of all projects. Also the iterations which are completed with state, estimated and actual time. Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>. This way the administration has an overview with all iterations which are invoiced."
 #: skins/eXtremeManagement/project_administration.pt
 msgid "description_project_administration"
-msgstr ""
-
-#. Default: "These stories are not estimated yet. After estimating these stories, they get the status \"estimated\" <br/> and will be visible in the list above to be assigned to an iteration."
-#: skins/eXtremeManagement/project_view.pt
-msgid "description_stories_not_estimated"
 msgstr ""
 
 #. Default: "To register your time (hours), use the form below and press 'Send'."
@@ -598,6 +588,21 @@ msgstr ""
 msgid "eXtremeManagement_label_phoneNumber"
 msgstr ""
 
+#. Default: "Rawactualhours"
+#: content/Task.py
+msgid "eXtremeManagement_label_rawActualHours"
+msgstr ""
+
+#. Default: "Rawdifference"
+#: content/Task.py
+msgid "eXtremeManagement_label_rawDifference"
+msgstr ""
+
+#. Default: "Rawestimate"
+#: content/Task.py
+msgid "eXtremeManagement_label_rawEstimate"
+msgstr ""
+
 #. Default: "Roughestimate"
 #: content/Story.py
 msgid "eXtremeManagement_label_roughEstimate"
@@ -648,11 +653,6 @@ msgstr ""
 msgid "header_customers"
 msgstr ""
 
-#. Default: "Iterations"
-#: skins/eXtremeManagement/project_view.pt
-msgid "header_iterations"
-msgstr ""
-
 #. Default: "Project member info"
 #: skins/eXtremeManagement/projectmember_view.pt
 msgid "header_memberinfo"
@@ -668,20 +668,10 @@ msgstr ""
 msgid "header_project_members"
 msgstr ""
 
-#. Default: "Stories"
-#: skins/eXtremeManagement/project_view.pt
-msgid "header_stories"
-msgstr ""
-
 #. Default: "Time registration"
 #: skins/eXtremeManagement/portlet_tasks.pt
 #: skins/eXtremeManagement/update_hours_form.cpt
 msgid "header_time_registration"
-msgstr ""
-
-#. Default: "Iterations"
-#: skins/eXtremeManagement/project_view.pt
-msgid "headerlisting_new_iterations"
 msgstr ""
 
 #. Default: "Billable"
@@ -710,6 +700,11 @@ msgstr ""
 msgid "heading-bookings-per-day"
 msgstr ""
 
+#. Default: "Hours per employee"
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "heading-hours-per-employee"
+msgstr ""
+
 #. Default: "My to-do tasks"
 #: skins/eXtremeManagement/iteration_view.pt
 msgid "heading-in-progress-tasks"
@@ -731,9 +726,29 @@ msgstr ""
 msgid "heading-to-do-tasks"
 msgstr ""
 
-#. Default: "Iterations"
+#. Default: "Current Iterations"
 #: skins/eXtremeManagement/project_view.pt
-msgid "heading_iterations"
+msgid "heading_current_iterations"
+msgstr ""
+
+#. Default: "Finished Iterations"
+#: skins/eXtremeManagement/project_view.pt
+msgid "heading_finished_iterations"
+msgstr ""
+
+#. Default: "<strong> No Current Iterations</strong>"
+#: skins/eXtremeManagement/project_view.pt
+msgid "heading_no_current_iterations"
+msgstr ""
+
+#. Default: "Open Iterations"
+#: skins/eXtremeManagement/project_view.pt
+msgid "heading_open_iterations"
+msgstr ""
+
+#. Default: "Other Content"
+#: skins/eXtremeManagement/project_view.pt
+msgid "heading_other_content"
 msgstr ""
 
 #. Default: "Tasks"
@@ -823,9 +838,9 @@ msgid "listingheader_Phone"
 msgstr ""
 
 #. Default: "Actual"
+#: skins/eXtremeManagement/task_view.pt
 #: skins/eXtremeManagement/update_hours_form.cpt
 #: skins/eXtremeManagement/story_view.pt
-#: skins/eXtremeManagement/project_administration.pt
 msgid "listingheader_actual"
 msgstr ""
 
@@ -835,8 +850,8 @@ msgid "listingheader_address"
 msgstr ""
 
 #. Default: "Assignee(s)"
-#: skins/eXtremeManagement/story_view.pt
 #: skins/eXtremeManagement/task_view.pt
+#: skins/eXtremeManagement/story_view.pt
 msgid "listingheader_assignees"
 msgstr ""
 
@@ -866,15 +881,20 @@ msgstr ""
 msgid "listingheader_email"
 msgstr ""
 
+#. Default: "Employee"
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "listingheader_employee"
+msgstr ""
+
 #. Default: "End date"
 #: skins/eXtremeManagement/iteration_view.pt
 msgid "listingheader_enddate"
 msgstr ""
 
 #. Default: "Estimate"
+#: skins/eXtremeManagement/task_view.pt
 #: skins/eXtremeManagement/update_hours_form.cpt
 #: skins/eXtremeManagement/story_view.pt
-#: skins/eXtremeManagement/project_administration.pt
 msgid "listingheader_estimate"
 msgstr ""
 
@@ -914,9 +934,9 @@ msgid "listingheader_startdate"
 msgstr ""
 
 #. Default: "Status"
+#: skins/eXtremeManagement/task_view.pt
 #: skins/eXtremeManagement/story_view.pt
 #: skins/eXtremeManagement/project_administration.pt
-#: skins/eXtremeManagement/task_view.pt
 msgid "listingheader_state"
 msgstr ""
 
@@ -943,9 +963,19 @@ msgstr ""
 msgid "listingheader_title"
 msgstr ""
 
-#. Default: "Total actual"
-#: skins/eXtremeManagement/task_view.pt
+#. Default: "Total Actual"
+#: skins/eXtremeManagement/iteration_view.pt
 msgid "listingheader_total_actual"
+msgstr ""
+
+#. Default: "Total Difference"
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "listingheader_total_difference"
+msgstr ""
+
+#. Default: "Total Estimate"
+#: skins/eXtremeManagement/iteration_view.pt
+msgid "listingheader_total_estimate"
 msgstr ""
 
 #. Default: "Website"
@@ -981,16 +1011,6 @@ msgstr ""
 #. Default: "Project administration"
 #: skins/eXtremeManagement/portlet_tasks.pt
 msgid "project_administration"
-msgstr ""
-
-#. Default: "Stories estimated"
-#: skins/eXtremeManagement/project_view.pt
-msgid "stories_estimated"
-msgstr ""
-
-#. Default: "Stories not estimated"
-#: skins/eXtremeManagement/project_view.pt
-msgid "stories_not_estimated"
 msgstr ""
 
 #. Default: "Task overview"
