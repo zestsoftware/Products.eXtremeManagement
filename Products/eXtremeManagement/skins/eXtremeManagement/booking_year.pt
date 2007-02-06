@@ -1,0 +1,82 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      i18n:domain="eXtremeManagement"
+      metal:use-macro="here/main_template/macros/master">
+
+    <head>
+        <metal:block fill-slot="top_slot"
+                     tal:define="dummy python:request.set('disable_border', 1)" />
+    </head>
+
+    <body>
+
+    <div metal:fill-slot="main"
+         tal:omit-tag="">
+
+        
+         <tal:date define="base_year request/base_year | python: DateTime().year();
+                           base_year python: int(base_year);
+                           base_month python: DateTime().month();
+                           global total_yearly python: 0">
+                          
+             <p tal:define="prev_year python: base_year-1;
+                            next_year python: base_year+1">
+                <span>Go to <a
+                tal:attributes="href string:${template/absolute_url}/?base_year=$prev_year">previous</a></span>
+    
+                <span tal:condition="python: base_year < DateTime().year()"> or <a
+                 tal:attributes="href string:${template/absolute_url}/?base_year=$next_year">next</a></span> year.
+             </p>
+
+             <tal:month tal:repeat="dmonth python: range(0,12)">
+                <tal:block tal:define="global total_monthly python: 0;
+                                       month python: base_month-dmonth;
+                                       year python: test(month<1, base_year-1, base_year);
+                                       month python: test(month<1, month+12, month);
+                                       current_path python:'/'.join(context.getPhysicalPath());
+                                       bookings python:context.getMonthlyBookings(year=year, month=month)"
+                           tal:condition="bookings">
+                    <h4 tal:content="string:Bookings for the month $month/$year">
+                       Bookings for mm/yy
+                    </h4>
+                           
+                    
+                    <table border="1" 
+                           class="listing" 
+                           with="100%">
+                        <tr>
+                            <th i18n:translate="listingheader-date">
+                                Date
+                            </th>
+                            <th i18n:translate="listingheader-time">
+                                Time
+                            </th>
+                        </tr>
+                    
+                        <tr tal:repeat="booking bookings">
+                        <tal:block tal:define="date python:booking[0];
+                                               time python:booking[1];
+                                               daily_total python: time.split(':');
+                                               global total_monthly python: total_monthly+int(daily_total[0])+int(int(daily_total[1])/60)">
+                            <td tal:content="python:context.toLocalizedTime(date)">
+                                2006-01-25
+                            </td>
+                            <td tal:content="time">
+                                4:45
+                            </td>
+                        </tal:block>
+                        </tr>
+                        <tr>
+                           <td>Total</td>
+                           <td tal:content="total_monthly" />
+                        </tr>
+                    </table>
+                </tal:block>
+                <tal:sum define="global total_yearly python: total_yearly+total_monthly" />
+            </tal:month>
+            <p>Total for the entire period: <span tal:replace="total_yearly" /> hours.</p>
+        </tal:date>
+    </div>
+    </body>
+</html>
+

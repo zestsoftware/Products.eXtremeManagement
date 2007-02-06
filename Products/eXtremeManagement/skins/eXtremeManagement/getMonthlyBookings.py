@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=
+##parameters=year=None, month=None
 ##title=Return the daily Bookings for one month of a person
 ##
 
@@ -48,8 +48,6 @@ def getPrevYearMonth(year, month):
 
 REQUEST=context.REQUEST
 
-year = None
-month = None
 previous = None
 next = None
 memberid = None
