@@ -20,12 +20,13 @@
                            global total_yearly python: 0">
                           
              <p tal:define="prev_year python: base_year-1;
-                            next_year python: base_year+1">
+                            next_year python: base_year+1;
+                            contextlink string:${here/absolute_url}/${template/id}">
                 <span>Go to <a
-                tal:attributes="href string:${template/absolute_url}/?base_year=$prev_year">previous</a></span>
+                tal:attributes="href string:${contextlink}?base_year=$prev_year">previous</a></span>
     
                 <span tal:condition="python: base_year < DateTime().year()"> or <a
-                 tal:attributes="href string:${template/absolute_url}/?base_year=$next_year">next</a></span> year.
+                 tal:attributes="href string:${contextlink}?base_year=$next_year">next</a></span> year.
              </p>
 
              <tal:month tal:repeat="dmonth python: range(0,12)">

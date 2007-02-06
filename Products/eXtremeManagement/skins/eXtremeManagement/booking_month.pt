@@ -13,14 +13,21 @@
     <div metal:fill-slot="main"
          tal:omit-tag="">
 
-         <p tal:condition="not:request/previous|nothing">
-           Go to <a
-           tal:attributes="href
-           string:${template/absolute_url}?previous=1">previous</a> month.
+         <p>
+           Go to overview of last <a
+           tal:attributes="href string:booking_year">12 months</a>.
          </p>
-         <p tal:condition="request/previous|nothing"> Back to <a
+         <tal:othermonths
+             tal:define="contextlink string:${here/absolute_url}/${template/id}">
+            <p tal:condition="not:request/previous|nothing">
+               Go to <a
                tal:attributes="href
-               string:${template/absolute_url}">current</a> month.</p>
+               string:${contextlink}?previous=1">previous</a> month.
+            </p>
+            <p tal:condition="request/previous|nothing"> Back to <a
+            tal:attributes="href
+            string:${contextlink}">current</a> month.</p>
+         </tal:othermonths>
 
         <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
                                bookings python:context.getMonthlyBookings()"
