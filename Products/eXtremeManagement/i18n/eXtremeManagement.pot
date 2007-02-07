@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-02-07 16:21+0000\n"
+"POT-Creation-Date: 2007-02-07 17:01+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -419,6 +419,11 @@ msgstr ""
 msgid "heading_tasks"
 msgstr ""
 
+#. Default: "If selected, Members with a global role 'Employee' will appear in the assignees list of a Task."
+#: content/Project.py
+msgid "help_include_global_members"
+msgstr ""
+
 #. Default: "Hours booked for today: ${total_booked}"
 #: ./skins/eXtremeManagement/portlet_tasks.pt
 msgid "hours_booked_today"
@@ -437,6 +442,11 @@ msgstr ""
 #. Default: "Hours"
 #: ./skins/eXtremeManagement/update_hours_form.cpt
 msgid "label_hours"
+msgstr ""
+
+#. Default: "Include global Employees"
+#: content/Project.py
+msgid "label_include_global_members"
 msgstr ""
 
 #. Default: "Minutes"

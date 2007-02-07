@@ -216,3 +216,13 @@ msgstr ""
 msgid "eXtremeManagement_label_zipCode"
 msgstr ""
 
+#. Default: "Include global Employees"
+#: content/Project.py
+msgid "label_include_global_members"
+msgstr ""
+
+#. Default: "If selected, Members with a global role 'Employee' will appear in the assignees list of a Task."
+#: content/Project.py
+msgid "help_include_global_members"
+msgstr ""
+
