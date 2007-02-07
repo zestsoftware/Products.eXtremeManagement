@@ -95,4 +95,83 @@ msgstr "Složka projektů"
 msgid "Time registration"
 msgstr "Časový záznam"
 
+msgid "activate"
+msgstr ""
 
+msgid "Active"
+msgstr ""
+
+msgid "booking"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "complete"
+msgstr ""
+
+msgid "Completed"
+msgstr ""
+
+msgid "deactivate"
+msgstr ""
+
+msgid "Deactivate"
+msgstr ""
+
+msgid "Draft"
+msgstr ""
+
+msgid "Estimated"
+msgstr ""
+
+msgid "Finish"
+msgstr ""
+
+msgid "Improve"
+msgstr ""
+
+msgid "In progress"
+msgstr ""
+
+msgid "In-progress"
+msgstr ""
+
+msgid "Invoiced"
+msgstr ""
+
+msgid "Mark as completed"
+msgstr ""
+
+msgid "Mark as estimated"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "Pending estimate"
+msgstr ""
+
+msgid "Private"
+msgstr ""
+
+msgid "Reactivate"
+msgstr ""
+
+msgid "Reactivate this task"
+msgstr ""
+
+msgid "Retract"
+msgstr ""
+
+msgid "Start working"
+msgstr ""
+
+msgid "Submit for estimate"
+msgstr ""
+
+msgid "To-do"
+msgstr ""
+
+msgid "Active"
+msgstr ""
