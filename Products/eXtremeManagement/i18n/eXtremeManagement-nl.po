@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0beta\n"
-"POT-Creation-Date: 2007-02-07 14:37+0000\n"
+"POT-Creation-Date: 2007-02-07 15:19+0000\n"
 "PO-Revision-Date: 2005-05-19 13:15 +GMT+1\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
@@ -78,16 +78,15 @@ msgstr "Om je uren te boeken, maak je gebruik van onderstaand formulier. Vul de 
 ## 1 more: content/Customer.py
 #. Default: "Enter address."
 #. Enter address.
-#: Customer.py
 #: content/Customer.py
 msgid "eXtremeManagement_help_address"
 msgstr "Voer adres is."
 
-#. Default: "assignees"
 #. Select the member(s) to assign this task to.
 #. assignees
+#. Default: "Select the member(s) to assign this task to."
 #: content/Task.py
-#: Task.py
+#, fuzzy
 msgid "eXtremeManagement_help_assignees"
 msgstr "aangewezenen"
 
@@ -96,89 +95,86 @@ msgstr "aangewezenen"
 msgid "eXtremeManagement_help_bookingDate"
 msgstr "Datum dat je gewerkt hebt aan deze taak"
 
-#. Default: "city"
 #. Enter city name.
 #. city
+#. Default: "Enter city name."
 #: content/Customer.py
-#: Customer.py
+#, fuzzy
 msgid "eXtremeManagement_help_city"
 msgstr "Voer stadsnaam in."
 
-#. Default: "country"
 #. Enter country.
 #. country
+#. Default: "Enter country."
 #: content/Customer.py
-#: Customer.py
+#, fuzzy
 msgid "eXtremeManagement_help_country"
 msgstr "Voer land in."
 
 ## 1 more: content/ProjectMember.py
-#. Default: "email"
 #. Enter your email address.
 #. email
-#: ProjectMember.py
-#: Customer.py
+#. Default: "Enter your email address."
 #: content/ProjectMember.py
+#, fuzzy
 msgid "eXtremeManagement_help_email"
 msgstr "Voer uw emailadres in"
 
-#. Default: "fax"
 #. Enter your fax number.
 #. fax
+#. Default: "Enter your fax number."
 #: content/Customer.py
-#: Customer.py
+#, fuzzy
 msgid "eXtremeManagement_help_fax"
 msgstr "Voer uw faxnummer in"
 
-#. Default: "fullname"
 #. Enter a name, eg. John Smith.
 #. fullname
+#. Default: "Enter a name, eg. John Smith."
 #: content/ProjectMember.py
-#: ProjectMember.py
+#, fuzzy
 msgid "eXtremeManagement_help_fullname"
 msgstr "Voer uw volledige naam in, bv Jan Smit"
 
 ## 1 more: content/Booking.py
-#. Default: "hours"
 #. hours
-#: Booking.py
-#: content/Booking.py
+#. Default: "Enter the estimated time (in hours)."
 #: content/Task.py
+#, fuzzy
 msgid "eXtremeManagement_help_hours"
 msgstr "uren"
 
-#. Default: "mainText"
 #. mainText
 #. Enter the main description for this object.
-#: Story.py
+#. Default: "Enter the main description for this object."
 #: content/Story.py
+#, fuzzy
 msgid "eXtremeManagement_help_mainText"
 msgstr "hoofdtekst"
 
 ## 1 more: content/Booking.py
-#. Default: "minutes"
 #. minutes
-#: Booking.py
-#: content/Booking.py
+#. Default: "Enter the rest of the estimated time in minutes"
 #: content/Task.py
+#, fuzzy
 msgid "eXtremeManagement_help_minutes"
 msgstr "minuten"
 
-#. Default: "name"
 #. Enter full name, eg. John Smith.
 #. name
+#. Default: "Enter the company name for this customer"
 #: content/Customer.py
-#: Customer.py
+#, fuzzy
 msgid "eXtremeManagement_help_name"
 msgstr "Voer uw volledige naam in, bv Jan Smit"
 
 ## 2 more: content/ProjectMember.py, content/Customer.py
-#. Default: "phone"
 #. Enter your phone number.
 #. phone
-#: ProjectMember.py
-#: Customer.py
+#. Default: "Enter your phone number."
 #: content/ProjectMember.py
+#: content/Customer.py
+#, fuzzy
 msgid "eXtremeManagement_help_phone"
 msgstr "Voer uw telefoonnummer in"
 
@@ -187,26 +183,25 @@ msgstr "Voer uw telefoonnummer in"
 msgid "eXtremeManagement_help_roughEstimate"
 msgstr "Voer een ruwe schatting in dagen in (tip: gebruik stappen van 0.5 dagen)"
 
-#. Default: "website"
 #. Enter your website address.
 #. website
+#. Default: "Enter your website address."
 #: content/Customer.py
-#: Customer.py
+#, fuzzy
 msgid "eXtremeManagement_help_website"
 msgstr "Voer het adres van uw website in"
 
-#. Default: "zipCode"
 #. Enter zip code.
 #. zipCode
+#. Default: "Enter zip code."
 #: content/Customer.py
-#: Customer.py
+#, fuzzy
 msgid "eXtremeManagement_help_zipCode"
 msgstr "Voer uw postcode in"
 
 ## 1 more: content/Customer.py
 #. Default: "Address"
 #. Address
-#: Customer.py
 #: content/Customer.py
 msgid "eXtremeManagement_label_address"
 msgstr "Adres"
@@ -214,7 +209,6 @@ msgstr "Adres"
 ## 1 more: content/Task.py
 #. Default: "Assignees"
 #. Assignees
-#: Task.py
 #: content/Task.py
 msgid "eXtremeManagement_label_assignees"
 msgstr "Aangewezenen"
@@ -222,7 +216,6 @@ msgstr "Aangewezenen"
 ## 1 more: content/Booking.py
 #. Default: "Billable"
 #. Billable
-#: Booking.py
 #: content/Booking.py
 msgid "eXtremeManagement_label_billable"
 msgstr "Toerekenbaar"
@@ -235,7 +228,6 @@ msgstr "Boekingsdatum"
 ## 1 more: content/Customer.py
 #. Default: "City"
 #. City
-#: Customer.py
 #: content/Customer.py
 msgid "eXtremeManagement_label_city"
 msgstr "Stad"
@@ -243,7 +235,6 @@ msgstr "Stad"
 ## 1 more: content/Customer.py
 #. Default: "Country"
 #. Country
-#: Customer.py
 #: content/Customer.py
 msgid "eXtremeManagement_label_country"
 msgstr "Land"
@@ -251,7 +242,6 @@ msgstr "Land"
 ## 1 more: content/ProjectMember.py
 #. Default: "Email"
 #. Email
-#: Customer.py
 #: content/ProjectMember.py
 msgid "eXtremeManagement_label_email"
 msgstr "Email"
@@ -265,7 +255,6 @@ msgstr "einddatum"
 ## 1 more: content/Customer.py
 #. Default: "Fax"
 #. Fax
-#: Customer.py
 #: content/Customer.py
 msgid "eXtremeManagement_label_fax"
 msgstr "Fax"
@@ -273,7 +262,6 @@ msgstr "Fax"
 ## 1 more: content/ProjectMember.py
 #. Default: "Fullname"
 #. Fullname
-#: ProjectMember.py
 #: content/ProjectMember.py
 msgid "eXtremeManagement_label_fullname"
 msgstr "Volledige naam"
@@ -281,16 +269,14 @@ msgstr "Volledige naam"
 ## 1 more: content/Booking.py
 #. Default: "Hours"
 #. Hours
-#: Booking.py
-#: content/Booking.py
 #: content/Task.py
+#: content/Booking.py
 msgid "eXtremeManagement_label_hours"
 msgstr "Uren"
 
 ## 1 more: content/Story.py
 #. Default: "Maintext"
 #. Maintext
-#: Story.py
 #: content/Story.py
 #: content/Task.py
 msgid "eXtremeManagement_label_mainText"
@@ -305,16 +291,14 @@ msgstr "Manuren"
 ## 1 more: content/Booking.py
 #. Default: "Minutes"
 #. Minutes
-#: Booking.py
-#: content/Booking.py
 #: content/Task.py
+#: content/Booking.py
 msgid "eXtremeManagement_label_minutes"
 msgstr "Minuten"
 
 ## 1 more: content/Customer.py
 #. Default: "Name"
 #. Name
-#: Customer.py
 #: content/Customer.py
 msgid "eXtremeManagement_label_name"
 msgstr "Naam"
@@ -322,7 +306,6 @@ msgstr "Naam"
 ## 2 more: content/ProjectMember.py, content/Customer.py
 #. Default: "Phone"
 #. Phone
-#: Customer.py
 #: content/ProjectMember.py
 #: content/Customer.py
 msgid "eXtremeManagement_label_phone"
@@ -357,7 +340,6 @@ msgstr "Startdatum"
 ## 1 more: content/Customer.py
 #. Default: "Website"
 #. Website
-#: Customer.py
 #: content/Customer.py
 msgid "eXtremeManagement_label_website"
 msgstr ""
@@ -365,7 +347,6 @@ msgstr ""
 ## 1 more: content/Customer.py
 #. Default: "Zipcode"
 #. Zipcode
-#: Customer.py
 #: content/Customer.py
 msgid "eXtremeManagement_label_zipCode"
 msgstr ""
