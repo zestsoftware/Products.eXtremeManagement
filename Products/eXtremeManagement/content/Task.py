@@ -107,7 +107,7 @@ schema = Schema((
         name='rawEstimate',
         index="FieldIndex:brains",
         widget=ComputedWidget(
-            label='Raw estimate',
+            label='Estimate',
             label_msgid='eXtremeManagement_label_rawEstimate',
             i18n_domain='eXtremeManagement',
         )
@@ -117,7 +117,7 @@ schema = Schema((
         name='rawActualHours',
         index="FieldIndex:brains",
         widget=ComputedWidget(
-            label='Raw actual hours',
+            label='Actual hours',
             label_msgid='eXtremeManagement_label_rawActualHours',
             i18n_domain='eXtremeManagement',
         )
@@ -127,7 +127,7 @@ schema = Schema((
         name='rawDifference',
         index="FieldIndex:brains",
         widget=ComputedWidget(
-            label='Raw difference',
+            label='Difference',
             label_msgid='eXtremeManagement_label_rawDifference',
             i18n_domain='eXtremeManagement',
         )
