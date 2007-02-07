@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0beta\n"
-"POT-Creation-Date: 2007-02-07 15:26+0000\n"
+"POT-Creation-Date: 2007-02-07 16:21+0000\n"
 "PO-Revision-Date: 2005-05-19 13:15 +GMT+1\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
@@ -33,6 +33,12 @@ msgstr "Stuur een mail naar deze gebruiker"
 msgid "Visit the website"
 msgstr "Bezoek de website"
 
+#. Default: "Back to"
+#: ./skins/eXtremeManagement/booking_month.pt
+#: ./skins/eXtremeManagement/booking_overview.pt
+msgid "back_to"
+msgstr "Terug naar"
+
 #. Default: "Bookings per month"
 #: ./skins/eXtremeManagement/portlet_tasks.pt
 msgid "booking_month"
@@ -43,11 +49,21 @@ msgstr "Boekingen per maand"
 msgid "booking_overview"
 msgstr "Gedetailleerde boekingen"
 
-#. Default: "current"
+#. Default: "My Projects"
+#: ./skins/eXtremeManagement/portlet_my_projects.pt
+msgid "box_my_projects"
+msgstr "Mijn projecten"
+
+#. Default: "Pending Stories"
+#: ./skins/eXtremeManagement/portlet_stories.pt
+msgid "box_stories"
+msgstr "Afwachtende stories"
+
+#. Default: "current month"
 #: ./skins/eXtremeManagement/booking_month.pt
 #: ./skins/eXtremeManagement/booking_overview.pt
-msgid "current"
-msgstr "huidig"
+msgid "current-month"
+msgstr "huidige maand"
 
 #. Default: "These are all tasks that have been assigned to me and are not yet worked on (so no to-do or completed status)."
 #: ./skins/eXtremeManagement/task_overview.pt
@@ -344,6 +360,7 @@ msgid "email"
 msgstr "email"
 
 #. Default: "Go to"
+#: ./skins/eXtremeManagement/booking_month.pt
 #: ./skins/eXtremeManagement/booking_overview.pt
 msgid "go_to"
 msgstr "Ga naar"
@@ -592,7 +609,7 @@ msgstr "Land"
 msgid "listingheader_diff"
 msgstr "Verschil"
 
-#. Default: "email"
+#. Default: "Email"
 #: ./skins/eXtremeManagement/customer_view.pt
 #: ./skins/eXtremeManagement/projectmember_view.pt
 msgid "listingheader_email"
@@ -630,12 +647,12 @@ msgstr "Iteratie"
 msgid "listingheader_man_uren"
 msgstr "Man uren"
 
-#. Default: "name"
+#. Default: "Name"
 #: ./skins/eXtremeManagement/customer_view.pt
 msgid "listingheader_name"
 msgstr "Naam"
 
-#. Default: "phone"
+#. Default: "Phone"
 #: ./skins/eXtremeManagement/customer_view.pt
 msgid "listingheader_phone"
 msgstr "Telefoonnummer"
@@ -731,11 +748,11 @@ msgstr "Op dit moment heb jij geen taken!"
 msgid "no_tasks_defined"
 msgstr "Nog geen taken gedefinieerd."
 
-#. Default: "previous"
+#. Default: "previous month"
 #: ./skins/eXtremeManagement/booking_month.pt
 #: ./skins/eXtremeManagement/booking_overview.pt
-msgid "previous"
-msgstr "vorige"
+msgid "previous-month"
+msgstr "vorige maand"
 
 #. Default: "progress bar"
 #: ./skins/eXtremeManagement/project_view.pt

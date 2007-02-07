@@ -104,9 +104,9 @@
 
                 <thead>
                     <tr class="header_projectmember_listing">
-                        <th i18n:translate="listingheader_name">name</th>
-                        <th i18n:translate="listingheader_phone">phone</th>
-                        <th i18n:translate="listingheader_email">email</th>
+                        <th i18n:translate="listingheader_name">Name</th>
+                        <th i18n:translate="listingheader_phone">Phone</th>
+                        <th i18n:translate="listingheader_email">Email</th>
                     </tr>
                 </thead>
                 <tbody>

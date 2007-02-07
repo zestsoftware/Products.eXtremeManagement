@@ -13,18 +13,21 @@
     <tal:main metal:fill-slot="main">
 
       <p tal:condition="not:request/previous|nothing">
-        <span i18n:translate="go_to">
+        <tal:goto i18n:translate="go_to">
           Go to
-        </span><a
+        </tal:goto> <a
         tal:attributes="href
         string:${template/absolute_url}?previous=1"
-        i18n:translate="previous">previous</a> month.
+        i18n:translate="previous-month">previous month</a>.
       </p>
-      <p tal:condition="request/previous|nothing"> Back to <a
-      tal:attributes="href
-      string:${template/absolute_url}"
-      i18n:translate="current">current</a> month.</p>
-
+      <p tal:condition="request/previous|nothing">
+        <tal:back i18n:translate="back_to">
+          Back to
+          </tal:back> <a
+          tal:attributes="href
+          string:${template/absolute_url}"
+          i18n:translate="current-month">current month</a>.
+      </p>
       <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
 			     bookings python:context.getBookings()"
 		 tal:condition="bookings">

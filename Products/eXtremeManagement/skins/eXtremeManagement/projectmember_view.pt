@@ -43,7 +43,7 @@
             <tr>
                 <th class="customer_info_header" 
                     i18n:translate="listingheader_email">
-                    email
+                    Email
                 </th>
                 <td tal:define="emailaddress context/getEmail">
                     <a tal:condition="context/getEmail"

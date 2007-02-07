@@ -1,6 +1,6 @@
 <html xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
-      i18n:domain="plone">
+      i18n:domain="eXtremeManagement">
 
     <body>
     
@@ -10,7 +10,7 @@
          tal:condition="python:results">
         <dl class="portlet" id="portlet-my-projects">
             <dt class="portletHeader"
-                i18n:translate="box__my_projects">
+                i18n:translate="box_my_projects">
                 My Projects
             </dt>
             <tal:block tal:repeat="item results">

@@ -23,11 +23,14 @@ msgstr "Voltooid"
 msgid "open"
 msgstr "Open"
 
-msgid "in-progress"
+msgid "In progress"
 msgstr "In behandeling"
 
 msgid "Activate"
 msgstr "Activeren"
+
+msgid "Deactivate"
+msgstr "Deactiveren"
 
 msgid "Complete"
 msgstr "Afronden"
