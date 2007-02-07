@@ -49,7 +49,7 @@ schema = Schema((
         name='mainText',
         allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
         widget=RichWidget(
-            label='Maintext',
+            label='Main text',
             label_msgid='eXtremeManagement_label_mainText',
             i18n_domain='eXtremeManagement',
         ),
@@ -107,7 +107,7 @@ schema = Schema((
         name='rawEstimate',
         index="FieldIndex:brains",
         widget=ComputedWidget(
-            label='Rawestimate',
+            label='Raw estimate',
             label_msgid='eXtremeManagement_label_rawEstimate',
             i18n_domain='eXtremeManagement',
         )
@@ -117,7 +117,7 @@ schema = Schema((
         name='rawActualHours',
         index="FieldIndex:brains",
         widget=ComputedWidget(
-            label='Rawactualhours',
+            label='Raw actual hours',
             label_msgid='eXtremeManagement_label_rawActualHours',
             i18n_domain='eXtremeManagement',
         )
@@ -127,7 +127,7 @@ schema = Schema((
         name='rawDifference',
         index="FieldIndex:brains",
         widget=ComputedWidget(
-            label='Rawdifference',
+            label='Raw difference',
             label_msgid='eXtremeManagement_label_rawDifference',
             i18n_domain='eXtremeManagement',
         )

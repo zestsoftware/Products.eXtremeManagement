@@ -42,7 +42,7 @@ schema = Schema((
         name='startDate',
         widget=CalendarWidget(
             show_hm=False,
-            label='Startdate',
+            label='Start date',
             label_msgid='eXtremeManagement_label_startDate',
             i18n_domain='eXtremeManagement',
         ),
@@ -53,7 +53,7 @@ schema = Schema((
         name='endDate',
         widget=CalendarWidget(
             show_hm=False,
-            label='Enddate',
+            label='End date',
             label_msgid='eXtremeManagement_label_endDate',
             i18n_domain='eXtremeManagement',
         ),
@@ -63,7 +63,7 @@ schema = Schema((
     IntegerField(
         name='manHours',
         widget=IntegerWidget(
-            label='Manhours',
+            label='Man hours',
             label_msgid='eXtremeManagement_label_manHours',
             i18n_domain='eXtremeManagement',
         ),
