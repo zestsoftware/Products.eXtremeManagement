@@ -48,13 +48,13 @@
                     Assignee(s)
                 </th>
                 <td>
-                    <span tal:omit-tag="" 
+                    <tal:block
                           tal:repeat="item here/getAssignees">
                         <img src="user.gif"
                              alt="" />
                         <span tal:replace="item">Assignee</span>
                         <br />
-                    </span>
+                    </tal:block>
                 </td>
             </tr>
         </table>

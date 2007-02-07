@@ -10,8 +10,7 @@
 
     <body>
 
-    <div metal:fill-slot="main"
-         tal:omit-tag="">
+    <tal:main metal:fill-slot="main">
 
          <p>
            <span i18n:translate="go_to_overview">
@@ -63,7 +62,7 @@
                 </tr>
             </table>
         </tal:block>
-    </div>
+    </tal:main>
     </body>
 </html>
 

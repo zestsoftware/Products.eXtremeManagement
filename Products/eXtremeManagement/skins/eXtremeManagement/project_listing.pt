@@ -67,10 +67,10 @@
                     </dt>
 
                     <dd>
-                        <span tal:omit-tag="" tal:condition="not:item_description"> 
-                            &nbsp; 
-                        </span> 
-                        <span tal:omit-tag="" tal:content="item_description" /> 
+                        <tal:nothing tal:condition="not:item_description"> 
+                           &nbsp; 
+                        </tal:nothing> 
+                        <span tal:replace="item_description" /> 
                     </dd>
                 </tal:block>
                 </tal:entry>

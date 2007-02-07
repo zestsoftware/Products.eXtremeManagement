@@ -105,10 +105,9 @@
             
                             <td>
                                 <tal:block tal:repeat="role python:lrole[1]">
-                                <span tal:content="role"
-                                      tal:omit-tag="" />
-                                <span tal:condition="not: repeat/role/end"
-                                      tal:omit-tag="">, </span>
+                                <span tal:replace="role" />
+                                <tal:comma
+                                    tal:condition="not: repeat/role/end">, </tal:comma>
                                 </tal:block>
                             </td>
                         </tr>

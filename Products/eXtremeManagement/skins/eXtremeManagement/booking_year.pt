@@ -10,8 +10,7 @@
 
     <body>
 
-    <div metal:fill-slot="main"
-         tal:omit-tag="">
+    <tal:main metal:fill-slot="main">
 
         
          <tal:date define="base_year request/base_year | python: DateTime().year();
@@ -77,7 +76,7 @@
             </tal:month>
             <p>Total for the entire period: <span tal:replace="total_yearly" /> hours.</p>
         </tal:date>
-    </div>
+    </tal:main>
     </body>
 </html>
 

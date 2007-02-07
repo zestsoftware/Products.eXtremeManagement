@@ -79,8 +79,8 @@
                         <td
                             class="hours-comments">
                             <br />
-                            <span i18n:translate="label_hours"
-                                tal:omit-tag="">Hours</span>
+                            <tal:hours i18n:translate="label_hours">Hours
+                            </tal:hours>
                                 
                             <select name="hours"
                                     tal:define="hours python:('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10');"
@@ -101,12 +101,12 @@
                                         tal:attributes="value minute" />
                                 </tal:block>
                             </select> 
-                            <span i18n:translate="label_minutes"
-                                tal:omit-tag="">Minutes</span>
+                            <tal:minutes i18n:translate="label_minutes">
+                              Minutes</tal:minutes>
                         </td>
                         <td colspan="3">
-                            <span i18n:translate="label_bookingdate"
-                                tal:omit-tag="">Date to book this on</span>
+                            <tal:date i18n:translate="label_bookingdate">
+                              Date to book this on</tal:date>
                             <div
                                 tal:define="inputname  python:taskObj.UID() + '_bookingDate';
                                              formname   string:update_hours_form;
@@ -116,10 +116,7 @@
                                              show_jscal python: 1;
                                              show_hm python:False;
                                              tabindex tabindex/next;">
-                               <div metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox"
-                                    tal:omit-tag="">
-                                  Gets the calendar code.
-                               </div>
+                               <tal:calendar metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox" />
                             </div>
                         </td>
                     </tr>

@@ -4,8 +4,7 @@
 
     <body>
 
-    <div metal:define-macro="portlet"
-        tal:omit-tag="">
+    <div metal:define-macro="portlet">
 
      <dl class="portlet" id="portlet-project-administration"
          tal:condition="not:isAnon">
@@ -15,14 +14,13 @@
             <a tal:condition="python: member.has_role('Manager')"  
                tal:attributes="href
                string:${portal_url}/project_administration">
-               <span tal:omit-tag="" i18n:translate="project_administration">
-                  Project administration</span>
+               <tal:admin-manager i18n:translate="project_administration">
+                  Project administration</tal:admin-manager>
             </a>
-            <span tal:condition="python: not
+            <tal:admin-no-manager tal:condition="python: not
                   member.has_role('Manager')"
-                  i18n:translate="project_administration"
-                  tal:omit-tag="" >
-                Project administration</span>
+                  i18n:translate="project_administration">
+                Project administration</tal:admin-no-manager>
         </dt>
     
         <dd class="portletItem odd">

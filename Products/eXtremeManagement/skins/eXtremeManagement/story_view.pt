@@ -66,14 +66,13 @@
                   <td tal:content="task/review_state"
                       class="td-center" />
                   <td class="td-center">
-                    <span tal:omit-tag="" 
-                          tal:repeat="newItem task/getAssignees">
+                    <tal:assignees tal:repeat="newItem task/getAssignees">
                       <img src="user.gif"
                            alt="user"
                            i18n:attributes="alt user" />
                       <span tal:replace="newItem">Assignee</span>
                       <br />
-                    </span>
+                    </tal:assignees>
                   </td>
               </tr>
             </metal:block>

@@ -10,9 +10,8 @@
 
     <body>
 
-    <div metal:fill-slot="main"
-         tal:define="projects python:here.portal_catalog.searchResults(portal_type='Project');"
-         tal:omit-tag="">
+    <tal:main metal:fill-slot="main"
+         tal:define="projects python:here.portal_catalog.searchResults(portal_type='Project');">
 
         <h1 i18n:translate="header_project_administration" 
             class="documentFirstHeading">
@@ -99,6 +98,6 @@
            class="discreet" 
            i18n:translate="no_projects_found">No projects are published yet!</p>
 
-    </div>
+    </tal:main>
     </body>
 </html>
