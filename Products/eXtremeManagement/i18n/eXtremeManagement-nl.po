@@ -86,7 +86,6 @@ msgstr "Voer adres is."
 #. assignees
 #. Default: "Select the member(s) to assign this task to."
 #: content/Task.py
-#, fuzzy
 msgid "eXtremeManagement_help_assignees"
 msgstr "aangewezenen"
 
@@ -99,7 +98,6 @@ msgstr "Datum dat je gewerkt hebt aan deze taak"
 #. city
 #. Default: "Enter city name."
 #: content/Customer.py
-#, fuzzy
 msgid "eXtremeManagement_help_city"
 msgstr "Voer stadsnaam in."
 
@@ -107,7 +105,6 @@ msgstr "Voer stadsnaam in."
 #. country
 #. Default: "Enter country."
 #: content/Customer.py
-#, fuzzy
 msgid "eXtremeManagement_help_country"
 msgstr "Voer land in."
 
@@ -116,7 +113,6 @@ msgstr "Voer land in."
 #. email
 #. Default: "Enter your email address."
 #: content/ProjectMember.py
-#, fuzzy
 msgid "eXtremeManagement_help_email"
 msgstr "Voer uw emailadres in"
 
@@ -124,7 +120,6 @@ msgstr "Voer uw emailadres in"
 #. fax
 #. Default: "Enter your fax number."
 #: content/Customer.py
-#, fuzzy
 msgid "eXtremeManagement_help_fax"
 msgstr "Voer uw faxnummer in"
 
@@ -132,7 +127,6 @@ msgstr "Voer uw faxnummer in"
 #. fullname
 #. Default: "Enter a name, eg. John Smith."
 #: content/ProjectMember.py
-#, fuzzy
 msgid "eXtremeManagement_help_fullname"
 msgstr "Voer uw volledige naam in, bv Jan Smit"
 
@@ -140,33 +134,29 @@ msgstr "Voer uw volledige naam in, bv Jan Smit"
 #. hours
 #. Default: "Enter the estimated time (in hours)."
 #: content/Task.py
-#, fuzzy
 msgid "eXtremeManagement_help_hours"
-msgstr "uren"
+msgstr "Voer de geschatte tijd in (in uren)"
 
 #. mainText
 #. Enter the main description for this object.
 #. Default: "Enter the main description for this object."
 #: content/Story.py
-#, fuzzy
 msgid "eXtremeManagement_help_mainText"
-msgstr "hoofdtekst"
+msgstr "Voer de hoofdtekst in voor dit verhaal."
 
 ## 1 more: content/Booking.py
 #. minutes
 #. Default: "Enter the rest of the estimated time in minutes"
 #: content/Task.py
-#, fuzzy
 msgid "eXtremeManagement_help_minutes"
-msgstr "minuten"
+msgstr "Voer de rest van de geschatte tijd in, in minuten"
 
 #. Enter full name, eg. John Smith.
 #. name
 #. Default: "Enter the company name for this customer"
 #: content/Customer.py
-#, fuzzy
 msgid "eXtremeManagement_help_name"
-msgstr "Voer uw volledige naam in, bv Jan Smit"
+msgstr "Voer de bedrijfsnaam in voor deze klant"
 
 ## 2 more: content/ProjectMember.py, content/Customer.py
 #. Enter your phone number.
@@ -174,9 +164,8 @@ msgstr "Voer uw volledige naam in, bv Jan Smit"
 #. Default: "Enter your phone number."
 #: content/ProjectMember.py
 #: content/Customer.py
-#, fuzzy
 msgid "eXtremeManagement_help_phone"
-msgstr "Voer uw telefoonnummer in"
+msgstr "Voer uw telefoonnummer in."
 
 #. Default: "Enter a rough estimate in days (tip: use multiples of 0.5 days)"
 #: content/Story.py
@@ -187,17 +176,15 @@ msgstr "Voer een ruwe schatting in dagen in (tip: gebruik stappen van 0.5 dagen)
 #. website
 #. Default: "Enter your website address."
 #: content/Customer.py
-#, fuzzy
 msgid "eXtremeManagement_help_website"
-msgstr "Voer het adres van uw website in"
+msgstr "Voer het adres van uw website in."
 
 #. Enter zip code.
 #. zipCode
 #. Default: "Enter zip code."
 #: content/Customer.py
-#, fuzzy
 msgid "eXtremeManagement_help_zipCode"
-msgstr "Voer uw postcode in"
+msgstr "Voer postcode in."
 
 ## 1 more: content/Customer.py
 #. Default: "Address"
@@ -701,9 +688,8 @@ msgstr "Titel"
 
 #. Default: "Total Actual"
 #: ./skins/eXtremeManagement/iteration_view.pt
-#, fuzzy
 msgid "listingheader_total_actual"
-msgstr "Daadwerkelijke uren"
+msgstr "Totaal daadwerkelijke uren"
 
 #. Default: "Total Difference"
 #: ./skins/eXtremeManagement/iteration_view.pt
