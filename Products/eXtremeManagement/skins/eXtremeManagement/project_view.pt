@@ -47,13 +47,14 @@
                       tal:attributes="href string:${obj/absolute_url}">
 
                     <img tal:attributes="src string:${here/portal_url}/${obj/getIcon}"
-                         alt="project overview" />
+                         alt="project overview"
+                         i18n:attributes="alt project_overview"/>
                     <span tal:replace="obj/Title" />
                   </a>
                 </th>
                 <th width="40%" 
                     class="iteration-state">
-                  status: 
+                  <span i18n:translate="status">status</span>:
                   <img tal:attributes="src string:${iteration/review_state}.gif;
                                        alt iteration/review_state" />
                 </th> 
@@ -95,7 +96,7 @@
                 </th>
                 <th width="40%" 
                     class="iteration-state">
-                  status:
+                  <span i18n:translate="status">status</span>:
                   <img tal:attributes="src string:${curIteration/review_state}.gif;
                                        alt curIteration/review_state" />
                 </th>
@@ -148,12 +149,14 @@
                            src="progress-complete.gif" 
                            height="10" 
                            tal:attributes="width progress"
-                           alt="progress bar"/>
+                           alt="progress bar"
+                           i18n:attributes="alt progress_bar" />
                       <img tal:condition="not:storyIsCompleted"
                            src="progress.gif" 
                            height="10" 
                            tal:attributes="width progress"
-                           alt="progress bar"/>
+                           alt="progress bar"
+                           i18n:attributes="alt progress_bar" />
                     </div>
                   </td>
                   <td class="tasks"

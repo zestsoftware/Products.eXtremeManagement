@@ -13,9 +13,9 @@
     <div metal:fill-slot="main"
          tal:define="projects python:portal.getProjects();"
          tal:omit-tag="">
-    <h1>My task overview</h1>
+    <h1 i18n:translate="heading-my-task-overview">My task overview</h1>
 
-    <p>
+    <p i18n:translate="description-overview-my-tasks">
       Overview of tasks that belong to me.  The totals mentioned are
       the total time for myself, so they will usually differ from
       adding the numbers of the column above it.
@@ -23,8 +23,9 @@
 
     <h1 i18n:translate="heading-to-do-tasks">My to-do tasks</h1>
 
-    <p>These are all tasks that have been assigned to me and that I
-    should currently work on.</p>
+    <p i18n:translate="description-to-do-tasks">
+      These are all tasks that have been assigned to me and that I
+      should currently work on.</p>
     
     <tal:loop tal:repeat="project projects">
             <tal:block tal:define="items python:project.getOwnToDoTasks();">
@@ -44,8 +45,9 @@
 
     <h1 i18n:translate="heading-open-tasks">My open tasks</h1>
 
-    <p>These are all tasks that have been assigned to me and are not
-    yet worked on (so no to-do or completed status).</p>
+    <p i18n:translate="description-open-tasks">
+      These are all tasks that have been assigned to me and are not
+      yet worked on (so no to-do or completed status).</p>
     
     <tal:loop tal:repeat="project projects">
             <tal:block tal:define="items python:project.getOwnOpenTasks();">

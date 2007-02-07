@@ -62,7 +62,9 @@
                         <td class="td-story-title">
                             <a tal:attributes="href taskObj/absolute_url">
                                 <img src="task_icon.gif"
-                                    alt="task icon" /> 
+                                    alt="task icon"
+                                    i18n:attributes="alt task_icon" />
+
                                 <span tal:replace="taskObj/Title">Task</span>
                             </a>
                         </td>

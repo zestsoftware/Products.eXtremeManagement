@@ -57,7 +57,8 @@
                                tal:condition="iterations"> 
 
                             <tr class="iteration-table-header">
-                                <th width="50%">Iteratie</th>
+                                <th width="50%"
+                                    i18n:translate="listingheader_iteration">Iteration</th>
                                 <th width="20%" 
                                     i18n:translate="listingheader_state">Status</th>
                                 <th width="15%" 

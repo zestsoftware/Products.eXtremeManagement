@@ -14,13 +14,17 @@
 	 tal:omit-tag="">
 
       <p tal:condition="not:request/previous|nothing">
-	Go to <a
-	tal:attributes="href
-	string:${template/absolute_url}?previous=1">previous</a> month.
+        <span i18n:translate="go_to">
+          Go to
+        </span><a
+        tal:attributes="href
+        string:${template/absolute_url}?previous=1"
+        i18n:translate="previous">previous</a> month.
       </p>
       <p tal:condition="request/previous|nothing"> Back to <a
       tal:attributes="href
-      string:${template/absolute_url}">current</a> month.</p>
+      string:${template/absolute_url}"
+      i18n:translate="current">current</a> month.</p>
 
       <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
 			     bookings python:context.getBookings()"

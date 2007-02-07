@@ -79,7 +79,8 @@
                     <span tal:omit-tag="" 
                           tal:repeat="newItem task/getAssignees">
                       <img src="user.gif"
-                           alt="user" />
+                           alt="user"
+                           i18n:attributes="alt user" />
                       <span tal:replace="newItem">Assignee</span>
                       <br />
                     </span>

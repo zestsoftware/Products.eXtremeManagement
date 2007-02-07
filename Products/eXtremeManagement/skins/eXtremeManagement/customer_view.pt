@@ -72,8 +72,7 @@
                        tal:attributes="href here/getWebsite"
                        tal:content="here/getWebsite"
                        title="Visit the website"
-                       i18n:translate="title">
-                    </a>
+                       i18n:attributes="title visit_the_website" />
                     <span tal:condition="not: here/getWebsite"
                           tal:omit-tag="">....</span>
                 </td>

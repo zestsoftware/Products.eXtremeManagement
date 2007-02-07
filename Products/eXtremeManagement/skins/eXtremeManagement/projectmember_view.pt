@@ -54,7 +54,8 @@
                        title="Send a mail to this user"
                        i18n:attributes="title">
                         <img src="mail_icon.gif" 
-                             alt="email" /> 
+                             alt="email"
+                             i18n:attributes="alt"/> 
                         <span tal:replace="emailaddress">Email</span>
                     </a>
                     <span tal:condition="not: context/getEmail">....</span>
