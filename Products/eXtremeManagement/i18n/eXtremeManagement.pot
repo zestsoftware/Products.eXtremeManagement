@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-02-07 15:19+0000\n"
+"POT-Creation-Date: 2007-02-07 15:26+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -382,7 +382,7 @@ msgstr ""
 msgid "heading_finished_iterations"
 msgstr ""
 
-#. Default: "<strong> No Current Iterations</strong>"
+#. Default: "No Current Iterations"
 #: ./skins/eXtremeManagement/project_view.pt
 msgid "heading_no_current_iterations"
 msgstr ""

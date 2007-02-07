@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-02-07 15:19+0000\n"
+"POT-Creation-Date: 2007-02-07 15:26+0000\n"
 "PO-Revision-Date: 2005-05-19 13:15 +GMT+1\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -458,7 +458,7 @@ msgstr ""
 msgid "heading_finished_iterations"
 msgstr ""
 
-#. Default: "<strong> No Current Iterations</strong>"
+#. Default: "No Current Iterations"
 #: ./skins/eXtremeManagement/project_view.pt
 msgid "heading_no_current_iterations"
 msgstr ""

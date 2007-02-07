@@ -169,7 +169,7 @@
       </tal:block>
 
       <tal:block tal:condition="not:current_iterations">
-        <p i18n:translate="heading_no_current_iterations"><strong>
+        <p><strong i18n:translate="heading_no_current_iterations">
           No Current Iterations</strong></p>
       </tal:block>
 
