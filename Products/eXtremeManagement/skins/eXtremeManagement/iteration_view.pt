@@ -121,7 +121,7 @@
                                    totalDifference python:tot[2];">
               <h1 i18n:translate="heading-in-progress-tasks">My to-do
               tasks</h1>
-              <p i18n:translate="description-in-progress-tasks">
+              <p i18n:translate="description-overview-my-tasks">
                 Overview of tasks that belong to me.  The totals
                 mentioned are the total time for myself, so they will
                 usually differ from adding the numbers of the column
