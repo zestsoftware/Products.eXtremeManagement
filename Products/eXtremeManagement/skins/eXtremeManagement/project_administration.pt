@@ -22,10 +22,13 @@
         <tal:block tal:condition="projects">
   
             <p class="discreet" 
-                i18n:translate="description_project_administration"> 
-                This is a list of all projects. Also the iterations which are completed with state, estimated and actual time.
-                Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>. 
-                This way the administration has an overview with all iterations which are invoiced.
+               i18n:translate="description_project_administration"> 
+               This is a list of all projects. Also the iterations
+               which are completed with state, estimated and actual
+               time.  Once an iteration is completed and invoiced, the
+               status can be changed to <strong>Invoiced</strong>.
+               This way the administration has an overview with all
+               iterations which are invoiced.
             </p>
 
             <table class="listing"
@@ -42,11 +45,9 @@
                     <td class="td-project">
                         <a tal:attributes="href string:${project/getURL}" 
                         class="project_title"
-                        tal:content="project/Title">
-                        Title
-                        </a>
+                        tal:content="project/Title" />
                         <div class="project_description" 
-                             tal:content="project/Description">Description</div>
+                             tal:content="project/Description" />
                       
                         <table width="95%" 
                                cellpadding="0"
@@ -76,18 +77,16 @@
                                         width="16"
                                         tal:attributes="src string:${here/portal_url}/${iteration/getIcon};" /> 
                                     <a tal:attributes="href string:${iteration/getURL}"
-                                       tal:content="iteration/Title">
-                                        Title
-                                    </a> 
+                                       tal:content="iteration/Title" /> 
                                 </td>
                             
-                                <td tal:content="iteration/review_state">state</td>
+                                <td tal:content="iteration/review_state" />
                                 <td tal:define="iterationObj iteration/getObject;
                                                 projectEstimate python:iterationObj.getEstimate()"
-                                    tal:content="projectEstimate">Estimate</td>
+                                    tal:content="projectEstimate" />
                                 <td tal:define="iterationObj iteration/getObject; 
                                                 projectActual python:iterationObj.getActualHours()"
-                                    tal:content="projectActual">actual</td>
+                                    tal:content="projectActual" />
                                 </tal:block>
                             </tr>
                         </table>

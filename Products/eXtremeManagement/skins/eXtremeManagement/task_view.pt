@@ -22,9 +22,7 @@
                     i18n:translate="listingheader_estimate">
                     Estimate
                 </th>
-                <td tal:content="here/getEstimate">
-                    Estimate
-                </td>
+                <td tal:content="here/getEstimate" />
             </tr>
             <tr>
                 <th class="customer_info_header" 
@@ -42,9 +40,7 @@
                 </th>
                 <td tal:define="wtool here/portal_workflow;
                                 review_state python:wtool.getInfoFor(here, 'review_state')"
-                    tal:content="review_state">
-                    Status
-                </td>
+                    tal:content="review_state" />
             </tr>
             <tr>
                 <th class="customer_info_header"
@@ -96,23 +92,13 @@
                     <td>
                         <a tal:attributes="href string:${booking/absolute_url}/base_edit"
                            class="booking_title"
-                           tal:content="booking/Title">
-                            Title
-                        </a>
+                           tal:content="booking/Title" />
                         <div class="booking_description" 
-                             tal:content="booking/Description">
-                            Description
-                        </div>
+                             tal:content="booking/Description" />
                     </td>
-                    <td tal:content="booking/getActualHours">
-                        4:45
-                    </td>
-                    <td tal:content="booking/Creator">
-                        Maurits
-                    </td>
-                    <td tal:content="booking/getBillable">
-                        True
-                    </td>
+                    <td tal:content="booking/getActualHours" />
+                    <td tal:content="booking/Creator" />
+                    <td tal:content="booking/getBillable" />
                 </tr>
             </table>
         </tal:block>

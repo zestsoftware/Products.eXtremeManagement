@@ -31,16 +31,14 @@
                     Fullname
                 </th>
                 <td width="45%"
-                    tal:content="context/getFullname">
-                    Name
-                </td>
+                    tal:content="context/getFullname" />
             </tr>
             <tr>
                 <th class="customer_info_header" 
                     i18n:translate="listingheader_Phone">
                     Phone
                 </th>
-                <td tal:content="context/getPhone">Phone</td>
+                <td tal:content="context/getPhone" />
             </tr>
             <tr>
                 <th class="customer_info_header" 

@@ -104,7 +104,7 @@
               <tr>
                 <td colspan="2"
                     class="iteration-description"
-                    tal:content="obj/Description">Description </td>
+                    tal:content="obj/Description" />
               </tr>
             </table>
 
@@ -134,9 +134,7 @@
                   <td width="30%">
                     <a class="storyTitle_project_overview"
                        tal:attributes="href story/absolute_url"
-                       tal:content="story/Title">
-                      Title
-                    </a>
+                       tal:content="story/Title" />
                   </td>
                   
                   <td class="progress_details" 
@@ -160,13 +158,9 @@
                     </div>
                   </td>
                   <td class="tasks"
-                      tal:content="openTasks">
-                    tasks open
-                  </td>
+                      tal:content="openTasks" />
                   <td class="tasks"
-                      tal:content="completedTasks">
-                    tasks completed
-                  </td>
+                      tal:content="completedTasks" />
                 </tal:block>
               </tr>
             </table>

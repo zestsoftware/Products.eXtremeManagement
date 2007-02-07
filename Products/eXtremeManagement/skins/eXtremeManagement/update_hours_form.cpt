@@ -69,10 +69,10 @@
                             </a>
                         </td>
             
-                        <td tal:content="taskObj/aq_parent/title">Story title</td>
-                        <td tal:content="taskObj/getEstimate">Estimate</td>
+                        <td tal:content="taskObj/aq_parent/title" />
+                        <td tal:content="taskObj/getEstimate" />
                         <td tal:define="totalActual python:taskObj.getActualHours();"
-                            tal:content="totalActual">actual</td> 
+                            tal:content="totalActual" />
                         
                     </tr>
                     <tr>
@@ -88,7 +88,7 @@
                                                     tabindex tabindex/next;">
                                 <tal:block tal:repeat="hour hours">
                                 <option tal:content="hour"
-                                        tal:attributes="value hour">dummy</option>
+                                        tal:attributes="value hour" />
                                 </tal:block>
                             </select>
                             :
@@ -98,7 +98,7 @@
                                                     tabindex tabindex/next;">
                                 <tal:block tal:repeat="minute minutes">
                                 <option tal:content="minute"
-                                        tal:attributes="value minute">dummy</option>
+                                        tal:attributes="value minute" />
                                 </tal:block>
                             </select> 
                             <span i18n:translate="label_minutes"

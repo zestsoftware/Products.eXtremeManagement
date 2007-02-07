@@ -61,20 +61,14 @@
 	    <td>
 	      <a tal:attributes="href string:${booking/aq_parent/absolute_url}"
 		 class="booking_title"
-		 tal:content="booking/aq_parent/Title">
-		Title
-	      </a>
+		 tal:content="booking/aq_parent/Title" />
 	    </td>
 	    <td>
 	      <a tal:attributes="href string:${booking/absolute_url}"
 		 class="booking_title"
-		 tal:content="booking/Title">
-		Title
-	      </a>
+		 tal:content="booking/Title" />
 	      <div class="booking_description" 
-		   tal:content="booking/Description">
-		Description
-	      </div>
+		   tal:content="booking/Description" />
 	    </td>
 	    <td tal:content="booking/getActualHours">
 	      4:45

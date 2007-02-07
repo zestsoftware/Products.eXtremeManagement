@@ -27,32 +27,32 @@
             <tr>
                 <th class="customer_info_header" 
                     i18n:translate="listingheader_Fullname">Fullname</th> 
-                <td tal:content="here/getName">Fullname</td>
+                <td tal:content="here/getName" />
             </tr>
             <tr>
                 <th class="customer_info_header" 
                     i18n:translate="listingheader_address">Address</th>
-                <td tal:content="here/getAddress">Address</td>
+                <td tal:content="here/getAddress" />
             </tr>
             <tr>
                 <th class="customer_info_header" 
                     i18n:translate="listingheader_zipCode">Zip code</th>
-                <td tal:content="here/getZipCode">Zip code</td>
+                <td tal:content="here/getZipCode" />
             </tr>
             <tr>
                 <th class="customer_info_header" 
                     i18n:translate="listingheader_city">City</th>
-                <td tal:content="here/getCity">City</td>
+                <td tal:content="here/getCity" />
             </tr>
             <tr>
                 <th class="customer_info_header" 
                     i18n:translate="listingheader_country">Country</th>
-                <td tal:content="here/getCountry">Country</td>
+                <td tal:content="here/getCountry" />
             </tr>
             <tr>
                 <th class="customer_info_header" 
                     i18n:translate="listingheader_Phone">Phone</th>
-                <td tal:content="here/getPhone">Phone</td>
+                <td tal:content="here/getPhone" />
             </tr>
             <tr>
                 <th class="customer_info_header" 
@@ -118,7 +118,7 @@
                                 <span tal:replace="member/getFullname">Name</span>
                             </a>
                         </td>
-                        <td tal:content="member/getPhone">Phone</td>
+                        <td tal:content="member/getPhone" />
                         <td>
                             <a class="link-plain"
                                tal:attributes="href string:mailto:${member/getEmail}"

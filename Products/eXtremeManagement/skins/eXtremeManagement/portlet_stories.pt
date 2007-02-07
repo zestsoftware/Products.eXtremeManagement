@@ -33,9 +33,7 @@
                 </a>
     
                 <div class="portletDetails"
-                        tal:content="python:here.toLocalizedTime(obj.Date)">
-                    July 7, 08:11
-                </div>
+                        tal:content="python:here.toLocalizedTime(obj.Date)" />
             </dd>
             </tal:block>
         </dl>

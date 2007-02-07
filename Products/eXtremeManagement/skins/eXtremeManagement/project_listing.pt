@@ -11,9 +11,7 @@
             Document actions (print, sendto etc)
         </div>
 
-        <h1 tal:content="object_title" class="documentFirstHeading">
-            Title or id
-        </h1>
+        <h1 tal:content="object_title" class="documentFirstHeading" />
 
         <a href=""
            class="link-parent"
@@ -24,9 +22,7 @@
         Up one level
         </a>
 
-        <div class="documentDescription" tal:content="here/Description">
-            description
-        </div>
+        <div class="documentDescription" tal:content="here/Description" />
 
         <metal:listingmacro define-macro="listing">
         <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|nothing;
@@ -65,9 +61,7 @@
                         <a href="#" 
                            tal:attributes="href python:test(item_type in use_view_action, item_url+'/view', item_url+'/');
                                            class string:$item_wf_state_class visualIconPadding"
-                           tal:content="item_title_or_id">
-                            Item Title
-                        </a>
+                           tal:content="item_title_or_id" />
                         </span>
 
                     </dt>
@@ -76,9 +70,7 @@
                         <span tal:omit-tag="" tal:condition="not:item_description"> 
                             &nbsp; 
                         </span> 
-                        <span tal:omit-tag="" tal:content="item_description"> 
-                            description 
-                        </span> 
+                        <span tal:omit-tag="" tal:content="item_description" /> 
                     </dd>
                 </tal:block>
                 </tal:entry>

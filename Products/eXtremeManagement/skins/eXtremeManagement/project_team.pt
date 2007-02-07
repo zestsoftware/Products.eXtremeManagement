@@ -92,9 +92,7 @@
                                                         tabindex tabindex/next" />
                             </td>
 
-                            <td tal:content="python:lrole[0]">
-                                groupname
-                            </td>
+                            <td tal:content="python:lrole[0]" />
             
                             <td tal:condition="python:lrole[2]=='group'"
                                 i18n:translate="label_group">
@@ -108,7 +106,7 @@
                             <td>
                                 <tal:block tal:repeat="role python:lrole[1]">
                                 <span tal:content="role"
-                                      tal:omit-tag="">Role</span>
+                                      tal:omit-tag="" />
                                 <span tal:condition="not: repeat/role/end"
                                       tal:omit-tag="">, </span>
                                 </tal:block>
@@ -196,8 +194,8 @@
                                                             checked python:nResults==1;
                                                             tabindex tabindex/next;" />
                                 </td>
-                                <td tal:content="python:member_username">username</td>
-                                <td tal:content="member/email">email</td>
+                                <td tal:content="python:member_username" />
+                                <td tal:content="member/email" />
                             </tr>
                         </tbody>
                     </table>
@@ -217,9 +215,7 @@
                                 tal:attributes="tabindex tabindex/next;">
                             <option tal:repeat="lroles python:mtool.getCandidateLocalRoles(here)"
                                     tal:attributes="value lroles"
-                                    tal:content="lroles">
-                                Role name
-                            </option>
+                                    tal:content="lroles" />
                         </select>
                     </div>
 
@@ -362,9 +358,7 @@
                                             tal:attributes="value group_name;
                                                             tabindex tabindex/next;"/>
                                     </td>
-                                    <td tal:content="group/getUserNameWithoutGroupPrefix">
-                                        groupname
-                                    </td>
+                                    <td tal:content="group/getUserNameWithoutGroupPrefix" />
                                 </tr>
                             </tbody>
                         </table>
@@ -381,9 +375,7 @@
                                     tal:attributes="tabindex tabindex/next;">
                                 <option tal:repeat="lroles python:mtool.getCandidateLocalRoles(here)"
                                         tal:attributes="value lroles"
-                                        tal:content="lroles">
-                                    Role name
-                                </option>
+                                        tal:content="lroles" />
                             </select>
                         </div>
     

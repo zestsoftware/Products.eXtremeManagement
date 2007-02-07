@@ -8,15 +8,11 @@
     
         <metal:block metal:define-macro="body">
             <h1 tal:content="here/title_or_id" 
-                class="documentFirstHeading">
-            Title or id
-            </h1>
+                class="documentFirstHeading" />
     
             <div class="documentDescription"
                  tal:condition="here/Description"
-                 tal:content="here/Description">
-                description
-            </div>
+                 tal:content="here/Description" />
         </metal:block>
     </body>
 </html>

@@ -9,9 +9,7 @@
       <div metal:use-macro="here/document_actions/macros/document_actions">
         Document actions (print, sendto etc)
       </div>
-       <h1 tal:content="here/title_or_id" class="documentFirstHeading">
-         Title or id
-       </h1>
+       <h1 tal:content="here/title_or_id" class="documentFirstHeading" />
        <div class="documentDescription"
             tal:condition="here/Description"
             tal:content="here/Description">description
@@ -34,7 +32,7 @@
       <h5 class="header-billable" 
           i18n:translate="heading-billable">Billable
       </h5>
-      <span tal:content="here/getBillable">True</span>
+      <span tal:content="here/getBillable" />
 
     </metal:block>
     <metal:block metal:define-macro="folderlisting" />

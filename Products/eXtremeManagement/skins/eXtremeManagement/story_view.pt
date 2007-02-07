@@ -58,23 +58,13 @@
                   <metal:block define-slot="extra_column_data"></metal:block>
                   <td class="td-story-title">
                     <a tal:attributes="href task/getURL"
-                       tal:content="task/Title">
-                      Title
-                    </a>
+                       tal:content="task/Title" />
                   </td>
-                  <td tal:content="python:xt.formatTime(task.getRawEstimate)">
-                    estimate
-                  </td>
-                  <td tal:content="python:xt.formatTime(task.getRawActualHours)">
-                    actual
-                  </td>
-                  <td tal:content="python:xt.formatTime(task.getRawDifference)">
-                    diff
-                  </td>
+                  <td tal:content="python:xt.formatTime(task.getRawEstimate)" />
+                  <td tal:content="python:xt.formatTime(task.getRawActualHours)" />
+                  <td tal:content="python:xt.formatTime(task.getRawDifference)" />
                   <td tal:content="task/review_state"
-                      class="td-center">
-                    Status
-                  </td>
+                      class="td-center" />
                   <td class="td-center">
                     <span tal:omit-tag="" 
                           tal:repeat="newItem task/getAssignees">
@@ -95,15 +85,9 @@
                     i18n:translate="total">
                   Total
                 </td>
-                <td tal:content="totalEstimate">
-                  total estimate
-                </td>
-                <td tal:content="totalActual">
-                  total actual
-                </td>
-                <td tal:content="totalDifference">
-                  total diff
-                </td>
+                <td tal:content="totalEstimate" />
+                <td tal:content="totalActual" />
+                <td tal:content="totalDifference" />
                 <td>&nbsp;</td>  
                 <td>&nbsp;</td>  
               </tr>
