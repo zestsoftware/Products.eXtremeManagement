@@ -18,7 +18,7 @@ msgstr ""
 "Domain: plone\n"
 
 msgid "completed"
-msgstr "Voltooid"
+msgstr "Afgerond"
 
 msgid "open"
 msgstr "Open"
@@ -100,7 +100,7 @@ msgstr "Uren registratie"
 
 
 msgid "activate"
-msgstr "activeer"
+msgstr "activeren"
 
 msgid "booking"
 msgstr "boeking"
@@ -109,16 +109,16 @@ msgid "Close"
 msgstr "sluit"
 
 msgid "complete"
-msgstr "compleet"
+msgstr "afronden"
 
 msgid "Completed"
 msgstr "Afgerond"
 
 msgid "deactivate"
-msgstr "deactiveer"
+msgstr "deactiveren"
 
 msgid "Draft"
-msgstr "Schets"
+msgstr "Concept"
 
 msgid "Estimated"
 msgstr "Geschat"
@@ -130,10 +130,10 @@ msgid "Improve"
 msgstr "Verbeter"
 
 msgid "In-progress"
-msgstr "In voortgang"
+msgstr "In behandeling"
 
 msgid "Invoiced"
-msgstr "In rekening gebracht"
+msgstr "Gefactureerd"
 
 msgid "Mark as completed"
 msgstr "Markeer als afgerond"
