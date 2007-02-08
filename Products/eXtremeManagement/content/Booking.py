@@ -202,6 +202,12 @@ class Booking(BaseContent):
             parent = self.aq_inner.aq_parent
             parent.reindexObject()
 
+    def manage_afterAdd(self, item, container):
+        # With Plone 2.1 we cannot use events reliably. :(
+        super(Booking, self).manage_afterAdd(item, container)
+        container.reindexObject()
+
+
 
 registerType(Booking, PROJECTNAME)
 # end of class Booking
