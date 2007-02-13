@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-02-07 17:01+0000\n"
-"PO-Revision-Date: 2005-05-19 13:15 +GMT+1\n"
+"POT-Creation-Date: 2007-02-12 14:26+0000\n"
+"PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
 "MIME-Version: 1.0\n"
@@ -30,44 +30,44 @@ msgstr "Odeslat email tomuto uživateli"
 #. Default: "Visit the website"
 #: ./skins/eXtremeManagement/customer_view.pt
 msgid "Visit the website"
-msgstr ""
+msgstr "Navštívit webovou stránku"
 
 #. Default: "Back to"
 #: ./skins/eXtremeManagement/booking_month.pt
 #: ./skins/eXtremeManagement/booking_overview.pt
 msgid "back_to"
-msgstr ""
+msgstr "Zpět na"
 
 #. Default: "Bookings per month"
 #: ./skins/eXtremeManagement/portlet_tasks.pt
 msgid "booking_month"
-msgstr ""
+msgstr "Odpracováno za měsíc"
 
 #. Default: "Detailed bookings"
 #: ./skins/eXtremeManagement/portlet_tasks.pt
 msgid "booking_overview"
-msgstr ""
+msgstr "Detailní záznamy"
 
 #. Default: "My Projects"
 #: ./skins/eXtremeManagement/portlet_my_projects.pt
 msgid "box_my_projects"
-msgstr ""
+msgstr "Mé projekty"
 
 #. Default: "Pending Stories"
 #: ./skins/eXtremeManagement/portlet_stories.pt
 msgid "box_stories"
-msgstr ""
+msgstr "Nevyřešené požadavky"
 
 #. Default: "current month"
 #: ./skins/eXtremeManagement/booking_month.pt
 #: ./skins/eXtremeManagement/booking_overview.pt
 msgid "current-month"
-msgstr ""
+msgstr "tento měsíc"
 
 #. Default: "These are all tasks that have been assigned to me and are not yet worked on (so no to-do or completed status)."
 #: ./skins/eXtremeManagement/task_overview.pt
 msgid "description-open-tasks"
-msgstr ""
+msgstr "Toto jsou všechny mě přidělené úkoly, na kterých se zatím nezačalo pracovat (tzn. nejsou ve stavu vyřešit nebo hotové)."
 
 #. Default: "Overview of tasks that belong to me. The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
 #: ./skins/eXtremeManagement/task_overview.pt
@@ -78,7 +78,7 @@ msgstr ""
 #. Default: "These are all tasks that have been assigned to me and that I should currently work on."
 #: ./skins/eXtremeManagement/task_overview.pt
 msgid "description-to-do-tasks"
-msgstr ""
+msgstr "Toto jsou všechny mě přidělené úkoly, na kterých by se mělo pracovat."
 
 #. Default: "This is a list of all projects. Also the iterations which are completed with state, estimated and actual time. Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>. This way the administration has an overview with all iterations which are invoiced."
 #: ./skins/eXtremeManagement/project_administration.pt
@@ -90,7 +90,7 @@ msgstr "Toto je seznam všech projektů a iterací, které jsou dokončeny s odh
 msgid "description_time_registration"
 msgstr "Použijte formulář umístěný níže pro zaznamenání vašeho času (hodin) a stiskněte 'Send'."
 
-## 1 more: content/Customer.py
+# 1 more: content/Customer.py
 #. Default: "Enter address."
 #. Enter address.
 #: content/Customer.py
@@ -101,37 +101,33 @@ msgstr "Zadejte adresu."
 #. assignees
 #. Default: "Select the member(s) to assign this task to."
 #: content/Task.py
-#, fuzzy
 msgid "eXtremeManagement_help_assignees"
 msgstr "Vyberte jednoho nebo více uživatelů, kterým má být tento úkol přidělen."
 
 #. Default: "Date that you worked on this task"
 #: content/Booking.py
 msgid "eXtremeManagement_help_bookingDate"
-msgstr ""
+msgstr "Datum kdy jsi pracoval na tomto úkolu."
 
 #. Enter city name.
 #. city
 #. Default: "Enter city name."
 #: content/Customer.py
-#, fuzzy
 msgid "eXtremeManagement_help_city"
-msgstr "město"
+msgstr "Zadejte název města."
 
 #. Enter country.
 #. country
 #. Default: "Enter country."
 #: content/Customer.py
-#, fuzzy
 msgid "eXtremeManagement_help_country"
-msgstr "země"
+msgstr "Zadejte zemi."
 
-## 1 more: content/ProjectMember.py
+# 1 more: content/ProjectMember.py
 #. Enter your email address.
 #. email
 #. Default: "Enter your email address."
 #: content/ProjectMember.py
-#, fuzzy
 msgid "eXtremeManagement_help_email"
 msgstr "Zadejte vaší emailovou adresu."
 
@@ -139,96 +135,87 @@ msgstr "Zadejte vaší emailovou adresu."
 #. fax
 #. Default: "Enter your fax number."
 #: content/Customer.py
-#, fuzzy
 msgid "eXtremeManagement_help_fax"
-msgstr "fax"
+msgstr "Zadejte číslo vašeho faxu."
 
 #. Enter a name, eg. John Smith.
 #. fullname
 #. Default: "Enter a name, eg. John Smith."
 #: content/ProjectMember.py
-#, fuzzy
 msgid "eXtremeManagement_help_fullname"
-msgstr "celé jméno"
+msgstr "Zadejte jméno, např. Josef Novák."
 
-## 1 more: content/Booking.py
+# 1 more: content/Booking.py
 #. hours
 #. Default: "Enter the estimated time (in hours)."
 #: content/Task.py
-#, fuzzy
 msgid "eXtremeManagement_help_hours"
-msgstr "hodiny"
+msgstr "Zadejte odhadovaný čas (v hodinách)."
 
 #. mainText
 #. Enter the main description for this object.
 #. Default: "Enter the main description for this object."
 #: content/Story.py
-#, fuzzy
 msgid "eXtremeManagement_help_mainText"
-msgstr "Hlavní text"
+msgstr "Zadejte hlavní popis tohoto projektu."
 
-## 1 more: content/Booking.py
+# 1 more: content/Booking.py
 #. minutes
 #. Default: "Enter the rest of the estimated time in minutes"
 #: content/Task.py
-#, fuzzy
 msgid "eXtremeManagement_help_minutes"
-msgstr "minuty"
+msgstr "Zadejte zbyvajicí odhadovaný čas v minutách."
 
 #. Enter full name, eg. John Smith.
 #. name
 #. Default: "Enter the company name for this customer"
 #: content/Customer.py
-#, fuzzy
 msgid "eXtremeManagement_help_name"
-msgstr "Zadejte celé jméno, např. Josef Novák."
+msgstr "Zadejte název společnosti tohoto zákazníka"
 
-## 2 more: content/ProjectMember.py, content/Customer.py
+# 2 more: content/ProjectMember.py, content/Customer.py
 #. Enter your phone number.
 #. phone
 #. Default: "Enter your phone number."
 #: content/ProjectMember.py
 #: content/Customer.py
-#, fuzzy
 msgid "eXtremeManagement_help_phone"
 msgstr "Zadejte vaše telefoní číslo."
 
 #. Default: "Enter a rough estimate in days (tip: use multiples of 0.5 days)"
 #: content/Story.py
 msgid "eXtremeManagement_help_roughEstimate"
-msgstr ""
+msgstr "Zadejte hrubý odhad ve dnech (tip: použijte násobky 0.5 dne)"
 
 #. Enter your website address.
 #. website
 #. Default: "Enter your website address."
 #: content/Customer.py
-#, fuzzy
 msgid "eXtremeManagement_help_website"
-msgstr "webová stránka"
+msgstr "Zadejte adresu vaší webové stránky."
 
 #. Enter zip code.
 #. zipCode
 #. Default: "Enter zip code."
 #: content/Customer.py
-#, fuzzy
 msgid "eXtremeManagement_help_zipCode"
-msgstr "PSČ"
+msgstr "Zadejte PSČ."
 
-## 1 more: content/Customer.py
+# 1 more: content/Customer.py
 #. Default: "Address"
 #. Address
 #: content/Customer.py
 msgid "eXtremeManagement_label_address"
 msgstr "Adresa"
 
-## 1 more: content/Task.py
+# 1 more: content/Task.py
 #. Default: "Assignees"
 #. Assignees
 #: content/Task.py
 msgid "eXtremeManagement_label_assignees"
 msgstr "Přidělení"
 
-## 1 more: content/Booking.py
+# 1 more: content/Booking.py
 #. Default: "Billable"
 #. Billable
 #: content/Booking.py
@@ -238,23 +225,23 @@ msgstr "Zúčtovatelé"
 #. Default: "Bookingdate"
 #: content/Booking.py
 msgid "eXtremeManagement_label_bookingDate"
-msgstr ""
+msgstr "Datum záznamu"
 
-## 1 more: content/Customer.py
+# 1 more: content/Customer.py
 #. Default: "City"
 #. City
 #: content/Customer.py
 msgid "eXtremeManagement_label_city"
 msgstr "Město"
 
-## 1 more: content/Customer.py
+# 1 more: content/Customer.py
 #. Default: "Country"
 #. Country
 #: content/Customer.py
 msgid "eXtremeManagement_label_country"
 msgstr "Země"
 
-## 1 more: content/ProjectMember.py
+# 1 more: content/ProjectMember.py
 #. Default: "Email"
 #. Email
 #: content/ProjectMember.py
@@ -267,21 +254,21 @@ msgstr "Email"
 msgid "eXtremeManagement_label_endDate"
 msgstr "Datum dokončení"
 
-## 1 more: content/Customer.py
+# 1 more: content/Customer.py
 #. Default: "Fax"
 #. Fax
 #: content/Customer.py
 msgid "eXtremeManagement_label_fax"
 msgstr "Fax"
 
-## 1 more: content/ProjectMember.py
+# 1 more: content/ProjectMember.py
 #. Default: "Fullname"
 #. Fullname
 #: content/ProjectMember.py
 msgid "eXtremeManagement_label_fullname"
 msgstr "Celé jméno"
 
-## 1 more: content/Booking.py
+# 1 more: content/Booking.py
 #. Default: "Hours"
 #. Hours
 #: content/Task.py
@@ -289,7 +276,7 @@ msgstr "Celé jméno"
 msgid "eXtremeManagement_label_hours"
 msgstr "Hodiny"
 
-## 1 more: content/Story.py
+# 1 more: content/Story.py
 #. Default: "Maintext"
 #. Maintext
 #: content/Story.py
@@ -301,7 +288,7 @@ msgstr "Hlavní text"
 #. Manhours
 #: content/Iteration.py
 msgid "eXtremeManagement_label_manHours"
-msgstr "Hodiny manuálně"
+msgstr "Odhadované človekohodiny"
 
 ## 1 more: content/Booking.py
 #. Default: "Minutes"
@@ -344,7 +331,7 @@ msgstr ""
 #. Default: "Roughestimate"
 #: content/Story.py
 msgid "eXtremeManagement_label_roughEstimate"
-msgstr ""
+msgstr "Hrubý odhad"
 
 #. Default: "Startdate"
 #. Startdate
@@ -369,18 +356,18 @@ msgstr "PSČ"
 #. Default: "email"
 #: ./skins/eXtremeManagement/projectmember_view.pt
 msgid "email"
-msgstr ""
+msgstr "email"
 
 #. Default: "Go to"
 #: ./skins/eXtremeManagement/booking_month.pt
 #: ./skins/eXtremeManagement/booking_overview.pt
 msgid "go_to"
-msgstr ""
+msgstr "Přejít na"
 
 #. Default: "Go to overview of"
 #: ./skins/eXtremeManagement/booking_month.pt
 msgid "go_to_overview"
-msgstr ""
+msgstr "Přejít na přehled"
 
 #. Default: "Customer info"
 #: ./skins/eXtremeManagement/customer_view.pt
@@ -411,7 +398,7 @@ msgstr "Časový záznam"
 #. Default: "Billable"
 #: ./skins/eXtremeManagement/booking_view.pt
 msgid "heading-billable"
-msgstr ""
+msgstr "Zúčtovatelný"
 
 #. Default: "Booking"
 #: ./skins/eXtremeManagement/booking_view.pt
@@ -421,7 +408,7 @@ msgstr "Záznam"
 #. Default: "Booking date"
 #: ./skins/eXtremeManagement/booking_view.pt
 msgid "heading-booking-date"
-msgstr ""
+msgstr "Datum záznamu"
 
 #. Default: "Bookings"
 #: ./skins/eXtremeManagement/task_view.pt
@@ -432,63 +419,63 @@ msgstr "Záznamy"
 #. Default: "Bookings per day for this month"
 #: ./skins/eXtremeManagement/booking_month.pt
 msgid "heading-bookings-per-day"
-msgstr ""
+msgstr "Záznamy po dnech v tomto měsíci"
 
 #. Default: "Hours per employee"
 #: ./skins/eXtremeManagement/iteration_view.pt
 msgid "heading-hours-per-employee"
-msgstr ""
+msgstr "Hodiny podle zaměstnanců"
 
 #. Default: "My to-do tasks"
 #: ./skins/eXtremeManagement/iteration_view.pt
 msgid "heading-in-progress-tasks"
-msgstr ""
+msgstr "Můj to-do list"
 
 #. Default: "My task overview"
 #: ./skins/eXtremeManagement/task_overview.pt
 msgid "heading-my-task-overview"
-msgstr ""
+msgstr "Přehled mých úkolů"
 
 #. Default: "My open tasks"
 #: ./skins/eXtremeManagement/task_overview.pt
 #: ./skins/eXtremeManagement/iteration_view.pt
 msgid "heading-open-tasks"
-msgstr ""
+msgstr "Mé nevyřešené úkoly"
 
 #. Default: "Stories"
 #: ./skins/eXtremeManagement/iteration_view.pt
 msgid "heading-stories"
-msgstr "Nápady"
+msgstr "Požadavky"
 
 #. Default: "My to-do tasks"
 #: ./skins/eXtremeManagement/task_overview.pt
 msgid "heading-to-do-tasks"
-msgstr ""
+msgstr "Můj to-do list"
 
 #. Default: "Current Iterations"
 #: ./skins/eXtremeManagement/project_view.pt
 msgid "heading_current_iterations"
-msgstr ""
+msgstr "Aktuální iterace"
 
 #. Default: "Finished Iterations"
 #: ./skins/eXtremeManagement/project_view.pt
 msgid "heading_finished_iterations"
-msgstr ""
+msgstr "Uzavřené iterace"
 
 #. Default: "No Current Iterations"
 #: ./skins/eXtremeManagement/project_view.pt
 msgid "heading_no_current_iterations"
-msgstr ""
+msgstr "Žádné aktuální iterace"
 
 #. Default: "Open Iterations"
 #: ./skins/eXtremeManagement/project_view.pt
 msgid "heading_open_iterations"
-msgstr ""
+msgstr "Otevřené iterace"
 
 #. Default: "Other Content"
 #: ./skins/eXtremeManagement/project_view.pt
 msgid "heading_other_content"
-msgstr ""
+msgstr "Ostatní obsah"
 
 #. Default: "Tasks"
 #: ./skins/eXtremeManagement/story_view.pt
@@ -498,17 +485,17 @@ msgstr "Úkoly"
 #. Default: "If selected, Members with a global role 'Employee' will appear in the assignees list of a Task."
 #: content/Project.py
 msgid "help_include_global_members"
-msgstr ""
+msgstr "Pokud je zaškrtnuto, uživatelé s globální rolí 'Zaměstnanec' budou uvedeni v seznamu zaměstnanců přidělených k úkolu."
 
 #. Default: "Hours booked for today: ${total_booked}"
 #: ./skins/eXtremeManagement/portlet_tasks.pt
 msgid "hours_booked_today"
-msgstr ""
+msgstr "Hodiny zaznamenané během dnešního dne: ${total_booked}"
 
 #. Default: "Date to book this on"
 #: ./skins/eXtremeManagement/update_hours_form.cpt
 msgid "label_bookingdate"
-msgstr ""
+msgstr "Datum tohoto záznamu"
 
 #. Default: "Comments:"
 #: ./skins/eXtremeManagement/update_hours_form.cpt
@@ -523,7 +510,7 @@ msgstr "Hodiny"
 #. Default: "Include global Employees"
 #: content/Project.py
 msgid "label_include_global_members"
-msgstr ""
+msgstr "Zahrnout globální zaměstnance"
 
 #. Default: "Minutes"
 #: ./skins/eXtremeManagement/update_hours_form.cpt
@@ -533,22 +520,22 @@ msgstr "Minuty"
 #. Default: "Rough Estimate: ${rough} days."
 #: ./skins/eXtremeManagement/story_view.pt
 msgid "label_roughestimate"
-msgstr ""
+msgstr "Hrubý odhad: ${rough} dní."
 
 #. Default: "last 12 months"
 #: ./skins/eXtremeManagement/booking_month.pt
 msgid "last_12_months"
-msgstr ""
+msgstr "posledních 12 měsíců"
 
 #. Default: "Billable"
 #: ./skins/eXtremeManagement/task_view.pt
 msgid "listingheader-billable"
-msgstr ""
+msgstr "Zúčtovatelné"
 
 #. Default: "Booked by"
 #: ./skins/eXtremeManagement/task_view.pt
 msgid "listingheader-booked-by"
-msgstr ""
+msgstr "Zaznamenal"
 
 #. Default: "Booking"
 #: ./skins/eXtremeManagement/task_view.pt
@@ -559,18 +546,18 @@ msgstr "Záznam"
 #. Default: "Date"
 #: ./skins/eXtremeManagement/task_view.pt
 msgid "listingheader-bookingdate"
-msgstr ""
+msgstr "Datum"
 
 #. Default: "Date"
 #: ./skins/eXtremeManagement/booking_month.pt
 #: ./skins/eXtremeManagement/booking_overview.pt
 msgid "listingheader-date"
-msgstr ""
+msgstr "Datum"
 
 #. Default: "Task"
 #: ./skins/eXtremeManagement/booking_overview.pt
 msgid "listingheader-task"
-msgstr ""
+msgstr "Úkol"
 
 #. Default: "Time"
 #: ./skins/eXtremeManagement/booking_month.pt
@@ -632,14 +619,13 @@ msgstr "Rozdíl"
 #. Default: "Email"
 #: ./skins/eXtremeManagement/customer_view.pt
 #: ./skins/eXtremeManagement/projectmember_view.pt
-#, fuzzy
 msgid "listingheader_email"
-msgstr "email"
+msgstr "Email"
 
 #. Default: "Employee"
 #: ./skins/eXtremeManagement/iteration_view.pt
 msgid "listingheader_employee"
-msgstr ""
+msgstr "Zaměstnanec"
 
 #. Default: "End date"
 #: ./skins/eXtremeManagement/iteration_view.pt
@@ -661,24 +647,22 @@ msgstr "Fax"
 #. Default: "Iteration"
 #: ./skins/eXtremeManagement/project_administration.pt
 msgid "listingheader_iteration"
-msgstr ""
+msgstr "Iterace"
 
 #. Default: "Man hours"
 #: ./skins/eXtremeManagement/iteration_view.pt
 msgid "listingheader_man_uren"
-msgstr "Hodiny ručně"
+msgstr "Člověkohodiny"
 
 #. Default: "Name"
 #: ./skins/eXtremeManagement/customer_view.pt
-#, fuzzy
 msgid "listingheader_name"
-msgstr "jméno"
+msgstr "Jméno"
 
 #. Default: "Phone"
 #: ./skins/eXtremeManagement/customer_view.pt
-#, fuzzy
 msgid "listingheader_phone"
-msgstr "telefon"
+msgstr "Telefon"
 
 #. Default: "Progress"
 #: ./skins/eXtremeManagement/project_view.pt
@@ -707,7 +691,7 @@ msgstr "Stav"
 #: ./skins/eXtremeManagement/update_hours_form.cpt
 #: ./skins/eXtremeManagement/iteration_view.pt
 msgid "listingheader_story"
-msgstr "Nápad"
+msgstr "Požadavek"
 
 #. Default: "Tasks completed"
 #: ./skins/eXtremeManagement/project_view.pt
@@ -728,17 +712,17 @@ msgstr "Název"
 #. Default: "Total Actual"
 #: ./skins/eXtremeManagement/iteration_view.pt
 msgid "listingheader_total_actual"
-msgstr ""
+msgstr "Aktuální součet"
 
 #. Default: "Total Difference"
 #: ./skins/eXtremeManagement/iteration_view.pt
 msgid "listingheader_total_difference"
-msgstr ""
+msgstr "Celkový rozdíl"
 
 #. Default: "Total Estimate"
 #: ./skins/eXtremeManagement/iteration_view.pt
 msgid "listingheader_total_estimate"
-msgstr ""
+msgstr "Celkový odhad"
 
 #. Default: "Website"
 #: ./skins/eXtremeManagement/customer_view.pt
@@ -753,12 +737,12 @@ msgstr "PSČ"
 #. Default: "No projects are published yet!"
 #: ./skins/eXtremeManagement/project_administration.pt
 msgid "no_projects_found"
-msgstr "Zatím nebyli zveřejněny žádné projekty!"
+msgstr "Zatím nebyly zveřejněny žádné projekty!"
 
 #. Default: "No stories published yet!"
 #: ./skins/eXtremeManagement/iteration_view.pt
 msgid "no_stories_published"
-msgstr "Zatím nebyli zveřejněny žádné nápady!"
+msgstr "Zatím nebyly zveřejněny žádné požadavky!"
 
 #. Default: "No tasks are assigned to you!"
 #: ./skins/eXtremeManagement/update_hours_form.cpt
@@ -768,23 +752,23 @@ msgstr "Nejsou vám přiděleny žádné úkoly!"
 #. Default: "No tasks defined yet."
 #: ./skins/eXtremeManagement/story_view.pt
 msgid "no_tasks_defined"
-msgstr "Zatím nebyli zadány žádné úkoly."
+msgstr "Zatím nebyly zadány žádné úkoly."
 
 #. Default: "previous month"
 #: ./skins/eXtremeManagement/booking_month.pt
 #: ./skins/eXtremeManagement/booking_overview.pt
 msgid "previous-month"
-msgstr ""
+msgstr "předchozí měsíc"
 
 #. Default: "progress bar"
 #: ./skins/eXtremeManagement/project_view.pt
 msgid "progress bar"
-msgstr ""
+msgstr "ukazatel průběhu"
 
 #. Default: "project overview"
 #: ./skins/eXtremeManagement/project_view.pt
 msgid "project overview"
-msgstr ""
+msgstr "Přehled projektů"
 
 #. Default: "Project administration"
 #: ./skins/eXtremeManagement/portlet_tasks.pt
@@ -794,17 +778,17 @@ msgstr "Správa projektu"
 #. Default: "status"
 #: ./skins/eXtremeManagement/project_view.pt
 msgid "status"
-msgstr ""
+msgstr "stav"
 
 #. Default: "task icon"
 #: ./skins/eXtremeManagement/update_hours_form.cpt
 msgid "task icon"
-msgstr ""
+msgstr "ikonka úkolu"
 
 #. Default: "Task overview"
 #: ./skins/eXtremeManagement/portlet_tasks.pt
 msgid "task_overview"
-msgstr ""
+msgstr "Přehled úkolů"
 
 #. Default: "Total"
 #: ./skins/eXtremeManagement/story_view.pt
@@ -815,5 +799,5 @@ msgstr "Celkem"
 #. Default: "user"
 #: ./skins/eXtremeManagement/story_view.pt
 msgid "user"
-msgstr ""
+msgstr "uživatel"
 

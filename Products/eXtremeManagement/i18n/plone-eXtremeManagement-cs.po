@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0beta\n"
 "POT-Creation-Date: 2005-05-19 21:13+0000\n"
-"PO-Revision-Date: 2005-05-19 13:15 +GMT+1\n"
+"PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
 "MIME-Version: 1.0\n"
@@ -81,7 +81,7 @@ msgid "Iteration"
 msgstr "Iterace"
 
 msgid "Story"
-msgstr "Nápad"
+msgstr "Požadavek"
 
 msgid "Task"
 msgstr "Úkol"
@@ -96,82 +96,83 @@ msgid "Time registration"
 msgstr "Časový záznam"
 
 msgid "activate"
-msgstr ""
+msgstr "aktivovat"
 
 msgid "Active"
-msgstr ""
+msgstr "Aktivní"
 
 msgid "booking"
-msgstr ""
+msgstr "záznam"
 
 msgid "Close"
-msgstr ""
+msgstr "Uzavřít"
 
 msgid "complete"
-msgstr ""
+msgstr "dokončit"
 
 msgid "Completed"
-msgstr ""
+msgstr "Hotovo"
 
 msgid "deactivate"
-msgstr ""
+msgstr "deaktivovat"
 
 msgid "Deactivate"
-msgstr ""
+msgstr "Deaktivovat"
 
 msgid "Draft"
-msgstr ""
+msgstr "Koncept"
 
 msgid "Estimated"
-msgstr ""
+msgstr "Odhadnuto"
 
 msgid "Finish"
-msgstr ""
+msgstr "Konec"
 
 msgid "Improve"
-msgstr ""
+msgstr "Vylepšit"
 
 msgid "In progress"
-msgstr ""
+msgstr "V řešení"
 
 msgid "In-progress"
-msgstr ""
+msgstr "V řešení"
 
 msgid "Invoiced"
-msgstr ""
+msgstr "Vyfakturováno"
 
 msgid "Mark as completed"
-msgstr ""
+msgstr "Označit za hotové"
 
 msgid "Mark as estimated"
-msgstr ""
+msgstr "Označit za odhadnuté"
 
 msgid "New"
-msgstr ""
+msgstr "Nové"
 
 msgid "Pending estimate"
-msgstr ""
+msgstr "Nevyřízený odhad"
 
 msgid "Private"
-msgstr ""
+msgstr "Nepřostupné"
 
 msgid "Reactivate"
-msgstr ""
+msgstr "Reaktivovat"
 
 msgid "Reactivate this task"
-msgstr ""
+msgstr "Reaktivovat tento úkol"
 
 msgid "Retract"
-msgstr ""
+msgstr "Stáhnout"
 
 msgid "Start working"
-msgstr ""
+msgstr "Začít pracovat"
 
 msgid "Submit for estimate"
-msgstr ""
+msgstr "Postoupit k odhadnutí"
 
 msgid "To-do"
-msgstr ""
+msgstr "To-do"
 
 msgid "Active"
-msgstr ""
+msgstr "Aktivní"
+
