@@ -33,6 +33,7 @@ from Products.Archetypes.atapi import *
 from Products.eXtremeManagement.config import *
 
 ##code-section module-header #fill in your manual code here
+from Products.CMFCore.permissions import ManageProperties
 ##/code-section module-header
 
 schema = Schema((
@@ -87,6 +88,12 @@ class ProjectFolder(OrderedBaseFolder):
         'condition': 'python:1'
        },
 
+        {
+        'id'          : 'local_roles',
+        'name'        : 'Sharing',
+        'action'      : 'string:${object_url}/folder_localrole_form',
+        'permissions' : (ManageProperties,),
+         },
 
     )
 

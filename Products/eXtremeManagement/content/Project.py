@@ -36,6 +36,7 @@ from Products.eXtremeManagement.config import *
 
 from Products.CMFCore.utils import getToolByName
 import string
+from Products.CMFCore.permissions import ManageProperties
 
 ##/code-section module-header
 
@@ -102,13 +103,12 @@ class Project(OrderedBaseFolder):
     actions =  (
 
 
-       {'action': "string:${object_url}/project_team",
-        'category': "object",
-        'id': 'team',
-        'name': 'Projectteam',
-        'permissions': ("View",),
-        'condition': 'python:1'
-       },
+        {
+        'id'          : 'local_roles',
+        'name'        : 'Projectteam',
+        'action'      : 'string:${object_url}/folder_localrole_form',
+        'permissions' : (ManageProperties,),
+         },
 
 
     )

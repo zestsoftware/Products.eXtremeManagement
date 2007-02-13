@@ -34,6 +34,7 @@ from Products.eXtremeManagement.config import *
 
 ##code-section module-header #fill in your manual code here
 
+from Products.CMFCore.permissions import ManageProperties
 BaseFolderSchema = OrderedBaseFolderSchema.copy()
 OrderedBaseFolderSchema['description'].isMetadata = False
 OrderedBaseFolderSchema['description'].schemata = 'default'
@@ -74,6 +75,18 @@ class CustomerFolder(OrderedBaseFolder):
     suppl_views = ()
     typeDescription = "CustomerFolder"
     typeDescMsgId = 'description_edit_customerfolder'
+
+    actions =  (
+
+        {
+        'id'          : 'local_roles',
+        'name'        : 'Sharing',
+        'action'      : 'string:${object_url}/folder_localrole_form',
+        'permissions' : (ManageProperties,),
+         },
+
+
+        )
 
     _at_rename_after_creation = True
 
