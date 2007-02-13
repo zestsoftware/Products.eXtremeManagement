@@ -56,9 +56,10 @@
                         tal:attributes="href string:${storyObj/absolute_url}"
                         tal:content="storyObj/Title" />
                     </td>
-                    <td tal:define="wtool here/portal_workflow;
-                                    review_state python:wtool.getInfoFor(storyObj, 'review_state')"
+                    <td tal:define="review_state python:putils.getReviewStateTitleFor(storyObj)"
                         tal:content="review_state"
+                        i18n:domain="plone"
+                        i18n:translate=""
                         class="td-center" />
                     <td tal:content="python:storyObj.getEstimate()" />
                     <td tal:content="python:storyObj.getActualHours()" />

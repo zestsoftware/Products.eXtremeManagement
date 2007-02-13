@@ -59,8 +59,7 @@
             </tr>
         </table>
 
-        <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
-                                bookings python:here.contentValues('Booking')"
+        <tal:block tal:define="bookings context/getSortedBookings"
                    tal:condition="bookings">
             <h1 i18n:translate="heading-bookings">Bookings</h1>
             
