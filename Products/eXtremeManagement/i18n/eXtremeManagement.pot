@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-02-14 15:14+0000\n"
+"POT-Creation-Date: 2007-02-14 21:54+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -70,8 +70,8 @@ msgid "description-open-tasks"
 msgstr ""
 
 #. Default: "Overview of tasks that belong to me. The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
-#: ./skins/eXtremeManagement/task_overview.pt
 #: ./skins/eXtremeManagement/iteration_view.pt
+#: ./skins/eXtremeManagement/task_overview.pt
 msgid "description-overview-my-tasks"
 msgstr ""
 
@@ -348,8 +348,8 @@ msgid "heading-booking-date"
 msgstr ""
 
 #. Default: "Bookings"
-#: ./skins/eXtremeManagement/task_view.pt
 #: ./skins/eXtremeManagement/booking_overview.pt
+#: ./skins/eXtremeManagement/task_view.pt
 msgid "heading-bookings"
 msgstr ""
 
@@ -374,8 +374,8 @@ msgid "heading-my-task-overview"
 msgstr ""
 
 #. Default: "My open tasks"
-#: ./skins/eXtremeManagement/task_overview.pt
 #: ./skins/eXtremeManagement/iteration_view.pt
+#: ./skins/eXtremeManagement/task_overview.pt
 msgid "heading-open-tasks"
 msgstr ""
 
@@ -475,8 +475,8 @@ msgid "listingheader-booked-by"
 msgstr ""
 
 #. Default: "Booking"
-#: ./skins/eXtremeManagement/task_view.pt
 #: ./skins/eXtremeManagement/booking_overview.pt
+#: ./skins/eXtremeManagement/task_view.pt
 msgid "listingheader-booking"
 msgstr ""
 
@@ -498,8 +498,8 @@ msgstr ""
 
 #. Default: "Time"
 #: ./skins/eXtremeManagement/booking_month.pt
-#: ./skins/eXtremeManagement/task_view.pt
 #: ./skins/eXtremeManagement/booking_overview.pt
+#: ./skins/eXtremeManagement/task_view.pt
 msgid "listingheader-time"
 msgstr ""
 
@@ -516,9 +516,9 @@ msgid "listingheader_Phone"
 msgstr ""
 
 #. Default: "Actual"
-#: ./skins/eXtremeManagement/task_view.pt
-#: ./skins/eXtremeManagement/story_view.pt
+#: ./skins/eXtremeManagement/iteration_view.pt
 #: ./skins/eXtremeManagement/project_administration.pt
+#: ./skins/eXtremeManagement/story_view.pt
 msgid "listingheader_actual"
 msgstr ""
 
@@ -528,8 +528,8 @@ msgid "listingheader_address"
 msgstr ""
 
 #. Default: "Assignee(s)"
-#: ./skins/eXtremeManagement/task_view.pt
 #: ./skins/eXtremeManagement/story_view.pt
+#: ./skins/eXtremeManagement/task_view.pt
 msgid "listingheader_assignees"
 msgstr ""
 
@@ -570,9 +570,9 @@ msgid "listingheader_enddate"
 msgstr ""
 
 #. Default: "Estimate"
-#: ./skins/eXtremeManagement/task_view.pt
-#: ./skins/eXtremeManagement/story_view.pt
+#: ./skins/eXtremeManagement/iteration_view.pt
 #: ./skins/eXtremeManagement/project_administration.pt
+#: ./skins/eXtremeManagement/story_view.pt
 msgid "listingheader_estimate"
 msgstr ""
 
@@ -617,16 +617,16 @@ msgid "listingheader_startdate"
 msgstr ""
 
 #. Default: "Status"
-#: ./skins/eXtremeManagement/task_view.pt
-#: ./skins/eXtremeManagement/story_view.pt
+#: ./skins/eXtremeManagement/iteration_view.pt
 #: ./skins/eXtremeManagement/project_administration.pt
+#: ./skins/eXtremeManagement/story_view.pt
 msgid "listingheader_state"
 msgstr ""
 
 #. Default: "Story"
+#: ./skins/eXtremeManagement/iteration_view.pt
 #: ./skins/eXtremeManagement/project_view.pt
 #: ./skins/eXtremeManagement/update_hours_form.cpt
-#: ./skins/eXtremeManagement/iteration_view.pt
 msgid "listingheader_story"
 msgstr ""
 
@@ -671,6 +671,11 @@ msgstr ""
 msgid "listingheader_zipCode"
 msgstr ""
 
+#. Default: "Next:"
+#: ./skins/eXtremeManagement/story_view.pt
+msgid "next"
+msgstr ""
+
 #. Default: "No projects are published yet!"
 #: ./skins/eXtremeManagement/project_administration.pt
 msgid "no_projects_found"
@@ -689,6 +694,11 @@ msgstr ""
 #. Default: "No tasks defined yet."
 #: ./skins/eXtremeManagement/story_view.pt
 msgid "no_tasks_defined"
+msgstr ""
+
+#. Default: "Previous:"
+#: ./skins/eXtremeManagement/story_view.pt
+msgid "previous"
 msgstr ""
 
 #. Default: "previous month"
@@ -728,8 +738,8 @@ msgid "task_overview"
 msgstr ""
 
 #. Default: "Total"
-#: ./skins/eXtremeManagement/story_view.pt
 #: ./skins/eXtremeManagement/iteration_view.pt
+#: ./skins/eXtremeManagement/story_view.pt
 msgid "total"
 msgstr ""
 
