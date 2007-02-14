@@ -15,7 +15,7 @@
                              filter python:{'query': path, 'depth': 1};
                              stories python:context.portal_catalog({'path': filter});
                              num_stories python:len(stories);
-                             pos python:context.getStoryPosition(context, stories);
+                             pos python:context.getPosition(context, stories);
                              next python:pos &lt; num_stories-1 and stories[pos+1];
                              prev python:pos != 0 and stories[pos-1];">
 

@@ -5,7 +5,38 @@
     <metal:block metal:use-macro="header" />
     
     <body>
-    <metal:block metal:define-macro="body">
+    <metal:block metal:define-macro="body"
+                 tal:define="path python:'/'.join(context.aq_parent.getPhysicalPath());
+                             filter python:{'query': path, 'depth': 1};
+                             tasks python:context.portal_catalog({'path': filter});
+                             num_tasks python:len(tasks);
+                             pos python:context.getPosition(context, tasks);
+                             next python:pos &lt; num_tasks-1 and tasks[pos+1];
+                             prev python:pos != 0 and tasks[pos-1];">
+
+      <div class="listingBar">
+        <a class="listingNext"
+           tal:condition="python:next"
+           tal:attributes="href next/getURL"
+           tabindex="1"
+           href="">
+          <span i18n:translate="next">
+            Next: </span>
+          <span tal:replace="next/Title" />
+          <img tal:replace="structure here/arrowRight.gif" />
+        </a>
+        <a class="listingPrevious"
+           tal:condition="python:prev"
+           tal:attributes="href prev/getURL"
+           tabindex="1"
+           href="">
+          <img tal:replace="structure here/arrowLeft.gif" />
+          <span i18n:translate="previous">
+            Previous: </span>
+          <span tal:replace="prev/Title" />
+        </a>
+          &nbsp;
+      </div>
         <div class="documentDescription"
              tal:condition="here/Description"
              tal:content="here/Description">
