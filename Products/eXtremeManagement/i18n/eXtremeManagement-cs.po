@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-02-12 14:26+0000\n"
+"POT-Creation-Date: 2007-02-14 15:14+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -580,8 +580,8 @@ msgstr "Telefon"
 
 #. Default: "Actual"
 #: ./skins/eXtremeManagement/task_view.pt
-#: ./skins/eXtremeManagement/update_hours_form.cpt
 #: ./skins/eXtremeManagement/story_view.pt
+#: ./skins/eXtremeManagement/project_administration.pt
 msgid "listingheader_actual"
 msgstr "Aktuální"
 
@@ -634,8 +634,8 @@ msgstr "Datum ukončení"
 
 #. Default: "Estimate"
 #: ./skins/eXtremeManagement/task_view.pt
-#: ./skins/eXtremeManagement/update_hours_form.cpt
 #: ./skins/eXtremeManagement/story_view.pt
+#: ./skins/eXtremeManagement/project_administration.pt
 msgid "listingheader_estimate"
 msgstr "Odhadnout"
 
@@ -704,8 +704,8 @@ msgid "listingheader_tasks_open"
 msgstr "Otevřené úkoly"
 
 #. Default: "Title"
-#: ./skins/eXtremeManagement/update_hours_form.cpt
 #: ./skins/eXtremeManagement/story_view.pt
+#: ./skins/eXtremeManagement/update_hours_form.cpt
 msgid "listingheader_title"
 msgstr "Název"
 
