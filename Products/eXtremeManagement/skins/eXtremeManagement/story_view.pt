@@ -11,15 +11,18 @@
                              totalActual python:here.getActualHours();
                              totalDifference python:here.getDifference();
                              items context/getStateSortedContents;
-                             stories python:context.aq_parent.contentValues();
+                             path python:'/'.join(context.aq_parent.getPhysicalPath());
+                             filter python:{'query': path, 'depth': 1};
+                             stories python:context.portal_catalog({'path': filter});
                              num_stories python:len(stories);
                              pos python:context.getStoryPosition(context, stories);
                              next python:pos &lt; num_stories-1 and stories[pos+1];
                              prev python:pos != 0 and stories[pos-1];">
+
       <div class="listingBar">
         <a class="listingNext"
            tal:condition="python:next"
-           tal:attributes="href next/absolute_url"
+           tal:attributes="href next/getURL"
            tabindex="1"
            href="">
           <span i18n:translate="next">
@@ -29,7 +32,7 @@
         </a>
         <a class="listingPrevious"
            tal:condition="python:prev"
-           tal:attributes="href prev/absolute_url"
+           tal:attributes="href prev/getURL"
            tabindex="1"
            href="">
           <img tal:replace="structure here/arrowLeft.gif" />

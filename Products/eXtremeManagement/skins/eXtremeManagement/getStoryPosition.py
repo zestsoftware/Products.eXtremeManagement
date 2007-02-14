@@ -3,7 +3,7 @@
 ##parameters=obj=None,stories=None
 
 for i in range(len(stories)):
-    if stories[i].getId() == obj.getId():
+    if stories[i].getId == obj.getId():
         return i
 return None
 
