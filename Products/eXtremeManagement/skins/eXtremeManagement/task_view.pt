@@ -12,9 +12,11 @@
                              num_tasks python:len(tasks);
                              pos context/getObjPositionInParent;
                              next python:pos &lt; num_tasks-1 and tasks[pos+1];
-                             prev python:pos != 0 and tasks[pos-1];">
+                             prev python:pos != 0 and tasks[pos-1];
+                             single_object python:not (next or prev);">
 
-      <div class="listingBar">
+      <div class="listingBar"
+           tal:condition="not:single_object">
         <a class="listingNext"
            tal:condition="python:next"
            tal:attributes="href next/getURL"
