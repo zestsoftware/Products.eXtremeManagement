@@ -71,15 +71,15 @@
                                 class="project-list-info">
                                 <tal:block tal:define="iterationObj iteration/getObject;">
                                 <td class="td-story-title">
-                                    <img alt="" 
-                                        height="16" 
-                                        width="16"
-                                        tal:attributes="src string:${here/portal_url}/${iteration/getIcon};" /> 
+                                  <tal:block replace="structure python:getattr(iterationObj, iterationObj.getIcon(1)).tag(alt=iterationObj.portal_type)" />
                                     <a tal:attributes="href string:${iteration/getURL}"
                                        tal:content="iteration/Title" /> 
                                 </td>
-                            
-                                <td tal:content="iteration/review_state" />
+                                <td tal:content="iteration/review_state"
+                                    i18n:domain="plone"
+                                    i18n:translate=""
+                                    class=""
+                                    tal:attributes="class python:'td-center state-'+normalizeString(iteration.review_state)" />
                                 <td tal:define="iterationObj iteration/getObject;
                                                 projectEstimate python:iterationObj.getEstimate()"
                                     tal:content="projectEstimate" />
