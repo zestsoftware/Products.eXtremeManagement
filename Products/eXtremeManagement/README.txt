@@ -1,7 +1,9 @@
 eXtreme Management Tool
+=======================
 
 
 Features
+--------
 
 This application provides project administration which supports the
 eXtreme Programming Methodology.  By developing a number of new
@@ -10,6 +12,7 @@ XP projects.
 
 
 Content Types
+-------------
 
     * Project
       Multiple projects can be added by employees. For each project
@@ -30,6 +33,7 @@ Content Types
 
 
 Workflow
+--------
 
 Customers can create stories and submit them for estimating. The
 employees will find pending stories in the review portlet and can
@@ -48,12 +52,14 @@ hours on the tasks as the project goes on.
 
 
 Time Registration
+-----------------
 
 When a developer has done work on a task he can add bookings to the
 task and describe the work in the comment field.
 
 
 Project overview
+----------------
 
 Customers can monitor all progress at the project overview page. This
 gives the customer the "Overall Plan" by showing each iteration in a
