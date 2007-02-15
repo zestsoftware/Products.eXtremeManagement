@@ -57,7 +57,7 @@ msgstr "Mijn projecten"
 #. Default: "Pending Stories"
 #: ./skins/eXtremeManagement/portlet_stories.pt
 msgid "box_stories"
-msgstr "Afwachtende stories"
+msgstr "In te schatten verhalen"
 
 #. Default: "current month"
 #: ./skins/eXtremeManagement/booking_month.pt
