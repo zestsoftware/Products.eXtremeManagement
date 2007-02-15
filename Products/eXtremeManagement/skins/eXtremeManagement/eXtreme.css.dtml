@@ -174,14 +174,23 @@
 
 /* Review states */
 
-.state-completed {
+.state-new, .state-open, .state-draft {
+    color: Red !important;
+}
+.state-pending-estimate {
+    color: #FFA500 !important;
+}
+.state-estimated {
     color: #74AE0B !important;
 }
-.state-in-progress, .state-to-do {
+.state-active, .state-in-progress, .state-to-do {
     color: &dtml-linkColor; !important;
 }
-.state-new, .state-open {
-    color: #FFA500 !important;
+.state-completed {
+    color: #008000 !important;
+}
+.state-invoiced {
+    color: &dtml-discreetColor; !important;
 }
 
 /* </dtml-with> */
