@@ -19,17 +19,13 @@
                             itemClass python:test(end, 'portletItemLast', 'portletItem');
                             class python:itemClass + test(oddrow, ' even', ' odd')"
                 tal:attributes="class class">
-              <span class="visualIcon contenttype-project">    
-                <a tal:attributes="href item/getURL">
-                    <img alt=""
-                            height="16" 
-                            width="16"
-                            tal:attributes="src string:${here/portal_url}/${item/getIcon};" />
-                    <span tal:replace="item/Title"> 
-                        ECP 
-                    </span>
-                </a>
-              </span>
+              <div class="visualIcon contenttype-project">
+                <div class="visualIconPadding">
+                  <a tal:attributes="href item/getURL">
+                    <span tal:replace="item/Title" />
+                  </a>
+                </div>
+              </div>
             </dd>
             </tal:block>
         </dl>

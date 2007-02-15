@@ -45,10 +45,7 @@
                     class="header_iteration">
                   <a  class="header_iteration_project_overview"
                       tal:attributes="href string:${obj/absolute_url}">
-
-                    <img tal:attributes="src string:${here/portal_url}/${obj/getIcon}"
-                         alt="project overview"
-                         i18n:attributes="alt project_overview"/>
+                    <tal:block replace="structure python:getattr(obj, obj.getIcon(1)).tag(alt=obj.portal_type)" />
                     <span tal:replace="obj/Title" />
                   </a>
                 </th>
@@ -89,8 +86,7 @@
                     class="header_iteration">
                   <a class="header_iteration_project_overview"
                      tal:attributes="href string:${obj/absolute_url}">
-                    <img tal:attributes="src string:${here/portal_url}/${obj/getIcon};
-                                         alt string:Project overview"/>
+                    <tal:block replace="structure python:getattr(obj, obj.getIcon(1)).tag(alt=obj.portal_type)" />
                     <span tal:replace="obj/Title">Title</span>
                   </a>
                 </th>
