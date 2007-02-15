@@ -57,11 +57,6 @@
     padding-bottom: 5px;
 }
 
-.iteration-state {
-    text-align: right;
-    border-left: none;
-}
-
 #totalTasks, .customer_info_header,
 #task_header {
     font-weight: bold !important;
@@ -177,5 +172,16 @@
     width: 30%; 
 }
 
+/* Review states */
+
+.state-completed {
+    color: #74AE0B !important;
+}
+.state-in-progress, .state-to-do {
+    color: &dtml-linkColor; !important;
+}
+.state-new, .state-open {
+    color: #FFA500 !important;
+}
 
 /* </dtml-with> */

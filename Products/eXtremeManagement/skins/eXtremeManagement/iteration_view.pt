@@ -60,7 +60,8 @@
                         tal:content="review_state"
                         i18n:domain="plone"
                         i18n:translate=""
-                        class="td-center" />
+                        class=""
+                        tal:attributes="class python:'td-center state-'+normalizeString(review_state)" />
                     <td tal:content="python:storyObj.getEstimate()" />
                     <td tal:content="python:storyObj.getActualHours()" />
                     </tal:block>
