@@ -114,7 +114,7 @@
                         <tal:block tal:condition="python: test(member.getFullname == '',0,1)">
                         <td>
                             <a tal:attributes="href string:${member/absolute_url}">
-                                <img src="user.gif" alt="" /> 
+                              <img tal:replace="structure context/user.gif" />
                                 <span tal:replace="member/getFullname">Name</span>
                             </a>
                         </td>

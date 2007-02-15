@@ -81,8 +81,7 @@
                 <td>
                     <tal:block
                           tal:repeat="item here/getAssignees">
-                        <img src="user.gif"
-                             alt="" />
+                        <img tal:replace="structure context/user.gif" />
                         <span tal:replace="item">Assignee</span>
                         <br />
                     </tal:block>

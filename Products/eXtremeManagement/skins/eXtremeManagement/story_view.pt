@@ -99,9 +99,7 @@
                       class="td-center" />
                   <td class="td-center">
                     <tal:assignees tal:repeat="newItem task/getAssignees">
-                      <img src="user.gif"
-                           alt="user"
-                           i18n:attributes="alt user" />
+                      <img tal:replace="structure context/user.gif" />
                       <span tal:replace="newItem">Assignee</span>
                       <br />
                     </tal:assignees>
