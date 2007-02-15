@@ -13,11 +13,9 @@ Installation
 Dependencies
 ============
 
-  * Plone 2.1 series with Zope 2.8 OR
+  * Plone 2.1 series with Zope 2.8 or 2.9 OR
 
   * Plone 2.5 series with Zope 2.9
-
-  It might work with other versions, but we don't test that.
 
 
 Recommended Products
@@ -55,12 +53,8 @@ much has been booked on them.  This used to take quite long to compute
 as you would need to go in the Zope database and wake up all the
 Booking objects for all those tasks.  So some optimizations were done
 so Tasks get their info out of the catalog, which is much faster.
-This makes part of the code a bit hacky as the total for that task
-needs to be correct also after moving or deleting a Booking.  It seems
-to go fine now though and there are tests for this.  If you see any
-errors, please report them.
 
-At least in one case it goes wrong at the moment.  When you go to the
+In one case it goes wrong at the moment.  When you go to the
 portal_catalog in the Zope Management Interface and perform for
 instance a Clear and Rebuild, you'll get wrong totals for Tasks.  This
 happens because at the moment the Task gets catalogued, none of its
@@ -68,37 +62,13 @@ Bookings are in the catalog, so its total will be zero hours.  The
 solution is to recatalog the Tasks after the Clear and Rebuild is
 finished.
 
-In every other case that you find for a single task, the totals should
-be fine again after the task is reindexed, which can be forced e.g. by
-editing it or performing a workflow transition, or adding or editing a
-Booking in that Task.
-
-Anyway, this should work a lot cleaner with Zope 3 events, but those
-are not available in Zope 2.8, which we still want to support.
-
 
 Skins
 =====
 
-   Just so you know: eXtremeManagement by default installs its own
-   skin.
+eXtremeManagement by default installs its own skin next to Plone
+Default and Tableless.  We plan to get rid of that in the future.
 
-
-Migration from before release 1.0
-=================================
-
- * If you have been using the subversion trunk from before the first
-   official release, then you may have a migration issue.  The
-   workflow for Tasks has been simplified, which means some old states
-   now don't exist anymore.  Upon reinstall the migration code will
-   take care of this.  Assigned and estimated tasks are set to the
-   open state.  In-progress tasks normally get the to-do status.  In a
-   few cases this may not work.  When that in-progress task doesn't
-   have an estimate (or rather: it is 0) or it doesn't have any
-   assignees, then it will go to the open state instead.  If you don't
-   like that, you can fix those tasks by hand either before or after
-   the migration.  The reinstall will leave a url and explanation for
-   each offending task in the install log.
 
 Conflicting Products
 ====================
