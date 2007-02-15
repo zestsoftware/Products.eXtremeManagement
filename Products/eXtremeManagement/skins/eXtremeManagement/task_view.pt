@@ -10,7 +10,7 @@
                              filter python:{'query': path, 'depth': 1};
                              tasks python:context.portal_catalog({'path': filter});
                              num_tasks python:len(tasks);
-                             pos python:context.getPosition(context, tasks);
+                             pos context/getObjPositionInParent;
                              next python:pos &lt; num_tasks-1 and tasks[pos+1];
                              prev python:pos != 0 and tasks[pos-1];">
 
