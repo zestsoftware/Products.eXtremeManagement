@@ -54,20 +54,18 @@ def configurePortalProps(portal):
 
 def setupSkin(portal):
     # Set up the skins
-    _dirs = ('eXtremeManagement', )
     sk_tool = getToolByName(portal, 'portal_skins')
-    path = [elem.strip() for elem in sk_tool.getSkinPath('Plone Default').split(',')]
-
-    for d in _dirs:
-        try: path.insert(path.index('custom')+1, d)
-        except ValueError: path.append(d)
-
-    path = ','.join(path)
-    sk_tool.addSkinSelection('eXtremeManagement', path)
-    if not 'eXtremeManagement' in  portal.portal_skins.objectIds():
+    # Add our skins dir.
+    if not 'eXtremeManagement' in  sk_tool.objectIds():
         addDirectoryViews(sk_tool, 'skins', globals())
-    # set default skin
-    sk_tool.default_skin = 'eXtremeManagement'
+    if 'eXtremeManagement' in sk_tool.getSkinSelections():
+        # If eXtremeManagement is the default selection, reset it to
+        # Plone Default.
+        if sk_tool.getDefaultSkin() == 'eXtremeManagement':
+            sk_tool.default_skin = 'Plone Default'
+        # Remove our own skin selection.
+        sk_tool.manage_skinLayers(chosen=['eXtremeManagement'],
+                                  del_skin='Delete')
 
 
 def addFolders(portal):
