@@ -66,18 +66,6 @@ def removeSkinSelection(portal, out):
         print >> out, "Removed the eXtremeManagement skin selection."
 
 
-def addFolders(portal):
-    wf = getToolByName(portal, 'portal_workflow')
-    if not 'customers' in portal.objectIds():
-        portal.invokeFactory(type_name='CustomerFolder', id='customers', title='Customers')
-        types_tool = getToolByName(portal, 'portal_types')
-        types_tool.CustomerFolder._updateProperty('global_allow', 0)
-
-    if not 'projects' in portal.objectIds():
-        portal.invokeFactory(type_name='ProjectFolder', id='projects', title='Projects')
-        types_tool = getToolByName(portal, 'portal_types')
-        types_tool.ProjectFolder._updateProperty('global_allow', 0)
-
 def disableJoinLink(portal):
     """- Only manager is allowed to add members.
     """
@@ -219,9 +207,6 @@ def install(self):
     print >> out, "Customizing portal properties"
     configurePortalProps(self)
  
-    # Turned off for now.
-    #print >> out, "Adding default folders"
-    #addFolders(self)
     disableJoinLink(self)
 
     print >> out, "Integrate our types in kupu, if it is installed."
