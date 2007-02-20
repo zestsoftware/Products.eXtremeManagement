@@ -52,8 +52,7 @@ def configurePortalProps(portal):
             tuple(metaTypesNotToList) + tuple(ptypes))
 
 
-def setupSkin(portal):
-    # Set up the skins
+def setupSkin(portal, out):
     sk_tool = getToolByName(portal, 'portal_skins')
     # Add our skins dir.
     if not 'eXtremeManagement' in  sk_tool.objectIds():
@@ -63,9 +62,11 @@ def setupSkin(portal):
         # Plone Default.
         if sk_tool.getDefaultSkin() == 'eXtremeManagement':
             sk_tool.default_skin = 'Plone Default'
+            print >> out, "Set Plone Default as default skin instead of eXtremeManagement."
         # Remove our own skin selection.
         sk_tool.manage_skinLayers(chosen=['eXtremeManagement'],
                                   del_skin='Delete')
+        print >> out, "Removed the eXtremeManagement skin selection."
 
 
 def addFolders(portal):
@@ -211,13 +212,12 @@ def install(self):
 
     install_subskin(self, out, GLOBALS)
 
-    out.write("Successfully installed %s." % PROJECTNAME)
+    out.write("Successfully installed %s.\n" % PROJECTNAME)
 
     addOurRoles(self)
-    out.write("Added our extra roles.")
+    out.write("Added our extra roles.\n")
    
-    print >> out, "Customize the portal"
-    setupSkin(self)
+    setupSkin(self, out)
  
     print >> out, "Customizing portal properties"
     configurePortalProps(self)
