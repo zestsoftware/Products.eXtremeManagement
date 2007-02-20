@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<object name="portal_factory" meta_type="Plone Factory Tool">
+ <factorytypes>
+  <type portal_type="Booking"/>
+  <type portal_type="Customer"/>
+  <type portal_type="CustomerFolder"/>
+  <type portal_type="Iteration"/>
+  <type portal_type="Project"/>
+  <type portal_type="ProjectFolder"/>
+  <type portal_type="ProjectMember"/>
+  <type portal_type="Story"/>
+  <type portal_type="Task"/>
+  <type portal_type="eXtremeManagementTool"/>
+ </factorytypes>
+</object>

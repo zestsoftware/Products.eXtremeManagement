@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+ <index name="getAddress" meta_type="FieldIndex">
+  <indexed_attr value="getAddress"/>
+ </index>
+ <index name="getAssignees" meta_type="FieldIndex">
+  <indexed_attr value="getAssignees"/>
+ </index>
+ <index name="getBookingDate" meta_type="DateIndex">
+  <property name="index_naive_time_as_local">True</property>
+ </index>
+ <index name="getCity" meta_type="FieldIndex">
+  <indexed_attr value="getCity"/>
+ </index>
+ <index name="getCountry" meta_type="FieldIndex">
+  <indexed_attr value="getCountry"/>
+ </index>
+ <index name="getEmail" meta_type="FieldIndex">
+  <indexed_attr value="getEmail"/>
+ </index>
+ <index name="getEstimate" meta_type="FieldIndex">
+  <indexed_attr value="getEstimate"/>
+ </index>
+ <index name="getFax" meta_type="FieldIndex">
+  <indexed_attr value="getFax"/>
+ </index>
+ <index name="getFullname" meta_type="FieldIndex">
+  <indexed_attr value="getFullname"/>
+ </index>
+ <index name="getHours" meta_type="FieldIndex">
+  <indexed_attr value="getHours"/>
+ </index>
+ <index name="getMinutes" meta_type="FieldIndex">
+  <indexed_attr value="getMinutes"/>
+ </index>
+ <index name="getName" meta_type="FieldIndex">
+  <indexed_attr value="getName"/>
+ </index>
+ <index name="getPhone" meta_type="FieldIndex">
+  <indexed_attr value="getPhone"/>
+ </index>
+ <index name="getRawActualHours" meta_type="FieldIndex">
+  <indexed_attr value="getRawActualHours"/>
+ </index>
+ <index name="getRawDifference" meta_type="FieldIndex">
+  <indexed_attr value="getRawDifference"/>
+ </index>
+ <index name="getRawEstimate" meta_type="FieldIndex">
+  <indexed_attr value="getRawEstimate"/>
+ </index>
+ <index name="getRawRelatedItems" meta_type="KeywordIndex">
+  <indexed_attr value="getRawRelatedItems"/>
+ </index>
+ <index name="getWebsite" meta_type="FieldIndex">
+  <indexed_attr value="getWebsite"/>
+ </index>
+ <index name="getZipCode" meta_type="FieldIndex">
+  <indexed_attr value="getZipCode"/>
+ </index>
+ <column value="getAssignees"/>
+ <column value="getBookingDate"/>
+ <column value="getRawActualHours"/>
+ <column value="getRawDifference"/>
+ <column value="getRawEstimate"/>
+</object>
