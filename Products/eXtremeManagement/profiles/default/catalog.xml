@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
+  <!-- All these indexes automatically get cleared during a reinstall, so -->
+  <!-- we also need to reindex them in some other code. -->
  <index name="getAddress" meta_type="FieldIndex">
   <indexed_attr value="getAddress"/>
  </index>

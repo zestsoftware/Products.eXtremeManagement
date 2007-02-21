@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<import-steps>
+  <import-step id="eXtremeManagement_various"
+               version="20060725-01"
+               handler="Products.eXtremeManagement.setuphandlers.importVarious"
+               title="eXtremeManagement: miscellaneous import steps">
+    <dependency step="catalog" />
+    Import steps that couldn't be mapped to other handlers.
+  </import-step>
+</import-steps>
