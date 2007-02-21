@@ -14,44 +14,6 @@ from sets import Set
 from Products.eXtremeManagement.config import *
 
 
-def configurePortalProps(portal):
-    # customize portal props (slots)
-    left_slots = portal.getProperty('left_slots', None)
-    newSlots = ()
-    for slot in XM_LEFT_SLOTS:
-        if slot not in left_slots:
-            newSlots = newSlots + (slot,)
-    portal._updateProperty('left_slots', tuple(left_slots) + newSlots) 
-
-    right_slots = portal.getProperty('right_slots', None)
-    newSlots = ()
-    for slot in XM_RIGHT_SLOTS:
-        if slot not in right_slots:
-            newSlots = newSlots + (slot,)
-    portal._updateProperty('right_slots', tuple(right_slots) + newSlots) 
-
-    # update navtree_props
-    props_tool = getToolByName(portal, 'portal_properties')
-    if props_tool.navtree_properties.hasProperty('rolesSeeUnpublishedContent'):
-        rolesSeeUnpublishedContent = props_tool.navtree_properties.getProperty(
-            'rolesSeeUnpublishedContent')
-        roles = ('Customer',)
-        newroles = [role for role in roles if role not in rolesSeeUnpublishedContent]
-
-        props_tool.navtree_properties._updateProperty(
-            'rolesSeeUnpublishedContent',
-            tuple(rolesSeeUnpublishedContent) + tuple(newroles))
-
-    if props_tool.navtree_properties.hasProperty('metaTypesNotToList'):
-        metaTypesNotToList = props_tool.navtree_properties.getProperty(
-            'metaTypesNotToList')
-        ptypes = ('ProjectMember','Booking','Task')
-        newptypes = [ptype for ptype in ptypes if ptype not in metaTypesNotToList]
-        props_tool.navtree_properties._updateProperty(
-            'metaTypesNotToList',
-            tuple(metaTypesNotToList) + tuple(ptypes))
-
-
 def removeSkinSelection(portal, out):
     sk_tool = getToolByName(portal, 'portal_skins')
     if 'eXtremeManagement' in sk_tool.getSkinSelections():
@@ -64,12 +26,6 @@ def removeSkinSelection(portal, out):
         sk_tool.manage_skinLayers(chosen=['eXtremeManagement'],
                                   del_skin='Delete')
         print >> out, "Removed the eXtremeManagement skin selection."
-
-
-def disableJoinLink(portal):
-    """- Only manager is allowed to add members.
-    """
-    portal.manage_permission('Add portal member', ['Manager'], 0)
 
 
 def _migrateSchema(self, contentType):
@@ -204,11 +160,6 @@ def install(self):
    
     removeSkinSelection(self, out)
  
-    print >> out, "Customizing portal properties"
-    configurePortalProps(self)
- 
-    disableJoinLink(self)
-
     print >> out, "Integrate our types in kupu, if it is installed."
     configureKupu(self)
 
