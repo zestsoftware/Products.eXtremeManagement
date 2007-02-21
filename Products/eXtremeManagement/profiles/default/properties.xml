@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <site>
- <property name="left_slots" type="lines">
+ <property name="left_slots" type="lines" purge="False">
   <element value="here/portlet_stories/macros/portlet"/>
  </property>
- <property name="right_slots" type="lines">
+ <property name="right_slots" type="lines" purge="False">
   <element value="here/portlet_tasks/macros/portlet"/>
   <element value="here/portlet_my_projects/macros/portlet"/>
  </property>

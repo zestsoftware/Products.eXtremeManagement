@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <object name="portal_properties" meta_type="Plone Properties Tool">
   <object name="navtree_properties" meta_type="Plone Property Sheet">
-  <property name="idsNotToList" type="lines">
+  <property name="idsNotToList" type="lines" purge="False">
    <element value="xm_tool"/>
   </property>
-  <property name="metaTypesNotToList" type="lines">
+  <property name="metaTypesNotToList" type="lines" purge="False">
    <element value="Booking"/>
    <element value="ProjectMember"/>
    <element value="Story"/>
@@ -12,7 +12,7 @@
   </property>
  </object>
  <object name="site_properties" meta_type="Plone Property Sheet">
-  <property name="use_folder_tabs" type="lines">
+  <property name="use_folder_tabs" type="lines" purge="False">
    <element value="CustomerFolder"/>
    <element value="Customer"/>
    <element value="ProjectFolder"/>
@@ -21,7 +21,7 @@
    <element value="Story"/>
    <element value="Task"/>
   </property>
-  <property name="typesLinkToFolderContentsInFC" type="lines">
+  <property name="typesLinkToFolderContentsInFC" type="lines" purge="False">
    <element value="CustomerFolder"/>
    <element value="Customer"/>
    <element value="ProjectFolder"/>
@@ -30,7 +30,7 @@
    <element value="Story"/>
    <element value="Task"/>
   </property>
-  <property name="types_not_searched" type="lines">
+  <property name="types_not_searched" type="lines" purge="False">
    <element value="eXtremeManagementTool"/>
   </property>
  </object>
