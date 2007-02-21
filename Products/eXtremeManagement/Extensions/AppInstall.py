@@ -112,20 +112,21 @@ def configureKupu(portal):
                                    'old_type'      : 'collection',
                                    'portal_types'  :  collection},))
 
+
 def addOurRoles(portal):
     """Add our extra roles to Plone.
+
+    Part of this is done through GenericSetup, but adding roles to the
+    PlonePAS role manager does not work there.
     """
 
-    defined_roles = getattr(portal, '__acl_roles__', ())
     if HAS_PAS:
         role_manager = portal.acl_users.portal_role_manager
         pas_roles = role_manager.listRoleIds()
+        for role in NEW_ROLES:
+            if role not in pas_roles:
+                role_manager.addRole(role)
 
-    for role in NEW_ROLES:
-        if role not in defined_roles:
-            portal._addRole(role)
-        if HAS_PAS and role not in pas_roles:
-            role_manager.addRole(role)
 
 def applyGenericSetupProfile(portal, out):
     setup_tool = getToolByName(portal, 'portal_setup')

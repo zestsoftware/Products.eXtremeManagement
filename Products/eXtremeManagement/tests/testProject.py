@@ -90,6 +90,10 @@ class testProject(eXtremeManagementTestCase):
         self.membership.addMember('employee1', 'secret', ['Employee'], [])
         self.membership.addMember('employee2', 'secret', [], [])
         self.project.manage_addLocalRoles('employee2',['Employee'])
+
+        roleman = self.portal.acl_users.portal_role_manager
+        self.assertEqual(len(roleman.listAssignedPrincipals('Employee')), 1)
+
         # Local roles are mentioned before global roles.
         # By default global and local roles are included.
         self.assertEqual(self.project.getMembers(), ['employee2', 'employee1'])
