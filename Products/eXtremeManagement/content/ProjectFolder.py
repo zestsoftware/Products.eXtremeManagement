@@ -32,34 +32,29 @@ from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
 from Products.eXtremeManagement.config import *
 
-##code-section module-header #fill in your manual code here
 from Products.CMFCore.permissions import ManageProperties
-##/code-section module-header
+from zope.interface import implements
+from Products.eXtremeManagement.interfaces import IXMProjectFolder
 
 schema = Schema((
 
 ),
 )
 
-##code-section after-local-schema #fill in your manual code here
-
 OrderedBaseFolderSchema = OrderedBaseFolderSchema.copy()
 OrderedBaseFolderSchema['description'].isMetadata = False
 OrderedBaseFolderSchema['description'].schemata = 'default'
 
-##/code-section after-local-schema
 
 ProjectFolder_schema = OrderedBaseFolderSchema.copy() + \
     schema.copy()
-
-##code-section after-schema #fill in your manual code here
-##/code-section after-schema
 
 class ProjectFolder(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
     __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
+    implements(IXMProjectFolder)
 
     # This name appears in the 'add' box
     archetype_name = 'ProjectFolder'

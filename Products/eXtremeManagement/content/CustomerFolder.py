@@ -32,34 +32,30 @@ from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
 from Products.eXtremeManagement.config import *
 
-##code-section module-header #fill in your manual code here
+from zope.interface import implements
+from Products.eXtremeManagement.interfaces import IXMCustomerFolder
 
 from Products.CMFCore.permissions import ManageProperties
 BaseFolderSchema = OrderedBaseFolderSchema.copy()
 OrderedBaseFolderSchema['description'].isMetadata = False
 OrderedBaseFolderSchema['description'].schemata = 'default'
 
-##/code-section module-header
 
 schema = Schema((
 
 ),
 )
 
-##code-section after-local-schema #fill in your manual code here
-##/code-section after-local-schema
-
 CustomerFolder_schema = OrderedBaseFolderSchema.copy() + \
     schema.copy()
 
-##code-section after-schema #fill in your manual code here
-##/code-section after-schema
 
 class CustomerFolder(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
     __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
+    implements(IXMCustomerFolder)
 
     # This name appears in the 'add' box
     archetype_name = 'CustomerFolder'

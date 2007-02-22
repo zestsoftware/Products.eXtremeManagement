@@ -32,36 +32,27 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
-##code-section module-header #fill in your manual code here
-##/code-section module-header
-
-#
-# Test-cases for class(es) ProjectMember
-#
-
 from Testing import ZopeTestCase
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 
-# Import the tested classes
 from Products.eXtremeManagement.content.ProjectMember import ProjectMember
-
-##code-section module-beforeclass #fill in your manual code here
-##/code-section module-beforeclass
+from Products.eXtremeManagement.interfaces import IXMProjectMember
 
 
 class testProjectMember(eXtremeManagementTestCase):
     """ test-cases for class(es) ProjectMember
     """
 
-    ##code-section class-header_testProjectMember #fill in your manual code here
-    ##/code-section class-header_testProjectMember
-
     def afterSetUp(self):
         """
         """
         pass
-    # Manually created methods
+
+    def test_interfaces(self):
+        """ Test that ProjectMember plays nice with interfaces.
+        """
+        self.failUnless(IXMProjectMember.implementedBy(ProjectMember))
 
 
 def test_suite():
@@ -70,8 +61,6 @@ def test_suite():
     suite.addTest(makeSuite(testProjectMember))
     return suite
 
-##code-section module-footer #fill in your manual code here
-##/code-section module-footer
 
 if __name__ == '__main__':
     framework()

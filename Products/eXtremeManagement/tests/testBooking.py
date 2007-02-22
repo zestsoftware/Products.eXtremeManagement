@@ -32,30 +32,17 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
-##code-section module-header #fill in your manual code here
-##/code-section module-header
-
-#
-# Test-cases for class(es) Booking
-#
-
 from Testing import ZopeTestCase
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 
-# Import the tested classes
 from Products.eXtremeManagement.content.Booking import Booking
-
-##code-section module-beforeclass #fill in your manual code here
-##/code-section module-beforeclass
+from Products.eXtremeManagement.interfaces import IXMBooking
 
 
 class testBooking(eXtremeManagementTestCase):
     """ test-cases for class(es) Booking
     """
-
-    ##code-section class-header_testBooking #fill in your manual code here
-    ##/code-section class-header_testBooking
 
     def afterSetUp(self):
         self.catalog = self.portal.portal_catalog
@@ -79,6 +66,11 @@ class testBooking(eXtremeManagementTestCase):
         self.task = self.story.task
         self.task.invokeFactory('Booking', id='booking', hours=3, minutes=15)
         self.booking = self.task.booking
+
+    def test_interfaces(self):
+        """ Test that Booking plays nice with interfaces.
+        """
+        self.failUnless(IXMBooking.implementedBy(Booking))
 
     # from class Booking:
     def test__renameAfterCreation(self):

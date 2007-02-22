@@ -32,30 +32,18 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
-##code-section module-header #fill in your manual code here
-##/code-section module-header
-
-#
-# Test-cases for class(es) ProjectFolder
-#
 
 from Testing import ZopeTestCase
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 
-# Import the tested classes
 from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
-
-##code-section module-beforeclass #fill in your manual code here
-##/code-section module-beforeclass
+from Products.eXtremeManagement.interfaces import IXMProjectFolder
 
 
 class testProjectFolder(eXtremeManagementTestCase):
     """ test-cases for class(es) ProjectFolder
     """
-
-    ##code-section class-header_testProjectFolder #fill in your manual code here
-    ##/code-section class-header_testProjectFolder
 
     def afterSetUp(self):
         """
@@ -67,11 +55,10 @@ class testProjectFolder(eXtremeManagementTestCase):
         self.projects.invokeFactory('Project', id='project')
         self.project = self.projects.project
 
-    # from class ProjectFolder:
-    def test_project_listing(self):
-        pass
-
-    # Manually created methods
+    def test_interfaces(self):
+        """ Test that ProjectFolder plays nice with interfaces.
+        """
+        self.failUnless(IXMProjectFolder.implementedBy(ProjectFolder))
 
     def test_projectFolder(self):
         """Test adding a ProjectFolder in the portal root
@@ -88,8 +75,6 @@ def test_suite():
     suite.addTest(makeSuite(testProjectFolder))
     return suite
 
-##code-section module-footer #fill in your manual code here
-##/code-section module-footer
 
 if __name__ == '__main__':
     framework()

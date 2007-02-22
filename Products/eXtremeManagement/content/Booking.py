@@ -33,6 +33,9 @@ from Products.Archetypes.atapi import *
 from Products.eXtremeManagement.config import *
 
 ##code-section module-header #fill in your manual code here
+from zope.interface import implements
+from Products.eXtremeManagement.interfaces import IXMBooking
+
 BaseSchema = BaseSchema.copy()
 BaseSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 from DateTime import DateTime
@@ -110,6 +113,7 @@ class Booking(BaseContent):
     """
     security = ClassSecurityInfo()
     __implements__ = (getattr(BaseContent,'__implements__',()),)
+    implements(IXMBooking)
 
     # This name appears in the 'add' box
     archetype_name = 'Booking'

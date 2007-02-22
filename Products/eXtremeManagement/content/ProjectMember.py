@@ -31,14 +31,13 @@ __docformat__ = 'plaintext'
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
 from Products.eXtremeManagement.config import *
-
-##code-section module-header #fill in your manual code here
+from zope.interface import implements
+from Products.eXtremeManagement.interfaces import IXMProjectMember
 
 BaseSchema = BaseSchema.copy()
 BaseSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 #BaseSchema['title'].widget.visible = {'edit':'hidden', 'view':'invisible'}
 
-##/code-section module-header
 
 schema = Schema((
 
@@ -85,21 +84,17 @@ schema = Schema((
 ),
 )
 
-##code-section after-local-schema #fill in your manual code here
-##/code-section after-local-schema
-
 ProjectMember_schema = BaseSchema.copy() + \
     schema.copy()
 
-##code-section after-schema #fill in your manual code here
 ProjectMember_schema = schema + BaseSchema
-##/code-section after-schema
 
 class ProjectMember(BaseContent):
     """
     """
     security = ClassSecurityInfo()
     __implements__ = (getattr(BaseContent,'__implements__',()),)
+    implements(IXMProjectMember)
 
     # This name appears in the 'add' box
     archetype_name = 'ProjectMember'

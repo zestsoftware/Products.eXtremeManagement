@@ -33,12 +33,19 @@ __docformat__ = 'plaintext'
 
 import IXMCustomer as IXMCustomerZope2
 
+from xmcustomerfolder import IXMCustomerFolder
 from xmcustomer import IXMCustomer
+from xmprojectmember import IXMProjectMember
+from xmprojectfolder import IXMProjectFolder
 from xmproject import IXMProject
 from xmiteration import IXMIteration
 from xmstory import IXMStory
+from xmtask import IXMTask
+from xmbooking import IXMBooking
 
 # Only add zope 3 bridges if you somehow need them.
+# If this gets removed by someone who knows what he is doing, that is
+# fine with me.  [Maurits.]
 from Interface.bridge import createZope3Bridge
 createZope3Bridge(IXMCustomer, IXMCustomerZope2,
                   'IXMCustomer')

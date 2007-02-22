@@ -32,31 +32,22 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
-##code-section module-header #fill in your manual code here
-##/code-section module-header
-
-#
-# Test-cases for class(es) Task
-#
 
 from Testing import ZopeTestCase
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 
-# Import the tested classes
-from Products.eXtremeManagement.content.Task import Task
 
-##code-section module-beforeclass #fill in your manual code here
+from Products.eXtremeManagement.content.Task import Task
+from Products.eXtremeManagement.interfaces import IXMTask
+
 from Products.CMFCore.utils import getToolByName
-##/code-section module-beforeclass
+
 
 
 class testTask(eXtremeManagementTestCase):
     """ test-cases for class(es) Task
     """
-
-    ##code-section class-header_testTask #fill in your manual code here
-    ##/code-section class-header_testTask
 
     def afterSetUp(self):
         self.catalog =  getToolByName(self.portal, 'portal_catalog')
@@ -78,6 +69,11 @@ class testTask(eXtremeManagementTestCase):
         self.workflow.doActionFor(self.story, 'estimate')
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
+
+    def test_interfaces(self):
+        """ Test that Task plays nice with interfaces.
+        """
+        self.failUnless(IXMTask.implementedBy(Task))
 
     # from class Task:
     def test__get_assignees(self):

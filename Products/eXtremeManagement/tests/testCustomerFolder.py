@@ -32,35 +32,28 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
-##code-section module-header #fill in your manual code here
-##/code-section module-header
-
-#
-# Test-cases for class(es) CustomerFolder
-#
-
 from Testing import ZopeTestCase
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 
-# Import the tested classes
 from Products.eXtremeManagement.content.CustomerFolder import CustomerFolder
-
-##code-section module-beforeclass #fill in your manual code here
-##/code-section module-beforeclass
+from Products.eXtremeManagement.interfaces import IXMCustomerFolder
 
 
 class testCustomerFolder(eXtremeManagementTestCase):
     """ test-cases for class(es) CustomerFolder
     """
 
-    ##code-section class-header_testCustomerFolder #fill in your manual code here
-    ##/code-section class-header_testCustomerFolder
-
     def afterSetUp(self):
         """
         """
         pass
+
+    def test_interfaces(self):
+        """ Test that CustomerFolder plays nice with interfaces.
+        """
+        self.failUnless(IXMCustomerFolder.implementedBy(CustomerFolder))
+
     def test_call_customerFolder(self):
         """ Test if the customers folder is created
         """
