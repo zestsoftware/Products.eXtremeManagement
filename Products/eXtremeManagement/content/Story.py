@@ -33,6 +33,8 @@ from Products.Archetypes.atapi import *
 from Products.eXtremeManagement.config import *
 
 ##code-section module-header #fill in your manual code here
+from zope.interface import implements
+from Products.eXtremeManagement.interfaces import IXMStory
 
 from Products.CMFCore.utils import getToolByName
 BaseFolderSchema = OrderedBaseFolderSchema.copy()
@@ -72,20 +74,17 @@ schema = Schema((
 ),
 )
 
-##code-section after-local-schema #fill in your manual code here
-##/code-section after-local-schema
 
 Story_schema = OrderedBaseFolderSchema.copy() + \
     schema.copy()
 
-##code-section after-schema #fill in your manual code here
-##/code-section after-schema
 
 class Story(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
     __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
+    implements(IXMStory)
 
     # This name appears in the 'add' box
     archetype_name = 'Story'

@@ -32,37 +32,30 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
-##code-section module-header #fill in your manual code here
-##/code-section module-header
-
-#
-# Test-cases for class(es) Iteration
-#
-
 from Testing import ZopeTestCase
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 
-# Import the tested classes
+
 from Products.eXtremeManagement.content.Iteration import Iteration
-
-##code-section module-beforeclass #fill in your manual code here
 from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
-
-##/code-section module-beforeclass
+from Products.eXtremeManagement.interfaces import IXMIteration
 
 
 class testIteration(eXtremeManagementTestCase):
     """ test-cases for class(es) Iteration
     """
 
-    ##code-section class-header_testIteration #fill in your manual code here
-    ##/code-section class-header_testIteration
-
     def afterSetUp(self):
         """
         """
         pass
+
+    def test_interfaces(self):
+        """ Test that Iteration plays nice with interfaces.
+        """
+        self.failUnless(IXMIteration.implementedBy(Iteration))
+
     def test_call_iteration(self):
         """ Test that you can add and call an Iteration
         """
@@ -72,50 +65,8 @@ class testIteration(eXtremeManagementTestCase):
         self.setRoles(['Manager'])
         self.portal.projects.invokeFactory('Project', id='testproject01')
         self.portal.projects.testproject01.invokeFactory('Iteration', id='testIteration')
-        self.failUnless( 'testproject01' in self.portal.projects.objectIds())
-        self.failUnless( 'testIteration' in self.portal.projects.testproject01.objectIds())
-
-    # from class Iteration:
-    def test_getRawEstimate(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Iteration:
-    def test_getEstimate(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Iteration:
-    def test_getRawActualHours(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Iteration:
-    def test_getActualHours(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Iteration:
-    def test_getRawDifference(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Iteration:
-    def test_getDifference(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Iteration:
-    def test_startable(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # from class Iteration:
-    def test_completable(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-    # Manually created methods
+        self.failUnless('testproject01' in self.portal.projects.objectIds())
+        self.failUnless('testIteration' in self.portal.projects.testproject01.objectIds())
 
 
 def test_suite():

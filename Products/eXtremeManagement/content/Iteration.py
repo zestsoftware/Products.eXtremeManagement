@@ -34,6 +34,8 @@ from Products.eXtremeManagement.config import *
 
 ##code-section module-header #fill in your manual code here
 from Products.CMFCore.utils import getToolByName
+from zope.interface import implements
+from Products.eXtremeManagement.interfaces import IXMIteration
 ##/code-section module-header
 
 schema = Schema((
@@ -92,6 +94,7 @@ class Iteration(OrderedBaseFolder):
     """
     security = ClassSecurityInfo()
     __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
+    implements(IXMIteration)
 
     # This name appears in the 'add' box
     archetype_name = 'Iteration'

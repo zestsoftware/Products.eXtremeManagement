@@ -32,31 +32,18 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
-##code-section module-header #fill in your manual code here
-##/code-section module-header
-
-#
-# Test-cases for class(es) Project
-#
-
 from Testing import ZopeTestCase
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 
-# Import the tested classes
 from Products.eXtremeManagement.content.Project import Project
-
-##code-section module-beforeclass #fill in your manual code here
 from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
-##/code-section module-beforeclass
+from Products.eXtremeManagement.interfaces import IXMProject
 
 
 class testProject(eXtremeManagementTestCase):
     """ test-cases for class(es) Project
     """
-
-    ##code-section class-header_testProject #fill in your manual code here
-    ##/code-section class-header_testProject
 
     def afterSetUp(self):
         """
@@ -66,6 +53,11 @@ class testProject(eXtremeManagementTestCase):
         self.projects = self.folder.projects
         self.projects.invokeFactory('Project', id='project')
         self.project = self.projects.project
+
+    def test_interfaces(self):
+        """ Test that Project plays nice with interfaces.
+        """
+        self.failUnless(IXMProject.implementedBy(Project))
 
     # from class Project:
     def test_getProject(self):

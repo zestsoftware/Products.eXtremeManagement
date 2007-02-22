@@ -37,6 +37,8 @@ from Products.eXtremeManagement.config import *
 from Products.CMFCore.utils import getToolByName
 import string
 from Products.CMFCore.permissions import ManageProperties
+from zope.interface import implements
+from Products.eXtremeManagement.interfaces import IXMProject
 
 ##/code-section module-header
 
@@ -83,6 +85,7 @@ class Project(OrderedBaseFolder):
     """
     security = ClassSecurityInfo()
     __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
+    implements(IXMProject)
 
     # This name appears in the 'add' box
     archetype_name = 'Project'

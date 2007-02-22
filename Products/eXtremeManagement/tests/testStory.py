@@ -32,9 +32,6 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
-#
-# Test-cases for class(es) Story
-#
 
 from Testing import ZopeTestCase
 import transaction
@@ -43,6 +40,7 @@ from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeMa
 
 # Import the tested classes
 from Products.eXtremeManagement.content.Story import Story
+from Products.eXtremeManagement.interfaces import IXMStory
 
 
 class testStory(eXtremeManagementTestCase):
@@ -72,6 +70,11 @@ class testStory(eXtremeManagementTestCase):
         self.task = self.story.task
 
         self.catalog = self.portal.portal_catalog
+
+    def test_interfaces(self):
+        """ Test that Story plays nice with interfaces.
+        """
+        self.failUnless(IXMStory.implementedBy(Story))
 
     def test_get_progress_perc(self):
         """
