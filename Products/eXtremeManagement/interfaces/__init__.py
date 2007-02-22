@@ -34,6 +34,9 @@ __docformat__ = 'plaintext'
 import IXMCustomer as IXMCustomerZope2
 
 from xmcustomer import IXMCustomer
+from xmproject import IXMProject
+from xmiteration import IXMIteration
+from xmstory import IXMStory
 
 # Only add zope 3 bridges if you somehow need them.
 from Interface.bridge import createZope3Bridge
