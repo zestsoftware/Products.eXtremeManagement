@@ -93,7 +93,7 @@ schema = Schema((
 
     LinesField(
         name='assignees',
-        index="FieldIndex:brains",
+        index="KeywordIndex:brains",
         widget=MultiSelectionWidget(
             description="Select the member(s) to assign this task to.",
             label='Assignees',

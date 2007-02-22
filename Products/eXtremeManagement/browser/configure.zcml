@@ -1,0 +1,11 @@
+<configure xmlns="http://namespaces.zope.org/browser">
+
+  <page
+      name="myprojects"
+      class=".projects.MyProjects"
+      for="*"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IMyProjects"
+      />
+
+</configure>

@@ -2,4 +2,6 @@
 
   <include file="deprecation.zcml" />
 
+  <include package=".browser" />
+
 </configure>

@@ -6,7 +6,8 @@
     
     <!-- The 'my projects' box -->
     <div metal:define-macro="portlet"
-         tal:define="results python:portal.getMyProjects();"
+         tal:define="view context/@@myprojects;
+                     results view/projectlist;"
          tal:condition="python:results">
         <dl class="portlet" id="portlet-my-projects">
             <dt class="portletHeader"
