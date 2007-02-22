@@ -30,8 +30,7 @@ __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
-from zope.interface import implements
-from Products.eXtremeManagement.interfaces import IXMCustomer
+from Products.eXtremeManagement.interfaces.IXMCustomer import IXMCustomer
 from Products.eXtremeManagement.config import *
 
 ##code-section module-header #fill in your manual code here
@@ -170,7 +169,7 @@ class Customer(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    implements(IXMCustomer)
+    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),) + (IXMCustomer,)
 
     # This name appears in the 'add' box
     archetype_name = 'Customer'
