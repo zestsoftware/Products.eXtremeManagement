@@ -74,6 +74,7 @@ class testTask(eXtremeManagementTestCase):
         """ Test that Task plays nice with interfaces.
         """
         self.failUnless(IXMTask.implementedBy(Task))
+        self.failUnless(IXMTask.providedBy(self.task))
 
     # from class Task:
     def test__get_assignees(self):

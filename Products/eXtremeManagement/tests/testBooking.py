@@ -71,6 +71,7 @@ class testBooking(eXtremeManagementTestCase):
         """ Test that Booking plays nice with interfaces.
         """
         self.failUnless(IXMBooking.implementedBy(Booking))
+        self.failUnless(IXMBooking.providedBy(self.booking))
 
     # from class Booking:
     def test__renameAfterCreation(self):

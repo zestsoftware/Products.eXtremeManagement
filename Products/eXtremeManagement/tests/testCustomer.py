@@ -56,6 +56,7 @@ class testCustomer(eXtremeManagementTestCase):
         """ Test that Customer plays nice with interfaces.
         """
         self.failUnless(IXMCustomer.implementedBy(Customer))
+        self.failUnless(IXMCustomer.providedBy(Customer('blah')))
 
 
 def test_suite():

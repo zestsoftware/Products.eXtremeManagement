@@ -53,6 +53,7 @@ class testCustomerFolder(eXtremeManagementTestCase):
         """ Test that CustomerFolder plays nice with interfaces.
         """
         self.failUnless(IXMCustomerFolder.implementedBy(CustomerFolder))
+        self.failUnless(IXMCustomerFolder.providedBy(CustomerFolder('blah')))
 
     def test_call_customerFolder(self):
         """ Test if the customers folder is created

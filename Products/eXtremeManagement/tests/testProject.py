@@ -58,6 +58,7 @@ class testProject(eXtremeManagementTestCase):
         """ Test that Project plays nice with interfaces.
         """
         self.failUnless(IXMProject.implementedBy(Project))
+        self.failUnless(IXMProject.providedBy(self.project))
 
     # from class Project:
     def test_getProject(self):

@@ -55,6 +55,7 @@ class testIteration(eXtremeManagementTestCase):
         """ Test that Iteration plays nice with interfaces.
         """
         self.failUnless(IXMIteration.implementedBy(Iteration))
+        self.failUnless(IXMIteration.providedBy(Iteration('blah')))
 
     def test_call_iteration(self):
         """ Test that you can add and call an Iteration

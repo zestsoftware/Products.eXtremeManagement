@@ -59,6 +59,7 @@ class testProjectFolder(eXtremeManagementTestCase):
         """ Test that ProjectFolder plays nice with interfaces.
         """
         self.failUnless(IXMProjectFolder.implementedBy(ProjectFolder))
+        self.failUnless(IXMProjectFolder.providedBy(self.projects))
 
     def test_projectFolder(self):
         """Test adding a ProjectFolder in the portal root

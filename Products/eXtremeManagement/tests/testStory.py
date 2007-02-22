@@ -75,6 +75,7 @@ class testStory(eXtremeManagementTestCase):
         """ Test that Story plays nice with interfaces.
         """
         self.failUnless(IXMStory.implementedBy(Story))
+        self.failUnless(IXMStory.providedBy(self.story))
 
     def test_get_progress_perc(self):
         """

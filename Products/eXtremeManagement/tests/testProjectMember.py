@@ -53,6 +53,7 @@ class testProjectMember(eXtremeManagementTestCase):
         """ Test that ProjectMember plays nice with interfaces.
         """
         self.failUnless(IXMProjectMember.implementedBy(ProjectMember))
+        self.failUnless(IXMProjectMember.providedBy(ProjectMember('blah')))
 
 
 def test_suite():
