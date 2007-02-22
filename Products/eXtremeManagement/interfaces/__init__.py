@@ -24,28 +24,19 @@
 # 02110-1301, USA.
 #
 
-__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>, Jodok Batlogg
-<jodok.batlogg@lovelysystems.com>, Harald Frießnegger
-<harald.friessnegger@lovelysystems.com>"""
+__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>,
+Maurits van Rees <m.van.rees@zestsoftware.nl>,
+Jodok Batlogg <jodok.batlogg@lovelysystems.com>,
+Harald Frießnegger <harald.friessnegger@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 
-##code-section init-module-header #fill in your manual code here
-##/code-section init-module-header
+import IXMCustomer as IXMCustomerZope2
 
+from xmcustomer import IXMCustomer
 
-# Subpackages
-# Additional
-
-# Classes
-import IXMCustomer
-
-##code-section init-module-footer #fill in your manual code here
-import xmcustomer
-
+# Only add zope 3 bridges if you somehow need them.
 from Interface.bridge import createZope3Bridge
-createZope3Bridge(xmcustomer.IXMCustomer, IXMCustomer,
+createZope3Bridge(IXMCustomer, IXMCustomerZope2,
                   'IXMCustomer')
-##/code-section init-module-footer
 
