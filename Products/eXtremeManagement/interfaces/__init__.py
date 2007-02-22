@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 #
-# File: interfaces.py
+# $Id$
 #
-# Copyright (c) 2006 by Zest software, Lovely Systems
-# Generator: ArchGenXML 
+# Copyright (c) 2006 by Zest Software, Lovely Systems
+# Generator: ArchGenXML Version 1.5.0 svn/devel
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -25,7 +25,9 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg
+<jodok.batlogg@lovelysystems.com>, Harald Frießnegger
+<harald.friessnegger@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
 
@@ -40,5 +42,10 @@ __docformat__ = 'plaintext'
 import IXMCustomer
 
 ##code-section init-module-footer #fill in your manual code here
+import xmcustomer
+
+from Interface.bridge import createZope3Bridge
+createZope3Bridge(xmcustomer.IXMCustomer, IXMCustomer,
+                  'IXMCustomer')
 ##/code-section init-module-footer
 

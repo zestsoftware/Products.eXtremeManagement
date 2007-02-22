@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 #
-# File: IXMCustomer.py
+# $Id$
 #
-# Copyright (c) 2006 by Zest software, Lovely Systems
-# Generator: ArchGenXML 
+# Copyright (c) 2006 by Zest Software, Lovely Systems
+# Generator: ArchGenXML Version 1.5.0 svn/devel
 #            http://plone.org/products/archgenxml
 #
 # GNU General Public License (GPL)
@@ -25,22 +25,12 @@
 #
 
 __author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
+<m.van.rees@zestsoftware.nl>, Jodok Batlogg
+<jodok.batlogg@lovelysystems.com>, Harald Frießnegger
+<harald.friessnegger@lovelysystems.com>"""
 __docformat__ = 'plaintext'
 
-from Interface import Base
-
-
-class IXMCustomer(Base):
-    """
-    """
-
     # Methods
-
-    def getName():
-        """
-        """
-        pass
 
 
 # end of class IXMCustomer
