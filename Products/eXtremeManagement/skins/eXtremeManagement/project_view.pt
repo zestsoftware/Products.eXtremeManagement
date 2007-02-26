@@ -31,12 +31,15 @@
 
           <metal:block metal:define-macro="simple_iteration_list"
                        tal:define="obj iteration/getObject;
-                                   idx idIndex/next;">
+                                   idx idIndex/next;
+                                   start_date obj/getStartDate;
+                                   end_date obj/getEndDate;">
 
             <table class="listing"
                    width="100%"
                    cellpadding="0" 
-                   cellspacing="0">
+                   cellspacing="0"
+                   style="font-size:100%">
               
               <tr>
                 <th width="60%" 
@@ -45,13 +48,24 @@
                     class="header_iteration">
                   <a  class="header_iteration_project_overview"
                       tal:attributes="href string:${obj/absolute_url}">
-                    <tal:block replace="structure python:getattr(obj, obj.getIcon(1)).tag(alt=obj.portal_type)" />
+
+                    <img tal:attributes="src string:${here/portal_url}/${obj/getIcon}"
+                         alt="project overview"
+                         i18n:attributes="alt project_overview"/>
                     <span tal:replace="obj/Title" />
                   </a>
                 </th>
-                <th width="40%" 
+                <th width="20%" 
+                    height="30" 
+                    align="left" 
+                    class="header_iteration">
+                    <span tal:replace="obj/getManHours" /> Hours
+                    ( <span tal:replace="obj/getActualHours" /> Actual)
+                </th>
+                <th width="20%"
                     class="iteration-state">
                   <span i18n:translate="status">status</span>:
+                  <span tal:content="structure iteration/review_state"/>
                   <img tal:attributes="src string:${iteration/review_state}.gif;
                                        alt iteration/review_state" />
                 </th> 
@@ -80,41 +94,48 @@
                    tal:attributes="onload string:javascript:setFromState('hideTable${idx}');">
 
               <tr>
-                <th width="60%" 
+                <th colspan="2"
+                    width="60%" 
                     height="30" 
                     align="left" 
                     class="header_iteration">
                   <a class="header_iteration_project_overview"
                      tal:attributes="href string:${obj/absolute_url}">
-                    <tal:block replace="structure python:getattr(obj, obj.getIcon(1)).tag(alt=obj.portal_type)" />
+                    <img tal:attributes="src string:${here/portal_url}/${obj/getIcon};
+                                         alt string:Project overview"/>
                     <span tal:replace="obj/Title">Title</span>
                   </a>
                 </th>
-                <th width="40%" 
+                <th colspan="2"
+                    width="20%" 
+                    height="30" 
+                    align="left" 
+                    class="header_iteration">
+                    <span tal:replace="obj/getManHours" /> Hours
+                    ( <span tal:replace="obj/getActualHours" /> Actual)
+                </th>
+                <th colspan="2"
+                    width="20%" 
                     class="iteration-state">
                   <span i18n:translate="status">status</span>:
+                  <span tal:content="structure curIteration/review_state"/>
                   <img tal:attributes="src string:${curIteration/review_state}.gif;
                                        alt curIteration/review_state" />
                 </th>
               </tr>
               <tr>
-                <td colspan="2"
+                <td colspan="6"
                     class="iteration-description"
                     tal:content="obj/Description" />
               </tr>
-            </table>
-
-            <table class="listing"
-                   width="100%"
-                   cellpadding="0"
-                   cellspacing="0"
-                   tal:attributes="id string:hideTable${idx};">
 
               <tr tal:condition="python:obj.contentValues('Story')">
                 <th i18n:translate="listingheader_story">Story</th>
                 <th i18n:translate="listingheader_progress">Progress</th>
                 <th i18n:translate="listingheader_tasks_open">Tasks open</th>
                 <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
+                    <th i18n:translate="listingheader_estimate">Estimate</th>
+                    <th i18n:translate="listingheader_actual">Actual</th>
               </tr>
 
               <tr tal:define="stories obj/getStateSortedContents"
@@ -125,7 +146,8 @@
                                 progress python:story.get_progress_perc();
                                 openTasks python:story.getUnfinishedTaskCount();
                                 completedTasks python:story.getCompletedTaskCount();
-                                storyIsCompleted python:story.isCompleted()">
+                                storyIsCompleted python:story.isCompleted();
+                                status python:putils.getReviewStateTitleFor(story);">
                   
                   <td width="30%">
                     <a class="storyTitle_project_overview"
@@ -136,7 +158,7 @@
                   <td class="progress_details" 
                       width="150">
                     <span class="progress_percentage"
-                          tal:content="string:${progress} %">&nbsp;</span>
+                          tal:content="string:(${status}) ${progress} %">&nbsp;</span>
                     <br />
                     <div class="progress_bar">
                       <img tal:condition="storyIsCompleted"
@@ -157,9 +179,12 @@
                       tal:content="openTasks" />
                   <td class="tasks"
                       tal:content="completedTasks" />
+                    <td tal:content="python:story.getEstimate()" />
+                    <td tal:content="python:story.getActualHours()" />
                 </tal:block>
               </tr>
             </table>
+
           </tal:block>
         </div>
       </tal:block>
@@ -210,3 +235,4 @@
 
   </body>
 </html>
+
