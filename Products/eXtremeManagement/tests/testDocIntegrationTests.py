@@ -17,6 +17,7 @@ if __name__ == '__main__':
 # Add any files from the doc/ directory you wish to test here.
 docfiles = (
     'portlets.txt',
+    'bookings.txt',
     )
 
 

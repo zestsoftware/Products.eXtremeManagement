@@ -1,0 +1,29 @@
+Test bookings
+=============
+
+We want to test some browser views for Bookings.
+At first there is only one Booking.
+
+    >>> len(self.catalog(portal_type='Booking'))
+    1
+    >>> from Products.eXtremeManagement.browser.bookings import BookingView
+    >>> bookview = BookingView(self.portal)
+    >>> len(bookview.bookinglist())
+    1
+    >>> bookview.bookinglist()[0].Creator()
+    'test_user_1_'
+
+Let's add a Booking as someone else.  That person should be default
+only see his own Bookings.
+
+    >>> self.login('employee')
+    >>> self.task.invokeFactory('Booking', id='booking-emp', hours=2)
+    'booking-emp'
+    >>> bookview = BookingView(self.portal)
+    >>> len(bookview.bookinglist())
+    1
+    >>> bookview.bookinglist()[0].Creator()
+    'employee'
+    >>> len(self.catalog(portal_type='Booking'))
+    2
+
