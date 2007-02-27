@@ -39,12 +39,13 @@ Customers can create stories and submit them for estimating. The
 employees will find pending stories in the review portlet and can
 start adding more detailed tasks.
 
-After the employee has finished his tasklist he can set the estimate
-transition. This will show the customer the story in the 'to be
-assigned to iterations' list.
+After the employee has finished reviewing the story and giving it a
+rough estimate, he can set the estimate transition.  The customer can
+then move the story to the preferred iteration.
 
-The customer can then copy the story to the preferred iteration and
-'assign' the story.
+Of course this can be done with customer and employees together during
+an iteration meeting.  In most cases: anything that the customer can
+do, the employee can do as well.  A Manager can do anything.
 
 After the stories are assigned to the iteration, the state of the
 iteration can be set to 'active'. Now employees can book their working
