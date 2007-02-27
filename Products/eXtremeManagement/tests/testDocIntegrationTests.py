@@ -14,18 +14,25 @@ except:
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
+# Add any files from the doc/ directory you wish to test here.
+docfiles = (
+    'portlets.txt',
+    )
+
 
 def test_suite():
     from Testing.ZopeTestCase.zopedoctest import ZopeDocFileSuite
     eXtremeManagementTestCase.afterSetUp = utils.afterSetUp
+    suites = unittest.TestSuite()
+    for docfile in docfiles:
+        suite = ZopeDocFileSuite(docfile,
+                                 package='Products.eXtremeManagement.doc',
+                                 test_class=eXtremeManagementTestCase)
+        if test_layer is not None:
+            suite.layer = test_layer
+        suites.addTest(suite)
 
-    suite = ZopeDocFileSuite('portlets.txt',
-                             package='Products.eXtremeManagement.doc',
-                             test_class=eXtremeManagementTestCase)
-    if test_layer is not None:
-        suite.layer = test_layer
-
-    return unittest.TestSuite((suite,))
+    return suites
 
 if __name__ == '__main__':
     framework()
