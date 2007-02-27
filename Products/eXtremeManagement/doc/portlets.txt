@@ -1,0 +1,25 @@
+Test portlets
+=============
+
+We want to test some portlets.  First the My Projects portlet.
+Currently there is one Project, but we do not have any tasks assigned
+to us there.
+
+    >>> len(self.catalog(portal_type='Project'))
+    1
+    >>> len(self.catalog(portal_type='Task'))
+    1
+    >>> from Products.eXtremeManagement.browser.projects import MyProjects
+    >>> myprojects = MyProjects(self.portal)
+    >>> myprojects.projectlist()
+    []
+
+Now we add ourselves and another employee to the assignees of a task
+in that project.  Now the portlet should return a result.
+
+    >>> self.task.setAssignees(('employee', 'test_user_1_',))
+    >>> self.task.reindexObject()
+    >>> myprojects = MyProjects(self.portal)
+    >>> myprojects.projectlist()
+    [<Products.ZCatalog.Catalog.mybrains object at ...>]
+

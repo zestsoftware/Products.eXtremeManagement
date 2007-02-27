@@ -41,6 +41,9 @@ import logging
 def emailContact(portal, memberid, allowPortalContact=False):
     membership = getToolByName(portal, 'portal_membership')
     member = membership.getMemberById(memberid)
+    if member is None:
+        # Maybe a test user?
+        return ''
 
     email = member.getProperty('email', None)
     if email == '' or email is None:

@@ -7,9 +7,9 @@ class MyProjects(object):
     states = ('open', 'to-do',)
     # Use state = '' if you do not want to filter for states.
 
-    def __init__(self, context, request):
+    def __init__(self, context, **kwargs):
         self.context = context
-        self.request = request
+        self.request = self.context.REQUEST
     
     def projectlist(self):
         # Get a list of all projects
