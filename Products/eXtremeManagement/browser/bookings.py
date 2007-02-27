@@ -35,11 +35,11 @@ class BookingView(object):
         if self.request.get('form') is None:
             self.request.form = {}
 
-        self.year = self.request.form.get('year', DateTime().year())
-        self.month = self.request.form.get('month', DateTime().month())
-        self.previous = self.request.form.get('previous')
-        self.next = self.request.form.get('next')
-        self.memberid = self.request.form.get('next')
+        self.year = self.request.get('year', DateTime().year())
+        self.month = self.request.get('month', DateTime().month())
+        self.previous = self.request.get('previous')
+        self.next = self.request.get('next')
+        self.memberid = self.request.get('next')
         if self.memberid is None:
             member = context.portal_membership.getAuthenticatedMember()
             self.memberid = member.id

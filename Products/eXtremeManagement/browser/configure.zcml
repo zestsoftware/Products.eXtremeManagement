@@ -8,4 +8,12 @@
       allowed_interface=".interfaces.IMyProjects"
       />
 
+  <page
+      name="bookings"
+      class=".bookings.BookingView"
+      for="*"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IBookingView"
+      />
+
 </configure>

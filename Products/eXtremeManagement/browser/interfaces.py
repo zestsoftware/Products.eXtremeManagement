@@ -6,3 +6,11 @@ class IMyProjects(Interface):
 
     def projectlist():
         pass
+
+
+class IBookingView(Interface):
+    """Return bookings
+    """
+
+    def bookinglist():
+        pass
