@@ -3,14 +3,67 @@ from DateTime import DateTime
 
 
 def getNextYearMonth(year, month):
-    # Get the year and month for next month (watch out for December)
+    """Get the year and month for next month (watch out for December)
+
+    >>> getNextYearMonth(2007, 1)
+    (2007, 2)
+    >>> getNextYearMonth(2006, 12)
+    (2007, 1)
+
+    What happens when we use a wrong month number?
+
+    >>> getNextYearMonth(2007, 13)
+    Traceback (most recent call last):
+    ...
+    ValueError
+    >>> getNextYearMonth(2007, 0)
+    Traceback (most recent call last):
+    ...
+    ValueError
+
+    """
+    if month < 1 or month > 12:
+        raise ValueError
     nextyear = year + month/12
     nextmonth = (month % 12) + 1
     return (nextyear, nextmonth)
 
 
 def getPrevYearMonth(year, month):
-    # Get the year and month for the previous month (watch out for January)
+    """Get the year and month for the previous month (watch out for January)
+
+    >>> getPrevYearMonth(2007, 2)
+    (2007, 1)
+    >>> getPrevYearMonth(2007, 1)
+    (2006, 12)
+
+    What happens when we use a wrong month number?
+
+    >>> getPrevYearMonth(2007, 13)
+    Traceback (most recent call last):
+    ...
+    ValueError
+    >>> getPrevYearMonth(2007, 0)
+    Traceback (most recent call last):
+    ...
+    ValueError
+
+    Now test this in combination with getNextYearMonth.  These two
+    functions should be the reverse of each other.  So this should
+    return nothing.  (Note: month range 1 to 13 excludes 13.)
+
+    >>> for month in range(1,13):
+    ...     y, m = getNextYearMonth(2007, month)
+    ...     if not getPrevYearMonth(y, m) == (2007, month):
+    ...         print month
+    ...     y, m = getPrevYearMonth(2007, month)
+    ...     if not getNextYearMonth(y, m) == (2007, month):
+    ...         print month
+
+
+    """
+    if month < 1 or month > 12:
+        raise ValueError
     prevmonth = month - 1
     prevyear = year
     if prevmonth == 0:
