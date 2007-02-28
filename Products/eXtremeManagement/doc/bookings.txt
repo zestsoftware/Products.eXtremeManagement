@@ -27,3 +27,30 @@ only see his own Bookings.
     >>> len(self.catalog(portal_type='Booking'))
     2
 
+No bookings have been done in January 2007.
+
+    >>> bookview = BookingView(self.portal, {'year': 2007, 'month': 1})
+    >>> bookview.bookinglist()
+    []
+
+Let us add one in that month.
+
+    >>> from DateTime import DateTime
+    >>> jan1 = DateTime('2007-01-01')
+    >>> self.task.invokeFactory('Booking', id='emp-jan1', hours=1, bookingDate=jan1)
+    'emp-jan1'
+    >>> bookview = BookingView(self.portal, {'year': 2007, 'month': 1})
+    >>> bookview.bookinglist()
+    [<Booking at /plone/projects/project/iteration/story/task/emp-jan1>]
+    >>> bookview.bookinglist()[0].getBookingDate()
+    DateTime('2007/01/01')
+
+Now, a booking on the first of the month might inadvertently be listed
+in the previous month as well.  Let's make sure we do not make that
+mistake.
+
+    >>> bookview = BookingView(self.portal, {'year': 2006, 'month': 12})
+    >>> bookview.bookinglist()
+    []
+
+

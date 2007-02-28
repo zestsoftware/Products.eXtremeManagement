@@ -19,6 +19,40 @@ def getPrevYearMonth(year, month):
     return (prevyear, prevmonth)
 
 
+def getEndOfMonth(year, month):
+    """Get the last second of the last day of this month
+
+    First some normal months.
+
+    >>> getEndOfMonth(2007, 1)
+    DateTime('2007/01/31 23:59:59 GMT+1')
+    >>> getEndOfMonth(2007, 4)
+    DateTime('2007/04/30 23:59:59 GMT+2')
+
+    Of course February needs extra testing.
+
+    >>> getEndOfMonth(2007, 2)
+    DateTime('2007/02/28 23:59:59 GMT+1')
+
+    2008 is a leap year.
+
+    >>> getEndOfMonth(2008, 2)
+    DateTime('2008/02/29 23:59:59 GMT+1')
+
+    """
+    
+    if month in (1, 3, 5, 7, 8, 10, 12):
+        day = 31
+    elif month == 2:
+        if DateTime(year, 1, 1).isLeapYear():
+            day = 29
+        else:
+            day = 28
+    else:
+        day = 30
+    return DateTime.latestTime(DateTime(year, month, day))
+
+
 class BookingView(object):
     """Return some Bookings.
     """
@@ -31,9 +65,6 @@ class BookingView(object):
             self.request = self.context.REQUEST
         else:
             self.request = request
-        # Should not be needed, but let's add this anyway
-        if self.request.get('form') is None:
-            self.request.form = {}
 
         self.year = self.request.get('year', DateTime().year())
         self.month = self.request.get('month', DateTime().month())
@@ -50,8 +81,7 @@ class BookingView(object):
             self.year, self.month = getNextYearMonth(self.year, self.month)
 
         self.startDate = DateTime(self.year, self.month, 1)
-        nextyear, nextmonth = getNextYearMonth(self.year, self.month)
-        self.endDate = DateTime.latestTime(DateTime(nextyear, nextmonth, 1))
+        self.endDate = getEndOfMonth(self.year, self.month)
 
     def bookinglist(self):
         """List of Bookings that match the REQUEST.
