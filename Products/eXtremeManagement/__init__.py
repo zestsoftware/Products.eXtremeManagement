@@ -52,7 +52,6 @@ import os, os.path
 
 from Globals import package_home
 from Products.CMFCore import utils as cmfutils
-from Products.CMFCore import CMFCorePermissions
 from Products.CMFCore import DirectoryView
 from Products.CMFPlone.utils import ToolInit
 import Products.CMFPlone.interfaces
