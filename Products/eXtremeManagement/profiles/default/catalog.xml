@@ -5,6 +5,7 @@
  <index name="getAddress" meta_type="FieldIndex">
   <indexed_attr value="getAddress"/>
  </index>
+ <index name="getAssignees" meta_type="FieldwordIndex" remove="True" />
  <index name="getAssignees" meta_type="KeywordIndex">
   <indexed_attr value="getAssignees"/>
  </index>
