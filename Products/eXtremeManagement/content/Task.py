@@ -332,11 +332,6 @@ class Task(BaseFolder):
 
     # Manually created methods
 
-    security.declarePrivate('_reindex')
-    def _reindex(self, idxs=[]):
-        cat = getToolByName(self, 'portal_catalog')
-        cat.reindexObject(self, idxs=idxs)
-
     def getDefaultAssignee(self):
         mem = getToolByName(self, 'portal_membership')
         currentUser = mem.getAuthenticatedMember().getId()
@@ -349,6 +344,11 @@ class Task(BaseFolder):
         # With Plone 2.1 we cannot use events reliably. :(
         super(Task, self).manage_afterAdd(item, container)
         container.reindexObject()
+        return
+        # Try not to get portal factory TempFolders into the catalog
+        factory = getToolByName(self, 'portal_factory')
+        if not factory.isTemporary(self):
+            container.reindexObject()
 
     def manage_afterClone(self, item):
         # With Plone 2.1 we cannot use events reliably. :(

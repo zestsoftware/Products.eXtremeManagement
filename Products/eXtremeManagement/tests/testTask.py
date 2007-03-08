@@ -70,6 +70,14 @@ class testTask(eXtremeManagementTestCase):
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
 
+    def test_catalog(self):
+        """See if no TempFolders from portal factory are inadvertently
+        added to the catalog.
+        """
+        # XXX We do not catch the actual error here.  At least with
+        # the faulty code this test also passes. :-(
+        self.assertEqual(len(self.catalog(portal_type='TempFolder')), 0)
+
     def test_interfaces(self):
         """ Test that Task plays nice with interfaces.
         """
