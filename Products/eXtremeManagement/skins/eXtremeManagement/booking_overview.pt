@@ -54,28 +54,24 @@
 	  
 	  <tr tal:repeat="booking bookings">
 	    <td>
-	      <span tal:content="python:context.toLocalizedTime(booking.getBookingDate(), long_format=0)">
-		2006-01-25
-	      </span>
+	      <span tal:content="booking/booking_date" />
 	      <br />
 	      <span class="discreet"
-		    tal:content="booking/aq_parent/aq_parent/aq_parent/aq_parent/Title"/>
+		    tal:content="booking/project_title" />
 	    </td>
 	    <td>
-	      <a tal:attributes="href string:${booking/aq_parent/absolute_url}"
-		 class="booking_title"
-		 tal:content="booking/aq_parent/Title" />
+	      <a tal:attributes="href booking/task_url"
+             class="booking_title"
+             tal:content="booking/task_title" />
 	    </td>
 	    <td>
-	      <a tal:attributes="href string:${booking/absolute_url}"
-		 class="booking_title"
-		 tal:content="booking/Title" />
-	      <div class="booking_description" 
-		   tal:content="booking/Description" />
+	      <a tal:attributes="href booking/booking_url"
+             class="booking_title"
+             tal:content="booking/booking_title" />
+          <div class="booking_description" 
+               tal:content="booking/booking_description" />
 	    </td>
-	    <td tal:content="booking/getActualHours">
-	      4:45
-	    </td>
+	    <td tal:content="booking/booking_hours" />
 	  </tr>
 	</table>
       </tal:block>

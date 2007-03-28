@@ -10,8 +10,8 @@ At first there is only one Booking.
     >>> bookview = BookingView(self.portal)
     >>> len(bookview.bookinglist())
     1
-    >>> bookview.bookinglist()[0].Creator()
-    'test_user_1_'
+    >>> bookview.bookinglist()[0]['booking_hours']
+    '3:15'
 
 Let's add a Booking as someone else.  That person should be default
 only see his own Bookings.
@@ -22,8 +22,8 @@ only see his own Bookings.
     >>> bookview = BookingView(self.portal)
     >>> len(bookview.bookinglist())
     1
-    >>> bookview.bookinglist()[0].Creator()
-    'employee'
+    >>> bookview.bookinglist()[0]['booking_hours']
+    '2:00'
     >>> len(self.catalog(portal_type='Booking'))
     2
 
@@ -40,10 +40,10 @@ Let us add one in that month.
     >>> self.task.invokeFactory('Booking', id='emp-jan1', hours=1, bookingDate=jan1)
     'emp-jan1'
     >>> bookview = BookingView(self.portal, {'year': 2007, 'month': 1})
-    >>> bookview.bookinglist()
-    [<Booking at /plone/projects/project/iteration/story/task/emp-jan1>]
-    >>> bookview.bookinglist()[0].getBookingDate()
-    DateTime('2007/01/01')
+    >>> len(bookview.bookinglist())
+    1
+    >>> bookview.bookinglist()[0]['booking_date']
+    '2007-01-01'
 
 Now, a booking on the first of the month might inadvertently be listed
 in the previous month as well.  Let's make sure we do not make that
