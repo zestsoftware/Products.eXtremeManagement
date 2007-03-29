@@ -57,13 +57,12 @@ mistake.
 Daylight Savings Time can be annoying.  Bookings at Monday March 26
 2007 can end up in overviews on Monday *and* Sunday.
 
+    >>> bookview = BookingView(self.portal, {'year': 2007, 'month': 3})
     >>> len(bookview.bookinglist())
-    0
+    1
     >>> mar26 = DateTime('2007-03-26')
     >>> self.task.invokeFactory('Booking', id='emp-mar26', hours=2, bookingDate=mar26)
     'emp-mar26'
     >>> bookview = BookingView(self.portal, {'year': 2007, 'month': 3})
     >>> len(bookview.bookinglist())
-    1
-
-And that returns two instead of one like we feared.  Oh joy! :-(
+    2
