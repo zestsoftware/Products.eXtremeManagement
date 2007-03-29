@@ -21,7 +21,6 @@ import logging
 log = logging.getLogger("Daily Bookings")
 """
 
-
 # Where do we want to search?
 searchpath = '/'.join(context.getPhysicalPath())
 
@@ -34,12 +33,9 @@ if date is None:
 
 xt = context.xm_tool
 
-startDate = DateTime.earliestTime(date)
-endDate = DateTime.latestTime(date)
-
 bookingbrains = context.portal_catalog.searchResults(
     portal_type='Booking',
-    getBookingDate={ "query": [startDate, endDate], "range": "minmax"},
+    getBookingDate=date,
     Creator=memberid,
     path=searchpath)
 
