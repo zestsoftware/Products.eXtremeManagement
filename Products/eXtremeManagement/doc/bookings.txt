@@ -54,15 +54,15 @@ mistake.
     []
 
 
-Daylight Savings Time can be annoying.  Bookings at Monday March 26
-2007 can end up in overviews on Monday *and* Sunday.
+Daylight Savings Time can be annoying.  Bookings at Monday March 27
+2006 can end up in overviews on Monday *and* Sunday.
 
-    >>> bookview = BookingView(self.portal, {'year': 2007, 'month': 3})
+    >>> bookview = BookingView(self.portal, {'year': 2006, 'month': 3})
+    >>> len(bookview.bookinglist())
+    0
+    >>> monday_after_dst = DateTime('2006-03-27')
+    >>> self.task.invokeFactory('Booking', id='emp-mad06', hours=2, bookingDate=monday_after_dst)
+    'emp-mad06'
+    >>> bookview = BookingView(self.portal, {'year': 2006, 'month': 3})
     >>> len(bookview.bookinglist())
     1
-    >>> mar26 = DateTime('2007-03-26')
-    >>> self.task.invokeFactory('Booking', id='emp-mar26', hours=2, bookingDate=mar26)
-    'emp-mar26'
-    >>> bookview = BookingView(self.portal, {'year': 2007, 'month': 3})
-    >>> len(bookview.bookinglist())
-    2
