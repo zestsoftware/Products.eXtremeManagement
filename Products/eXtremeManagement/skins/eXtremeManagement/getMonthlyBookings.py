@@ -84,10 +84,9 @@ if next:
     year, month = getNextYearMonth(year, month)
 
 
-
-startDate = DateTime(year, month, 1)
+day = 1
+startDate = DateTime(year, month, day)
 nextyear, nextmonth = getNextYearMonth(year, month)
-endDate = DateTime(nextyear, nextmonth, 1)
 
 # Where do we want to search?
 object = context
@@ -98,13 +97,19 @@ if memberid is None:
     memberid = member.id
 
 
-list = []
+mylist = []
 date = startDate
 
-while date < endDate:
+while True:
     total = context.getDailyBookings(date=date, memberid=memberid)
     if total > 0:
-        list.append((date, total))
-    date += 1
+        mylist.append((date, total))
+    day += 1
+    try:
+        # We used to simply do date + 1, but that gave problems with
+        # Daylight Savings Time.
+        date = DateTime(year, month, day)
+    except:
+        break
 
-return list
+return mylist
