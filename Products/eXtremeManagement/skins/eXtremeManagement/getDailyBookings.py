@@ -16,11 +16,6 @@ memberid: display hours for this member
 
 """
 
-"""
-import logging
-log = logging.getLogger("Daily Bookings")
-"""
-
 # Where do we want to search?
 searchpath = '/'.join(context.getPhysicalPath())
 
@@ -29,7 +24,7 @@ if memberid is None:
     memberid = member.id
 
 if date is None:
-    date = DateTime()
+    date = DateTime().earliestTime()
 
 xt = context.xm_tool
 
