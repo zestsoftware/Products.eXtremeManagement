@@ -343,12 +343,7 @@ class Task(BaseFolder):
     def manage_afterAdd(self, item, container):
         # With Plone 2.1 we cannot use events reliably. :(
         super(Task, self).manage_afterAdd(item, container)
-        container.reindexObject()
-        return
-        # Try not to get portal factory TempFolders into the catalog
-        factory = getToolByName(self, 'portal_factory')
-        if not factory.isTemporary(self):
-            container.reindexObject()
+        self.reindexObject()
 
     def manage_afterClone(self, item):
         # With Plone 2.1 we cannot use events reliably. :(
