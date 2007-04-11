@@ -30,3 +30,11 @@ class IStoryView(Interface):
 
     def main():
         pass
+
+
+class IIterationView(Interface):
+    """Info about a iteration
+    """
+
+    def main():
+        pass

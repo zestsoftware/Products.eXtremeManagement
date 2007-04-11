@@ -7,12 +7,13 @@
     <body>
 
     <metal:block metal:define-macro="body" 
-                 tal:define="stories here/getStateSortedContents;
-                             totalActual python:here.getActualHours();">
+                 tal:define="view context/@@iteration;
+                             iteration view/main;
+                             stories here/getStateSortedContents;">
     
         <div class="documentDescription"
-             tal:condition="here/Description"
-             tal:content="here/Description">
+             tal:condition="iteration/description"
+             tal:content="iteration/description">
             description
         </div>
         <table class="listing"
@@ -24,10 +25,10 @@
                 <th i18n:translate="listingheader_enddate">End date</th>
             </tr>
             <tr>
-                <td tal:content="context/getManHours" />
-                <td tal:content="totalActual" />
-                <td tal:content="python:context.toLocalizedTime(context.getStartDate(), long_format=0)" />
-                <td tal:content="python:context.toLocalizedTime(context.getEndDate(), long_format=0)" />
+                <td tal:content="iteration/man_hours" />
+                <td tal:content="iteration/actual" />
+                <td tal:content="iteration/start_date" />
+                <td tal:content="iteration/end_date" />
             </tr>
         </table>
         <br />
@@ -70,9 +71,8 @@
                     <td class="td-story-title"
                         colspan="2" 
                         i18n:translate="total">Total</td>
-                    <td tal:define="totalEstimate python:here.getEstimate();"
-                        tal:content="totalEstimate" />
-                    <td tal:content="totalActual" />
+                    <td tal:content="iteration/estimate" />
+                    <td tal:content="iteration/actual" />
                 </tr>
             </table>
 

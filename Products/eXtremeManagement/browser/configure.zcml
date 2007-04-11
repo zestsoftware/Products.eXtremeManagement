@@ -32,4 +32,12 @@
       allowed_interface=".interfaces.IStoryView"
       />
 
+  <page
+      name="iteration"
+      class=".iterations.SimpleIterationView"
+      for="*"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IIterationView"
+      />
+
 </configure>

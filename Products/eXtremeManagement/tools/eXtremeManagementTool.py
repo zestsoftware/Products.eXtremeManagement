@@ -255,6 +255,23 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             )
         return returnvalue
 
+    def iteration2dict(self, iteration):
+        """Get a dict with info from this Iteration.
+        """
+        workflow = getToolByName(self, 'portal_workflow')
+        returnvalue = dict(
+            title = iteration.Title(),
+            description = iteration.Description(),
+            man_hours = iteration.getManHours(),
+            start_date = self.toLocalizedTime(iteration.getStartDate(), long_format=0),
+            end_date = self.toLocalizedTime(iteration.getEndDate(), long_format=0),
+            estimate = self.formatTime(iteration.getRawEstimate()),
+            actual = self.formatTime(iteration.getRawActualHours()),
+            difference = self.formatTime(iteration.getRawDifference()),
+            review_state = workflow.getInfoFor(iteration, 'review_state'),
+            )
+        return returnvalue
+
 registerType(eXtremeManagementTool, PROJECTNAME)
 # end of class eXtremeManagementTool
 
