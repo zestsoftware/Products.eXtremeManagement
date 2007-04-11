@@ -26,7 +26,6 @@ class SimpleTaskView(object):
             estimate = self.xt.formatTime(task.getRawEstimate()),
             actual = self.xt.formatTime(task.getRawActualHours()),
             difference = self.xt.formatTime(task.getRawDifference()),
-            actual_hours = task.getActualHours(),
             review_state = self.workflow.getInfoFor(task, 'review_state'),
             assignees = task.getAssignees(),
             )

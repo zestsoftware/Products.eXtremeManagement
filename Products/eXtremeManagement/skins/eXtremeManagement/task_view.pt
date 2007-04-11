@@ -60,7 +60,7 @@
                     i18n:translate="listingheader_actual">
                     Actual
                 </th>
-                <td tal:content="task/actual_hours">
+                <td tal:content="task/actual">
                     0:00
                 </td>
             </tr>
