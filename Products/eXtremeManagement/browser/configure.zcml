@@ -19,7 +19,7 @@
   <page
       name="task"
       class=".tasks.SimpleTaskView"
-      for="*"
+      for="Products.eXtremeManagement.interfaces.IXMTask"
       permission="zope2.View"
       allowed_interface=".interfaces.ITaskView"
       />
@@ -27,7 +27,7 @@
   <page
       name="story"
       class=".stories.SimpleStoryView"
-      for="*"
+      for="Products.eXtremeManagement.interfaces.IXMStory"
       permission="zope2.View"
       allowed_interface=".interfaces.IStoryView"
       />
@@ -35,7 +35,7 @@
   <page
       name="iteration"
       class=".iterations.SimpleIterationView"
-      for="*"
+      for="Products.eXtremeManagement.interfaces.IXMIteration"
       permission="zope2.View"
       allowed_interface=".interfaces.IIterationView"
       />
