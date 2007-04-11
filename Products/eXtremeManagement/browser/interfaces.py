@@ -17,8 +17,16 @@ class IBookingView(Interface):
 
 
 class ITaskView(Interface):
-    """Return a task
+    """Info about a task
     """
 
     def task2dict():
+        pass
+
+
+class IStoryView(Interface):
+    """Info about a story
+    """
+
+    def story2dict():
         pass

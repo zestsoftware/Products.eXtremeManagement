@@ -7,9 +7,8 @@
   
   <body>
     <metal:block metal:define-macro="body"
-                 tal:define="totalEstimate python:here.getEstimate();
-                             totalActual python:here.getActualHours();
-                             totalDifference python:here.getDifference();
+                 tal:define="view context/@@story;
+                             story view/story2dict;
                              items context/getStateSortedContents;
                              stories python:context.aq_parent.getFolderContents();
                              num_stories python:len(stories);
@@ -42,17 +41,17 @@
       </div>
 
       <div class="documentDescription"
-           tal:condition="here/Description"
-           tal:content="here/Description">
+           tal:condition="story/description"
+           tal:content="story/description">
         description
       </div>
 
-      <div tal:replace="structure context/CookedBody" />
+      <div tal:replace="structure story/cooked_body" />
 
-      <p tal:condition="context/getRoughEstimate"
+      <p tal:condition="story/rough_estimate"
          i18n:translate="label_roughestimate">
         Rough Estimate:
-        <span i18n:name="rough" tal:replace="structure context/getRoughEstimate" />
+        <span i18n:name="rough" tal:replace="structure story/rough_estimate" />
         days.
       </p>
 
@@ -115,9 +114,9 @@
                     i18n:translate="total">
                   Total
                 </td>
-                <td tal:content="totalEstimate" />
-                <td tal:content="totalActual" />
-                <td tal:content="totalDifference" />
+                <td tal:content="story/estimate" />
+                <td tal:content="story/actual" />
+                <td tal:content="story/difference" />
                 <td>&nbsp;</td>  
                 <td>&nbsp;</td>  
               </tr>

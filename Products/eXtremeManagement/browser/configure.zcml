@@ -24,4 +24,12 @@
       allowed_interface=".interfaces.ITaskView"
       />
 
+  <page
+      name="story"
+      class=".stories.SimpleStoryView"
+      for="*"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IStoryView"
+      />
+
 </configure>
