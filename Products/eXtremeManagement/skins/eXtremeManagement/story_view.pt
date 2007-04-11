@@ -8,7 +8,7 @@
   <body>
     <metal:block metal:define-macro="body"
                  tal:define="view context/@@story;
-                             story view/story2dict;
+                             story view/main;
                              items context/getStateSortedContents;
                              stories python:context.aq_parent.getFolderContents();
                              num_stories python:len(stories);

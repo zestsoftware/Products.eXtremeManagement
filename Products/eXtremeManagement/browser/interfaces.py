@@ -20,7 +20,7 @@ class ITaskView(Interface):
     """Info about a task
     """
 
-    def task2dict():
+    def main():
         pass
 
 
@@ -28,5 +28,5 @@ class IStoryView(Interface):
     """Info about a story
     """
 
-    def story2dict():
+    def main():
         pass

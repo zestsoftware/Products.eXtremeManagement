@@ -223,7 +223,37 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             return True
         return False
 
+    def task2dict(self, task):
+        """Get a dict with info from this Task.
+        """
+        workflow = getToolByName(self, 'portal_workflow')
+        returnvalue = dict(
+            title = task.Title(),
+            description = task.Description(),
+            cooked_body = task.CookedBody(),
+            estimate = self.formatTime(task.getRawEstimate()),
+            actual = self.formatTime(task.getRawActualHours()),
+            difference = self.formatTime(task.getRawDifference()),
+            review_state = workflow.getInfoFor(task, 'review_state'),
+            assignees = task.getAssignees(),
+            )
+        return returnvalue
 
+    def story2dict(self, story):
+        """Get a dict with info from this Story.
+        """
+        workflow = getToolByName(self, 'portal_workflow')
+        returnvalue = dict(
+            title = story.Title(),
+            description = story.Description(),
+            cooked_body = story.CookedBody(),
+            estimate = self.formatTime(story.getRawEstimate()),
+            actual = self.formatTime(story.getRawActualHours()),
+            difference = self.formatTime(story.getRawDifference()),
+            rough_estimate = story.getRoughEstimate(),
+            review_state = workflow.getInfoFor(story, 'review_state'),
+            )
+        return returnvalue
 
 registerType(eXtremeManagementTool, PROJECTNAME)
 # end of class eXtremeManagementTool
