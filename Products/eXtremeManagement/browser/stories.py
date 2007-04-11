@@ -1,6 +1,6 @@
 from Products.CMFCore.utils import getToolByName
 
-class SimpleStoryView(object):
+class StoryView(object):
     """Simply return info about a Story.
     """
 

@@ -1,6 +1,6 @@
 from Products.CMFCore.utils import getToolByName
 
-class SimpleIterationView(object):
+class IterationView(object):
     """Simply return info about a Iteration.
     """
 

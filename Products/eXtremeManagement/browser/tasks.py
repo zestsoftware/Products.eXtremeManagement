@@ -1,6 +1,6 @@
 from Products.CMFCore.utils import getToolByName
 
-class SimpleTaskView(object):
+class TaskView(object):
     """Simply return info about a Task.
     """
 
