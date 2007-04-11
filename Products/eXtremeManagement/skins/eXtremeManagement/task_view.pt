@@ -6,7 +6,9 @@
     
     <body>
     <metal:block metal:define-macro="body"
-                 tal:define="tasks python:context.aq_parent.getFolderContents();
+                 tal:define="view context/@@task;
+                             task view/task2dict;
+                             tasks python:context.aq_parent.getFolderContents();
                              num_tasks python:len(tasks);
                              pos context/getObjPositionInParent;
                              next python:pos &lt; num_tasks-1 and tasks[pos+1];
@@ -36,11 +38,11 @@
           &nbsp;
       </div>
         <div class="documentDescription"
-             tal:condition="here/Description"
-             tal:content="here/Description">
+             tal:condition="task/description"
+             tal:content="task/description">
             description
         </div>
-        <div tal:replace="structure context/CookedBody" />
+        <div tal:replace="structure task/cooked_body" />
         <table class="listing"
                 border="1" 
                 width="100%"
@@ -51,14 +53,14 @@
                     i18n:translate="listingheader_estimate">
                     Estimate
                 </th>
-                <td tal:content="here/getEstimate" />
+                <td tal:content="task/estimate" />
             </tr>
             <tr>
                 <th class="customer_info_header" 
                     i18n:translate="listingheader_actual">
                     Actual
                 </th>
-                <td tal:content="here/getActualHours">
+                <td tal:content="task/actual_hours">
                     0:00
                 </td>
             </tr>
@@ -67,9 +69,7 @@
                     i18n:translate="listingheader_state">
                     Status
                 </th>
-                <td tal:define="wtool here/portal_workflow;
-                                review_state python:wtool.getInfoFor(here, 'review_state')"
-                    tal:content="review_state" />
+                <td tal:content="task/review_state" />
             </tr>
             <tr>
                 <th class="customer_info_header"
@@ -78,7 +78,7 @@
                 </th>
                 <td>
                     <tal:block
-                          tal:repeat="item here/getAssignees">
+                          tal:repeat="item task/assignees">
                         <img tal:replace="structure context/user.gif" />
                         <span tal:replace="item">Assignee</span>
                         <br />

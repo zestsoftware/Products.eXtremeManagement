@@ -14,3 +14,11 @@ class IBookingView(Interface):
 
     def bookinglist():
         pass
+
+
+class ITaskView(Interface):
+    """Return a task
+    """
+
+    def task2dict():
+        pass

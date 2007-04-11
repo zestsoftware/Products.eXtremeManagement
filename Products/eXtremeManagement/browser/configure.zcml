@@ -16,4 +16,12 @@
       allowed_interface=".interfaces.IBookingView"
       />
 
+  <page
+      name="task"
+      class=".tasks.SimpleTaskView"
+      for="*"
+      permission="zope2.View"
+      allowed_interface=".interfaces.ITaskView"
+      />
+
 </configure>
