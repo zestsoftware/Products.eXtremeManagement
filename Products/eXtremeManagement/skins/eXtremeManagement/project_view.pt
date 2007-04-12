@@ -3,8 +3,6 @@
       i18n:domain="eXtremeManagement">
   <metal:block use-macro="context/global_defines/macros/defines" />
 
-  <metal:block metal:use-macro="header"/>
-
   <body onload="javascript:setFromState('hideRow0');">
     <metal:block
         metal:define-macro="body"

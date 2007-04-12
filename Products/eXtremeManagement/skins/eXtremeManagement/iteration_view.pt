@@ -2,7 +2,6 @@
       lang="en-US"
       i18n:domain="eXtremeManagement">
     <metal:block use-macro="context/global_defines/macros/defines" />
-    <metal:block metal:use-macro="header" />
 
     <body>
 
