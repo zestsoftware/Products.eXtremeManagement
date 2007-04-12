@@ -161,36 +161,10 @@ class BookingListView(object):
         list = []
 
         for bookingbrain in bookings:
-            info = self.bookingInfo(bookingbrain)
+            info = self.xt.bookingbrain2dict(bookingbrain)
             list.append(info)
 
         return list
-
-    def bookingInfo(self, bookingbrain):
-        """Get a dict with info from this booking brain.
-        To do: get rid of the getObject call.
-        """
-        booking_date = self.context.toLocalizedTime(bookingbrain.getBookingDate, long_format=0)
-        booking = bookingbrain.getObject()
-        project_title = booking.getProject().Title()
-        task = booking.aq_parent
-        task_url = task.absolute_url()
-        task_title = task.Title()
-        booking_url = booking.absolute_url()
-        booking_title = bookingbrain.Title
-        booking_description = bookingbrain.Description
-        booking_hours = self.xt.formatTime(bookingbrain.getRawActualHours)
-        returnvalue = {
-            'booking_date': booking_date,
-            'project_title': project_title,
-            'task_url': task_url,
-            'task_title': task_title,
-            'booking_url': booking_url,
-            'booking_title': booking_title,
-            'booking_description': booking_description,
-            'booking_hours': booking_hours,
-            }
-        return returnvalue
 
 
 class BookingView(XMBaseView):
@@ -202,5 +176,3 @@ class BookingView(XMBaseView):
         """
         booking = self.context
         return self.xt.booking2dict(booking)
-
-
