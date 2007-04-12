@@ -14,7 +14,9 @@ class StoryView(XMBaseView):
 
     def tasks(self):
         current_path = '/'.join(self.context.getPhysicalPath())
-        taskbrains = self.xt.getStateSortedContents(self.context)
+        catalog = getToolByName(self.context, 'portal_catalog')
+        taskbrains = catalog.searchResults(portal_type='Task',
+                                           path=current_path)
         task_list = []
 
         for taskbrain in taskbrains:
