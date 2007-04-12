@@ -14,9 +14,15 @@ class StoryView(XMBaseView):
 
     def tasks(self):
         current_path = '/'.join(self.context.getPhysicalPath())
-        catalog = getToolByName(self.context, 'portal_catalog')
-        taskbrains = catalog.searchResults(portal_type='Task',
-                                           path=current_path)
+        taskbrains = self.xt.getStateSortedContents(self.context)
+
+        # Not all page templates are prepared for getting their data
+        # as a dict, so just return the brains for now.
+        # Affected are: story_view, iteration_view and task_overview
+        # iteration_view uses a macro defined in story_view
+        # task_overview uses a macro from iteraion_view
+        return taskbrains        
+
         task_list = []
 
         for taskbrain in taskbrains:
