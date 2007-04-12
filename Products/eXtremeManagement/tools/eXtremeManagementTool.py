@@ -36,22 +36,14 @@ from Products.eXtremeManagement.config import *
 from Products.CMFCore.utils import UniqueObject
 
     
-##code-section module-header #fill in your manual code here
-##/code-section module-header
-
 schema = Schema((
 
 ),
 )
 
-##code-section after-local-schema #fill in your manual code here
-##/code-section after-local-schema
-
 eXtremeManagementTool_schema = BaseSchema.copy() + \
     schema.copy()
 
-##code-section after-schema #fill in your manual code here
-##/code-section after-schema
 
 class eXtremeManagementTool(UniqueObject, BaseContent):
     """
@@ -79,10 +71,6 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
 
     schema = eXtremeManagementTool_schema
 
-    ##code-section class-header #fill in your manual code here
-    ##/code-section class-header
-
-
     # tool-constructors have no id argument, the id is fixed
     def __init__(self, id=None):
         BaseContent.__init__(self,'xm_tool')
@@ -91,15 +79,10 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         ##code-section constructor-footer #fill in your manual code here
         ##/code-section constructor-footer
 
-
     # tool should not appear in portal_catalog
     def at_post_edit_script(self):
         self.unindexObject()
         
-        ##code-section post-edit-method-footer #fill in your manual code here
-        ##/code-section post-edit-method-footer
-
-
     # Methods
 
     security.declarePublic('formatTime')
@@ -337,7 +320,3 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
 
 
 registerType(eXtremeManagementTool, PROJECTNAME)
-# end of class eXtremeManagementTool
-
-##code-section module-footer #fill in your manual code here
-##/code-section module-footer
