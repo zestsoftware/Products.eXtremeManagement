@@ -136,7 +136,8 @@
                     <th i18n:translate="listingheader_actual">Actual</th>
               </tr>
 
-              <tr tal:define="stories obj/getStateSortedContents"
+              <tr tal:define="xt python:portal.xm_tool;
+                              stories python:xt.getStateSortedContents(obj);"
                   tal:repeat="story_brain stories">
 
                 <tal:block

@@ -8,7 +8,8 @@
     <metal:block metal:define-macro="body" 
                  tal:define="view context/@@iteration;
                              iteration view/main;
-                             stories here/getStateSortedContents;">
+                             xt python:portal.xm_tool;
+                             stories python:xt.getStateSortedContents(context);">
     
         <div class="documentDescription"
              tal:condition="iteration/description"

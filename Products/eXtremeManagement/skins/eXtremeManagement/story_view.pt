@@ -8,7 +8,8 @@
     <metal:block metal:define-macro="body"
                  tal:define="view context/@@story;
                              story view/main;
-                             items context/getStateSortedContents;
+                             xt python:portal.xm_tool;
+                             items python:xt.getStateSortedContents(context);
                              totalEstimate story/estimate;
                              totalActual story/actual;
                              totalDifference story/difference;
