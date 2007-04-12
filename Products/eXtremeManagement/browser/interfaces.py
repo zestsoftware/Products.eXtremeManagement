@@ -55,6 +55,10 @@ class IStoryView(IXMBaseView):
         """Get a dict with info from this object.
         """
 
+    def tasks():
+        """Return the Tasks of this Story
+        """
+
 
 class IIterationView(IXMBaseView):
     """Info about a iteration

@@ -238,17 +238,17 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             )
         return returnvalue
 
-    def bookingbrain2dict(self, bookingbrain):
+    def bookingbrain2dict(self, brain):
         """Get a dict with info from this booking brain.
         """
         returnvalue = dict(
-            date = self.restrictedTraverse('@@plone').toLocalizedTime(bookingbrain.getBookingDate),
-            url = bookingbrain.getURL(),
-            title = bookingbrain.Title,
-            description = bookingbrain.Description,
-            actual = self.formatTime(bookingbrain.getRawActualHours),
-            creator = bookingbrain.Creator,
-            billable = bookingbrain.getBillable,
+            date = self.restrictedTraverse('@@plone').toLocalizedTime(brain.getBookingDate),
+            url = brain.getURL(),
+            title = brain.Title,
+            description = brain.Description,
+            actual = self.formatTime(brain.getRawActualHours),
+            creator = brain.Creator,
+            billable = brain.getBillable,
         )
         return returnvalue
 
@@ -284,6 +284,21 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             review_state = workflow.getInfoFor(task, 'review_state'),
             assignees = task.getAssignees(),
             )
+        return returnvalue
+
+    def taskbrain2dict(self, brain):
+        """Get a dict with info from this task brain.
+        """
+        returnvalue = dict(
+            url = brain.getURL(),
+            title = brain.Title,
+            description = brain.Description,
+            estimate = self.formatTime(brain.getRawEstimate),
+            actual = self.formatTime(brain.getRawActualHours),
+            difference = self.formatTime(brain.getRawDifference),
+            review_state = brain.review_state,
+            assignees = brain.getAssignees,
+        )
         return returnvalue
 
     def story2dict(self, story):

@@ -11,3 +11,16 @@ class StoryView(XMBaseView):
         """
         story = self.context
         return self.xt.story2dict(story)
+
+    def tasks(self):
+        current_path = '/'.join(self.context.getPhysicalPath())
+        catalog = getToolByName(self.context, 'portal_catalog')
+        taskbrains = catalog.searchResults(portal_type='Task',
+                                           path=current_path)
+        task_list = []
+
+        for taskbrain in taskbrains:
+            info = self.xt.taskbrain2dict(taskbrain)
+            task_list.append(info)
+
+        return task_list
