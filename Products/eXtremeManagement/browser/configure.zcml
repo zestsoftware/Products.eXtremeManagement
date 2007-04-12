@@ -10,10 +10,10 @@
 
   <page
       name="bookings"
-      class=".bookings.BookingView"
+      class=".bookings.BookingListView"
       for="*"
       permission="zope2.View"
-      allowed_interface=".interfaces.IBookingView"
+      allowed_interface=".interfaces.IBookingListView"
       />
 
   <page

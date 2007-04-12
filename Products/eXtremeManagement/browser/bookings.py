@@ -106,7 +106,7 @@ def getEndOfMonth(year, month):
     return DateTime.latestTime(DateTime(year, month, day))
 
 
-class BookingView(object):
+class BookingListView(object):
     """Return some Bookings.
     """
 

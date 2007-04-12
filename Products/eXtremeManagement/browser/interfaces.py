@@ -8,8 +8,8 @@ class IMyProjects(Interface):
         pass
 
 
-class IBookingView(Interface):
-    """Return bookings
+class IBookingListView(Interface):
+    """Return list of bookings
     """
 
     def bookinglist():
