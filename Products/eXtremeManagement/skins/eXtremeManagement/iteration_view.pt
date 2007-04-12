@@ -56,7 +56,7 @@
                         tal:content="story/title" />
                     </td>
                     <td tal:define="review_state story/review_state"
-                        tal:content="review_state"
+                        tal:content="story/review_state_title"
                         i18n:domain="plone"
                         i18n:translate=""
                         class=""

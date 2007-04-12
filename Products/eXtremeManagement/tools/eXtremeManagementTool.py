@@ -272,6 +272,8 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
     def taskbrain2dict(self, brain):
         """Get a dict with info from this task brain.
         """
+        review_state_id = brain.review_state
+        workflow = getToolByName(self, 'portal_workflow')
         returnvalue = dict(
             url = brain.getURL(),
             title = brain.Title,
@@ -279,7 +281,9 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             estimate = self.formatTime(brain.getRawEstimate),
             actual = self.formatTime(brain.getRawActualHours),
             difference = self.formatTime(brain.getRawDifference),
-            review_state = brain.review_state,
+            review_state = review_state_id,
+            review_state_title = workflow.getTitleForStateOnType(
+                                 review_state_id, 'Task'),
             assignees = brain.getAssignees,
         )
         return returnvalue
@@ -302,10 +306,9 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
 
     def storybrain2dict(self, brain):
         """Get a dict with info from this story brain.
-
-        Note on review_state: maybe use something similar to
-        ./CMFPlone/PloneTool.py:getReviewStateTitleFor(obj)
         """
+        review_state_id = brain.review_state
+        workflow = getToolByName(self, 'portal_workflow')
         returnvalue = dict(
             url = brain.getURL(),
             title = brain.Title,
@@ -313,7 +316,9 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             estimate = self.formatTime(brain.getRawEstimate),
             actual = self.formatTime(brain.getRawActualHours),
             difference = self.formatTime(brain.getRawDifference),
-            review_state = brain.review_state,
+            review_state = review_state_id,
+            review_state_title = workflow.getTitleForStateOnType(
+                                 review_state_id, 'Story'),
         )
         return returnvalue
 
