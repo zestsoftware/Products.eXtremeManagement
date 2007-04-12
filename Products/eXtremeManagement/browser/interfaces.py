@@ -43,6 +43,9 @@ class ITaskView(IXMBaseView):
         """Get a dict with info from this object.
         """
 
+    def bookings():
+        """Return the Bookings of this Task,  sorted by bookingDate
+        """
 
 class IStoryView(IXMBaseView):
     """Info about a story
