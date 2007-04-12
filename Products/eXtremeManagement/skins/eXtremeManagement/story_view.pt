@@ -8,8 +8,7 @@
     <metal:block metal:define-macro="body"
                  tal:define="view context/@@story;
                              story view/main;
-                             xt python:portal.xm_tool;
-                             items python:xt.getStateSortedContents(context);
+                             items view/tasks;
                              totalEstimate story/estimate;
                              totalActual story/actual;
                              totalDifference story/difference;
@@ -89,21 +88,22 @@
                   class="list-in-iteration">
                   <metal:block define-slot="extra_column_data"></metal:block>
                   <td class="td-story-title">
-                    <a tal:attributes="href task/getURL"
-                       tal:content="task/Title" />
+                    <a tal:attributes="href task/url"
+                       tal:content="task/title" />
                   </td>
-                  <td tal:content="python:xt.formatTime(task.getRawEstimate)" />
-                  <td tal:content="python:xt.formatTime(task.getRawActualHours)" />
-                  <td tal:content="python:xt.formatTime(task.getRawDifference)" />
-                  <td tal:content="task/review_state"
+                  <td tal:content="task/estimate" />
+                  <td tal:content="task/actual" />
+                  <td tal:content="task/difference" />
+                  <td tal:define="review_state task/review_state"
+                      tal:content="review_state"
                       i18n:domain="plone"
                       i18n:translate=""
                       class=""
-                      tal:attributes="class python:'td-center state-'+normalizeString(task.review_state)" />
+                      tal:attributes="class python:'td-center state-'+normalizeString(review_state)" />
                   <td class="td-center">
-                    <tal:assignees tal:repeat="newItem task/getAssignees">
+                    <tal:assignees tal:repeat="assignee task/assignees">
                       <img tal:replace="structure context/user.gif" />
-                      <span tal:replace="newItem">Assignee</span>
+                      <span tal:replace="assignee">Assignee</span>
                       <br />
                     </tal:assignees>
                   </td>
