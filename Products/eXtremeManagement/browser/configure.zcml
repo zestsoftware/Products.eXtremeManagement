@@ -17,6 +17,14 @@
       />
 
   <page
+      name="booking"
+      class=".bookings.BookingView"
+      for="Products.eXtremeManagement.interfaces.IXMBooking"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IBookingView"
+      />
+
+  <page
       name="task"
       class=".tasks.TaskView"
       for="Products.eXtremeManagement.interfaces.IXMTask"

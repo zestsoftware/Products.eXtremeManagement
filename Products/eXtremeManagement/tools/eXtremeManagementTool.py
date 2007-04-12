@@ -223,6 +223,19 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             return True
         return False
 
+    def booking2dict(self, booking):
+        """Get a dict with info from this Booking.
+        """
+        workflow = getToolByName(self, 'portal_workflow')
+        returnvalue = dict(
+            title = booking.title_or_id(),
+            description = booking.Description(),
+            actual = self.formatTime(booking.getRawActualHours()),
+            booking_date = self.toLocalizedTime(booking.getBookingDate(), long_format=0),
+            billable = booking.getBillable(),
+            )
+        return returnvalue
+
     def task2dict(self, task):
         """Get a dict with info from this Task.
         """
@@ -272,11 +285,10 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             )
         return returnvalue
 
+
+
 registerType(eXtremeManagementTool, PROJECTNAME)
 # end of class eXtremeManagementTool
 
 ##code-section module-footer #fill in your manual code here
 ##/code-section module-footer
-
-
-

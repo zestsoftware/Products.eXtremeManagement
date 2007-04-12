@@ -26,6 +26,15 @@ class IXMBaseView(Interface):
         """
 
 
+class IBookingView(IXMBaseView):
+    """Info about a booking
+    """
+
+    def main():
+        """Get a dict with info from this object.
+        """
+
+
 class ITaskView(IXMBaseView):
     """Info about a task
     """

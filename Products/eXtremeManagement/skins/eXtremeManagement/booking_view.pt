@@ -5,34 +5,47 @@
 
   <body>
 
-    <metal:block metal:define-macro="header">
+    <tal:comment replace="nothing">
+      We define the view and booking two times: once in both
+      define-macros.  That seems okay, as this is needed because this
+      template is not usually called directly but is only called by
+      the base_view.  And the base_view can only be reached manually,
+      as for bookings we redirect the view to the view of the parent
+      task.
+    </tal:comment>
+
+    <metal:block metal:define-macro="header"
+                 tal:define="view context/@@booking;
+                             booking view/main">
       <div metal:use-macro="here/document_actions/macros/document_actions">
         Document actions (print, sendto etc)
       </div>
-       <h1 tal:content="here/title_or_id" class="documentFirstHeading" />
+       <h1 tal:content="booking/title" class="documentFirstHeading" />
        <div class="documentDescription"
-            tal:condition="here/Description"
-            tal:content="here/Description">description
+            tal:condition="booking/description"
+            tal:content="booking/description">description
        </div>
        <link REL="stylesheet" TYPE="text/css" href="eXtreme.css" />
     </metal:block>
    
-    <metal:block metal:define-macro="body">
+    <metal:block metal:define-macro="body"
+                 tal:define="view context/@@booking;
+                             booking view/main">
 
       <h5 class="header-booking-hours" 
           i18n:translate="heading-booking">Booking
       </h5>
-      <span tal:content="here/getActualHours">3:14</span>
+      <span tal:content="booking/actual">3:14</span>
 
       <h5 class="header-booking-date" 
           i18n:translate="heading-booking-date">Booking date
       </h5>
-      <span tal:content="here/getBookingDate">2006-01-01</span>
+      <span tal:content="booking/booking_date">2006-01-01</span>
 
       <h5 class="header-billable" 
           i18n:translate="heading-billable">Billable
       </h5>
-      <span tal:content="here/getBillable" />
+      <span tal:content="booking/billable" />
 
     </metal:block>
     <metal:block metal:define-macro="folderlisting" />

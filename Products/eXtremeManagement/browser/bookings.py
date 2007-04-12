@@ -1,5 +1,6 @@
 from Products.CMFCore.utils import getToolByName
 from DateTime import DateTime
+from Products.eXtremeManagement.browser.xmbase import XMBaseView
 
 
 def getNextYearMonth(year, month):
@@ -190,3 +191,16 @@ class BookingListView(object):
             'booking_hours': booking_hours,
             }
         return returnvalue
+
+
+class BookingView(XMBaseView):
+    """Simply return info about a Booking.
+    """
+ 
+    def main(self):
+        """Get a dict with info from this Booking.
+        """
+        booking = self.context
+        return self.xt.booking2dict(booking)
+
+
