@@ -300,6 +300,23 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             )
         return returnvalue
 
+    def storybrain2dict(self, brain):
+        """Get a dict with info from this story brain.
+
+        Note on review_state: maybe use something similar to
+        ./CMFPlone/PloneTool.py:getReviewStateTitleFor(obj)
+        """
+        returnvalue = dict(
+            url = brain.getURL(),
+            title = brain.Title,
+            description = brain.Description,
+            estimate = self.formatTime(brain.getRawEstimate),
+            actual = self.formatTime(brain.getRawActualHours),
+            difference = self.formatTime(brain.getRawDifference),
+            review_state = brain.review_state,
+        )
+        return returnvalue
+
     def iteration2dict(self, iteration):
         """Get a dict with info from this Iteration.
         """

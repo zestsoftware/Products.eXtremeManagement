@@ -8,8 +8,7 @@
     <metal:block metal:define-macro="body" 
                  tal:define="view context/@@iteration;
                              iteration view/main;
-                             xt python:portal.xm_tool;
-                             stories python:xt.getStateSortedContents(context);">
+                             stories view/stories;">
     
         <div class="documentDescription"
              tal:condition="iteration/description"
@@ -51,21 +50,19 @@
     
                 <tr tal:repeat="story stories"
                     class="list-in-iteration">
-                    <tal:block tal:define="storyObj story/getObject">
                     <td class="td-story-title">
                         <a class="storyTitle_iteration_overview"
-                        tal:attributes="href string:${storyObj/absolute_url}"
-                        tal:content="storyObj/Title" />
+                        tal:attributes="href string:${story/url}"
+                        tal:content="story/title" />
                     </td>
-                    <td tal:define="review_state python:putils.getReviewStateTitleFor(storyObj)"
+                    <td tal:define="review_state story/review_state"
                         tal:content="review_state"
                         i18n:domain="plone"
                         i18n:translate=""
                         class=""
                         tal:attributes="class python:'td-center state-'+normalizeString(review_state)" />
-                    <td tal:content="python:storyObj.getEstimate()" />
-                    <td tal:content="python:storyObj.getActualHours()" />
-                    </tal:block>
+                    <td tal:content="story/estimate" />
+                    <td tal:content="story/actual" />
                 </tr>
                 <tr id="totalTasks">
                     <td class="td-story-title"
