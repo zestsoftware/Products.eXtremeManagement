@@ -58,7 +58,7 @@
                 <tr tal:repeat="booking bookings">
                 <tal:block tal:define="date python:booking[0];
                                        time python:booking[1];">
-                    <td tal:content="python:context.toLocalizedTime(date)">
+                    <td tal:content="python:toLocalizedTime(date)">
                         2006-01-25
                     </td>
                     <td tal:content="time">

@@ -3,7 +3,7 @@
       i18n:domain="eXtremeManagement">
 
     <body>
-    
+    <metal:block use-macro="context/global_defines/macros/defines" />
     <!-- The stories box -->
     <div metal:define-macro="portlet"
          tal:define="results python:here.portal_catalog.searchResults(portal_type='Story', 
@@ -33,7 +33,7 @@
                 </a>
     
                 <div class="portletDetails"
-                        tal:content="python:here.toLocalizedTime(obj.Date)" />
+                        tal:content="python:toLocalizedTime(obj.Date)" />
             </dd>
             </tal:block>
         </dl>

@@ -58,7 +58,7 @@
                                                time python:booking[1];
                                                daily_total python: time.split(':');
                                                global total_monthly python: total_monthly+int(daily_total[0])+int(int(daily_total[1])/60)">
-                            <td tal:content="python:context.toLocalizedTime(date)">
+                            <td tal:content="python:toLocalizedTime(date)">
                                 2006-01-25
                             </td>
                             <td tal:content="time">
