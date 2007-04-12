@@ -112,19 +112,19 @@
                 </tr>
             
                 <tr tal:repeat="booking bookings">
-                    <td tal:content="booking/getBookingDate">
+                    <td tal:content="booking/booking_date">
                         2006-01-01
                     </td>
                     <td>
-                        <a tal:attributes="href string:${booking/absolute_url}/base_edit"
+                        <a tal:attributes="href string:${booking/url}/base_edit"
                            class="booking_title"
-                           tal:content="booking/Title" />
+                           tal:content="booking/title" />
                         <div class="booking_description" 
-                             tal:content="booking/Description" />
+                             tal:content="booking/description" />
                     </td>
-                    <td tal:content="booking/getActualHours" />
-                    <td tal:content="booking/Creator" />
-                    <td tal:content="booking/getBillable" />
+                    <td tal:content="booking/actual" />
+                    <td tal:content="booking/creator" />
+                    <td tal:content="booking/billable" />
                 </tr>
             </table>
         </tal:block>

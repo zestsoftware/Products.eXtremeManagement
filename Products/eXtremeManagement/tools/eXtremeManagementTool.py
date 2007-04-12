@@ -233,6 +233,8 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             actual = self.formatTime(booking.getRawActualHours()),
             booking_date = self.restrictedTraverse('@@plone').toLocalizedTime(booking.getBookingDate()),
             billable = booking.getBillable(),
+            creator = booking.Creator(),
+            url = booking.absolute_url(),
             )
         return returnvalue
 
@@ -252,6 +254,7 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         booking_title = bookingbrain.Title
         booking_description = bookingbrain.Description
         booking_hours = self.formatTime(bookingbrain.getRawActualHours)
+        creator = bookingbrain.Creator
         returnvalue = {
             'booking_date': booking_date,
             'project_title': project_title,
@@ -261,6 +264,7 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             'booking_title': booking_title,
             'booking_description': booking_description,
             'booking_hours': booking_hours,
+            'creator': creator,
             }
         return returnvalue
 

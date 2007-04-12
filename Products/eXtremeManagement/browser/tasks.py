@@ -19,4 +19,10 @@ class TaskView(XMBaseView):
                     catalog.searchResults(portal_type='Booking',
                                           sort_on='getBookingDate',
                                           path=current_path)]
-        return bookings
+        bookinglist = []
+
+        for booking in bookings:
+            info = self.xt.booking2dict(booking)
+            bookinglist.append(info)
+
+        return bookinglist
