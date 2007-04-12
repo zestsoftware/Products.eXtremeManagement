@@ -15,14 +15,13 @@ class TaskView(XMBaseView):
     def bookings(self):
         current_path = '/'.join(self.context.getPhysicalPath())
         catalog = getToolByName(self.context, 'portal_catalog')
-        bookings = [brain.getObject() for brain in
-                    catalog.searchResults(portal_type='Booking',
-                                          sort_on='getBookingDate',
-                                          path=current_path)]
-        bookinglist = []
+        bookingbrains = catalog.searchResults(portal_type='Booking',
+                                              sort_on='getBookingDate',
+                                              path=current_path)
+        booking_list = []
 
-        for booking in bookings:
-            info = self.xt.booking2dict(booking)
-            bookinglist.append(info)
+        for bookingbrain in bookingbrains:
+            info = self.xt.bookingbrain2dict(bookingbrain)
+            booking_list.append(info)
 
-        return bookinglist
+        return booking_list

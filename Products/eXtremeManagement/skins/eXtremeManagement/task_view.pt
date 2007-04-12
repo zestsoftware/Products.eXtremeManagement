@@ -112,7 +112,7 @@
                 </tr>
             
                 <tr tal:repeat="booking bookings">
-                    <td tal:content="booking/booking_date">
+                    <td tal:content="booking/date">
                         2006-01-01
                     </td>
                     <td>

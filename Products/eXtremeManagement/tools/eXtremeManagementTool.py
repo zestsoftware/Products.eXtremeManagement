@@ -240,9 +240,20 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
 
     def bookingbrain2dict(self, bookingbrain):
         """Get a dict with info from this booking brain.
+        """
+        returnvalue = dict(
+            date = self.restrictedTraverse('@@plone').toLocalizedTime(bookingbrain.getBookingDate),
+            url = bookingbrain.getURL(),
+            title = bookingbrain.Title,
+            description = bookingbrain.Description,
+            actual = self.formatTime(bookingbrain.getRawActualHours),
+            creator = bookingbrain.Creator,
+            billable = bookingbrain.getBillable,
+        )
+        return returnvalue
 
-        To do: get rid of the getObject call, maybe by moving more
-        things into the catalog.
+    def bookingbrain2extended_dict(self, bookingbrain):
+        """Get a dict with extended info from this booking brain.
         """
         booking = bookingbrain.getObject()
         task = booking.aq_parent

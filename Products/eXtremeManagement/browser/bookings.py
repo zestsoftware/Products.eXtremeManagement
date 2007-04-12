@@ -150,7 +150,7 @@ class BookingListView(object):
         # Where do we want to search?
         searchpath = '/'.join(self.context.getPhysicalPath())
 
-        bookings = self.catalog.searchResults(
+        bookingbrains = self.catalog.searchResults(
             portal_type='Booking',
             getBookingDate={ "query": [self.startDate, self.endDate],
                              "range": "minmax"},
@@ -158,13 +158,13 @@ class BookingListView(object):
             Creator=self.memberid,
             path=searchpath)
 
-        list = []
+        booking_list = []
 
-        for bookingbrain in bookings:
-            info = self.xt.bookingbrain2dict(bookingbrain)
-            list.append(info)
+        for bookingbrain in bookingbrains:
+            info = self.xt.bookingbrain2extended_dict(bookingbrain)
+            booking_list.append(info)
 
-        return list
+        return booking_list
 
 
 class BookingView(XMBaseView):
