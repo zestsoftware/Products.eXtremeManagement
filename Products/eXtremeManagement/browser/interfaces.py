@@ -16,25 +16,38 @@ class IBookingListView(Interface):
         pass
 
 
-class ITaskView(Interface):
+class IXMBaseView(Interface):
+    """Info about one of the standard content types of
+    eXtremeManagement.
+    """
+
+    def main():
+        """Get a dict with info from this object.
+        """
+
+
+class ITaskView(IXMBaseView):
     """Info about a task
     """
 
     def main():
-        pass
+        """Get a dict with info from this object.
+        """
 
 
-class IStoryView(Interface):
+class IStoryView(IXMBaseView):
     """Info about a story
     """
 
     def main():
-        pass
+        """Get a dict with info from this object.
+        """
 
 
-class IIterationView(Interface):
+class IIterationView(IXMBaseView):
     """Info about a iteration
     """
 
     def main():
-        pass
+        """Get a dict with info from this object.
+        """
