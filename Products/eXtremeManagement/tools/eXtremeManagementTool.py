@@ -231,7 +231,7 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             title = booking.title_or_id(),
             description = booking.Description(),
             actual = self.formatTime(booking.getRawActualHours()),
-            booking_date = self.toLocalizedTime(booking.getBookingDate(), long_format=0),
+            booking_date = self.restrictedTraverse('@@plone').toLocalizedTime(booking.getBookingDate()),
             billable = booking.getBillable(),
             )
         return returnvalue
@@ -242,7 +242,7 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         To do: get rid of the getObject call, maybe by moving more
         things into the catalog.
         """
-        booking_date = self.toLocalizedTime(bookingbrain.getBookingDate, long_format=0)
+        booking_date = self.restrictedTraverse('@@plone').toLocalizedTime(bookingbrain.getBookingDate)
         booking = bookingbrain.getObject()
         project_title = booking.getProject().Title()
         task = booking.aq_parent
@@ -304,8 +304,8 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             title = iteration.Title(),
             description = iteration.Description(),
             man_hours = iteration.getManHours(),
-            start_date = self.toLocalizedTime(iteration.getStartDate(), long_format=0),
-            end_date = self.toLocalizedTime(iteration.getEndDate(), long_format=0),
+            start_date = self.restrictedTraverse('@@plone').toLocalizedTime(iteration.getStartDate()),
+            end_date = self.restrictedTraverse('@@plone').toLocalizedTime(iteration.getEndDate()),
             estimate = self.formatTime(iteration.getRawEstimate()),
             actual = self.formatTime(iteration.getRawActualHours()),
             difference = self.formatTime(iteration.getRawDifference()),
