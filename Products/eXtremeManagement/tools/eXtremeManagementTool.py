@@ -244,28 +244,19 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         To do: get rid of the getObject call, maybe by moving more
         things into the catalog.
         """
-        booking_date = self.restrictedTraverse('@@plone').toLocalizedTime(bookingbrain.getBookingDate)
         booking = bookingbrain.getObject()
-        project_title = booking.getProject().Title()
         task = booking.aq_parent
-        task_url = task.absolute_url()
-        task_title = task.Title()
-        booking_url = booking.absolute_url()
-        booking_title = bookingbrain.Title
-        booking_description = bookingbrain.Description
-        booking_hours = self.formatTime(bookingbrain.getRawActualHours)
-        creator = bookingbrain.Creator
-        returnvalue = {
-            'booking_date': booking_date,
-            'project_title': project_title,
-            'task_url': task_url,
-            'task_title': task_title,
-            'booking_url': booking_url,
-            'booking_title': booking_title,
-            'booking_description': booking_description,
-            'booking_hours': booking_hours,
-            'creator': creator,
-            }
+        returnvalue = dict(
+            booking_date = self.restrictedTraverse('@@plone').toLocalizedTime(bookingbrain.getBookingDate),
+            project_title = booking.getProject().Title(),
+            task_url = task.absolute_url(),
+            task_title = task.Title(),
+            booking_url = booking.absolute_url(),
+            booking_title = bookingbrain.Title,
+            booking_description = bookingbrain.Description,
+            booking_hours = self.formatTime(bookingbrain.getRawActualHours),
+            creator = bookingbrain.Creator,
+        )
         return returnvalue
 
     def task2dict(self, task):
