@@ -217,7 +217,9 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             booking_date = self.restrictedTraverse('@@plone').toLocalizedTime(booking.getBookingDate()),
             billable = booking.getBillable(),
             creator = booking.Creator(),
-            url = booking.absolute_url(),
+            # base_view of a booking gets redirected to the task view,
+            # which we do not want here.
+            url = booking.absolute_url() + '/base_edit',
             )
         return returnvalue
 
@@ -226,7 +228,9 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         """
         returnvalue = dict(
             date = self.restrictedTraverse('@@plone').toLocalizedTime(brain.getBookingDate),
-            url = brain.getURL(),
+            # base_view of a booking gets redirected to the task view,
+            # which we do not want here.
+            url = brain.getURL() + '/base_edit',
             title = brain.Title,
             description = brain.Description,
             actual = self.formatTime(brain.getRawActualHours),
@@ -245,7 +249,9 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             project_title = booking.getProject().Title(),
             task_url = task.absolute_url(),
             task_title = task.Title(),
-            booking_url = booking.absolute_url(),
+            # base_view of a booking gets redirected to the task view,
+            # which we do not want here.
+            booking_url = bookingbrain.getURL() + '/base_edit',
             booking_title = bookingbrain.Title,
             booking_description = bookingbrain.Description,
             booking_hours = self.formatTime(bookingbrain.getRawActualHours),
