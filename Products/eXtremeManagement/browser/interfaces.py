@@ -13,7 +13,12 @@ class IBookingListView(Interface):
     """
 
     def bookinglist():
-        pass
+        """List of individual Bookings
+        """
+
+    def summary_bookinglist():
+        """List of tuples/dicts with date and total booked hours.
+        """
 
 
 class IXMBaseView(Interface):

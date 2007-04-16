@@ -137,18 +137,13 @@ class BookingListView(object):
 
         self.startDate = DateTime(self.year, self.month, 1)
         self.endDate = getEndOfMonth(self.year, self.month)
+        # Where do we want to search?
+        self.searchpath = '/'.join(self.context.getPhysicalPath())
 
     def bookinglist(self):
         """List of Bookings that match the REQUEST.
         """
 
-        if self.year < 1970:
-            return []
-        if self.month < 0 or self.month > 12:
-            return []
-
-        # Where do we want to search?
-        searchpath = '/'.join(self.context.getPhysicalPath())
 
         bookingbrains = self.catalog.searchResults(
             portal_type='Booking',
@@ -156,7 +151,7 @@ class BookingListView(object):
                              "range": "minmax"},
             sort_on='getBookingDate',
             Creator=self.memberid,
-            path=searchpath)
+            path=self.searchpath)
 
         booking_list = []
 
@@ -165,6 +160,25 @@ class BookingListView(object):
             booking_list.append(info)
 
         return booking_list
+
+    def summary_bookinglist(self):
+        """Total of Bookings per day
+        """
+        day = 1
+        mylist = []
+        date = self.startDate
+        while True:
+            total = self.context.getDailyBookings(date=date, memberid=self.memberid)
+            if total > 0:
+                mylist.append((date, total))
+            day += 1
+            try:
+                # We used to simply do date + 1, but that gave problems with
+                # Daylight Savings Time.
+                date = DateTime(self.year, self.month, day)
+            except:
+                break
+        return mylist
 
 
 class BookingView(XMBaseView):

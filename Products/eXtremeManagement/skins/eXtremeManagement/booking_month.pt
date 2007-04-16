@@ -38,7 +38,8 @@
          </tal:othermonths>
 
         <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
-                               bookings python:context.getMonthlyBookings()"
+                               view context/@@bookings;
+                               bookings view/summary_bookinglist"
                    tal:condition="bookings">
             <h1 i18n:translate="heading-bookings-per-day">Bookings per day for
                    this month</h1>
