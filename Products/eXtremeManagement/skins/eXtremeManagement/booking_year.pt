@@ -29,7 +29,7 @@
              </p>
 
              <tal:month tal:repeat="dmonth python: range(0,12)">
-                <tal:block tal:define="global total_monthly python: 0;
+                <tal:one_month tal:define="global total_monthly python: 0;
                                        month python: base_month-dmonth;
                                        year python: test(month<1, base_year-1, base_year);
                                        month python: test(month<1, month+12, month);
@@ -54,7 +54,7 @@
                         </tr>
                     
                         <tr tal:repeat="booking bookings">
-                        <tal:block tal:define="date python:booking[0];
+                        <tal:booking tal:define="date python:booking[0];
                                                time python:booking[1];
                                                daily_total python: time.split(':');
                                                global total_monthly python: total_monthly+int(daily_total[0])+int(int(daily_total[1])/60)">
@@ -64,14 +64,14 @@
                             <td tal:content="time">
                                 4:45
                             </td>
-                        </tal:block>
+                        </tal:booking>
                         </tr>
                         <tr>
-                           <td>Total</td>
-                           <td tal:content="total_monthly" />
+                           <th>Total</th>
+                           <th tal:content="total_monthly" />
                         </tr>
                     </table>
-                </tal:block>
+                </tal:one_month>
                 <tal:sum define="global total_yearly python: total_yearly+total_monthly" />
             </tal:month>
             <p>Total for the entire period: <span tal:replace="total_yearly" /> hours.</p>
