@@ -140,8 +140,14 @@ class BookingListView(object):
         # Where do we want to search?
         self.searchpath = '/'.join(self.context.getPhysicalPath())
 
-    def bookinglist(self):
+        self.total_actual = 0
+        self.bookinglist = self._make_bookinglist()
+        self.total_actual = self.xt.formatTime(self.total_actual)
+
+    def _make_bookinglist(self):
         """List of Bookings that match the REQUEST.
+
+        This also updates the total for this month.
         """
 
 
@@ -158,6 +164,7 @@ class BookingListView(object):
         for bookingbrain in bookingbrains:
             info = self.xt.bookingbrain2extended_dict(bookingbrain)
             booking_list.append(info)
+            self.total_actual += bookingbrain.getRawActualHours
 
         return booking_list
 

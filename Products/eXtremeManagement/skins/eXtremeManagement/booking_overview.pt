@@ -73,6 +73,13 @@
 	    </td>
 	    <td tal:content="booking/booking_hours" />
 	  </tr>
+      <tr>
+        <th i18n:translate="listingheader-total"
+            colspan="3">
+          Total
+        </th>
+        <th tal:content="view/total_actual" />
+      </tr>
 	</table>
       </tal:block>
     </tal:main>

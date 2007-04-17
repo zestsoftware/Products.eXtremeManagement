@@ -1,4 +1,4 @@
-from zope.interface import Interface
+from zope.interface import Interface, Attribute
 
 class IMyProjects(Interface):
     """Return the projects that the logged in user has tasks in.
@@ -12,10 +12,10 @@ class IBookingListView(Interface):
     """Return list of bookings
     """
 
-    def bookinglist():
-        """List of individual Bookings
-        """
+    bookinglist = Attribute("List of individual Bookings")
 
+    total_actual = Attribute("Total booked hours for this period")
+    
     def summary_bookinglist():
         """List of tuples/dicts with date and total booked hours.
         """

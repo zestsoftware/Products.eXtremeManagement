@@ -8,9 +8,11 @@ At first there is only one Booking.
     1
     >>> from Products.eXtremeManagement.browser.bookings import BookingListView
     >>> bookview = BookingListView(self.portal)
-    >>> len(bookview.bookinglist())
+    >>> len(bookview.bookinglist)
     1
-    >>> bookview.bookinglist()[0]['booking_hours']
+    >>> bookview.bookinglist[0]['booking_hours']
+    '3:15'
+    >>> bookview.total_actual
     '3:15'
 
 Let's add a Booking as someone else.  That person should be default
@@ -20,18 +22,32 @@ only see his own Bookings.
     >>> self.task.invokeFactory('Booking', id='booking-emp', hours=2)
     'booking-emp'
     >>> bookview = BookingListView(self.portal)
-    >>> len(bookview.bookinglist())
+    >>> len(bookview.bookinglist)
     1
-    >>> bookview.bookinglist()[0]['booking_hours']
+    >>> bookview.bookinglist[0]['booking_hours']
+    '2:00'
+    >>> bookview.total_actual
     '2:00'
     >>> len(self.catalog(portal_type='Booking'))
     2
 
+Adding another one should update the total actual hours
+
+    >>> self.task.invokeFactory('Booking', id='booking-emp-2', hours=3, minutes=30)
+    'booking-emp-2'
+    >>> bookview = BookingListView(self.portal)
+    >>> len(bookview.bookinglist)
+    2
+    >>> bookview.total_actual
+    '5:30'
+
 No bookings have been done in January 2007.
 
     >>> bookview = BookingListView(self.portal, {'year': 2007, 'month': 1})
-    >>> bookview.bookinglist()
+    >>> bookview.bookinglist
     []
+    >>> bookview.total_actual
+    '0:00'
 
 Let us add one in that month.
 
@@ -40,9 +56,9 @@ Let us add one in that month.
     >>> self.task.invokeFactory('Booking', id='emp-jan1', hours=1, bookingDate=jan1)
     'emp-jan1'
     >>> bookview = BookingListView(self.portal, {'year': 2007, 'month': 1})
-    >>> len(bookview.bookinglist())
+    >>> len(bookview.bookinglist)
     1
-    >>> bookview.bookinglist()[0]['booking_date']
+    >>> bookview.bookinglist[0]['booking_date']
     '2007-01-01'
 
 Now, a booking on the first of the month might inadvertently be listed
@@ -50,7 +66,7 @@ in the previous month as well.  Let's make sure we do not make that
 mistake.
 
     >>> bookview = BookingListView(self.portal, {'year': 2006, 'month': 12})
-    >>> bookview.bookinglist()
+    >>> bookview.bookinglist
     []
 
 
@@ -58,11 +74,11 @@ Daylight Savings Time can be annoying.  Bookings at Monday March 27
 2006 can end up in overviews on Monday *and* Sunday.
 
     >>> bookview = BookingListView(self.portal, {'year': 2006, 'month': 3})
-    >>> len(bookview.bookinglist())
+    >>> len(bookview.bookinglist)
     0
     >>> monday_after_dst = DateTime('2006-03-27')
     >>> self.task.invokeFactory('Booking', id='emp-mad06', hours=2, bookingDate=monday_after_dst)
     'emp-mad06'
     >>> bookview = BookingListView(self.portal, {'year': 2006, 'month': 3})
-    >>> len(bookview.bookinglist())
+    >>> len(bookview.bookinglist)
     1
