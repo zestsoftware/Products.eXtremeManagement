@@ -1,7 +1,7 @@
 from Products.CMFCore.utils import getToolByName
 from DateTime import DateTime
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
-
+from Products.Five.browser import BrowserView
 
 def getNextYearMonth(year, month):
     """Get the year and month for next month (watch out for December)
@@ -107,25 +107,21 @@ def getEndOfMonth(year, month):
     return DateTime.latestTime(DateTime(year, month, day))
 
 
-class BookingListView(object):
+class BookingListView(BrowserView):
     """Return some Bookings.
     """
 
-    def __init__(self, context, request=None):
+    def __init__(self, context, request):
         self.context = context
+        self.request = request
         self.catalog = getToolByName(self.context, 'portal_catalog')
         self.xt = getToolByName(self.context, 'xm_tool')
-        if request is None:
-            # At least handy for testing.
-            self.request = self.context.REQUEST
-        else:
-            self.request = request
 
-        self.year = self.request.get('year', DateTime().year())
-        self.month = self.request.get('month', DateTime().month())
-        self.previous = self.request.get('previous')
-        self.next = self.request.get('next')
-        self.memberid = self.request.get('next')
+        self.year = self.request.form.get('year', DateTime().year())
+        self.month = self.request.form.get('month', DateTime().month())
+        self.previous = self.request.form.get('previous')
+        self.next = self.request.form.get('next')
+        self.memberid = self.request.form.get('next')
         if self.memberid is None:
             member = context.portal_membership.getAuthenticatedMember()
             self.memberid = member.id
