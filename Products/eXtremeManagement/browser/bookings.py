@@ -3,6 +3,7 @@ from DateTime import DateTime
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.Five.browser import BrowserView
 
+
 def getNextYearMonth(year, month):
     """Get the year and month for next month (watch out for December)
 

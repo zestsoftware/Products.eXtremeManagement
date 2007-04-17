@@ -5,12 +5,21 @@ We want to test some portlets.  First the My Projects portlet.
 Currently there is one Project, but we do not have any tasks assigned
 to us there.
 
+    >>> from zope.publisher.browser import TestRequest
+    >>> from urllib import unquote
+    >>> def physicalPathFromURL(self, URL):
+    ...     # Simplified version of ZPublisher.HTTPRequest.py
+    ...     path = filter(None, URL.split( '/'))
+    ...     if URL.find( '://') >= 0:
+    ...         path = path[2:]
+    ...     return map(unquote, path)
+    >>> TestRequest.physicalPathFromURL = physicalPathFromURL
     >>> len(self.catalog(portal_type='Project'))
     1
     >>> len(self.catalog(portal_type='Task'))
     1
     >>> from Products.eXtremeManagement.browser.projects import MyProjects
-    >>> myprojects = MyProjects(self.portal)
+    >>> myprojects = MyProjects(self.portal, TestRequest())
     >>> myprojects.projectlist()
     []
 
@@ -19,7 +28,7 @@ in that project.  Now the portlet should return a result.
 
     >>> self.task.setAssignees(('employee', 'test_user_1_',))
     >>> self.task.reindexObject()
-    >>> myprojects = MyProjects(self.portal)
+    >>> myprojects = MyProjects(self.portal, TestRequest())
     >>> myprojects.projectlist()
     [<Products.ZCatalog.Catalog.mybrains object at ...>]
 

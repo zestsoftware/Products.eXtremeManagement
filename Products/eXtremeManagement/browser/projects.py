@@ -1,19 +1,16 @@
 from Products.CMFCore.utils import getToolByName
+from Products.Five.browser import BrowserView
 
 
-class MyProjects(object):
+class MyProjects(BrowserView):
     """Return the projects that I have tasks in.
     """
     states = ('open', 'to-do',)
     # Use state = '' if you do not want to filter for states.
 
-    def __init__(self, context, request=None):
+    def __init__(self, context, request):
         self.context = context
-        if request is None:
-            # At least handy for testing.
-            self.request = self.context.REQUEST
-        else:
-            self.request = request
+        self.request = request
     
     def projectlist(self):
         # Get a list of all projects
