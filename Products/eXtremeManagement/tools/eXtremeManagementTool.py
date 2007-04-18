@@ -204,41 +204,6 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         """
         return HAS_POI
 
-    def storybrain2dict(self, brain):
-        """Get a dict with info from this story brain.
-        """
-        review_state_id = brain.review_state
-        workflow = getToolByName(self, 'portal_workflow')
-        returnvalue = dict(
-            url = brain.getURL(),
-            title = brain.Title,
-            description = brain.Description,
-            estimate = self.formatTime(brain.getRawEstimate),
-            actual = self.formatTime(brain.getRawActualHours),
-            difference = self.formatTime(brain.getRawDifference),
-            review_state = review_state_id,
-            review_state_title = workflow.getTitleForStateOnType(
-                                 review_state_id, 'Story'),
-        )
-        return returnvalue
-
-    def iteration2dict(self, iteration):
-        """Get a dict with info from this Iteration.
-        """
-        workflow = getToolByName(self, 'portal_workflow')
-        returnvalue = dict(
-            title = iteration.Title(),
-            description = iteration.Description(),
-            man_hours = iteration.getManHours(),
-            start_date = self.restrictedTraverse('@@plone').toLocalizedTime(iteration.getStartDate()),
-            end_date = self.restrictedTraverse('@@plone').toLocalizedTime(iteration.getEndDate()),
-            estimate = self.formatTime(iteration.getRawEstimate()),
-            actual = self.formatTime(iteration.getRawActualHours()),
-            difference = self.formatTime(iteration.getRawDifference()),
-            review_state = workflow.getInfoFor(iteration, 'review_state'),
-            )
-        return returnvalue
-
     def getStateSortedContents(self, context):
         """Get completed/invoiced items first, then rest of ordered folder contents
         """
