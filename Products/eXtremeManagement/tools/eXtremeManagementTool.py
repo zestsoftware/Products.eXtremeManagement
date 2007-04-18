@@ -204,38 +204,6 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         """
         return HAS_POI
 
-    def bookingbrain2dict(self, brain):
-        """Get a dict with info from this booking brain.
-        """
-        returnvalue = dict(
-            date = self.restrictedTraverse('@@plone').toLocalizedTime(brain.getBookingDate),
-            # base_view of a booking gets redirected to the task view,
-            # which we do not want here.
-            url = brain.getURL() + '/base_edit',
-            title = brain.Title,
-            description = brain.Description,
-            actual = self.formatTime(brain.getRawActualHours),
-            creator = brain.Creator,
-            billable = brain.getBillable,
-        )
-        return returnvalue
-
-    def task2dict(self, task):
-        """Get a dict with info from this Task.
-        """
-        workflow = getToolByName(self, 'portal_workflow')
-        returnvalue = dict(
-            title = task.Title(),
-            description = task.Description(),
-            cooked_body = task.CookedBody(),
-            estimate = self.formatTime(task.getRawEstimate()),
-            actual = self.formatTime(task.getRawActualHours()),
-            difference = self.formatTime(task.getRawDifference()),
-            review_state = workflow.getInfoFor(task, 'review_state'),
-            assignees = task.getAssignees(),
-            )
-        return returnvalue
-
     def taskbrain2dict(self, brain):
         """Get a dict with info from this task brain.
         """
