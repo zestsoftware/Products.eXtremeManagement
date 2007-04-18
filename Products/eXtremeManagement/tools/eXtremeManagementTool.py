@@ -204,23 +204,6 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         """
         return HAS_POI
 
-    def booking2dict(self, booking):
-        """Get a dict with info from this Booking.
-        """
-        workflow = getToolByName(self, 'portal_workflow')
-        returnvalue = dict(
-            title = booking.title_or_id(),
-            description = booking.Description(),
-            actual = self.formatTime(booking.getRawActualHours()),
-            booking_date = self.restrictedTraverse('@@plone').toLocalizedTime(booking.getBookingDate()),
-            billable = booking.getBillable(),
-            creator = booking.Creator(),
-            # base_view of a booking gets redirected to the task view,
-            # which we do not want here.
-            url = booking.absolute_url() + '/base_edit',
-            )
-        return returnvalue
-
     def bookingbrain2dict(self, brain):
         """Get a dict with info from this booking brain.
         """

@@ -192,5 +192,17 @@ class BookingView(XMBaseView):
     def main(self):
         """Get a dict with info from this Booking.
         """
-        booking = self.context
-        return self.xt.booking2dict(booking)
+        workflow = getToolByName(self.context, 'portal_workflow')
+        returnvalue = dict(
+            title = self.context.title_or_id(),
+            description = self.context.Description(),
+            actual = self.xt.formatTime(self.context.getRawActualHours()),
+            booking_date = self.context.restrictedTraverse('@@plone').toLocalizedTime(self.context.getBookingDate()),
+            billable = self.context.getBillable(),
+            creator = self.context.Creator(),
+            # base_view of a booking gets redirected to the task view,
+            # which we do not want here.
+            url = self.context.absolute_url() + '/base_edit',
+            )
+        return returnvalue
+
