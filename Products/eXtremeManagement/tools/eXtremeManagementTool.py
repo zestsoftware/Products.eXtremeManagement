@@ -202,9 +202,7 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         """True if Poi is available (though not necessarily installed,
         unfortonuately); False otherwise.
         """
-        if HAS_POI:
-            return True
-        return False
+        return HAS_POI
 
     def booking2dict(self, booking):
         """Get a dict with info from this Booking.
