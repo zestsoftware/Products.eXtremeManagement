@@ -41,39 +41,39 @@
                                view context/@@monthbookings;
                                bookings view/summary_bookinglist"
                    tal:condition="bookings">
-            <h1 i18n:translate="heading-bookings-per-day">Bookings per day for
-                   this month</h1>
+          <h1 i18n:translate="heading-bookings-per-day">Bookings per day for
+          this month</h1>
+          
+          <table border="1" 
+                 class="listing" 
+                 with="100%">
+            <tr>
+              <th i18n:translate="listingheader-date">
+                Date
+              </th>
+              <th i18n:translate="listingheader-time">
+                Time
+              </th>
+            </tr>
             
-            <table border="1" 
-                   class="listing" 
-                   with="100%">
-                <tr>
-                    <th i18n:translate="listingheader-date">
-                        Date
-                    </th>
-                    <th i18n:translate="listingheader-time">
-                        Time
-                    </th>
-                </tr>
-            
-                <tr tal:repeat="booking bookings">
-                <tal:block tal:define="date python:booking[0];
-                                       time python:booking[1];">
-                    <td tal:content="python:toLocalizedTime(date)">
-                        2006-01-25
-                    </td>
-                    <td tal:content="time">
-                        4:45
-                    </td>
-                </tal:block>
-                </tr>
-                <tr>
-                    <th i18n:translate="listingheader-total">
-                        Total
-                    </th>
-                    <th tal:content="view/total_actual" />
-                </tr>
-            </table>
+            <tr tal:repeat="booking bookings">
+              <tal:block tal:define="date python:booking[0];
+                                     time python:booking[1];">
+                <td tal:content="python:toLocalizedTime(date)">
+                  2006-01-25
+                </td>
+                <td tal:content="time">
+                  4:45
+                </td>
+              </tal:block>
+            </tr>
+            <tr>
+              <th i18n:translate="listingheader-total">
+                Total
+              </th>
+              <th tal:content="view/total_actual" />
+            </tr>
+          </table>
         </tal:block>
     </tal:main>
     </body>
