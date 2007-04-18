@@ -207,6 +207,55 @@ class BookingListView(BrowserView):
         return mylist
 
 
+class YearBookingListView(BrowserView):
+
+    def __init__(self, context, request):
+        super(YearBookingListView, self).__init__(context, request)
+        self.catalog = getToolByName(context, 'portal_catalog')
+        self.xt = getToolByName(context, 'xm_tool')
+
+        self.base_year = int(self.request.form.get('base_year', DateTime().year()))
+        self.base_month = DateTime().month()
+        self.total_yearly = 0
+
+    def main(self):
+        """Return a dict of the main stuff of this period.
+        """
+        context = self.context
+        returnvalue = dict(
+            base_year = self.base_year,
+            base_month = self.base_month,
+            prev_year = self.base_year - 1,
+            next_year = self.base_year + 1,
+            display_next_year = self.base_year < DateTime().year(),
+            total_yearly = self.total_yearly,
+            )
+        return returnvalue
+
+    def year_list(self):
+        """Defined with tales in booking_year.pt:
+
+
+       
+        for month in months:
+            total_monthly python: 0;
+            month python: base_month-dmonth;
+            year python: test(month<1, base_year-1, base_year);
+            month python: test(month<1, month+12, month);
+            current_path python:'/'.join(context.getPhysicalPath());
+            bookings python:context.getMonthlyBookings(year=year, month=month)
+
+            for booking in bookings:
+                date python:booking[0];
+                time python:booking[1];
+                daily_total python: time.split(':');
+                total_monthly python: total_monthly+int(daily_total[0])+int(int(daily_total[1])/60)
+    
+            total_yearly python: total_yearly+total_monthly
+        """
+
+
+
 class BookingView(XMBaseView):
     """Simply return info about a Booking.
     """

@@ -17,6 +17,14 @@
       />
 
   <page
+      name="yearbookings"
+      class=".bookings.YearBookingListView"
+      for="*"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IYearBookingListView"
+      />
+
+  <page
       name="booking"
       class=".bookings.BookingView"
       for="Products.eXtremeManagement.interfaces.IXMBooking"

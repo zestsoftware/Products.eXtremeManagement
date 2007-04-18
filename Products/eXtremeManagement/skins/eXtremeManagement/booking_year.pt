@@ -13,19 +13,18 @@
     <tal:main metal:fill-slot="main">
 
         
-         <tal:date define="base_year request/base_year | python: DateTime().year();
-                           base_year python: int(base_year);
-                           base_month python: DateTime().month();
-                           global total_yearly python: 0">
+         <tal:year define="view context/@@yearbookings;
+                           main view/main;
+                           base_year main/base_year;
+                           base_month main/base_month;
+                           global total_yearly python: 0;">
                           
-             <p tal:define="prev_year python: base_year-1;
-                            next_year python: base_year+1;
-                            contextlink string:${here/absolute_url}/${template/id}">
+             <p tal:define="contextlink string:${here/absolute_url}/${template/id}">
                 <span>Go to <a
-                tal:attributes="href string:${contextlink}?base_year=$prev_year">previous</a></span>
+                tal:attributes="href string:${contextlink}?base_year=${main/prev_year}">previous</a></span>
     
-                <span tal:condition="python: base_year < DateTime().year()"> or <a
-                 tal:attributes="href string:${contextlink}?base_year=$next_year">next</a></span> year.
+                <span tal:condition="main/display_next_year"> or <a
+                 tal:attributes="href string:${contextlink}?base_year=${main/next_year}">next</a></span> 12 months.
              </p>
 
              <tal:month tal:repeat="dmonth python: range(0,12)">
@@ -75,7 +74,7 @@
                 <tal:sum define="global total_yearly python: total_yearly+total_monthly" />
             </tal:month>
             <p>Total for the entire period: <span tal:replace="total_yearly" /> hours.</p>
-        </tal:date>
+        </tal:year>
     </tal:main>
     </body>
 </html>

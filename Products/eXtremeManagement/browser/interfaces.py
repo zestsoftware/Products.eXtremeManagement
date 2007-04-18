@@ -21,6 +21,15 @@ class IBookingListView(Interface):
         """
 
 
+class IYearBookingListView(Interface):
+    """Return list of bookings for a year, grouped by month.
+    """
+
+    def main():
+        """Get a dict with the main info.
+        """
+    
+
 class IXMBaseView(Interface):
     """Info about one of the standard content types of
     eXtremeManagement.
