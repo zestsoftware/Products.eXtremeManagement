@@ -29,7 +29,7 @@
           i18n:translate="current-month">current month</a>.
       </p>
       <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
-                             view context/@@bookings;
+                             view context/@@monthbookings;
                              bookings view/bookinglist"
 		 tal:condition="bookings">
 	<h1 i18n:translate="heading-bookings">Bookings</h1>

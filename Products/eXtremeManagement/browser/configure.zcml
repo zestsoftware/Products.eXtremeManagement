@@ -9,7 +9,7 @@
       />
 
   <page
-      name="bookings"
+      name="monthbookings"
       class=".bookings.BookingListView"
       for="*"
       permission="zope2.View"

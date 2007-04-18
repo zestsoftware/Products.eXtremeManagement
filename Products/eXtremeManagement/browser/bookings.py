@@ -235,8 +235,6 @@ class YearBookingListView(BrowserView):
     def year_list(self):
         """Defined with tales in booking_year.pt:
 
-
-       
         for month in months:
             total_monthly python: 0;
             month python: base_month-dmonth;
@@ -253,7 +251,7 @@ class YearBookingListView(BrowserView):
     
             total_yearly python: total_yearly+total_monthly
         """
-
+        pass
 
 
 class BookingView(XMBaseView):
@@ -276,4 +274,3 @@ class BookingView(XMBaseView):
             url = self.context.absolute_url() + '/base_edit',
             )
         return returnvalue
-
