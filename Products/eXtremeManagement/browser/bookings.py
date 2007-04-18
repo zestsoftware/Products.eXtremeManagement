@@ -232,16 +232,11 @@ class YearBookingListView(BrowserView):
             )
         return returnvalue
 
-    def year_list(self):
-        """Defined with tales in booking_year.pt:
+    def months_list(self):
+        """Return a list with info about months.
 
-        for month in months:
-            total_monthly python: 0;
-            month python: base_month-dmonth;
-            year python: test(month<1, base_year-1, base_year);
-            month python: test(month<1, month+12, month);
-            current_path python:'/'.join(context.getPhysicalPath());
-            bookings python:context.getMonthlyBookings(year=year, month=month)
+        Defined with tales in booking_year.pt:
+
 
             for booking in bookings:
                 date python:booking[0];
@@ -251,7 +246,21 @@ class YearBookingListView(BrowserView):
     
             total_yearly python: total_yearly+total_monthly
         """
-        pass
+        context = self.context
+        returnvalue = []
+        month = self.base_month
+        year = self.base_year
+        
+        for dmonth in range(12):
+            year, month = getPrevYearMonth(year, month)
+            month_info = dict(
+                month = month,
+                year = year,
+                total_monthly = 0,
+                bookings = context.getMonthlyBookings(year=year, month=month),
+                )
+            returnvalue.append(month_info)
+        return returnvalue
 
 
 class BookingView(XMBaseView):

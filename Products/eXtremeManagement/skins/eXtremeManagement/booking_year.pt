@@ -27,13 +27,12 @@
                  tal:attributes="href string:${contextlink}?base_year=${main/next_year}">next</a></span> 12 months.
              </p>
 
-             <tal:month tal:repeat="dmonth python: range(0,12)">
-                <tal:one_month tal:define="global total_monthly python: 0;
-                                       month python: base_month-dmonth;
-                                       year python: test(month<1, base_year-1, base_year);
-                                       month python: test(month<1, month+12, month);
-                                       current_path python:'/'.join(context.getPhysicalPath());
-                                       bookings python:context.getMonthlyBookings(year=year, month=month)"
+             <tal:month tal:repeat="month_info view/months_list">
+                <tal:one_month
+                    tal:define="global total_monthly python: 0;
+                                month month_info/month;
+                                year month_info/year;
+                                bookings month_info/bookings;"
                            tal:condition="bookings">
                     <h4 tal:content="string:Bookings for the month $month/$year">
                        Bookings for mm/yy

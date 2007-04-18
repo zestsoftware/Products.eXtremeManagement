@@ -28,6 +28,10 @@ class IYearBookingListView(Interface):
     def main():
         """Get a dict with the main info.
         """
+
+    def months_list():
+        """List with info about the past twelve months
+        """
     
 
 class IXMBaseView(Interface):
