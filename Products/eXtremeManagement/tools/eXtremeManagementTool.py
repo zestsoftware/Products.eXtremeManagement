@@ -204,41 +204,6 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         """
         return HAS_POI
 
-    def taskbrain2dict(self, brain):
-        """Get a dict with info from this task brain.
-        """
-        review_state_id = brain.review_state
-        workflow = getToolByName(self, 'portal_workflow')
-        returnvalue = dict(
-            url = brain.getURL(),
-            title = brain.Title,
-            description = brain.Description,
-            estimate = self.formatTime(brain.getRawEstimate),
-            actual = self.formatTime(brain.getRawActualHours),
-            difference = self.formatTime(brain.getRawDifference),
-            review_state = review_state_id,
-            review_state_title = workflow.getTitleForStateOnType(
-                                 review_state_id, 'Task'),
-            assignees = brain.getAssignees,
-        )
-        return returnvalue
-
-    def story2dict(self, story):
-        """Get a dict with info from this Story.
-        """
-        workflow = getToolByName(self, 'portal_workflow')
-        returnvalue = dict(
-            title = story.Title(),
-            description = story.Description(),
-            cooked_body = story.CookedBody(),
-            estimate = self.formatTime(story.getRawEstimate()),
-            actual = self.formatTime(story.getRawActualHours()),
-            difference = self.formatTime(story.getRawDifference()),
-            rough_estimate = story.getRoughEstimate(),
-            review_state = workflow.getInfoFor(story, 'review_state'),
-            )
-        return returnvalue
-
     def storybrain2dict(self, brain):
         """Get a dict with info from this story brain.
         """
