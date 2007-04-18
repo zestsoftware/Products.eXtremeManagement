@@ -111,6 +111,8 @@ def getEndOfMonth(year, month):
 class BookingListView(BrowserView):
     """Return some Bookings.
     """
+    bookinglist = []
+    total_actual = 0.0
 
     def __init__(self, context, request):
         self.context = context
@@ -159,11 +161,31 @@ class BookingListView(BrowserView):
         booking_list = []
 
         for bookingbrain in bookingbrains:
-            info = self.xt.bookingbrain2extended_dict(bookingbrain)
+            info = self.bookingbrain2extended_dict(bookingbrain)
             booking_list.append(info)
             self.total_actual += bookingbrain.getRawActualHours
 
         return booking_list
+
+    def bookingbrain2extended_dict(self, bookingbrain):
+        """Get a dict with extended info from this booking brain.
+        """
+        booking = bookingbrain.getObject()
+        task = booking.aq_parent
+        returnvalue = dict(
+            booking_date = self.context.restrictedTraverse('@@plone').toLocalizedTime(bookingbrain.getBookingDate),
+            project_title = booking.getProject().Title(),
+            task_url = task.absolute_url(),
+            task_title = task.Title(),
+            # base_view of a booking gets redirected to the task view,
+            # which we do not want here.
+            booking_url = bookingbrain.getURL() + '/base_edit',
+            booking_title = bookingbrain.Title,
+            booking_description = bookingbrain.Description,
+            booking_hours = self.xt.formatTime(bookingbrain.getRawActualHours),
+            creator = bookingbrain.Creator,
+        )
+        return returnvalue
 
     def summary_bookinglist(self):
         """Total of Bookings per day

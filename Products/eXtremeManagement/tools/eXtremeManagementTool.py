@@ -220,26 +220,6 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         )
         return returnvalue
 
-    def bookingbrain2extended_dict(self, bookingbrain):
-        """Get a dict with extended info from this booking brain.
-        """
-        booking = bookingbrain.getObject()
-        task = booking.aq_parent
-        returnvalue = dict(
-            booking_date = self.restrictedTraverse('@@plone').toLocalizedTime(bookingbrain.getBookingDate),
-            project_title = booking.getProject().Title(),
-            task_url = task.absolute_url(),
-            task_title = task.Title(),
-            # base_view of a booking gets redirected to the task view,
-            # which we do not want here.
-            booking_url = bookingbrain.getURL() + '/base_edit',
-            booking_title = bookingbrain.Title,
-            booking_description = bookingbrain.Description,
-            booking_hours = self.formatTime(bookingbrain.getRawActualHours),
-            creator = bookingbrain.Creator,
-        )
-        return returnvalue
-
     def task2dict(self, task):
         """Get a dict with info from this Task.
         """
