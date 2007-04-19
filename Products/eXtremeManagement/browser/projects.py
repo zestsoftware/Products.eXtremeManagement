@@ -1,5 +1,6 @@
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from Acquisition import aq_inner
 
 
 class MyProjects(BrowserView):
@@ -13,12 +14,13 @@ class MyProjects(BrowserView):
         self.request = request
     
     def projectlist(self):
+        context = aq_inner(self.context)
         # Get a list of all projects
-        catalog = getToolByName(self.context, 'portal_catalog')
+        catalog = getToolByName(context, 'portal_catalog')
         projectbrains = catalog.searchResults(portal_type='Project',)
 
         # Get the id of the currently logged in member
-        membership = getToolByName(self.context, 'portal_membership')
+        membership = getToolByName(context, 'portal_membership')
         member = membership.getAuthenticatedMember()
         memberid = member.id
         plist = []
