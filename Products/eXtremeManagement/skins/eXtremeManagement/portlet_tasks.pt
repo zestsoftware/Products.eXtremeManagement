@@ -31,8 +31,9 @@
         </dd> 
 
         <dd class="portletItem even">
-            <a i18n:translate="booking_overview" 
-               tal:attributes="href string:${portal_url}/booking_overview">Detailed bookings
+            <a i18n:translate="detailed_bookings" 
+               tal:attributes="href string:${portal_url}/booking_details">
+              Detailed bookings
             </a>
         </dd>
 
