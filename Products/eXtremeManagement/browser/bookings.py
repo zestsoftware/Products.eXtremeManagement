@@ -115,18 +115,18 @@ class BookingListView(BrowserView):
     bookinglist = []
     total_actual = 0.0
 
-    def __init__(self, context, request):
+    def __init__(self, context, request, year=None, month=None, memberid=None):
         self.context = context
         self.request = request
         context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
         self.xt = getToolByName(context, 'xm_tool')
 
-        self.year = self.request.form.get('year', DateTime().year())
-        self.month = self.request.form.get('month', DateTime().month())
+        self.year = year or self.request.form.get('year', DateTime().year())
+        self.month = month or self.request.form.get('month', DateTime().month())
         self.previous = self.request.form.get('previous')
         self.next = self.request.form.get('next')
-        self.memberid = self.request.form.get('memberid')
+        self.memberid = memberid or self.request.form.get('memberid')
         if self.memberid is None:
             member = context.portal_membership.getAuthenticatedMember()
             self.memberid = member.id
@@ -202,13 +202,12 @@ class BookingListView(BrowserView):
         """
         context = aq_inner(self.context)
         request = self.request
-        request.form['memberid'] = self.memberid
         day = 1
         mylist = []
         date = self.startDate
         while True:
-            request.form['date'] = date
-            days_bookings = DayBookingListView(context, request)
+            opts = dict(date=date, memberid=self.memberid)
+            days_bookings = DayBookingListView(context, request, **opts)
             if days_bookings.raw_total > 0:
                 mylist.append((date, days_bookings.total))
             day += 1
@@ -217,9 +216,6 @@ class BookingListView(BrowserView):
                 # Daylight Savings Time.
                 date = DateTime(self.year, self.month, day)
             except:
-                # clean up the form, else we might disturb other parts
-                # that call the DayBookingListView
-                request.form.pop('date')
                 break
         return mylist
 
@@ -266,9 +262,8 @@ class YearBookingListView(BrowserView):
         
         for dmonth in range(12):
             year, month = getPrevYearMonth(year, month)
-            request.form['month'] = month
-            request.form['year'] = year
-            bookview = BookingListView(context, request)
+            opts = dict(year=year, month=month)
+            bookview = BookingListView(context, request, **opts)
             main = bookview.main()
             month_info = dict(
                 main = main,
@@ -307,20 +302,20 @@ class DayBookingListView(BrowserView):
     raw_total = 0.0
     total = '0:00'
 
-    def __init__(self, context, request):
+    def __init__(self, context, request, memberid=None, date=None):
         super(DayBookingListView, self).__init__(context, request)
         context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
         self.xt = getToolByName(context, 'xm_tool')
 
-        self.memberid = self.request.form.get('memberid')
+        self.memberid = memberid or self.request.form.get('memberid')
         if self.memberid is None:
             member = context.portal_membership.getAuthenticatedMember()
             self.memberid = member.id
         # Where do we want to search?
         self.searchpath = '/'.join(context.getPhysicalPath())
 
-        self.date = self.request.form.get('date', DateTime().earliestTime())
+        self.date = date or self.request.form.get('date', DateTime().earliestTime())
         self.update()
         
     def update(self):
