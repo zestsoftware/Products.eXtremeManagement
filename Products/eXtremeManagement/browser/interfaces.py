@@ -8,25 +8,30 @@ class IMyProjects(Interface):
         pass
 
 
-class IBookingListView(Interface):
+class IBookingsDetailedView(Interface):
     """Return list of bookings
     """
 
     bookinglist = Attribute("List of individual Bookings")
 
-    total_actual = Attribute("Total booked hours for this period")
-    
     def main():
-        """Get a dict with the main info.
-        """
-
-    def summary_bookinglist():
-        """List of tuples/dicts with date and total booked hours.
+        """Get a dict with the main info, including total.
         """
 
 
-class IYearBookingListView(Interface):
-    """Return list of bookings for a year, grouped by month.
+class IBookingOverview(Interface):
+    """Return overview of bookings for this period
+    """
+
+    bookinglist = Attribute("List of individual Bookings")
+
+    def main():
+        """Get a dict with the main info, including total.
+        """
+
+
+class IYearBookingOverview(Interface):
+    """Return overview of bookings for a year, grouped by month.
     """
 
     def main():
@@ -38,8 +43,8 @@ class IYearBookingListView(Interface):
         """
     
 
-class IDayBookingListView(Interface):
-    """Return list of bookings for a day
+class IDayBookingOverview(Interface):
+    """Return overview of bookings for a day
     """
 
     raw_total =  Attribute("Raw total booked hours for this day")

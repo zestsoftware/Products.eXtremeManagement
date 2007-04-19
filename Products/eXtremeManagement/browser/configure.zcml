@@ -10,26 +10,34 @@
 
   <page
       name="daytotal"
-      class=".bookings.DayBookingListView"
+      class=".bookings.DayBookingOverview"
       for="*"
       permission="zope2.View"
-      allowed_interface=".interfaces.IDayBookingListView"
+      allowed_interface=".interfaces.IDayBookingOverview"
+      />
+
+  <page
+      name="monthbooking_details"
+      class=".bookings.BookingsDetailedView"
+      for="*"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IBookingsDetailedView"
       />
 
   <page
       name="monthbookings"
-      class=".bookings.BookingListView"
+      class=".bookings.BookingOverview"
       for="*"
       permission="zope2.View"
-      allowed_interface=".interfaces.IBookingListView"
+      allowed_interface=".interfaces.IBookingOverview"
       />
 
   <page
       name="yearbookings"
-      class=".bookings.YearBookingListView"
+      class=".bookings.YearBookingOverview"
       for="*"
       permission="zope2.View"
-      allowed_interface=".interfaces.IYearBookingListView"
+      allowed_interface=".interfaces.IYearBookingOverview"
       />
 
   <page

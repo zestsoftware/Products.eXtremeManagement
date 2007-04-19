@@ -41,7 +41,7 @@
         <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
                                view context/@@monthbookings;
                                main view/main;
-                               bookings view/summary_bookinglist;"
+                               bookings view/bookinglist;"
                    tal:condition="bookings">
           <metal:month metal:define-macro="month_booking_summary">
           <h2>
@@ -76,7 +76,7 @@
               <th i18n:translate="listingheader-total">
                 Total
               </th>
-              <th tal:content="main/total_monthly" />
+              <th tal:content="main/total" />
             </tr>
           </table>
           </metal:month>

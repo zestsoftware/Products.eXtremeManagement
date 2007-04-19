@@ -109,11 +109,11 @@ def getEndOfMonth(year, month):
     return DateTime.latestTime(DateTime(year, month, day))
 
 
-class BookingListView(BrowserView):
-    """Return some Bookings.
+class BookingsDetailedView(BrowserView):
+    """Return a list of Bookings.
     """
+
     bookinglist = []
-    total_actual = 0.0
 
     def __init__(self, context, request, year=None, month=None, memberid=None):
         self.context = context
@@ -133,32 +133,21 @@ class BookingListView(BrowserView):
 
         if self.previous:
             self.year, self.month = getPrevYearMonth(self.year, self.month)
-        if self.next:
+        elif self.next:
             self.year, self.month = getNextYearMonth(self.year, self.month)
 
         self.startDate = DateTime(self.year, self.month, 1)
         self.endDate = getEndOfMonth(self.year, self.month)
         # Where do we want to search?
         self.searchpath = '/'.join(context.getPhysicalPath())
+        self.bookinglist = []
+        self.raw_total = 0
+        self.update()
+        self.total = self.xt.formatTime(self.raw_total)
 
-        self.total_actual, self.bookinglist = self._make_bookinglist()
-        self.total_actual = self.xt.formatTime(self.total_actual)
-
-    def main(self):
-        """Return a dict of the main stuff of this period.
-        """
-        month_info = dict(
-            month = self.month,
-            year = self.year,
-            total_monthly = self.total_actual,
-            )
-        return month_info
-
-    def _make_bookinglist(self):
-        """List of Bookings that match the REQUEST.
-
-        This also updates the total for this month.
-        """
+    def update(self):
+        # Get all bookings brains with the given restrictions of
+        # period, memberid, etc
         bookingbrains = self.catalog.searchResults(
             portal_type='Booking',
             getBookingDate={ "query": [self.startDate, self.endDate],
@@ -167,14 +156,21 @@ class BookingListView(BrowserView):
             Creator=self.memberid,
             path=self.searchpath)
 
-        booking_list = []
-        total_actual = 0.0
         for bookingbrain in bookingbrains:
             info = self.bookingbrain2extended_dict(bookingbrain)
-            booking_list.append(info)
-            total_actual += bookingbrain.getRawActualHours
+            self.bookinglist.append(info)
+            self.raw_total += bookingbrain.getRawActualHours
 
-        return total_actual, booking_list
+    def main(self):
+        """Return a dict of the main stuff of this period.
+        """
+        month_info = dict(
+            month = self.month,
+            year = self.year,
+            raw_total = self.raw_total,
+            total = self.total,
+            )
+        return month_info
 
     def bookingbrain2extended_dict(self, bookingbrain):
         """Get a dict with extended info from this booking brain.
@@ -197,19 +193,22 @@ class BookingListView(BrowserView):
         )
         return returnvalue
 
-    def summary_bookinglist(self):
-        """Total of Bookings per day
-        """
+
+class BookingOverview(BookingsDetailedView):
+    """View an overview of Bookings.
+    """
+
+    def update(self):
         context = aq_inner(self.context)
         request = self.request
         day = 1
-        mylist = []
         date = self.startDate
         while True:
             opts = dict(date=date, memberid=self.memberid)
-            days_bookings = DayBookingListView(context, request, **opts)
+            days_bookings = DayBookingOverview(context, request, **opts)
             if days_bookings.raw_total > 0:
-                mylist.append((date, days_bookings.total))
+                self.bookinglist.append((date, days_bookings.total))
+                self.raw_total += days_bookings.raw_total
             day += 1
             try:
                 # We used to simply do date + 1, but that gave problems with
@@ -217,61 +216,55 @@ class BookingListView(BrowserView):
                 date = DateTime(self.year, self.month, day)
             except:
                 break
-        return mylist
 
 
-class YearBookingListView(BrowserView):
+class YearBookingOverview(BrowserView):
 
     months_list = []
 
     def __init__(self, context, request):
-        super(YearBookingListView, self).__init__(context, request)
+        super(YearBookingOverview, self).__init__(context, request)
+        context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
         self.xt = getToolByName(context, 'xm_tool')
 
         self.base_year = int(self.request.form.get('base_year', DateTime().year()))
         self.base_month = DateTime().month()
-        self.total_yearly = 0
-        self.months_list = self.make_months_list()
+        self.raw_total = 0.0
+        self.update()
+        self.total = self.xt.formatTime(self.raw_total)
 
     def main(self):
         """Return a dict of the main stuff of this period.
         """
-        context = aq_inner(self.context)
         returnvalue = dict(
             base_year = self.base_year,
             base_month = self.base_month,
             prev_year = self.base_year - 1,
             next_year = self.base_year + 1,
             display_next_year = self.base_year < DateTime().year(),
-            total_yearly = self.total_yearly,
+            total = self.total,
             )
         return returnvalue
 
-    def make_months_list(self):
-        """Return a list with info about months.
-
-        Side effect:
-        This updates total_yearly.
-        """
+    def update(self):
         context = aq_inner(self.context)
         request = self.request
-        returnvalue = []
+        self.months_list = []
         month = self.base_month
         year = self.base_year
         
         for dmonth in range(12):
             year, month = getPrevYearMonth(year, month)
             opts = dict(year=year, month=month)
-            bookview = BookingListView(context, request, **opts)
+            bookview = BookingOverview(context, request, **opts)
             main = bookview.main()
             month_info = dict(
                 main = main,
-                bookings = bookview.summary_bookinglist(),
+                bookings = bookview.bookinglist,
                 )
-            returnvalue.append(month_info)
-            #self.total_yearly += main['total_monthly']
-        return returnvalue
+            self.months_list.append(month_info)
+            self.raw_total += main['raw_total']
 
 
 class BookingView(XMBaseView):
@@ -297,13 +290,13 @@ class BookingView(XMBaseView):
         return returnvalue
 
 
-class DayBookingListView(BrowserView):
+class DayBookingOverview(BrowserView):
 
     raw_total = 0.0
     total = '0:00'
 
     def __init__(self, context, request, memberid=None, date=None):
-        super(DayBookingListView, self).__init__(context, request)
+        super(DayBookingOverview, self).__init__(context, request)
         context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
         self.xt = getToolByName(context, 'xm_tool')
