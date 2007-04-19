@@ -126,7 +126,7 @@ class BookingListView(BrowserView):
         self.month = self.request.form.get('month', DateTime().month())
         self.previous = self.request.form.get('previous')
         self.next = self.request.form.get('next')
-        self.memberid = self.request.form.get('next')
+        self.memberid = self.request.form.get('memberid')
         if self.memberid is None:
             member = context.portal_membership.getAuthenticatedMember()
             self.memberid = member.id
@@ -141,8 +141,7 @@ class BookingListView(BrowserView):
         # Where do we want to search?
         self.searchpath = '/'.join(context.getPhysicalPath())
 
-        self.total_actual = 0
-        self.bookinglist = self._make_bookinglist()
+        self.total_actual, self.bookinglist = self._make_bookinglist()
         self.total_actual = self.xt.formatTime(self.total_actual)
 
     def main(self):
@@ -160,8 +159,6 @@ class BookingListView(BrowserView):
 
         This also updates the total for this month.
         """
-
-
         bookingbrains = self.catalog.searchResults(
             portal_type='Booking',
             getBookingDate={ "query": [self.startDate, self.endDate],
@@ -171,13 +168,13 @@ class BookingListView(BrowserView):
             path=self.searchpath)
 
         booking_list = []
-
+        total_actual = 0.0
         for bookingbrain in bookingbrains:
             info = self.bookingbrain2extended_dict(bookingbrain)
             booking_list.append(info)
-            self.total_actual += bookingbrain.getRawActualHours
+            total_actual += bookingbrain.getRawActualHours
 
-        return booking_list
+        return total_actual, booking_list
 
     def bookingbrain2extended_dict(self, bookingbrain):
         """Get a dict with extended info from this booking brain.
@@ -204,19 +201,25 @@ class BookingListView(BrowserView):
         """Total of Bookings per day
         """
         context = aq_inner(self.context)
+        request = self.request
+        request.form['memberid'] = self.memberid
         day = 1
         mylist = []
         date = self.startDate
         while True:
-            total = context.getDailyBookings(date=date, memberid=self.memberid)
-            if total > 0:
-                mylist.append((date, total))
+            request.form['date'] = date
+            days_bookings = DayBookingListView(context, request)
+            if days_bookings.raw_total > 0:
+                mylist.append((date, days_bookings.total))
             day += 1
             try:
                 # We used to simply do date + 1, but that gave problems with
                 # Daylight Savings Time.
                 date = DateTime(self.year, self.month, day)
             except:
+                # clean up the form, else we might disturb other parts
+                # that call the DayBookingListView
+                request.form.pop('date')
                 break
         return mylist
 
@@ -297,3 +300,39 @@ class BookingView(XMBaseView):
             url = context.absolute_url() + '/base_edit',
             )
         return returnvalue
+
+
+class DayBookingListView(BrowserView):
+
+    raw_total = 0.0
+    total = '0:00'
+
+    def __init__(self, context, request):
+        super(DayBookingListView, self).__init__(context, request)
+        context = aq_inner(context)
+        self.catalog = getToolByName(context, 'portal_catalog')
+        self.xt = getToolByName(context, 'xm_tool')
+
+        self.memberid = self.request.form.get('memberid')
+        if self.memberid is None:
+            member = context.portal_membership.getAuthenticatedMember()
+            self.memberid = member.id
+        # Where do we want to search?
+        self.searchpath = '/'.join(context.getPhysicalPath())
+
+        self.date = self.request.form.get('date', DateTime().earliestTime())
+        self.update()
+        
+    def update(self):
+        bookingbrains = self.catalog.searchResults(
+            portal_type='Booking',
+            getBookingDate=self.date,
+            Creator=self.memberid,
+            path=self.searchpath)
+
+        if bookingbrains:
+            actualList = []
+            for bb in bookingbrains:
+                actualList.append(bb.getRawActualHours)
+            self.raw_total = sum(actualList)
+        self.total = self.xt.formatTime(self.raw_total)

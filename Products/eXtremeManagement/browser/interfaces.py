@@ -38,6 +38,14 @@ class IYearBookingListView(Interface):
         """
     
 
+class IDayBookingListView(Interface):
+    """Return list of bookings for a day
+    """
+
+    raw_total =  Attribute("Raw total booked hours for this day")
+    total =  Attribute("Formatted total booked hours for this day")
+
+
 class IXMBaseView(Interface):
     """Info about one of the standard content types of
     eXtremeManagement.

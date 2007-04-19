@@ -9,6 +9,14 @@
       />
 
   <page
+      name="daytotal"
+      class=".bookings.DayBookingListView"
+      for="*"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IDayBookingListView"
+      />
+
+  <page
       name="monthbookings"
       class=".bookings.BookingListView"
       for="*"

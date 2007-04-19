@@ -44,9 +44,10 @@
         </dd> 
 
         <dd class="portletItem even"
+            tal:define="view portal/@@daytotal"
             i18n:translate="hours_booked_today">
             Hours booked for today:
-            <span i18n:name="total_booked" tal:replace="portal/getDailyBookings" />
+            <span i18n:name="total_booked" tal:replace="view/total" />
         </dd>
 
         <!-- The last one must have class portletItemLast. -->
