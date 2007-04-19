@@ -2,6 +2,7 @@ from Products.CMFCore.utils import getToolByName
 from DateTime import DateTime
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.Five.browser import BrowserView
+from Acquisition import aq_inner
 
 
 def getNextYearMonth(year, month):
@@ -117,8 +118,9 @@ class BookingListView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.catalog = getToolByName(self.context, 'portal_catalog')
-        self.xt = getToolByName(self.context, 'xm_tool')
+        context = aq_inner(context)
+        self.catalog = getToolByName(context, 'portal_catalog')
+        self.xt = getToolByName(context, 'xm_tool')
 
         self.year = self.request.form.get('year', DateTime().year())
         self.month = self.request.form.get('month', DateTime().month())
@@ -137,11 +139,21 @@ class BookingListView(BrowserView):
         self.startDate = DateTime(self.year, self.month, 1)
         self.endDate = getEndOfMonth(self.year, self.month)
         # Where do we want to search?
-        self.searchpath = '/'.join(self.context.getPhysicalPath())
+        self.searchpath = '/'.join(context.getPhysicalPath())
 
         self.total_actual = 0
         self.bookinglist = self._make_bookinglist()
         self.total_actual = self.xt.formatTime(self.total_actual)
+
+    def main(self):
+        """Return a dict of the main stuff of this period.
+        """
+        month_info = dict(
+            month = self.month,
+            year = self.year,
+            total_monthly = self.total_actual,
+            )
+        return month_info
 
     def _make_bookinglist(self):
         """List of Bookings that match the REQUEST.
@@ -170,10 +182,11 @@ class BookingListView(BrowserView):
     def bookingbrain2extended_dict(self, bookingbrain):
         """Get a dict with extended info from this booking brain.
         """
+        context = aq_inner(self.context)
         booking = bookingbrain.getObject()
         task = booking.aq_parent
         returnvalue = dict(
-            booking_date = self.context.restrictedTraverse('@@plone').toLocalizedTime(bookingbrain.getBookingDate),
+            booking_date = context.restrictedTraverse('@@plone').toLocalizedTime(bookingbrain.getBookingDate),
             project_title = booking.getProject().Title(),
             task_url = task.absolute_url(),
             task_title = task.Title(),
@@ -190,11 +203,12 @@ class BookingListView(BrowserView):
     def summary_bookinglist(self):
         """Total of Bookings per day
         """
+        context = aq_inner(self.context)
         day = 1
         mylist = []
         date = self.startDate
         while True:
-            total = self.context.getDailyBookings(date=date, memberid=self.memberid)
+            total = context.getDailyBookings(date=date, memberid=self.memberid)
             if total > 0:
                 mylist.append((date, total))
             day += 1
@@ -209,6 +223,8 @@ class BookingListView(BrowserView):
 
 class YearBookingListView(BrowserView):
 
+    months_list = []
+
     def __init__(self, context, request):
         super(YearBookingListView, self).__init__(context, request)
         self.catalog = getToolByName(context, 'portal_catalog')
@@ -217,11 +233,12 @@ class YearBookingListView(BrowserView):
         self.base_year = int(self.request.form.get('base_year', DateTime().year()))
         self.base_month = DateTime().month()
         self.total_yearly = 0
+        self.months_list = self.make_months_list()
 
     def main(self):
         """Return a dict of the main stuff of this period.
         """
-        context = self.context
+        context = aq_inner(self.context)
         returnvalue = dict(
             base_year = self.base_year,
             base_month = self.base_month,
@@ -232,34 +249,30 @@ class YearBookingListView(BrowserView):
             )
         return returnvalue
 
-    def months_list(self):
+    def make_months_list(self):
         """Return a list with info about months.
 
-        Defined with tales in booking_year.pt:
-
-
-            for booking in bookings:
-                date python:booking[0];
-                time python:booking[1];
-                daily_total python: time.split(':');
-                total_monthly python: total_monthly+int(daily_total[0])+int(int(daily_total[1])/60)
-    
-            total_yearly python: total_yearly+total_monthly
+        Side effect:
+        This updates total_yearly.
         """
-        context = self.context
+        context = aq_inner(self.context)
+        request = self.request
         returnvalue = []
         month = self.base_month
         year = self.base_year
         
         for dmonth in range(12):
             year, month = getPrevYearMonth(year, month)
+            request.form['month'] = month
+            request.form['year'] = year
+            bookview = BookingListView(context, request)
+            main = bookview.main()
             month_info = dict(
-                month = month,
-                year = year,
-                total_monthly = 0,
-                bookings = context.getMonthlyBookings(year=year, month=month),
+                main = main,
+                bookings = bookview.summary_bookinglist(),
                 )
             returnvalue.append(month_info)
+            #self.total_yearly += main['total_monthly']
         return returnvalue
 
 
@@ -270,16 +283,17 @@ class BookingView(XMBaseView):
     def main(self):
         """Get a dict with info from this Booking.
         """
-        workflow = getToolByName(self.context, 'portal_workflow')
+        context = aq_inner(self.context)
+        workflow = getToolByName(context, 'portal_workflow')
         returnvalue = dict(
-            title = self.context.title_or_id(),
-            description = self.context.Description(),
-            actual = self.xt.formatTime(self.context.getRawActualHours()),
-            booking_date = self.context.restrictedTraverse('@@plone').toLocalizedTime(self.context.getBookingDate()),
-            billable = self.context.getBillable(),
-            creator = self.context.Creator(),
+            title = context.title_or_id(),
+            description = context.Description(),
+            actual = self.xt.formatTime(context.getRawActualHours()),
+            booking_date = context.restrictedTraverse('@@plone').toLocalizedTime(context.getBookingDate()),
+            billable = context.getBillable(),
+            creator = context.Creator(),
             # base_view of a booking gets redirected to the task view,
             # which we do not want here.
-            url = self.context.absolute_url() + '/base_edit',
+            url = context.absolute_url() + '/base_edit',
             )
         return returnvalue

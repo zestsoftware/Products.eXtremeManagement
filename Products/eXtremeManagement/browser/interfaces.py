@@ -16,6 +16,10 @@ class IBookingListView(Interface):
 
     total_actual = Attribute("Total booked hours for this period")
     
+    def main():
+        """Get a dict with the main info.
+        """
+
     def summary_bookinglist():
         """List of tuples/dicts with date and total booked hours.
         """
