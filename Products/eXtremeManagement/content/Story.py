@@ -159,10 +159,7 @@ class Story(OrderedBaseFolder):
         portal = getToolByName(self,'portal_url').getPortalObject()
         wf_tool = getToolByName(portal, 'portal_workflow')
         state = wf_tool.getInfoFor(self, 'review_state')
-        if state == 'completed':
-            return True
-        else:
-            return False
+        return state == 'completed'
 
     security.declarePublic('getRawEstimate')
     def getRawEstimate(self):
@@ -239,10 +236,7 @@ class Story(OrderedBaseFolder):
         roughEstimate is superfluous in that case.  So checking the
         raw estimate is good.
         """
-        if self.getRawEstimate() > 0:
-            return True
-        else:
-            return False
+        return self.getRawEstimate() > 0
 
     security.declarePublic('startable')
     def startable(self):

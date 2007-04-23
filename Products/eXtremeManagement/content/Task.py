@@ -325,10 +325,7 @@ class Task(BaseFolder):
         """
         if not self.getAssignees():
             return False
-        if self.getRawEstimate() > 0 or self.getRawActualHours() > 0:
-            return True
-        else:
-            return False
+        return self.getRawEstimate() > 0 or self.getRawActualHours() > 0
 
     # Manually created methods
 
@@ -337,8 +334,7 @@ class Task(BaseFolder):
         currentUser = mem.getAuthenticatedMember().getId()
         if currentUser in self._get_assignees():
             return currentUser
-        else:
-            return ''
+        return ''
 
     def manage_afterAdd(self, item, container):
         # With Plone 2.1 we cannot use events reliably. :(
