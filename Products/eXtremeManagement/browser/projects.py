@@ -55,13 +55,16 @@ class ProjectView(XMBaseView):
         return returnvalue
 
     def finished_iterations(self):
-        return self.getIterations(('completed','invoiced',))
+        states = ('completed','invoiced')
+        return self.getIterations(states)
 
     def current_iterations(self):
-        return self.getIterations(('in-progress',))
+        states = ('in-progress',)
+        return self.getIterations(states)
 
     def open_iterations(self):
-        return self.getIterations(('new',))
+        states = ('new',)
+        return self.getIterations(states)
 
     def getIterations(self, states=None):
         """Return the iterations, in catalog form
@@ -71,15 +74,6 @@ class ProjectView(XMBaseView):
         """
 
         context = aq_inner(self.context)
-
-        brains = context.getFolderContents({'portal_type':'Iteration'})
-
-        iteration_list = []
-        if states is None:
-            list = brains
-        else:
-            for brain in brains:
-                if brain.review_state in states:
-                    iteration_list.append(brain)
-
-        return iteration_list
+        filter = dict(portal_type='Iteration',
+                      review_state=states)
+        return context.getFolderContents(filter)
