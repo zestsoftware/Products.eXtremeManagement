@@ -71,9 +71,21 @@ class ProjectView(XMBaseView):
 
         Parameters:
         states: Iterations with these states will be returned.
+                If None, all are returned.
         """
-
         context = aq_inner(self.context)
         filter = dict(portal_type='Iteration',
                       review_state=states)
         return context.getFolderContents(filter)
+
+    def non_iterations(self):
+        """Return folder contents that are not iterations
+        """
+        context = aq_inner(self.context)
+        filter = dict(portal_type='Iteration')
+        iteration_brains = context.getFolderContents(filter)
+        iteration_ids = [brain.id for brain in iteration_brains]
+        all_brains = context.getFolderContents()
+        brains = [brain for brain in all_brains
+                  if brain.id not in iteration_ids]
+        return brains

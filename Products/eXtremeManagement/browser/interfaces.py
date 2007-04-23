@@ -125,3 +125,7 @@ class IProjectView(IXMBaseView):
     def open_iterations():
         """Return new iterations
         """
+
+    def non_iterations():
+        """Return folder contents that are not iterations
+        """

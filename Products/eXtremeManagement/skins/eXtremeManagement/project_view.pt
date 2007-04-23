@@ -211,7 +211,7 @@
 
       <dl id="non_iterations"
           class="collapsible inline collapsedOnLoad"
-          tal:define="non_iterations context/getNonIterations;"
+          tal:define="non_iterations view/non_iterations;"
           tal:condition="non_iterations">
         <dt i18n:translate="heading_other_content"
             class="collapsibleHeader">
