@@ -106,3 +106,11 @@ class IIterationView(IXMBaseView):
     def stories():
         """Return the Stories of this Iteration
         """
+
+class IProjectView(IXMBaseView):
+    """Info about a project
+    """
+
+    def main():
+        """Get a dict with info from this object.
+        """

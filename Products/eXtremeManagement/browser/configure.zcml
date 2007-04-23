@@ -72,4 +72,12 @@
       allowed_interface=".interfaces.IIterationView"
       />
 
+  <page
+      name="project"
+      class=".projects.ProjectView"
+      for="Products.eXtremeManagement.interfaces.IXMProject"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IProjectView"
+      />
+
 </configure>

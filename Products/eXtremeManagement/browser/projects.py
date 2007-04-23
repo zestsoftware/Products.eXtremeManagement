@@ -1,5 +1,6 @@
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Acquisition import aq_inner
 
 
@@ -36,3 +37,19 @@ class MyProjects(BrowserView):
                 plist.append(projectbrain)
 
         return plist
+
+
+class ProjectView(XMBaseView):
+    """Simply return info about a Project.
+    """
+
+    def main(self):
+        """Get a dict with info from this context.
+        """
+        context = aq_inner(self.context)
+        workflow = getToolByName(context, 'portal_workflow')
+        returnvalue = dict(
+            title = context.Title(),
+            description = context.Description(),
+            )
+        return returnvalue
