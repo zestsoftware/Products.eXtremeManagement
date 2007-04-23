@@ -66,4 +66,5 @@
  <column value="getRawDifference"/>
  <column value="getRawEstimate"/>
  <column value="getBillable"/>
+ <column value="getManHours"/>
 </object>

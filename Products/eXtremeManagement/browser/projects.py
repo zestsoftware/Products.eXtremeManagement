@@ -99,10 +99,8 @@ class ProjectView(XMBaseView):
         """Get a dict with info from this iteration brain.
 
         XXX Get rid of the getObject call
-
         """
         context = aq_inner(self.context)
-        iteration_object = brain.getObject()
         review_state_id = brain.review_state
         workflow = getToolByName(context, 'portal_workflow')
         returnvalue = dict(
@@ -113,7 +111,7 @@ class ProjectView(XMBaseView):
             review_state_title = workflow.getTitleForStateOnType(
                                  review_state_id, 'Iteration'),
             icon = brain.getIcon,
-            man_hours = iteration_object.getManHours(),
+            man_hours = brain.getManHours,
             actual = self.xt.formatTime(brain.getRawActualHours),
             brain = brain,
         )
