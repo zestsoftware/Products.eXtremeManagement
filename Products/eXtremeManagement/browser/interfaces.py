@@ -114,3 +114,14 @@ class IProjectView(IXMBaseView):
     def main():
         """Get a dict with info from this object.
         """
+    def finished_iterations():
+        """Return completed and invoiced iterations
+        """
+
+    def current_iterations():
+        """Return in-progress iterations
+        """
+
+    def open_iterations():
+        """Return new iterations
+        """

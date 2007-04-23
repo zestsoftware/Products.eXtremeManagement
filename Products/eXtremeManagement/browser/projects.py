@@ -53,3 +53,33 @@ class ProjectView(XMBaseView):
             description = context.Description(),
             )
         return returnvalue
+
+    def finished_iterations(self):
+        return self.getIterations(('completed','invoiced',))
+
+    def current_iterations(self):
+        return self.getIterations(('in-progress',))
+
+    def open_iterations(self):
+        return self.getIterations(('new',))
+
+    def getIterations(self, states=None):
+        """Return the iterations, in catalog form
+
+        Parameters:
+        states: Iterations with these states will be returned.
+        """
+
+        context = aq_inner(self.context)
+
+        brains = context.getFolderContents({'portal_type':'Iteration'})
+
+        iteration_list = []
+        if states is None:
+            list = brains
+        else:
+            for brain in brains:
+                if brain.review_state in states:
+                    iteration_list.append(brain)
+
+        return iteration_list

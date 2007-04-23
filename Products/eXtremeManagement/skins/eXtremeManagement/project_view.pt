@@ -8,9 +8,9 @@
         metal:define-macro="body"
         tal:define="view context/@@project;
                     main view/main;
-                    finished_iterations python:context.getIterations(('completed','invoiced',));
-                    current_iterations python:context.getIterations(('in-progress',));
-                    open_iterations python:context.getIterations(('new',))">
+                    finished_iterations view/finished_iterations;
+                    current_iterations view/current_iterations;
+                    open_iterations view/open_iterations;">
 
       <div class="documentDescription"
            tal:condition="main/description"
