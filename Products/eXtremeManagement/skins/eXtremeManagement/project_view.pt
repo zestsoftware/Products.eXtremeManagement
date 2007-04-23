@@ -27,10 +27,7 @@
         <dd class="iterations collapsibleContent" 
             tal:repeat="iteration finished_iterations"> 
 
-          <metal:block metal:define-macro="simple_iteration_list"
-                       tal:define="obj iteration/getObject;
-                                   start_date obj/getStartDate;
-                                   end_date obj/getEndDate;">
+          <metal:block metal:define-macro="simple_iteration_list">
 
             <table class="listing"
                    width="100%"
@@ -44,20 +41,20 @@
                     align="left" 
                     class="header_iteration">
                   <a  class="header_iteration_project_overview"
-                      tal:attributes="href string:${obj/absolute_url}">
+                      tal:attributes="href iteration/url">
 
-                    <img tal:attributes="src string:${here/portal_url}/${obj/getIcon}"
+                    <img tal:attributes="src string:${here/portal_url}/${iteration/icon}"
                          alt="project overview"
                          i18n:attributes="alt project_overview"/>
-                    <span tal:replace="obj/Title" />
+                    <span tal:replace="iteration/title" />
                   </a>
                 </th>
                 <th width="20%" 
                     height="30" 
                     align="left" 
                     class="header_iteration">
-                    <span tal:replace="obj/getManHours" /> Hours
-                    ( <span tal:replace="obj/getActualHours" /> Actual)
+                    <span tal:replace="iteration/man_hours" /> Hours
+                    ( <span tal:replace="iteration/actual" /> Actual)
                 </th>
                 <th width="20%"
                     class="iteration-state">

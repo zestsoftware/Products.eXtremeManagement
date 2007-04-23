@@ -76,7 +76,12 @@ class ProjectView(XMBaseView):
         context = aq_inner(self.context)
         filter = dict(portal_type='Iteration',
                       review_state=states)
-        return context.getFolderContents(filter)
+        brains = context.getFolderContents(filter)
+        iteration_list = []
+        for brain in brains:
+            info = self.iterationbrain2dict(brain)
+            iteration_list.append(info)
+        return iteration_list
 
     def non_iterations(self):
         """Return folder contents that are not iterations
@@ -89,3 +94,26 @@ class ProjectView(XMBaseView):
         brains = [brain for brain in all_brains
                   if brain.id not in iteration_ids]
         return brains
+
+    def iterationbrain2dict(self, brain):
+        """Get a dict with info from this iteration brain.
+
+        XXX Get rid of the getObject call
+
+        """
+        context = aq_inner(self.context)
+        iteration_object = brain.getObject()
+        review_state_id = brain.review_state
+        workflow = getToolByName(context, 'portal_workflow')
+        returnvalue = dict(
+            url = brain.getURL(),
+            title = brain.Title,
+            description = brain.Description,
+            review_state = review_state_id,
+            review_state_title = workflow.getTitleForStateOnType(
+                                 review_state_id, 'Iteration'),
+            icon = brain.getIcon,
+            man_hours = iteration_object.getManHours(),
+            actual = self.xt.formatTime(brain.getRawActualHours),
+        )
+        return returnvalue
