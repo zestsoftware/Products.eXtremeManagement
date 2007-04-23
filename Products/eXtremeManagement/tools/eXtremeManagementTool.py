@@ -218,5 +218,20 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
                 otherItems.append(item)
         return firstItems + otherItems
 
+    security.declarePublic('get_progress_perc')
+    def get_progress_perc(self, part, total):
+        """
+        We cheat a bit When you get above
+        MAXIMUM_NOT_COMPLETED_PERCENTAGE, and your story still is not
+        completed, we deem it safer to display this percentage so as
+        not to give a false sense of completeness.
+        """
+        if total > 0:
+            percentage = round(part/total*100, 1)
+            if percentage > MAXIMUM_NOT_COMPLETED_PERCENTAGE:
+                return MAXIMUM_NOT_COMPLETED_PERCENTAGE
+            return percentage
+        return 0
+
 
 registerType(eXtremeManagementTool, PROJECTNAME)
