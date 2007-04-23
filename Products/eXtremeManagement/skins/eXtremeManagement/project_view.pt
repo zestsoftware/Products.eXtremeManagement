@@ -3,13 +3,11 @@
       i18n:domain="eXtremeManagement">
   <metal:block use-macro="context/global_defines/macros/defines" />
 
-  <body onload="javascript:setFromState('hideRow0');">
+  <body>
     <metal:block
         metal:define-macro="body"
         tal:define="view context/@@project;
                     main view/main;
-                    idIndex python:Iterator(pos=-1);
-                    physical_path python: '/'.join(context.getPhysicalPath());
                     finished_iterations python:context.getIterations(('completed','invoiced',));
                     current_iterations python:context.getIterations(('in-progress',));
                     open_iterations python:context.getIterations(('new',))">
@@ -31,7 +29,6 @@
 
           <metal:block metal:define-macro="simple_iteration_list"
                        tal:define="obj iteration/getObject;
-                                   idx idIndex/next;
                                    start_date obj/getStartDate;
                                    end_date obj/getEndDate;">
 
@@ -84,14 +81,12 @@
         <div class="iterations"
              tal:repeat="curIteration current_iterations">
 
-          <tal:block tal:define="obj curIteration/getObject;
-                                 idx idIndex/next;">
+          <tal:block tal:define="obj curIteration/getObject;">
 
             <table class="listing"
                    width="100%"
                    cellpadding="0"
-                   cellspacing="0"
-                   tal:attributes="onload string:javascript:setFromState('hideTable${idx}');">
+                   cellspacing="0">
 
               <tr>
                 <th colspan="2"
