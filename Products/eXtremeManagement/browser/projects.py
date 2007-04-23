@@ -115,5 +115,6 @@ class ProjectView(XMBaseView):
             icon = brain.getIcon,
             man_hours = iteration_object.getManHours(),
             actual = self.xt.formatTime(brain.getRawActualHours),
+            brain = brain,
         )
         return returnvalue

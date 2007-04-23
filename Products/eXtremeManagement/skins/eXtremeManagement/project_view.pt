@@ -78,7 +78,7 @@
         <div class="iterations"
              tal:repeat="curIteration current_iterations">
 
-          <tal:block tal:define="obj curIteration/getObject;">
+          <tal:block tal:define="obj curIteration/brain/getObject;">
 
             <table class="listing"
                    width="100%"
