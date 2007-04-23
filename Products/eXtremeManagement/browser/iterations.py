@@ -41,6 +41,15 @@ class IterationView(XMBaseView):
         context = self.context
         review_state_id = brain.review_state
         workflow = getToolByName(context, 'portal_workflow')
+
+        # computer progress percentage
+        if review_state_id == 'completed':
+            progress = 100
+        else:
+            estimated = brain.getRawEstimate
+            actual = brain.getRawActualHours
+            progress = self.xt.get_progress_perc(actual, estimated)
+
         returnvalue = dict(
             url = brain.getURL(),
             title = brain.Title,
@@ -48,6 +57,7 @@ class IterationView(XMBaseView):
             estimate = self.xt.formatTime(brain.getRawEstimate),
             actual = self.xt.formatTime(brain.getRawActualHours),
             difference = self.xt.formatTime(brain.getRawDifference),
+            progress = progress,
             review_state = review_state_id,
             review_state_title = workflow.getTitleForStateOnType(
                                  review_state_id, 'Story'),
