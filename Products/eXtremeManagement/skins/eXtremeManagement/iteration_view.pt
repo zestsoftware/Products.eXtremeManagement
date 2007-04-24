@@ -32,9 +32,11 @@
         </table>
         <br />
 
-        <tal:block tal:condition="stories">
+        <tal:block tal:condition="stories"
+                   tal:define="show_task_count python:False;">
             <h1 i18n:translate="heading-stories">Stories</h1>
 
+            <metal:stories metal:define-macro="story_list">
             <table class="listing"
                 width="100%"
                 border="1"
@@ -44,6 +46,10 @@
                 <tr>
                     <th i18n:translate="listingheader_story">Story</th>
                     <th i18n:translate="listingheader_state">Status</th>
+                    <tal:task_count tal:condition="show_task_count">
+                      <th i18n:translate="listingheader_tasks_open">Tasks open</th>
+                      <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
+                    </tal:task_count>
                     <th i18n:translate="listingheader_estimate">Estimate</th>
                     <th i18n:translate="listingheader_actual">Actual</th>
                 </tr>
@@ -61,17 +67,23 @@
                         i18n:translate=""
                         class=""
                         tal:attributes="class python:'td-center state-'+normalizeString(review_state)" />
+                    <tal:task_count tal:condition="show_task_count">
+                      <td tal:content="story/open_tasks" />
+                      <td tal:content="story/completed_tasks" />
+                    </tal:task_count>
                     <td tal:content="story/estimate" />
                     <td tal:content="story/actual" />
                 </tr>
                 <tr id="totalTasks">
-                    <td class="td-story-title"
-                        colspan="2" 
-                        i18n:translate="total">Total</td>
-                    <td tal:content="iteration/estimate" />
-                    <td tal:content="iteration/actual" />
+                    <th class="td-story-title"
+                        colspan="2"
+                        tal:attributes="colspan python:test(show_task_count, 4, 2)"
+                        i18n:translate="total">Total</th>
+                    <th tal:content="iteration/estimate" />
+                    <th tal:content="iteration/actual" />
                 </tr>
             </table>
+            </metal:stories>
 
 
             <tal:membertasks
