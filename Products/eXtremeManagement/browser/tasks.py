@@ -59,9 +59,10 @@ class TasksDetailedView(BrowserView):
     """Return a list of Tasks.
     """
 
-    tasklist = []
+    default_state = 'to-do'
+    possible_states = []
 
-    def __init__(self, context, request, year=None, month=None, memberid=None):
+    def __init__(self, context, request, state=None, memberid=None):
         super(TasksDetailedView, self).__init__(context, request)
         context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
@@ -70,7 +71,13 @@ class TasksDetailedView(BrowserView):
         if self.memberid is None:
             member = context.portal_membership.getAuthenticatedMember()
             self.memberid = member.id
-
+        self.state = state or self.request.form.get('state', self.default_state)
+        self.possible_states = ['open', 'to-do', 'completed']
+        try:
+            self.possible_states.remove(self.state)
+        except ValueError:
+            # State is not known to us.
+            pass
 
     def projects(self):
         context = aq_inner(self.context)
@@ -81,9 +88,8 @@ class TasksDetailedView(BrowserView):
         projectlist = []
 
         for project in projects:
-            states = ('to-do',)
             searchpath = project.getPath()
-            tasks = self.getOwnTasks(searchpath, states=states)
+            tasks = self.getOwnTasks(searchpath)
             if len(tasks) > 0:
                 info = dict(project = project,
                             tasks = tasks,
@@ -91,8 +97,8 @@ class TasksDetailedView(BrowserView):
                 projectlist.append(info)
         return projectlist
 
-    def getOwnTasks(self, searchpath, states=None):
-        filter = dict(states = states,
+    def getOwnTasks(self, searchpath):
+        filter = dict(states = self.state,
                       assignees = self.memberid,
                       searchpath = searchpath)
         return self.xt.getTasks(**filter)

@@ -25,6 +25,10 @@ class ITasksDetailedView(IBrowserView):
     """Return list of Tasks
     """
 
+    state = Attribute("Review state to show")
+
+    possible_states = Attribute("Other possible states")
+
     def projects():
         """List of projects in this context.
         """

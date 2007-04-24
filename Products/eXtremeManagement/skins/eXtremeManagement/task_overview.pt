@@ -13,7 +13,18 @@
     <tal:main metal:fill-slot="main"
               tal:define="view context/@@task_details;
                           projects view/projects;">
-      <h1 i18n:translate="heading-my-task-overview">My task overview</h1>
+
+      <p>
+        <tal:goto i18n:translate="show">Show</tal:goto>
+        <tal:options tal:repeat="state view/possible_states">
+          <a  tal:attributes="href string:${template/absolute_url}?state=${state}"
+              tal:content="state" /><tal:separator tal:condition="not:repeat/state/end">,</tal:separator>
+      </tal:options>
+        Tasks.
+      </p>
+
+
+      <h1 i18n:translate="heading-my-task-overview">My <tal:state tal:replace="view/state" /> task overview</h1>
 
       <p i18n:translate="description-overview-my-tasks">
         Overview of tasks that belong to me.  The totals mentioned are
@@ -21,14 +32,6 @@
         adding the numbers of the column above it.
       </p>
 
-      <tal:to_do_tasks>
-
-        <h1 i18n:translate="heading-to-do-tasks">My to-do tasks</h1>
-
-        <p i18n:translate="description-to-do-tasks">
-          These are all tasks that have been assigned to me and that I
-        should currently work on.</p>
-        
         <tal:loop tal:repeat="project_info projects">
           <tal:block tal:define="items project_info/tasks;
                                  project project_info/project;">
@@ -42,33 +45,8 @@
               </table>
             </tal:block>
           </tal:block>
-
         </tal:loop>
-      </tal:to_do_tasks>
 
-      <tal:open_tasks condition="nothing">
-        <h1 i18n:translate="heading-open-tasks">My open tasks</h1>
-
-        <p i18n:translate="description-open-tasks">
-          These are all tasks that have been assigned to me and are not
-        yet worked on (so no to-do or completed status).</p>
-        
-        <tal:loop tal:repeat="project projects">
-          <tal:block tal:define="items python:project.getOwnOpenTasks();">
-            <tal:block tal:condition="items"
-                       tal:define="tot python:project.getTotalOwnTasks('open');
-                                   totalEstimate python:tot[0];
-                                   totalActual python:tot[1];
-                                   totalDifference python:tot[2];">
-              <h2 tal:content="project/Title" />
-              <table
-                  metal:use-macro="here/iteration_view/macros/tasklist_table_with_story">
-              </table>
-            </tal:block>
-          </tal:block>
-
-        </tal:loop>
-      </tal:open_tasks>
     </tal:main>
   </body>
 </html>
