@@ -97,16 +97,13 @@ class TasksDetailedView(BrowserView):
                       searchpath = searchpath)
         return self.xt.getTasks(**filter)
         
-    def myPortion(self, task):
-        return 1.0/len(task.getAssignees)
-
     def getTotalOwnTasks(self, tasks):
         """Get my portion of total estimate, etc for these tasks
         """
-        rawEstimate = sum([task.getRawEstimate * self.myPortion(task)
+        rawEstimate = sum([task.getRawEstimate / len(task.getAssignees)
                            for task in tasks])
-        rawActualHours = sum([task.getRawActualHours * self.myPortion(task)
+        rawActualHours = sum([task.getRawActualHours / len(task.getAssignees)
                               for task in tasks])
-        rawDifference = sum([task.getRawDifference * self.myPortion(task)
+        rawDifference = sum([task.getRawDifference / len(task.getAssignees)
                              for task in tasks])
         return map(self.xt.formatTime, (rawEstimate, rawActualHours, rawDifference))
