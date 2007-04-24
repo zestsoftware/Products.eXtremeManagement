@@ -53,8 +53,8 @@
                     height="30" 
                     align="left" 
                     class="header_iteration">
-                    <span tal:replace="iteration/man_hours" /> Hours
-                    ( <span tal:replace="iteration/actual" /> Actual)
+                  <span tal:replace="iteration/man_hours" /> Hours
+                  ( <span tal:replace="iteration/actual" /> Actual)
                 </th>
                 <th width="20%"
                     class="iteration-state">
@@ -77,114 +77,60 @@
         <h1 i18n:translate="heading_current_iterations">Current Iterations</h1>
         <div class="iterations"
              tal:repeat="curIteration current_iterations">
-
           <tal:block tal:define="obj curIteration/brain/getObject;">
-
-            <table class="listing"
-                   width="100%"
-                   cellpadding="0"
-                   cellspacing="0">
-
-              <tr>
-                <th colspan="2"
-                    width="60%" 
-                    height="30" 
-                    align="left" 
-                    class="header_iteration">
-                  <a class="header_iteration_project_overview"
-                     tal:attributes="href string:${obj/absolute_url}">
-                    <img tal:attributes="src string:${here/portal_url}/${obj/getIcon};
-                                         alt string:Project overview"/>
-                    <span tal:replace="obj/Title">Title</span>
-                  </a>
-                </th>
-                <th colspan="2"
-                    width="20%" 
-                    height="30" 
-                    align="left" 
-                    class="header_iteration">
-                    <span tal:replace="obj/getManHours" /> Hours
-                    ( <span tal:replace="obj/getActualHours" /> Actual)
-                </th>
-                <th colspan="2"
-                    width="20%" 
-                    class="iteration-state">
-                  <span i18n:translate="status">status</span>:
-                  <span tal:content="structure curIteration/review_state"/>
-                  <img tal:attributes="src string:${curIteration/review_state}.gif;
-                                       alt curIteration/review_state" />
-                </th>
-              </tr>
-              <tr>
-                <td colspan="6"
-                    class="iteration-description"
-                    tal:content="obj/Description" />
-              </tr>
-
-              <tr tal:condition="python:obj.contentValues('Story')">
-                <th i18n:translate="listingheader_story">Story</th>
-                <th i18n:translate="listingheader_progress">Progress</th>
-                <th i18n:translate="listingheader_tasks_open">Tasks open</th>
-                <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
-                    <th i18n:translate="listingheader_estimate">Estimate</th>
-                    <th i18n:translate="listingheader_actual">Actual</th>
-              </tr>
-
-              <tr tal:define="xt python:portal.xm_tool;
-                              stories python:xt.getStateSortedContents(obj);"
-                  tal:repeat="story_brain stories">
-
-                <tal:block
-                    tal:define="story python:story_brain.getObject();
-                                progress python:story.get_progress_perc();
-                                openTasks python:story.getUnfinishedTaskCount();
-                                completedTasks python:story.getCompletedTaskCount();
-                                storyIsCompleted python:story.isCompleted();
-                                status python:putils.getReviewStateTitleFor(story);">
-                  
-                  <td width="30%">
-                    <a class="storyTitle_project_overview"
-                       tal:attributes="href story/absolute_url"
-                       tal:content="story/Title" />
-                  </td>
-                  
-                  <td class="progress_details" 
-                      width="150">
-                    <span class="progress_percentage"
-                          tal:content="string:(${status}) ${progress} %">&nbsp;</span>
-                    <br />
-                    <div class="progress_bar">
-                      <img tal:condition="storyIsCompleted"
-                           src="progress-complete.gif" 
-                           height="10" 
-                           tal:attributes="width progress"
-                           alt="progress bar"
-                           i18n:attributes="alt progress_bar" />
-                      <img tal:condition="not:storyIsCompleted"
-                           src="progress.gif" 
-                           height="10" 
-                           tal:attributes="width progress"
-                           alt="progress bar"
-                           i18n:attributes="alt progress_bar" />
-                    </div>
-                  </td>
-                  <td class="tasks"
-                      tal:content="openTasks" />
-                  <td class="tasks"
-                      tal:content="completedTasks" />
-                    <td tal:content="python:story.getEstimate()" />
-                    <td tal:content="python:story.getActualHours()" />
-                </tal:block>
-              </tr>
-            </table>
-
+            <tal:stories
+                tal:define="iteration_view obj/@@iteration;
+                            stories iteration_view/stories;
+                            show_task_count python:True;
+                            show_progress python:True;
+                            show_totals python:False;">
+              <metal:block metal:use-macro="here/iteration_view/macros/story_list">
+                <metal:block fill-slot="extra_header">
+                  <tr>
+                    <th colspan="2"
+                        width="60%" 
+                        height="30" 
+                        align="left" 
+                        class="header_iteration">
+                      <a class="header_iteration_project_overview"
+                         tal:attributes="href string:${obj/absolute_url}">
+                        <img tal:attributes="src string:${here/portal_url}/${obj/getIcon};
+                                             alt string:Project overview"/>
+                        <span tal:replace="obj/Title">Title</span>
+                      </a>
+                    </th>
+                    <th colspan="2"
+                        width="20%" 
+                        height="30" 
+                        align="left" 
+                        class="header_iteration">
+                      <span tal:replace="obj/getManHours" /> Hours
+                      ( <span tal:replace="obj/getActualHours" /> Actual)
+                    </th>
+                    <th colspan="2"
+                        width="20%" 
+                        class="iteration-state">
+                      <span i18n:translate="status">status</span>:
+                      <span tal:content="structure curIteration/review_state"/>
+                      <img tal:attributes="src string:${curIteration/review_state}.gif;
+                                           alt curIteration/review_state" />
+                    </th>
+                  </tr>
+                  <tr>
+                    <td colspan="6"
+                        class="iteration-description"
+                        tal:content="obj/Description" />
+                  </tr>
+                </metal:block>
+              </metal:block>
+            </tal:stories>
           </tal:block>
         </div>
       </tal:block>
 
       <tal:block tal:condition="not:current_iterations">
         <p><strong i18n:translate="heading_no_current_iterations">
-          No Current Iterations</strong></p>
+        No Current Iterations</strong></p>
       </tal:block>
 
       <dl id="open_iterations"
@@ -228,4 +174,3 @@
 
   </body>
 </html>
-
