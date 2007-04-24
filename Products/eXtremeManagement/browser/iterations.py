@@ -44,7 +44,8 @@ class IterationView(XMBaseView):
         catalog = getToolByName(context, 'portal_catalog')
 
         # compute progress percentage
-        if review_state_id == 'completed':
+        is_completed = (review_state_id == 'completed'),
+        if is_completed:
             progress = 100
         else:
             estimated = brain.getRawEstimate
@@ -75,7 +76,7 @@ class IterationView(XMBaseView):
             review_state = review_state_id,
             review_state_title = workflow.getTitleForStateOnType(
                                  review_state_id, 'Story'),
-            is_completed = (review_state_id == 'completed'),
+            is_completed = is_completed,
             open_tasks = open_tasks,
             completed_tasks = completed_tasks,
         )
