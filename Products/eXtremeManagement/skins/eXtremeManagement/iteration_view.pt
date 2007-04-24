@@ -33,7 +33,8 @@
         <br />
 
         <tal:block tal:condition="stories"
-                   tal:define="show_task_count python:False;">
+                   tal:define="show_task_count python:False;
+                               show_progress python:False">
             <h1 i18n:translate="heading-stories">Stories</h1>
 
             <metal:stories metal:define-macro="story_list">
@@ -63,10 +64,34 @@
                     </td>
                     <td tal:define="review_state story/review_state"
                         tal:content="story/review_state_title"
+                        tal:condition="not:show_progress"
                         i18n:domain="plone"
                         i18n:translate=""
                         class=""
                         tal:attributes="class python:'td-center state-'+normalizeString(review_state)" />
+
+                    <td class="progress_details" 
+                        tal:condition="show_progress"
+                        width="150">
+                      <span class="progress_percentage"
+                            tal:content="string:(${story/review_state_title}) ${story/progress} %">&nbsp;</span>
+                      <br />
+                      <div class="progress_bar">
+                        <img tal:condition="story/is_completed"
+                             src="progress-complete.gif" 
+                             height="10" 
+                             tal:attributes="width story/progress"
+                             alt="progress bar"
+                             i18n:attributes="alt progress_bar" />
+                        <img tal:condition="not:story/is_completed"
+                             src="progress.gif" 
+                             height="10" 
+                             tal:attributes="width story/progress"
+                             alt="progress bar"
+                             i18n:attributes="alt progress_bar" />
+                      </div>
+                    </td>
+
                     <tal:task_count tal:condition="show_task_count">
                       <td tal:content="story/open_tasks" />
                       <td tal:content="story/completed_tasks" />

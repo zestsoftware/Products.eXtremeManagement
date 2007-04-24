@@ -75,6 +75,7 @@ class IterationView(XMBaseView):
             review_state = review_state_id,
             review_state_title = workflow.getTitleForStateOnType(
                                  review_state_id, 'Story'),
+            is_completed = (review_state_id == 'completed'),
             open_tasks = open_tasks,
             completed_tasks = completed_tasks,
         )
