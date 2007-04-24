@@ -31,7 +31,7 @@ __docformat__ = 'plaintext'
 from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
 from Products.eXtremeManagement.config import *
-
+from Acquisition import aq_inner
 
 from Products.CMFCore.utils import UniqueObject
 
@@ -232,6 +232,31 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
                 return MAXIMUM_NOT_COMPLETED_PERCENTAGE
             return percentage
         return 0
+
+    security.declarePublic('getTasks')
+    def getTasks(self, context=None, searchpath=None, states=None,
+                 assignees=None):
+        """Get some tasks.
+
+        We may want to put this somewhere else, but I have not yet
+        found a good place, as there are several views where we need
+        this info.  At least it is better than some python scripts in
+        the skins dir.
+        """
+        if searchpath is None:
+            if context is None:
+                context = getToolByName(self,'portal_url').getPortalObject()
+            context = aq_inner(context)
+            searchpath = '/'.join(context.getPhysicalPath())
+
+        filter = dict(portal_type='Task',
+                      review_state=states,
+                      path=searchpath)
+        if assignees is not None:
+            filter['getAssignees'] = assignees
+
+        catalog = getToolByName(self, 'portal_catalog')
+        return catalog.searchResults(**filter)
 
 
 registerType(eXtremeManagementTool, PROJECTNAME)

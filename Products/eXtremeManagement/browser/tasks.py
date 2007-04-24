@@ -78,4 +78,35 @@ class TasksDetailedView(BrowserView):
 
         projects = self.catalog.searchResults(portal_type='Project',
                                               path=searchpath)
-        return [project.getObject() for project in projects]
+        projectlist = []
+
+        for project in projects:
+            states = ('to-do',)
+            searchpath = project.getPath()
+            tasks = self.getOwnTasks(searchpath, states=states)
+            if len(tasks) > 0:
+                info = dict(project = project,
+                            tasks = tasks,
+                            totals = self.getTotalOwnTasks(tasks))
+                projectlist.append(info)
+        return projectlist
+
+    def getOwnTasks(self, searchpath, states=None):
+        filter = dict(states = states,
+                      assignees = self.memberid,
+                      searchpath = searchpath)
+        return self.xt.getTasks(**filter)
+        
+    def myPortion(self, task):
+        return 1.0/len(task.getAssignees)
+
+    def getTotalOwnTasks(self, tasks):
+        """Get my portion of total estimate, etc for these tasks
+        """
+        rawEstimate = sum([task.getRawEstimate * self.myPortion(task)
+                           for task in tasks])
+        rawActualHours = sum([task.getRawActualHours * self.myPortion(task)
+                              for task in tasks])
+        rawDifference = sum([task.getRawDifference * self.myPortion(task)
+                             for task in tasks])
+        return map(self.xt.formatTime, (rawEstimate, rawActualHours, rawDifference))

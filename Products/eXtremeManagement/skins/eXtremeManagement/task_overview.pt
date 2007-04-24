@@ -29,10 +29,10 @@
           These are all tasks that have been assigned to me and that I
         should currently work on.</p>
         
-        <tal:loop tal:repeat="project projects">
-          <tal:block tal:define="items python:project.getOwnToDoTasks();">
-            <tal:block tal:condition="items"
-                       tal:define="tot python:project.getTotalOwnTasks('to-do');
+        <tal:loop tal:repeat="project_info projects">
+          <tal:block tal:define="items project_info/tasks;
+                                 project project_info/project;">
+            <tal:block tal:define="tot project_info/totals;
                                    totalEstimate python:tot[0];
                                    totalActual python:tot[1];
                                    totalDifference python:tot[2];">
@@ -46,7 +46,7 @@
         </tal:loop>
       </tal:to_do_tasks>
 
-      <tal:open_tasks>
+      <tal:open_tasks condition="nothing">
         <h1 i18n:translate="heading-open-tasks">My open tasks</h1>
 
         <p i18n:translate="description-open-tasks">
