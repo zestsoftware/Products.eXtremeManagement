@@ -1,6 +1,8 @@
-from zope.interface import Interface, Attribute
+from zope.interface import Attribute
+from zope.app.publisher.interfaces.browser import IBrowserView
 
-class IMyProjects(Interface):
+
+class IMyProjects(IBrowserView):
     """Return the projects that the logged in user has tasks in.
     """
 
@@ -8,7 +10,7 @@ class IMyProjects(Interface):
         pass
 
 
-class IBookingsDetailedView(Interface):
+class IBookingsDetailedView(IBrowserView):
     """Return list of bookings
     """
 
@@ -19,7 +21,7 @@ class IBookingsDetailedView(Interface):
         """
 
 
-class IBookingOverview(Interface):
+class IBookingOverview(IBrowserView):
     """Return overview of bookings for this period
     """
 
@@ -30,7 +32,7 @@ class IBookingOverview(Interface):
         """
 
 
-class IYearBookingOverview(Interface):
+class IYearBookingOverview(IBrowserView):
     """Return overview of bookings for a year, grouped by month.
     """
 
@@ -43,7 +45,7 @@ class IYearBookingOverview(Interface):
         """
     
 
-class IDayBookingOverview(Interface):
+class IDayBookingOverview(IBrowserView):
     """Return overview of bookings for a day
     """
 
@@ -51,7 +53,7 @@ class IDayBookingOverview(Interface):
     total =  Attribute("Formatted total booked hours for this day")
 
 
-class IXMBaseView(Interface):
+class IXMBaseView(IBrowserView):
     """Info about one of the standard content types of
     eXtremeManagement.
     """

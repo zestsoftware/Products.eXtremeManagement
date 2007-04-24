@@ -42,7 +42,7 @@ class IterationView(XMBaseView):
         review_state_id = brain.review_state
         workflow = getToolByName(context, 'portal_workflow')
 
-        # computer progress percentage
+        # compute progress percentage
         if review_state_id == 'completed':
             progress = 100
         else:
