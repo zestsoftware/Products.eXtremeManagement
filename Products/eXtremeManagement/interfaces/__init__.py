@@ -43,6 +43,24 @@ from xmstory import IXMStory
 from xmtask import IXMTask
 from xmbooking import IXMBooking
 
+our_interfaces = (
+    IXMCustomerFolder,
+    IXMCustomer,
+    IXMProjectMember,
+    IXMProjectFolder,
+    IXMProject,
+    IXMIteration,
+    IXMStory,
+    IXMTask,
+    IXMBooking,
+    )
+
+from zope.interface import alsoProvides
+from zope.app.content.interfaces import IContentType
+
+for iface in our_interfaces:
+    alsoProvides(iface, IContentType)
+
 # Only add zope 3 bridges if you somehow need them.
 # If this gets removed by someone who knows what he is doing, that is
 # fine with me.  [Maurits.]
