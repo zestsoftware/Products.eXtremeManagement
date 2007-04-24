@@ -34,16 +34,17 @@
 
         <tal:block tal:condition="stories"
                    tal:define="show_task_count python:False;
-                               show_progress python:False">
+                               show_progress python:False;
+                               show_totals python:True">
             <h1 i18n:translate="heading-stories">Stories</h1>
 
             <metal:stories metal:define-macro="story_list">
-            <table class="listing"
-                width="100%"
-                border="1"
-                cellpadding="0"
-                cellspacing="0">
-    
+              <table class="listing"
+                     width="100%"
+                     border="1"
+                     cellpadding="0"
+                     cellspacing="0">
+                <metal:block define-slot="extra_header" />
                 <tr>
                     <th i18n:translate="listingheader_story">Story</th>
                     <th i18n:translate="listingheader_state">Status</th>
@@ -99,7 +100,8 @@
                     <td tal:content="story/estimate" />
                     <td tal:content="story/actual" />
                 </tr>
-                <tr id="totalTasks">
+                <tr id="totalTasks"
+                    tal:condition="show_totals">
                     <th class="td-story-title"
                         colspan="2"
                         tal:attributes="colspan python:test(show_task_count, 4, 2)"
@@ -107,7 +109,7 @@
                     <th tal:content="iteration/estimate" />
                     <th tal:content="iteration/actual" />
                 </tr>
-            </table>
+              </table>
             </metal:stories>
 
 
