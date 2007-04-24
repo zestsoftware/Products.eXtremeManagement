@@ -21,6 +21,15 @@ class IBookingsDetailedView(IBrowserView):
         """
 
 
+class ITasksDetailedView(IBrowserView):
+    """Return list of Tasks
+    """
+
+    def projects():
+        """List of projects in this context.
+        """
+
+
 class IBookingOverview(IBrowserView):
     """Return overview of bookings for this period
     """

@@ -3,68 +3,73 @@
       i18n:domain="eXtremeManagement"
       metal:use-macro="here/main_template/macros/master">
 
-    <head>
-        <metal:block fill-slot="top_slot"
-                     tal:define="dummy python:request.set('disable_border', 1)" />
-    </head>
+  <head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border', 1)" />
+  </head>
 
-    <body>
+  <body>
 
     <tal:main metal:fill-slot="main"
-         tal:define="projects python:portal.getProjects();">
-    <h1 i18n:translate="heading-my-task-overview">My task overview</h1>
+              tal:define="view context/@@task_details;
+                          projects view/projects;">
+      <h1 i18n:translate="heading-my-task-overview">My task overview</h1>
 
-    <p i18n:translate="description-overview-my-tasks">
-      Overview of tasks that belong to me.  The totals mentioned are
-      the total time for myself, so they will usually differ from
-      adding the numbers of the column above it.
-    </p>
+      <p i18n:translate="description-overview-my-tasks">
+        Overview of tasks that belong to me.  The totals mentioned are
+        the total time for myself, so they will usually differ from
+        adding the numbers of the column above it.
+      </p>
 
-    <h1 i18n:translate="heading-to-do-tasks">My to-do tasks</h1>
+      <tal:to_do_tasks condition="nothing">
 
-    <p i18n:translate="description-to-do-tasks">
-      These are all tasks that have been assigned to me and that I
-      should currently work on.</p>
-    
-    <tal:loop tal:repeat="project projects">
-            <tal:block tal:define="items python:project.getOwnToDoTasks();">
+        <h1 i18n:translate="heading-to-do-tasks">My to-do tasks</h1>
+
+        <p i18n:translate="description-to-do-tasks">
+          These are all tasks that have been assigned to me and that I
+        should currently work on.</p>
+        
+        <tal:loop tal:repeat="project projects">
+          <tal:block tal:define="items python:project.getOwnToDoTasks();">
             <tal:block tal:condition="items"
                        tal:define="tot python:project.getTotalOwnTasks('to-do');
                                    totalEstimate python:tot[0];
                                    totalActual python:tot[1];
                                    totalDifference python:tot[2];">
-            <h2 tal:content="project/Title" />
-               <table
-               metal:use-macro="here/iteration_view/macros/tasklist_table_with_story">
-               </table>
+              <h2 tal:content="project/Title" />
+              <table
+                  metal:use-macro="here/iteration_view/macros/tasklist_table_with_story">
+              </table>
             </tal:block>
-            </tal:block>
+          </tal:block>
 
-    </tal:loop>
+        </tal:loop>
+      </tal:to_do_tasks>
 
-    <h1 i18n:translate="heading-open-tasks">My open tasks</h1>
+      <tal:open_tasks condition="nothing">
+        <h1 i18n:translate="heading-open-tasks">My open tasks</h1>
 
-    <p i18n:translate="description-open-tasks">
-      These are all tasks that have been assigned to me and are not
-      yet worked on (so no to-do or completed status).</p>
-    
-    <tal:loop tal:repeat="project projects">
-            <tal:block tal:define="items python:project.getOwnOpenTasks();">
+        <p i18n:translate="description-open-tasks">
+          These are all tasks that have been assigned to me and are not
+        yet worked on (so no to-do or completed status).</p>
+        
+        <tal:loop tal:repeat="project projects">
+          <tal:block tal:define="items python:project.getOwnOpenTasks();">
             <tal:block tal:condition="items"
                        tal:define="tot python:project.getTotalOwnTasks('open');
                                    totalEstimate python:tot[0];
                                    totalActual python:tot[1];
                                    totalDifference python:tot[2];">
-            <h2 tal:content="project/Title" />
-               <table
-               metal:use-macro="here/iteration_view/macros/tasklist_table_with_story">
-               </table>
+              <h2 tal:content="project/Title" />
+              <table
+                  metal:use-macro="here/iteration_view/macros/tasklist_table_with_story">
+              </table>
             </tal:block>
-            </tal:block>
+          </tal:block>
 
-    </tal:loop>
-
+        </tal:loop>
+      </tal:open_tasks>
     </tal:main>
-    </body>
+  </body>
 </html>
 

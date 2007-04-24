@@ -1,5 +1,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
+from Products.Five.browser import BrowserView
+from Acquisition import aq_inner
 
 
 class TaskView(XMBaseView):
@@ -51,3 +53,29 @@ class TaskView(XMBaseView):
             billable = brain.getBillable,
         )
         return returnvalue
+
+
+class TasksDetailedView(BrowserView):
+    """Return a list of Tasks.
+    """
+
+    tasklist = []
+
+    def __init__(self, context, request, year=None, month=None, memberid=None):
+        super(TasksDetailedView, self).__init__(context, request)
+        context = aq_inner(context)
+        self.catalog = getToolByName(context, 'portal_catalog')
+        self.xt = getToolByName(context, 'xm_tool')
+        self.memberid = memberid or self.request.form.get('memberid')
+        if self.memberid is None:
+            member = context.portal_membership.getAuthenticatedMember()
+            self.memberid = member.id
+
+
+    def projects(self):
+        context = aq_inner(self.context)
+        searchpath = '/'.join(context.getPhysicalPath())
+
+        projects = self.catalog.searchResults(portal_type='Project',
+                                              path=searchpath)
+        return [project.getObject() for project in projects]
