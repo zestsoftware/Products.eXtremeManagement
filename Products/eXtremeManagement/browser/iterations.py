@@ -41,6 +41,7 @@ class IterationView(XMBaseView):
         context = self.context
         review_state_id = brain.review_state
         workflow = getToolByName(context, 'portal_workflow')
+        catalog = getToolByName(context, 'portal_catalog')
 
         # compute progress percentage
         if review_state_id == 'completed':
@@ -49,6 +50,19 @@ class IterationView(XMBaseView):
             estimated = brain.getRawEstimate
             actual = brain.getRawActualHours
             progress = self.xt.get_progress_perc(actual, estimated)
+
+        # compute open task count
+        searchpath = brain.getPath()
+        filter = dict(portal_type='Task',
+                      path=searchpath)
+        unfinished_states = ('open','to-do',)
+        filter['review_state'] = unfinished_states
+        open_tasks = len(catalog.searchResults(**filter))
+
+        # compute completed task count
+        finished_states = ('completed',)
+        filter['review_state'] = finished_states
+        completed_tasks = len(catalog.searchResults(**filter))
 
         returnvalue = dict(
             url = brain.getURL(),
@@ -61,5 +75,9 @@ class IterationView(XMBaseView):
             review_state = review_state_id,
             review_state_title = workflow.getTitleForStateOnType(
                                  review_state_id, 'Story'),
+            open_tasks = open_tasks,
+            completed_tasks = completed_tasks,
         )
         return returnvalue
+
+    
