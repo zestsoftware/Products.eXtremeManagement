@@ -34,7 +34,11 @@ class ITasksDetailedView(IBrowserView):
         """
 
     def tasklist():
-        """List of all tasks in this context
+        """List of all tasks in this context with totals
+        """
+
+    def simple_tasklist():
+        """List of all tasks (brains) in this context
         """
 
 

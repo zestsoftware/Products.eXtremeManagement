@@ -106,6 +106,11 @@ class TasksDetailedView(BrowserView):
                     totals = self.getTotalOwnTasks(tasks))
         return info
 
+    def simple_tasklist(self):
+        context = aq_inner(self.context)
+        searchpath = '/'.join(context.getPhysicalPath())
+        return self.getOwnTasks(searchpath)
+
     def getOwnTasks(self, searchpath):
         filter = dict(states = self.state,
                       assignees = self.memberid,
