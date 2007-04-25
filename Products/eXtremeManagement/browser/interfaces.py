@@ -130,6 +130,10 @@ class IIterationView(IXMBaseView):
         """Return my to-do tasks.
         """
 
+    def open_tasks():
+        """Return my open tasks.
+        """
+
 
 class IProjectView(IXMBaseView):
     """Info about a project

@@ -189,9 +189,10 @@
         </tal:todo>
 
 
-        <tal:open tal:define="items python:context.getOwnOpenTasks();">
-          <tal:items tal:condition="items"
-                     tal:define="tot python:context.getTotalOwnTasks('open');
+        <tal:open tal:define="info view/open_tasks;">
+          <tal:items tal:condition="info/tasks"
+                     tal:define="items info/tasks;
+                                 tot info/totals;
                                  totalEstimate python:tot[0];
                                  totalActual python:tot[1];
                                  totalDifference python:tot[2];">
