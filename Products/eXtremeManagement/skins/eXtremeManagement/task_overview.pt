@@ -34,6 +34,7 @@
 
       <tal:loop tal:repeat="project_info projects">
         <tal:block tal:define="items project_info/tasks;
+                               show_story python:True;
                                project project_info/project;
                                tot project_info/totals;
                                totalEstimate python:tot[0];

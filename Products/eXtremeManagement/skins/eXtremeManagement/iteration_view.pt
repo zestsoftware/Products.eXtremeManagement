@@ -155,6 +155,7 @@
         <tal:todo tal:define="info view/todo_tasks;">
           <tal:items tal:condition="info/tasks"
                      tal:define="items info/tasks;
+                                 show_story python:True;
                                  tot info/totals;
                                  totalEstimate python:tot[0];
                                  totalActual python:tot[1];
@@ -169,22 +170,7 @@
             </p>
             
             <metal:story_tasks metal:define-macro="tasklist_table_with_story">
-              <table metal:use-macro="here/story_view/macros/tasklist_table">
-                <metal:block fill-slot="extra_column_header">
-                  <th i18n:translate="listingheader_story">Story</th>
-                </metal:block>
-                <metal:extra fill-slot="extra_column_data">
-                  <td tal:condition="task|nothing"
-                      class="td-story-title">
-                    <a tal:define="storyPath string:${task/getPath}/..;
-                                   story     python:context.restrictedTraverse(storyPath);
-                                   storyURL  string:${task/getURL}/..;"
-                       tal:attributes="href storyURL"
-                       tal:content="story/Title" />
-                  </td>
-                  <th tal:condition="not:task|nothing" />
-                </metal:extra>
-              </table>
+              <table metal:use-macro="here/story_view/macros/tasklist_table" />
             </metal:story_tasks>
           </tal:items>
         </tal:todo>
@@ -193,6 +179,7 @@
         <tal:open tal:define="info view/open_tasks;">
           <tal:items tal:condition="info/tasks"
                      tal:define="items info/tasks;
+                                 show_story python:True;
                                  tot info/totals;
                                  totalEstimate python:tot[0];
                                  totalActual python:tot[1];

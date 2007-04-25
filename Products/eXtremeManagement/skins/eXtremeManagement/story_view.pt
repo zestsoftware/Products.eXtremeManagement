@@ -57,7 +57,8 @@
         days.
       </p>
 
-      <tal:block tal:condition="items">
+      <tal:block tal:condition="items"
+                 tal:define="show_story python:False;">
         <h1 class="documentFirstHeading" 
             i18n:translate="heading_tasks">Tasks</h1>
         
@@ -69,7 +70,8 @@
                  cellspacing="0">
             <thead>
               <tr>
-                <metal:block define-slot="extra_column_header"></metal:block>
+                <th i18n:translate="listingheader_story"
+                    tal:condition="show_story">Story</th>
                 <th i18n:translate="listingheader_title">Title</th>
                 <th i18n:translate="listingheader_estimate">Estimate</th>                  
                 <th i18n:translate="listingheader_actual">Actual</th>
@@ -83,7 +85,15 @@
             <tr tal:repeat="task items"
                 tal:define="xt python:portal.xm_tool"
                 class="list-in-iteration">
-              <metal:block define-slot="extra_column_data"></metal:block>
+              <tal:story condition="show_story">
+                <td class="td-story-title">
+                  <a tal:define="storyPath string:${task/getPath}/..;
+                                 story     python:context.restrictedTraverse(storyPath);
+                                 storyURL  string:${task/getURL}/..;"
+                     tal:attributes="href storyURL"
+                     tal:content="story/Title" />
+                </td>
+              </tal:story>
               <td class="td-story-title">
                 <a tal:attributes="href task/getURL"
                    tal:content="task/Title" />
@@ -105,20 +115,17 @@
               </td>
             </tr>
             
-            <metal:total define-slot="total_row">
-              <tr id="totalTasks">
-                <metal:block define-slot="extra_column_data"></metal:block>
-                <th class="td-story-title" 
-                    i18n:translate="total">
-                  Total
-                </th>
-                <th tal:content="totalEstimate" />
-                <th tal:content="totalActual" />
-                <th tal:content="totalDifference" />
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-              </tr>
-            </metal:total>
+            <tr id="totalTasks">
+              <th class="td-story-title" 
+                  tal:attributes="colspan python:test(show_story, 2, 1)"
+                  i18n:translate="total">
+                Total
+              </th>
+              <th tal:content="totalEstimate" />
+              <th tal:content="totalActual" />
+              <th tal:content="totalDifference" />
+              <th colspan="2">&nbsp;</th>
+            </tr>
           </table>
         </metal:block>
       </tal:block>
