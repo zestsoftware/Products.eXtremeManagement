@@ -25,7 +25,7 @@
            tabindex="1"
            href="">
           <span i18n:translate="next">
-            Next: </span>
+          Next: </span>
           <span tal:replace="next/Title" /> 
           <img tal:replace="structure here/arrowRight.gif" />
         </a>
@@ -36,10 +36,10 @@
            href="">
           <img tal:replace="structure here/arrowLeft.gif" />
           <span i18n:translate="previous">
-            Previous: </span>
+          Previous: </span>
           <span tal:replace="prev/Title" />
         </a>
-          &nbsp;
+        &nbsp;
       </div>
 
       <div class="documentDescription"
@@ -67,47 +67,43 @@
                  width="100%"
                  cellpadding="0" 
                  cellspacing="0">
-            <metal:block metal:define-macro="tasklist_header">
-              <thead>
-                <tr>
-                  <metal:block define-slot="extra_column_header"></metal:block>
-                  <th i18n:translate="listingheader_title">Title</th>
-                  <th i18n:translate="listingheader_estimate">Estimate</th>                  
-                  <th i18n:translate="listingheader_actual">Actual</th>
-                  <th i18n:translate="listingheader_diff">Difference</th>
-                  <th i18n:translate="listingheader_state">Status</th>
-                  <th i18n:translate="listingheader_assignees">Assignee(s)</th>
-                </tr>
-              </thead>
-            </metal:block>
-
-
-            <metal:block metal:define-macro="tasklist_body">
-              <tr tal:repeat="task items"
-                  tal:define="xt python:portal.xm_tool"
-                  class="list-in-iteration">
-                  <metal:block define-slot="extra_column_data"></metal:block>
-                  <td class="td-story-title">
-                    <a tal:attributes="href task/getURL"
-                       tal:content="task/Title" />
-                  </td>
-                  <td tal:content="python:xt.formatTime(task.getRawEstimate)" />
-                  <td tal:content="python:xt.formatTime(task.getRawActualHours)" />
-                  <td tal:content="python:xt.formatTime(task.getRawDifference)" />
-                  <td tal:content="task/review_state"
-                      i18n:domain="plone"
-                      i18n:translate=""
-                      class=""
-                      tal:attributes="class python:'td-center state-'+normalizeString(task.review_state)" />
-                  <td class="td-center">
-                    <tal:assignees tal:repeat="newItem task/getAssignees">
-                      <img tal:replace="structure context/user.gif" />
-                      <span tal:replace="newItem">Assignee</span>
-                      <br />
-                    </tal:assignees>
-                  </td>
+            <thead>
+              <tr>
+                <metal:block define-slot="extra_column_header"></metal:block>
+                <th i18n:translate="listingheader_title">Title</th>
+                <th i18n:translate="listingheader_estimate">Estimate</th>                  
+                <th i18n:translate="listingheader_actual">Actual</th>
+                <th i18n:translate="listingheader_diff">Difference</th>
+                <th i18n:translate="listingheader_state">Status</th>
+                <th i18n:translate="listingheader_assignees">Assignee(s)</th>
               </tr>
-            </metal:block>
+            </thead>
+
+
+            <tr tal:repeat="task items"
+                tal:define="xt python:portal.xm_tool"
+                class="list-in-iteration">
+              <metal:block define-slot="extra_column_data"></metal:block>
+              <td class="td-story-title">
+                <a tal:attributes="href task/getURL"
+                   tal:content="task/Title" />
+              </td>
+              <td tal:content="python:xt.formatTime(task.getRawEstimate)" />
+              <td tal:content="python:xt.formatTime(task.getRawActualHours)" />
+              <td tal:content="python:xt.formatTime(task.getRawDifference)" />
+              <td tal:content="task/review_state"
+                  i18n:domain="plone"
+                  i18n:translate=""
+                  class=""
+                  tal:attributes="class python:'td-center state-'+normalizeString(task.review_state)" />
+              <td class="td-center">
+                <tal:assignees tal:repeat="newItem task/getAssignees">
+                  <img tal:replace="structure context/user.gif" />
+                  <span tal:replace="newItem">Assignee</span>
+                  <br />
+                </tal:assignees>
+              </td>
+            </tr>
             
             <metal:total define-slot="total_row">
               <tr id="totalTasks">
@@ -130,12 +126,11 @@
       <p class="discreet"
          tal:condition="python: not items"
          i18n:translate="no_tasks_defined">
-                No tasks defined yet.
-            </p>
+        No tasks defined yet.
+      </p>
       <br />
-        </metal:block>
+    </metal:block>
 
-
-        <metal:block metal:define-macro="folderlisting" />
-    </body>
+    <metal:block metal:define-macro="folderlisting" />
+  </body>
 </html>
