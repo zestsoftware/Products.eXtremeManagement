@@ -41,9 +41,7 @@
                                totalActual python:tot[1];
                                totalDifference python:tot[2];">
           <h2 tal:content="project/Title" />
-          <table
-              metal:use-macro="here/iteration_view/macros/tasklist_table_with_story">
-          </table>
+          <table metal:use-macro="here/story_view/macros/tasklist_table" />
         </tal:block>
       </tal:loop>
 

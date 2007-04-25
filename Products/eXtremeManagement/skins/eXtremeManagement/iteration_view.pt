@@ -168,10 +168,7 @@
               usually differ from adding the numbers of the column
               above it.
             </p>
-            
-            <metal:story_tasks metal:define-macro="tasklist_table_with_story">
-              <table metal:use-macro="here/story_view/macros/tasklist_table" />
-            </metal:story_tasks>
+            <table metal:use-macro="here/story_view/macros/tasklist_table" />
           </tal:items>
         </tal:todo>
 
@@ -185,9 +182,7 @@
                                  totalActual python:tot[1];
                                  totalDifference python:tot[2];">
             <h1 i18n:translate="heading-open-tasks">My open tasks</h1>
-            <table
-                metal:use-macro="here/iteration_view/macros/tasklist_table_with_story">
-            </table>
+            <table metal:use-macro="here/story_view/macros/tasklist_table" />
           </tal:items>
         </tal:open>
 
