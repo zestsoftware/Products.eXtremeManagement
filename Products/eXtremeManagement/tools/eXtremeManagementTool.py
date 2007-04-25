@@ -250,10 +250,11 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             searchpath = '/'.join(context.getPhysicalPath())
 
         filter = dict(portal_type='Task',
-                      review_state=states,
                       path=searchpath)
         if assignees is not None:
             filter['getAssignees'] = assignees
+        if states is not None:
+            filter['review_state'] = states
 
         catalog = getToolByName(self, 'portal_catalog')
         return catalog.searchResults(**filter)

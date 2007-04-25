@@ -122,3 +122,39 @@ class TasksDetailedView(BrowserView):
         rawDifference = sum([task.getRawDifference / len(task.getAssignees)
                              for task in tasks])
         return map(self.xt.formatTime, (rawEstimate, rawActualHours, rawDifference))
+
+
+class EmployeeTotalsView(BrowserView):
+    """Return an overview for employees
+    """
+
+    def __init__(self, context, request):
+        super(EmployeeTotalsView, self).__init__(context, request)
+        context = aq_inner(context)
+        self.catalog = getToolByName(context, 'portal_catalog')
+        self.xt = getToolByName(context, 'xm_tool')
+
+    def totals(self):
+        context = aq_inner(self.context)
+        searchpath = '/'.join(context.getPhysicalPath())
+
+        filter = dict(searchpath = searchpath)
+        taskbrains = self.xt.getTasks(**filter)
+
+        memberlist = []
+        members = context.getProject().getMembers()
+        for memberid in members:
+            tasks = [taskbrain for taskbrain in taskbrains
+                     if memberid in taskbrain.getAssignees]
+            rawEstimate = sum([task.getRawEstimate / len(task.getAssignees)
+                               for task in tasks])
+            if rawEstimate > 0:
+                bookings = self.catalog.searchResults(
+                    portal_type='Booking',
+                    Creator=memberid,
+                    path=searchpath)
+                rawActualHours = sum([booking.getRawActualHours for booking in bookings])
+                rawDifference = rawEstimate - rawActualHours
+                memberlist.append((memberid,
+                                   map(self.xt.formatTime, (rawEstimate, rawActualHours, rawDifference))))
+        return memberlist

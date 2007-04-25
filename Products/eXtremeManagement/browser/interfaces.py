@@ -135,6 +135,15 @@ class IIterationView(IXMBaseView):
         """
 
 
+class IEmployeeTotalsView(IBrowserView):
+    """Return totals for employees
+    """
+
+    def totals():
+        """Give totals
+        """
+
+
 class IProjectView(IXMBaseView):
     """Info about a project
     """

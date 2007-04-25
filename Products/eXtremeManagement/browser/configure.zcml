@@ -49,6 +49,15 @@
       />
 
   <page
+      name="employee_totals"
+      class=".tasks.EmployeeTotalsView"
+      for="*"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IEmployeeTotalsView"
+      />
+
+
+  <page
       name="booking"
       class=".bookings.BookingView"
       for="Products.eXtremeManagement.interfaces.IXMBooking"
