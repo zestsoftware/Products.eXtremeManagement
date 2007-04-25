@@ -30,7 +30,11 @@ class ITasksDetailedView(IBrowserView):
     possible_states = Attribute("Other possible states")
 
     def projects():
-        """List of projects in this context.
+        """List of projects in this context, with task info included.
+        """
+
+    def tasklist():
+        """List of all tasks in this context
         """
 
 
@@ -121,6 +125,11 @@ class IIterationView(IXMBaseView):
     def stories():
         """Return the Stories of this Iteration
         """
+
+    def todo_tasks():
+        """Return my to-do tasks.
+        """
+
 
 class IProjectView(IXMBaseView):
     """Info about a project

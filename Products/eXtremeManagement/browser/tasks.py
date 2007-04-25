@@ -97,6 +97,15 @@ class TasksDetailedView(BrowserView):
                 projectlist.append(info)
         return projectlist
 
+    def tasklist(self):
+        context = aq_inner(self.context)
+        searchpath = '/'.join(context.getPhysicalPath())
+
+        tasks = self.getOwnTasks(searchpath)
+        info = dict(tasks = tasks,
+                    totals = self.getTotalOwnTasks(tasks))
+        return info
+
     def getOwnTasks(self, searchpath):
         filter = dict(states = self.state,
                       assignees = self.memberid,

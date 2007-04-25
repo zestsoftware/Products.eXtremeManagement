@@ -1,5 +1,6 @@
 from Products.CMFCore.utils import getToolByName
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
+from Acquisition import aq_inner
 
 
 class IterationView(XMBaseView):
@@ -9,7 +10,7 @@ class IterationView(XMBaseView):
     def main(self):
         """Get a dict with info from this Context.
         """
-        context = self.context
+        context = aq_inner(self.context)
         workflow = getToolByName(context, 'portal_workflow')
         returnvalue = dict(
             title = context.Title(),
@@ -25,8 +26,9 @@ class IterationView(XMBaseView):
         return returnvalue
 
     def stories(self):
-        current_path = '/'.join(self.context.getPhysicalPath())
-        storybrains = self.xt.getStateSortedContents(self.context)
+        context = aq_inner(self.context)
+        current_path = '/'.join(context.getPhysicalPath())
+        storybrains = self.xt.getStateSortedContents(context)
         story_list = []
 
         for storybrain in storybrains:
@@ -38,7 +40,7 @@ class IterationView(XMBaseView):
     def storybrain2dict(self, brain):
         """Get a dict with info from this story brain.
         """
-        context = self.context
+        context = aq_inner(self.context)
         review_state_id = brain.review_state
         workflow = getToolByName(context, 'portal_workflow')
         catalog = getToolByName(context, 'portal_catalog')
@@ -82,4 +84,8 @@ class IterationView(XMBaseView):
         )
         return returnvalue
 
-    
+    def todo_tasks(self):
+        context = aq_inner(self.context)
+        view = context.restrictedTraverse('@@task_details')
+        result = view.tasklist()
+        return result

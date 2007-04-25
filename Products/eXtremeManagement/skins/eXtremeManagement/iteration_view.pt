@@ -151,9 +151,10 @@
           </table>
         </tal:membertasks>
 
-        <tal:todo tal:define="items python:context.getOwnToDoTasks();">
-          <tal:items tal:condition="items"
-                     tal:define="tot python:context.getTotalOwnTasks('to-do');
+        <tal:todo tal:define="info view/todo_tasks;">
+          <tal:items tal:condition="info/tasks"
+                     tal:define="items info/tasks;
+                                 tot info/totals;
                                  totalEstimate python:tot[0];
                                  totalActual python:tot[1];
                                  totalDifference python:tot[2];">
