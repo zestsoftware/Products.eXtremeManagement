@@ -34,16 +34,15 @@
 
         <tal:loop tal:repeat="project_info projects">
           <tal:block tal:define="items project_info/tasks;
-                                 project project_info/project;">
-            <tal:block tal:define="tot project_info/totals;
-                                   totalEstimate python:tot[0];
-                                   totalActual python:tot[1];
-                                   totalDifference python:tot[2];">
-              <h2 tal:content="project/Title" />
-              <table
-                  metal:use-macro="here/iteration_view/macros/tasklist_table_with_story">
-              </table>
-            </tal:block>
+                                 project project_info/project;
+                                 tot project_info/totals;
+                                 totalEstimate python:tot[0];
+                                 totalActual python:tot[1];
+                                 totalDifference python:tot[2];">
+            <h2 tal:content="project/Title" />
+            <table
+                metal:use-macro="here/iteration_view/macros/tasklist_table_with_story">
+            </table>
           </tal:block>
         </tal:loop>
 
