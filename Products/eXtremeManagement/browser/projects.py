@@ -10,10 +10,6 @@ class MyProjects(BrowserView):
     states = ('open', 'to-do',)
     # Use state = '' if you do not want to filter for states.
 
-    def __init__(self, context, request):
-        self.context = context
-        self.request = request
-    
     def projectlist(self):
         context = aq_inner(self.context)
         # Get a list of all projects
@@ -26,8 +22,7 @@ class MyProjects(BrowserView):
         memberid = member.id
         plist = []
         for projectbrain in projectbrains:
-            url = projectbrain.getURL()
-            searchpath = '/'.join(self.request.physicalPathFromURL(url))
+            searchpath = projectbrain.getPath()
             taskbrains = catalog.searchResults(portal_type='Task',
                                                getAssignees=memberid,
                                                review_state=self.states,
