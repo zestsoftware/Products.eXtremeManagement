@@ -115,10 +115,17 @@ class TasksDetailedView(BrowserView):
         context = aq_inner(self.context)
         review_state_id = brain.review_state
         workflow = getToolByName(context, 'portal_workflow')
+
+        # Get info about parent Story
+        storyPath = brain.getPath()[:-1]
+        filter = dict(portal_type='Story', path=storyPath)
+        storybrain = self.catalog(**filter)[0]
+
         returnvalue = dict(
-            brain = brain,
             url = brain.getURL(),
             title = brain.Title,
+            story_url = storybrain.getURL(),
+            story_title = storybrain.Title,
             description = brain.Description,
             estimate = self.xt.formatTime(brain.getRawEstimate),
             actual = self.xt.formatTime(brain.getRawActualHours),

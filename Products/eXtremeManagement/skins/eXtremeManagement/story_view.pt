@@ -85,12 +85,15 @@
                 tal:define="xt python:portal.xm_tool"
                 class="list-in-iteration">
               <tal:story condition="show_story">
+                <tal:comment replace="nothing">
+                  This part is also used in other templates via a
+                  metal macro, so we have to get the story url and
+                  title from the task items and not from the context
+                  or view/main.
+                </tal:comment>
                 <td class="td-story-title">
-                  <a tal:define="storyPath string:${task/brain/getPath}/..;
-                                 story     python:context.restrictedTraverse(storyPath);
-                                 storyURL  string:${task/url}/..;"
-                     tal:attributes="href storyURL"
-                     tal:content="story/Title" />
+                  <a tal:attributes="href task/story_url"
+                     tal:content="task/story_title" />
                 </td>
               </tal:story>
               <td class="td-story-title">
