@@ -97,8 +97,6 @@ class ProjectView(XMBaseView):
 
     def iterationbrain2dict(self, brain):
         """Get a dict with info from this iteration brain.
-
-        XXX Get rid of the getObject call
         """
         context = aq_inner(self.context)
         review_state_id = brain.review_state

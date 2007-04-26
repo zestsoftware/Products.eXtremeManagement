@@ -176,16 +176,42 @@ class BookingsDetailedView(BrowserView):
         """Get a dict with extended info from this booking brain.
         """
         context = aq_inner(self.context)
+
+        """
         booking = bookingbrain.getObject()
+        project = booking.getProject()
+        # This would wake up all objects between the Booking and the Project...
+        # So try it via the catalog instead:
+        """
+
+        # Get info about grand grand (grand) parent Project
+        # Booking is in Task is in Story.
+        # Story can be in Iteration or directly in Project.
+        bookingpath =  bookingbrain.getPath().split('/')
+        path =  '/'.join(bookingpath[:-3])
+        search_filter = dict(portal_type='Project', path=path)
+        results = self.catalog(**search_filter)
+        if len(results) == 0:
+            # Presumably we found an Iteration, so try one level up.
+            path =  '/'.join(bookingpath[:-4])
+            search_filter = dict(portal_type='Project', path=path)
+            results = self.catalog(**search_filter)
+        try:
+            project_title = results[0].Title
+        except:
+            # If you see this as project title, then you have probably
+            # changed eXtremeManagement in such a way that Bookings
+            # can be added in places that this code does not expect.
+            project_title = 'Unknown project'
 
         # Get info about parent Task
-        parentPath =  '/'.join(bookingbrain.getPath().split('/')[:-1])
-        filter = dict(portal_type='Task', path=parentPath)
-        taskbrain = self.catalog(**filter)[0]
+        path =  '/'.join(bookingpath[:-1])
+        search_filter = dict(portal_type='Task', path=path)
+        taskbrain = self.catalog(**search_filter)[0]
 
         returnvalue = dict(
             booking_date = context.restrictedTraverse('@@plone').toLocalizedTime(bookingbrain.getBookingDate),
-            project_title = booking.getProject().Title(),
+            project_title = project_title,
             task_url = taskbrain.getURL(),
             task_title = taskbrain.Title,
             # base_view of a booking gets redirected to the task view,
