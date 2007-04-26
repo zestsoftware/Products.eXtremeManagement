@@ -46,7 +46,7 @@ class IterationView(XMBaseView):
         catalog = getToolByName(context, 'portal_catalog')
 
         # compute progress percentage
-        is_completed = (review_state_id == 'completed'),
+        is_completed = (review_state_id == 'completed')
         if is_completed:
             progress = 100
         else:
