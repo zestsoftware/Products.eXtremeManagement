@@ -114,8 +114,7 @@
 
 
         <tal:membertasks
-            tal:define="etotals context/@@employee_totals;
-                        membertasks etotals/totals;">
+            tal:define="membertasks context/@@employee_totals/totals;">
           <h1 i18n:translate="heading-hours-per-employee">
           Hours per employee</h1>
           <table class="listing"
@@ -134,19 +133,14 @@
               Total Difference</th>
             </tr>
             
-            <tr tal:repeat="membertask membertasks"
+            <tr tal:repeat="info membertasks"
                 tal:attributes="class string:list-in-iteration">
-              <tal:member
-                  tal:define="memberid python:membertask[0];
-                              tot python:membertask[1];
-                              totalEstimate python:tot[0];
-                              totalActual python:tot[1];
-                              totalDifference python:tot[2];">
-                <td tal:content="memberid"
+              <tal:member>
+                <td tal:content="info/memberid"
                     class="td-memberid" />
-                <td tal:content="totalEstimate" />
-                <td tal:content="totalActual" />
-                <td tal:content="totalDifference" />
+                <td tal:content="info/estimate" />
+                <td tal:content="info/actual" />
+                <td tal:content="info/difference" />
               </tal:member>
             </tr>
           </table>

@@ -164,6 +164,11 @@ class EmployeeTotalsView(BrowserView):
                     path=searchpath)
                 rawActualHours = sum([booking.getRawActualHours for booking in bookings])
                 rawDifference = rawEstimate - rawActualHours
-                memberlist.append((memberid,
-                                   map(self.xt.formatTime, (rawEstimate, rawActualHours, rawDifference))))
+                info = dict(
+                    memberid = memberid,
+                    estimate = self.xt.formatTime(rawEstimate),
+                    actual = self.xt.formatTime(rawActualHours),
+                    difference = self.xt.formatTime(rawDifference),
+                    )
+                memberlist.append(info)
         return memberlist
