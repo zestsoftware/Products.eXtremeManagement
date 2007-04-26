@@ -86,27 +86,27 @@
                 class="list-in-iteration">
               <tal:story condition="show_story">
                 <td class="td-story-title">
-                  <a tal:define="storyPath string:${task/getPath}/..;
+                  <a tal:define="storyPath string:${task/brain/getPath}/..;
                                  story     python:context.restrictedTraverse(storyPath);
-                                 storyURL  string:${task/getURL}/..;"
+                                 storyURL  string:${task/url}/..;"
                      tal:attributes="href storyURL"
                      tal:content="story/Title" />
                 </td>
               </tal:story>
               <td class="td-story-title">
-                <a tal:attributes="href task/getURL"
-                   tal:content="task/Title" />
+                <a tal:attributes="href task/url"
+                   tal:content="task/title" />
               </td>
-              <td tal:content="python:xt.formatTime(task.getRawEstimate)" />
-              <td tal:content="python:xt.formatTime(task.getRawActualHours)" />
-              <td tal:content="python:xt.formatTime(task.getRawDifference)" />
-              <td tal:content="task/review_state"
+              <td tal:content="task/estimate" />
+              <td tal:content="task/actual" />
+              <td tal:content="task/difference" />
+              <td tal:content="task/review_state_title"
                   i18n:domain="plone"
                   i18n:translate=""
                   class=""
-                  tal:attributes="class python:'td-center state-'+normalizeString(task.review_state)" />
+                  tal:attributes="class python:'td-center state-'+normalizeString(task['review_state'])" />
               <td class="td-center">
-                <tal:assignees tal:repeat="newItem task/getAssignees">
+                <tal:assignees tal:repeat="newItem task/assignees">
                   <img tal:replace="structure context/user.gif" />
                   <span tal:replace="newItem">Assignee</span>
                   <br />

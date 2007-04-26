@@ -74,18 +74,16 @@ class TasksDetailedView(BrowserView):
             searchpath = '/'.join(context.getPhysicalPath())
         filter = self.filter
         filter['path'] = searchpath
-        brains = self.catalog.searchResults(**filter)
-        return brains
+        return self.catalog.searchResults(**filter)
+
+    def tasklist(self, searchpath=None):
+        brains = self.simple_tasklist(searchpath)
         task_list = []
         for brain in brains:
             info = self.taskbrain2dict(brain)
             task_list.append(info)
-        return task_list
-
-    def tasklist(self, searchpath=None):
-        tasks = self.simple_tasklist(searchpath)
-        info = dict(tasks = tasks,
-                    totals = self.getTaskTotals(tasks))
+        info = dict(tasks = task_list,
+                    totals = self.getTaskTotals(brains))
         return info
         
     def portion(self, task):
@@ -118,6 +116,7 @@ class TasksDetailedView(BrowserView):
         review_state_id = brain.review_state
         workflow = getToolByName(context, 'portal_workflow')
         returnvalue = dict(
+            brain = brain,
             url = brain.getURL(),
             title = brain.Title,
             description = brain.Description,
