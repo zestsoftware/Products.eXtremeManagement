@@ -34,23 +34,8 @@ class StoryView(XMBaseView):
 
     def tasks(self):
         context = aq_inner(self.context)
-        current_path = '/'.join(context.getPhysicalPath())
-        taskbrains = self.xt.getStateSortedContents(context)
-
-        # Not all page templates are prepared for getting their data
-        # as a dict, so just return the brains for now.
-        # Affected are: story_view, iteration_view and task_overview
-        # iteration_view uses a macro defined in story_view
-        # task_overview uses a macro from iteraion_view
-        return taskbrains        
-
-        task_list = []
-
-        for taskbrain in taskbrains:
-            info = self.taskbrain2dict(taskbrain)
-            task_list.append(info)
-
-        return task_list
+        view = context.restrictedTraverse('@@task_details')
+        return view.tasklist()
 
     def taskbrain2dict(self, brain):
         """Get a dict with info from this task brain.

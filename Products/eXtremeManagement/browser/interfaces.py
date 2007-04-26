@@ -22,7 +22,20 @@ class IBookingsDetailedView(IBrowserView):
 
 
 class ITasksDetailedView(IBrowserView):
-    """Return list of Tasks
+    """Return list of everyone's Tasks in all states
+    """
+
+    def tasklist():
+        """List of all tasks in this context with totals
+        """
+
+    def simple_tasklist():
+        """List of all tasks (brains) in this context
+        """
+
+
+class IMyTasksDetailedView(ITasksDetailedView):
+    """Return list of my Tasks, in a particular state
     """
 
     state = Attribute("Review state to show")
@@ -31,14 +44,6 @@ class ITasksDetailedView(IBrowserView):
 
     def projects():
         """List of projects in this context, with task info included.
-        """
-
-    def tasklist():
-        """List of all tasks in this context with totals
-        """
-
-    def simple_tasklist():
-        """List of all tasks (brains) in this context
         """
 
 

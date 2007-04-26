@@ -11,7 +11,7 @@
   <body>
 
     <tal:main metal:fill-slot="main"
-              tal:define="view context/@@task_details;
+              tal:define="view context/@@mytask_details;
                           projects view/projects;">
 
       <p>

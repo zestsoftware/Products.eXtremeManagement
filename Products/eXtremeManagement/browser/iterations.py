@@ -93,6 +93,6 @@ class IterationView(XMBaseView):
     def state_tasks(self, state):
         context = aq_inner(self.context)
         context.REQUEST.form['state'] = state
-        view = context.restrictedTraverse('@@task_details')
+        view = context.restrictedTraverse('@@mytask_details')
         result = view.tasklist()
         return result

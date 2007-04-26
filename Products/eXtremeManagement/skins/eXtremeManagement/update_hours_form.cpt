@@ -25,7 +25,7 @@
     <body>
 
         <div metal:fill-slot="main"
-             tal:define="view portal/@@task_details;
+             tal:define="view portal/@@mytask_details;
                          tasks view/simple_tasklist;">
         
             <h1 i18n:translate="header_time_registration" 

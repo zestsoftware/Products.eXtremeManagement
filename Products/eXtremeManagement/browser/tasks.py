@@ -56,17 +56,69 @@ class TaskView(XMBaseView):
 
 
 class TasksDetailedView(BrowserView):
-    """Return a list of Tasks.
+    """Return a list of Tasks for everyone with all states.
+    """
+
+    def __init__(self, context, request):
+        super(TasksDetailedView, self).__init__(context, request)
+        context = aq_inner(context)
+        self.catalog = getToolByName(context, 'portal_catalog')
+        self.xt = getToolByName(context, 'xm_tool')
+        self.filter = dict(portal_type='Task')
+
+    def getTasks(self, searchpath=None):
+        """Get some tasks.
+        """
+        if searchpath is None:
+            context = aq_inner(self.context)
+            searchpath = '/'.join(context.getPhysicalPath())
+        filter = self.filter
+        filter['path'] = searchpath
+        return self.catalog.searchResults(**filter)
+
+    def tasklist(self, searchpath=None):
+        tasks = self.getTasks(searchpath)
+        info = dict(tasks = tasks,
+                    totals = self.getTaskTotals(tasks))
+        return info
+
+    def simple_tasklist(self):
+        return self.getTasks()
+        
+    def portion(self, task):
+        """What portion of a task should be added to the total?
+        Specifically: should we adjust for the number of assignees?
+        In this view: no.
+        """
+        return 1.0
+
+    def getTaskTotals(self, tasks):
+        """Get my portion of total estimate, etc for these tasks
+        """
+        rawEstimate = sum([task.getRawEstimate * self.portion(task)
+                           for task in tasks])
+        rawActualHours = sum([task.getRawActualHours * self.portion(task)
+                              for task in tasks])
+        rawDifference = sum([task.getRawDifference * self.portion(task)
+                             for task in tasks])
+        totals = dict(
+            estimate = self.xt.formatTime(rawEstimate),
+            actual = self.xt.formatTime(rawActualHours),
+            difference = self.xt.formatTime(rawDifference),
+            )
+        return totals
+
+
+class MyTasksDetailedView(TasksDetailedView):
+    """Return a list of Tasks in a specific state that I am assigned to.
     """
 
     default_state = 'to-do'
     possible_states = []
 
     def __init__(self, context, request, state=None, memberid=None):
-        super(TasksDetailedView, self).__init__(context, request)
+        super(MyTasksDetailedView, self).__init__(context, request)
         context = aq_inner(context)
-        self.catalog = getToolByName(context, 'portal_catalog')
-        self.xt = getToolByName(context, 'xm_tool')
         self.memberid = memberid or self.request.form.get('memberid')
         if self.memberid is None:
             member = context.portal_membership.getAuthenticatedMember()
@@ -77,7 +129,13 @@ class TasksDetailedView(BrowserView):
             self.possible_states.remove(self.state)
         except ValueError:
             # State is not known to us.
+            # Might be 'all' since we treat that specially.
             pass
+        self.filter = dict(
+            portal_type = 'Task',
+            getAssignees = self.memberid,
+            review_state = self.state,
+            )
 
     def projects(self):
         context = aq_inner(self.context)
@@ -95,44 +153,15 @@ class TasksDetailedView(BrowserView):
                 projectlist.append(info)
         return projectlist
 
-    def tasklist(self, searchpath=None):
-        if searchpath is None:
-            context = aq_inner(self.context)
-            searchpath = '/'.join(context.getPhysicalPath())
-
-        tasks = self.getOwnTasks(searchpath)
-        info = dict(tasks = tasks,
-                    totals = self.getTotalOwnTasks(tasks))
-        return info
-
-    def simple_tasklist(self):
-        context = aq_inner(self.context)
-        searchpath = '/'.join(context.getPhysicalPath())
-        return self.getOwnTasks(searchpath)
-
-    def getOwnTasks(self, searchpath):
-        filter = dict(states = self.state,
-                      assignees = self.memberid,
-                      searchpath = searchpath)
-        return self.xt.getTasks(**filter)
-        
-    def getTotalOwnTasks(self, tasks):
-        """Get my portion of total estimate, etc for these tasks
+    def portion(self, task):
+        """What portion of a task should be added to the total?
+        Specifically: should we adjust for the number of assignees?
+        In this view: yes.
         """
-        rawEstimate = sum([task.getRawEstimate / len(task.getAssignees)
-                           for task in tasks])
-        rawActualHours = sum([task.getRawActualHours / len(task.getAssignees)
-                              for task in tasks])
-        rawDifference = sum([task.getRawDifference / len(task.getAssignees)
-                             for task in tasks])
-        totals = dict(
-            estimate = self.xt.formatTime(rawEstimate),
-            actual = self.xt.formatTime(rawActualHours),
-            difference = self.xt.formatTime(rawDifference),
-            )
-        return totals
+        return 1.0 / len(task.getAssignees)
 
-class EmployeeTotalsView(BrowserView):
+
+class EmployeeTotalsView(TasksDetailedView):
     """Return an overview for employees
     """
 
@@ -147,7 +176,7 @@ class EmployeeTotalsView(BrowserView):
         searchpath = '/'.join(context.getPhysicalPath())
 
         filter = dict(searchpath = searchpath)
-        taskbrains = self.xt.getTasks(**filter)
+        taskbrains = self.getTasks(**filter)
 
         memberlist = []
         members = context.getProject().getMembers()

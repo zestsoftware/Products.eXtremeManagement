@@ -8,8 +8,9 @@
     <metal:block metal:define-macro="body"
                  tal:define="view context/@@story;
                              story view/main;
-                             items view/tasks;
-                             totals view/totals;
+                             tasklist view/tasks;
+                             items tasklist/tasks;
+                             totals tasklist/totals;
                              stories python:context.aq_parent.getFolderContents();
                              num_stories python:len(stories);
                              pos context/getObjPositionInParent;

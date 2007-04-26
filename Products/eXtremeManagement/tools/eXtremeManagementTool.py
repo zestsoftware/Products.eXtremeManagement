@@ -233,31 +233,5 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
             return percentage
         return 0
 
-    security.declarePublic('getTasks')
-    def getTasks(self, context=None, searchpath=None, states=None,
-                 assignees=None):
-        """Get some tasks.
-
-        We may want to put this somewhere else, but I have not yet
-        found a good place, as there are several views where we need
-        this info.  At least it is better than some python scripts in
-        the skins dir.
-        """
-        if searchpath is None:
-            if context is None:
-                context = getToolByName(self,'portal_url').getPortalObject()
-            context = aq_inner(context)
-            searchpath = '/'.join(context.getPhysicalPath())
-
-        filter = dict(portal_type='Task',
-                      path=searchpath)
-        if assignees is not None:
-            filter['getAssignees'] = assignees
-        if states is not None:
-            filter['review_state'] = states
-
-        catalog = getToolByName(self, 'portal_catalog')
-        return catalog.searchResults(**filter)
-
 
 registerType(eXtremeManagementTool, PROJECTNAME)

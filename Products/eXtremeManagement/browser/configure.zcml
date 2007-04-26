@@ -49,6 +49,14 @@
       />
 
   <page
+      name="mytask_details"
+      class=".tasks.MyTasksDetailedView"
+      for="*"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IMyTasksDetailedView"
+      />
+
+  <page
       name="employee_totals"
       class=".tasks.EmployeeTotalsView"
       for="*"
