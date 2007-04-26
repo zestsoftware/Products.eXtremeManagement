@@ -106,9 +106,9 @@
                   class=""
                   tal:attributes="class python:'td-center state-'+normalizeString(task['review_state'])" />
               <td class="td-center">
-                <tal:assignees tal:repeat="newItem task/assignees">
+                <tal:assignees tal:repeat="employee task/assignees">
                   <img tal:replace="structure context/user.gif" />
-                  <span tal:replace="newItem">Assignee</span>
+                  <span tal:replace="employee">Assignee</span>
                   <br />
                 </tal:assignees>
               </td>
