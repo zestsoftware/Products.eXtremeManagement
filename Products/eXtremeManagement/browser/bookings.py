@@ -177,12 +177,17 @@ class BookingsDetailedView(BrowserView):
         """
         context = aq_inner(self.context)
         booking = bookingbrain.getObject()
-        task = booking.aq_parent
+
+        # Get info about parent Task
+        parentPath =  '/'.join(bookingbrain.getPath().split('/')[:-1])
+        filter = dict(portal_type='Task', path=parentPath)
+        taskbrain = self.catalog(**filter)[0]
+
         returnvalue = dict(
             booking_date = context.restrictedTraverse('@@plone').toLocalizedTime(bookingbrain.getBookingDate),
             project_title = booking.getProject().Title(),
-            task_url = task.absolute_url(),
-            task_title = task.Title(),
+            task_url = taskbrain.getURL(),
+            task_title = taskbrain.Title,
             # base_view of a booking gets redirected to the task view,
             # which we do not want here.
             booking_url = bookingbrain.getURL() + '/base_edit',

@@ -117,8 +117,8 @@ class TasksDetailedView(BrowserView):
         workflow = getToolByName(context, 'portal_workflow')
 
         # Get info about parent Story
-        storyPath = brain.getPath()[:-1]
-        filter = dict(portal_type='Story', path=storyPath)
+        parentPath = '/'.join(brain.getPath().split('/')[:-1])
+        filter = dict(portal_type='Story', path=parentPath)
         storybrain = self.catalog(**filter)[0]
 
         returnvalue = dict(
