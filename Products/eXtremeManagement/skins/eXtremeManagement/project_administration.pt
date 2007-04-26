@@ -41,20 +41,20 @@
             <th i18n:translate="listingheader_projects">Project</th>
           </tr>
 
-          <tr tal:repeat="project projects">
-            <td class="td-project">
-              <a tal:attributes="href string:${project/getURL}" 
+          <tr tal:repeat="project_info projects">
+            <td class="td-project"
+                tal:define="project project_info/project">
+              <a tal:attributes="href project/url"
                  class="project_title"
-                 tal:content="project/Title" />
+                 tal:content="project/title" />
               <div class="project_description" 
-                   tal:content="project/Description" />
+                   tal:content="project/description" />
               
               <table width="95%" 
                      cellpadding="0"
                      cellspacing="3"
                      class="iteration-table"
-                     tal:define="project_path project/getPath; 
-                                 iterations python:here.portal_catalog.searchResults(portal_type='Iteration', review_state='completed', path=project_path);"
+                     tal:define="iterations project_info/iterations;"
                      tal:condition="iterations"> 
 
                 <tr class="iteration-table-header">
@@ -70,20 +70,19 @@
                 
                 <tr tal:repeat="iteration iterations"
                     class="project-list-info">
-                  <tal:block tal:define="iterationObj iteration/getObject;">
-                    <td class="td-story-title">
-                      <tal:block replace="structure python:getattr(iterationObj, iterationObj.getIcon(1)).tag(alt=iterationObj.portal_type)" />
-                      <a tal:attributes="href string:${iteration/getURL}"
-                         tal:content="iteration/Title" /> 
-                    </td>
-                    <td tal:content="iteration/review_state"
-                        i18n:domain="plone"
-                        i18n:translate=""
-                        class=""
-                        tal:attributes="class python:'td-center state-'+normalizeString(iteration.review_state)" />
-                    <td tal:content="iterationObj/getEstimate" />
-                    <td tal:content="iterationObj/getActualHours" />
-                  </tal:block>
+                  <td class="td-story-title">
+                    <img tal:attributes="src iteration/icon"
+                         alt="iteration"/>
+                    <a tal:attributes="href iteration/url"
+                       tal:content="iteration/title" /> 
+                  </td>
+                  <td tal:content="iteration/review_state"
+                      i18n:domain="plone"
+                      i18n:translate=""
+                      class=""
+                      tal:attributes="class python:'td-center state-'+normalizeString(iteration['review_state'])" />
+                  <td tal:content="iteration/estimate" />
+                  <td tal:content="iteration/actual" />
                 </tr>
               </table>
             </td>

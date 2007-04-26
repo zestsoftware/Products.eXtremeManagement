@@ -46,6 +46,7 @@ class ProjectView(XMBaseView):
         returnvalue = dict(
             title = context.Title(),
             description = context.Description(),
+            url = context.absolute_url(),
             )
         return returnvalue
 
@@ -116,6 +117,11 @@ class ProjectAdminView(BrowserView):
     Specifically: which iterations can be invoiced.
     """
 
+    def __init__(self, context, request):
+        super(ProjectAdminView, self).__init__(context, request)
+        context = aq_inner(context)
+        self.xt = getToolByName(context, 'xm_tool')
+ 
     def projectlist(self):
         context = aq_inner(self.context)
         searchpath = '/'.join(context.getPhysicalPath())
@@ -131,8 +137,45 @@ class ProjectAdminView(BrowserView):
             iterationbrains = catalog.searchResults(portal_type='Iteration',
                                                     review_state='completed',
                                                     path=searchpath)
-
             if len(iterationbrains) > 0:
-                plist.append(projectbrain)
-
+                iteration_list = []
+                for iterationbrain in iterationbrains:
+                    info = self.iterationbrain2dict(iterationbrain)
+                    iteration_list.append(info)
+                info = dict(project = self.projectbrain2dict(projectbrain),
+                            iterations = iteration_list)
+                plist.append(info)
         return plist
+
+    def iterationbrain2dict(self, brain):
+        """Get a dict with info from this iteration brain.
+        """
+        context = aq_inner(self.context)
+        review_state_id = brain.review_state
+        workflow = getToolByName(context, 'portal_workflow')
+
+        returnvalue = dict(
+            url = brain.getURL(),
+            title = brain.Title,
+            description = brain.Description,
+            icon = brain.getIcon,
+            man_hours = brain.getManHours,
+            estimate = self.xt.formatTime(brain.getRawEstimate),
+            actual = self.xt.formatTime(brain.getRawActualHours),
+            difference = self.xt.formatTime(brain.getRawDifference),
+            review_state = review_state_id,
+            review_state_title = workflow.getTitleForStateOnType(
+                                 review_state_id, 'Iteration'),
+        )
+        return returnvalue
+
+    def projectbrain2dict(self, brain):
+        """Get a dict with info from this project brain.
+        """
+        context = aq_inner(self.context)
+        returnvalue = dict(
+            url = brain.getURL(),
+            title = brain.Title,
+            description = brain.Description,
+        )
+        return returnvalue
