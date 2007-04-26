@@ -126,8 +126,12 @@ class TasksDetailedView(BrowserView):
                               for task in tasks])
         rawDifference = sum([task.getRawDifference / len(task.getAssignees)
                              for task in tasks])
-        return map(self.xt.formatTime, (rawEstimate, rawActualHours, rawDifference))
-
+        totals = dict(
+            estimate = self.xt.formatTime(rawEstimate),
+            actual = self.xt.formatTime(rawActualHours),
+            difference = self.xt.formatTime(rawDifference),
+            )
+        return totals
 
 class EmployeeTotalsView(BrowserView):
     """Return an overview for employees

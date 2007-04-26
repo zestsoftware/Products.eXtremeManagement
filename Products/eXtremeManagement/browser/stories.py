@@ -11,14 +11,17 @@ class StoryView(XMBaseView):
         """
         context = self.context
         workflow = getToolByName(context, 'portal_workflow')
+        totals = dict(
+            estimate = self.xt.formatTime(context.getRawEstimate()),
+            actual = self.xt.formatTime(context.getRawActualHours()),
+            difference = self.xt.formatTime(context.getRawDifference()),
+            )
         returnvalue = dict(
             title = context.Title(),
             description = context.Description(),
             cooked_body = context.CookedBody(),
-            estimate = self.xt.formatTime(context.getRawEstimate()),
-            actual = self.xt.formatTime(context.getRawActualHours()),
-            difference = self.xt.formatTime(context.getRawDifference()),
             rough_estimate = context.getRoughEstimate(),
+            totals = totals,
             review_state = workflow.getInfoFor(context, 'review_state'),
             )
         return returnvalue

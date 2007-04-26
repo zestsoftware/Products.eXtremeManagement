@@ -9,9 +9,7 @@
                  tal:define="view context/@@story;
                              story view/main;
                              items view/tasks;
-                             totalEstimate story/estimate;
-                             totalActual story/actual;
-                             totalDifference story/difference;
+                             totals story/totals;
                              stories python:context.aq_parent.getFolderContents();
                              num_stories python:len(stories);
                              pos context/getObjPositionInParent;
@@ -121,9 +119,9 @@
                   i18n:translate="total">
                 Total
               </th>
-              <th tal:content="totalEstimate" />
-              <th tal:content="totalActual" />
-              <th tal:content="totalDifference" />
+              <th tal:content="totals/estimate" />
+              <th tal:content="totals/actual" />
+              <th tal:content="totals/difference" />
               <th colspan="2">&nbsp;</th>
             </tr>
           </table>
