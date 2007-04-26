@@ -89,17 +89,16 @@ class TasksDetailedView(BrowserView):
 
         for project in projects:
             searchpath = project.getPath()
-            tasks = self.getOwnTasks(searchpath)
-            if len(tasks) > 0:
-                info = dict(project = project,
-                            tasks = tasks,
-                            totals = self.getTotalOwnTasks(tasks))
+            info = self.tasklist(searchpath)
+            if len(info['tasks']) > 0:
+                info['project'] = project
                 projectlist.append(info)
         return projectlist
 
-    def tasklist(self):
-        context = aq_inner(self.context)
-        searchpath = '/'.join(context.getPhysicalPath())
+    def tasklist(self, searchpath=None):
+        if searchpath is None:
+            context = aq_inner(self.context)
+            searchpath = '/'.join(context.getPhysicalPath())
 
         tasks = self.getOwnTasks(searchpath)
         info = dict(tasks = tasks,
