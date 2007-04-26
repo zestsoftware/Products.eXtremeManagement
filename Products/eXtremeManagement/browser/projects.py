@@ -109,3 +109,30 @@ class ProjectView(XMBaseView):
             brain = brain,
         )
         return returnvalue
+
+
+class ProjectAdminView(BrowserView):
+    """Return management info about all projects.
+    Specifically: which iterations can be invoiced.
+    """
+
+    def projectlist(self):
+        context = aq_inner(self.context)
+        searchpath = '/'.join(context.getPhysicalPath())
+        # Get a list of all projects
+        catalog = getToolByName(context, 'portal_catalog')
+        projectbrains = catalog.searchResults(portal_type='Project',
+                                              path=searchpath)
+
+        plist = []
+        for projectbrain in projectbrains:
+            searchpath = projectbrain.getPath()
+            # Search for Iterations that are ready to get invoiced
+            iterationbrains = catalog.searchResults(portal_type='Iteration',
+                                                    review_state='completed',
+                                                    path=searchpath)
+
+            if len(iterationbrains) > 0:
+                plist.append(projectbrain)
+
+        return plist

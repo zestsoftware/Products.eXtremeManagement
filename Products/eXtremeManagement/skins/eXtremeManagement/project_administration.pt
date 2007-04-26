@@ -11,7 +11,8 @@
   <body>
 
     <tal:main metal:fill-slot="main"
-              tal:define="projects python:here.portal_catalog.searchResults(portal_type='Project');">
+              tal:define="view context/@@projectadmin;
+                          projects view/projectlist;">
 
       <h1 i18n:translate="header_project_administration" 
           class="documentFirstHeading">
