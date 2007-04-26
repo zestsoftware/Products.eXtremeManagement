@@ -1,5 +1,6 @@
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from Acquisition import aq_inner
 
 
 class XMBaseView(BrowserView):
@@ -7,9 +8,9 @@ class XMBaseView(BrowserView):
     """
 
     def __init__(self, context, request):
-        self.context = context
-        self.request = request
-        self.xt = getToolByName(self.context, 'xm_tool')
+        super(XMBaseView, self).__init__(context, request)
+        context = aq_inner(context)
+        self.xt = getToolByName(context, 'xm_tool')
  
     def main(self):
         """Get a dict with info from this object.
