@@ -113,6 +113,10 @@ class IStoryView(IXMBaseView):
         """Get a dict with info from this object.
         """
 
+    def totals():
+        """Get a dict with totals for this Story.
+        """
+
     def tasks():
         """Return the Tasks of this Story
         """
