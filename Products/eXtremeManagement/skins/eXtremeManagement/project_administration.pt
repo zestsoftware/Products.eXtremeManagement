@@ -69,7 +69,7 @@
                       
                             <tr tal:repeat="iteration iterations"
                                 class="project-list-info">
-                                <tal:block tal:define="iterationObj iteration/getObject;">
+                              <tal:block tal:define="iterationObj iteration/getObject;">
                                 <td class="td-story-title">
                                   <tal:block replace="structure python:getattr(iterationObj, iterationObj.getIcon(1)).tag(alt=iterationObj.portal_type)" />
                                     <a tal:attributes="href string:${iteration/getURL}"
@@ -80,13 +80,9 @@
                                     i18n:translate=""
                                     class=""
                                     tal:attributes="class python:'td-center state-'+normalizeString(iteration.review_state)" />
-                                <td tal:define="iterationObj iteration/getObject;
-                                                projectEstimate python:iterationObj.getEstimate()"
-                                    tal:content="projectEstimate" />
-                                <td tal:define="iterationObj iteration/getObject; 
-                                                projectActual python:iterationObj.getActualHours()"
-                                    tal:content="projectActual" />
-                                </tal:block>
+                                <td tal:content="iterationObj/getEstimate" />
+                                <td tal:content="iterationObj/getActualHours" />
+                              </tal:block>
                             </tr>
                         </table>
                     </td>
