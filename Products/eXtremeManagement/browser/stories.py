@@ -36,23 +36,3 @@ class StoryView(XMBaseView):
         context = aq_inner(self.context)
         view = context.restrictedTraverse('@@task_details')
         return view.tasklist()
-
-    def taskbrain2dict(self, brain):
-        """Get a dict with info from this task brain.
-        """
-        context = aq_inner(self.context)
-        review_state_id = brain.review_state
-        workflow = getToolByName(context, 'portal_workflow')
-        returnvalue = dict(
-            url = brain.getURL(),
-            title = brain.Title,
-            description = brain.Description,
-            estimate = self.xt.formatTime(brain.getRawEstimate),
-            actual = self.xt.formatTime(brain.getRawActualHours),
-            difference = self.xt.formatTime(brain.getRawDifference),
-            review_state = review_state_id,
-            review_state_title = workflow.getTitleForStateOnType(
-                                 review_state_id, 'Task'),
-            assignees = brain.getAssignees,
-        )
-        return returnvalue

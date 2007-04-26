@@ -74,7 +74,13 @@ class TasksDetailedView(BrowserView):
             searchpath = '/'.join(context.getPhysicalPath())
         filter = self.filter
         filter['path'] = searchpath
-        return self.catalog.searchResults(**filter)
+        brains = self.catalog.searchResults(**filter)
+        return brains
+        task_list = []
+        for brain in brains:
+            info = self.taskbrain2dict(brain)
+            task_list.append(info)
+        return task_list
 
     def tasklist(self, searchpath=None):
         tasks = self.simple_tasklist(searchpath)
@@ -105,12 +111,32 @@ class TasksDetailedView(BrowserView):
             )
         return totals
 
+    def taskbrain2dict(self, brain):
+        """Get a dict with info from this task brain.
+        """
+        context = aq_inner(self.context)
+        review_state_id = brain.review_state
+        workflow = getToolByName(context, 'portal_workflow')
+        returnvalue = dict(
+            url = brain.getURL(),
+            title = brain.Title,
+            description = brain.Description,
+            estimate = self.xt.formatTime(brain.getRawEstimate),
+            actual = self.xt.formatTime(brain.getRawActualHours),
+            difference = self.xt.formatTime(brain.getRawDifference),
+            review_state = review_state_id,
+            review_state_title = workflow.getTitleForStateOnType(
+                                 review_state_id, 'Task'),
+            assignees = brain.getAssignees,
+        )
+        return returnvalue
+
 
 class MyTasksDetailedView(TasksDetailedView):
     """Return a list of Tasks in a specific state that I am assigned to.
     """
 
-    default_state = 'to-do'
+    state = 'to-do'
     possible_states = []
 
     def __init__(self, context, request, state=None, memberid=None):
@@ -120,7 +146,7 @@ class MyTasksDetailedView(TasksDetailedView):
         if self.memberid is None:
             member = context.portal_membership.getAuthenticatedMember()
             self.memberid = member.id
-        self.state = state or self.request.form.get('state', self.default_state)
+        self.state = state or self.request.form.get('state', self.state)
         self.possible_states = ['open', 'to-do', 'completed']
         try:
             self.possible_states.remove(self.state)

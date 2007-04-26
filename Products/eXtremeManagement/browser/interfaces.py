@@ -46,6 +46,14 @@ class IMyTasksDetailedView(ITasksDetailedView):
         """List of projects in this context, with task info included.
         """
 
+    def tasklist():
+        """List of all tasks in this context with totals
+        """
+
+    def simple_tasklist():
+        """List of all tasks (brains) in this context
+        """
+
 
 class IBookingOverview(IBrowserView):
     """Return overview of bookings for this period
