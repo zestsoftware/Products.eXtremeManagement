@@ -66,7 +66,7 @@ class TasksDetailedView(BrowserView):
         self.xt = getToolByName(context, 'xm_tool')
         self.filter = dict(portal_type='Task')
 
-    def getTasks(self, searchpath=None):
+    def simple_tasklist(self, searchpath=None):
         """Get some tasks.
         """
         if searchpath is None:
@@ -77,13 +77,10 @@ class TasksDetailedView(BrowserView):
         return self.catalog.searchResults(**filter)
 
     def tasklist(self, searchpath=None):
-        tasks = self.getTasks(searchpath)
+        tasks = self.simple_tasklist(searchpath)
         info = dict(tasks = tasks,
                     totals = self.getTaskTotals(tasks))
         return info
-
-    def simple_tasklist(self):
-        return self.getTasks()
         
     def portion(self, task):
         """What portion of a task should be added to the total?
@@ -176,7 +173,7 @@ class EmployeeTotalsView(TasksDetailedView):
         searchpath = '/'.join(context.getPhysicalPath())
 
         filter = dict(searchpath = searchpath)
-        taskbrains = self.getTasks(**filter)
+        taskbrains = self.simple_tasklist(**filter)
 
         memberlist = []
         members = context.getProject().getMembers()
