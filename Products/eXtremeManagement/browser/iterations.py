@@ -27,8 +27,11 @@ class IterationView(XMBaseView):
 
     def stories(self):
         context = aq_inner(self.context)
-        current_path = '/'.join(context.getPhysicalPath())
-        storybrains = self.xt.getStateSortedContents(context)
+        filter = dict(portal_type='Story',
+                      sort_on='getObjPositionInParent')
+        items = context.getFolderContents(filter)
+        storybrains = self.xt.getStateSortedContents(items)
+
         story_list = []
 
         for storybrain in storybrains:

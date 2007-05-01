@@ -64,7 +64,8 @@ class TasksDetailedView(BrowserView):
         context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
         self.xt = getToolByName(context, 'xm_tool')
-        self.filter = dict(portal_type='Task')
+        self.filter = dict(portal_type='Task',
+                           sort_on='getObjPositionInParent')
 
     def simple_tasklist(self, searchpath=None):
         """Get some tasks.
@@ -74,7 +75,13 @@ class TasksDetailedView(BrowserView):
             searchpath = '/'.join(context.getPhysicalPath())
         filter = self.filter
         filter['path'] = searchpath
-        return self.catalog.searchResults(**filter)
+        items = self.catalog.searchResults(**filter)
+        if filter.get('review_state'):
+            # We filter for review state already, so we can simply return the items.
+            return items
+        else:
+            # First sort the items by state (next to possible other sort)
+            return self.xt.getStateSortedContents(items)
 
     def tasklist(self, searchpath=None):
         brains = self.simple_tasklist(searchpath)
@@ -164,6 +171,7 @@ class MyTasksDetailedView(TasksDetailedView):
             portal_type = 'Task',
             getAssignees = self.memberid,
             review_state = self.state,
+            sort_on='getObjPositionInParent',
             )
 
     def projects(self):
