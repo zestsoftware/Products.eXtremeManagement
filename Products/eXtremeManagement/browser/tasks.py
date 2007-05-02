@@ -168,7 +168,7 @@ class MyTasksDetailedView(TasksDetailedView):
             # Might be 'all' since we treat that specially.
             pass
         self.filter = dict(
-            portal_type = ['Task' 'PoiTask'],
+            portal_type = ['Task', 'PoiTask'],
             getAssignees = self.memberid,
             review_state = self.state,
             sort_on='getObjPositionInParent',
