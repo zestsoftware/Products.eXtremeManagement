@@ -19,7 +19,7 @@ pc = getToolByName(context, 'portal_catalog')
 
 
 searchFilter = filters
-searchFilter['portal_type'] = 'Task'
+searchFilter['portal_type'] = ['Task', 'PoiTask']
 searchFilter['path'] = '/'.join(context.getPhysicalPath())
 
 if assignedToMe:

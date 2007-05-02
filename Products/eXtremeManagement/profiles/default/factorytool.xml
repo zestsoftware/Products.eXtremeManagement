@@ -10,6 +10,7 @@
   <type portal_type="ProjectMember"/>
   <type portal_type="Story"/>
   <type portal_type="Task"/>
+  <type portal_type="PoiTask"/>
   <type portal_type="eXtremeManagementTool"/>
  </factorytypes>
 </object>

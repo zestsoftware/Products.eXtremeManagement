@@ -4,6 +4,7 @@
   <element value="here/portlet_stories/macros/portlet"/>
  </property>
  <property name="right_slots" type="lines" purge="False">
+  <element value="here/portlet_poi/macros/portlet"/>
   <element value="here/portlet_tasks/macros/portlet"/>
   <element value="here/portlet_my_projects/macros/portlet"/>
  </property>

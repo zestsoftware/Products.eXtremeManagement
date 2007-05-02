@@ -68,6 +68,7 @@ ADD_CONTENT_PERMISSIONS = {
     'Iteration': 'eXtremeManagement: Add Iteration',
     'Story': 'eXtremeManagement: Add Story',
     'Task': 'eXtremeManagement: Add Task',
+    'PoiTask': 'eXtremeManagement: Add Task',
     'ProjectMember': 'eXtremeManagement: Add ProjectMember',
     'Customer': 'eXtremeManagement: Add Customer',
     'CustomerFolder': 'eXtremeManagement: Add CustomerFolder',

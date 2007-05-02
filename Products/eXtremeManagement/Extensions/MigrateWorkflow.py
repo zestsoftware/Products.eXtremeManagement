@@ -5,7 +5,7 @@ def migratePreWorkflowUninstall(self, out):
     portal = getToolByName(self, 'portal_url').getPortalObject()
     wf_tool = getToolByName(portal, 'portal_workflow')
     unwantedReviewStates = ('assigned', 'estimated', 'in-progress',)
-    tasks_brains = portal.portal_catalog(meta_type='Task',
+    tasks_brains = portal.portal_catalog(meta_type=['Task' 'PoiTask'],
                                          review_state=unwantedReviewStates)
     for task_brain in tasks_brains:
         print >> out, task_brain
@@ -52,7 +52,7 @@ def migrateAfterWorkflowInstall(self, out):
     """
     portal = getToolByName(self, 'portal_url').getPortalObject()
     wf_tool = getToolByName(portal, 'portal_workflow')
-    tasks_brains = portal.portal_catalog(meta_type='Task',
+    tasks_brains = portal.portal_catalog(meta_type=['Task', 'PoiTask'],
                                          review_state='open')
     warnings = 0
     errors = 0

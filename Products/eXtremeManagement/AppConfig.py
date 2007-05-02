@@ -2,7 +2,7 @@ from Products.CMFCore.utils import getToolByName
 
 STYLESHEETS = [{'id': 'eXtreme.css'}]
 
-DEPENDENCIES = []
+DEPENDENCIES = ['Poi']
 GLOBALS = globals()
 
 # For kupu:

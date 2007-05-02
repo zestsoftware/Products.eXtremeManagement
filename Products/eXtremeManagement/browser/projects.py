@@ -23,7 +23,7 @@ class MyProjects(BrowserView):
         plist = []
         for projectbrain in projectbrains:
             searchpath = projectbrain.getPath()
-            taskbrains = catalog.searchResults(portal_type='Task',
+            taskbrains = catalog.searchResults(portal_type=['Task', 'PoiTask'],
                                                getAssignees=memberid,
                                                review_state=self.states,
                                                path=searchpath)

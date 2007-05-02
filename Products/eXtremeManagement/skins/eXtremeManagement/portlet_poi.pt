@@ -1,0 +1,79 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+<body>
+
+  This is really two portlets in one.  Depending on what the context
+  is, we:
+
+    - Provide a form for mass-creating Poi Tasks out of Poi Issues
+      when we're looking at an open story.
+
+    - Provide links to relevant Poi Tasks when the user is looking at an
+      issue that's linked from one Poi Task.
+
+<metal:macro define-macro="portlet"
+             tal:define="view nocall:context/@@xm-poi">
+
+  <div tal:condition="view/can_add_tasks">
+    <dl class="portlet" id="portlet-xmpoi">
+      <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        Create tasks from issues
+        <span class="portletTopRight"></span>
+      </dt>
+
+      <dd class="portletItem even">
+        <form action="./@@xm-poi">
+          <tal:repeat repeat="tag view/available_tags">
+            <div>
+              <input tal:attributes="value tag; id string:tag-${tag}"
+                     type="checkbox" name="tags:list" />
+              <label tal:attributes="for string:tag-${tag}"
+                     tal:content="tag">
+                Your tag
+              </label>
+            </div>
+          </tal:repeat>
+          
+          <input type="submit" value="Add Tasks" />
+          
+        </form>
+      </dd>
+
+      <dd class="portletItem odd">
+        Note that only open issues are shown that aren't already
+        mapped into this iteration.
+      </dd>
+
+      <dd class="portletFooter"></dd>
+    </dl>
+  </div>
+
+  <div tal:define="links view/links"
+       tal:condition="links">
+    <dl class="portlet" id="portlet-xmpoi">
+      <dt class="portletHeader">
+            <span class="portletTopLeft"></span>
+              Related XM Tasks
+            <span class="portletTopRight"></span>
+      </dt>
+
+      <dd class="portletItem odd">
+        <ul>
+          <li tal:repeat="link links">
+            <a tal:attributes="href link/url;
+                               class string:task-link state-${link/state}"
+               tal:content="link/title">
+                Task Title
+            </a>
+          </li>
+        </ul>
+      </dd>
+      <dd class="portletFooter"></dd>
+    </dl>
+  </div>
+
+</metal:macro>
+</body>
+</html>

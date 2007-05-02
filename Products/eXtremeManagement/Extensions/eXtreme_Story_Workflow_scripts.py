@@ -44,7 +44,7 @@ def startStory(self, state_change, **kw):
     story=state_change.object
     # Tasks have statuses open, to-do or completed.
     # Open tasks need to be set to to-do.  The rest is fine.
-    tasks = story.contentValues('Task')
+    tasks = story.contentValues(['Task', 'PoiTask'])
     wf_tool = getToolByName(portal, 'portal_workflow')
     from Products.CMFCore.WorkflowCore import WorkflowException
     for task in tasks:

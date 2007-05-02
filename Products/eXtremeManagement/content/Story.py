@@ -282,7 +282,7 @@ class Story(OrderedBaseFolder):
     def getStoryTasks(self):
         """return the tasks of this story
         """
-        return self.contentValues(filter={'portal_type': 'Task'})
+        return self.contentValues(filter={'portal_type': ['Task', 'PoiTask']})
 
     def _delObject(self, orig_id, *args, **kwargs):
         super(Story, self)._delObject(orig_id, *args, **kwargs)

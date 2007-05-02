@@ -64,7 +64,7 @@ class TasksDetailedView(BrowserView):
         context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
         self.xt = getToolByName(context, 'xm_tool')
-        self.filter = dict(portal_type='Task',
+        self.filter = dict(portal_type=['Task', 'PoiTask'],
                            sort_on='getObjPositionInParent')
 
     def simple_tasklist(self, searchpath=None):
@@ -168,7 +168,7 @@ class MyTasksDetailedView(TasksDetailedView):
             # Might be 'all' since we treat that specially.
             pass
         self.filter = dict(
-            portal_type = 'Task',
+            portal_type = ['Task' 'PoiTask'],
             getAssignees = self.memberid,
             review_state = self.state,
             sort_on='getObjPositionInParent',

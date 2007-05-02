@@ -9,6 +9,7 @@
  <object name="ProjectMember" meta_type="Factory-based Type Information"/>
  <object name="Story" meta_type="Factory-based Type Information"/>
  <object name="Task" meta_type="Factory-based Type Information"/>
+ <object name="PoiTask" meta_type="Factory-based Type Information"/>
  <object name="eXtremeManagementTool"
     meta_type="Factory-based Type Information"/>
 </object>

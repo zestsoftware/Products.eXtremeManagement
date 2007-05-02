@@ -18,6 +18,7 @@ if __name__ == '__main__':
 docfiles = (
     'portlets.txt',
     'bookings.txt',
+    'poi-integration.txt',
     )
 
 

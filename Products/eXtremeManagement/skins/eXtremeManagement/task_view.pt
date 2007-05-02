@@ -41,6 +41,7 @@
              tal:content="task/description">
             description
         </div>
+        <div metal:define-slot="after-description" />
         <div tal:replace="structure task/cooked_body" />
         <table class="listing"
                 border="1" 

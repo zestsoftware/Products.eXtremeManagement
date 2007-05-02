@@ -113,4 +113,13 @@
       allowed_interface=".interfaces.IProjectView"
       />
 
+  <page
+      name="xm-poi"
+      class=".poi.PoiView"
+      for="*"
+      permission="zope2.View"
+      allowed_interface=".poi.IPoiView"
+      />
+
+
 </configure>

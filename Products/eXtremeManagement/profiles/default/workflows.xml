@@ -52,6 +52,9 @@
   <type type_id="Task">
    <bound-workflow workflow_id="eXtreme_Task_Workflow"/>
   </type>
+  <type type_id="PoiTask">
+   <bound-workflow workflow_id="eXtreme_Task_Workflow"/>
+  </type>
   <type type_id="eXtremeManagementTool"/>
  </bindings>
 </object>

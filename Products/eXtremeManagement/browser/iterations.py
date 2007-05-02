@@ -59,7 +59,7 @@ class IterationView(XMBaseView):
 
         # compute open task count
         searchpath = brain.getPath()
-        filter = dict(portal_type='Task',
+        filter = dict(portal_type=['Task', 'PoiTask'],
                       path=searchpath)
         unfinished_states = ('open','to-do',)
         filter['review_state'] = unfinished_states

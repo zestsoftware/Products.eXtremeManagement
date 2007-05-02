@@ -1,0 +1,265 @@
+===============
+Poi Integration
+===============
+
+We have a content type called 'Poi Task' that provides a way to link a
+task to a story.
+
+Setup
+=====
+
+  >>> self.setRoles(['Manager'])
+  >>> workflow = self.portal.portal_workflow
+
+We need to install Poi:
+
+  >>> ignore = self.portal.portal_quickinstaller.installProducts(['Poi'])
+
+We create a project, an iteration, and a story.  Note that in our
+model, issues correspond to tasks:
+
+  >>> projectfolder = \
+  ...     self.portal[self.portal.invokeFactory('ProjectFolder', 'folder')]
+  >>> project = projectfolder[projectfolder.invokeFactory('Project', 'project')]
+  >>> iteration1 = project[project.invokeFactory('Iteration', 'iteration1')]
+  >>> story1 = iteration1[iteration1.invokeFactory('Story', 'story1')]
+
+Remember that a story has to be estimated and marked as so, so that
+we're able to add any tasks to it.  Therefore, right now, we shouldn't
+be able to add any tasks:
+
+  >>> def list_addable(context):
+  ...     allowed = context.getAllowedTypes()
+  ...     addable = context.getAddableTypesInMenu(allowed)
+  ...     return ', '.join(ad.Title() for ad in addable)
+  >>> list_addable(story1)
+  ''
+
+  >>> story1.setRoughEstimate(1.5)
+  >>> workflow.doActionFor(story1, 'estimate')
+  >>> list_addable(story1)
+  'Poi Task, Task'
+
+Let's create an issue tracker in the project with two issues in it:
+
+  >>> tracker = project[project.invokeFactory('PoiTracker', 'tracker')]
+  >>> myissue = tracker[tracker.invokeFactory('PoiIssue', 'myissue')]
+  >>> yourissue = tracker[tracker.invokeFactory('PoiIssue', 'yourissue')]
+
+Poi Tasks
+=========
+
+In our story, we can now add two different types of tasks, the normal
+"Task" type and the "Poi Task" type.  The "Poi Task" is what we're
+interested in, so let's create one and connect it with one of our
+issues:
+
+  >>> task = story1[story1.invokeFactory('PoiTask', 'task')]
+  >>> task.setIssues([myissue])
+  >>> task.getIssues()
+  [<PoiIssue at /plone/folder/project/tracker/myissue>]
+  >>> story1.manage_delObjects(['task'])
+
+We can still add normal tasks to our story:
+
+  >>> story1[story1.invokeFactory('Task', 'task')]
+  <Task at /plone/folder/project/iteration1/story1/task>
+  >>> story1.manage_delObjects(['task'])
+
+Poi Tasks have a vocabulary method `vocabulary_issues` that'll return
+a DisplayList of issues that can be referred to.  Note that this list
+only includes open issues:
+
+  >>> task.vocabulary_issues() # doctest: +ELLIPSIS
+  <DisplayList [('...', '#myissue: '), ('...', '#yourissue: ')] at ...>
+  >>> myissue.isValid = True
+  >>> workflow.doActionFor(myissue, 'post')
+  >>> workflow.doActionFor(myissue, 'resolve-unconfirmed')
+  >>> task.vocabulary_issues() # doctest: +ELLIPSIS
+  <DisplayList [('...', '#yourissue: ')] at ...>
+  >>> workflow.doActionFor(myissue, 'open-resolved')
+  >>> task.vocabulary_issues() # doctest: +ELLIPSIS
+  <DisplayList [('...', '#myissue: '), ('...', '#yourissue: ')] at ...>
+
+Mass-creating Poi Tasks
+-----------------------
+
+The `@@xm-poi` view allows us to create tasks by tags.  We use the
+`add_tasks_from_tags` method for this.
+
+  >>> storyview = story1.restrictedTraverse('@@xm-poi')
+  >>> def show_message():
+  ...     for msg in [msg.message for msg in
+  ...                 IStatusMessage(storyview.request).showStatusMessages()]:
+  ...         print msg
+
+If we create tasks from Poi tags at this point, nothing will be added,
+since our tasks don't have tags yet:
+
+  >>> storyview.add_tasks_from_tags(['mytag', 'yourtag'])
+  >>> story1.contentValues()
+  []
+
+We can check that the user was notified accordingly:
+
+  >>> from Products.statusmessages.interfaces import IStatusMessage
+  >>> show_message()
+  Found no issues matching tags: mytag, yourtag.
+
+Let's tag our first issue with 'mytag' and 'yourtag' and try again.
+This is a good time to introduce the `available_tags` method, which
+returns a list of available tags for the user to choose from for
+adding to the current story.
+
+  >>> storyview.available_tags()
+  []
+  >>> myissue.setSubject(['mytag', 'yourtag'])
+  >>> myissue.reindexObject()
+  >>> storyview.available_tags()
+  ['mytag', 'yourtag']
+  >>> storyview.add_tasks_from_tags(['mytag', 'yourtag'])
+  >>> story1.contentValues()
+  [<PoiTask at /plone/folder/project/iteration1/story1/issue-myissue>]
+  >>> show_message()
+  Added tasks for issues: myissue.
+  >>> story1['issue-myissue'].getRefs('task_issues')
+  [<PoiIssue at /plone/folder/project/tracker/myissue>]
+  >>> story1.manage_delObjects(['issue-myissue'])
+
+We keep our issue tagged.  But this time, we'll resolve the issue, and
+observe that it's not added automatically anymore.
+
+  >>> workflow.doActionFor(myissue, 'resolve-open')
+  >>> storyview.available_tags()
+  []
+  >>> storyview.add_tasks_from_tags(['mytag', 'yourtag'])
+  >>> story1.contentValues()
+  []
+  >>> show_message()
+  Found no issues matching tags: mytag, yourtag.
+
+Our tags are AND-ed.  That is, all tags must match, but issues may
+have more tags than the ones we look for.  Let's tag the second issue
+with 'yourtag' and 'anothertag' and make a few searches:
+
+  >>> yourissue.setSubject(['yourtag', 'anothertag'])
+  >>> yourissue.reindexObject()
+  >>> storyview.add_tasks_from_tags(['mytag', 'yourtag'])
+  >>> show_message()
+  Found no issues matching tags: mytag, yourtag.
+
+  >>> storyview.add_tasks_from_tags(['yourtag'])
+  >>> show_message()
+  Added tasks for issues: yourissue.
+  >>> story1.contentValues()
+  [<PoiTask at /plone/folder/project/iteration1/story1/issue-yourissue>]
+
+If there's already an associated task with the issue in the current
+iteration, no task will be added:
+
+  >>> storyview.available_tags()
+  []
+  >>> storyview.add_tasks_from_tags(['yourtag'])
+  >>> show_message() # doctest: +NORMALIZE_WHITESPACE
+  Found no issues matching tags: yourtag. These issues already have
+  corresponding tasks in this iteration: yourissue.
+  >>> story2 = iteration1[iteration1.invokeFactory('Story', 'story2')]
+  >>> story2.restrictedTraverse('@@xm-poi').add_tasks_from_tags(['yourtag'])
+  >>> show_message() # doctest: +NORMALIZE_WHITESPACE
+  Found no issues matching tags: yourtag. These issues already have
+  corresponding tasks in this iteration: yourissue.
+
+If the corresponding task is inside another iteration however, adding
+it *is* possible:
+
+  >>> iteration2 = project[project.invokeFactory('Iteration', 'iteration2')]
+  >>> story3 = iteration2[iteration2.invokeFactory('Story', 'story3')]
+  >>> story3.setRoughEstimate(2.0)
+  >>> workflow.doActionFor(story3, 'estimate')
+  >>> storyview_story3 = story3.restrictedTraverse('@@xm-poi')
+  >>> storyview_story3.available_tags()
+  ['anothertag', 'yourtag']
+  >>> storyview_story3.add_tasks_from_tags(['yourtag'])
+  >>> show_message()
+  Added tasks for issues: yourissue.
+
+Note that issues that live outside our projects folder are not
+considered:
+
+  >>> folder = self.folder
+  >>> tracker2 = folder[folder.invokeFactory('PoiTracker', 'tracker2')]
+  >>> other_issue = tracker2[tracker2.invokeFactory('PoiIssue', 'other-issue')]
+  >>> other_issue.setSubject(['yourtag'])
+  >>> other_issue.reindexObject()
+  >>> storyview.add_tasks_from_tags(['yourtag'])
+  >>> show_message() # doctest: +NORMALIZE_WHITESPACE
+  Found no issues matching tags: yourtag. These issues already have
+  corresponding tasks in this iteration: yourissue.
+  >>> storyview.context.manage_delObjects(['issue-yourissue'])
+
+can_add_tasks
+-------------
+
+Let's talk about another one of our view's helper methods:
+`can_add_tasks`.  This one checks three things:
+
+1) Is the underlying content type a story?  If not, return False:
+
+  >>> storyview.can_add_tasks()
+  True
+  >>> other_issue.restrictedTraverse('@@xm-poi').can_add_tasks()
+  False
+
+2) Is the story in a state where tasks can be added?
+
+  >>> workflow.doActionFor(storyview.context, 'retract')
+  >>> storyview.can_add_tasks()
+  False
+  >>> workflow.doActionFor(storyview.context, 'estimate')
+  >>> storyview.can_add_tasks()
+  True
+
+3) Are there any available tags / issues?
+
+  >>> yourissue.isValid = True
+  >>> workflow.doActionFor(yourissue, 'post')
+  >>> workflow.doActionFor(yourissue, 'resolve-unconfirmed')
+  >>> storyview.can_add_tasks()
+  False
+  >>> workflow.doActionFor(yourissue, 'open-resolved')
+
+Links
+=====
+
+We can retrieve a list of links to related tasks of an issue, using
+the `links` method.  The `links` method will first of all return an
+empty list when we're not looking at an issue or we're looking at an
+issue that doesn't have any links to tasks:
+
+  >>> storyview.links()
+  []
+  >>> issueview = myissue.restrictedTraverse('@@xm-poi')
+  >>> issueview.links()
+  []
+
+The issue `yourissue` already has a corresponding task in `story3`:
+
+  >>> issueview = yourissue.restrictedTraverse('@@xm-poi')
+  >>> from pprint import pprint
+  >>> pprint(issueview.links())
+  [{'state': 'open',
+   'title': 'issue-yourissue',
+   'url': 'http://nohost/plone/folder/project/iteration2/story3/issue-yourissue'}]
+
+Let's create another corresponding task in `story1`:
+
+  >>> storyview.add_tasks_from_tags(['yourtag'])
+  >>> show_message()
+  Added tasks for issues: yourissue.
+  >>> pprint(issueview.links())
+  [{'state': 'open',
+    'title': 'issue-yourissue',
+    'url': 'http://nohost/plone/folder/project/iteration2/story3/issue-yourissue'},
+   {'state': 'open',
+    'title': 'issue-yourissue',
+    'url': 'http://nohost/plone/folder/project/iteration1/story1/issue-yourissue'}]

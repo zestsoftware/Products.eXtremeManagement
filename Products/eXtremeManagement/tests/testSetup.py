@@ -100,6 +100,7 @@ class testSetup(eXtremeManagementTestCase):
         self.failUnless('eXtreme_Iteration_Workflow' in getChain('Iteration'))
         self.failUnless('eXtreme_Story_Workflow' in getChain('Story'))
         self.failUnless('eXtreme_Task_Workflow' in getChain('Task'))
+        self.failUnless('eXtreme_Task_Workflow' in getChain('PoiTask'))
         self.failUnless('folder_workflow' in getChain('CustomerFolder'))
         self.failUnless('folder_workflow' in getChain('ProjectFolder'))
         self.failUnless('eXtreme_Customer_Workflow' in getChain('Customer'))

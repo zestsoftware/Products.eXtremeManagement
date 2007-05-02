@@ -206,7 +206,7 @@ class BookingsDetailedView(BrowserView):
 
         # Get info about parent Task
         path =  '/'.join(bookingpath[:-1])
-        search_filter = dict(portal_type='Task', path=path)
+        search_filter = dict(portal_type=['Task', 'PoiTask'], path=path)
         taskbrain = self.catalog(**search_filter)[0]
 
         returnvalue = dict(
