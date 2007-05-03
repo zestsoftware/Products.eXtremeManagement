@@ -1,74 +1,35 @@
-# -*- coding: utf-8 -*-
-#
-# File: ProjectMember.py
-#
-# Copyright (c) 2006 by Zest software, Lovely Systems
-# Generator: ArchGenXML 
-#            http://plone.org/products/archgenxml
-#
-# GNU General Public License (GPL)
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
-#
-
-__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
-__docformat__ = 'plaintext'
-
-from AccessControl import ClassSecurityInfo
-from Products.Archetypes.atapi import *
-from Products.eXtremeManagement.config import *
 from zope.interface import implements
+from AccessControl import ClassSecurityInfo
+
+from Products.Archetypes.atapi import *
+
+from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.interfaces import IXMProjectMember
 
-BaseSchema = BaseSchema.copy()
-BaseSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-#BaseSchema['title'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-
-
 schema = Schema((
-
     StringField(
         name='fullname',
         index="FieldIndex",
+        required=1,
         widget=StringWidget(
             description="Enter a name, eg. John Smith.",
             label='Full name',
             label_msgid='eXtremeManagement_label_fullname',
             description_msgid='eXtremeManagement_help_fullname',
-            i18n_domain='eXtremeManagement',
-        ),
-        required=1
+            i18n_domain='eXtremeManagement'),
     ),
-
     StringField(
         name='phone',
         index="FieldIndex",
-        widget=IntegerWidget
-        (
+        required=1,
+        widget=IntegerWidget(
             size="30",
             description="Enter your phone number.",
             label='Phone',
             label_msgid='eXtremeManagement_label_phone',
             description_msgid='eXtremeManagement_help_phone',
-            i18n_domain='eXtremeManagement',
-        ),
-        required=1
+            i18n_domain='eXtremeManagement'),
     ),
-
     StringField(
         name='email',
         index="FieldIndex",
@@ -77,30 +38,25 @@ schema = Schema((
             label='Email',
             label_msgid='eXtremeManagement_label_email',
             description_msgid='eXtremeManagement_help_email',
-            i18n_domain='eXtremeManagement',
-        )
+            i18n_domain='eXtremeManagement')
     ),
+),)
 
-),
-)
+BaseSchema = BaseSchema.copy()
+BaseSchema['id'].widget.visible = dict(edit=0, view=0)
+ProjectMember_schema = BaseSchema + schema
 
-ProjectMember_schema = BaseSchema.copy() + \
-    schema.copy()
-
-ProjectMember_schema = schema + BaseSchema
 
 class ProjectMember(BaseContent):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseContent,'__implements__',()),)
+    __implements__ = (BaseContent.__implements__,)
     implements(IXMProjectMember)
 
     # This name appears in the 'add' box
-    archetype_name = 'ProjectMember'
-
-    meta_type = 'ProjectMember'
-    portal_type = 'ProjectMember'
+    archetype_name = 'Project Member'
+    portal_type = meta_type = 'ProjectMember'
     allowed_content_types = []
     filter_content_types = 0
     global_allow = 0
@@ -110,22 +66,7 @@ class ProjectMember(BaseContent):
     suppl_views = ()
     typeDescription = "ProjectMember"
     typeDescMsgId = 'description_edit_projectmember'
-
     _at_rename_after_creation = True
-
     schema = ProjectMember_schema
 
-    ##code-section class-header #fill in your manual code here
-    ##/code-section class-header
-
-    # Methods
-
-
 registerType(ProjectMember, PROJECTNAME)
-# end of class ProjectMember
-
-##code-section module-footer #fill in your manual code here
-##/code-section module-footer
-
-
-

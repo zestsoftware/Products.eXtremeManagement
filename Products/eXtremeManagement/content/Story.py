@@ -1,96 +1,54 @@
-# -*- coding: utf-8 -*-
-#
-# File: Story.py
-#
-# Copyright (c) 2006 by Zest software, Lovely Systems
-# Generator: ArchGenXML 
-#            http://plone.org/products/archgenxml
-#
-# GNU General Public License (GPL)
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
-#
-
-__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
-__docformat__ = 'plaintext'
-
-from AccessControl import ClassSecurityInfo
-from Products.Archetypes.atapi import *
-from Products.eXtremeManagement.config import *
-
-##code-section module-header #fill in your manual code here
 from zope.interface import implements
-from Products.eXtremeManagement.interfaces import IXMStory
+from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.utils import getToolByName
-BaseFolderSchema = OrderedBaseFolderSchema.copy()
-BaseFolderSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
+from Products.Archetypes.atapi import *
 
-##/code-section module-header
+from Products.eXtremeManagement.config import *
+from Products.eXtremeManagement.interfaces import IXMStory
 
 schema = Schema((
-
     TextField(
         name='mainText',
-        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
+        allowable_content_types=('text/plain', 'text/structured',
+                                 'text/html', 'application/msword',),
+        default_output_type='text/html',
+        required=1,
         widget=RichWidget(
             description="Enter the main description for this object.",
             label='Main text',
             label_msgid='eXtremeManagement_label_mainText',
             description_msgid='eXtremeManagement_help_mainText',
-            i18n_domain='eXtremeManagement',
-        ),
-        default_output_type='text/html',
-        required=1
+            i18n_domain='eXtremeManagement'),
     ),
-
     FloatField(
         name='roughEstimate',
+        write_permission="eXtremeManagement: Edit roughEstimate",
+        validators=('isDecimal',),
         widget=DecimalWidget(
             description="Enter a rough estimate in days (tip: use multiples of 0.5 days)",
             label='Rough estimate',
             label_msgid='eXtremeManagement_label_roughEstimate',
             description_msgid='eXtremeManagement_help_roughEstimate',
-            i18n_domain='eXtremeManagement',
-        ),
-        write_permission="eXtremeManagement: Edit roughEstimate",
-        validators=('isDecimal',)
+            i18n_domain='eXtremeManagement'),
     ),
+),)
 
-),
-)
-
-
-Story_schema = OrderedBaseFolderSchema.copy() + \
-    schema.copy()
+FolderSchema = OrderedBaseFolderSchema.copy()
+FolderSchema['id'].widget.visible = dict(edit=0, view=0)
+Story_schema = FolderSchema + schema
 
 
 class Story(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
+    __implements__ = (OrderedBaseFolder.__implements__,)
     implements(IXMStory)
 
     # This name appears in the 'add' box
     archetype_name = 'Story'
-
-    meta_type = 'Story'
-    portal_type = 'Story'
+    portal_type = meta_type = 'Story'
     allowed_content_types = ['Task']
     filter_content_types = 1
     global_allow = 0
@@ -101,15 +59,8 @@ class Story(OrderedBaseFolder):
     typeDescription = "Story"
     typeDescMsgId = 'description_edit_story'
     allow_discussion = True
-
     _at_rename_after_creation = True
-
     schema = Story_schema
-
-    ##code-section class-header #fill in your manual code here
-    ##/code-section class-header
-
-    # Methods
 
     security.declarePublic('CookedBody')
     def CookedBody(self):
@@ -130,7 +81,6 @@ class Story(OrderedBaseFolder):
             estimated = self.getRawEstimate()
             actual = self.getRawActualHours()
             return xt.get_progress_perc(actual, estimated)
-        
 
     security.declarePublic('generateUniqueId')
     def generateUniqueId(self, type_name):
@@ -168,8 +118,6 @@ class Story(OrderedBaseFolder):
         If not, get the roughEstimate of this story.
         HOURS_PER_DAY is set in AppConfig.py (probably 8).
         """
-
-
         tasks = self.getStoryTasks()
         estimated = 0.0
         estimates = []
@@ -187,7 +135,6 @@ class Story(OrderedBaseFolder):
     security.declarePublic('getEstimate')
     def getEstimate(self):
         """
-
         """
         xt = getToolByName(self, 'xm_tool')
         return xt.formatTime(self.getRawEstimate())
@@ -195,7 +142,6 @@ class Story(OrderedBaseFolder):
     security.declarePublic('getRawActualHours')
     def getRawActualHours(self):
         """
-
         """
         tasks = self.getStoryTasks()
         actual = 0.0
@@ -207,7 +153,6 @@ class Story(OrderedBaseFolder):
     security.declarePublic('getActualHours')
     def getActualHours(self):
         """
-
         """
         xt = getToolByName(self, 'xm_tool')
         return xt.formatTime(self.getRawActualHours())
@@ -215,14 +160,12 @@ class Story(OrderedBaseFolder):
     security.declarePublic('getRawDifference')
     def getRawDifference(self):
         """
-
         """
         return self.getRawActualHours() -  self.getRawEstimate()
 
     security.declarePublic('getDifference')
     def getDifference(self):
         """
-
         """
         xt = getToolByName(self, 'xm_tool')
         return xt.formatTime(self.getRawDifference())
@@ -276,8 +219,6 @@ class Story(OrderedBaseFolder):
                 return False
         return True
 
-    # Manually created methods
-
     security.declarePublic('getStoryTasks')
     def getStoryTasks(self):
         """return the tasks of this story
@@ -289,10 +230,3 @@ class Story(OrderedBaseFolder):
         self.reindexObject()
 
 registerType(Story, PROJECTNAME)
-# end of class Story
-
-##code-section module-footer #fill in your manual code here
-##/code-section module-footer
-
-
-

@@ -1,97 +1,47 @@
-# -*- coding: utf-8 -*-
-#
-# File: Project.py
-#
-# Copyright (c) 2006 by Zest software, Lovely Systems
-# Generator: ArchGenXML 
-#            http://plone.org/products/archgenxml
-#
-# GNU General Public License (GPL)
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
-#
+import string
 
-__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
-__docformat__ = 'plaintext'
-
+from zope.interface import implements
 from AccessControl import ClassSecurityInfo
-from Products.Archetypes.atapi import *
-from Products.eXtremeManagement.config import *
-
-##code-section module-header #fill in your manual code here
 
 from Products.CMFCore.utils import getToolByName
-import string
 from Products.CMFCore.permissions import ManageProperties
-from zope.interface import implements
+from Products.Archetypes.atapi import *
+
+from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.interfaces import IXMProject
 
-##/code-section module-header
-
-schema = Schema((
-
-),
-)
-
-##code-section after-local-schema #fill in your manual code here
-
-OrderedBaseFolderSchema = OrderedBaseFolderSchema.copy()
-OrderedBaseFolderSchema['description'].isMetadata = False
-OrderedBaseFolderSchema['description'].schemata = 'default'
-
-##/code-section after-local-schema
-
-Project_schema = OrderedBaseFolderSchema.copy() + \
-    schema.copy()
-
-##code-section after-schema #fill in your manual code here
-Project_schema = Project_schema +  MetadataSchema((
+MetaSchema = MetadataSchema((
     BooleanField('includeGlobalMembers',
         default = True,
         languageIndependent = True,
         schemata = 'metadata', # moved to 'default' for folders
         widget = BooleanWidget(
-            description="If selected, Members with a global role 'Employee' will appear in the assignees list of a Task.",
+            description="If selected, Members with a global role 'Employee' "
+                        " will appear in the assignees list of a Task.",
             description_msgid = "help_include_global_members",
             label = "Include global Employees",
             label_msgid = "label_include_global_members",
             i18n_domain = "eXtremeManagement",
-            visible={'view' : 'hidden',
-                     'edit' : 'visible'},
-            ),
-        ),
-    ),)
+            visible=dict(edit=1, view=0)),)
+),)
 
+FolderSchema = OrderedBaseFolderSchema.copy()
+FolderSchema['description'].isMetadata = False
+FolderSchema['description'].schemata = 'default'
+Project_schema = FolderSchema +  MetaSchema
 Project_schema.moveField('includeGlobalMembers', pos='top')
 
-##/code-section after-schema
 
 class Project(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(OrderedBaseFolder,'__implements__',()),)
+    __implements__ = (OrderedBaseFolder.__implements__,)
     implements(IXMProject)
 
     # This name appears in the 'add' box
     archetype_name = 'Project'
-
-    meta_type = 'Project'
-    portal_type = 'Project'
+    portal_type = meta_type = 'Project'
     allowed_content_types = ['Iteration', 'Story', 'Folder', 'PoiTracker']
     filter_content_types = 1
     global_allow = 0
@@ -101,29 +51,14 @@ class Project(OrderedBaseFolder):
     suppl_views = ()
     typeDescription = "Project"
     typeDescMsgId = 'description_edit_project'
-
-
-    actions =  (
-
-
-        {
-        'id'          : 'local_roles',
-        'name'        : 'Projectteam',
-        'action'      : 'string:${object_url}/folder_localrole_form',
-        'permissions' : (ManageProperties,),
-         },
-
-
-    )
-
     _at_rename_after_creation = True
-
     schema = Project_schema
 
-    ##code-section class-header #fill in your manual code here
-    ##/code-section class-header
-
-    # Methods
+    actions =  ({'id'          : 'local_roles',
+                 'name'        : 'Projectteam',
+                 'action'      : 'string:${object_url}/folder_localrole_form',
+                 'permissions' : (ManageProperties,),},
+    )
 
     security.declarePublic('getProject')
     def getProject(self):
@@ -139,10 +74,8 @@ class Project(OrderedBaseFolder):
         on this project.
         """
         portal = getToolByName(self, 'portal_url').getPortalObject()
-
         grp = getToolByName(self, 'portal_groups')
         pu = getToolByName(self, 'plone_utils')
-
         memberIds=[]
 
         def _appendGroupsAndUsers(currentIds, extraIds):
@@ -212,10 +145,3 @@ class Project(OrderedBaseFolder):
 
 
 registerType(Project, PROJECTNAME)
-# end of class Project
-
-##code-section module-footer #fill in your manual code here
-##/code-section module-footer
-
-
-

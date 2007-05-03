@@ -1,18 +1,13 @@
-# AUTHORS: Ahmad Hadi (ahadi@zestsoftware.nl),
-# Maurits van Rees (m.van.rees@zestsoftware.nl)
-
-
-from Products.Archetypes.public import listTypes
-from Products.Archetypes.Extensions.utils import installTypes, install_subskin
+from StringIO import StringIO
+from sets import Set
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from Products.CMFDefault.PropertiesTool import PropertiesTool
-from StringIO import StringIO
-from sets import Set
+from Products.Archetypes.public import listTypes
+from Products.Archetypes.Extensions.utils import installTypes, install_subskin
 
 from Products.eXtremeManagement.config import *
-
 
 def removeSkinSelection(portal, out):
     sk_tool = getToolByName(portal, 'portal_skins')
@@ -26,7 +21,6 @@ def removeSkinSelection(portal, out):
         sk_tool.manage_skinLayers(chosen=['eXtremeManagement'],
                                   del_skin='Delete')
         print >> out, "Removed the eXtremeManagement skin selection."
-
 
 def _migrateSchema(self, contentType):
     at = getToolByName(self, 'archetype_tool')
@@ -72,7 +66,6 @@ def migrate_tasks(portal, out):
     _migrateTaskSchema(portal)
     print >> out, "Done."
 
-
 def migrate_bookings(portal, out):
     print >> out, "Updating Booking schema."
     _migrateBookingSchema(portal)
@@ -80,7 +73,6 @@ def migrate_bookings(portal, out):
 
 def migrate_ct(portal, out):
     """
-
     """
     migrate_stories(portal, out)
     migrate_tasks(portal, out)
@@ -112,21 +104,18 @@ def configureKupu(portal):
                                    'old_type'      : 'collection',
                                    'portal_types'  :  collection},))
 
-
 def addOurRoles(portal):
     """Add our extra roles to Plone.
 
     Part of this is done through GenericSetup, but adding roles to the
     PlonePAS role manager does not work there.
     """
-
     if HAS_PAS:
         role_manager = portal.acl_users.portal_role_manager
         pas_roles = role_manager.listRoleIds()
         for role in NEW_ROLES:
             if role not in pas_roles:
                 role_manager.addRole(role)
-
 
 def applyGenericSetupProfile(portal, out):
     setup_tool = getToolByName(portal, 'portal_setup')
@@ -147,29 +136,21 @@ def uninstall(portal):
 
 def install(self):
     out = StringIO()
-
     installTypes(self, out,
                  listTypes(PROJECTNAME),
                  PROJECTNAME)
-
     install_subskin(self, out, GLOBALS)
 
     out.write("Successfully installed %s.\n" % PROJECTNAME)
-
     addOurRoles(self)
     out.write("Added our extra roles.\n")
-   
     removeSkinSelection(self, out)
- 
     print >> out, "Integrate our types in kupu, if it is installed."
     configureKupu(self)
-
     print >> out, "Migrating content"
     migrate_ct(self, out)
-    
     if HAS_GENERIC_SETUP:
         print >> out, "Apply the generic setup profile"
         applyGenericSetupProfile(self, out)
-
 
     return out.getvalue()

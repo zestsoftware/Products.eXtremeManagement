@@ -1,140 +1,83 @@
-# -*- coding: utf-8 -*-
-#
-# File: Booking.py
-#
-# Copyright (c) 2006 by Zest software, Lovely Systems
-# Generator: ArchGenXML 
-#            http://plone.org/products/archgenxml
-#
-# GNU General Public License (GPL)
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
-#
-
-__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
-__docformat__ = 'plaintext'
-
-from AccessControl import ClassSecurityInfo
-from Products.Archetypes.atapi import *
-from Products.eXtremeManagement.config import *
-
-##code-section module-header #fill in your manual code here
 from zope.interface import implements
+from DateTime import DateTime
+from AccessControl import ClassSecurityInfo
+
+from Products.CMFCore.utils import getToolByName
+from Products.Archetypes.atapi import *
+
+from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.interfaces import IXMBooking
 
-BaseSchema = BaseSchema.copy()
-BaseSchema['id'].widget.visible = {'edit':'hidden', 'view':'invisible'}
-from DateTime import DateTime
-from Products.CMFCore.utils import getToolByName
-##/code-section module-header
-
 schema = Schema((
-
     IntegerField(
         name='hours',
         index="FieldIndex",
-        widget=SelectionWidget
-        (
+        vocabulary=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+        validators=('isInt',),
+        widget=SelectionWidget(
             label='Hours',
             label_msgid='eXtremeManagement_label_hours',
-            i18n_domain='eXtremeManagement',
-        ),
-        vocabulary=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
-        validators=('isInt',)
+            i18n_domain='eXtremeManagement'),
     ),
-
     IntegerField(
         name='minutes',
         index="FieldIndex",
-        widget=SelectionWidget
-        (
+        vocabulary=(0, 15, 30, 45),
+        validators=('isInt',),
+        widget=SelectionWidget(
             label='Minutes',
             label_msgid='eXtremeManagement_label_minutes',
-            i18n_domain='eXtremeManagement',
-        ),
-        vocabulary=(0, 15, 30, 45),
-        validators=('isInt',)
+            i18n_domain='eXtremeManagement'),
     ),
-
     BooleanField(
         name='billable',
         default="True",
         widget=BooleanWidget(
             label='Billable',
             label_msgid='eXtremeManagement_label_billable',
-            i18n_domain='eXtremeManagement',
-        )
+            i18n_domain='eXtremeManagement')
     ),
-
     DateTimeField(
         name='bookingDate',
         index="DateIndex:brains",
+        required=1,
+        default_method=DateTime,
+        validators=('isValidDate',),
         widget=CalendarWidget(
             show_hm=False,
             description="Date that you worked on this task",
             label='Bookingdate',
             label_msgid='eXtremeManagement_label_bookingDate',
             description_msgid='eXtremeManagement_help_bookingDate',
-            i18n_domain='eXtremeManagement',
-        ),
-        required=1,
-        default_method=DateTime,
-        validators=('isValidDate',)
+            i18n_domain='eXtremeManagement'),
     ),
+),)
 
-),
-)
+BaseSchema = BaseSchema.copy()
+BaseSchema['id'].widget.visible = dict(edit=0, view=0)
+Booking_schema = BaseSchema + schema
 
-##code-section after-local-schema #fill in your manual code here
-##/code-section after-local-schema
-
-Booking_schema = BaseSchema.copy() + \
-    schema.copy()
-
-##code-section after-schema #fill in your manual code here
-##/code-section after-schema
 
 class Booking(BaseContent):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (getattr(BaseContent,'__implements__',()),)
+    __implements__ = (BaseContent.__implements__,)
     implements(IXMBooking)
 
     # This name appears in the 'add' box
     archetype_name = 'Booking'
-
-    meta_type = 'Booking'
-    portal_type = 'Booking'
+    portal_type = meta_type = 'Booking'
     allowed_content_types = []
     filter_content_types = 0
     global_allow = 0
-    #content_icon = 'Booking.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
     typeDescription = "Booking"
     typeDescMsgId = 'description_edit_booking'
-
     _at_rename_after_creation = True
-
     schema = Booking_schema
-
-    ##code-section class-header #fill in your manual code here
 
     actions=  ({'action':      '''string:${object_url}/../base_view''',
                 'category':    '''object''',
@@ -142,10 +85,6 @@ class Booking(BaseContent):
                 'name':        'view',
                 'permissions': ('''View''',)},
               )
-
-    ##/code-section class-header
-
-    # Methods
 
     security.declarePublic('_renameAfterCreation')
     def _renameAfterCreation(self, check_auto_id=False):
@@ -175,7 +114,6 @@ class Booking(BaseContent):
         eventually, but at least this way it doesn't give float errors
         in all sorts of scripts.
         """
-
         try:
             hours = float(self.getHours())
         except:
@@ -190,12 +128,10 @@ class Booking(BaseContent):
     security.declarePublic('getActualHours')
     def getActualHours(self):
         """
-
         """
         xt = getToolByName(self, 'xm_tool')
         return xt.formatTime(self.getRawActualHours())
 
-    # Manually created methods
     def reindexObject(self, *args, **kwargs):
         # making eXtremeManagement portal_factory-aware is a bit gross but
         # as long as a Booking's state influences it's parent Task, we need
@@ -214,13 +150,4 @@ class Booking(BaseContent):
         if not factory.isTemporary(self):
             container.reindexObject()
 
-
-
 registerType(Booking, PROJECTNAME)
-# end of class Booking
-
-##code-section module-footer #fill in your manual code here
-##/code-section module-footer
-
-
-

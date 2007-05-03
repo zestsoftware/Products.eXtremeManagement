@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import sys
 import unittest
@@ -35,6 +34,7 @@ def test_suite():
         suites.addTest(suite)
 
     return suites
+
 
 if __name__ == '__main__':
     framework()

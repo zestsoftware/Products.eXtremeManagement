@@ -1,3 +1,18 @@
+2007-03-05 - jladage
+
+  - Cleanup up license headers in all files
+
+  - Removed unused afterInstall and afterUninstall method
+
+  - Updated schema definitions for Customer, CustomerFolder and
+    ProjectMember.
+
+  - clean up getattrs for __implements__ of all types
+
+  - Move AppConfig.py code to config.py
+
+  
+
 2006-05-05 - friessnegger
 
   - content/story.py

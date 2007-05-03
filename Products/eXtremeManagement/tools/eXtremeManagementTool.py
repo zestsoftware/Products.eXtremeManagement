@@ -1,48 +1,11 @@
-# -*- coding: utf-8 -*-
-#
-# File: eXtremeManagementTool.py
-#
-# Copyright (c) 2006 by Zest software, Lovely Systems
-# Generator: ArchGenXML 
-#            http://plone.org/products/archgenxml
-#
-# GNU General Public License (GPL)
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
-#
-
-__author__ = """Ahmad Hadi <a.hadi@zestsoftware.nl>, Maurits van Rees
-<m.van.rees@zestsoftware.nl>, Jodok Batlogg <jodok.batlogg@lovelysystems.com>"""
-__docformat__ = 'plaintext'
-
-from AccessControl import ClassSecurityInfo
-from Products.Archetypes.atapi import *
-from Products.eXtremeManagement.config import *
 from Acquisition import aq_inner
-
+from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject
+from Products.Archetypes.atapi import *
 
-    
-schema = Schema((
+from Products.eXtremeManagement.config import *
 
-),
-)
-
-eXtremeManagementTool_schema = BaseSchema.copy() + \
-    schema.copy()
+eXtremeManagementTool_schema = BaseSchema.copy()
 
 
 class eXtremeManagementTool(UniqueObject, BaseContent):
@@ -59,16 +22,12 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
     allowed_content_types = []
     filter_content_types = 0
     global_allow = 0
-    #content_icon = 'eXtremeManagementTool.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
     typeDescription = "eXtremeManagementTool"
     typeDescMsgId = 'description_edit_extrememanagementtool'
-    #toolicon = 'eXtremeManagementTool.gif'
-
     _at_rename_after_creation = True
-
     schema = eXtremeManagementTool_schema
 
     # tool-constructors have no id argument, the id is fixed
@@ -76,14 +35,9 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         BaseContent.__init__(self,'xm_tool')
         self.setTitle('eXtremeManagementTool')
         
-        ##code-section constructor-footer #fill in your manual code here
-        ##/code-section constructor-footer
-
     # tool should not appear in portal_catalog
     def at_post_edit_script(self):
         self.unindexObject()
-        
-    # Methods
 
     security.declarePublic('formatTime')
     def formatTime(self,time):
@@ -145,8 +99,6 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
         """
         """
         pass
-
-    # Manually created methods
 
     security.declarePublic('getFilteredIssues')
     def getFilteredIssues(self, filter={}):

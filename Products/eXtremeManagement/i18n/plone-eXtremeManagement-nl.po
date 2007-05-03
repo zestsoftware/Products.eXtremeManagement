@@ -65,7 +65,7 @@ msgstr "Schatten"
 msgid "CustomerFolder"
 msgstr "Klantenmap"
 
-msgid "ProjectFolder"
+msgid "Project Folder"
 msgstr "Projectenmap"
 
 msgid "Customer"
@@ -94,6 +94,9 @@ msgstr "Klantenmap"
 
 msgid "Project Folder"
 msgstr "Projectenmap"
+
+msgid "Project Member"
+msgstr "Projectlid"
 
 msgid "Time registration"
 msgstr "Uren registratie"
