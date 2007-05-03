@@ -17,29 +17,31 @@
                              next python:pos &lt; num_stories-1 and stories[pos+1];
                              prev python:pos != 0 and stories[pos-1];">
 
-      <div class="listingBar" tal:condition="python: next or prev">
-        <a class="listingNext"
-           tal:condition="python:next"
-           tal:attributes="href next/getURL"
-           tabindex="1"
-           href="">
-          <span i18n:translate="next">
-          Next: </span>
-          <span tal:replace="next/Title" /> 
-          <img tal:replace="structure here/arrowRight.gif" />
-        </a>
-        <a class="listingPrevious"
-           tal:condition="python:prev"
-           tal:attributes="href prev/getURL"
-           tabindex="1"
-           href="">
-          <img tal:replace="structure here/arrowLeft.gif" />
-          <span i18n:translate="previous">
-          Previous: </span>
-          <span tal:replace="prev/Title" />
-        </a>
-        &nbsp;
-      </div>
+      <metal:prevnext define-macro="previous_next">
+        <div class="listingBar" tal:condition="python: next or prev">
+          <a class="listingNext"
+             title=""
+             tal:condition="python:next"
+             tal:attributes="href next/getURL;
+                             title next/Title;"
+             tabindex="1"
+             href="">
+            <span i18n:translate="next">Next</span>
+            <img tal:replace="structure here/arrowRight.gif" />
+          </a>
+          <a class="listingPrevious"
+             tal:condition="python:prev"
+             title=""
+             tal:attributes="href prev/getURL;
+                             title prev/Title;"
+             tabindex="1"
+             href="">
+            <img tal:replace="structure here/arrowLeft.gif" />
+            <span i18n:translate="previous">Previous</span>
+          </a>
+          &nbsp;
+        </div>
+      </metal:prevnext>
 
       <div class="documentDescription"
            tal:condition="story/description"
