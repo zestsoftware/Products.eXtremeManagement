@@ -3,157 +3,150 @@
       i18n:domain="eXtremeManagement"
       metal:use-macro="here/main_template/macros/master">
 
-   <head>
-      <metal:border fill-slot="top_slot">
-         <tal:border define="dummy python:request.set('disable_border',1)" />
-      </metal:border>
+<head>
+  <metal:border fill-slot="top_slot">
+     <tal:border define="dummy python:request.set('disable_border',1)" />
+  </metal:border>
 
-      <metal:calendar fill-slot="javascript_head_slot">
-         <!-- ECMAScript calendar -->
-         <style type="text/css" 
-                media="all"
-                tal:content="string:@import url($portal_url/jscalendar/calendar-system.css);" />
-         <script type="text/javascript"
-                 tal:attributes="src string:$portal_url/jscalendar/calendar_stripped.js"></script>
-         <script type="text/javascript" 
-                 charset="iso-8859-1"
-                 tal:condition="exists: portal/jscalendar/calendar-en.js"
-                 tal:attributes="src string:$portal_url/jscalendar/calendar-en.js"></script>
-      </metal:calendar>
-   </head>
+  <metal:calendar fill-slot="javascript_head_slot">
+     <!-- ECMAScript calendar -->
+     <style type="text/css" 
+            media="all"
+            tal:content="string:@import url($portal_url/jscalendar/calendar-system.css);" />
+     <script type="text/javascript"
+             tal:attributes="src string:$portal_url/jscalendar/calendar_stripped.js"></script>
+     <script type="text/javascript" 
+             charset="iso-8859-1"
+             tal:condition="exists: portal/jscalendar/calendar-en.js"
+             tal:attributes="src string:$portal_url/jscalendar/calendar-en.js"></script>
+  </metal:calendar>
+</head>
 
-    <body>
+<body>
 
-        <div metal:fill-slot="main"
-             tal:define="view portal/@@mytask_details;
-                         tasks view/simple_tasklist;">
-        
-            <h1 i18n:translate="header_time_registration" 
-                class="documentFirstHeading">
-                Time registration
-            </h1>
-
-            <tal:block tal:condition="tasks">
-        
-            <p class="discreet" 
-               i18n:translate="description_time_registration"> 
-                To register your time (hours), use the form below and press 'Send'.
-            </p>
-
-            <form tal:define="errors options/state/getErrors"
-                  tal:attributes="action string:${here/absolute_url}/${template/id};"
-                  method="post">
-
-                <table class="listing"
-                    border="1" 
-                    width="100%"
-                    cellpadding="0" 
-                    cellspacing="0">
+    <div metal:fill-slot="main"
+         tal:define="view portal/@@mytask_details;
+                     tasks view/simple_tasklist;">
     
-                    <tal:loop tal:repeat="task tasks">
-                    <tal:block tal:define="taskObj task/getObject">
-                    <tr>
-                        <th i18n:translate="listingheader_title">Title</th> 
-                        <th i18n:translate="listingheader_story">Story</th> 
-                        <th i18n:translate="listingheader_estimate">Estimate</th>
-                        <th i18n:translate="listingheader_actual">Actual</th>
-                    </tr>
-    
-                    <tr class="list-in-iteration">
-                        <td class="td-story-title">
-                            <a tal:attributes="href taskObj/absolute_url">
-                                <img src="task_icon.gif"
-                                    alt="task icon"
-                                    i18n:attributes="alt task_icon" />
+        <h1 i18n:translate="header_time_registration" 
+            class="documentFirstHeading">
+            Time registration
+        </h1>
 
-                                <span tal:replace="taskObj/Title">Task</span>
-                            </a>
-                        </td>
+        <tal:block tal:condition="tasks">
+    
+        <p class="discreet" 
+           i18n:translate="description_time_registration"> 
+            To register your time (hours), use the form below and press 'Send'.
+        </p>
+
+        <form tal:define="errors options/state/getErrors"
+              tal:attributes="action string:${here/absolute_url}/${template/id};"
+              method="post">
+            <tal:date i18n:translate="label_bookingdate">
+                Date to book for</tal:date>
+
+            <div tal:define="inputname string:booking_date;
+                             formname string:update_hours_form;
+                             formvalue python:DateTime();
+                             inputvalue python:'';
+                             inputvalue python:test(formvalue,formvalue,inputvalue);
+                             show_jscal python: 1;
+                             show_hm python:False;
+                             tabindex tabindex/next;">
+                <tal:calendar metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox" />
+            </div>
             
-                        <td tal:content="taskObj/aq_parent/title" />
-                        <td tal:content="taskObj/getEstimate" />
-                        <td tal:define="totalActual python:taskObj.getActualHours();"
-                            tal:content="totalActual" />
-                        
-                    </tr>
-                    <tr>
-                        <td
-                            class="hours-comments">
-                            <br />
-                            <tal:hours i18n:translate="label_hours">Hours
-                            </tal:hours>
-                                
-                            <select name="hours"
-                                    tal:define="hours python:('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10');"
-                                    tal:attributes="name python:taskObj.UID() + '_hours';
-                                                    tabindex tabindex/next;">
-                                <tal:block tal:repeat="hour hours">
-                                <option tal:content="hour"
-                                        tal:attributes="value hour" />
-                                </tal:block>
-                            </select>
-                            :
-                            <select name="minutes"
-                                    tal:define="minutes python:('0', '15', '30', '45');"
-                                    tal:attributes="name python:taskObj.UID() + '_minutes';
-                                                    tabindex tabindex/next;">
-                                <tal:block tal:repeat="minute minutes">
-                                <option tal:content="minute"
-                                        tal:attributes="value minute" />
-                                </tal:block>
-                            </select> 
-                            <tal:minutes i18n:translate="label_minutes">
-                              Minutes</tal:minutes>
-                        </td>
-                        <td colspan="3">
-                            <tal:date i18n:translate="label_bookingdate">
-                              Date to book this on</tal:date>
-                            <div
-                                tal:define="inputname  python:taskObj.UID() + '_bookingDate';
-                                             formname   string:update_hours_form;
-                                             formvalue  python:DateTime();
-                                             inputvalue python:'';
-                                             inputvalue python:test(formvalue,formvalue,inputvalue);
-                                             show_jscal python: 1;
-                                             show_hm python:False;
-                                             tabindex tabindex/next;">
-                               <tal:calendar metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <div i18n:translate="label_description"
-                                class="comments-title">Comments:</div>
-                            
-                            <textarea name="description" 
-                                      rows="4"
-                                      cols="15"
-                                      tal:attributes="name python:taskObj.UID()+'_description'"></textarea>
-                        </td>
-                    </tr>
-                    </tal:block>
-                    </tal:loop>
-                </table>
-    
-                <input class="context"
-                    type="submit"
-                    name="submit"
-                    value="Send"
-                    i18n:attributes="value"
-                    tal:attributes="tabindex tabindex/next;" />
-    
-                <input type="hidden" name="form.submitted" value="1" />
-            </form>
-            </tal:block>
+            <table class="listing"
+                border="1" 
+                width="100%"
+                cellpadding="0" 
+                cellspacing="0">
 
-            <p tal:condition="not:tasks" 
-               class="discreet" 
-               i18n:translate="no_tasks_assigned">
-                No tasks are assigned to you!
-            </p>
-        </div>
-    </body>
+                <tal:loop tal:repeat="task tasks">
+                <tal:block tal:define="taskObj task/getObject">
+                <tr>
+                    <th i18n:translate="listingheader_title">Title</th> 
+                    <th i18n:translate="listingheader_story">Story</th> 
+                    <th i18n:translate="listingheader_estimate">Estimate</th>
+                    <th i18n:translate="listingheader_actual">Actual</th>
+                </tr>
+
+                <tr class="list-in-iteration">
+                    <td class="td-story-title">
+                        <a tal:attributes="href taskObj/absolute_url">
+                            <img src="task_icon.gif"
+                                alt="task icon"
+                                i18n:attributes="alt task_icon" />
+
+                            <span tal:replace="taskObj/Title">Task</span>
+                        </a>
+                    </td>
+        
+                    <td tal:content="taskObj/aq_parent/title" />
+                    <td tal:content="taskObj/getEstimate" />
+                    <td tal:define="totalActual python:taskObj.getActualHours();"
+                        tal:content="totalActual" />
+                    
+                </tr>
+                <tr>
+                    <td
+                        class="hours-comments">
+                        <br />
+                        <tal:hours i18n:translate="label_hours">Hours
+                        </tal:hours>
+                            
+                        <select name="hours"
+                                tal:define="hours python:('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10');"
+                                tal:attributes="name python:taskObj.UID() + '_hours';
+                                                tabindex tabindex/next;">
+                            <tal:block tal:repeat="hour hours">
+                            <option tal:content="hour"
+                                    tal:attributes="value hour" />
+                            </tal:block>
+                        </select>
+                        :
+                        <select name="minutes"
+                                tal:define="minutes python:('0', '15', '30', '45');"
+                                tal:attributes="name python:taskObj.UID() + '_minutes';
+                                                tabindex tabindex/next;">
+                            <tal:block tal:repeat="minute minutes">
+                            <option tal:content="minute"
+                                    tal:attributes="value minute" />
+                            </tal:block>
+                        </select> 
+                        <tal:minutes i18n:translate="label_minutes">
+                          Minutes</tal:minutes>
+                    </td>
+                    <td colspan="3">
+                        <textarea name="description" 
+                                  rows="2"
+                                  cols="20"
+                                  tal:attributes="name python:taskObj.UID()+'_description'"></textarea>
+                    </td>
+                </tr>
+                </tal:block>
+                </tal:loop>
+            </table>
+
+            <input class="context"
+                type="submit"
+                name="submit"
+                value="Send"
+                i18n:attributes="value"
+                tal:attributes="tabindex tabindex/next;" />
+
+            <input type="hidden" name="form.submitted" value="1" />
+        </form>
+        </tal:block>
+
+        <p tal:condition="not:tasks" 
+           class="discreet" 
+           i18n:translate="no_tasks_assigned">
+            No tasks are assigned to you!
+        </p>
+    </div>
+</body>
 </html>
 
 
