@@ -1,6 +1,4 @@
 import os, sys, code
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from Testing import ZopeTestCase
 from Products.PloneTestCase import PloneTestCase
@@ -24,46 +22,36 @@ ZopeTestCase.installProduct('eXtremeManagement')
 PRODUCTS = list()
 PRODUCTS += DEPENDENCIES
 PRODUCTS.append('eXtremeManagement')
-testcase = PloneTestCase.PloneTestCase
 PloneTestCase.setupPloneSite(products=PRODUCTS)
 
-
-class eXtremeManagementTestCase(testcase):
+class eXtremeManagementTestCase(PloneTestCase.PloneTestCase):
     """Base TestCase for eXtremeManagement."""
 
-    def interact(self, locals=None):
-        """Provides an interactive shell aka console inside your testcase.
-
-        It looks exact like in a doctestcase and you can copy and paste
-        code from the shell into your doctest. The locals in the testcase are
-        available, becasue you are in the testcase.
-
-        In your testcase or doctest you can invoke the shell at any point by
-        calling::
-
-            >>> self.interact( locals() )
-
-        locals -- passed to InteractiveInterpreter.__init__()
+    def assertObjectBrainEquality(self, attribute, value, obj, portal_type):
+        """Test equality of object and its brain from the catalog.
         """
-        savestdout = sys.stdout
-        sys.stdout = sys.stderr
-        sys.stderr.write('='*70)
-        console = code.InteractiveConsole(locals)
-        console.interact("""
-ZopeTestCase Interactive Console
-(c) BlueDynamics Alliance, Austria - 2005
+        brains = self.catalog(portal_type=portal_type,
+                              path='/'.join(obj.getPhysicalPath()))
+        # Get the first brain
+        brain = brains[0]
+        # Assert that attribute of object has the correct value
+        self.assertEqual(obj[attribute](), value)
+        # Assert that the brain has the same value
+        self.assertEqual(brain[attribute], value)
 
-Note: You have the same locals available as in your test-case.
-""")
-        sys.stdout.write('\nend of ZopeTestCase Interactive Console session\n')
-        sys.stdout.write('='*70+'\n')
-        sys.stdout = savestdout
+    def assertTaskBrainEquality(self, attribute, value, task=None):
+        if task is None:
+            # Use default task
+            task = self.task
+        return self.assertObjectBrainEquality(attribute, value, task, portal_type='Task')
+
+
+class eXtremeManagementFunctionalTestCase(PloneTestCase.FunctionalTestCase, eXtremeManagementTestCase):
+    """Base TestCase for eXtremeManagement."""
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
     suite.addTest(makeSuite(eXtremeManagementTestCase))
     return suite
-
-if __name__ == '__main__':
-    framework()

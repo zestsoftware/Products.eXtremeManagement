@@ -9,6 +9,7 @@ archive_sources = [
     {'source': 'FCKeditor.Plone-2.3.2.tar.gz',
      'url': 'http://surfnet.dl.sourceforge.net/sourceforge/fckeditor/FCKeditor.Plone-2.3.2.tar.gz',
      },
+    {'url': 'http://codespeak.net/z3/five/release/Five-1.4.2.tgz'},
     ]
 symlinkbundle_sources = [
     {'source': 'plone25-zope29',

@@ -1,6 +1,4 @@
 import os, sys
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from Testing import ZopeTestCase
 
@@ -30,7 +28,7 @@ class testBooking(eXtremeManagementTestCase):
         self.iteration = self.project.iteration
         self.iteration.invokeFactory('Story', id='story')
         self.story = self.iteration.story
-        self.story.setRoughEstimate(1.5)
+        self.story.update(roughEstimate=1.5)
         self.workflow.doActionFor(self.story, 'estimate')
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
@@ -100,9 +98,3 @@ def test_suite():
     suite = TestSuite()
     suite.addTest(makeSuite(testBooking))
     return suite
-    
-
-if __name__ == '__main__':
-    framework()
-
-

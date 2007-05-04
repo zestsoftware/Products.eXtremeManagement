@@ -26,7 +26,7 @@ to us there.
 Now we add ourselves and another employee to the assignees of a task
 in that project.  Now the portlet should return a result.
 
-    >>> self.task.setAssignees(('employee', 'test_user_1_',))
+    >>> self.task.setAssignees(('employee', self.default_user,))
     >>> self.task.reindexObject()
     >>> myprojects = MyProjects(self.portal, TestRequest())
     >>> myprojects.projectlist()

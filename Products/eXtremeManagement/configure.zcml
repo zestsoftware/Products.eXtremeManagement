@@ -4,4 +4,19 @@
 
   <include package=".browser" />
 
+  <!-- IObjectMovedEvent also includes Added and Removed -->
+  <subscriber
+      for=".interfaces.IXMBooking
+           zope.app.container.interfaces.IObjectMovedEvent"
+      handler=".events.addedBooking"
+      />
+
+  <subscriber
+      for=".interfaces.IXMBooking
+           zope.app.event.interfaces.IObjectModifiedEvent"
+      handler=".events.modifiedBooking"
+      />
+
+
+
 </configure>

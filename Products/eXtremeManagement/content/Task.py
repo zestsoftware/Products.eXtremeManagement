@@ -11,6 +11,9 @@ from Products.CMFPlone.interfaces.NonStructuralFolder import INonStructuralFolde
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.interfaces import IXMTask
 from Products.eXtremeManagement.Extensions.eXtreme_Task_Workflow_scripts import mailMessage
+from Products.eXtremeManagement.content.schemata import quarter_vocabulary
+import logging
+
 
 schema = Schema((
     TextField(
@@ -38,7 +41,7 @@ schema = Schema((
     IntegerField(
         name='minutes',
         index="FieldIndex",
-        vocabulary=(0, 15, 30, 45),
+        vocabulary=quarter_vocabulary,
         validators=('isInt',),
         default="0",
         label="Estimated minutes",
@@ -172,19 +175,19 @@ class Task(BaseFolder):
         # TODO: this should definitely be moved out into a event handler
         # as a content class should be pretty dumb, it should not know it
         # needs to send out emails ... separation of concerns - Rocky
+        portal_properties = getToolByName(self, 'portal_properties')
+        xm_props = portal_properties.xm_properties
+        if not xm_props.send_task_mails:
+            return
         if old_assignees != value:
             self.log.debug('old_assignees=%s.', old_assignees)
             portal = getToolByName(self, 'portal_url').getPortalObject()
-            if portal.hasProperty('xm_task_schema_updating'):
-                self.log.debug('Task schema update, so not sending email '
-                               'to %s for task %s.', value, self.id)
-            else:
-                new_employees = [x for x in value if x not in old_assignees]
-                for employee in new_employees:
-                    self.log.debug('Sending email to %s for task %s.',
-                                   employee, self.id)
-                    mailMessage(portal, self, 'New Task assigned',
-                                employee, self.log)
+            new_employees = [x for x in value if x not in old_assignees]
+            for employee in new_employees:
+                self.log.debug('Sending email to %s for task %s.',
+                               employee, self.id)
+                mailMessage(portal, self, 'New Task assigned',
+                            employee, self.log)
 
     security.declarePublic('getRawEstimate')
     def getRawEstimate(self):

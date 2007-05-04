@@ -1,6 +1,4 @@
 import os, sys
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from Testing import ZopeTestCase
 
@@ -61,7 +59,7 @@ class testProject(eXtremeManagementTestCase):
         # By default global and local roles are included.
         self.assertEqual(self.project.getMembers(), ['employee2', 'employee1'])
 
-        self.project.setIncludeGlobalMembers(False)
+        self.project.update(includeGlobalMembers=False)
         self.assertEqual(self.project.getMembers(), ['employee2'])
 
     # from class Project:
@@ -107,7 +105,3 @@ def test_suite():
     suite = TestSuite()
     suite.addTest(makeSuite(testProject))
     return suite
-
-
-if __name__ == '__main__':
-    framework()

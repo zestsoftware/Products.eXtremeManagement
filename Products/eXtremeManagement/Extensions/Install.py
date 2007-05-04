@@ -89,6 +89,27 @@ def install(self, reinstall=False):
                     navtreeProperties.manage_changeProperties(**{'idsNotToList' : current})
 
 
+    # try to call a custom install method
+    # in 'AppInstall.py' method 'install'
+    try:
+        install = ExternalMethod('temp', 'temp',
+                                 PROJECTNAME+'.AppInstall', 'install')
+    except NotFound:
+        install = None
+
+    if install:
+        print >>out,'Custom Install:'
+        try:
+            res = install(self, reinstall)
+        except TypeError:
+            res = install(self)
+        if res:
+            print >>out,res
+        else:
+            print >>out,'no output'
+    else:
+        print >>out,'no custom install'
+
     # try to call a workflow install method
     # in 'InstallWorkflows.py' method 'installWorkflows'
     try:
@@ -157,26 +178,6 @@ def install(self, reinstall=False):
         # No portal_javascripts registry
         pass
 
-    # try to call a custom install method
-    # in 'AppInstall.py' method 'install'
-    try:
-        install = ExternalMethod('temp', 'temp',
-                                 PROJECTNAME+'.AppInstall', 'install')
-    except NotFound:
-        install = None
-
-    if install:
-        print >>out,'Custom Install:'
-        try:
-            res = install(self, reinstall)
-        except TypeError:
-            res = install(self)
-        if res:
-            print >>out,res
-        else:
-            print >>out,'no output'
-    else:
-        print >>out,'no custom install'
     return out.getvalue()
 
 def uninstall(self, reinstall=False):

@@ -1,6 +1,4 @@
 import os, sys
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from Testing import ZopeTestCase
 import transaction
@@ -9,6 +7,7 @@ from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.Story import Story
 from Products.eXtremeManagement.interfaces import IXMStory
+from utils import createBooking
 
 
 class testStory(eXtremeManagementTestCase):
@@ -32,7 +31,7 @@ class testStory(eXtremeManagementTestCase):
         self.iteration.invokeFactory('Story', id='story')
         self.story = self.iteration.story
         self.assertEqual(self.story.isEstimated(), False)
-        self.story.setRoughEstimate(4.5)
+        self.story.update(roughEstimate=4.5)
         self.workflow.doActionFor(self.story, 'estimate')
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
@@ -48,7 +47,8 @@ class testStory(eXtremeManagementTestCase):
     def test_get_progress_perc(self):
         """
         """
-        self.assertEqual(MAXIMUM_NOT_COMPLETED_PERCENTAGE, 90)
+        xm_props = self.portal.portal_properties.xm_properties
+        self.assertEqual(xm_props.maximum_not_completed_percentage, 90)
         self.task.update(hours=1)
         self.assertEqual(self.story.get_progress_perc(), 0)
         self.task.invokeFactory('Booking', id='booking1', hours=0, minutes=15)
@@ -58,7 +58,7 @@ class testStory(eXtremeManagementTestCase):
         self.assertEqual(self.story.getRawActualHours(), 1.0)
         self.assertEqual(self.story.get_progress_perc(), 90)
         self.login('employee')
-        self.task.setAssignees('employee')
+        self.task.update(assignees=('employee'))
         self.workflow.doActionFor(self.story, 'activate')
         self.workflow.doActionFor(self.task, 'complete')
         self.assertEqual(self.story.get_progress_perc(), 100)
@@ -67,17 +67,18 @@ class testStory(eXtremeManagementTestCase):
         """
         When a story has tasks, get their estimates.
         If not, get the roughEstimate of this story.
-        HOURS_PER_DAY is set in AppConfig.py (probably 8).
 
         Also test getRawActualHours while we are at it.
         """
         self.assertEqual(self.story.getRoughEstimate(), 4.5)
-        self.assertEqual(HOURS_PER_DAY, 8)
-        self.assertEqual(self.story.getRawEstimate(), 4.5 * HOURS_PER_DAY)
+        xm_props = self.portal.portal_properties.xm_properties
+        hours_per_day = xm_props.hours_per_day
+        self.assertEqual(hours_per_day, 8.0)
+        self.assertEqual(self.story.getRawEstimate(), 4.5 * hours_per_day)
         self.task.update(hours=4)
         self.assertEqual(self.story.getRawEstimate(), 4)
         self.assertStoryBrainEquality('getRawEstimate', 4.0)
-        self.task.invokeFactory('Booking', id='booking1', hours=1)
+        createBooking(self.task, id='booking1', hours=1)
         self.assertStoryBrainEquality('getRawActualHours', 1)
 
         # Add a task.
@@ -85,7 +86,7 @@ class testStory(eXtremeManagementTestCase):
         self.task2 = self.story.task2
         self.task2.update(hours=2)
         self.assertEqual(self.story.getRawEstimate(), 6)
-        self.task2.invokeFactory('Booking', id='booking1', hours=1)
+        createBooking(self.task2, id='booking1', hours=1)
         self.assertStoryBrainEquality('getRawActualHours', 2)
 
         # make a copy to test later
@@ -116,7 +117,7 @@ class testStory(eXtremeManagementTestCase):
         transaction.savepoint(optimistic=True)
         cut_data = self.story.manage_cutObjects(ids=['task2'])
         story2.manage_pasteObjects(cut_data)
-        self.assertStoryBrainEquality('getRawEstimate', 4.5 * HOURS_PER_DAY)
+        self.assertStoryBrainEquality('getRawEstimate', 4.5 * hours_per_day)
         self.assertStoryBrainEquality('getRawActualHours', 0)
         self.assertStoryBrainEquality('getRawEstimate', 2, story2)
         self.assertStoryBrainEquality('getRawActualHours', 1, story=story2)
@@ -126,7 +127,7 @@ class testStory(eXtremeManagementTestCase):
         """
         self.setRoles(['Manager'])
         self.assertEqual(self.story.isEstimated(), True)
-        self.story.setRoughEstimate(0)
+        self.story.update(roughEstimate=0)
         self.assertEqual(self.story.isEstimated(), False)
         self.logout()
 
@@ -149,9 +150,3 @@ def test_suite():
     suite = TestSuite()
     suite.addTest(makeSuite(testStory))
     return suite
-
-
-if __name__ == '__main__':
-    framework()
-
-

@@ -1,6 +1,4 @@
 import os, sys
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from Testing import ZopeTestCase
 
@@ -10,6 +8,7 @@ from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.Task import Task
 from Products.eXtremeManagement.interfaces import IXMTask
+from utils import createBooking
 
 
 class testTask(eXtremeManagementTestCase):
@@ -32,7 +31,7 @@ class testTask(eXtremeManagementTestCase):
         self.iteration = self.project.iteration
         self.iteration.invokeFactory('Story', id='story')
         self.story = self.iteration.story
-        self.story.setRoughEstimate(1.5)
+        self.story.update(roughEstimate=1.5)
         self.workflow.doActionFor(self.story, 'estimate')
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
@@ -51,7 +50,6 @@ class testTask(eXtremeManagementTestCase):
         self.failUnless(IXMTask.implementedBy(Task))
         self.failUnless(IXMTask.providedBy(self.task))
 
-    # from class Task:
     def test__get_assignees(self):
         self.assertEqual(self.task._get_assignees().items(),
                          (('developer', 'developer'),
@@ -61,15 +59,7 @@ class testTask(eXtremeManagementTestCase):
                          (('klant', 'klant'),
                           ('developer', 'developer'),
                           ('employee', 'employee')))
-        # And a little trick to please ArchGenXML, as it doesn't like
-        # the previous line.
-        assert(True)
 
-    # from class Task:
-    def test_setAssignees(self):
-        pass
-
-    # from class Task:
     def test_getRawEstimate(self):
         """Make sure rawEstimate returns the expected value.
 
@@ -83,23 +73,16 @@ class testTask(eXtremeManagementTestCase):
         self.task.update(minutes=15)
         self.assertTaskBrainEquality('getRawEstimate', 4.25)
 
-    # from class Task:
-    def test_getEstimate(self):
-        """
-        """
-        pass
-    # from class Task:
     def test_getRawActualHours(self):
         """Make sure rawActualHours returns the expected value.
 
         Also make sure the same value is stored in the catalog.
         """
         self.assertTaskBrainEquality('getRawActualHours', 0)
-
-        self.task.invokeFactory('Booking', id='booking', hours=1)
+        createBooking(self.task, id='booking', hours=1)
         self.assertTaskBrainEquality('getRawActualHours', 1)
 
-        self.task.invokeFactory('Booking', id='booking2', minutes=15)
+        createBooking(self.task, id='booking2', minutes=15)
         self.assertTaskBrainEquality('getRawActualHours', 1.25)
 
         # make a copy to test later
@@ -128,13 +111,6 @@ class testTask(eXtremeManagementTestCase):
         self.assertTaskBrainEquality('getRawActualHours', 1.25, task=task3)
 
 
-    # from class Task:
-    def test_getActualHours(self):
-        """
-        """
-        pass
-    # from class Task:
-
     def test_getRawDifference(self):
         """Make sure rawDifference returns the expected value.
 
@@ -145,24 +121,11 @@ class testTask(eXtremeManagementTestCase):
         self.task.update(hours=4)
         self.assertTaskBrainEquality('getRawDifference', -4)
 
-        self.task.invokeFactory('Booking', id='booking', hours=1)
+        createBooking(self.task, id='booking', hours=1)
         self.assertTaskBrainEquality('getRawDifference', -3)
 
-        self.task.invokeFactory('Booking', id='booking2', minutes=15)
+        createBooking(self.task, id='booking2', minutes=15)
         self.assertTaskBrainEquality('getRawDifference', -2.75)
-
-    # from class Task:
-    def test_getDifference(self):
-        """
-        """
-        pass
-    # from class Task:
-
-    def test_CookedBody(self):
-        """
-        """
-        pass
-    # from class Task:
 
     def test_startable(self):
         """
@@ -184,7 +147,7 @@ class testTask(eXtremeManagementTestCase):
         self.assertEqual(self.task.startable(), False)
         self.task.update(minutes=15)
         self.assertEqual(self.task.startable(), True)
-        self.task.setAssignees('')
+        self.task.update(assignees=('',))
         self.assertEqual(self.task.startable(), False)
 
         self.story.invokeFactory('Task', id='task2')
@@ -205,19 +168,6 @@ class testTask(eXtremeManagementTestCase):
 
         self.task.update(assignees='')
         self.assertTaskBrainEquality('getAssignees', ())
-
-    def assertTaskBrainEquality(self, attribute, value, task=None):
-        """Test equality of Task and taskbrain from catalog.
-        """
-        if task is None:
-            task = self.task
-        taskbrains = self.catalog(portal_type='Task',
-                                  path='/'.join(task.getPhysicalPath()))
-
-        taskbrain = taskbrains[0]
-        self.assertEqual(task[attribute](), value)
-        self.assertEqual(task[attribute](),
-                         taskbrain[attribute])
 
     def test_getDefaultAssignee(self):
         """
@@ -241,9 +191,3 @@ def test_suite():
     suite = TestSuite()
     suite.addTest(makeSuite(testTask))
     return suite
-
-
-if __name__ == '__main__':
-    framework()
-
-

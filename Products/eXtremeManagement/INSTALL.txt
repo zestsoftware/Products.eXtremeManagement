@@ -17,6 +17,8 @@ Dependencies
 
   * Plone 2.5 series with Zope 2.9
 
+  * Five 1.4.2, at least for running the tests with the zope testbrowser.
+
 
 Recommended Products
 ====================

@@ -1,0 +1,66 @@
+Creating a full stack of eXtremeManagement objects
+==================================================
+
+From ProjectFolder to Bookings, eXtremeManagement has quite a lot of
+content types.  Let's see if we can create them with testbrowser tests.
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    >>> browser.handleErrors = False
+    >>> browser.addHeader('Accept-Language', 'en-US')
+    >>> from Products.eXtremeManagement.tests import browserutils
+
+Let us log all exceptions, which is useful for debugging. Also, clear
+portlet slots, to make the test browser less confused by things like
+the recent portlet and the navtree.
+
+    >>> self.portal.error_log._ignored_exceptions = ()
+    >>> self.portal.left_slots = self.portal.right_slots = []
+
+Log in to the portal as the manager.
+
+    >>> browserutils.login(browser, self.portal, 'manager')
+
+Add a ProjectFolder.
+
+    >>> browserutils.addProjectFolder(browser, self.portal, 'New Projects folder')
+    >>> self.newprojects = self.portal['new-projects-folder']
+
+Add a Project there.
+
+    >>> browserutils.addProject(browser, self.newprojects, 'Project')
+    >>> self.newproject = self.newprojects.project
+
+Add an Iteration there.
+
+    >>> browserutils.addIteration(browser, self.newproject, 'Iteration')
+    >>> self.newiteration = self.newproject.iteration
+
+Add a Story there and estimate it.
+
+    >>> browserutils.addStory(browser, self.newiteration, 'Story', 'My user story', 1.0)
+    >>> self.newstory = self.newiteration.story
+    >>> browserutils.transition(browser, self.newstory, 'Mark as estimated')
+
+Add a Task there.  Tasks are renamed.
+
+    >>> browserutils.addTask(browser, self.newstory, 'task')
+    >>> self.newtask = self.newstory['1']
+
+Add a Booking there.  Bookings are renamed.
+
+    >>> browserutils.addBooking(browser, self.newtask, 'booking', hours=2, minutes=15)
+    >>> self.newbooking = self.newtask['1']
+
+Stories can also be added directly in a Project.  So we try copying the Story.
+
+    >>> browser.open(self.newstory.absolute_url())
+    >>> browser.getLink('Copy').click()
+    >>> browser.open(self.newproject.absolute_url())
+    >>> browser.getLink('Paste').click()
+
+Can we now open all those copied objects?
+
+    >>> browser.open(self.newproject.story.absolute_url())
+    >>> browser.open(self.newproject.story['1'].absolute_url())
+    >>> browser.open(self.newproject.story['1']['1'].absolute_url())

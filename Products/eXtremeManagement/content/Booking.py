@@ -7,12 +7,13 @@ from Products.Archetypes.atapi import *
 
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.interfaces import IXMBooking
+from Products.eXtremeManagement.content.schemata import quarter_vocabulary, hour_vocabulary
 
 schema = Schema((
     IntegerField(
         name='hours',
         index="FieldIndex",
-        vocabulary=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+        vocabulary=hour_vocabulary,
         validators=('isInt',),
         widget=SelectionWidget(
             label='Hours',
@@ -22,7 +23,7 @@ schema = Schema((
     IntegerField(
         name='minutes',
         index="FieldIndex",
-        vocabulary=(0, 15, 30, 45),
+        vocabulary=quarter_vocabulary,
         validators=('isInt',),
         widget=SelectionWidget(
             label='Minutes',
@@ -132,22 +133,5 @@ class Booking(BaseContent):
         xt = getToolByName(self, 'xm_tool')
         return xt.formatTime(self.getRawActualHours())
 
-    def reindexObject(self, *args, **kwargs):
-        # making eXtremeManagement portal_factory-aware is a bit gross but
-        # as long as a Booking's state influences it's parent Task, we need
-        # to make speed optimizations like this - Rocky
-        factory = getToolByName(self, 'portal_factory')
-        if not factory.isTemporary(self):
-            super(Booking, self).reindexObject(*args, **kwargs)
-            parent = self.aq_inner.aq_parent
-            parent.reindexObject()
-
-    def manage_afterAdd(self, item, container):
-        # With Plone 2.1 we cannot use events reliably. :(
-        super(Booking, self).manage_afterAdd(item, container)
-        # Try not to get portal factory TempFolders into the catalog
-        factory = getToolByName(self, 'portal_factory')
-        if not factory.isTemporary(self):
-            container.reindexObject()
 
 registerType(Booking, PROJECTNAME)

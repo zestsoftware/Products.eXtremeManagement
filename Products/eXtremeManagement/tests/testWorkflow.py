@@ -1,6 +1,4 @@
 import os, sys
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from Testing import ZopeTestCase
 from Products.CMFCore.WorkflowCore import WorkflowException
@@ -52,7 +50,7 @@ class testWorkflow(eXtremeManagementTestCase):
 
         self.login('employee')
         self.assertEqual(self.story.isEstimated(), False)
-        self.story.setRoughEstimate(4.5)
+        self.story.update(roughEstimate=4.5)
         self.assertEqual(self.story.isEstimated(), True)
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'estimate', 'estimated')
@@ -60,8 +58,8 @@ class testWorkflow(eXtremeManagementTestCase):
         # Get a startable task
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
-        self.task.setAssignees('employee')
-        self.task.setHours(1)
+        self.task.update(assignees=('employee',))
+        self.task.update(hours=1)
         self.assertEqual(self.task.startable(), True)
 
         self.tryAllowedTransition(self.story, 'story',
@@ -383,7 +381,3 @@ def test_suite():
     suite = TestSuite()
     suite.addTest(makeSuite(testWorkflow))
     return suite
-
-
-if __name__ == '__main__':
-    framework()

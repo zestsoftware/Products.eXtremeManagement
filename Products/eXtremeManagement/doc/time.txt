@@ -1,0 +1,74 @@
+Time takes my time
+==================
+
+Stories have a rough estimate in days.  Tasks have an estimate in
+hours.  Bookings have hours and minutes.  Bookings can be added to
+tasks, which means that the actual hours of that task are now
+increased.  Also the difference between a Task estimate and its actual
+hours changes then.  This can all be very complicated and
+frustrating.  So it needs good tests.  We probably want to refactor
+some things here, so then tests become even more important.  And we
+are starting to use events so then it is best to test things with the
+zope testbrowser.
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    >>> browser.handleErrors = False
+    >>> browser.addHeader('Accept-Language', 'en-US')
+
+Let us log all exceptions, which is useful for debugging. Also, clear
+portlet slots, to make the test browser less confused by things like
+the recent portlet and the navtree.
+
+    >>> self.portal.error_log._ignored_exceptions = ()
+    >>> self.portal.left_slots = self.portal.right_slots = []
+
+Log in to the portal as the test user.
+
+    >>> def login(username):
+    ...     browser.open(self.portal.absolute_url() + '/login_form')
+    ...     browser.getLink('Log in').click()
+    ...     browser.getControl(name='__ac_name').value = username
+    ...     browser.getControl(name='__ac_password').value = 'secret'
+    ...     browser.getControl(name='submit').click()
+    ...     return 'Login failed' not in browser.contents
+    >>> login(self.default_user)
+    True
+
+We already have a story with rough estimate 1.5 days, which would be
+roughly 12 hours.  we can use the edit form to check for some values.
+
+    >>> browser.open(self.story.absolute_url() + '/base_edit')
+    >>> browser.getControl(name='roughEstimate').value
+    '1.5'
+    >>> self.story.getRoughEstimate()
+    1.5
+
+We also have a task with an estimate of 5 and one half hours.
+
+    >>> browser.open(self.task.absolute_url() + '/base_edit')
+    >>> browser.getControl(name='hours').value
+    '5'
+    >>> browser.getControl(name='minutes').value
+    ['30']
+    >>> self.task.getRawEstimate()
+    5.5
+    >>> self.task.getEstimate()
+    '5:30'
+
+We also want to make sure that the correct rawEstimate value is stored
+in the catalog.  We have made a test function for that.
+
+    >>> self.assertTaskBrainEquality('getRawEstimate', 5.5)
+
+Once a story has a task with an estimate in it, its rough estimate
+mostly gets ignored in favour of the combined estimates of its tasks.
+
+    >>> self.story.getRawEstimate()
+    5.5
+    >>> self.story.getEstimate()
+    '5:30'
+
+Make sure rawActualHours returns the expected value.
+Also make sure the same value is stored in the catalog.
+

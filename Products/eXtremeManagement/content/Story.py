@@ -81,7 +81,6 @@ class Story(OrderedBaseFolder):
             estimated = self.getRawEstimate()
             actual = self.getRawActualHours()
             return xt.get_progress_perc(actual, estimated)
-
     security.declarePublic('generateUniqueId')
     def generateUniqueId(self, type_name):
         """ Generate sequential IDs for tasks
@@ -116,7 +115,6 @@ class Story(OrderedBaseFolder):
         """
         When a story has tasks, get their estimates.
         If not, get the roughEstimate of this story.
-        HOURS_PER_DAY is set in AppConfig.py (probably 8).
         """
         tasks = self.getStoryTasks()
         estimated = 0.0
@@ -126,10 +124,13 @@ class Story(OrderedBaseFolder):
                 estimates.append(task.getRawEstimate())
             estimated = sum(estimates)
         if estimated == 0:
-            try:
-                estimated = self.getRoughEstimate() * HOURS_PER_DAY
-            except:
+            portal = getToolByName(self,'portal_url').getPortalObject()
+            xm_props = portal.portal_properties.xm_properties
+            estimated = self.getRoughEstimate()
+            if estimated is None:
                 estimated = 0
+            else:
+                estimated *= xm_props.hours_per_day
         return estimated
 
     security.declarePublic('getEstimate')

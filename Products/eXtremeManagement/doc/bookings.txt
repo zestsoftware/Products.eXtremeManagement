@@ -17,7 +17,7 @@ At first there is only one Booking.
     >>> bookview.total
     '3:15'
 
-Let's add a Booking as someone else.  That person should be default
+Let's add a Booking as someone else.  That person should by default
 only see his own Bookings.
 
     >>> self.login('employee')

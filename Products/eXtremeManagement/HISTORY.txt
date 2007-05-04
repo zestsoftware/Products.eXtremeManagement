@@ -1,4 +1,28 @@
-2007-03-05 - jladage
+2007-05-04 - maurits
+
+  * Merge the mergeable parts of branches/1.2-events:
+
+  - 38656:40204: small start with event handler, big cleanup of tests,
+    add testbrowser tests, use IntDisplayList for Task/Booking
+    hours/minutes.
+
+  - 40226: only the part of this commit that changes doc/create.txt
+    and tests dir: manually fire event.
+
+  - 40256: use e.g. tasks.update(hours=5) instead of other ways to
+    update fields, which helps in triggering a reindex.
+
+  - 40417: add property sheet for eXtremeManagement with GenericSetup,
+    containing HOURS_PER_DAY and MAXIMUM_NOT_COMPLETED_PERCENTAGE that
+    used to be in AppConfig.py
+
+  - 41415:41483: improve the order of the install function and the
+    GenericSetup steps, moving functions from that quick installer to
+    GS.  Add property send_task_mails to our property sheet, which can
+    be set to False when updating the Task schema (which is done
+    during install).
+
+2007-05-03 - jladage
 
   - Cleanup up license headers in all files
 
