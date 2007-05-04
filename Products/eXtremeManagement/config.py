@@ -68,11 +68,6 @@ setDefaultRoles('eXtremeManagement: Add Booking', ('Manager','Owner'))
 # Dependend products - not quick-installed - used in testcase
 # override in custom configuration
 PRODUCT_DEPENDENCIES = []
-
-JAVASCRIPTS = []
-
-STYLESHEETS = [{'id': 'eXtreme.css'}]
-
 DEPENDENCIES = ['Poi']
 
 # For kupu:

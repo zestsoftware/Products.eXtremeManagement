@@ -10,7 +10,7 @@ from Products.CMFPlone.interfaces.NonStructuralFolder import INonStructuralFolde
 
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.interfaces import IXMTask
-from Products.eXtremeManagement.Extensions.eXtreme_Task_Workflow_scripts import mailMessage
+from Products.eXtremeManagement.Extensions.workflow_scripts import mailMessage
 from Products.eXtremeManagement.content.schemata import quarter_vocabulary
 import logging
 

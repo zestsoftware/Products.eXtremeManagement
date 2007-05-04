@@ -194,10 +194,10 @@
  </variable>
  <script script_id="notify_completed" type="External Method"
          filename=""
-         module="eXtremeManagement.eXtreme_Task_Workflow_scripts"
+         module="eXtremeManagement.workflow_scripts"
          function="notify_completed"/>
  <script script_id="tryToCompleteStory"
          type="External Method" filename=""
-         module="eXtremeManagement.eXtreme_Task_Workflow_scripts"
+         module="eXtremeManagement.workflow_scripts"
          function="tryToCompleteStory"/>
 </dc-workflow>

@@ -11,7 +11,7 @@
 
         <dt class="portletHeader" >
             <!-- Make the header a link for Managers. -->
-            <a tal:condition="python: member.has_role('Manager')"  
+            <a tal:condition="python: mtool.checkPermission('Manage Portal', here)"  
                tal:attributes="href
                string:${portal_url}/project_administration">
                <tal:admin-manager i18n:translate="project_administration">

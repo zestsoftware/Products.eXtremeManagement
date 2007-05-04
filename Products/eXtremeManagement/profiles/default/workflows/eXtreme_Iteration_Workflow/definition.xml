@@ -224,6 +224,6 @@
  </variable>
  <script script_id="startIteration" type="External Method"
          filename=""
-         module="eXtremeManagement.eXtreme_Iteration_Workflow_scripts"
+         module="eXtremeManagement.workflow_scripts"
          function="startIteration"/>
 </dc-workflow>

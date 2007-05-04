@@ -110,74 +110,6 @@ def install(self, reinstall=False):
     else:
         print >>out,'no custom install'
 
-    # try to call a workflow install method
-    # in 'InstallWorkflows.py' method 'installWorkflows'
-    try:
-        installWorkflows = ExternalMethod('temp', 'temp',
-                                          PROJECTNAME+'.InstallWorkflows',
-                                          'installWorkflows').__of__(self)
-    except NotFound:
-        installWorkflows = None
-
-    if installWorkflows:
-        print >>out,'Workflow Install:'
-        res = installWorkflows(self,out)
-        print >>out,res or 'no output'
-    else:
-        print >>out,'no workflow install'
-
-    #bind classes to workflows
-    wft = getToolByName(self,'portal_workflow')
-    wft.setChainForPortalTypes( ['CustomerFolder'], "folder_workflow")
-    wft.setChainForPortalTypes( ['ProjectFolder'], "folder_workflow")
-
-    # enable portal_factory for given types
-    factory_tool = getToolByName(self,'portal_factory')
-    factory_types=[
-        "Project",
-        "Iteration",
-        "Story",
-        "Task",
-        "ProjectMember",
-        "Customer",
-        "CustomerFolder",
-        "ProjectFolder",
-        "Booking",
-        "eXtremeManagementTool",
-        ] + factory_tool.getFactoryTypes().keys()
-    factory_tool.manage_setPortalFactoryTypes(listOfTypeIds=factory_types)
-
-    from Products.eXtremeManagement.config import STYLESHEETS
-    try:
-        portal_css = getToolByName(portal, 'portal_css')
-        for stylesheet in STYLESHEETS:
-            try:
-                portal_css.unregisterResource(stylesheet['id'])
-            except:
-                pass
-            defaults = {'id': '',
-            'media': 'all',
-            'enabled': True}
-            defaults.update(stylesheet)
-            portal_css.manage_addStylesheet(**defaults)
-    except:
-        # No portal_css registry
-        pass
-    from Products.eXtremeManagement.config import JAVASCRIPTS
-    try:
-        portal_javascripts = getToolByName(portal, 'portal_javascripts')
-        for javascript in JAVASCRIPTS:
-            try:
-                portal_javascripts.unregisterResource(javascript['id'])
-            except:
-                pass
-            defaults = {'id': ''}
-            defaults.update(javascript)
-            portal_javascripts.registerScript(**defaults)
-    except:
-        # No portal_javascripts registry
-        pass
-
     return out.getvalue()
 
 def uninstall(self, reinstall=False):
@@ -204,22 +136,6 @@ def uninstall(self, reinstall=False):
                 if toolname in current:
                     current.remove(toolname)
                     navtreeProperties.manage_changeProperties(**{'idsNotToList' : current})
-
-    # try to call a workflow uninstall method
-    # in 'InstallWorkflows.py' method 'uninstallWorkflows'
-    try:
-        uninstallWorkflows = ExternalMethod('temp', 'temp',
-                                            PROJECTNAME+'.InstallWorkflows',
-                                            'uninstallWorkflows').__of__(self)
-    except NotFound:
-        uninstallWorkflows = None
-
-    if uninstallWorkflows:
-        print >>out, 'Workflow Uninstall:'
-        res = uninstallWorkflows(self, out)
-        print >>out, res or 'no output'
-    else:
-        print >>out,'no workflow uninstall'
 
     # try to call a custom uninstall method
     # in 'AppInstall.py' method 'uninstall'

@@ -323,10 +323,10 @@
  </variable>
  <script script_id="startStory" type="External Method"
          filename=""
-         module="eXtremeManagement.eXtreme_Story_Workflow_scripts"
+         module="eXtremeManagement.workflow_scripts"
          function="startStory"/>
  <script script_id="tryToCompleteIteration"
          type="External Method" filename=""
-         module="eXtremeManagement.eXtreme_Story_Workflow_scripts"
+         module="eXtremeManagement.workflow_scripts"
          function="tryToCompleteIteration"/>
 </dc-workflow>
