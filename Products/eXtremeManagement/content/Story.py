@@ -123,15 +123,19 @@ class Story(OrderedBaseFolder):
             for task in tasks:
                 estimates.append(task.getRawEstimate())
             estimated = sum(estimates)
-        if estimated == 0:
-            portal = getToolByName(self,'portal_url').getPortalObject()
-            xm_props = portal.portal_properties.xm_properties
-            estimated = self.getRoughEstimate()
-            if estimated is None:
-                estimated = 0
-            else:
-                estimated *= xm_props.hours_per_day
-        return estimated
+        if estimated > 0:
+            return estimated
+        estimated = self.getRoughEstimate()
+        if estimated is None:
+            return 0
+        props = getToolByName(self, 'portal_properties', None)
+        if props is not None:
+            xm_props = props.get('xm_properties')
+            if xm_props is not None:
+                return estimated * xm_props.hours_per_day
+        # Do the default in case our property sheet is not found,
+        # e.g. because the installer has not been run yet.
+        return estimated * 8
 
     security.declarePublic('getEstimate')
     def getEstimate(self):
