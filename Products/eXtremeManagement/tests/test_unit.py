@@ -7,6 +7,7 @@ from zope.testing.doctestunit import DocTestSuite
 base_modulestring = 'Products.eXtremeManagement.'
 modules = (
     'browser.bookings',
+    'browser.poi',
     )
 
 

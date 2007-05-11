@@ -1,8 +1,26 @@
+import textwrap
+
 from zope import interface
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.interfaces import IReferenceable
 from Products.statusmessages.interfaces import IStatusMessage
+
+def abbreviate(text, width=18, ellipsis='...'):
+    """Abbreviate a given text.
+
+      >>> abbreviate('This is an unnecessarily long piece of text!')
+      'This is an...'
+      >>> abbreviate('Quite short, but still')
+      'Quite short, but...'
+      >>> abbreviate('Quite short, but still', width=10)
+      'Quite...'
+    """
+    lines = textwrap.wrap(text, width)
+    if len(lines) > 1:
+        return lines[0] + '...'
+    else:
+        return lines[0]
 
 class IPoiView(interface.Interface):
     """See doc/poi-integration.txt"""
@@ -143,7 +161,7 @@ class PoiView(BrowserView):
         for task in tasks:
             value.append(
                 dict(iterationid=task.getPhysicalPath()[-3],
-                     title=task.Title() or task.getId(),
+                     title=abbreviate(task.Title() or task.getId()),
                      url=task.absolute_url(),
                      state=workflow.getInfoFor(task, 'review_state'))
                 )
@@ -160,7 +178,7 @@ class PoiView(BrowserView):
             value.append(
                 dict(iterationid=story.getPhysicalPath()[-2],
                      uid=story.UID(),
-                     title=story.Title() or story.getId())
+                     title=abbreviate(story.Title() or story.getId()))
                 )
         return value
 

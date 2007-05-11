@@ -299,5 +299,5 @@ We can ask the view to add tasks for us automatically:
     'url': 'http://nohost/plone/folder/project/iteration1/story1/issue-yourissue'},
    {'iterationid': 'iteration1',
     'state': 'open',
-    'title': 'Copy of issue-yourissue',
+    'title': 'Copy of issue-...',
     'url': 'http://nohost/plone/folder/project/iteration1/story1/copy-of-issue-yourissue'}]
