@@ -27,7 +27,7 @@ class PoiTask(Task):
             issue = brain.getObject()
             label = '#%s: %s' % (issue.getId(), issue.Title())
             pairs.append((issue.UID(), label))
-        sorted(pairs, lambda a,b: cmp(a[1], b[1]))
+        pairs = sorted(pairs, lambda a,b: cmp(a[1], b[1]))
         return atapi.DisplayList(pairs)
 
     def getAssignees(self):
