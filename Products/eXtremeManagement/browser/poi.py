@@ -161,7 +161,7 @@ class PoiView(BrowserView):
         for task in tasks:
             value.append(
                 dict(iterationid=task.getPhysicalPath()[-3],
-                     title=abbreviate(task.Title() or task.getId()),
+                     title=abbreviate(task.Title() or task.getId(), width=25),
                      url=task.absolute_url(),
                      state=workflow.getInfoFor(task, 'review_state'))
                 )
