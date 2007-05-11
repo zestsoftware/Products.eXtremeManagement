@@ -155,10 +155,10 @@ with 'yourtag' and 'anothertag' and make a few searches:
   [<PoiTask at /plone/folder/project/iteration1/story1/issue-yourissue>]
 
 If there's already an associated task with the issue in the current
-iteration, no task will be added:
+iteration, the tags will be listed, but no task will be added:
 
   >>> storyview.available_tags()
-  []
+  ['anothertag', 'yourtag']
   >>> storyview.add_tasks_from_tags(['yourtag'])
   >>> show_message() # doctest: +NORMALIZE_WHITESPACE
   Found no issues matching tags: yourtag. These issues already have
@@ -247,9 +247,10 @@ The issue `yourissue` already has a corresponding task in `story3`:
   >>> issueview = yourissue.restrictedTraverse('@@xm-poi')
   >>> from pprint import pprint
   >>> pprint(issueview.links())
-  [{'state': 'open',
-   'title': 'issue-yourissue',
-   'url': 'http://nohost/plone/folder/project/iteration2/story3/issue-yourissue'}]
+  [{'iterationid': 'iteration2',
+    'state': 'open',
+    'title': 'issue-yourissue',
+    'url': 'http://nohost/plone/folder/project/iteration2/story3/issue-yourissue'}]
 
 Let's create another corresponding task in `story1`:
 
@@ -257,9 +258,46 @@ Let's create another corresponding task in `story1`:
   >>> show_message()
   Added tasks for issues: yourissue.
   >>> pprint(issueview.links())
-  [{'state': 'open',
+  [{'iterationid': 'iteration2',
+    'state': 'open',
     'title': 'issue-yourissue',
     'url': 'http://nohost/plone/folder/project/iteration2/story3/issue-yourissue'},
-   {'state': 'open',
+   {'iterationid': 'iteration1',
+    'state': 'open',
     'title': 'issue-yourissue',
     'url': 'http://nohost/plone/folder/project/iteration1/story1/issue-yourissue'}]
+
+
+Stories to add to
+=================
+
+The view can give us a list of stories that we can add to:
+
+  >>> view = yourissue.restrictedTraverse('@@xm-poi')
+  >>> pprint(view.stories_to_add_to()) # doctest: +ELLIPSIS
+  [{'iterationid': 'iteration1',
+    'title': 'story1',
+    'uid': '...'},
+   {'iterationid': 'iteration2',
+    'title': 'story3',
+    'uid': '...'}]
+
+We can ask the view to add tasks for us automatically:
+
+  >>> view.request.form['story'] = story1
+  >>> ignore = view()
+  >>> show_message()
+  Created new task.
+  >>> pprint(issueview.links())
+  [{'iterationid': 'iteration2',
+    'state': 'open',
+    'title': 'issue-yourissue',
+    'url': 'http://nohost/plone/folder/project/iteration2/story3/issue-yourissue'},
+   {'iterationid': 'iteration1',
+    'state': 'open',
+    'title': 'issue-yourissue',
+    'url': 'http://nohost/plone/folder/project/iteration1/story1/issue-yourissue'},
+   {'iterationid': 'iteration1',
+    'state': 'open',
+    'title': 'Copy of issue-yourissue',
+    'url': 'http://nohost/plone/folder/project/iteration1/story1/copy-of-issue-yourissue'}]
