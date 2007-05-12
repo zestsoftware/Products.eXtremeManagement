@@ -22,6 +22,7 @@ def abbreviate(text, width=18, ellipsis='...'):
     else:
         return lines[0]
 
+
 class IPoiView(interface.Interface):
     """See doc/poi-integration.txt"""
     
@@ -80,6 +81,8 @@ class PoiView(BrowserView):
     
     def get_open_issues_in_project(self, **kwargs):
         project = self._lookup_project()
+        if project is None:
+            return []
         assert project.portal_type == 'Project', (
             "Failed to get associated project.")
         catalog = getToolByName(self.context, 'portal_catalog')
@@ -94,15 +97,11 @@ class PoiView(BrowserView):
         return self.get_open_issues_in_project(
             portal_type='Story',
             review_state=['estimated', 'draft', 'pending'])
-            
-        project = self._lookup_project()
-        assert project.portal_type == 'Project', (
-            "Failed to get associated project.")
-        catalog = getToolByName(self.context, 'portal_catalog')
 
     def _lookup_project(self):
         item = self.context.aq_inner
-        while item is not None and item.portal_type != 'Project':
+        while (item is not None and
+               getattr(item, 'portal_type', None) != 'Project'):
             item = getattr(item, 'aq_parent', None)
         return item
 

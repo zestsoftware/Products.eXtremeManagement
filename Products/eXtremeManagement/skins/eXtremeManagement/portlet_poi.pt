@@ -51,8 +51,9 @@
     </dl>
   </div>
 
-  <div tal:define="links view/links"
-       tal:condition="links">
+  <div tal:define="links view/links;
+                   stories view/stories_to_add_to"
+       tal:condition="python:links or stories">
     <dl class="portlet" id="portlet-xmpoi">
       <dt class="portletHeader">
             <span class="portletTopLeft"></span>
@@ -60,7 +61,8 @@
             <span class="portletTopRight"></span>
       </dt>
 
-      <dd class="portletItem odd">
+      <dd tal:condition="links"
+          class="portletItem odd">
         <ul>
           <li tal:repeat="link links">
             <a tal:attributes="href link/url;
@@ -71,8 +73,8 @@
           </li>
         </ul>
       </dd>
+
       <dd class="portletItem even"
-          tal:define="stories view/stories_to_add_to"
           tal:condition="stories">
         <form action="./@@xm-poi">
           <div class="field">
