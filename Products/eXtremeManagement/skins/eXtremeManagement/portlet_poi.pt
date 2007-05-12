@@ -53,7 +53,8 @@
 
   <div tal:define="links view/links;
                    stories view/stories_to_add_to"
-       tal:condition="python:links or stories">
+       tal:condition="python:links or stories and
+                             context.portal_type == 'PoiIssue'">
     <dl class="portlet" id="portlet-xmpoi">
       <dt class="portletHeader">
             <span class="portletTopLeft"></span>
@@ -75,7 +76,7 @@
       </dd>
 
       <dd class="portletItem even"
-          tal:condition="stories">
+          tal:condition="python:stories and context.portal_type == 'PoiIssue'">
         <form action="./@@xm-poi">
           <div class="field">
             <label for="story">Add a task in</label>
