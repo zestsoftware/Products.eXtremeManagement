@@ -89,6 +89,10 @@ class TasksDetailedView(BrowserView):
         for brain in brains:
             info = self.taskbrain2dict(brain)
             task_list.append(info)
+        task_list.sort(
+            lambda a, b: cmp(a['story_title'], b['story_title']) or
+                         cmp(a['title'], b['title'])
+            )
         info = dict(tasks = task_list,
                     totals = self.getTaskTotals(brains))
         return info
