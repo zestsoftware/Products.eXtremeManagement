@@ -51,10 +51,10 @@
     </dl>
   </div>
 
+  <tal:condition condition="python:context.portal_type == 'PoiIssue'">
   <div tal:define="links view/links;
                    stories view/stories_to_add_to"
-       tal:condition="python:links or stories and
-                             context.portal_type == 'PoiIssue'">
+       tal:condition="python:links or stories">
     <dl class="portlet" id="portlet-xmpoi">
       <dt class="portletHeader">
             <span class="portletTopLeft"></span>
@@ -68,7 +68,7 @@
           <li tal:repeat="link links">
             <a tal:attributes="href link/url;
                                class string:task-link state-${link/state}"
-               tal:content="string:${link/title} (${link/iterationid})">
+               tal:content="string:${link/iterationid}: ${link/title}">
                 Task Title
             </a>
           </li>
@@ -83,7 +83,7 @@
             <select id="story" name="story">
               <option tal:repeat="story stories"
                       tal:attributes="value story/uid"
-                      tal:content="string:${story/title} (${story/iterationid})">
+                      tal:content="string:${story/iterationid}: ${story/title}">
                 Some story
               </option>
             </select>
@@ -94,6 +94,7 @@
       <dd class="portletFooter"></dd>
     </dl>
   </div>
+  </tal:condition>
 
 </metal:macro>
 </body>

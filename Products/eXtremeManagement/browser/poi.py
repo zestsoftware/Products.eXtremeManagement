@@ -6,13 +6,13 @@ from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.interfaces import IReferenceable
 from Products.statusmessages.interfaces import IStatusMessage
 
-def abbreviate(text, width=18, ellipsis='...'):
+def abbreviate(text, width=15, ellipsis='...'):
     """Abbreviate a given text.
 
       >>> abbreviate('This is an unnecessarily long piece of text!')
       'This is an...'
       >>> abbreviate('Quite short, but still')
-      'Quite short, but...'
+      'Quite short,...'
       >>> abbreviate('Quite short, but still', width=10)
       'Quite...'
     """
@@ -53,28 +53,25 @@ class IPoiView(interface.Interface):
 
 
 class PoiView(BrowserView):
-    def get_open_issues(self, tags=[], skip_existing_issues=True):
+    def _get_open_issues(self, tags=[]):
         query = {}
         if tags:
             query = dict(Subject=dict(query=tags, operator='and'))
-        issues = self.get_open_issues_in_project(**query)
-        # Hopefully, there aren't too many open issues :)
-        issues = [b.getObject() for b in issues]
+        issues_brains = self.get_open_issues_in_project(**query)
+        # This method is now only called when *adding* issues.
+        issues = [b.getObject() for b in issues_brains]
 
-        if skip_existing_issues:
-            # Skip issues that are already linked into this iteration:
-            iteration = self.context.aq_inner.aq_parent
-            iteration_path = '/'.join(iteration.getPhysicalPath())
-            def is_linked_into_iteration(issue):
-                tasks = issue.getBRefs('task_issues')
-                for task in tasks:
-                    path = '/'.join(task.getPhysicalPath())
-                    if path.startswith(iteration_path):
-                        return True
-                else:
-                    return False
-        else:
-            is_linked_into_iteration = lambda issue: False
+        # Skip issues that are already linked into this iteration:
+        iteration = self.context.aq_inner.aq_parent
+        iteration_path = '/'.join(iteration.getPhysicalPath())
+        def is_linked_into_iteration(issue):
+            tasks = issue.getBRefs('task_issues')
+            for task in tasks:
+                path = '/'.join(task.getPhysicalPath())
+                if path.startswith(iteration_path):
+                    return True
+            else:
+                return False
         
         ignore = [i for i in issues if is_linked_into_iteration(i)]
         return ([i for i in issues if i not in ignore], ignore)
@@ -96,7 +93,7 @@ class PoiView(BrowserView):
     def get_open_stories_in_project(self, **kwargs):
         return self.get_open_issues_in_project(
             portal_type='Story',
-            review_state=['estimated', 'draft', 'pending'])
+            review_state=['estimated', 'in-progress'])
 
     def _lookup_project(self):
         item = self.context.aq_inner
@@ -110,7 +107,7 @@ class PoiView(BrowserView):
         addMessage(message, type)
 
     def add_tasks_from_tags(self, tags):
-        issues, ignore = self.get_open_issues(tags)
+        issues, ignore = self._get_open_issues(tags)
         for issue in issues:
             self.add_issue_to_story(self.context, issue)
         
@@ -132,15 +129,14 @@ class PoiView(BrowserView):
         if 'PoiTask' not in [fti.getId() for fti in
                              story.allowedContentTypes()]:
             return False
-        elif self.available_tags():
-            return True
         else:
-            return False
+            return True
 
     def available_tags(self):
         tags = dict()
-        for issue in self.get_open_issues(skip_existing_issues=False)[0]:
-            for s in issue.Subject():
+        # XXX
+        for issue in self.get_open_issues_in_project():
+            for s in issue.Subject:
                 tags[s] = 1
         keys = tags.keys()
         keys.sort(lambda x, y: cmp(x.lower(), y.lower()))
@@ -169,8 +165,6 @@ class PoiView(BrowserView):
     def stories_to_add_to(self):
         value = []
         for story in self.get_open_stories_in_project():
-            # Ironically, to get something as light-weight as the UID,
-            # we have to resort to getting the actual object:
             story = story.getObject()
             if not self.can_add_tasks(story):
                 continue
@@ -193,7 +187,7 @@ class PoiView(BrowserView):
             issue = self.context
 
         name = 'issue-%s' % issue.getId()
-        title = issue.Title()
+        title = '#%s: %s' % (issue.getId(), issue.Title())
         title = title and ('Task for %s' % title) or name
         while name in story.objectIds():
             name = 'copy-of-%s' % name
