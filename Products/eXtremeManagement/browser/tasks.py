@@ -226,12 +226,12 @@ class EmployeeTotalsView(TasksDetailedView):
                      if memberid in taskbrain.getAssignees]
             rawEstimate = sum([task.getRawEstimate / len(task.getAssignees)
                                for task in tasks])
-            if rawEstimate > 0:
-                bookings = self.catalog.searchResults(
-                    portal_type='Booking',
-                    Creator=memberid,
-                    path=searchpath)
-                rawActualHours = sum([booking.getRawActualHours for booking in bookings])
+            bookings = self.catalog.searchResults(
+                portal_type='Booking',
+                Creator=memberid,
+                path=searchpath)
+            rawActualHours = sum([booking.getRawActualHours for booking in bookings])
+            if rawEstimate > 0 or rawActualHours > 0:
                 rawDifference = rawEstimate - rawActualHours
                 info = dict(
                     memberid = memberid,
@@ -240,4 +240,5 @@ class EmployeeTotalsView(TasksDetailedView):
                     difference = self.xt.formatTime(rawDifference),
                     )
                 memberlist.append(info)
+
         return memberlist
