@@ -11,11 +11,8 @@
                              tasklist view/tasks;
                              items tasklist/tasks;
                              totals tasklist/totals;
-                             stories python:context.aq_parent.getFolderContents();
-                             num_stories python:len(stories);
-                             pos context/getObjPositionInParent;
-                             next python:pos &lt; num_stories-1 and stories[pos+1];
-                             prev python:pos != 0 and stories[pos-1];">
+                             next story/next;
+                             prev story/prev;">
 
       <metal:prevnext define-macro="previous_next">
         <div class="listingBar" tal:condition="python: next or prev">

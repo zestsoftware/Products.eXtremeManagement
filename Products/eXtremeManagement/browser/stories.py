@@ -1,6 +1,6 @@
 from Products.CMFCore.utils import getToolByName
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
-from Acquisition import aq_inner
+from Acquisition import aq_inner, aq_parent
 
 
 class StoryView(XMBaseView):
@@ -12,12 +12,23 @@ class StoryView(XMBaseView):
         """
         context = aq_inner(self.context)
         workflow = getToolByName(context, 'portal_workflow')
+
+        # get info for previous and next links
+        iteration = aq_parent(context)
+        stories = iteration.getFolderContents()
+        num_stories = len(stories)
+        pos = iteration.getObjectPosition(context.id)
+        next = pos < num_stories-1 and stories[pos+1]
+        prev = pos != 0 and stories[pos-1]
+
         returnvalue = dict(
             title = context.Title(),
             description = context.Description(),
             cooked_body = context.CookedBody(),
             rough_estimate = context.getRoughEstimate(),
             review_state = workflow.getInfoFor(context, 'review_state'),
+            prev = prev,
+            next = next,
             )
         return returnvalue
 
