@@ -56,12 +56,21 @@
               <th i18n:translate="listingheader_actual">Actual</th>
             </tr>
             
-            <tr tal:repeat="story stories"
+            <tal:repeat repeat="story stories">
+            <tr tal:define="number repeat/story/number"
+                tal:attributes="id string:toggle-header-${number}"
                 class="list-in-iteration">
               <td class="td-story-title">
-                <a class="storyTitle_iteration_overview"
-                   tal:attributes="href string:${story/url}"
-                   tal:content="story/title" />
+                  <div style="float:right">
+                    <a tal:attributes="href string:javascript:toggle_item(${number})"
+                       class="toggle-handle">[ &darr; ]</a>
+                  </div>
+                  <div>
+                    <a class="storyTitle_iteration_overview"
+                       tal:attributes="href string:${story/url}"
+                       tal:content="story/title" />
+                  </div>
+
               </td>
               <td tal:define="review_state story/review_state"
                   tal:content="story/review_state_title"
@@ -100,6 +109,22 @@
               <td tal:content="story/estimate" />
               <td tal:content="story/actual" />
             </tr>
+            <tr tal:define="number repeat/story/number"
+                tal:attributes="id string:toggle-item-${number}"
+                style="display:none"
+                class="toggle-item">
+              <td colspan="4">
+                  <div style="float:right">
+                    <a tal:attributes="href string:javascript:toggle_item(${number})"
+                       class="toggle-handle">[ &uarr; ]</a>
+                  </div>
+                  <div tal:content="structure story/details">
+                    Details
+                  </div>
+              </td>
+            </tr>
+            </tal:repeat>
+            
             <tr id="totalTasks"
                 tal:condition="show_totals">
               <th class="td-story-title"

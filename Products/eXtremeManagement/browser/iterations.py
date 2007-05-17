@@ -1,11 +1,60 @@
-from Products.CMFCore.utils import getToolByName
-from Products.eXtremeManagement.browser.xmbase import XMBaseView
-from Acquisition import aq_inner
+from md5 import md5
 
+from Acquisition import aq_inner, ImplicitAcquisitionWrapper
+from Products.PageTemplates.PageTemplate import PageTemplate
+from Products.CMFCore.utils import getToolByName
+
+from Products.eXtremeManagement.browser.xmbase import XMBaseView
+
+def _store_on_context(obj, *args, **kwargs):
+    KEY = '_v_XM_cache'
+    if not hasattr(obj.context.aq_base, KEY):
+        setattr(obj.context, KEY, {})
+    return getattr(obj.context, KEY)
+
+def _render_details_cachekey(obj, storybrain):
+    checksum = md5()
+    catalog = getToolByName(obj.context, 'portal_catalog')
+    for brain in catalog(portal_type='Task', path=storybrain.getPath()):
+        checksum.update(str(brain.modified) + str(brain.getPath()))
+    return checksum.digest()
+
+
+def cache(get_key, get_cache):
+    def decorator(fun):
+        def replacement(*args, **kwargs):
+            key = get_key(*args, **kwargs)
+            cache = get_cache(*args, **kwargs)
+            cached_value = cache.get(key)
+            if cached_value is None:
+                cache[key] = fun(*args, **kwargs)
+            return cache[key]
+        return replacement
+    return decorator
+
+def degrade_headers(html, howmuch=2):
+    """
+      >>> degrade_headers('<h1>Hello</h1><h2>World</h2>')
+      '<h3>Hello</h3><h4>World</h4>'
+      >>> degrade_headers('<h0>Funny things</h0><h2>as input</h2>')
+      '<h2>Funny things</h2><h4>as input</h4>'
+    """
+    for number in range(6, -1, -1):
+        html = html.replace('<h%s' % number, '<h%s' % (number + howmuch))
+        html = html.replace('</h%s>' % number, '</h%s>' % (number + howmuch))
+    return html
 
 class IterationView(XMBaseView):
     """Simply return info about a Iteration.
     """
+
+    details_template = PageTemplate()
+    details_template.write("""
+    <metal:define metal:use-macro='context/global_defines/macros/defines' />
+    <h0 tal:content='context/Title'>Story title</h0>
+    <metal:use use-macro='context/story_view/macros/details' />
+    """)
+    
 
     def main(self):
         """Get a dict with info from this Context.
@@ -36,6 +85,7 @@ class IterationView(XMBaseView):
 
         for storybrain in storybrains:
             info = self.storybrain2dict(storybrain)
+            info['details'] = self.render_details(storybrain)
             story_list.append(info)
 
         return story_list
@@ -99,3 +149,10 @@ class IterationView(XMBaseView):
         view = context.restrictedTraverse('@@mytask_details')
         result = view.tasklist()
         return result
+
+    @cache(_render_details_cachekey, _store_on_context)
+    def render_details(self, storybrain):
+        story = storybrain.getObject()
+        info = story.restrictedTraverse('@@story').main()
+        rendered = ImplicitAcquisitionWrapper(self.details_template, story)()
+        return degrade_headers(rendered)

@@ -193,4 +193,10 @@
     color: &dtml-discreetColor; !important;
 }
 
+/* Inline togglable details */
+.toggle-item {
+    border: 3px outset grey;
+}
+
+
 /* </dtml-with> */
