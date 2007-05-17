@@ -1,4 +1,4 @@
-from md5 import md5
+from StringIO import StringIO
 
 from Acquisition import aq_inner, ImplicitAcquisitionWrapper
 from Products.PageTemplates.PageTemplate import PageTemplate
@@ -13,12 +13,15 @@ def _store_on_context(obj, *args, **kwargs):
     return getattr(obj.context, KEY)
 
 def _render_details_cachekey(obj, storybrain):
-    checksum = md5()
+    key = StringIO()
     catalog = getToolByName(obj.context, 'portal_catalog')
     for brain in catalog(portal_type='Task', path=storybrain.getPath()):
-        checksum.update(str(brain.modified) + str(brain.getPath()))
-    return checksum.digest()
-
+        key.write(brain.getPath())
+        key.write('\n')
+        key.write(brain.modified)
+        key.write('\n\n')
+    key.write(storybrain.getPath())
+    return key.getvalue()
 
 def cache(get_key, get_cache):
     def decorator(fun):
