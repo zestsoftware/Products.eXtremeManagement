@@ -14,13 +14,17 @@ def _store_on_context(obj, *args, **kwargs):
 
 def _render_details_cachekey(obj, storybrain):
     key = StringIO()
-    catalog = getToolByName(obj.context, 'portal_catalog')
-    for brain in catalog(portal_type='Task', path=storybrain.getPath()):
+    def add(brain):
         key.write(brain.getPath())
         key.write('\n')
         key.write(brain.modified)
         key.write('\n\n')
-    key.write(storybrain.getPath())
+    
+    catalog = getToolByName(obj.context, 'portal_catalog')
+    add(storybrain)
+    for brain in catalog(portal_type='Task', path=storybrain.getPath()):
+        add(brain)
+
     return key.getvalue()
 
 def cache(get_key, get_cache):
