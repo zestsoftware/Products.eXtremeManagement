@@ -125,12 +125,12 @@ class PoiView(BrowserView):
     def can_add_tasks(self, story=None):
         if story is None:
             story = self.context
-        
-        if 'PoiTask' not in [fti.getId() for fti in
-                             story.allowedContentTypes()]:
-            return False
-        else:
-            return True
+            if story.portal_type != 'Story':
+                return False
+
+        types = getToolByName(self.context, 'portal_types')
+        task_type = types.getTypeInfo('PoiTask')
+        return task_type.isConstructionAllowed(story)
 
     def available_tags(self):
         tags = dict()
