@@ -61,11 +61,9 @@
                 tal:attributes="id string:toggle-header-${number}"
                 class="list-in-iteration">
               <td class="td-story-title">
-                  <div style="float:right">
-                    <a tal:attributes="href string:javascript:toggle_item(${number})"
-                       class="toggle-handle">[ &darr; ]</a>
-                  </div>
                   <div>
+                    <a tal:attributes="href string:javascript:toggle_item(${number})"
+                       class="toggle-handle">[ &darr; ]</a>&nbsp;
                     <a class="storyTitle_iteration_overview"
                        tal:attributes="href string:${story/url}"
                        tal:content="story/title" />
@@ -114,12 +112,12 @@
                 style="display:none"
                 class="toggle-item">
               <td colspan="4">
-                  <div style="float:right">
+                  <div>
                     <a tal:attributes="href string:javascript:toggle_item(${number})"
-                       class="toggle-handle">[ &uarr; ]</a>
-                  </div>
-                  <div tal:content="structure story/details">
-                    Details
+                       class="toggle-handle">[ &uarr; ]</a>&nbsp;
+                    <tal:details content="structure story/details">
+                      Details
+                    </tal:details>
                   </div>
               </td>
             </tr>
