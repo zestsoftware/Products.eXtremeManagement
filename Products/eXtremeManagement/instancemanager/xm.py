@@ -16,7 +16,7 @@ symlinkbundle_sources = [
      'url': 'http://svn.plone.org/svn/plone/bundles/2.5-zope29'
      },
     {'source': 'Poibundle',
-     'url': 'http://svn.plone.org/svn/collective/Poi/bundles/trunk',
+     'url': 'http://svn.plone.org/svn/collective/Poi/bundles/10',
      },
     {'source': 'plone25develop',
      'develop': True,
