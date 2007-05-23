@@ -56,6 +56,8 @@ schema = Schema((
 
 BaseSchema = BaseSchema.copy()
 BaseSchema['id'].widget.visible = dict(edit=0, view=0)
+BaseSchema['description'].isMetadata = False
+BaseSchema['description'].schemata = 'default'
 Booking_schema = BaseSchema + schema
 
 
