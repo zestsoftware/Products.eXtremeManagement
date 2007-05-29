@@ -43,8 +43,8 @@ Additional dependencies for development
    latest tar.gz (install as a product).  Make sure that all tests run
    before you check in changes.
 
- * DocFinderTab is recommended:
-   http://plone.org/products/DocfinderTab
+ * Five 1.4(.2) is recommended as then you can run the testbrowser
+   tests.
 
 
 Possible problem: old totals for Tasks
@@ -63,13 +63,6 @@ happens because at the moment the Task gets catalogued, none of its
 Bookings are in the catalog, so its total will be zero hours.  The
 solution is to recatalog the Tasks after the Clear and Rebuild is
 finished.
-
-
-Skins
-=====
-
-eXtremeManagement by default installs its own skin next to Plone
-Default and Tableless.  We plan to get rid of that in the future.
 
 
 Conflicting Products
