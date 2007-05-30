@@ -62,4 +62,4 @@ class StoryView(XMBaseView):
     def tasks(self):
         context = aq_inner(self.context)
         view = context.restrictedTraverse('@@task_details')
-        return view.tasklist()
+        return view.tasklist(sort_by_state=True)

@@ -86,7 +86,7 @@ class TasksDetailedView(BrowserView):
         self.filter = dict(portal_type=['Task', 'PoiTask'],
                            sort_on='getObjPositionInParent')
 
-    def simple_tasklist(self, searchpath=None):
+    def simple_tasklist(self, searchpath=None, sort_by_state=False):
         """Get some tasks.
         """
         if searchpath is None:
@@ -95,23 +95,25 @@ class TasksDetailedView(BrowserView):
         filter = self.filter
         filter['path'] = searchpath
         items = self.catalog.searchResults(**filter)
-        if filter.get('review_state'):
-            # We filter for review state already, so we can simply return the items.
+        if filter.get('review_state') or not sort_by_state:
+            # We do not want to sort by state or we filter for review
+            # state already, so we can simply return the items.
             return items
         else:
             # First sort the items by state (next to possible other sort)
             return self.xt.getStateSortedContents(items)
 
-    def tasklist(self, searchpath=None):
-        brains = self.simple_tasklist(searchpath)
+    def tasklist(self, searchpath=None, sort_by_state=False):
+        brains = self.simple_tasklist(searchpath, sort_by_state)
         task_list = []
         for brain in brains:
             info = self.taskbrain2dict(brain)
             task_list.append(info)
-        task_list.sort(
-            lambda a, b: cmp(a['story_title'], b['story_title']) or
-                         cmp(a['title'], b['title'])
-            )
+        if not sort_by_state:
+            task_list.sort(
+                lambda a, b: cmp(a['story_title'], b['story_title']) or
+                             cmp(a['title'], b['title'])
+                )
         info = dict(tasks = task_list,
                     totals = self.getTaskTotals(brains))
         return info
