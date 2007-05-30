@@ -1,5 +1,9 @@
+from zope.event import notify
+from zope.app.event.objectevent import ObjectModifiedEvent
 from Products.CMFCore.utils import getToolByName
 from Products.eXtremeManagement.config import *
+from Products.eXtremeManagement.timing.interfaces import IActualHours
+from Products.eXtremeManagement.timing.interfaces import IEstimate
 
 
 def reindexIndexes(site):
@@ -10,33 +14,14 @@ def reindexIndexes(site):
     reindex them.
 
     Since we are forced to do that, we might as well make sure that
-    these get reindexed in the correct order.  At least id *might*
+    these get reindexed in the correct order.  At least it *might*
     help for some of the indexes for estimates and booked hours to be
     reindexed in a specific order.
     """
     cat = getToolByName(site, 'portal_catalog')
     indexes = [
-        'getAddress',
         'getAssignees',
         'getBookingDate',
-        'getCity',
-        'getCountry',
-        'getEmail',
-        'getFax',
-        'getFullname',
-        'getHours', # before getRawActualHours, getRawEstimate and
-                    # getRawDifference
-        'getMinutes', # before getRawActualHours, getRawEstimate and
-                      # getRawDifference
-        'getName',
-        'getPhone',
-        'getRawActualHours',
-        'getRawEstimate',
-        'getEstimate', # after getRawEstimate
-        'getRawDifference', # after getRawActualHours and getRawEstimate
-        'getRawRelatedItems',
-        'getWebsite',
-        'getZipCode',
         ]
     # Don't reindex an index if it isn't actually in the catalog.
     # Should not happen, but cannot do any harm.
@@ -55,7 +40,7 @@ def _migrateSchema(site, contentType):
                            REQUEST=dummyRequest)
 
 def _migrateProjectSchema(site):
-    _migrateSchema(site, 'eXtremeManagement.Iteration')
+    _migrateSchema(site, 'eXtremeManagement.Project')
 
 def _migrateIterationSchema(site):
     _migrateSchema(site, 'eXtremeManagement.Iteration')
@@ -75,6 +60,7 @@ def _migrateTaskSchema(site):
     ori = xm_props.send_task_mails
     xm_props.send_task_mails = False
     _migrateSchema(site, 'eXtremeManagement.Task')
+    _migrateSchema(site, 'eXtremeManagement.PoiTask')
     xm_props.send_task_mails = ori
 
 
@@ -94,6 +80,7 @@ def migrate_bookings(portal):
 def migrate_ct(portal):
     migrate_stories(portal)
     migrate_tasks(portal)
+    migrate_bookings(portal)
 
 
 def configureKupu(portal):
@@ -152,6 +139,35 @@ def removeSkinSelection(portal):
         sk_tool.manage_skinLayers(chosen=['eXtremeManagement'],
                                   del_skin='Delete')
 
+def annotate_actual(site):
+    """Make sure the right types are annotated with IActualHours.
+    This updates the catalog too, which is nice.
+    """
+    cat = getToolByName(site, 'portal_catalog')
+    for portal_type in ('Booking', 'Task', 'PoiTask', 'Story', 'Iteration'):
+        brains = cat(portal_type=portal_type)
+        for brain in brains:
+            obj = brain.getObject()
+            anno = IActualHours(obj)
+            anno.recalc()
+
+def annotate_estimate(site):
+    """Make sure the right types are annotated with IEstimate.
+    This updates the catalog too, which is nice.
+    """
+    cat = getToolByName(site, 'portal_catalog')
+    for portal_type in ('Task', 'PoiTask', 'Story', 'Iteration'):
+        brains = cat(portal_type=portal_type)
+        for brain in brains:
+            obj = brain.getObject()
+            anno = IEstimate(obj)
+            anno.recalc()
+
+
+def update_security_settings(site):
+    workflow = getToolByName(site, 'portal_workflow')
+    workflow.updateRoleMappings()
+
 
 def importVarious(context):
     site = context.getSite()
@@ -160,4 +176,7 @@ def importVarious(context):
     # Integrate our types in kupu, if it is installed.
     configureKupu(site)
     migrate_ct(site)
+    update_security_settings(site)
+    annotate_actual(site)
+    annotate_estimate(site)
     reindexIndexes(site)

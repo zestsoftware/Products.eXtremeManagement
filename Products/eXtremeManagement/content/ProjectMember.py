@@ -9,7 +9,6 @@ from Products.eXtremeManagement.interfaces import IXMProjectMember
 schema = Schema((
     StringField(
         name='fullname',
-        index="FieldIndex",
         required=1,
         widget=StringWidget(
             description="Enter a name, eg. John Smith.",
@@ -20,7 +19,6 @@ schema = Schema((
     ),
     StringField(
         name='phone',
-        index="FieldIndex",
         required=1,
         widget=IntegerWidget(
             size="30",
@@ -32,7 +30,6 @@ schema = Schema((
     ),
     StringField(
         name='email',
-        index="FieldIndex",
         widget=StringWidget(
             description="Enter your email address.",
             label='Email',

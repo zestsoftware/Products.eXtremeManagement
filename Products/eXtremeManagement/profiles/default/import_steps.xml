@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <import-steps>
   <import-step id="eXtremeManagement_various"
-               version="20060725-01"
+               version="20070530-01"
                handler="Products.eXtremeManagement.setuphandlers.importVarious"
                title="eXtremeManagement: miscellaneous import steps">
     <dependency step="propertiestool" />
     <dependency step="catalog" />
+    <dependency step="workflow" />
     Import steps that couldn't be mapped to other handlers.
   </import-step>
 </import-steps>

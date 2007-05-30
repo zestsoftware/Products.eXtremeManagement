@@ -1,8 +1,9 @@
 from Products.CMFCore.utils import getToolByName
 from DateTime import DateTime
-from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.Five.browser import BrowserView
 from Acquisition import aq_inner
+from Products.eXtremeManagement.browser.xmbase import XMBaseView
+from Products.eXtremeManagement.timing.interfaces import IActualHours
 
 
 def getNextYearMonth(year, month):
@@ -159,7 +160,7 @@ class BookingsDetailedView(BrowserView):
         for bookingbrain in bookingbrains:
             info = self.bookingbrain2extended_dict(bookingbrain)
             self.bookinglist.append(info)
-            self.raw_total += bookingbrain.getRawActualHours
+            self.raw_total += bookingbrain.actual_time
 
     def main(self):
         """Return a dict of the main stuff of this period.
@@ -219,7 +220,7 @@ class BookingsDetailedView(BrowserView):
             booking_url = bookingbrain.getURL() + '/base_edit',
             booking_title = bookingbrain.Title,
             booking_description = bookingbrain.Description,
-            booking_hours = self.xt.formatTime(bookingbrain.getRawActualHours),
+            booking_hours = self.xt.formatTime(bookingbrain.actual_time),
             creator = bookingbrain.Creator,
         )
         return returnvalue
@@ -307,10 +308,16 @@ class BookingView(XMBaseView):
         """
         context = aq_inner(self.context)
         workflow = getToolByName(context, 'portal_workflow')
+        anno = IActualHours(context, None)
+        if anno is not None:
+            actual = anno.actual_time
+        else:
+            # What the???
+            actual = -99.0
         returnvalue = dict(
             title = context.title_or_id(),
             description = context.Description(),
-            actual = self.xt.formatTime(context.getRawActualHours()),
+            actual = self.xt.formatTime(actual),
             booking_date = context.restrictedTraverse('@@plone').toLocalizedTime(context.getBookingDate()),
             billable = context.getBillable(),
             creator = context.Creator(),
@@ -352,6 +359,6 @@ class DayBookingOverview(BrowserView):
         if bookingbrains:
             actualList = []
             for bb in bookingbrains:
-                actualList.append(bb.getRawActualHours)
+                actualList.append(bb.actual_time)
             self.raw_total = sum(actualList)
         self.total = self.xt.formatTime(self.raw_total)

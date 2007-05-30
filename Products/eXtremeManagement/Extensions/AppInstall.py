@@ -9,7 +9,11 @@ def applyGenericSetupProfile(portal, out):
     setup_tool.setImportContext('profile-eXtremeManagement:default')
     print >> out, "Applying the generic setup profile for eXtremeManagement..."
     setup_tool.runAllImportSteps(purge_old=False)
-    setup_tool.setImportContext('profile-CMFPlone:plone')
+    try:
+        setup_tool.setImportContext('profile-CMFPlone:plone')
+    except KeyError:
+        # Plone 3.0 has a different profile name
+        setup_tool.setImportContext('profile-Products.CMFPlone:plone')
     print >> out, "Applied the generic setup profile for eXtremeManagement"
 
 

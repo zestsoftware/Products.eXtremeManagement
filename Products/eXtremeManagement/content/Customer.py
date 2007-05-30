@@ -10,7 +10,6 @@ from Products.eXtremeManagement.interfaces import IXMCustomer
 schema = Schema((
     StringField(
         name='name',
-        index="FieldIndex",
         required=1,
         widget=StringWidget(
             description="Enter the company name for this customer",
@@ -21,7 +20,6 @@ schema = Schema((
     ),
     StringField(
         name='address',
-        index="FieldIndex",
         required=1,
         widget=StringWidget(
             description="Enter address.",
@@ -32,7 +30,6 @@ schema = Schema((
     ),
     StringField(
         name='zipCode',
-        index="FieldIndex",
         required=1,
         widget=StringWidget(
             description="Enter zip code.",
@@ -43,7 +40,6 @@ schema = Schema((
     ),
     StringField(
         name='city',
-        index="FieldIndex",
         required=1,
         widget=StringWidget(
             description="Enter city name.",
@@ -54,7 +50,6 @@ schema = Schema((
     ),
     StringField(
         name='country',
-        index="FieldIndex",
         required=1,
         widget=StringWidget(
             description="Enter country.",
@@ -65,7 +60,6 @@ schema = Schema((
     ),
     StringField(
         name='phone',
-        index="FieldIndex",
         required=1,
         widget=IntegerWidget(
             size="30",
@@ -77,7 +71,6 @@ schema = Schema((
     ),
     StringField(
         name='fax',
-        index="FieldIndex",
         widget=IntegerWidget(
             size="30",
             description="Enter your fax number.",
@@ -88,7 +81,6 @@ schema = Schema((
     ),
     StringField(
         name='website',
-        index="FieldIndex",
         widget=StringWidget(
             description="Enter your website address.",
             label='Website',

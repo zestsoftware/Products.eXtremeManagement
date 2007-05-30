@@ -12,9 +12,9 @@ from Products.eXtremeManagement.content.schemata import quarter_vocabulary, hour
 schema = Schema((
     IntegerField(
         name='hours',
-        index="FieldIndex",
         vocabulary=hour_vocabulary,
         validators=('isInt',),
+        default=0,
         widget=SelectionWidget(
             label='Hours',
             label_msgid='eXtremeManagement_label_hours',
@@ -22,9 +22,9 @@ schema = Schema((
     ),
     IntegerField(
         name='minutes',
-        index="FieldIndex",
         vocabulary=quarter_vocabulary,
         validators=('isInt',),
+        default=0,
         widget=SelectionWidget(
             label='Minutes',
             label_msgid='eXtremeManagement_label_minutes',
@@ -40,7 +40,6 @@ schema = Schema((
     ),
     DateTimeField(
         name='bookingDate',
-        index="DateIndex:brains",
         required=1,
         default_method=DateTime,
         validators=('isValidDate',),
@@ -89,6 +88,18 @@ class Booking(BaseContent):
                 'permissions': ('''View''',)},
               )
 
+    # This looks like a nice and simple version of a ComputedField
+    @property
+    def actual_time(self):
+        return self.getHours() + (self.getMinutes() / 60.0)
+
+    security.declarePublic('recalc')
+    def recalc(self):
+        """See the IActualHours interface.
+        With our implementation we only need a reindex here actually.
+        """
+        self.reindexObject(idxs=['actual_time'])
+
     security.declarePublic('_renameAfterCreation')
     def _renameAfterCreation(self, check_auto_id=False):
         parent = self.aq_inner.aq_parent
@@ -105,35 +116,6 @@ class Booking(BaseContent):
         import transaction
         transaction.savepoint(optimistic=True)
         self.setId(newId)
-
-    security.declarePublic('getRawActualHours')
-    def getRawActualHours(self):
-        """
-        Get the total hours and minutes in decimal format
-        for further calculations.
-
-        HACK: If a Booking has been cancelled, it unfortunately may
-        still exist, so use try/except.  The Booking should disappear
-        eventually, but at least this way it doesn't give float errors
-        in all sorts of scripts.
-        """
-        try:
-            hours = float(self.getHours())
-        except:
-            hours = 0.0
-        try:
-            minutes = float(self.getMinutes())/60
-        except:
-            minutes = 0.0
-
-        return hours + minutes
-
-    security.declarePublic('getActualHours')
-    def getActualHours(self):
-        """
-        """
-        xt = getToolByName(self, 'xm_tool')
-        return xt.formatTime(self.getRawActualHours())
 
 
 registerType(Booking, PROJECTNAME)

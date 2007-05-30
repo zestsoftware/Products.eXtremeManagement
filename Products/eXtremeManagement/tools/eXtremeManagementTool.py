@@ -1,6 +1,7 @@
 from Acquisition import aq_inner
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject
+from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.atapi import *
 
 from Products.eXtremeManagement.config import *
@@ -41,12 +42,42 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
 
     security.declarePublic('formatTime')
     def formatTime(self,time):
+        """Returns time as a formatted string
+
+        >>> xt = eXtremeManagementTool()
+        >>> xt.formatTime(0)
+        '0:00'
+        >>> xt.formatTime(-0.6)
+        '-0:36'
+        >>> xt.formatTime(0.6)
+        '0:36'
+        >>> xt.formatTime(-1)
+        '-1:00'
+        >>> xt.formatTime(1)
+        '1:00'
+        >>> xt.formatTime(1.5)
+        '1:30'
+        >>> xt.formatTime(-1.5)
+        '-1:30'
+
+        Now try some times that might give problems, e.g.:
+        .04*60 equals 2.3999999999999999, which should be rounded down
+
+        >>> xt.formatTime(0.04)
+        '0:02'
+        >>> xt.formatTime(8.05)
+        '8:03'
+        >>> xt.formatTime(44.5)
+        '44:30'
+        >>> xt.formatTime(0.999)
+        '1:00'
+
         """
-        Returns time as a formatted string
-        e.g. 3:15
-        """
-        hours = int(time)
-        minutes = int(round((time - hours)*60))
+        try:
+            hours = int(time)
+            minutes = int(round((time - hours)*60))
+        except TypeError:
+            return '?:??'
         # Adjust for rounding:
         if minutes == 60:
             minutes = 0
@@ -66,11 +97,25 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
 
     security.declarePublic('formatMinutes')
     def formatMinutes(self,minutes):
-        """
-        Takes the integer argument minutes and formats it nicely.  Examples:
-        5  => :05
-        24 => :24
-        minutes should be between 0 and 59.
+        """Takes the integer argument minutes and formats it nicely.
+
+        >>> xt = eXtremeManagementTool()
+        >>> xt.formatMinutes(0)
+        ':00'
+        >>> xt.formatMinutes(5)
+        ':05'
+        >>> xt.formatMinutes(42)
+        ':42'
+        >>> xt.formatMinutes(59)
+        ':59'
+
+        minutes should be between 0 and 59
+
+        >>> xt.formatMinutes(-1)
+        False
+        >>> xt.formatMinutes(60)
+        False
+
         """
         minutes = int(minutes)
         if minutes < 0:
@@ -171,18 +216,57 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
 
     security.declarePublic('get_progress_perc')
     def get_progress_perc(self, part, total):
-        """
-        When you get above maximum_not_completed_percentage, and your
-        story still is not completed, we deem it safer to display this
-        percentage so as not to give a false sense of completeness.
+        """Get progress percentage of part compared to total.
+
+        >>> xt = eXtremeManagementTool()
+        >>> xt.get_progress_perc(3, 1)
+        300
+
+        We do not want to go over 100 percent though, so we have a
+        setting in a property sheet that we use.  Set up a test
+        environment for that.
+
+        >>> xm_properties = dict(maximum_not_completed_percentage = 90)
+        >>> portal_properties = dict()
+        >>> portal_properties['xm_properties'] = xm_properties
+        >>> xt.portal_properties = portal_properties
+
+        Now try again.
+
+        >>> xt.get_progress_perc(3, 1)
+        90
+
+        Code that uses this method can choose to show 100 percent to
+        the user, for instance because a Story has the status
+        'completed'.  But that is not our responsibility.
+
+        Now for some more tests.
+
+        >>> xt.get_progress_perc(0, 1)
+        0
+        >>> xt.get_progress_perc(10, 100)
+        10
+        >>> xt.get_progress_perc(1, 3)
+        33
+        >>> xt.get_progress_perc(1, 3.0)
+        33
+
         """
         context = self
         if total > 0:
-            percentage = round(part/total*100, 1)
-            portal_properties = getToolByName(context, 'portal_properties')
-            xm_props = portal_properties.xm_properties
-            if percentage > xm_props.maximum_not_completed_percentage:
-                return xm_props.maximum_not_completed_percentage
+            try:
+                percentage = int(round(part/float(total)*100))
+            except TypeError:
+                return '??'
+            portal_properties = getToolByName(context, 'portal_properties', None)
+            if portal_properties is None:
+                return percentage
+            xm_props = portal_properties.get('xm_properties', None)
+            if xm_props is None:
+                return percentage
+            max_percentage = xm_props.get('maximum_not_completed_percentage', 90.0)
+            if percentage > max_percentage:
+                return max_percentage
             return percentage
         return 0
 

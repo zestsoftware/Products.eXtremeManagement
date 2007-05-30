@@ -1,4 +1,7 @@
 import os, sys
+from zope.event import notify
+from zope.app.event.objectevent import ObjectModifiedEvent
+from zope.app.container.contained import ObjectMovedEvent
 
 from Testing import ZopeTestCase
 import transaction
@@ -44,50 +47,33 @@ class testStory(eXtremeManagementTestCase):
         self.failUnless(IXMStory.implementedBy(Story))
         self.failUnless(IXMStory.providedBy(self.story))
 
-    def test_get_progress_perc(self):
-        """
-        """
-        xm_props = self.portal.portal_properties.xm_properties
-        self.assertEqual(xm_props.maximum_not_completed_percentage, 90)
-        self.task.update(hours=1)
-        self.assertEqual(self.story.get_progress_perc(), 0)
-        self.task.invokeFactory('Booking', id='booking1', hours=0, minutes=15)
-        self.assertEqual(self.story.getRawActualHours(), 0.25)
-        self.assertEqual(self.story.get_progress_perc(), 25)
-        self.task.invokeFactory('Booking', id='booking2', hours=0, minutes=45)
-        self.assertEqual(self.story.getRawActualHours(), 1.0)
-        self.assertEqual(self.story.get_progress_perc(), 90)
-        self.login('employee')
-        self.task.update(assignees=('employee'))
-        self.workflow.doActionFor(self.story, 'activate')
-        self.workflow.doActionFor(self.task, 'complete')
-        self.assertEqual(self.story.get_progress_perc(), 100)
-
-    def test_getRawEstimateAndActual(self):
+    def test_EstimateAndActual(self):
         """
         When a story has tasks, get their estimates.
         If not, get the roughEstimate of this story.
 
-        Also test getRawActualHours while we are at it.
+        Also test ActualHours while we are at it.
         """
         self.assertEqual(self.story.getRoughEstimate(), 4.5)
         xm_props = self.portal.portal_properties.xm_properties
         hours_per_day = xm_props.hours_per_day
         self.assertEqual(hours_per_day, 8.0)
-        self.assertEqual(self.story.getRawEstimate(), 4.5 * hours_per_day)
+        self.assertAnnotationStoryBrainEstimateEquality(self.story, 0)
         self.task.update(hours=4)
-        self.assertEqual(self.story.getRawEstimate(), 4)
-        self.assertStoryBrainEquality('getRawEstimate', 4.0)
+        notify(ObjectModifiedEvent(self.task))
+
+        self.assertAnnotationStoryBrainEstimateEquality(self.story, 4.0)
         createBooking(self.task, id='booking1', hours=1)
-        self.assertStoryBrainEquality('getRawActualHours', 1)
+        self.assertAnnotationStoryBrainHoursEquality(self.story, 1)
 
         # Add a task.
         self.story.invokeFactory('Task', id='task2')
         self.task2 = self.story.task2
         self.task2.update(hours=2)
-        self.assertEqual(self.story.getRawEstimate(), 6)
+        notify(ObjectModifiedEvent(self.task2))
+        self.assertAnnotationStoryBrainEstimateEquality(self.story, 6)
         createBooking(self.task2, id='booking1', hours=1)
-        self.assertStoryBrainEquality('getRawActualHours', 2)
+        self.assertAnnotationStoryBrainHoursEquality(self.story, 2)
 
         # make a copy to test later
         
@@ -97,12 +83,12 @@ class testStory(eXtremeManagementTestCase):
 
         # make sure deleting a task updates the story's catalog entry
         self.story.manage_delObjects(ids=['task'])
-        self.assertStoryBrainEquality('getRawEstimate', 2)
-        self.assertStoryBrainEquality('getRawActualHours', 1)
+        self.assertAnnotationStoryBrainEstimateEquality(self.story, 2)
+        self.assertAnnotationStoryBrainHoursEquality(self.story, 1)
 
         # Make sure the copy retained it's info
-        self.assertStoryBrainEquality('getRawEstimate', 6, story=copy)
-        self.assertStoryBrainEquality('getRawActualHours', 2, story=copy)
+        self.assertAnnotationStoryBrainEstimateEquality(copy, 6)
+        self.assertAnnotationStoryBrainHoursEquality(copy, 2)
 
         # Check that cutting and pasting also works correctly with
         # respect to the estimates (and the booked hours, etc, but
@@ -110,17 +96,17 @@ class testStory(eXtremeManagementTestCase):
         # First make a second story for pasting into.
         self.iteration.invokeFactory('Story', id='story2')
         story2 = self.iteration.story2
-        self.assertStoryBrainEquality('getRawEstimate', 0, story=story2)
-        self.assertStoryBrainEquality('getRawActualHours', 0, story=story2)
+        self.assertAnnotationStoryBrainEstimateEquality(story2, 0)
+        self.assertAnnotationStoryBrainHoursEquality(story2, 0)
 
         # We need to commit a few times, before this works in tests.
         transaction.savepoint(optimistic=True)
         cut_data = self.story.manage_cutObjects(ids=['task2'])
         story2.manage_pasteObjects(cut_data)
-        self.assertStoryBrainEquality('getRawEstimate', 4.5 * hours_per_day)
-        self.assertStoryBrainEquality('getRawActualHours', 0)
-        self.assertStoryBrainEquality('getRawEstimate', 2, story2)
-        self.assertStoryBrainEquality('getRawActualHours', 1, story=story2)
+        self.assertAnnotationStoryBrainEstimateEquality(self.story, 0.0)
+        self.assertAnnotationStoryBrainHoursEquality(self.story, 0)
+        self.assertAnnotationStoryBrainEstimateEquality(story2, 2)
+        self.assertAnnotationStoryBrainHoursEquality(story2, 1)
 
     def test_isEstimated(self):
         """

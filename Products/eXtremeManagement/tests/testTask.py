@@ -1,4 +1,6 @@
 import os, sys
+from zope.event import notify
+from zope.app.event.objectevent import ObjectModifiedEvent
 
 from Testing import ZopeTestCase
 
@@ -8,7 +10,9 @@ from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.Task import Task
 from Products.eXtremeManagement.interfaces import IXMTask
-from utils import createBooking
+from Products.eXtremeManagement.timing.interfaces import IActualHours
+from Products.eXtremeManagement.timing.interfaces import IEstimate
+from Products.eXtremeManagement.tests.utils import createBooking
 
 
 class testTask(eXtremeManagementTestCase):
@@ -65,25 +69,29 @@ class testTask(eXtremeManagementTestCase):
 
         Also make sure the same value is stored in the catalog.
         """
-        self.assertTaskBrainEquality('getRawEstimate', 0)
+        self.assertAnnotationTaskBrainEstimateEquality(self.task, 0)
 
         self.task.update(hours=4)
-        self.assertTaskBrainEquality('getRawEstimate', 4)
+        notify(ObjectModifiedEvent(self.task))
+
+        self.assertAnnotationTaskBrainEstimateEquality(self.task, 4)
 
         self.task.update(minutes=15)
-        self.assertTaskBrainEquality('getRawEstimate', 4.25)
+        notify(ObjectModifiedEvent(self.task))
+        self.assertAnnotationTaskBrainEstimateEquality(self.task, 4.25)
 
-    def test_getRawActualHours(self):
+    def test_ActualHours(self):
         """Make sure rawActualHours returns the expected value.
 
         Also make sure the same value is stored in the catalog.
         """
-        self.assertTaskBrainEquality('getRawActualHours', 0)
+        self.assertAnnotationTaskBrainHoursEquality(self.task, 0)
+
         createBooking(self.task, id='booking', hours=1)
-        self.assertTaskBrainEquality('getRawActualHours', 1)
+        self.assertAnnotationTaskBrainHoursEquality(self.task, 1)
 
         createBooking(self.task, id='booking2', minutes=15)
-        self.assertTaskBrainEquality('getRawActualHours', 1.25)
+        self.assertAnnotationTaskBrainHoursEquality(self.task, 1.25)
 
         # make a copy to test later
         
@@ -95,37 +103,20 @@ class testTask(eXtremeManagementTestCase):
         # reindexed.
 
         self.task.manage_delObjects('booking2')
-        self.assertTaskBrainEquality('getRawActualHours', 1)
+        self.assertAnnotationTaskBrainHoursEquality(self.task, 1)
         self.task.manage_delObjects('booking')
-        self.assertTaskBrainEquality('getRawActualHours', 0)
+        self.assertAnnotationTaskBrainHoursEquality(self.task, 0)
 
         # Make sure the copy retained it's info
-        self.assertTaskBrainEquality('getRawActualHours', 1.25, task=copy)
+        self.assertAnnotationTaskBrainHoursEquality(copy, 1.25)
 
         # Test cutting Bookings.
         cutdata = copy.manage_cutObjects(ids=['booking', 'booking2'])
         self.story.invokeFactory('Task', id='task3')
         task3 = self.story.task3
         task3.manage_pasteObjects(cutdata)
-        self.assertTaskBrainEquality('getRawActualHours', 0, task=copy)
-        self.assertTaskBrainEquality('getRawActualHours', 1.25, task=task3)
-
-
-    def test_getRawDifference(self):
-        """Make sure rawDifference returns the expected value.
-
-        Also make sure the same value is stored in the catalog.
-        """
-        self.assertTaskBrainEquality('getRawDifference', 0)
-
-        self.task.update(hours=4)
-        self.assertTaskBrainEquality('getRawDifference', -4)
-
-        createBooking(self.task, id='booking', hours=1)
-        self.assertTaskBrainEquality('getRawDifference', -3)
-
-        createBooking(self.task, id='booking2', minutes=15)
-        self.assertTaskBrainEquality('getRawDifference', -2.75)
+        self.assertAnnotationTaskBrainHoursEquality(copy, 0)
+        self.assertAnnotationTaskBrainHoursEquality(task3, 1.25)
 
     def test_startable(self):
         """
@@ -154,8 +145,11 @@ class testTask(eXtremeManagementTestCase):
         self.task2 = self.story.task2
         self.task2.update(assignees='developer')
         self.assertEqual(self.task2.startable(), False)
+
+        # We used to let a Task be startable without an estimate if
+        # there had been a booking already, but not anymore.
         self.task2.invokeFactory('Booking', id='booking', minutes=15)
-        self.assertEqual(self.task2.startable(), True)
+        self.assertEqual(self.task2.startable(), False)
 
     def test_getAssignees(self):
         self.assertTaskBrainEquality('getAssignees', ())

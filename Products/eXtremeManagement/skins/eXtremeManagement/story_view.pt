@@ -88,7 +88,6 @@
 
 
             <tr tal:repeat="task items"
-                tal:define="xt python:portal.xm_tool"
                 class="list-in-iteration">
               <tal:story condition="show_story">
                 <tal:comment replace="nothing">

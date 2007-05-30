@@ -2,9 +2,13 @@ from StringIO import StringIO
 
 from Acquisition import aq_inner, ImplicitAcquisitionWrapper
 from Products.PageTemplates.PageTemplate import PageTemplate
+from Acquisition import aq_inner
+
 from Products.CMFCore.utils import getToolByName
 
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
+from Products.eXtremeManagement.timing.interfaces import IActualHours
+from Products.eXtremeManagement.timing.interfaces import IEstimate
 
 def _store_on_context(obj, *args, **kwargs):
     KEY = '_v_XM_cache'
@@ -68,15 +72,27 @@ class IterationView(XMBaseView):
         """
         context = aq_inner(self.context)
         workflow = getToolByName(context, 'portal_workflow')
+        anno = IActualHours(context, None)
+        if anno is not None:
+            actual = anno.actual_time
+        else:
+            # Should not happen (tm).
+            actual = -99.0
+        est = IEstimate(context, None)
+        if est is not None:
+            estimate = est.estimate
+        else:
+            # Should not happen (tm).
+            estimate = -99.0
         returnvalue = dict(
             title = context.Title(),
             description = context.Description(),
             man_hours = context.getManHours(),
             start_date = context.restrictedTraverse('@@plone').toLocalizedTime(context.getStartDate()),
             end_date = context.restrictedTraverse('@@plone').toLocalizedTime(context.getEndDate()),
-            estimate = self.xt.formatTime(context.getRawEstimate()),
-            actual = self.xt.formatTime(context.getRawActualHours()),
-            difference = self.xt.formatTime(context.getRawDifference()),
+            estimate = self.xt.formatTime(estimate),
+            actual = self.xt.formatTime(actual),
+            difference = self.xt.formatTime(estimate - actual),
             review_state = workflow.getInfoFor(context, 'review_state'),
             )
         return returnvalue
@@ -110,8 +126,8 @@ class IterationView(XMBaseView):
         if is_completed:
             progress = 100
         else:
-            estimated = brain.getRawEstimate
-            actual = brain.getRawActualHours
+            estimated = brain.estimate
+            actual = brain.actual_time
             progress = self.xt.get_progress_perc(actual, estimated)
 
         # compute open task count
@@ -127,13 +143,15 @@ class IterationView(XMBaseView):
         filter['review_state'] = finished_states
         completed_tasks = len(catalog.searchResults(**filter))
 
+        estimate = brain.estimate
+        actual = brain.actual_time
         returnvalue = dict(
             url = brain.getURL(),
             title = brain.Title,
             description = brain.Description,
-            estimate = self.xt.formatTime(brain.getRawEstimate),
-            actual = self.xt.formatTime(brain.getRawActualHours),
-            difference = self.xt.formatTime(brain.getRawDifference),
+            estimate = self.xt.formatTime(estimate),
+            actual = self.xt.formatTime(actual),
+            difference = self.xt.formatTime(estimate - actual),
             progress = progress,
             review_state = review_state_id,
             review_state_title = workflow.getTitleForStateOnType(

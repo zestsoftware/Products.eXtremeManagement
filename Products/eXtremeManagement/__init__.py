@@ -14,6 +14,9 @@ from Products.Archetypes.utils import capitalize
 
 from Products.eXtremeManagement.config import *
 
+# importing 'timing' sets up some interfaces.
+from Products.eXtremeManagement import timing
+
 DirectoryView.registerDirectory('skins', product_globals)
 DirectoryView.registerDirectory('skins/eXtremeManagement',
                                     product_globals)

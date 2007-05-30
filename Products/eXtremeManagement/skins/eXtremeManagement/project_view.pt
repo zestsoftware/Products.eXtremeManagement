@@ -25,6 +25,7 @@
           <tal:block tal:define="obj curIteration/brain/getObject;">
             <tal:stories
                 tal:define="iteration_view obj/@@iteration;
+                            main iteration_view/main;
                             stories iteration_view/stories;
                             show_task_count python:True;
                             show_progress python:True;
@@ -41,7 +42,7 @@
                          tal:attributes="href string:${obj/absolute_url}">
                         <img tal:attributes="src string:${here/portal_url}/${obj/getIcon};
                                              alt string:Project overview"/>
-                        <span tal:replace="obj/Title">Title</span>
+                        <span tal:replace="main/title">Title</span>
                       </a>
                     </th>
                     <th colspan="2"
@@ -49,8 +50,8 @@
                         height="30" 
                         align="left" 
                         class="header_iteration">
-                      <span tal:replace="obj/getManHours" /> Hours
-                      ( <span tal:replace="obj/getActualHours" /> Actual)
+                      <span tal:replace="main/man_hours" /> Hours
+                      ( <span tal:replace="main/actual" /> Actual)
                     </th>
                     <th colspan="2"
                         width="20%" 
@@ -64,7 +65,7 @@
                   <tr>
                     <td colspan="6"
                         class="iteration-description"
-                        tal:content="obj/Description" />
+                        tal:content="main/description" />
                   </tr>
                 </metal:block>
               </metal:block>

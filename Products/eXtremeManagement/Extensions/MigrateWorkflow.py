@@ -82,8 +82,8 @@ def migrateAfterWorkflowInstall(self, out):
                     warnings = warnings + 1
                     print >> out, '------------------'
                     print >> out, 'WARNING: old in-progress task not startable.'
-                    if task.getRawEstimate() <= 0:
-                        print >> out, 'Reason: no estimate (%s).' %  task.getRawEstimate()
+                    if task.getHours() <= 0 and task.getMinutes() <= 0:
+                        print >> out, 'Reason: no estimate.'
                     if len(task.getAssignees()) == 0:
                         print >> out, 'Reason: no assignees.'
                     print >> out, 'Task name: %s' % task.title_or_id()

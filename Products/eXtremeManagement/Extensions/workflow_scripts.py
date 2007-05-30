@@ -2,6 +2,8 @@ from Products.CMFCore.utils import getToolByName
 from types import StringTypes
 import logging
 
+from Products.eXtremeManagement.timing import IEstimate
+
 ##########################
 # Task Workflow scripts #
 #########################
@@ -88,8 +90,11 @@ You can do it!
     if description != '':
         description = 'The description of the task is:' + description
 
+    estimate = IEstimate(obj, None)
+    if estimate is not None:
+        estimate = estimate.hours
     message = mMsg % (obj_url, mCreator, description,
-                      obj.getEstimate(), listofAssignees)
+                      estimate, listofAssignees)
     if destination:
         assignees = [destination]
     for assignee in assignees:

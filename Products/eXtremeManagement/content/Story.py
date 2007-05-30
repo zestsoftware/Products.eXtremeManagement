@@ -69,18 +69,6 @@ class Story(OrderedBaseFolder):
         """
         return self.getMainText()
 
-    security.declarePublic('get_progress_perc')
-    def get_progress_perc(self):
-        """
-        When a story is completed, the progress is 100% by definition.
-        """
-        if self.isCompleted():
-            return 100
-        else:
-            xt = getToolByName(self, 'xm_tool')
-            estimated = self.getRawEstimate()
-            actual = self.getRawActualHours()
-            return xt.get_progress_perc(actual, estimated)
     security.declarePublic('generateUniqueId')
     def generateUniqueId(self, type_name):
         """ Generate sequential IDs for tasks
@@ -110,71 +98,6 @@ class Story(OrderedBaseFolder):
         state = wf_tool.getInfoFor(self, 'review_state')
         return state == 'completed'
 
-    security.declarePublic('getRawEstimate')
-    def getRawEstimate(self):
-        """
-        When a story has tasks, get their estimates.
-        If not, get the roughEstimate of this story.
-        """
-        tasks = self.getStoryTasks()
-        estimated = 0.0
-        estimates = []
-        if tasks:
-            for task in tasks:
-                estimates.append(task.getRawEstimate())
-            estimated = sum(estimates)
-        if estimated > 0:
-            return estimated
-        estimated = self.getRoughEstimate()
-        if estimated is None:
-            return 0
-        props = getToolByName(self, 'portal_properties', None)
-        if props is not None:
-            xm_props = props.get('xm_properties')
-            if xm_props is not None:
-                return estimated * xm_props.hours_per_day
-        # Do the default in case our property sheet is not found,
-        # e.g. because the installer has not been run yet.
-        return estimated * 8
-
-    security.declarePublic('getEstimate')
-    def getEstimate(self):
-        """
-        """
-        xt = getToolByName(self, 'xm_tool')
-        return xt.formatTime(self.getRawEstimate())
-
-    security.declarePublic('getRawActualHours')
-    def getRawActualHours(self):
-        """
-        """
-        tasks = self.getStoryTasks()
-        actual = 0.0
-        if tasks:
-            for task in tasks:
-                actual = actual + task.getRawActualHours()
-        return actual
-
-    security.declarePublic('getActualHours')
-    def getActualHours(self):
-        """
-        """
-        xt = getToolByName(self, 'xm_tool')
-        return xt.formatTime(self.getRawActualHours())
-
-    security.declarePublic('getRawDifference')
-    def getRawDifference(self):
-        """
-        """
-        return self.getRawActualHours() -  self.getRawEstimate()
-
-    security.declarePublic('getDifference')
-    def getDifference(self):
-        """
-        """
-        xt = getToolByName(self, 'xm_tool')
-        return xt.formatTime(self.getRawDifference())
-
     security.declarePublic('isEstimated')
     def isEstimated(self):
         """
@@ -184,7 +107,7 @@ class Story(OrderedBaseFolder):
         roughEstimate is superfluous in that case.  So checking the
         raw estimate is good.
         """
-        return self.getRawEstimate() > 0
+        return self.getRoughEstimate() > 0
 
     security.declarePublic('startable')
     def startable(self):
@@ -230,8 +153,5 @@ class Story(OrderedBaseFolder):
         """
         return self.contentValues(filter={'portal_type': ['Task', 'PoiTask']})
 
-    def _delObject(self, orig_id, *args, **kwargs):
-        super(Story, self)._delObject(orig_id, *args, **kwargs)
-        self.reindexObject()
 
 registerType(Story, PROJECTNAME)

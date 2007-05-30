@@ -26,7 +26,8 @@
 
     <div metal:fill-slot="main"
          tal:define="view portal/@@mytask_details;
-                     tasks view/simple_tasklist;">
+                     tasklist view/tasklist;
+                     tasks tasklist/tasks;">
     
         <h1 i18n:translate="header_time_registration" 
             class="documentFirstHeading">
@@ -64,7 +65,6 @@
                 cellspacing="0">
 
                 <tal:loop tal:repeat="task tasks">
-                <tal:block tal:define="taskObj task/getObject">
                 <tr>
                     <th i18n:translate="listingheader_title">Title</th> 
                     <th i18n:translate="listingheader_story">Story</th> 
@@ -74,19 +74,18 @@
 
                 <tr class="list-in-iteration">
                     <td class="td-story-title">
-                        <a tal:attributes="href taskObj/absolute_url">
+                        <a tal:attributes="href task/url">
                             <img src="task_icon.gif"
                                 alt="task icon"
                                 i18n:attributes="alt task_icon" />
 
-                            <span tal:replace="taskObj/Title">Task</span>
+                            <span tal:replace="task/title">Task</span>
                         </a>
                     </td>
         
-                    <td tal:content="taskObj/aq_parent/title" />
-                    <td tal:content="taskObj/getEstimate" />
-                    <td tal:define="totalActual python:taskObj.getActualHours();"
-                        tal:content="totalActual" />
+                    <td tal:content="task/story_title" />
+                    <td tal:content="task/estimate" />
+                    <td tal:content="task/actual" />
                     
                 </tr>
                 <tr>
@@ -98,7 +97,7 @@
                             
                         <select name="hours"
                                 tal:define="hours python:('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10');"
-                                tal:attributes="name python:taskObj.UID() + '_hours';
+                                tal:attributes="name string:${task/UID}_hours;
                                                 tabindex tabindex/next;">
                             <tal:block tal:repeat="hour hours">
                             <option tal:content="hour"
@@ -108,7 +107,7 @@
                         :
                         <select name="minutes"
                                 tal:define="minutes python:('0', '15', '30', '45');"
-                                tal:attributes="name python:taskObj.UID() + '_minutes';
+                                tal:attributes="name string:${task/UID}_minutes;
                                                 tabindex tabindex/next;">
                             <tal:block tal:repeat="minute minutes">
                             <option tal:content="minute"
@@ -122,10 +121,9 @@
                         <textarea name="description" 
                                   rows="2"
                                   cols="20"
-                                  tal:attributes="name python:taskObj.UID()+'_description'"></textarea>
+                                  tal:attributes="name string:${task/UID}_description"></textarea>
                     </td>
                 </tr>
-                </tal:block>
                 </tal:loop>
             </table>
 

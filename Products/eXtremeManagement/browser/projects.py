@@ -75,16 +75,17 @@ class ProjectAdminView(XMBaseView):
         context = aq_inner(self.context)
         review_state_id = brain.review_state
         workflow = getToolByName(context, 'portal_workflow')
-
+        estimate = brain.estimate
+        actual = brain.actual_time
         returnvalue = dict(
             url = brain.getURL(),
             title = brain.Title,
             description = brain.Description,
             icon = brain.getIcon,
             man_hours = brain.getManHours,
-            estimate = self.xt.formatTime(brain.getRawEstimate),
-            actual = self.xt.formatTime(brain.getRawActualHours),
-            difference = self.xt.formatTime(brain.getRawDifference),
+            estimate = self.xt.formatTime(estimate),
+            actual = self.xt.formatTime(actual),
+            difference = self.xt.formatTime(estimate - actual),
             review_state = review_state_id,
             review_state_title = workflow.getTitleForStateOnType(
                                  review_state_id, 'Iteration'),

@@ -6,6 +6,7 @@ from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.Booking import Booking
 from Products.eXtremeManagement.interfaces import IXMBooking
+from Products.eXtremeManagement.timing.interfaces import IActualHours
 
 
 class testBooking(eXtremeManagementTestCase):
@@ -41,56 +42,29 @@ class testBooking(eXtremeManagementTestCase):
         self.failUnless(IXMBooking.implementedBy(Booking))
         self.failUnless(IXMBooking.providedBy(self.booking))
 
-    # from class Booking:
-    def test__renameAfterCreation(self):
+    def test_ActualHours(self):
         """
         """
-        #Uncomment one of the following lines as needed
-    # from class Booking:
-    def test_getRawActualHours(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Booking('temp_Booking')
-        ##self.folder._setObject('temp_Booking', o)
-        self.assertEqual(self.booking.getRawActualHours(), 3.25)
+        ann = IActualHours(self.booking)
+        self.assertEqual(ann.actual_time, 3.25)
 
         self.task.invokeFactory('Booking', id='booking2', hours=0, minutes=0)
-        self.assertEqual(self.task.booking2.getRawActualHours(), 0.0)
+        ann = IActualHours(self.task.booking2)
+        self.assertEqual(ann.actual_time, 0.0)
 
         self.task.invokeFactory('Booking', id='booking3', hours=0, minutes=45)
-        self.assertEqual(self.task.booking3.getRawActualHours(), 0.75)
+        ann = IActualHours(self.task.booking3)
+        self.assertEqual(ann.actual_time, 0.75)
 
         # The following two have a weird number of minutes, but if
         # they pass, that is fine.
         self.task.invokeFactory('Booking', id='booking4', hours=4, minutes=60)
-        self.assertEqual(self.task.booking4.getRawActualHours(), 5.0)
+        ann = IActualHours(self.task.booking4)
+        self.assertEqual(ann.actual_time, 5.0)
 
         self.task.invokeFactory('Booking', id='booking5', hours=4, minutes=75)
-        self.assertEqual(self.task.booking5.getRawActualHours(), 5.25)
-
-        # What happens if hours or minutes are empty strings?
-        self.task.invokeFactory('Booking', id='booking6', hours='', minutes=30)
-        self.assertEqual(self.task.booking6.getRawActualHours(), 0.5)
-        self.task.invokeFactory('Booking', id='booking7', hours=1, minutes='')
-        self.assertEqual(self.task.booking7.getRawActualHours(), 1)
-
-    # from class Booking:
-    def test_getActualHours(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
-        ##self.loginAsPortalOwner()
-        ##o=Booking('temp_Booking')
-        ##self.folder._setObject('temp_Booking', o)
-        self.assertEqual(self.booking.getActualHours(), '3:15')
-
-        # What happens if hours or minutes are empty strings?
-        self.task.invokeFactory('Booking', id='booking1', hours='', minutes=30)
-        self.assertEqual(self.task.booking1.getActualHours(), '0:30')
-        self.task.invokeFactory('Booking', id='booking2', hours=1, minutes='')
-        self.assertEqual(self.task.booking2.getActualHours(), '1:00')
+        ann = IActualHours(self.task.booking5)
+        self.assertEqual(ann.actual_time, 5.25)
 
 
 def test_suite():

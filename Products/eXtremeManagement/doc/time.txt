@@ -51,23 +51,22 @@ We also have a task with an estimate of 5 and one half hours.
     '5'
     >>> browser.getControl(name='minutes').value
     ['30']
-    >>> self.task.getRawEstimate()
+    >>> from Products.eXtremeManagement.timing import IEstimate
+    >>> estimate = IEstimate(self.task)
+    >>> estimate.estimate
     5.5
-    >>> self.task.getEstimate()
-    '5:30'
 
 We also want to make sure that the correct rawEstimate value is stored
 in the catalog.  We have made a test function for that.
 
-    >>> self.assertTaskBrainEquality('getRawEstimate', 5.5)
+    >>> self.assertAnnotationTaskBrainEstimateEquality(self.task, 5.5)
 
 Once a story has a task with an estimate in it, its rough estimate
 mostly gets ignored in favour of the combined estimates of its tasks.
 
-    >>> self.story.getRawEstimate()
+    >>> estimate = IEstimate(self.story)
+    >>> estimate.estimate
     5.5
-    >>> self.story.getEstimate()
-    '5:30'
 
 Make sure rawActualHours returns the expected value.
 Also make sure the same value is stored in the catalog.

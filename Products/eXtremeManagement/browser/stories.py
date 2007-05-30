@@ -1,6 +1,10 @@
+from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
+
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Acquisition import aq_inner, aq_parent
+from Products.eXtremeManagement.timing.interfaces import IActualHours
+from Products.eXtremeManagement.timing.interfaces import IEstimate
 
 
 class StoryView(XMBaseView):
@@ -36,10 +40,22 @@ class StoryView(XMBaseView):
         """Get a dict with totals for this Story.
         """
         context = aq_inner(self.context)
+        anno = IActualHours(context, None)
+        if anno is not None:
+            actual = anno.actual_time
+        else:
+            # Should not happen (tm).
+            actual = -99.0
+        est = IEstimate(context, None)
+        if est is not None:
+            estimate = est.estimate
+        else:
+            # Should not happen (tm).
+            estimate = -99.0
         totals = dict(
-            estimate = self.xt.formatTime(context.getRawEstimate()),
-            actual = self.xt.formatTime(context.getRawActualHours()),
-            difference = self.xt.formatTime(context.getRawDifference()),
+            estimate = self.xt.formatTime(estimate),
+            actual = self.xt.formatTime(actual),
+            difference = self.xt.formatTime(estimate - actual),
             )
         return totals
 

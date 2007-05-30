@@ -5,6 +5,9 @@ from Products.PloneTestCase import PloneTestCase
 from Products.eXtremeManagement.config import HAS_PLONE21
 from Products.eXtremeManagement.config import PRODUCT_DEPENDENCIES
 from Products.eXtremeManagement.config import DEPENDENCIES
+from Products.eXtremeManagement.timing.interfaces import IActualHours
+from Products.eXtremeManagement.timing.interfaces import IEstimate
+
 
 # Add common dependencies
 if not HAS_PLONE21:
@@ -44,6 +47,33 @@ class eXtremeManagementTestCase(PloneTestCase.PloneTestCase):
             # Use default task
             task = self.task
         return self.assertObjectBrainEquality(attribute, value, task, portal_type='Task')
+
+    def assertAnnotationGeneralBrainHoursEquality(self, obj, value, portal_type):
+        ann = IActualHours(obj)
+        self.assertEqual(ann.actual_time, value)
+        brains = self.catalog(portal_type=portal_type,
+                              path='/'.join(obj.getPhysicalPath()))
+        self.assertEqual(brains[0]['actual_time'], value)
+
+    def assertAnnotationTaskBrainHoursEquality(self, obj, value):
+        self.assertAnnotationGeneralBrainHoursEquality(obj, value, 'Task')
+
+    def assertAnnotationStoryBrainHoursEquality(self, obj, value):
+        self.assertAnnotationGeneralBrainHoursEquality(obj, value, 'Story')
+
+    def assertAnnotationGeneralBrainEstimateEquality(self, obj, value, portal_type):
+        ann = IEstimate(obj)
+        self.assertEqual(ann.estimate, value)
+        brains = self.catalog(portal_type=portal_type,
+                              path='/'.join(obj.getPhysicalPath()))
+        self.assertEqual(brains[0]['estimate'], value)
+
+    def assertAnnotationStoryBrainEstimateEquality(self, obj, value):
+        self.assertAnnotationGeneralBrainEstimateEquality(obj, value, 'Story')
+
+    def assertAnnotationTaskBrainEstimateEquality(self, obj, value):
+        self.assertAnnotationGeneralBrainEstimateEquality(obj, value, 'Task')
+
 
 
 class eXtremeManagementFunctionalTestCase(PloneTestCase.FunctionalTestCase, eXtremeManagementTestCase):

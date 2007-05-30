@@ -1,7 +1,11 @@
-from Products.CMFCore.utils import getToolByName
-from Products.eXtremeManagement.browser.xmbase import XMBaseView
-from Products.Five.browser import BrowserView
 from Acquisition import aq_inner
+
+from Products.CMFCore.utils import getToolByName
+from Products.Five.browser import BrowserView
+
+from Products.eXtremeManagement.browser.xmbase import XMBaseView
+from Products.eXtremeManagement.timing.interfaces import IActualHours
+from Products.eXtremeManagement.timing.interfaces import IEstimate
 
 
 class TaskView(XMBaseView):
@@ -11,22 +15,36 @@ class TaskView(XMBaseView):
     def main(self):
         """Get a dict with info from this Task.
         """
+        context = aq_inner(self.context)
         workflow = getToolByName(self.context, 'portal_workflow')
+        anno = IActualHours(context, None)
+        if anno is not None:
+            actual = anno.actual_time
+        else:
+            # Should not happen (tm).
+            actual = -99.0
+        est = IEstimate(context, None)
+        if est is not None:
+            estimate = est.estimate
+        else:
+            # Should not happen (tm).
+            estimate = -99.0
         returnvalue = dict(
-            title = self.context.Title(),
-            description = self.context.Description(),
-            cooked_body = self.context.CookedBody(),
-            estimate = self.xt.formatTime(self.context.getRawEstimate()),
-            actual = self.xt.formatTime(self.context.getRawActualHours()),
-            difference = self.xt.formatTime(self.context.getRawDifference()),
-            review_state = workflow.getInfoFor(self.context, 'review_state'),
-            assignees = self.context.getAssignees(),
+            title = context.Title(),
+            description = context.Description(),
+            cooked_body = context.CookedBody(),
+            estimate = self.xt.formatTime(estimate),
+            actual = self.xt.formatTime(actual),
+            difference = self.xt.formatTime(estimate - actual),
+            review_state = workflow.getInfoFor(context, 'review_state'),
+            assignees = context.getAssignees(),
             )
         return returnvalue
 
     def bookings(self):
-        current_path = '/'.join(self.context.getPhysicalPath())
-        catalog = getToolByName(self.context, 'portal_catalog')
+        context = aq_inner(self.context)
+        current_path = '/'.join(context.getPhysicalPath())
+        catalog = getToolByName(context, 'portal_catalog')
         bookingbrains = catalog.searchResults(portal_type='Booking',
                                               sort_on='getBookingDate',
                                               path=current_path)
@@ -41,14 +59,15 @@ class TaskView(XMBaseView):
     def bookingbrain2dict(self, brain):
         """Get a dict with info from this booking brain.
         """
+        context = aq_inner(self.context)
         returnvalue = dict(
-            date = self.context.restrictedTraverse('@@plone').toLocalizedTime(brain.getBookingDate),
+            date = context.restrictedTraverse('@@plone').toLocalizedTime(brain.getBookingDate),
             # base_view of a booking gets redirected to the task view,
             # which we do not want here.
             url = brain.getURL() + '/base_edit',
             title = brain.Title,
             description = brain.Description,
-            actual = self.xt.formatTime(brain.getRawActualHours),
+            actual = self.xt.formatTime(brain.actual_time),
             creator = brain.Creator,
             billable = brain.getBillable,
         )
@@ -107,12 +126,12 @@ class TasksDetailedView(BrowserView):
     def getTaskTotals(self, tasks):
         """Get my portion of total estimate, etc for these tasks
         """
-        rawEstimate = sum([task.getRawEstimate * self.portion(task)
+        rawEstimate = sum([task.estimate * self.portion(task)
                            for task in tasks])
-        rawActualHours = sum([task.getRawActualHours * self.portion(task)
+        rawActualHours = sum([task.actual_time * self.portion(task)
                               for task in tasks])
-        rawDifference = sum([task.getRawDifference * self.portion(task)
-                             for task in tasks])
+        rawDifference = sum([(task.estimate - task.actual_time)
+                             * self.portion(task) for task in tasks])
         totals = dict(
             estimate = self.xt.formatTime(rawEstimate),
             actual = self.xt.formatTime(rawActualHours),
@@ -132,15 +151,18 @@ class TasksDetailedView(BrowserView):
         filter = dict(portal_type='Story', path=parentPath)
         storybrain = self.catalog(**filter)[0]
 
+        estimate = brain.estimate
+        actual = brain.actual_time
         returnvalue = dict(
             url = brain.getURL(),
+            UID = brain.UID,
             title = brain.Title,
             story_url = storybrain.getURL(),
             story_title = storybrain.Title,
             description = brain.Description,
-            estimate = self.xt.formatTime(brain.getRawEstimate),
-            actual = self.xt.formatTime(brain.getRawActualHours),
-            difference = self.xt.formatTime(brain.getRawDifference),
+            estimate = self.xt.formatTime(estimate),
+            actual = self.xt.formatTime(actual),
+            difference = self.xt.formatTime(estimate - actual),
             review_state = review_state_id,
             review_state_title = workflow.getTitleForStateOnType(
                                  review_state_id, 'Task'),
@@ -224,13 +246,13 @@ class EmployeeTotalsView(TasksDetailedView):
         for memberid in members:
             tasks = [taskbrain for taskbrain in taskbrains
                      if memberid in taskbrain.getAssignees]
-            rawEstimate = sum([task.getRawEstimate / len(task.getAssignees)
+            rawEstimate = sum([task.estimate / len(task.getAssignees)
                                for task in tasks])
             bookings = self.catalog.searchResults(
                 portal_type='Booking',
                 Creator=memberid,
                 path=searchpath)
-            rawActualHours = sum([booking.getRawActualHours for booking in bookings])
+            rawActualHours = sum([booking.actual_time for booking in bookings])
             if rawEstimate > 0 or rawActualHours > 0:
                 rawDifference = rawEstimate - rawActualHours
                 info = dict(

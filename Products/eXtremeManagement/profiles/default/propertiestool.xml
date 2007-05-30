@@ -42,7 +42,7 @@
   <!-- get progress percentages of over 100 %.  And we don't give a false -->
   <!-- sense of being almost finished. -->
   <property name="maximum_not_completed_percentage"
-     type="float">90.0</property>
+     type="int">90</property>
   <property name="send_task_mails"
      type="boolean">True</property>
  </object>

@@ -1,0 +1,347 @@
+Tests for actual hours with annotations.
+========================================
+
+
+Base actual hours providers
+---------------------------
+
+Bookings are the basic building blocks that provide actual hours.
+
+Setup the test environment.
+
+>>> import Products.Five
+>>> from Products.Five import zcml
+>>> zcml.load_config('configure.zcml', Products.Five) 
+>>> import Products.eXtremeManagement.timing
+>>> zcml.load_config('configure.zcml', Products.eXtremeManagement.timing)
+>>> from Products.eXtremeManagement.timing import IActualHours
+
+Create a Booking.  We use a simple mock class for that.  We could take
+just a single float as input (1.5 hours), but we want it to work also
+when an implementation uses hours and minutes.  So we add a recalc
+method, just like the IActualHours interface orders.
+
+>>> class MockBooking(object):
+...     def __init__(self, hours, minutes):
+...         self.actual_time = 0.0
+...         self.hours = hours
+...         self.minutes = minutes
+...     def recalc(self):
+...         self.actual_time = self.hours + (self.minutes / 60.0)
+...     def reindexObject(self, idxs=[]):
+...         pass
+>>> booking1 = MockBooking(2, 30)
+
+Now we want to adapt it to the IActualHours interface, but this fails.
+
+>>> actual = IActualHours(booking1)
+Traceback (most recent call last):
+...
+TypeError: ('Could not adapt', ...)
+
+The instance has to provide the IActualHours interface.
+
+>>> from zope.interface import alsoProvides
+>>> alsoProvides(booking1, IActualHours)
+>>> actual = IActualHours(booking1)
+
+2 hours plus 30 minutes is two and a half hours
+
+>>> actual.actual_time
+0.0
+
+Oops, we need to recalculate first.
+
+>>> actual.recalc()
+>>> actual.actual_time
+2.5
+
+As an aside, adapting the booking to IActualHours is not strictly
+necessary, as in this implementation the MockBooking class already
+provides all functionality demanded by the IActualHours interface.
+But not all implementations might have that.  So it is better to adapt
+the booking to this interface.  We will also use this to keep the
+events simple.
+
+Let's verify that in this particular implementation the mock booking
+is the same as its adaptation.
+
+>>> booking1 == IActualHours(booking1)
+True
+
+Let's continue.  When the instance provides IActualHours interface it
+works.  But it should also work for new instances by letting the class
+implement that interface.
+
+>>> from zope.interface import classImplements
+>>> classImplements(MockBooking, IActualHours)
+
+Try again with a fresh booking.
+
+>>> booking2 = MockBooking(1, 15)
+>>> actual = IActualHours(booking2)
+>>> actual.recalc()
+>>> actual.actual_time
+1.25
+
+Changing the hours or minutes of the base booking should mean that
+the actual hours of our annotations are changed too.
+
+>>> booking2.hours = 3
+>>> booking2.minutes = 0
+>>> actual.recalc()
+>>> actual.actual_time
+3.0
+
+
+Actual hours containers
+-----------------------
+
+Tasks are containers for Bookings.  More generally: objects providing
+the IActualHoursContainer interface are containers for objects that
+can be adapted to IActualHours.  Those contained objects can be base
+objects like Booking, or can be containers themselves: Stories can
+contain Tasks.
+
+We create a folder that will contain objects providing actual hours.
+First we define a class for that.  We can use a python list as base.
+It just needs an extra method contentValues, and reindexObject.
+
+>>> class Container(list):
+...     def contentValues(self):
+...         return self
+...     def reindexObject(self, idxs=[]):
+...         pass
+
+We are going to use the Container class as base for other containers
+later, so lets make a new class that inherits from this, to keep
+things clean.
+
+>>> class ActualContainer(Container):
+...     pass
+>>> task = ActualContainer()
+
+Now we want to annotate it, but this fails.
+
+>>> actual = IActualHours(task)
+Traceback (most recent call last):
+...
+TypeError: ('Could not adapt', ...)
+
+The class has to implement the IActualHoursContainer interface.
+
+>>> from Products.eXtremeManagement.timing.interfaces import IActualHoursContainer
+>>> classImplements(ActualContainer, IActualHoursContainer)
+>>> actual = IActualHours(task)
+
+Now recalculate the actual hours.  Nothing is there yet, so it
+should be zero.
+
+>>> actual.recalc()
+>>> actual.actual_time
+0.0
+
+So we create a Booking and add it to the task.  We can use the already
+defined bookings.
+
+>>> task.append(booking1)
+>>> actual.recalc()
+>>> actual.actual_time
+2.5
+
+Add the second booking to the task.
+
+>>> task.append(booking2)
+>>> actual.recalc()
+>>> actual.actual_time
+5.5
+
+Thank you Sir, may we have another, Sir?
+
+>>> booking3 = MockBooking(1, 45)
+>>> actual_booking = IActualHours(booking3)
+>>> actual_booking.recalc()
+>>> task.append(booking3)
+>>> actual.recalc()
+>>> actual.actual_time
+7.25
+
+
+Containers of containers
+------------------------
+
+Like mentioned already, a container can also contain a container.
+
+>>> story = ActualContainer()
+>>> actual = IActualHours(story)
+
+Now recalculate the actual hours.  Nothing is there yet, so it
+should be zero.
+
+>>> actual.recalc()
+>>> actual.actual_time
+0.0
+
+Add our task to this story.
+
+>>> story.append(task)
+>>> actual.recalc()
+>>> actual.actual_time
+7.25
+
+And add another booking right there.
+
+>>> booking4 = MockBooking(0, 30)
+>>> IActualHours(booking4).recalc()
+>>> story.append(booking4)
+>>> actual.recalc()
+>>> actual.actual_time
+7.75
+
+
+Estimates
+---------
+
+We have to do exactly the same for estimates really.
+
+>>> from Products.eXtremeManagement.timing import IEstimate
+>>> from Products.eXtremeManagement.interfaces import IXMTask
+>>> class MockEstimate(object):
+...     def __init__(self, time):
+...         self.estimate = time
+...     def reindexObject(self, idxs=[]):
+...         pass
+
+Create a task.
+
+>>> classImplements(MockEstimate, IEstimate)
+>>> task = MockEstimate(4.5)
+>>> estimate = IEstimate(task)
+>>> estimate.estimate
+4.5
+
+>>> from Products.eXtremeManagement.timing.interfaces import IEstimateContainer
+>>> class EstimateContainer(Container):
+...     pass
+>>> classImplements(EstimateContainer, IEstimateContainer)
+>>> story = EstimateContainer()
+>>> story.append(task)
+>>> story_estimate = IEstimate(story)
+>>> story_estimate.recalc()
+>>> story_estimate.estimate
+4.5
+
+
+Actual hours and estimates combined
+-----------------------------------
+
+What we *really* want is to combine actual hours and estimates.  So
+let's to it again from the ground up really.
+
+For Stories we can create a class MockStory.
+
+>>> class MockStory(Container):
+...     pass
+>>> story = MockStory()
+
+Calculate actual hours.
+
+>>> actual_story = IActualHours(story)
+Traceback (most recent call last):
+...
+TypeError: ('Could not adapt', ...)
+
+Oops.
+
+>>> from zope.annotation.interfaces import IAttributeAnnotatable
+>>> classImplements(MockStory, IAttributeAnnotatable)
+>>> classImplements(MockStory, IActualHoursContainer)
+>>> actual_story = IActualHours(story)
+>>> actual_story.recalc()
+>>> actual_story.actual_time
+0.0
+
+Calculate its estimate.
+
+>>> estimate_story = IEstimate(story)
+Traceback (most recent call last):
+...
+TypeError: ('Could not adapt', ...)
+>>> classImplements(MockStory, IEstimateContainer)
+>>> estimate_story = IEstimate(story)
+>>> estimate_story.recalc()
+>>> estimate_story.actual_time
+0.0
+
+Tasks are base providers for estimates, but themselves contain
+Bookings.  Add a Task to a Story.
+
+>>> class MockTask(MockEstimate, Container):
+...     pass
+>>> task = MockTask(3.5)
+>>> story.append(task)
+
+Calculate actual hours of the task.
+
+>>> actual_task = IActualHours(task)
+Traceback (most recent call last):
+...
+TypeError: ('Could not adapt', ...)
+>>> classImplements(MockTask, IAttributeAnnotatable)
+>>> classImplements(MockTask, IActualHoursContainer)
+>>> actual_task = IActualHours(task)
+>>> actual_task.recalc()
+>>> actual_task.actual_time
+0.0
+
+And its estimate.
+
+>>> estimate_task = IEstimate(task)
+>>> estimate_task.estimate
+3.5
+
+Make sure calculating the estimate of the task does not mess up its
+actual hours.
+
+>>> actual_task.actual_time
+0.0
+
+The estimate of the story should be changed too now.
+
+>>> estimate_story.recalc()
+>>> estimate_story.estimate
+3.5
+
+Now add a Booking to the Task.
+
+>>> booking = MockBooking(1, 15)
+>>> task.append(booking)
+
+The Booking provides actual hours, but not an estimate.
+
+>>> actual = IActualHours(booking)
+>>> actual.recalc()
+>>> actual.actual_time
+1.25
+>>> estimate = IEstimate(booking)
+Traceback (most recent call last):
+...
+TypeError: ('Could not adapt', ...)
+
+
+This should be reflected in the Task and Story.  Recalculating the
+actual hours for the Story first will not work.
+
+>>> actual_story.recalc()
+>>> actual_story.actual_time
+0.0
+
+We need to recalc the task first.
+
+>>> actual_task.recalc()
+>>> actual_task.actual_time
+1.25
+>>> actual_story.recalc()
+>>> actual_story.actual_time
+1.25
+
