@@ -194,8 +194,10 @@
 }
 
 /* Inline togglable details */
-.toggle-item {
-    border: 3px outset grey;
+.toggle-item div {
+    margin: 6px 0;
+    padding: 3px;
+    border: 1px solid #8cacbb;
 }
 
 
