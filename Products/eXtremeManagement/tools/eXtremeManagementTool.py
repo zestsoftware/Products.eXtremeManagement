@@ -34,7 +34,6 @@ class eXtremeManagementTool(UniqueObject, BaseContent):
     # tool-constructors have no id argument, the id is fixed
     def __init__(self, id=None):
         BaseContent.__init__(self,'xm_tool')
-        self.setTitle('eXtremeManagementTool')
         
     # tool should not appear in portal_catalog
     def at_post_edit_script(self):
