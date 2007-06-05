@@ -74,7 +74,7 @@ class Iteration(OrderedBaseFolder):
         unAcceptableStatuses = ['draft','pending']
         portal = getToolByName(self,'portal_url').getPortalObject()
         wf_tool = getToolByName(portal, 'portal_workflow')
-        stories = self.contentValues('Story')
+        stories = self.contentValues(filter={'portal_type': 'Story'})
         for story in stories:
             review_state = wf_tool.getInfoFor(story,'review_state')
             if review_state in unAcceptableStatuses:
@@ -88,7 +88,7 @@ class Iteration(OrderedBaseFolder):
         """
         portal = getToolByName(self,'portal_url').getPortalObject()
         wf_tool = getToolByName(portal, 'portal_workflow')
-        stories = self.contentValues('Story')
+        stories = self.contentValues(filter={'portal_type': 'Story'})
         for story in stories:
             review_state = wf_tool.getInfoFor(story,'review_state')
             if review_state != 'completed':

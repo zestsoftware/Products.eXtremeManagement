@@ -89,7 +89,7 @@
             </tr>
         </table>
 
-        <div tal:define="projMembers python:here.contentValues('ProjectMember')" 
+        <div tal:define="projMembers python:here.contentValues(filter={'portal_type': 'ProjectMember'})" 
              tal:condition="projMembers">
 
             <h1 i18n:translate="header_project_members">

@@ -140,7 +140,7 @@ def startStory(self, state_change, **kw):
     story=state_change.object
     # Tasks have statuses open, to-do or completed.
     # Open tasks need to be set to to-do.  The rest is fine.
-    tasks = story.contentValues(['Task', 'PoiTask'])
+    tasks = story.contentValues(filter={'portal_type': ['Task', 'PoiTask']})
     wf_tool = getToolByName(portal, 'portal_workflow')
     from Products.CMFCore.WorkflowCore import WorkflowException
     for task in tasks:
@@ -177,7 +177,7 @@ def startIteration(self, state_change, **kw):
     """
     portal = self
     iteration=state_change.object
-    stories = iteration.contentValues('Story')
+    stories = iteration.contentValues(filter={'portal_type': 'Story'})
     wf_tool = getToolByName(portal, 'portal_workflow')
     from Products.CMFCore.WorkflowCore import WorkflowException
     for story in stories:
