@@ -1,4 +1,4 @@
-# Translation of plone-eXtremeManagement.pot.pot to Dutch
+# Translation of plone-eXtremeManagement.pot to Dutch
 # Ahmad Hadi <ahadi@zestsoftware.nl>, 2005
 # Maurits van Rees <m.van.rees@zestsoftware.nl>, 2006
 msgid ""

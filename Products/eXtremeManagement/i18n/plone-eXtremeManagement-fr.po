@@ -1,4 +1,4 @@
-# Translation of eXtremeManagement.pot.pot to French
+# Translation of plone-eXtremeManagement.pot to French
 # Yves Moisan <ymoisan@groupesm.com>, 2007
 msgid ""
 msgstr ""
