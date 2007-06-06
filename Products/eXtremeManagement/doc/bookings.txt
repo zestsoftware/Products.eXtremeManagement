@@ -68,8 +68,8 @@ We first check it by adding some keyword arguments.
     >>> bookview = BookingsDetailedView(self.portal, request, year=2007, month=1)
     >>> len(bookview.bookinglist)
     1
-    >>> bookview.bookinglist[0]['booking_date']
-    '2007-01-01'
+    >>> bookview.bookinglist[0]['booking_date'] in ('Jan 01, 2007', '2007-01-01')
+    True
 
 Then we check it by adding a dictionary
 
@@ -78,8 +78,8 @@ Then we check it by adding a dictionary
     >>> bookview = BookingsDetailedView(self.portal, request, **options)
     >>> len(bookview.bookinglist)
     1
-    >>> bookview.bookinglist[0]['booking_date']
-    '2007-01-01'
+    >>> bookview.bookinglist[0]['booking_date'] in ('Jan 01, 2007', '2007-01-01')
+    True
 
 And then we check it by adjusting the request, to show that the result
 is the same.
@@ -88,9 +88,8 @@ is the same.
     >>> bookview = BookingsDetailedView(self.portal, request)
     >>> len(bookview.bookinglist)
     1
-    >>> bookview.bookinglist[0]['booking_date']
-    '2007-01-01'
-
+    >>> bookview.bookinglist[0]['booking_date'] in ('Jan 01, 2007', '2007-01-01')
+    True
 
 Now, a booking on the first of the month might inadvertently be listed
 in the previous month as well.  Let's make sure we do not make that
