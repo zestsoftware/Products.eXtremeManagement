@@ -1,5 +1,5 @@
-# ArchGenXML generated POT File
-# ['Ahmad Hadi'] <['a.hadi@zestsoftware.nl']>, 2005.
+# Translation of eXtremeManagement.pot to Czech
+# Lukas Zdych <lukas.zdych@corenet.cz>, 2006
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
