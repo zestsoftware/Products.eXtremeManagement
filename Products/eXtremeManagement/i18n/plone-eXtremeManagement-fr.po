@@ -1,0 +1,179 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR Yves Moisan <ymoisan@groupesm.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0beta\n"
+"POT-Creation-Date: 2005-05-19 21:13+0000\n"
+"PO-Revision-Date: 2007-06-05 12:37-0500\n"
+"Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
+"Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: fr\n"
+"Language-Name: Franais\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+"X-Poedit-Language: French\n"
+
+msgid "completed"
+msgstr "complété"
+
+msgid "open"
+msgstr "ouvert"
+
+msgid "in-progress"
+msgstr "en traitement"
+
+msgid "Activate"
+msgstr "Activer"
+
+msgid "Complete"
+msgstr "Terminé"
+
+msgid "estimated"
+msgstr "estimé"
+
+msgid "draft"
+msgstr "brouillon"
+
+msgid "assigned"
+msgstr "assigné"
+
+msgid "activated"
+msgstr "activé"
+
+msgid "Accept"
+msgstr "Accepter"
+
+msgid "Assign"
+msgstr "Assigner"
+
+msgid "Invoice"
+msgstr "Facture"
+
+msgid "invoiced"
+msgstr "facturé"
+
+msgid "Estimate"
+msgstr "Estimé"
+
+msgid "CustomerFolder"
+msgstr "DossierClient"
+
+msgid "ProjectFolder"
+msgstr "DossierProjet"
+
+msgid "Customer"
+msgstr "Client"
+
+msgid "Employee"
+msgstr "Employé"
+
+msgid "ProjectMember"
+msgstr "Membre de projet"
+
+msgid "Project"
+msgstr "Projet"
+
+msgid "Iteration"
+msgstr "Itération"
+
+msgid "Story"
+msgstr "Histoire-usager"
+
+msgid "Task"
+msgstr "Tâche"
+
+msgid "Customer Folder"
+msgstr "Dossier client"
+
+msgid "Project Folder"
+msgstr "Dossier de projet"
+
+msgid "Time registration"
+msgstr "Entrée du temps"
+
+msgid "activate"
+msgstr "activer"
+
+msgid "Active"
+msgstr "Actif"
+
+msgid "booking"
+msgstr "\"booking\""
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "complete"
+msgstr "compléter"
+
+msgid "Completed"
+msgstr "Complété"
+
+msgid "deactivate"
+msgstr "désactiver"
+
+msgid "Deactivate"
+msgstr "Désactiver"
+
+msgid "Draft"
+msgstr "Brouillon"
+
+msgid "Estimated"
+msgstr "Estimé"
+
+msgid "Finish"
+msgstr "terminer"
+
+msgid "Improve"
+msgstr "Améliorer"
+
+msgid "In progress"
+msgstr "En traitement"
+
+msgid "In-progress"
+msgstr "En traitement"
+
+msgid "Invoiced"
+msgstr "Facturé"
+
+msgid "Mark as completed"
+msgstr "Identifier 'complété'"
+
+msgid "Mark as estimated"
+msgstr "Identifier 'estimé'"
+
+msgid "New"
+msgstr "Nouveau"
+
+msgid "Pending estimate"
+msgstr "Estimé en attente (pending estimate)"
+
+msgid "Private"
+msgstr "Privé"
+
+msgid "Reactivate"
+msgstr "Réactiver"
+
+msgid "Reactivate this task"
+msgstr "Réactiver cette tâche"
+
+msgid "Retract"
+msgstr "Retirer"
+
+msgid "Start working"
+msgstr "Commencer le travail"
+
+msgid "Submit for estimate"
+msgstr "Soumettre pour obtenir un estimé"
+
+msgid "To-do"
+msgstr "À faire"
+
+msgid "Active"
+msgstr "Actif"
+
