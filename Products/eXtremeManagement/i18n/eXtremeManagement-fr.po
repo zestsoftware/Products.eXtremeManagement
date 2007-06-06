@@ -1,5 +1,5 @@
-# ArchGenXML generated POT File
-# ['Ahmad Hadi'] <['a.hadi@zestsoftware.nl']>, 2005.
+# Translation of eXtremeManagement.pot.pot to French
+# Yves Moisan <ymoisan@groupesm.com>, 2007
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
@@ -10,11 +10,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Language-Code: fr\n"
-"Language-Name: Franais\n"
+"Language-Name: Français\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: eXtremeManagement\n"
+"X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 "X-Poedit-Language: French\n"
 
 #. Default: "Send"
