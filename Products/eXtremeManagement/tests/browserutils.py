@@ -14,7 +14,7 @@ def login(browser, portal, username):
 def _submitChecks(browser, title):
     if title not in browser.contents:
         return 'title not in browser.contents'
-    if not browser.url.endswith('Changes%20saved.'):
+    if 'Changes saved.' not in browser.contents:
         return 'Changes on edit form not saved.'
 
 
