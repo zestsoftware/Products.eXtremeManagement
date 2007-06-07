@@ -15,11 +15,10 @@
   <element value="ProjectMember"/>
  </property>
  <property name="allow_discussion">False</property>
+ <alias from="(Default)" to="base_view"/>
  <alias from="edit" to="base_edit"/>
- <action title="View" action_id="view" category="object" condition_expr=""
-    url_expr="string:${object_url}/base_view" visible="True">
-  <permission value="View"/>
- </action>
+ <alias from="properties" to="base_metadata"/>
+ <alias from="view" to="base_view"/>
  <action title="Edit" action_id="edit" category="object" condition_expr=""
     url_expr="string:${object_url}/base_edit" visible="True">
   <permission value="Modify portal content"/>
