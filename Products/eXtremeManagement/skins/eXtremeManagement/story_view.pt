@@ -1,18 +1,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
       lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
       i18n:domain="eXtremeManagement">
 
-  <metal:block use-macro="context/global_defines/macros/defines" />
-  
   <body>
-    <metal:block metal:define-macro="body"
-                 tal:define="view context/@@story;
-                             story view/main;
-                             tasklist view/tasks;
-                             items tasklist/tasks;
-                             totals tasklist/totals;
-                             next story/next;
-                             prev story/prev;">
+  <div metal:fill-slot="main">
+    <div metal:define-macro="body"
+         tal:define="view context/@@story;
+                     story view/main;
+                     tasklist view/tasks;
+                     items tasklist/tasks;
+                     totals tasklist/totals;
+                     next story/next;
+                     prev story/prev;">
 
       <metal:prevnext define-macro="previous_next">
         <div class="listingBar" tal:condition="python: next or prev">
@@ -144,8 +144,9 @@
       </p>
       <br />
       </metal:define>
-    </metal:block>
+    </div>
 
     <metal:block metal:define-macro="folderlisting" />
+  </div>
   </body>
 </html>

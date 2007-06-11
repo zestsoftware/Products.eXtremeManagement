@@ -1,11 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
       lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
       i18n:domain="eXtremeManagement">
-  <metal:block use-macro="context/global_defines/macros/defines" />
 
   <body>
-    <metal:block
-        metal:define-macro="body"
+  <div metal:fill-slot="main">
+    <div metal:define-macro="body"
         tal:define="view context/@@project;
                     main view/main;
                     finished_iterations view/finished_iterations;
@@ -170,9 +170,9 @@
         </dd>
       </dl>
 
-    </metal:block>
+    </div>
 
     <metal:block metal:define-macro="folderlisting" />
-
+  </div>
   </body>
 </html>

@@ -1,11 +1,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
       lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
       i18n:domain="eXtremeManagement">
-  <metal:block use-macro="context/global_defines/macros/defines" />
 
   <body>
 
-    <metal:body metal:define-macro="body" 
+  <div metal:fill-slot="main">
+    <div metal:define-macro="body"
                  tal:define="view context/@@iteration;
                              iteration view/main;
                              stories view/stories;">
@@ -203,9 +204,9 @@
          i18n:translate="no_stories_published">
         No stories published yet!
       </p>
-    </metal:body>
+    </div>
 
     <metal:block metal:define-macro="folderlisting" />
-
+  </div>
   </body>
 </html>
