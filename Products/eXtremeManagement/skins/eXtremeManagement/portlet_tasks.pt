@@ -10,6 +10,7 @@
          tal:condition="not:isAnon">
 
         <dt class="portletHeader" >
+          <span class="portletTopLeft"></span>
             <!-- Make the header a link for Managers. -->
             <a tal:condition="python: mtool.checkPermission('Manage Portal', here)"  
                tal:attributes="href
@@ -17,9 +18,12 @@
                <tal:admin-manager i18n:translate="project_administration">
                   Project administration</tal:admin-manager>
             </a>
-            <tal:admin-no-manager tal:condition="python: not mtool.checkPermission('Manage Portal', here)"  
-                  i18n:translate="project_administration">
-                Project administration</tal:admin-no-manager>
+            <tal:admin-no-manager
+                tal:condition="python: not mtool.checkPermission('Manage Portal', here)"  
+                i18n:translate="project_administration">
+              Project administration
+            </tal:admin-no-manager>
+            <span class="portletTopRight"></span>
         </dt>
     
         <dd class="portletItem odd">
@@ -57,7 +61,10 @@
                 Time registration
             </a> 
         </dd>
-
+        <dd class="portletFooter">
+          <span class="portletBottomLeft"></span>
+          <span class="portletBottomRight"></span>
+        </dd>
      </dl>
     </div>
     </body>

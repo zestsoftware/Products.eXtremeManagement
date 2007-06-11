@@ -12,7 +12,9 @@
         <dl class="portlet" id="portlet-my-projects">
             <dt class="portletHeader"
                 i18n:translate="box_my_projects">
+              <span class="portletTopLeft"></span>
                 My Projects
+              <span class="portletTopRight"></span>
             </dt>
             <tal:block tal:repeat="item results">
             <dd tal:define="oddrow repeat/item/odd;
@@ -30,6 +32,10 @@
               </div>
             </dd>
             </tal:block>
+            <dd class="portletFooter">
+              <span class="portletBottomLeft"></span>
+              <span class="portletBottomRight"></span>
+            </dd>
         </dl>
     </div>
     </body>

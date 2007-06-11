@@ -13,7 +13,9 @@
         <dl class="portlet" id="portlet-stories">
             <dt class="portletHeader"
                 i18n:translate="box_stories">
+              <span class="portletTopLeft"></span>
                 Pending Stories
+              <span class="portletTopRight"></span>
             </dt>
             <tal:block tal:repeat="obj results">
             <dd tal:define="oddrow repeat/obj/odd;
@@ -37,6 +39,10 @@
                         tal:content="python:toLocalizedTime(obj.Date)" />
             </dd>
             </tal:block>
+            <dd class="portletFooter">
+              <span class="portletBottomLeft"></span>
+              <span class="portletBottomRight"></span>
+            </dd>
         </dl>
     </div>
     </body>
