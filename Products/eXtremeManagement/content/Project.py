@@ -42,23 +42,10 @@ class Project(OrderedBaseFolder):
     # This name appears in the 'add' box
     archetype_name = 'Project'
     portal_type = meta_type = 'Project'
-    allowed_content_types = ['Iteration', 'Story', 'Folder', 'PoiTracker']
-    filter_content_types = 1
-    global_allow = 0
-    content_icon = 'project_icon.gif'
-    immediate_view = 'base_view'
-    default_view = 'base_view'
-    suppl_views = ()
     typeDescription = "Project"
     typeDescMsgId = 'description_edit_project'
     _at_rename_after_creation = True
     schema = Project_schema
-
-    actions =  ({'id'          : 'local_roles',
-                 'name'        : 'Projectteam',
-                 'action'      : 'string:${object_url}/folder_localrole_form',
-                 'permissions' : (ManageProperties,),},
-    )
 
     security.declarePublic('getProject')
     def getProject(self):

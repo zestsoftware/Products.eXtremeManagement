@@ -49,16 +49,8 @@ class Story(OrderedBaseFolder):
     # This name appears in the 'add' box
     archetype_name = 'Story'
     portal_type = meta_type = 'Story'
-    allowed_content_types = ['Task']
-    filter_content_types = 1
-    global_allow = 0
-    content_icon = 'story_icon.gif'
-    immediate_view = 'base_view'
-    default_view = 'base_view'
-    suppl_views = ()
     typeDescription = "Story"
     typeDescMsgId = 'description_edit_story'
-    allow_discussion = True
     _at_rename_after_creation = True
     schema = Story_schema
 

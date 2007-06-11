@@ -105,25 +105,10 @@ class Customer(OrderedBaseFolder):
     implements(IXMCustomer)
     archetype_name = 'Customer'
     portal_type = meta_type = 'Customer'
-    allowed_content_types = ['ProjectMember']
-    filter_content_types = 1
-    global_allow = 0
-    content_icon = 'group_icon.gif'
-    immediate_view = 'base_view'
-    default_view = 'base_view'
-    suppl_views = ()
     typeDescription = "Customer"
     typeDescMsgId = 'description_edit_customer'
     _at_rename_after_creation = True
     schema = Customer_schema
-
-    actions =  ({'action': "string:${object_url}/folder_localrole_form",
-                 'category': "object",
-                 'id': 'local_roles',
-                 'name': 'Sharing',
-                 'permissions': ("View",),
-                 'condition': 'python:1'},
-    )
 
     # Methods from Interface IXMCustomer
     security.declarePublic('getName')

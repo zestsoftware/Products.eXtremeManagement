@@ -54,13 +54,6 @@ class ProjectMember(BaseContent):
     # This name appears in the 'add' box
     archetype_name = 'Project Member'
     portal_type = meta_type = 'ProjectMember'
-    allowed_content_types = []
-    filter_content_types = 0
-    global_allow = 0
-    content_icon = 'user.gif'
-    immediate_view = 'base_view'
-    default_view = 'base_view'
-    suppl_views = ()
     typeDescription = "ProjectMember"
     typeDescMsgId = 'description_edit_projectmember'
     _at_rename_after_creation = True

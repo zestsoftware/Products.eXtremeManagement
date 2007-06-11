@@ -70,23 +70,10 @@ class Booking(BaseContent):
     # This name appears in the 'add' box
     archetype_name = 'Booking'
     portal_type = meta_type = 'Booking'
-    allowed_content_types = []
-    filter_content_types = 0
-    global_allow = 0
-    immediate_view = 'base_view'
-    default_view = 'base_view'
-    suppl_views = ()
     typeDescription = "Booking"
     typeDescMsgId = 'description_edit_booking'
     _at_rename_after_creation = True
     schema = Booking_schema
-
-    actions=  ({'action':      '''string:${object_url}/../base_view''',
-                'category':    '''object''',
-                'id':          'view',
-                'name':        'view',
-                'permissions': ('''View''',)},
-              )
 
     # This looks like a nice and simple version of a ComputedField
     @property

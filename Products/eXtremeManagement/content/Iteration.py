@@ -52,13 +52,6 @@ class Iteration(OrderedBaseFolder):
     # This name appears in the 'add' box
     archetype_name = 'Iteration'
     portal_type = meta_type = 'Iteration'
-    allowed_content_types = ['Story']
-    filter_content_types = 1
-    global_allow = 0
-    content_icon = 'iteration_icon.gif'
-    immediate_view = 'base_view'
-    default_view = 'base_view'
-    suppl_views = ()
     typeDescription = "Iteration"
     typeDescMsgId = 'description_edit_iteration'
     _at_rename_after_creation = True

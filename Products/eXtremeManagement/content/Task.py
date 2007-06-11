@@ -80,16 +80,8 @@ class Task(BaseFolder):
     # This name appears in the 'add' box
     archetype_name = 'Task'
     portal_type = meta_type = 'Task'
-    allowed_content_types = ['Booking']
-    filter_content_types = 1
-    global_allow = 0
-    content_icon = 'task_icon.gif'
-    immediate_view = 'base_view'
-    default_view = 'base_view'
-    suppl_views = ()
     typeDescription = "Task"
     typeDescMsgId = 'description_edit_task'
-    allow_discussion = True
     _at_rename_after_creation = True
     schema = Task_schema
     log = logging.getLogger("eXtremeManagement Task")
