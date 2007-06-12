@@ -106,7 +106,9 @@
  <transition transition_id="activate" title="activate"
              new_state="to-do" trigger="USER"
              before_script="" after_script="">
-  <action url="" category="workflow">activate</action>
+  <action
+      url="%(content_url)s/content_status_modify?workflow_action=activate"
+      category="workflow">activate</action>
   <guard>
    <guard-role>Manager</guard-role>
    <guard-role>Employee</guard-role>
@@ -117,7 +119,9 @@
              title="Mark as completed" new_state="completed"
              trigger="USER" before_script="notify_completed"
              after_script="tryToCompleteStory">
-  <action url="" category="workflow">Mark as completed</action>
+  <action
+      url="%(content_url)s/content_status_modify?workflow_action=complete"
+      category="workflow">Mark as completed</action>
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
@@ -126,7 +130,9 @@
  <transition transition_id="deactivate" title="deactivate"
              new_state="open" trigger="USER"
              before_script="" after_script="">
-  <action url="" category="workflow">deactivate</action>
+  <action
+      url="%(content_url)s/content_status_modify?workflow_action=deactivate"
+      category="workflow">deactivate</action>
   <guard>
    <guard-role>Manager</guard-role>
   </guard>
@@ -134,7 +140,9 @@
  <transition transition_id="reactivate"
              title="Reactivate this task" new_state="to-do"
              trigger="USER" before_script="" after_script="">
-  <action url="" category="workflow">Reactivate this task</action>
+  <action
+      url="%(content_url)s/content_status_modify?workflow_action=reactivate"
+      category="workflow">Reactivate this task</action>
   <guard>
    <guard-role>Manager</guard-role>
    <guard-role>Employee</guard-role>

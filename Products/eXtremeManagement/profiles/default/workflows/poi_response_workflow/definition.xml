@@ -65,7 +65,9 @@
              new_state="published" trigger="USER"
              before_script=""
              after_script="sendResponseEmail">
-  <action url="" category="workflow">Post response on save</action>
+  <action
+      url="%(content_url)s/content_status_modify?workflow_action=post"
+      category="workflow">Post response on save</action>
   <guard>
    <guard-expression>here/isValid</guard-expression>
   </guard>

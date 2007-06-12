@@ -79,5 +79,6 @@ def addBooking(browser, container, title, hours=None, minutes=None):
 def transition(browser, object, transition):
     browser.open(object.absolute_url())
     browser.getLink(transition).click()
-    if "Your content's status has been modified." not in browser.contents:
+    if "Your content's status has been modified." not in browser.contents and \
+       "<dd>Item state changed.</dd>" not in browser.contents:
         return 'Transition failed.'

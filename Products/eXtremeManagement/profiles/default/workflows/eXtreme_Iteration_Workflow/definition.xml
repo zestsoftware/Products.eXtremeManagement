@@ -129,7 +129,9 @@
  <transition transition_id="complete" title="Finish"
              new_state="completed" trigger="USER"
              before_script="" after_script="">
-  <action url="" category="workflow">Finish</action>
+  <action
+      url="%(content_url)s/content_status_modify?workflow_action=finish"
+      category="workflow">Finish</action>
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
@@ -139,7 +141,9 @@
  <transition transition_id="invoice" title="Invoice"
              new_state="invoiced" trigger="USER"
              before_script="" after_script="">
-  <action url="" category="workflow">Invoice</action>
+  <action
+      url="%(content_url)s/content_status_modify?workflow_action=invoice"
+      category="workflow">Invoice</action>
   <guard>
    <guard-role>Manager</guard-role>
   </guard>
@@ -147,7 +151,9 @@
  <transition transition_id="reactivate" title="Reactivate"
              new_state="in-progress" trigger="USER"
              before_script="" after_script="">
-  <action url="" category="workflow">Reactivate</action>
+  <action
+      url="%(content_url)s/content_status_modify?workflow_action=reactivate"
+      category="workflow">Reactivate</action>
   <guard>
    <guard-role>Manager</guard-role>
   </guard>
@@ -155,7 +161,9 @@
  <transition transition_id="retract" title="Retract"
              new_state="new" trigger="USER" before_script=""
              after_script="">
-  <action url="" category="workflow">Retract</action>
+  <action
+      url="%(content_url)s/content_status_modify?workflow_action=retract"
+      category="workflow">Retract</action>
   <guard>
    <guard-role>Manager</guard-role>
   </guard>
@@ -163,7 +171,9 @@
  <transition transition_id="start" title="Start working"
              new_state="in-progress" trigger="USER"
              before_script="" after_script="startIteration">
-  <action url="" category="workflow">Start working</action>
+  <action
+      url="%(content_url)s/content_status_modify?workflow_action=start"
+      category="workflow">Start working</action>
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>

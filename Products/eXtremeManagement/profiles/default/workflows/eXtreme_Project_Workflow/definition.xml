@@ -160,7 +160,9 @@
  <transition transition_id="activate" title="Activate"
              new_state="active" trigger="USER"
              before_script="" after_script="">
-  <action url="" category="workflow">Activate</action>
+  <action
+      url="%(content_url)s/content_status_modify?workflow_action=activate"
+      category="workflow">Activate</action>
   <guard>
    <guard-role>Owner</guard-role>
    <guard-role>Manager</guard-role>
@@ -169,7 +171,9 @@
  <transition transition_id="close" title="Close"
              new_state="completed" trigger="USER"
              before_script="" after_script="">
-  <action url="" category="workflow">Close</action>
+  <action
+      url="%(content_url)s/content_status_modify?workflow_action=close"
+      category="workflow">Close</action>
   <guard>
    <guard-role>Owner</guard-role>
    <guard-role>Manager</guard-role>
@@ -178,7 +182,9 @@
  <transition transition_id="deactivate" title="Deactivate"
              new_state="private" trigger="USER"
              before_script="" after_script="">
-  <action url="" category="workflow">Deactivate</action>
+  <action
+      url="%(content_url)s/content_status_modify?workflow_action=deactivate"
+      category="workflow">Deactivate</action>
   <guard>
    <guard-role>Owner</guard-role>
    <guard-role>Manager</guard-role>
@@ -187,7 +193,9 @@
  <transition transition_id="reactivate" title="Reactivate"
              new_state="active" trigger="USER"
              before_script="" after_script="">
-  <action url="" category="workflow">Reactivate</action>
+  <action
+      url="%(content_url)s/content_status_modify?workflow_action=reactivate"
+      category="workflow">Reactivate</action>
   <guard>
    <guard-role>Owner</guard-role>
    <guard-role>Manager</guard-role>
