@@ -36,7 +36,7 @@
                 </a>
     
                 <div class="portletItemDetails"
-                        tal:content="python:toLocalizedTime(obj.Date)" />
+                     tal:content="python:context.restrictedTraverse('@@plone').toLocalizedTime(obj.Date)" />
             </dd>
             </tal:block>
             <dd class="portletFooter">
