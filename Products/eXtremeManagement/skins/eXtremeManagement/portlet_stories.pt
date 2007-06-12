@@ -35,7 +35,7 @@
                     </span>
                 </a>
     
-                <div class="portletDetails"
+                <div class="portletItemDetails"
                         tal:content="python:toLocalizedTime(obj.Date)" />
             </dd>
             </tal:block>
