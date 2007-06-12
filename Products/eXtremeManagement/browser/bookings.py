@@ -251,6 +251,41 @@ class BookingOverview(BookingsDetailedView):
                 break
 
 
+class WeekBookingOverview(BookingsDetailedView):
+    """View an overview of Bookings.
+    """
+
+    def update(self):
+        context = aq_inner(self.context)
+        request = self.request
+        weeklist = []
+        # Start at first day of the week (Sunday=0)
+        date = self.startDate - self.startDate.dow()
+        # Assemble info for at most one month:
+        while date.month() <= self.month and date.year() <= self.year:
+            weekinfo = dict(
+                week_number = date.week(),
+                week_start = context.restrictedTraverse('@@plone').toLocalizedTime(date),
+                )
+            # Start the week cleanly
+            day = 0
+            daylist = []
+            raw_total = 0.0
+            while day < 7:
+                opts = dict(date=date, memberid=self.memberid)
+                days_bookings = DayBookingOverview(context, request, **opts)
+                daylist.append(dict(total=days_bookings.total, day_of_week=date.DayOfWeek()))
+                raw_total += days_bookings.raw_total
+                day += 1
+                date += 1
+            # Add the info to the dict for this week
+            weekinfo['days'] = daylist
+            weekinfo['week_total'] = self.xt.formatTime(raw_total)
+            self.bookinglist.append(weekinfo)
+            # update month total
+            self.raw_total += raw_total
+
+
 class YearBookingOverview(BrowserView):
 
     months_list = []

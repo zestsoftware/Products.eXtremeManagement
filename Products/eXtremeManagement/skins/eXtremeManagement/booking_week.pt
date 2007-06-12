@@ -39,10 +39,10 @@
          </tal:othermonths>
 
         <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
-                               view context/@@monthbookings;
+                               view context/@@weekbookings;
                                main view/main;
-                               bookings view/bookinglist;"
-                   tal:condition="bookings">
+                               weeks view/bookinglist;"
+                   tal:condition="weeks">
           <metal:month metal:define-macro="month_booking_summary">
           <h2>
             Bookings for the month
@@ -53,35 +53,43 @@
                  class="listing" 
                  with="100%">
             <tr>
-              <th i18n:translate="listingheader-day-of-week">
-                Day
+              <th i18n:translate="listingheader-week-number">
+                Week number
               </th>
-              <th i18n:translate="listingheader-date">
-                Date
+              <th i18n:translate="listingheader-start-of-week">
+                Start
               </th>
-              <th i18n:translate="listingheader-time">
-                Time
+              <th>Sunday</th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+              <th>Saturday</th>
+              <th i18n:translate="listingheader-total">
+                Total
               </th>
             </tr>
             
-            <tr tal:repeat="booking bookings">
-              <tal:block tal:define="date python:booking[0];
-                                     time python:booking[1];
-                                     day_of_week python:booking[2];">
-                <td tal:content="day_of_week">
-                  Monday
-                </td>
-                <td tal:content="python:context.restrictedTraverse('@@plone').toLocalizedTime(date)">
-                  2006-01-25
-                </td>
-                <td tal:content="time">
+            <tr tal:repeat="week weeks">
+              <td tal:content="week/week_number">
+                42
+              </td>
+              <td tal:content="week/week_start">
+                2007-06-10
+              </td>
+              <tal:days repeat="day week/days">
+                <td tal:content="day/total">
                   4:45
                 </td>
-              </tal:block>
+              </tal:days>
+              <td tal:content="week/week_total">
+                2007-06-10
+              </td>
             </tr>
             <tr>
               <th i18n:translate="listingheader-total"
-                  colspan="2">
+                  colspan="9">
                 Total
               </th>
               <th tal:content="main/total" />

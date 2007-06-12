@@ -41,6 +41,14 @@
       />
 
   <page
+      name="weekbookings"
+      class=".bookings.WeekBookingOverview"
+      for="*"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IBookingOverview"
+      />
+
+  <page
       name="yearbookings"
       class=".bookings.YearBookingOverview"
       for="*"
