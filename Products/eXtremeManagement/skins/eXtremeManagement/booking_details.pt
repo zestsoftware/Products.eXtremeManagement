@@ -55,6 +55,7 @@
 	  
 	  <tr tal:repeat="booking bookings">
 	    <td>
+	      <span tal:content="booking/day_of_week" />
 	      <span tal:content="booking/booking_date" />
 	      <br />
 	      <span class="discreet"

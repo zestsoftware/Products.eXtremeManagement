@@ -212,6 +212,7 @@ class BookingsDetailedView(BrowserView):
 
         returnvalue = dict(
             booking_date = context.restrictedTraverse('@@plone').toLocalizedTime(bookingbrain.getBookingDate),
+            day_of_week = bookingbrain.getBookingDate.DayOfWeek(),
             project_title = project_title,
             task_url = taskbrain.getURL(),
             task_title = taskbrain.Title,
