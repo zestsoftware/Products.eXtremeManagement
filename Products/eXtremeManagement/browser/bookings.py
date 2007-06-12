@@ -239,7 +239,7 @@ class BookingOverview(BookingsDetailedView):
             opts = dict(date=date, memberid=self.memberid)
             days_bookings = DayBookingOverview(context, request, **opts)
             if days_bookings.raw_total > 0:
-                self.bookinglist.append((date, days_bookings.total))
+                self.bookinglist.append((date, days_bookings.total, date.DayOfWeek()))
                 self.raw_total += days_bookings.raw_total
             day += 1
             try:

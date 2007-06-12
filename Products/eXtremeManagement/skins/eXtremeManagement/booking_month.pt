@@ -53,6 +53,9 @@
                  class="listing" 
                  with="100%">
             <tr>
+              <th i18n:translate="listingheader-day-of-week">
+                Day
+              </th>
               <th i18n:translate="listingheader-date">
                 Date
               </th>
@@ -63,7 +66,11 @@
             
             <tr tal:repeat="booking bookings">
               <tal:block tal:define="date python:booking[0];
-                                     time python:booking[1];">
+                                     time python:booking[1];
+                                     day_of_week python:booking[2];">
+                <td tal:content="day_of_week">
+                  Monday
+                </td>
                 <td tal:content="python:context.restrictedTraverse('@@plone').toLocalizedTime(date)">
                   2006-01-25
                 </td>
@@ -73,7 +80,8 @@
               </tal:block>
             </tr>
             <tr>
-              <th i18n:translate="listingheader-total">
+              <th i18n:translate="listingheader-total"
+                  colspan="2">
                 Total
               </th>
               <th tal:content="main/total" />
