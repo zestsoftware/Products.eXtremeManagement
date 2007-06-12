@@ -1,0 +1,95 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      i18n:domain="eXtremeManagement"
+      metal:use-macro="here/main_template/macros/master">
+
+    <head>
+        <metal:block fill-slot="top_slot"
+                     tal:define="dummy python:request.set('disable_border', 1)" />
+    </head>
+
+    <body>
+
+    <tal:main metal:fill-slot="main">
+
+      <h1 i18n:translate="heading-bookings-per-day">Bookings per day</h1>
+         <p>
+           <span i18n:translate="go_to_overview">
+           Go to overview of
+           </span> <a
+           tal:attributes="href string:booking_year"
+           i18n:translate="last_12_months">last 12 months</a>.
+         </p>
+         <tal:othermonths
+             tal:define="contextlink string:${here/absolute_url}/${template/id}">
+            <p tal:condition="not:request/previous|nothing">
+              <tal:goto i18n:translate="go_to">
+                Go to
+              </tal:goto> <a
+                tal:attributes="href string:${contextlink}?previous=1"
+                i18n:translate="previous-month">previous month</a>.
+            </p>
+            <p tal:condition="request/previous|nothing">
+              <tal:back i18n:translate="back_to">
+                Back to
+              </tal:back> <a
+              tal:attributes="href string:${contextlink}"
+              i18n:translate="current-month">current month</a>.
+            </p>
+         </tal:othermonths>
+
+        <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
+                               view context/@@monthbookings;
+                               main view/main;
+                               bookings view/bookinglist;"
+                   tal:condition="bookings">
+          <metal:month metal:define-macro="month_booking_summary">
+          <h2>
+            Bookings for the month
+            <tal:month tal:replace="main/month" /> / <tal:year tal:replace="main/year" />
+          </h2>
+          
+          <table border="1" 
+                 class="listing" 
+                 with="100%">
+            <tr>
+              <th i18n:translate="listingheader-day-of-week">
+                Day
+              </th>
+              <th i18n:translate="listingheader-date">
+                Date
+              </th>
+              <th i18n:translate="listingheader-time">
+                Time
+              </th>
+            </tr>
+            
+            <tr tal:repeat="booking bookings">
+              <tal:block tal:define="date python:booking[0];
+                                     time python:booking[1];
+                                     day_of_week python:booking[2];">
+                <td tal:content="day_of_week">
+                  Monday
+                </td>
+                <td tal:content="python:context.restrictedTraverse('@@plone').toLocalizedTime(date)">
+                  2006-01-25
+                </td>
+                <td tal:content="time">
+                  4:45
+                </td>
+              </tal:block>
+            </tr>
+            <tr>
+              <th i18n:translate="listingheader-total"
+                  colspan="2">
+                Total
+              </th>
+              <th tal:content="main/total" />
+            </tr>
+          </table>
+          </metal:month>
+        </tal:block>
+    </tal:main>
+    </body>
+</html>
+
