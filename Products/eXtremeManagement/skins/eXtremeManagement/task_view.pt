@@ -75,6 +75,9 @@
                    class="listing" 
                    with="100%">
                 <tr>
+                    <th i18n:translate="listingheader-day-of-week">
+                      Day
+                    </th>
                     <th i18n:translate="listingheader-bookingdate">
                         Date
                     </th>
@@ -93,6 +96,9 @@
                 </tr>
             
                 <tr tal:repeat="booking bookings">
+                    <td tal:content="booking/day_of_week">
+                        Monday
+                    </td>
                     <td tal:content="booking/date">
                         2006-01-01
                     </td>
