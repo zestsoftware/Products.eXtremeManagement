@@ -9,6 +9,7 @@
     <div metal:define-macro="body"
                  tal:define="view context/@@iteration;
                              iteration view/main;
+                             iteration_number string:1;
                              stories view/stories;">
       
       <div class="documentDescription"
@@ -59,11 +60,11 @@
             
             <tal:repeat repeat="story stories">
             <tr tal:define="number repeat/story/number"
-                tal:attributes="id string:toggle-header-${number}"
+                tal:attributes="id string:toggle-header-${iteration_number}-${number}"
                 class="list-in-iteration">
               <td class="td-story-title">
                   <div>
-                    <a tal:attributes="href string:javascript:toggle_item(${number})"
+                    <a tal:attributes="href string:javascript:toggle_item('${iteration_number}-${number}')"
                        class="toggle-handle">[ &darr; ]</a>&nbsp;
                     <a class="storyTitle_iteration_overview"
                        tal:attributes="href string:${story/url}"
@@ -109,12 +110,12 @@
               <td tal:content="story/actual" />
             </tr>
             <tr tal:define="number repeat/story/number"
-                tal:attributes="id string:toggle-item-${number}"
+                tal:attributes="id string:toggle-item-${iteration_number}-${number}"
                 style="display:none"
                 class="toggle-item">
               <td colspan="4">
                   <div>
-                    <a tal:attributes="href string:javascript:toggle_item(${number})"
+                    <a tal:attributes="href string:javascript:toggle_item('${iteration_number}-${number}')"
                        class="toggle-handle">[ &uarr; ]</a>&nbsp;
                     <tal:details content="structure story/details">
                       Details

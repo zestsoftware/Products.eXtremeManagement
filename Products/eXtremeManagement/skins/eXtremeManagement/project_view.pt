@@ -26,6 +26,7 @@
             <tal:stories
                 tal:define="iteration_view obj/@@iteration;
                             main iteration_view/main;
+                            iteration_number repeat/curIteration/number;
                             stories iteration_view/stories;
                             show_task_count python:True;
                             show_progress python:True;
