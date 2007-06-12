@@ -17,9 +17,6 @@
     <metal:block metal:define-macro="header"
                  tal:define="view context/@@booking;
                              booking view/main">
-      <div metal:use-macro="here/document_actions/macros/document_actions">
-        Document actions (print, sendto etc)
-      </div>
        <h1 tal:content="booking/title" class="documentFirstHeading" />
        <div class="documentDescription"
             tal:condition="booking/description"
