@@ -62,7 +62,7 @@ class TaskView(XMBaseView):
         context = aq_inner(self.context)
         returnvalue = dict(
             date = context.restrictedTraverse('@@plone').toLocalizedTime(brain.getBookingDate),
-            day_of_week = brain.getBookingDate.DayOfWeek(),
+            day_of_week = brain.getBookingDate.Day(),
             # base_view of a booking gets redirected to the task view,
             # which we do not want here.
             url = brain.getURL() + '/base_edit',

@@ -212,7 +212,7 @@ class BookingsDetailedView(BrowserView):
 
         returnvalue = dict(
             booking_date = context.restrictedTraverse('@@plone').toLocalizedTime(bookingbrain.getBookingDate),
-            day_of_week = bookingbrain.getBookingDate.DayOfWeek(),
+            day_of_week = bookingbrain.getBookingDate.Day(),
             project_title = project_title,
             task_url = taskbrain.getURL(),
             task_title = taskbrain.Title,
@@ -240,7 +240,7 @@ class BookingOverview(BookingsDetailedView):
             opts = dict(date=date, memberid=self.memberid)
             days_bookings = DayBookingOverview(context, request, **opts)
             if days_bookings.raw_total > 0:
-                self.bookinglist.append((date, days_bookings.total, date.DayOfWeek()))
+                self.bookinglist.append((date, days_bookings.total, date.Day()))
                 self.raw_total += days_bookings.raw_total
             day += 1
             try:
@@ -274,7 +274,7 @@ class WeekBookingOverview(BookingsDetailedView):
             while day < 7:
                 opts = dict(date=date, memberid=self.memberid)
                 days_bookings = DayBookingOverview(context, request, **opts)
-                daylist.append(dict(total=days_bookings.total, day_of_week=date.DayOfWeek()))
+                daylist.append(dict(total=days_bookings.total, day_of_week=date.Day()))
                 raw_total += days_bookings.raw_total
                 day += 1
                 date += 1
