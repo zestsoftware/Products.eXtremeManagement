@@ -28,7 +28,7 @@
                           bookings month_info/bookings;"
               tal:condition="bookings">
 
-            <metal:month metal:use-macro="here/booking_month/macros/month_booking_summary" />
+            <metal:month metal:use-macro="here/booking_week/macros/month_booking_summary" />
 
           </tal:one_month>
         </tal:months>

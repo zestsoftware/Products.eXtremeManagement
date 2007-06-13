@@ -41,8 +41,8 @@
         <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
                                view context/@@weekbookings;
                                main view/main;
-                               weeks view/bookinglist;"
-                   tal:condition="weeks">
+                               bookings view/bookinglist;"
+                   tal:condition="bookings">
           <metal:month metal:define-macro="month_booking_summary">
           <h2>
             Bookings for the month
@@ -71,7 +71,7 @@
               </th>
             </tr>
             
-            <tr tal:repeat="week weeks">
+            <tr tal:repeat="week bookings">
               <td tal:content="week/week_number">
                 42
               </td>
