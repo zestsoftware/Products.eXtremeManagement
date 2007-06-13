@@ -259,8 +259,9 @@ class WeekBookingOverview(BookingsDetailedView):
         context = aq_inner(self.context)
         request = self.request
         weeklist = []
-        # Start at first day of the week (Sunday=0)
-        date = self.startDate - self.startDate.dow()
+        # Start at first day of the week
+        # With the DateTime.week() method Monday is considered the first day.
+        date = self.startDate - self.startDate.dow() + 1
         # Assemble info for at most one month:
         while date.month() <= self.month and date.year() <= self.year:
             weekinfo = dict(
@@ -274,7 +275,10 @@ class WeekBookingOverview(BookingsDetailedView):
             while day < 7:
                 opts = dict(date=date, memberid=self.memberid)
                 days_bookings = DayBookingOverview(context, request, **opts)
-                daylist.append(dict(total=days_bookings.total, day_of_week=date.Day()))
+                if days_bookings.raw_total > 0:
+                    daylist.append(dict(total=days_bookings.total, day_of_week=date.Day()))
+                else:
+                    daylist.append(dict(total=None, day_of_week=date.Day()))
                 raw_total += days_bookings.raw_total
                 day += 1
                 date += 1

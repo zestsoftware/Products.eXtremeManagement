@@ -59,13 +59,13 @@
               <th i18n:translate="listingheader-start-of-week">
                 Start
               </th>
-              <th>Sunday</th>
               <th>Monday</th>
               <th>Tuesday</th>
               <th>Wednesday</th>
               <th>Thursday</th>
               <th>Friday</th>
               <th>Saturday</th>
+              <th>Sunday</th>
               <th i18n:translate="listingheader-total">
                 Total
               </th>
@@ -79,8 +79,13 @@
                 2007-06-10
               </td>
               <tal:days repeat="day week/days">
-                <td tal:content="day/total">
+                <td tal:content="day/total"
+                    tal:condition="day/total">
                   4:45
+                </td>
+                <td tal:content="day/total"
+                    tal:condition="not:day/total">
+                  &nbsp;
                 </td>
               </tal:days>
               <td tal:content="week/week_total">
