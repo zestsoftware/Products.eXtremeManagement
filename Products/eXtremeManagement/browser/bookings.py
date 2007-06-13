@@ -329,7 +329,7 @@ class YearBookingOverview(BrowserView):
         for dmonth in range(12):
             year, month = getPrevYearMonth(year, month)
             opts = dict(year=year, month=month)
-            bookview = BookingOverview(context, request, **opts)
+            bookview = WeekBookingOverview(context, request, **opts)
             main = bookview.main()
             month_info = dict(
                 main = main,
