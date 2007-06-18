@@ -12,19 +12,20 @@
                      num_tasks python:len(tasks);
                      pos context/getObjPositionInParent;
                      next python:pos &lt; num_tasks-1 and tasks[pos+1];
-                     prev python:pos != 0 and tasks[pos-1];">
+                     prev python:pos != 0 and tasks[pos-1];
+                     startable context/startable">
 
       <metal:prevnext use-macro="context/story_view/macros/previous_next" />
 
-        <div class="documentDescription"
-             tal:condition="task/description"
-             tal:content="task/description">
-            description
-        </div>
-        <div metal:define-slot="after-description" />
-        <div tal:replace="structure task/cooked_body" />
+      <div class="xm-details">
+        <dl tal:condition="not:startable" class="not-startable">
+          <dt>Cannot Activate</dt>
+          <dd tal:condition="python:len(context.getAssignees()) == 0">No one has been assigned to this task.</dd>
+          <dd tal:condition="python:context.getHours() == 0 and context.getMinutes() == 0">Need to assign a time estimate to this task.</dd>
+
+        </dl>
+
         <table class="listing"
-                border="1" 
                 width="100%"
                 cellpadding="0" 
                 cellspacing="0">
@@ -57,27 +58,34 @@
                     Assignee(s)
                 </th>
                 <td>
-                    <tal:block
-                          tal:repeat="item task/assignees">
-                        <img tal:replace="structure context/user.gif" />
-                        <span tal:replace="item">Assignee</span>
-                        <br />
-                    </tal:block>
+                    <ul class="xm-assignees">
+                        <li tal:repeat="item task/assignees"><span tal:replace="item/niceName">Assignee</span></li>
+                    </ul>
                 </td>
             </tr>
         </table>
 
+        <div class="visualClear"><!-- --></div>
+      </div>
+
+        <div class="documentDescription"
+             tal:condition="task/description"
+             tal:content="task/description">
+            description
+        </div>
+        <div metal:define-slot="after-description" />
+        <div tal:replace="structure task/cooked_body" />
+
+        <div id="break-before-bookings" class="visualClear"><!-- --></div>
+
         <tal:block tal:define="bookings view/bookings"
                    tal:condition="bookings">
-            <h1 i18n:translate="heading-bookings">Bookings</h1>
-            
+            <h2 i18n:translate="heading-bookings">Time Bookings</h2>
+
             <table border="1" 
-                   class="listing" 
+                   class="listing xm-bookings" 
                    with="100%">
                 <tr>
-                    <th i18n:translate="listingheader-day-of-week">
-                      Day
-                    </th>
                     <th i18n:translate="listingheader-bookingdate">
                         Date
                     </th>
@@ -94,11 +102,8 @@
                         Billable
                     </th>
                 </tr>
-            
+
                 <tr tal:repeat="booking bookings">
-                    <td tal:content="booking/day_of_week">
-                        Monday
-                    </td>
                     <td tal:content="booking/date">
                         2006-01-01
                     </td>
@@ -110,8 +115,10 @@
                              tal:content="booking/description" />
                     </td>
                     <td tal:content="booking/actual" />
-                    <td tal:content="booking/creator" />
-                    <td tal:content="booking/billable" />
+                    <td>
+                        <img tal:replace="structure context/user.gif" />
+                        <span tal:replace="python:context.poi_niceName(booking['creator'])">Assignee</span>
+                    </td>
                 </tr>
             </table>
         </tal:block>

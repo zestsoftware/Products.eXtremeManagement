@@ -1,3 +1,4 @@
+import datetime
 from Acquisition import aq_inner
 
 from Products.CMFCore.utils import getToolByName
@@ -11,7 +12,14 @@ from Products.eXtremeManagement.timing.interfaces import IEstimate
 class TaskView(XMBaseView):
     """Simply return info about a Task.
     """
- 
+
+    def __init__(self, context, request):
+        super(TaskView, self).__init__(context, request)
+
+        propstool = getToolByName(context, 'portal_properties')
+        self.friendlyDateFormat = \
+            propstool.site_properties.getProperty('friendlyDateFormat', None)
+
     def main(self):
         """Get a dict with info from this Task.
         """
@@ -37,7 +45,10 @@ class TaskView(XMBaseView):
             actual = self.xt.formatTime(actual),
             difference = self.xt.formatTime(estimate - actual),
             review_state = workflow.getInfoFor(context, 'review_state'),
-            assignees = context.getAssignees(),
+            assignees = [{'niceName': context.poi_niceName(username=x),
+                          'username': x,
+                          'active': True}
+                         for x in context.getAssignees()],
             )
         return returnvalue
 
@@ -60,9 +71,22 @@ class TaskView(XMBaseView):
         """Get a dict with info from this booking brain.
         """
         context = aq_inner(self.context)
+
+        realDate = brain.getBookingDate
+
+        ploneview = context.restrictedTraverse('@@plone')
+        date = ploneview.toLocalizedTime(realDate, self.friendlyDateFormat)
+
+        today = datetime.date.today()
+        pyDate = datetime.date(realDate.year(), realDate.month(),
+                               realDate.day())
+        if today == pyDate:
+            date = 'Today (%s)' % date
+        elif (pyDate - today).days == -1:
+            date = 'Yesterday (%s)' % date
+
         returnvalue = dict(
-            date = context.restrictedTraverse('@@plone').toLocalizedTime(brain.getBookingDate),
-            day_of_week = brain.getBookingDate.Day(),
+            date = date,
             # base_view of a booking gets redirected to the task view,
             # which we do not want here.
             url = brain.getURL() + '/base_edit',

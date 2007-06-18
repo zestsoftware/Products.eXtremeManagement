@@ -143,6 +143,10 @@ class IStoryView(IXMBaseView):
         """Return the Tasks of this Story
         """
 
+    def task_titles_not_startable():
+        """Titles of the tasks that cannot be started.
+        """
+
 
 class IIterationView(IXMBaseView):
     """Info about a iteration
@@ -164,6 +168,9 @@ class IIterationView(IXMBaseView):
         """Return my open tasks.
         """
 
+    def story_titles_not_startable():
+        """Titles of the tasks that cannot be started.
+        """
 
 class IEmployeeTotalsView(IBrowserView):
     """Return totals for employees

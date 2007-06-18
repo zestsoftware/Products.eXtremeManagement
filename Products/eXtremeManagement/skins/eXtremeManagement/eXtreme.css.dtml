@@ -200,5 +200,70 @@
     border: 1px solid #8cacbb;
 }
 
+.xm-details {
+    float: right;
+    width: 35%;
+    border: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
+    background-color: &dtml-globalBackgroundColor;;
+    margin-left: 0.5em;
+}
+
+.xm-details DL {
+    margin: 0;
+    padding: 1em;
+    font-size: 0.9em;
+}
+
+.xm-details DT {
+    color: #f66;
+    margin: 0;
+}
+
+.xm-details DD {
+    margin: 0;
+    color: &dtml-discreetColor;;
+    margin: 0;
+    padding: 0 0 0 1em;
+    background: transparent url(&dtml-portal_url;/bullet.gif) no-repeat;
+}
+
+.xm-details TABLE {
+    width: 100%;
+    margin: 0;
+    border: 0;
+    border-top: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
+}
+
+.xm-details TABLE TD {
+    background-color: &dtml-backgroundColor;;
+    border: 0;
+    border-top: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
+}
+
+.xm-details TABLE TH {
+    border: 0;
+    border-right: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
+    border-top: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
+}
+
+.xm-bookings {
+    width: 100%;
+}
+
+UL.xm-assignees {
+    margin: 0;
+    padding: 0;
+}
+
+UL.xm-assignees LI {
+    list-style: none none inside;
+    margin: 0;
+    padding: 0 0 0 1.5em;
+    background: transparent url(&dtml-portal_url;/user.gif) no-repeat;
+}
+
+.hours-per-employee {
+    width: 100%;
+}
 
 /* </dtml-with> */

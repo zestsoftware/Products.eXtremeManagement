@@ -1,3 +1,19 @@
+2007-06-18 - rocky
+
+  - Added UI information to display the reason why a story or task cannot
+    be "activated".
+
+  - Task details table refactored to float to the right along with the
+    new reason-task-cannot-be-activated details.
+
+  - Replaced assignee username information being displayed on the task view
+    with the "nicest" form of the user (ie full name if it exists, otherwise
+    username).
+
+  - Replaced booking "booked by" information being displayed on the task view
+    with the "nicest" form of the user (ie full name if it exists, otherwise
+    username).
+
 2007-05-04 - maurits
 
   * Merge the mergeable parts of branches/1.2-events:

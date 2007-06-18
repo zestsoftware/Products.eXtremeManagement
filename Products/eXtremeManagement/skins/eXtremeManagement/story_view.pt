@@ -46,7 +46,26 @@
                                 story view/main;
                                 tasklist view/tasks;
                                 items tasklist/tasks;
-                                totals tasklist/totals">
+                                totals tasklist/totals;
+                                estimated context/isEstimated;
+                                startable context/startable">
+
+      <div class="xm-details" tal:condition="python:not estimated or not startable">
+        <dl tal:condition="not:estimated" class="needs-estimate">
+          <dt>Needs Estimate</dt>
+          <dd>Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown).</dd>
+        </dl>
+
+        <dl tal:condition="not:startable" class="not-startable"
+            tal:define="tasks_not_startable view/task_titles_not_startable">
+          <dt>Cannot Activate</dt>
+          <dd tal:condition="python:story['review_state'] != 'estimated'">Need to finish estimating this story by selecting 'estimate' from the state dropdown.</dd>
+          <dd tal:condition="not:items">No tasks added yet.  Please add one.</dd>
+          <dd tal:condition="tasks_not_startable">There are tasks which cannot be activated, please see: <span tal:replace="tasks_not_startable"></span>.</dd>
+        </dl>
+        <div class="visualClear"><!-- --></div>
+      </div>
+
       <div class="documentDescription"
            tal:condition="story/description"
            tal:content="story/description">
@@ -62,10 +81,11 @@
         days.
       </p>
 
+      <div id="break-before-task-listing" class="visualClear"><!-- --></div>
+
       <tal:block tal:condition="items"
                  tal:define="show_story python:False;">
-        <h1 class="documentFirstHeading" 
-            i18n:translate="heading_tasks">Tasks</h1>
+        <h2 class="heading-tasks" i18n:translate="heading_tasks">Tasks</h2>
         
         <metal:block metal:define-macro="tasklist_table">
           <table class="listing nosort"

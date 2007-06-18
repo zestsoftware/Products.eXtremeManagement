@@ -12,27 +12,55 @@
                              iteration_number string:1;
                              stories view/stories;">
       
+      <div class="xm-details" tal:condition="not:context/startable">
+        <dl class="not-startable"
+            tal:define="stories_not_startable view/story_titles_not_startable">
+          <dt>Cannot Activate</dt>
+          <dd tal:condition="stories_not_startable">There are stories which cannot be activated, please see: <span tal:replace="stories_not_startable"></span>.</dd>
+        </dl>
+
+      <table class="listing"
+                width="100%"
+                cellpadding="0" 
+                cellspacing="0">
+        <tr>
+          <th class="customer_info_header" 
+              i18n:translate="listingheader_man_uren">Man hours</th>
+          <td>
+            <span tal:condition="iteration/man_hours" 
+                  tal:replace="iteration/man_hours" />
+            <span tal:condition="not:iteration/man_hours"
+                  i18n:translate="man_hours_empty">N/A</span>
+          </td>
+        </tr>
+        <tr>
+          <th class="customer_info_header" 
+              i18n:translate="listingheader_actual">Actual</th>
+          <td tal:content="iteration/actual" />
+        </tr>
+        <tr>
+          <th class="customer_info_header" 
+              i18n:translate="listingheader_startdate">Start date</th>
+          <td tal:content="iteration/start_date" />
+        </tr>
+        <tr>
+          <th class="customer_info_header" 
+              i18n:translate="listingheader_enddate">End date</th>
+          <td tal:content="iteration/end_date" />
+        </tr>
+
+      </table>
+
+      <div class="visualClear"><!-- --></div>
+      </div>
+
       <div class="documentDescription"
            tal:condition="iteration/description"
            tal:content="iteration/description">
         description
       </div>
-      <table class="listing"
-             border="1">
-        <tr class="header_projectmember_listing">
-          <th i18n:translate="listingheader_man_uren">Man hours</th>
-          <th i18n:translate="listingheader_actual">Actual</th>
-          <th i18n:translate="listingheader_startdate">Start date</th>
-          <th i18n:translate="listingheader_enddate">End date</th>
-        </tr>
-        <tr>
-          <td tal:content="iteration/man_hours" />
-          <td tal:content="iteration/actual" />
-          <td tal:content="iteration/start_date" />
-          <td tal:content="iteration/end_date" />
-        </tr>
-      </table>
-      <br />
+
+      <div id="break-before-stories" class="visualClear"><!-- --></div>
 
       <tal:subitems tal:condition="stories"
                  tal:define="show_task_count python:False;
@@ -137,13 +165,12 @@
           </table>
         </metal:stories>
 
-
         <tal:membertasks
             tal:define="membertasks context/@@employee_totals/totals;"
             tal:condition="membertasks">
           <h1 i18n:translate="heading-hours-per-employee">
           Hours per employee</h1>
-          <table class="listing"
+          <table class="listing hours-per-employee"
                  border="1"
                  cellpadding="0"
                  cellspacing="0">

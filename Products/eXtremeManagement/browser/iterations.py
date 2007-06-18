@@ -9,6 +9,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.timing.interfaces import IActualHours
 from Products.eXtremeManagement.timing.interfaces import IEstimate
+from Products.eXtremeManagement.content.Iteration import UNACCEPTABLE_STATUSES \
+     as UNACCEPTABLE_STORY_STATUSES
 
 def _store_on_context(obj, *args, **kwargs):
     KEY = '_v_XM_cache'
@@ -23,7 +25,7 @@ def _render_details_cachekey(obj, storybrain):
         key.write('\n')
         key.write(brain.modified)
         key.write('\n\n')
-    
+
     catalog = getToolByName(obj.context, 'portal_catalog')
     add(storybrain)
     for brain in catalog(portal_type='Task', path=storybrain.getPath()):
@@ -181,3 +183,15 @@ class IterationView(XMBaseView):
         info = story.restrictedTraverse('@@story').main()
         rendered = ImplicitAcquisitionWrapper(self.details_template, story)()
         return degrade_headers(rendered)
+
+    def story_titles_not_startable(self):
+        context = aq_inner(self.context)
+
+        filter = dict(portal_type='Story',
+                      sort_on='getObjPositionInParent')
+        items = context.getFolderContents(filter)
+
+        stories = [x.Title
+                   for x in items
+                   if x.review_state in UNACCEPTABLE_STORY_STATUSES]
+        return ', '.join(stories)

@@ -63,3 +63,9 @@ class StoryView(XMBaseView):
         context = aq_inner(self.context)
         view = context.restrictedTraverse('@@task_details')
         return view.tasklist(sort_by_state=True)
+
+    def task_titles_not_startable(self):
+        tasks = [x.title_or_id()
+                 for x in self.context.getStoryTasks()
+                 if not x.startable()]
+        return ', '.join(tasks)

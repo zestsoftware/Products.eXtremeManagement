@@ -41,6 +41,7 @@ FolderSchema['description'].isMetadata = False
 FolderSchema['description'].schemata = 'default'
 Iteration_schema = FolderSchema + schema
 
+UNACCEPTABLE_STATUSES = ['draft','pending']
 
 class Iteration(OrderedBaseFolder):
     """
@@ -64,13 +65,12 @@ class Iteration(OrderedBaseFolder):
         okay.  Usually that status should be 'estimated', but at least
         it should not be 'draft' or 'pending'.
         """
-        unAcceptableStatuses = ['draft','pending']
         portal = getToolByName(self,'portal_url').getPortalObject()
         wf_tool = getToolByName(portal, 'portal_workflow')
         stories = self.contentValues(filter={'portal_type': 'Story'})
         for story in stories:
             review_state = wf_tool.getInfoFor(story,'review_state')
-            if review_state in unAcceptableStatuses:
+            if review_state in UNACCEPTABLE_STATUSES:
                 return False
         return True
 
