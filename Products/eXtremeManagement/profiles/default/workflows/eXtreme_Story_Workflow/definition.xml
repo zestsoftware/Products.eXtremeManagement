@@ -205,9 +205,7 @@
  <transition transition_id="activate" title="Activate"
              new_state="in-progress" trigger="USER"
              before_script="" after_script="startStory">
-  <action
-      url="%(content_url)s/content_status_modify?workflow_action=activate"
-      category="workflow">Activate</action>
+  <action url="" category="workflow">Activate</action>
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
@@ -218,9 +216,7 @@
              new_state="completed" trigger="USER"
              before_script=""
              after_script="tryToCompleteIteration">
-  <action
-      url="%(content_url)s/content_status_modify?workflow_action=complete"
-      category="workflow">complete</action>
+  <action url="" category="workflow">complete</action>
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
@@ -230,9 +226,7 @@
  <transition transition_id="deactivate" title="Deactivate"
              new_state="estimated" trigger="USER"
              before_script="" after_script="">
-  <action
-      url="%(content_url)s/content_status_modify?workflow_action=deactivate"
-      category="workflow">Deactivate</action>
+  <action url="" category="workflow">Deactivate</action>
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
@@ -241,9 +235,7 @@
  <transition transition_id="estimate"
              title="Mark as estimated" new_state="estimated"
              trigger="USER" before_script="" after_script="">
-  <action
-      url="%(content_url)s/content_status_modify?workflow_action=estimate"
-      category="workflow">Mark as estimated</action>
+  <action url="" category="workflow">Mark as estimated</action>
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
@@ -253,9 +245,7 @@
  <transition transition_id="improve" title="Improve"
              new_state="in-progress" trigger="USER"
              before_script="" after_script="">
-  <action
-      url="%(content_url)s/content_status_modify?workflow_action=improve"
-      category="workflow">Improve</action>
+  <action url="" category="workflow">Improve</action>
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
@@ -264,9 +254,7 @@
  <transition transition_id="retract" title="Retract"
              new_state="draft" trigger="USER"
              before_script="" after_script="">
-  <action
-      url="%(content_url)s/content_status_modify?workflow_action=retract"
-      category="workflow">Retract</action>
+  <action url="" category="workflow">Retract</action>
   <guard>
    <guard-role>Customer</guard-role>
    <guard-role>Employee</guard-role>
@@ -276,9 +264,7 @@
  <transition transition_id="submit"
              title="Submit for estimate" new_state="pending"
              trigger="USER" before_script="" after_script="">
-  <action
-      url="%(content_url)s/content_status_modify?workflow_action=submit"
-      category="workflow">Submit for estimate</action>
+  <action url="" category="workflow">Submit for estimate</action>
   <guard>
    <guard-permission>Request review</guard-permission>
   </guard>

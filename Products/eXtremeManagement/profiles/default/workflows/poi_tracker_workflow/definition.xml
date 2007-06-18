@@ -77,9 +77,7 @@
  <transition transition_id="close" title="Close tracker"
              new_state="closed" trigger="USER"
              before_script="" after_script="">
-  <action
-      url="%(content_url)s/content_status_modify?workflow_action=close"
-      category="workflow">Close tracker</action>
+  <action url="" category="workflow">Close tracker</action>
   <guard>
    <guard-role>Owner</guard-role>
    <guard-role>Manager</guard-role>
@@ -88,9 +86,7 @@
  <transition transition_id="open" title="Open tracker"
              new_state="open" trigger="USER"
              before_script="" after_script="">
-  <action
-      url="%(content_url)s/content_status_modify?workflow_action=open"
-      category="workflow">Open tracker</action>
+  <action url="" category="workflow">Open tracker</action>
   <guard>
    <guard-role>Owner</guard-role>
    <guard-role>Manager</guard-role>
