@@ -54,8 +54,7 @@
             <span i18n:name="total_booked" tal:replace="view/total" />
         </dd>
 
-        <!-- The last one must have class lastItem in Plone 3. -->
-        <dd class="portletItem lastItem odd">
+        <dd class="portletItem odd">
             <a i18n:translate="header_time_registration"
                tal:attributes="href string:${portal_url}/update_hours_form">
                 Time registration

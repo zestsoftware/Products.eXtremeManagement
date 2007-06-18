@@ -19,9 +19,8 @@
             <tal:block tal:repeat="item results">
             <dd tal:define="oddrow repeat/item/odd;
                             end repeat/item/end;
-                            last python:test(end, ' lastItem', '');
                             oddeven python:test(oddrow, ' even', ' odd');
-                            class python:'portletItem' + last + oddeven;"
+                            class python:'portletItem' + oddeven;"
                 tal:attributes="class class">
               <div class="visualIcon contenttype-project">
                 <div class="visualIconPadding">

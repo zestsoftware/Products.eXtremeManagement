@@ -20,9 +20,8 @@
             <tal:block tal:repeat="obj results">
             <dd tal:define="oddrow repeat/obj/odd;
                             end repeat/obj/end;
-                            last python:test(end, ' lastItem', '');
                             oddeven python:test(oddrow, ' even', ' odd');
-                            class python:'portletItem' + last + oddeven;"
+                            class python:'portletItem' + oddeven;"
                 tal:attributes="class class">
     
                 <a tal:attributes="href obj/getURL">
