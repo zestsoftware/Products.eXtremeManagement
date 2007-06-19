@@ -144,7 +144,8 @@
                 tal:attributes="id string:toggle-item-${iteration_number}-${number}"
                 style="display:none"
                 class="toggle-item">
-              <td colspan="4">
+              <td colspan="5"
+                  tal:attributes="colspan python:test(show_task_count, 7, 5)">
                   <div>
                     <a tal:attributes="href string:javascript:toggle_item('${iteration_number}-${number}')"
                        class="toggle-handle">[ &uarr; ]</a>&nbsp;
