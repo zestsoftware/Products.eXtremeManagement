@@ -15,6 +15,7 @@ from persistent.dict import PersistentDict
 from Products.CMFPlone import CatalogTool as catalogtool
 from Products.eXtremeManagement.timing.interfaces import IActualHours
 from Products.eXtremeManagement.timing.interfaces import IEstimate
+from Products.eXtremeManagement.timing.interfaces import ISizeEstimate
 
 
 class ActualHoursContainer(object):
@@ -79,26 +80,34 @@ class EstimateContainer(ActualHoursContainer):
         context = self.context
         total = 0.0
         for obj in context.contentValues():
-            anno = IEstimate(obj, None)
-            if anno is not None:
-                total += anno.estimate
+            adapted = IEstimate(obj, None)
+            if adapted is not None:
+                total += adapted.estimate
         self.estimate = total
         context.reindexObject(idxs=['estimate'])
 
 
 def actual(object, portal, **kw):
-    anno = IActualHours(object, None)
-    if anno is not None:
-        return anno.actual_time
+    adapted = IActualHours(object, None)
+    if adapted is not None:
+        return adapted.actual_time
     return None
 
 
-def estimate(object, portal, **kw):
-    anno = IEstimate(object, None)
-    if anno is not None:
-        return anno.estimate
+def duration_estimate(object, portal, **kw):
+    adapted = IEstimate(object, None)
+    if adapted is not None:
+        return adapted.estimate
+    return None
+
+
+def size_estimate(object, portal, **kw):
+    adapted = ISizeEstimate(object, None)
+    if adapted is not None:
+        return adapted.size_estimate
     return None
 
 
 catalogtool.registerIndexableAttribute('actual_time', actual)
-catalogtool.registerIndexableAttribute('estimate', estimate)
+catalogtool.registerIndexableAttribute('estimate', duration_estimate)
+catalogtool.registerIndexableAttribute('size_estimate', size_estimate)

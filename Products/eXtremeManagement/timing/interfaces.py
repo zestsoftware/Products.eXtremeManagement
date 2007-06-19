@@ -41,3 +41,16 @@ class IEstimate(Interface):
     def recalc():
         """Recalculate the total of estimates
         """
+
+
+class ISizeEstimate(Interface):
+    """Estimated size of work load
+
+    Think Story Points or Ideal Days
+    """
+
+    size_estimate = Attribute("Size Estimate")
+
+    def recalc():
+        """Recalculate the total of size estimates
+        """

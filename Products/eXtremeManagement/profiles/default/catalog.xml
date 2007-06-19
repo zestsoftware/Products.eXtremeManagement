@@ -30,5 +30,7 @@
  <column value="getBookingDate"/>
  <column value="getManHours"/>
  <column value="actual_time"/>
+ <!-- duration estimate -->
  <column value="estimate"/>
+ <column value="size_estimate"/>
 </object>

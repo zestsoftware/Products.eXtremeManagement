@@ -86,6 +86,13 @@ class IterationView(XMBaseView):
         else:
             # Should not happen (tm).
             estimate = -99.0
+
+        # Size estimate.  We may want to do this smarter.
+        filter = dict(portal_type='Story')
+        items = context.getFolderContents(filter)
+        size_estimate = sum([item.size_estimate for item in items
+                             if item.size_estimate is not None])
+
         returnvalue = dict(
             title = context.Title(),
             description = context.Description(),
@@ -93,6 +100,7 @@ class IterationView(XMBaseView):
             start_date = context.restrictedTraverse('@@plone').toLocalizedTime(context.getStartDate()),
             end_date = context.restrictedTraverse('@@plone').toLocalizedTime(context.getEndDate()),
             estimate = self.xt.formatTime(estimate),
+            size_estimate = size_estimate,
             actual = self.xt.formatTime(actual),
             difference = self.xt.formatTime(estimate - actual),
             review_state = workflow.getInfoFor(context, 'review_state'),
@@ -152,6 +160,7 @@ class IterationView(XMBaseView):
             title = brain.Title,
             description = brain.Description,
             estimate = self.xt.formatTime(estimate),
+            size_estimate = brain.size_estimate,
             actual = self.xt.formatTime(actual),
             difference = self.xt.formatTime(estimate - actual),
             progress = progress,

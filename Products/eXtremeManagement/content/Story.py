@@ -54,6 +54,17 @@ class Story(OrderedBaseFolder):
     _at_rename_after_creation = True
     schema = Story_schema
 
+    @property
+    def size_estimate(self):
+        return self.getRoughEstimate()
+
+    security.declarePublic('recalc')
+    def recalc(self):
+        """See the ISizeEstimate interface.
+        With our implementation we only need a reindex here actually.
+        """
+        self.reindexObject(idxs=['size_estimate'])
+
     security.declarePublic('CookedBody')
     def CookedBody(self):
         """

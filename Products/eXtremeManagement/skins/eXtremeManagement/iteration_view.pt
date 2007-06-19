@@ -82,6 +82,7 @@
                 <th i18n:translate="listingheader_tasks_open">Tasks open</th>
                 <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
               </tal:task_count>
+              <th i18n:translate="listingheader_size_estimate">Rough Estimate</th>
               <th i18n:translate="listingheader_estimate">Estimate</th>
               <th i18n:translate="listingheader_actual">Actual</th>
             </tr>
@@ -134,6 +135,7 @@
                 <td tal:content="story/open_tasks" />
                 <td tal:content="story/completed_tasks" />
               </tal:task_count>
+              <td tal:content="story/size_estimate" />
               <td tal:content="story/estimate" />
               <td tal:content="story/actual" />
             </tr>
@@ -159,6 +161,7 @@
                   colspan="2"
                   tal:attributes="colspan python:test(show_task_count, 4, 2)"
                   i18n:translate="total">Total</th>
+              <th tal:content="iteration/size_estimate" />
               <th tal:content="iteration/estimate" />
               <th tal:content="iteration/actual" />
             </tr>
