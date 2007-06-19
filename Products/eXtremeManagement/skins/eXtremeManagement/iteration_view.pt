@@ -12,8 +12,9 @@
                              iteration_number string:1;
                              stories view/stories;">
       
-      <div class="xm-details" tal:condition="not:context/startable">
+      <div class="xm-details">
         <dl class="not-startable"
+            tal:condition="not:context/startable"
             tal:define="stories_not_startable view/story_titles_not_startable">
           <dt>Cannot Activate</dt>
           <dd tal:condition="stories_not_startable">There are stories which cannot be activated, please see: <span tal:replace="stories_not_startable"></span>.</dd>
