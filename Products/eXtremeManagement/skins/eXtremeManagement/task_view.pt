@@ -119,6 +119,7 @@
                         <img tal:replace="structure context/user.gif" />
                         <span tal:replace="python:context.poi_niceName(booking['creator'])">Assignee</span>
                     </td>
+                    <td tal:content="booking/billable" />
                 </tr>
             </table>
         </tal:block>
