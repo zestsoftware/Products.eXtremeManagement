@@ -238,6 +238,7 @@
     background-color: &dtml-backgroundColor;;
     border: 0;
     border-top: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
+    border-right: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
 }
 
 .xm-details TABLE TH {
