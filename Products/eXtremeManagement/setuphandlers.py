@@ -1,3 +1,4 @@
+import os.path
 from zope.event import notify
 from zope.app.event.objectevent import ObjectModifiedEvent
 from Products.CMFCore.utils import getToolByName
@@ -6,7 +7,7 @@ from Products.eXtremeManagement.timing.interfaces import IActualHours
 from Products.eXtremeManagement.timing.interfaces import IEstimate
 
 
-def reindexIndexes(site):
+def reindexIndexes(site, logger):
     """Reindex some indexes.
 
     Indexes that are added in the catalog.xml file get cleared
@@ -28,9 +29,10 @@ def reindexIndexes(site):
     ids = [id for id in indexes if id in cat.indexes()]
     if ids:
         cat.manage_reindexIndex(ids=ids)
-        
+    logger.info('Reindexed getAssignees and getBookingDate')
 
-def _migrateSchema(site, contentType):
+
+def _migrateSchema(site, contentType, logger):
     at = getToolByName(site, 'archetype_tool')
     class dummy:
         form = {}
@@ -38,52 +40,47 @@ def _migrateSchema(site, contentType):
     dummy.form[contentType] = 1
     at.manage_updateSchema(update_all=1,
                            REQUEST=dummyRequest)
+    logger.info('Migrated schema of %s', contentType)
 
-def _migrateProjectSchema(site):
-    _migrateSchema(site, 'eXtremeManagement.Project')
+def _migrate_project(portal, logger):
+    _migrateSchema(portal, 'eXtremeManagement.Project', logger)
 
-def _migrateIterationSchema(site):
-    _migrateSchema(site, 'eXtremeManagement.Iteration')
+def _migrate_iterations(portal, logger):
+    _migrateSchema(portal, 'eXtremeManagement.Iteration', logger)
 
-def _migrateStorySchema(site):
-    _migrateSchema(site, 'eXtremeManagement.Story')
+def migrate_stories(portal, logger):
+    _migrateSchema(portal, 'eXtremeManagement.Story', logger)
 
-def _migrateTaskSchema(site):
+def migrate_tasks(portal, logger):
     """
     Add a property to the portal so that other parts now that there is
     a schema update going on for the Tasks.  Main reason: if this is
     True, then _do not_ send an email for every Task that is getting
     assigned.  See Task.setAssigned()
     """
-    portal_properties = getToolByName(site, 'portal_properties')
+    portal_properties = getToolByName(portal, 'portal_properties')
     xm_props = portal_properties.xm_properties
     ori = xm_props.send_task_mails
     xm_props.send_task_mails = False
-    _migrateSchema(site, 'eXtremeManagement.Task')
-    _migrateSchema(site, 'eXtremeManagement.PoiTask')
+    _migrateSchema(portal, 'eXtremeManagement.Task', logger)
+    _migrateSchema(portal, 'eXtremeManagement.PoiTask', logger)
     xm_props.send_task_mails = ori
 
+def migrate_bookings(portal, logger):
+    _migrateSchema(portal, 'eXtremeManagement.Booking', logger)
 
-def _migrateBookingSchema(site):
-    _migrateSchema(site, 'eXtremeManagement.Booking')
-
-def migrate_stories(portal):
-    _migrateStorySchema(portal)
-
-def migrate_tasks(portal):
-    _migrateTaskSchema(portal)
-
-
-def migrate_bookings(portal):
-    _migrateBookingSchema(portal)
-
-def migrate_ct(portal):
-    migrate_stories(portal)
-    migrate_tasks(portal)
-    migrate_bookings(portal)
+def migrate_ct(portal, logger):
+    #migrate_projects(portal, logger)
+    #migrate_iterations(portal, logger)
+    migrate_stories(portal, logger)
+    migrate_tasks(portal, logger)
+    migrate_bookings(portal, logger)
 
 
-def configureKupu(portal):
+def configureKupu(portal, logger):
+    """In Plone 3.0 / kupu 1.4 we can actually use a kupu.xml file
+    instead, which is better.
+    """
     try:
         kupuTool = getToolByName(portal, 'kupu_library_tool')
     except AttributeError:
@@ -109,13 +106,17 @@ def configureKupu(portal):
                                   {'resource_type' : 'collection',
                                    'old_type'      : 'collection',
                                    'portal_types'  :  collection},))
+    logger.info('Added our types to collection and linkable of kupu')
 
 
-def addOurRoles(portal):
+def addOurRoles(portal, logger):
     """Add our extra roles to Plone.
 
     Part of this is done through GenericSetup, but adding roles to the
     PlonePAS role manager does not work there.
+
+    Note: in Plone 3.0 (beta) this function is not needed, in Plone
+    2.5 it is.
     """
 
     if HAS_PAS:
@@ -124,9 +125,10 @@ def addOurRoles(portal):
         for role in NEW_ROLES:
             if role not in pas_roles:
                 role_manager.addRole(role)
+                logger.info('Added role %s', role)
 
 
-def removeSkinSelection(portal):
+def removeSkinSelection(portal, logger):
     """Undo mistake from past.
     """
     sk_tool = getToolByName(portal, 'portal_skins')
@@ -135,11 +137,14 @@ def removeSkinSelection(portal):
         # Plone Default.
         if sk_tool.getDefaultSkin() == 'eXtremeManagement':
             sk_tool.default_skin = 'Plone Default'
+            logger.info('Default skin reset from eXtremeManagement to Plone Default.')
         # Remove our own skin selection.
         sk_tool.manage_skinLayers(chosen=['eXtremeManagement'],
                                   del_skin='Delete')
+        logger.info('Removed eXtremeManagement skin selection.')
 
-def annotate_actual(site):
+
+def annotate_actual(site, logger):
     """Make sure the right types are annotated with IActualHours.
     This updates the catalog too, which is nice.
     """
@@ -150,8 +155,10 @@ def annotate_actual(site):
             obj = brain.getObject()
             anno = IActualHours(obj)
             anno.recalc()
+    logger.info('Annotated types with IActualHours')
 
-def annotate_estimate(site):
+
+def annotate_estimate(site, logger):
     """Make sure the right types are annotated with IEstimate.
     This updates the catalog too, which is nice.
     """
@@ -162,23 +169,28 @@ def annotate_estimate(site):
             obj = brain.getObject()
             anno = IEstimate(obj)
             anno.recalc()
+    logger.info('Annotated types with IEstimate')
 
 
-def update_security_settings(site):
+def update_security_settings(site, logger):
     workflow = getToolByName(site, 'portal_workflow')
     workflow.updateRoleMappings()
+    logger.info('Updated security (workflow) settings')
 
 
 def importVarious(context):
-    if 'Products/eXtremeManagement/profiles/default' not in context._profile_path:
+    logger = context.getLogger('eXtremeManagement')
+    if not context._profile_path.startswith(os.path.split(__file__)[0]):
+        logger.info('Nothing to import: not in eXtremeManagement path')
         return
     site = context.getSite()
-    removeSkinSelection(site)
-    addOurRoles(site)
+    removeSkinSelection(site, logger)
+    addOurRoles(site, logger)
     # Integrate our types in kupu, if it is installed.
-    configureKupu(site)
-    migrate_ct(site)
-    update_security_settings(site)
-    annotate_actual(site)
-    annotate_estimate(site)
-    reindexIndexes(site)
+    configureKupu(site, logger)
+    migrate_ct(site, logger)
+    update_security_settings(site, logger)
+    annotate_actual(site, logger)
+    annotate_estimate(site, logger)
+    reindexIndexes(site, logger)
+    logger.info('eXtremeManagement various step imported')
