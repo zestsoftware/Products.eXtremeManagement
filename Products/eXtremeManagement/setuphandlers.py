@@ -170,6 +170,8 @@ def update_security_settings(site):
 
 
 def importVarious(context):
+    if 'Products/eXtremeManagement/profiles/default' not in context._profile_path:
+        return
     site = context.getSite()
     removeSkinSelection(site)
     addOurRoles(site)
