@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <object name="Task" meta_type="Factory-based Type Information"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title">Poi Task</property>
+ <property name="title">Issue Tracker Task</property>
  <property name="description">
       </property>
  <property name="content_icon">task_icon.gif</property>
@@ -15,10 +15,9 @@
   <element value="Booking"/>
  </property>
  <property name="allow_discussion">True</property>
- <alias from="(Default)" to="base_view"/>
+ <alias from="(Default)" to="view"/>
  <alias from="edit" to="base_edit"/>
  <alias from="properties" to="base_metadata"/>
- <alias from="view" to="base_view"/>
  <action title="View" action_id="view" category="object" condition_expr=""
     url_expr="string:${object_url}/poitask_view" visible="True">
   <permission value="View"/>

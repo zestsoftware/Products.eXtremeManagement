@@ -5,7 +5,7 @@ from Products.eXtremeManagement.content.Task import Task
 
 class PoiTask(Task):
     portal_type = meta_type = 'PoiTask'
-    archetype_name = 'Poi Task'
+    archetype_name = 'Issue Tracker Task'
     
     schema = Task.schema.copy() + atapi.Schema((
         atapi.ReferenceField('issues',
