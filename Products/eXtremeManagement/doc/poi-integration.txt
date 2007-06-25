@@ -38,7 +38,7 @@ be able to add any tasks:
   >>> story1.setRoughEstimate(1.5)
   >>> workflow.doActionFor(story1, 'estimate')
   >>> list_addable(story1)
-  'Poi Task, Task'
+  'Issue Tracker Task, Task'
 
 Let's create an issue tracker in the project with two issues in it:
 
