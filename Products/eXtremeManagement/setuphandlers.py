@@ -179,10 +179,10 @@ def update_security_settings(site, logger):
 
 
 def importVarious(context):
-    logger = context.getLogger('eXtremeManagement')
-    if not context._profile_path.startswith(os.path.split(__file__)[0]):
-        logger.info('Nothing to import: not in eXtremeManagement path')
+    # Only run step if a flag file is present
+    if context.readDataFile('extrememanagement_various.txt') is None:
         return
+    logger = context.getLogger('eXtremeManagement')
     site = context.getSite()
     removeSkinSelection(site, logger)
     addOurRoles(site, logger)
@@ -193,4 +193,4 @@ def importVarious(context):
     annotate_actual(site, logger)
     annotate_estimate(site, logger)
     reindexIndexes(site, logger)
-    logger.info('eXtremeManagement various step imported')
+    logger.info('eXtremeManagement_various step imported')
