@@ -5,6 +5,7 @@ from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Acquisition import aq_inner, aq_parent
 from Products.eXtremeManagement.timing.interfaces import IActualHours
 from Products.eXtremeManagement.timing.interfaces import IEstimate
+from Products.eXtremeManagement.utils import formatTime
 
 
 class StoryView(XMBaseView):
@@ -53,9 +54,9 @@ class StoryView(XMBaseView):
             # Should not happen (tm).
             estimate = -99.0
         totals = dict(
-            estimate = self.xt.formatTime(estimate),
-            actual = self.xt.formatTime(actual),
-            difference = self.xt.formatTime(estimate - actual),
+            estimate = formatTime(estimate),
+            actual = formatTime(actual),
+            difference = formatTime(estimate - actual),
             )
         return totals
 

@@ -95,19 +95,9 @@ class Project(OrderedBaseFolder):
         if self.getIncludeGlobalMembers():
             # members that have this role globally
             globalUsers = []
-            if HAS_PAS:
-                roleman = portal.acl_users.portal_role_manager
-                for userid, loginname in roleman.listAssignedPrincipals(role):
-                    globalUsers.append(userid)
-            else:
-               current = portal.aq_inner
-               while current is not None:
-                   if hasattr(current, 'aq_base') and \
-                          hasattr(current.aq_base, 'acl_users'):
-                       for user in current.acl_users.getUsers():
-                           if role in user.getRoles():
-                               globalUsers.append(user.getId())
-                   current = getattr(current, 'aq_parent', None)
+            roleman = portal.acl_users.portal_role_manager
+            for userid, loginname in roleman.listAssignedPrincipals(role):
+                globalUsers.append(userid)
             memberIds = _appendGroupsAndUsers(memberIds, globalUsers)
 
         return memberIds

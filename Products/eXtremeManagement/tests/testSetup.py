@@ -14,13 +14,6 @@ class testSetup(eXtremeManagementTestCase):
         """
         pass
 
-    def test_tools(self):
-        """
-        """
-        ids = self.portal.objectIds()
-        self.failUnless('archetype_tool' in ids)
-        self.failUnless('xm_tool' in ids)
-
     def test_types(self):
         """
         """

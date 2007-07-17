@@ -1,6 +1,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
+from Products.eXtremeManagement.utils import formatTime
 from Acquisition import aq_inner
 
 
@@ -42,7 +43,6 @@ class ProjectAdminView(XMBaseView):
     def __init__(self, context, request):
         super(ProjectAdminView, self).__init__(context, request)
         context = aq_inner(context)
-        self.xt = getToolByName(context, 'xm_tool')
  
     def projectlist(self):
         context = aq_inner(self.context)
@@ -83,9 +83,9 @@ class ProjectAdminView(XMBaseView):
             description = brain.Description,
             icon = brain.getIcon,
             man_hours = brain.getManHours,
-            estimate = self.xt.formatTime(estimate),
-            actual = self.xt.formatTime(actual),
-            difference = self.xt.formatTime(estimate - actual),
+            estimate = formatTime(estimate),
+            actual = formatTime(actual),
+            difference = formatTime(estimate - actual),
             review_state = review_state_id,
             review_state_title = workflow.getTitleForStateOnType(
                                  review_state_id, 'Iteration'),

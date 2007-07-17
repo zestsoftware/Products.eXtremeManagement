@@ -22,22 +22,6 @@ try:
 except:
     HAS_GENERIC_SETUP = False
 
-# GRUF and PAS are not 100% compatible, at several places we need to
-# know, which of them is currently used
-try:
-    from Products.PlonePAS.pas import getUsers
-except ImportError:
-    HAS_PAS = False
-else:
-    HAS_PAS = True
-    del getUsers
-
-try:
-    from Products.Poi.content.PoiTracker import PoiTracker
-except ImportError:
-    HAS_POI = False
-else:
-    HAS_POI = True
 
 # Permissions
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"

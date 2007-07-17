@@ -119,13 +119,12 @@ def addOurRoles(portal, logger):
     2.5 it is.
     """
 
-    if HAS_PAS:
-        role_manager = portal.acl_users.portal_role_manager
-        pas_roles = role_manager.listRoleIds()
-        for role in NEW_ROLES:
-            if role not in pas_roles:
-                role_manager.addRole(role)
-                logger.info('Added role %s', role)
+    role_manager = portal.acl_users.portal_role_manager
+    pas_roles = role_manager.listRoleIds()
+    for role in NEW_ROLES:
+        if role not in pas_roles:
+            role_manager.addRole(role)
+            logger.info('Added role %s', role)
 
 
 def removeSkinSelection(portal, logger):

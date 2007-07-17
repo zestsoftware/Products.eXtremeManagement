@@ -6,7 +6,6 @@ import os, os.path
 from Globals import package_home
 from Products.CMFCore import utils as cmfutils
 from Products.CMFCore import DirectoryView
-from Products.CMFPlone.utils import ToolInit
 import Products.CMFPlone.interfaces
 from Products.Archetypes.atapi import *
 from Products.Archetypes import listTypes
@@ -24,15 +23,7 @@ DirectoryView.registerDirectory('skins/eXtremeManagement',
 def initialize(context):
     # imports packages and types for registration
     import content
-    import tools
     import interfaces
-
-    # Initialize portal tools
-    tools = [tools.eXtremeManagementTool.eXtremeManagementTool]
-    ToolInit( PROJECTNAME +' Tools',
-                tools = tools,
-                icon='tool.gif'
-                ).initialize( context )
 
     # Initialize portal content
     all_content_types, all_constructors, all_ftis = process_types(

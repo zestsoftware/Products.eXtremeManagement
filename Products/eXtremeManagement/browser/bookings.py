@@ -4,6 +4,7 @@ from Products.Five.browser import BrowserView
 from Acquisition import aq_inner
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.timing.interfaces import IActualHours
+from Products.eXtremeManagement.utils import formatTime
 
 
 def getNextYearMonth(year, month):
@@ -121,7 +122,6 @@ class BookingsDetailedView(BrowserView):
         self.request = request
         context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
-        self.xt = getToolByName(context, 'xm_tool')
 
         self.year = year or self.request.form.get('year', DateTime().year())
         self.month = month or self.request.form.get('month', DateTime().month())
@@ -144,7 +144,7 @@ class BookingsDetailedView(BrowserView):
         self.bookinglist = []
         self.raw_total = 0
         self.update()
-        self.total = self.xt.formatTime(self.raw_total)
+        self.total = formatTime(self.raw_total)
 
     def update(self):
         # Get all bookings brains with the given restrictions of
@@ -221,7 +221,7 @@ class BookingsDetailedView(BrowserView):
             booking_url = bookingbrain.getURL() + '/base_edit',
             booking_title = bookingbrain.Title,
             booking_description = bookingbrain.Description,
-            booking_hours = self.xt.formatTime(bookingbrain.actual_time),
+            booking_hours = formatTime(bookingbrain.actual_time),
             creator = bookingbrain.Creator,
         )
         return returnvalue
@@ -284,7 +284,7 @@ class WeekBookingOverview(BookingsDetailedView):
                 date += 1
             # Add the info to the dict for this week
             weekinfo['days'] = daylist
-            weekinfo['week_total'] = self.xt.formatTime(raw_total)
+            weekinfo['week_total'] = formatTime(raw_total)
             self.bookinglist.append(weekinfo)
             # update month total
             self.raw_total += raw_total
@@ -298,13 +298,12 @@ class YearBookingOverview(BrowserView):
         super(YearBookingOverview, self).__init__(context, request)
         context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
-        self.xt = getToolByName(context, 'xm_tool')
 
         self.base_year = int(self.request.form.get('base_year', DateTime().year()))
         self.base_month = DateTime().month()
         self.raw_total = 0.0
         self.update()
-        self.total = self.xt.formatTime(self.raw_total)
+        self.total = formatTime(self.raw_total)
 
     def main(self):
         """Return a dict of the main stuff of this period.
@@ -357,7 +356,7 @@ class BookingView(XMBaseView):
         returnvalue = dict(
             title = context.title_or_id(),
             description = context.Description(),
-            actual = self.xt.formatTime(actual),
+            actual = formatTime(actual),
             booking_date = context.restrictedTraverse('@@plone').toLocalizedTime(context.getBookingDate()),
             billable = context.getBillable(),
             creator = context.Creator(),
@@ -377,7 +376,6 @@ class DayBookingOverview(BrowserView):
         super(DayBookingOverview, self).__init__(context, request)
         context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
-        self.xt = getToolByName(context, 'xm_tool')
 
         self.memberid = memberid or self.request.form.get('memberid')
         if self.memberid is None:
@@ -401,4 +399,4 @@ class DayBookingOverview(BrowserView):
             for bb in bookingbrains:
                 actualList.append(bb.actual_time)
             self.raw_total = sum(actualList)
-        self.total = self.xt.formatTime(self.raw_total)
+        self.total = formatTime(self.raw_total)

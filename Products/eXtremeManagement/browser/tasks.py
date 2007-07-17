@@ -7,6 +7,8 @@ from Products.Five.browser import BrowserView
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.timing.interfaces import IActualHours
 from Products.eXtremeManagement.timing.interfaces import IEstimate
+from Products.eXtremeManagement.utils import formatTime
+from Products.eXtremeManagement.utils import getStateSortedContents
 
 
 class TaskView(XMBaseView):
@@ -41,9 +43,9 @@ class TaskView(XMBaseView):
             title = context.Title(),
             description = context.Description(),
             cooked_body = context.CookedBody(),
-            estimate = self.xt.formatTime(estimate),
-            actual = self.xt.formatTime(actual),
-            difference = self.xt.formatTime(estimate - actual),
+            estimate = formatTime(estimate),
+            actual = formatTime(actual),
+            difference = formatTime(estimate - actual),
             review_state = workflow.getInfoFor(context, 'review_state'),
             assignees = [{'niceName': context.poi_niceName(username=x),
                           'username': x,
@@ -92,7 +94,7 @@ class TaskView(XMBaseView):
             url = brain.getURL() + '/base_edit',
             title = brain.Title,
             description = brain.Description,
-            actual = self.xt.formatTime(brain.actual_time),
+            actual = formatTime(brain.actual_time),
             creator = brain.Creator,
             billable = brain.getBillable,
         )
@@ -107,7 +109,6 @@ class TasksDetailedView(BrowserView):
         super(TasksDetailedView, self).__init__(context, request)
         context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
-        self.xt = getToolByName(context, 'xm_tool')
         self.filter = dict(portal_type=['Task', 'PoiTask'],
                            sort_on='getObjPositionInParent')
 
@@ -126,7 +127,7 @@ class TasksDetailedView(BrowserView):
             return items
         else:
             # First sort the items by state (next to possible other sort)
-            return self.xt.getStateSortedContents(items)
+            return getStateSortedContents(items)
 
     def tasklist(self, searchpath=None, sort_by_state=False):
         brains = self.simple_tasklist(searchpath, sort_by_state)
@@ -160,9 +161,9 @@ class TasksDetailedView(BrowserView):
         rawDifference = sum([(task.estimate - task.actual_time)
                              * self.portion(task) for task in tasks])
         totals = dict(
-            estimate = self.xt.formatTime(rawEstimate),
-            actual = self.xt.formatTime(rawActualHours),
-            difference = self.xt.formatTime(rawDifference),
+            estimate = formatTime(rawEstimate),
+            actual = formatTime(rawActualHours),
+            difference = formatTime(rawDifference),
             )
         return totals
 
@@ -187,9 +188,9 @@ class TasksDetailedView(BrowserView):
             story_url = storybrain.getURL(),
             story_title = storybrain.Title,
             description = brain.Description,
-            estimate = self.xt.formatTime(estimate),
-            actual = self.xt.formatTime(actual),
-            difference = self.xt.formatTime(estimate - actual),
+            estimate = formatTime(estimate),
+            actual = formatTime(actual),
+            difference = formatTime(estimate - actual),
             review_state = review_state_id,
             review_state_title = workflow.getTitleForStateOnType(
                                  review_state_id, 'Task'),
@@ -259,7 +260,6 @@ class EmployeeTotalsView(TasksDetailedView):
         super(EmployeeTotalsView, self).__init__(context, request)
         context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
-        self.xt = getToolByName(context, 'xm_tool')
 
     def totals(self):
         context = aq_inner(self.context)
@@ -284,9 +284,9 @@ class EmployeeTotalsView(TasksDetailedView):
                 rawDifference = rawEstimate - rawActualHours
                 info = dict(
                     memberid = memberid,
-                    estimate = self.xt.formatTime(rawEstimate),
-                    actual = self.xt.formatTime(rawActualHours),
-                    difference = self.xt.formatTime(rawDifference),
+                    estimate = formatTime(rawEstimate),
+                    actual = formatTime(rawActualHours),
+                    difference = formatTime(rawDifference),
                     )
                 memberlist.append(info)
 

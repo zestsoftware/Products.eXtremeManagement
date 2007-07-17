@@ -11,7 +11,7 @@ modules = (
     'browser.bookings',
     'browser.iterations',
     'browser.poi',
-    'tools.eXtremeManagementTool',
+    'utils',
     )
 
 

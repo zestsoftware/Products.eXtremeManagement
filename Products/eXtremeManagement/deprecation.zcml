@@ -27,7 +27,4 @@
   <deprecatedManageAddDelete
       class=".content.Booking.Booking" />
 
-  <deprecatedManageAddDelete
-      class=".tools.eXtremeManagementTool.eXtremeManagementTool" />
-
 </configure>

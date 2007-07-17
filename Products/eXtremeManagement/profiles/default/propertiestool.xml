@@ -30,9 +30,6 @@
    <element value="Story"/>
    <element value="Task"/>
   </property>
-  <property name="types_not_searched" type="lines" purge="False">
-   <element value="eXtremeManagementTool"/>
-  </property>
  </object>
  <object name="xm_properties" meta_type="Plone Property Sheet">
   <property name="title">eXtremeManagement properties</property>

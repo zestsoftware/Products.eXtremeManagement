@@ -11,6 +11,9 @@ from Products.eXtremeManagement.timing.interfaces import IActualHours
 from Products.eXtremeManagement.timing.interfaces import IEstimate
 from Products.eXtremeManagement.content.Iteration import UNACCEPTABLE_STATUSES \
      as UNACCEPTABLE_STORY_STATUSES
+from Products.eXtremeManagement.utils import formatTime
+from Products.eXtremeManagement.utils import getStateSortedContents
+
 
 def _store_on_context(obj, *args, **kwargs):
     KEY = '_v_XM_cache'
@@ -99,10 +102,10 @@ class IterationView(XMBaseView):
             man_hours = context.getManHours(),
             start_date = context.restrictedTraverse('@@plone').toLocalizedTime(context.getStartDate()),
             end_date = context.restrictedTraverse('@@plone').toLocalizedTime(context.getEndDate()),
-            estimate = self.xt.formatTime(estimate),
+            estimate = formatTime(estimate),
             size_estimate = size_estimate,
-            actual = self.xt.formatTime(actual),
-            difference = self.xt.formatTime(estimate - actual),
+            actual = formatTime(actual),
+            difference = formatTime(estimate - actual),
             review_state = workflow.getInfoFor(context, 'review_state'),
             )
         return returnvalue
@@ -112,7 +115,7 @@ class IterationView(XMBaseView):
         filter = dict(portal_type='Story',
                       sort_on='getObjPositionInParent')
         items = context.getFolderContents(filter)
-        storybrains = self.xt.getStateSortedContents(items)
+        storybrains = getStateSortedContents(items)
 
         story_list = []
 
@@ -138,7 +141,7 @@ class IterationView(XMBaseView):
         else:
             estimated = brain.estimate
             actual = brain.actual_time
-            progress = self.xt.get_progress_perc(actual, estimated)
+            progress = self.get_progress_perc(actual, estimated)
 
         # compute open task count
         searchpath = brain.getPath()
@@ -159,10 +162,10 @@ class IterationView(XMBaseView):
             url = brain.getURL(),
             title = brain.Title,
             description = brain.Description,
-            estimate = self.xt.formatTime(estimate),
+            estimate = formatTime(estimate),
             size_estimate = brain.size_estimate,
-            actual = self.xt.formatTime(actual),
-            difference = self.xt.formatTime(estimate - actual),
+            actual = formatTime(actual),
+            difference = formatTime(estimate - actual),
             progress = progress,
             review_state = review_state_id,
             review_state_title = workflow.getTitleForStateOnType(
@@ -204,3 +207,69 @@ class IterationView(XMBaseView):
                    for x in items
                    if x.review_state in UNACCEPTABLE_STORY_STATUSES]
         return ', '.join(stories)
+
+
+    def get_progress_perc(self, part, total):
+        """Get progress percentage of part compared to total.
+
+        Set up some test context.
+
+        >>> from zope.publisher.browser import TestRequest
+        >>> class SimpleContext(object):
+        ...     portal_properties = None
+        >>> context = SimpleContext()
+        >>> request = TestRequest()
+        >>> view = IterationView(context, request)
+
+        Test a part that is larger than the total:
+
+        >>> view.get_progress_perc(3, 1)
+        300
+
+        We do not want to go over 100 percent though, so we have a
+        setting in a property sheet that we use.  Set up a test
+        environment for that.
+
+        >>> xm_properties = dict(maximum_not_completed_percentage = 90)
+        >>> portal_properties = dict()
+        >>> portal_properties['xm_properties'] = xm_properties
+        >>> view.context.portal_properties = portal_properties
+
+        Now try again.
+
+        >>> view.get_progress_perc(3, 1)
+        90
+
+        Code that uses this method can choose to show 100 percent to
+        the user, for instance because a Story has the status
+        'completed'.  But that is not our responsibility.
+
+        Now for some more tests.
+
+        >>> view.get_progress_perc(0, 1)
+        0
+        >>> view.get_progress_perc(10, 100)
+        10
+        >>> view.get_progress_perc(1, 3)
+        33
+        >>> view.get_progress_perc(1, 3.0)
+        33
+
+        """
+        context = self.context
+        if total > 0:
+            try:
+                percentage = int(round(part/float(total)*100))
+            except TypeError:
+                return '??'
+            portal_properties = getToolByName(context, 'portal_properties', None)
+            if portal_properties is None:
+                return percentage
+            xm_props = portal_properties.get('xm_properties', None)
+            if xm_props is None:
+                return percentage
+            max_percentage = xm_props.get('maximum_not_completed_percentage', 90.0)
+            if percentage > max_percentage:
+                return max_percentage
+            return percentage
+        return 0
