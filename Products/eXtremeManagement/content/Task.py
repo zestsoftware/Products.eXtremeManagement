@@ -6,7 +6,6 @@ from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.atapi import *
-from Products.CMFPlone.interfaces.NonStructuralFolder import INonStructuralFolder
 
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.interfaces import IXMTask
