@@ -116,8 +116,11 @@
               <td class="progress_details"
                   tal:condition="show_progress"
                   width="150">
-                <span class="progress_percentage"
-                      tal:content="string:(${story/review_state_title}) ${story/progress} %">&nbsp;</span>
+                <span class="progress_percentage">
+                  (<span i18n:domain="plone"
+                  i18n:translate="" tal:content="story/review_state_title" />)
+                  <tal:percentage tal:content="story/progress" />%&nbsp;
+                </span>
                 <br />
                 <div class="progress_bar">
                   <img tal:condition="story/is_completed"
