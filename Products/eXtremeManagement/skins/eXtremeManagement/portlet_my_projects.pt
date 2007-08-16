@@ -10,10 +10,9 @@
                      results view/projectlist;"
          tal:condition="python:results">
         <dl class="portlet" id="portlet-my-projects">
-            <dt class="portletHeader"
-                i18n:translate="box_my_projects">
+            <dt class="portletHeader">
               <span class="portletTopLeft"></span>
-                My Projects
+                <span i18n:translate="box_my_projects">My Projects</span>
               <span class="portletTopRight"></span>
             </dt>
             <tal:block tal:repeat="item results">

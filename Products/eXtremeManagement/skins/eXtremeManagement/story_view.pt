@@ -52,13 +52,13 @@
 
       <div class="xm-details" tal:condition="python:not estimated or not startable">
         <dl tal:condition="not:estimated" class="needs-estimate">
-          <dt>Needs Estimate</dt>
-          <dd>Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown).</dd>
+          <dt i18n:translate="needs_estimate">Needs Estimate</dt>
+          <dd i18n:translate="help_needs_estimate">Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown).</dd>
         </dl>
 
         <dl tal:condition="not:startable" class="not-startable"
             tal:define="tasks_not_startable view/task_titles_not_startable">
-          <dt>Cannot Activate</dt>
+          <dt i18n:translate="cannot_activate">Cannot Activate</dt>
           <dd tal:condition="python:story['review_state'] != 'estimated'">Need to finish estimating this story by selecting 'estimate' from the state dropdown.</dd>
           <dd tal:condition="not:items">No tasks added yet.  Please add one.</dd>
           <dd tal:condition="tasks_not_startable">There are tasks which cannot be activated, please see: <span tal:replace="tasks_not_startable"></span>.</dd>
@@ -74,7 +74,8 @@
                     Initial Estimate (days)
                 </th>
                 <td>
-        <span tal:replace="structure story/rough_estimate" /> days.
+                  <span tal:replace="structure story/rough_estimate" />
+                  <span i18n:translate="days">days</span>
                 </td>
             </tr>
             <tr>

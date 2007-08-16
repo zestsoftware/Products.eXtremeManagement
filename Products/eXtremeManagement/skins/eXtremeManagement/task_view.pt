@@ -19,7 +19,7 @@
 
       <div class="xm-details">
         <dl tal:condition="not:startable" class="not-startable">
-          <dt>Cannot Activate</dt>
+          <dt i18n:translate="cannot_activate">Cannot Activate</dt>
           <dd tal:condition="python:len(context.getAssignees()) == 0">No one has been assigned to this task.</dd>
           <dd tal:condition="python:context.getHours() == 0 and context.getMinutes() == 0">Need to assign a time estimate to this task.</dd>
 

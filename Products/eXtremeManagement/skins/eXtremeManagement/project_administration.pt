@@ -72,7 +72,8 @@
                     class="project-list-info">
                   <td class="td-story-title">
                     <img tal:attributes="src iteration/icon"
-                         alt="iteration"/>
+                         alt="iteration"
+                         i18n:attributes="alt iteration" />
                     <a tal:attributes="href iteration/url"
                        tal:content="iteration/title" /> 
                   </td>

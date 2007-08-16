@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-08-16 11:50+0000\n"
-"PO-Revision-Date: 2007-06-06 10:30 +GMT+1\n"
+"POT-Creation-Date: 2007-08-16 12:32+0000\n"
+"PO-Revision-Date: 2007-08-16 14:20+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,11 @@ msgstr "Versturen"
 msgid "Send a mail to this user"
 msgstr "Stuur een mail naar deze gebruiker"
 
+#. Default: "actual"
+#: skins/eXtremeManagement/project_view.pt:55
+msgid "actual"
+msgstr "daadwerkelijk"
+
 #. Default: "Back to"
 #: skins/eXtremeManagement/booking_month.pt:33
 msgid "back_to"
@@ -38,34 +43,40 @@ msgstr "Terug naar"
 msgid "booking_month"
 msgstr "Boekingen per maand"
 
-#. Default: "<span class=\"portletTopLeft\"></span> My Projects <span class=\"portletTopRight\"></span>"
-#: skins/eXtremeManagement/portlet_my_projects.pt:13
-#, fuzzy
+#. Default: "My Projects"
+#: skins/eXtremeManagement/portlet_my_projects.pt:15
 msgid "box_my_projects"
 msgstr "Mijn projecten"
 
-#. Default: "<span class=\"portletTopLeft\"></span> Pending Stories <span class=\"portletTopRight\"></span>"
-#: skins/eXtremeManagement/portlet_stories.pt:14
-#, fuzzy
+#. Default: "Pending Stories"
+#: skins/eXtremeManagement/portlet_stories.pt:16
 msgid "box_stories"
 msgstr "In te schatten verhalen"
+
+#. Default: "Cannot Activate"
+#: skins/eXtremeManagement/task_view.pt:22
+msgid "cannot_activate"
+msgstr "Kan niet activeren"
 
 #. Default: "current month"
 #: skins/eXtremeManagement/booking_month.pt:35
 msgid "current-month"
 msgstr "huidige maand"
 
+#. Default: "days"
+#: skins/eXtremeManagement/story_view.pt:78
+msgid "days"
+msgstr "dagen"
+
 #. Default: "Overview of tasks that belong to me.  The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
 #: skins/eXtremeManagement/task_overview.pt:29
-#, fuzzy
 msgid "description-overview-my-tasks"
 msgstr "Overzicht van de taken die aan mij zijn toegewezen.  De genoemde totalen zijn totaaltijden voor mijzelf. Ze zullen normaal gesproken afwijken van de uitkomst van het optellen van de kolom erboven."
 
 #. Default: "This is a list of all projects. Also the iterations which are completed with state, estimated and actual time.  Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>. This way the administration has an overview with all iterations which are invoiced."
 #: skins/eXtremeManagement/project_administration.pt:24
-#, fuzzy
 msgid "description_project_administration"
-msgstr "Hieronder worden alle projecten weergegeven. Daarin worden alle iteraties getoond met de schatting en de daadwerkelijk gewerkte uren. Zodra een iteratie gefactureerd wordt, kan de status veranderd worden naar <strong>gefactureerd</strong>. Zo heeft de administratie een overzicht van iteraties die gefactureerd zijn."
+msgstr "Hieronder worden alle projecten weergegeven. Daarin worden alle iteraties getoond met de status, schatting en de daadwerkelijk gewerkte uren. Zodra een iteratie gefactureerd wordt, kan de status veranderd worden naar <strong>gefactureerd</strong>. Zo heeft de administratie een overzicht van iteraties die gefactureerd zijn."
 
 #. Default: "To register your time (hours), use the form below and press 'Send'."
 #: skins/eXtremeManagement/update_hours_form.cpt:39
@@ -398,34 +409,31 @@ msgstr "Datum boeking"
 
 #. Default: "Time Bookings"
 #: skins/eXtremeManagement/task_view.pt:83
-#, fuzzy
 msgid "heading-bookings"
 msgstr "Boekingen"
 
 #. Default: "Bookings per day"
 #: skins/eXtremeManagement/booking_month.pt:15
-#, fuzzy
 msgid "heading-bookings-per-day"
-msgstr "Boekingen per dag voor deze maand"
+msgstr "Boekingen per dag"
 
 #. Default: "Hours per employee"
-#: skins/eXtremeManagement/iteration_view.pt:184
+#: skins/eXtremeManagement/iteration_view.pt:182
 msgid "heading-hours-per-employee"
 msgstr "Uren per medewerker"
 
 #. Default: "My to-do tasks"
-#: skins/eXtremeManagement/iteration_view.pt:219
+#: skins/eXtremeManagement/iteration_view.pt:217
 msgid "heading-in-progress-tasks"
 msgstr "Mijn te-doen taken"
 
-#. Default: "My ${DYNAMIC_CONTENT} task overview"
+#. Default: "My ${state} task overview"
 #: skins/eXtremeManagement/task_overview.pt:27
-#, fuzzy
 msgid "heading-my-task-overview"
-msgstr "Mijn taakoverzicht"
+msgstr "Mijn ${state} taakoverzicht"
 
 #. Default: "My open tasks"
-#: skins/eXtremeManagement/iteration_view.pt:236
+#: skins/eXtremeManagement/iteration_view.pt:234
 msgid "heading-open-tasks"
 msgstr "Mijn open taken"
 
@@ -461,7 +469,7 @@ msgstr "Andere inhoud"
 
 ### story_view template ###
 #. Default: "Tasks"
-#: skins/eXtremeManagement/story_view.pt:115
+#: skins/eXtremeManagement/story_view.pt:116
 msgid "heading_tasks"
 msgstr "Taken"
 
@@ -470,14 +478,28 @@ msgstr "Taken"
 msgid "help_include_global_members"
 msgstr "Indien geselecteerd, zullen Leden met de globale rol 'Employee' ('Medewerker') verschijnen in de lijst met personen aan wie een Taak toegewezen kan worden."
 
+#. Default: "Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown)."
+#: skins/eXtremeManagement/story_view.pt:56
+msgid "help_needs_estimate"
+msgstr "Kan niet beginnen met werken aan deze Story totdat het is geschat (vul een schatting in en selecteer 'markeer als geschat' van de status dropdown"
+
+#. Default: "hours"
+#: skins/eXtremeManagement/project_view.pt:54
+msgid "hours"
+msgstr "uren"
+
 #. Default: "Hours booked for today: ${total_booked}"
 #: skins/eXtremeManagement/portlet_tasks.pt:54
 msgid "hours_booked_today"
 msgstr "Uren geboekt voor deze dag: ${total_booked}"
 
+#. Default: "iteration"
+#: skins/eXtremeManagement/project_administration.pt:74
+msgid "iteration"
+msgstr "iteratie"
+
 #. Default: "Date to book for"
 #: skins/eXtremeManagement/update_hours_form.cpt:47
-#, fuzzy
 msgid "label_bookingdate"
 msgstr "Datum om dit op te boeken"
 
@@ -567,7 +589,7 @@ msgid "listingheader_actual"
 msgstr "Daadwerkelijk"
 
 #. Default: "Time Booked"
-#: skins/eXtremeManagement/story_view.pt:90
+#: skins/eXtremeManagement/story_view.pt:91
 msgid "listingheader_actualtimebooked"
 msgstr "Tijd geboekt"
 
@@ -597,7 +619,7 @@ msgid "listingheader_country"
 msgstr "Land"
 
 #. Default: "Difference"
-#: skins/eXtremeManagement/story_view.pt:130
+#: skins/eXtremeManagement/story_view.pt:131
 msgid "listingheader_diff"
 msgstr "Verschil"
 
@@ -607,7 +629,7 @@ msgid "listingheader_email"
 msgstr "E-mail"
 
 #. Default: "Employee"
-#: skins/eXtremeManagement/iteration_view.pt:192
+#: skins/eXtremeManagement/iteration_view.pt:190
 msgid "listingheader_employee"
 msgstr "Medewerker"
 
@@ -667,7 +689,7 @@ msgid "listingheader_state"
 msgstr "Status"
 
 #. Default: "Story"
-#: skins/eXtremeManagement/story_view.pt:125
+#: skins/eXtremeManagement/story_view.pt:126
 msgid "listingheader_story"
 msgstr "Verhaal"
 
@@ -677,7 +699,7 @@ msgid "listingheader_tasks_completed"
 msgstr "Afgeronde taken"
 
 #. Default: "Tasks Estimate (hours)"
-#: skins/eXtremeManagement/story_view.pt:81
+#: skins/eXtremeManagement/story_view.pt:82
 msgid "listingheader_tasks_estimate"
 msgstr "Geschatte taken (uren)"
 
@@ -688,22 +710,22 @@ msgstr "Openstaande taken"
 
 ### iteration_view template ###
 #. Default: "Title"
-#: skins/eXtremeManagement/story_view.pt:127
+#: skins/eXtremeManagement/story_view.pt:128
 msgid "listingheader_title"
 msgstr "Titel"
 
 #. Default: "Total Actual"
-#: skins/eXtremeManagement/iteration_view.pt:195
+#: skins/eXtremeManagement/iteration_view.pt:193
 msgid "listingheader_total_actual"
 msgstr "Totaal daadwerkelijke uren"
 
 #. Default: "Total Difference"
-#: skins/eXtremeManagement/iteration_view.pt:197
+#: skins/eXtremeManagement/iteration_view.pt:195
 msgid "listingheader_total_difference"
 msgstr "Totaal verschil"
 
 #. Default: "Total Estimate"
-#: skins/eXtremeManagement/iteration_view.pt:193
+#: skins/eXtremeManagement/iteration_view.pt:191
 msgid "listingheader_total_estimate"
 msgstr "Totaal geschat"
 
@@ -722,19 +744,23 @@ msgstr "Postcode"
 msgid "man_hours_empty"
 msgstr "N/A"
 
+#. Default: "Needs Estimate"
+#: skins/eXtremeManagement/story_view.pt:55
+msgid "needs_estimate"
+msgstr "Heeft schatting nodig"
+
 #. Default: "Next"
 #: skins/eXtremeManagement/story_view.pt:26
-#, fuzzy
 msgid "next"
-msgstr "volgende:"
+msgstr "volgende"
 
 #. Default: "No projects are published yet!"
-#: skins/eXtremeManagement/project_administration.pt:93
+#: skins/eXtremeManagement/project_administration.pt:94
 msgid "no_projects_found"
 msgstr "Er zijn nog geen projecten gepubliceerd!"
 
 #. Default: "No stories published yet!"
-#: skins/eXtremeManagement/iteration_view.pt:243
+#: skins/eXtremeManagement/iteration_view.pt:241
 msgid "no_stories_published"
 msgstr "Er zijn op dit moment geen stories gedefinieerd!"
 
@@ -744,15 +770,14 @@ msgid "no_tasks_assigned"
 msgstr "Op dit moment heb jij geen taken!"
 
 #. Default: "No tasks defined yet."
-#: skins/eXtremeManagement/story_view.pt:187
+#: skins/eXtremeManagement/story_view.pt:188
 msgid "no_tasks_defined"
 msgstr "Nog geen taken gedefinieerd."
 
 #. Default: "Previous"
 #: skins/eXtremeManagement/story_view.pt:37
-#, fuzzy
 msgid "previous"
-msgstr "vorige:"
+msgstr "vorige"
 
 #. Default: "previous month"
 #: skins/eXtremeManagement/booking_month.pt:28
@@ -774,10 +799,15 @@ msgstr "Projectadministratie"
 msgid "project_overview"
 msgstr "projectoverzicht"
 
-#. Default: "Show"
+#. Default: "Related issues"
+#: skins/eXtremeManagement/poitask_view.pt:10
+msgid "related_issues"
+msgstr "Gerelateerde issues"
+
+#. Default: "Show Tasks with state:"
 #: skins/eXtremeManagement/task_overview.pt:18
-msgid "show"
-msgstr "Laat zien"
+msgid "show_tasks_with_state"
+msgstr "Laat Taken zien met status:"
 
 #. Default: "status"
 #: skins/eXtremeManagement/project_view.pt:60
@@ -786,7 +816,6 @@ msgstr "Status"
 
 #. Default: "task"
 #: skins/eXtremeManagement/update_hours_form.cpt:78
-#, fuzzy
 msgid "task_icon"
 msgstr "taak"
 
@@ -796,7 +825,7 @@ msgid "task_overview"
 msgstr "Takenoverzicht"
 
 #. Default: "Total"
-#: skins/eXtremeManagement/story_view.pt:173
+#: skins/eXtremeManagement/story_view.pt:174
 msgid "total"
 msgstr "Totaal"
 

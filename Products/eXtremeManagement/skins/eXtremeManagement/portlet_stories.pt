@@ -11,10 +11,9 @@
           tal:condition="python:results">
     
         <dl class="portlet" id="portlet-stories">
-            <dt class="portletHeader"
-                i18n:translate="box_stories">
+            <dt class="portletHeader">
               <span class="portletTopLeft"></span>
-                Pending Stories
+                <span i18n:translate="box_stories">Pending Stories</span>
               <span class="portletTopRight"></span>
             </dt>
             <tal:block tal:repeat="obj results">

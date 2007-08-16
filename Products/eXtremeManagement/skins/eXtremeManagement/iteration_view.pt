@@ -16,7 +16,7 @@
         <dl class="not-startable"
             tal:condition="not:context/startable"
             tal:define="stories_not_startable view/story_titles_not_startable">
-          <dt>Cannot Activate</dt>
+          <dt i18n:translate="cannot_activate">Cannot Activate</dt>
           <dd tal:condition="stories_not_startable">There are stories which cannot be activated, please see: <span tal:replace="stories_not_startable"></span>.</dd>
         </dl>
 
@@ -157,9 +157,7 @@
                   <div>
                     <a tal:attributes="href string:javascript:toggle_item('${iteration_number}-${number}')"
                        class="toggle-handle">[ &uarr; ]</a>&nbsp;
-                    <tal:details content="structure story/details">
-                      Details
-                    </tal:details>
+                    <tal:details content="structure story/details" />
                   </div>
               </td>
             </tr>

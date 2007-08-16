@@ -51,8 +51,8 @@
                         height="30" 
                         align="left" 
                         class="header_iteration">
-                      <span tal:replace="main/man_hours" /> Hours
-                      ( <span tal:replace="main/actual" /> Actual)
+                      <span tal:replace="main/man_hours" /> <span i18n:translate="hours">hours</span>
+                      ( <span tal:replace="main/actual" /> <span i18n:translate="actual">actual</span>)
                     </th>
                     <th colspan="2"
                         width="20%" 
@@ -135,8 +135,8 @@
                     height="30" 
                     align="left" 
                     class="header_iteration">
-                  <span tal:replace="iteration/man_hours" /> Hours
-                  ( <span tal:replace="iteration/actual" /> Actual)
+                  <span tal:replace="iteration/man_hours" /> <span i18n:translate="hours">hours</span>
+                  ( <span tal:replace="iteration/actual" /> <span i18n:translate="actual">actual</span>)
                 </th>
                 <th width="20%"
                     class="iteration-state">

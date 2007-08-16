@@ -7,7 +7,7 @@
       <div metal:use-macro="context/task_view/macros/body">
 
         <div metal:fill-slot="after-description">
-          Related issues:
+          <span i18n:translate="related_issues">Related issues</span>:
           <ul>
             <tal:repeat repeat="issue context/getIssues">
               <li tal:define="state python:wtool.getInfoFor(issue,
