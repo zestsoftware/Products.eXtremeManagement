@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-08-16 12:42+0000\n"
-"PO-Revision-Date: 2007-08-16 14:20+0200\n"
+"POT-Creation-Date: 2007-08-16 13:12+0000\n"
+"PO-Revision-Date: 2007-08-16 15:20+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -418,12 +418,12 @@ msgid "heading-bookings-per-day"
 msgstr "Boekingen per dag"
 
 #. Default: "Hours per employee"
-#: skins/eXtremeManagement/iteration_view.pt:182
+#: skins/eXtremeManagement/iteration_view.pt:189
 msgid "heading-hours-per-employee"
 msgstr "Uren per medewerker"
 
 #. Default: "My to-do tasks"
-#: skins/eXtremeManagement/iteration_view.pt:217
+#: skins/eXtremeManagement/iteration_view.pt:224
 msgid "heading-in-progress-tasks"
 msgstr "Mijn te-doen taken"
 
@@ -433,7 +433,7 @@ msgid "heading-my-task-overview"
 msgstr "Mijn ${state} taakoverzicht"
 
 #. Default: "My open tasks"
-#: skins/eXtremeManagement/iteration_view.pt:234
+#: skins/eXtremeManagement/iteration_view.pt:241
 msgid "heading-open-tasks"
 msgstr "Mijn open taken"
 
@@ -482,6 +482,11 @@ msgstr "Indien geselecteerd, zullen Leden met de globale rol 'Employee' ('Medewe
 #: skins/eXtremeManagement/story_view.pt:56
 msgid "help_needs_estimate"
 msgstr "Kan niet beginnen met werken aan deze Story totdat het is geschat (vul een schatting in en selecteer 'markeer als geschat' van de status dropdown"
+
+#. Default: "The Initial estimate of the story is a rough estimate in days.  The Tasks estimate is the total estimate in hours for all tasks.  If there is a big difference there could be a logical explanation.  You should investigate that to be sure."
+#: skins/eXtremeManagement/iteration_view.pt:177
+msgid "help_stories_table"
+msgstr "De Initiële inschatting van de story is een ruwe schatting in dagen.  Geschatte taken is het totaal aantal uren ingeschat voor alle taken.  Als er een groot verschil tussen zit, kan daar een logische verklaring voor zijn.  Onderzoekt u dat alstublieft om er zeker van te zijn."
 
 #. Default: "hours"
 #: skins/eXtremeManagement/project_view.pt:54
@@ -629,7 +634,7 @@ msgid "listingheader_email"
 msgstr "E-mail"
 
 #. Default: "Employee"
-#: skins/eXtremeManagement/iteration_view.pt:190
+#: skins/eXtremeManagement/iteration_view.pt:197
 msgid "listingheader_employee"
 msgstr "Medewerker"
 
@@ -715,17 +720,17 @@ msgid "listingheader_title"
 msgstr "Titel"
 
 #. Default: "Total Actual"
-#: skins/eXtremeManagement/iteration_view.pt:193
+#: skins/eXtremeManagement/iteration_view.pt:200
 msgid "listingheader_total_actual"
 msgstr "Totaal daadwerkelijke uren"
 
 #. Default: "Total Difference"
-#: skins/eXtremeManagement/iteration_view.pt:195
+#: skins/eXtremeManagement/iteration_view.pt:202
 msgid "listingheader_total_difference"
 msgstr "Totaal verschil"
 
 #. Default: "Total Estimate"
-#: skins/eXtremeManagement/iteration_view.pt:191
+#: skins/eXtremeManagement/iteration_view.pt:198
 msgid "listingheader_total_estimate"
 msgstr "Totaal geschat"
 
@@ -760,7 +765,7 @@ msgid "no_projects_found"
 msgstr "Er zijn nog geen projecten gepubliceerd!"
 
 #. Default: "No stories published yet!"
-#: skins/eXtremeManagement/iteration_view.pt:241
+#: skins/eXtremeManagement/iteration_view.pt:248
 msgid "no_stories_published"
 msgstr "Er zijn op dit moment geen stories gedefinieerd!"
 

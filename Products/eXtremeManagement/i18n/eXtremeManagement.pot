@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-08-16 12:42+0000\n"
+"POT-Creation-Date: 2007-08-16 13:12+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -352,12 +352,12 @@ msgid "heading-bookings-per-day"
 msgstr ""
 
 #. Default: "Hours per employee"
-#: skins/eXtremeManagement/iteration_view.pt:182
+#: skins/eXtremeManagement/iteration_view.pt:189
 msgid "heading-hours-per-employee"
 msgstr ""
 
 #. Default: "My to-do tasks"
-#: skins/eXtremeManagement/iteration_view.pt:217
+#: skins/eXtremeManagement/iteration_view.pt:224
 msgid "heading-in-progress-tasks"
 msgstr ""
 
@@ -367,7 +367,7 @@ msgid "heading-my-task-overview"
 msgstr ""
 
 #. Default: "My open tasks"
-#: skins/eXtremeManagement/iteration_view.pt:234
+#: skins/eXtremeManagement/iteration_view.pt:241
 msgid "heading-open-tasks"
 msgstr ""
 
@@ -414,6 +414,11 @@ msgstr ""
 #. Default: "Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown)."
 #: skins/eXtremeManagement/story_view.pt:56
 msgid "help_needs_estimate"
+msgstr ""
+
+#. Default: "The Initial estimate of the story is a rough estimate in days.  The Tasks estimate is the total estimate in hours for all tasks.  If there is a big difference there could be a logical explanation.  You should investigate that to be sure."
+#: skins/eXtremeManagement/iteration_view.pt:177
+msgid "help_stories_table"
 msgstr ""
 
 #. Default: "hours"
@@ -562,7 +567,7 @@ msgid "listingheader_email"
 msgstr ""
 
 #. Default: "Employee"
-#: skins/eXtremeManagement/iteration_view.pt:190
+#: skins/eXtremeManagement/iteration_view.pt:197
 msgid "listingheader_employee"
 msgstr ""
 
@@ -647,17 +652,17 @@ msgid "listingheader_title"
 msgstr ""
 
 #. Default: "Total Actual"
-#: skins/eXtremeManagement/iteration_view.pt:193
+#: skins/eXtremeManagement/iteration_view.pt:200
 msgid "listingheader_total_actual"
 msgstr ""
 
 #. Default: "Total Difference"
-#: skins/eXtremeManagement/iteration_view.pt:195
+#: skins/eXtremeManagement/iteration_view.pt:202
 msgid "listingheader_total_difference"
 msgstr ""
 
 #. Default: "Total Estimate"
-#: skins/eXtremeManagement/iteration_view.pt:191
+#: skins/eXtremeManagement/iteration_view.pt:198
 msgid "listingheader_total_estimate"
 msgstr ""
 
@@ -692,7 +697,7 @@ msgid "no_projects_found"
 msgstr ""
 
 #. Default: "No stories published yet!"
-#: skins/eXtremeManagement/iteration_view.pt:241
+#: skins/eXtremeManagement/iteration_view.pt:248
 msgid "no_stories_published"
 msgstr ""
 
