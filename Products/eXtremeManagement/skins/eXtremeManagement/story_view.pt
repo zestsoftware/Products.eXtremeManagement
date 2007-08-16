@@ -70,8 +70,8 @@
                 cellspacing="0">
             <tr>
                 <th class="customer_info_header" 
-                    i18n:translate="listingheader_roughestimate">
-                    Rough Estimate
+                    i18n:translate="listing_header_initial_estimate">
+                    Initial Estimate (days)
                 </th>
                 <td>
         <span tal:replace="structure story/rough_estimate" /> days.
@@ -80,7 +80,7 @@
             <tr>
                 <th class="customer_info_header" 
                     i18n:translate="listingheader_taskstimeestimated">
-                    Time Estimated
+                    Tasks Estimate (hours)
                 </th>
                 <td>
               <span tal:replace="totals/estimate" />
@@ -125,7 +125,7 @@
                 <th i18n:translate="listingheader_story"
                     tal:condition="show_story">Story</th>
                 <th i18n:translate="listingheader_title">Title</th>
-                <th i18n:translate="listingheader_estimate">Estimate</th>                  
+                <th i18n:translate="listingheader_estimate">Estimate</th>                    
                 <th i18n:translate="listingheader_actual">Actual</th>
                 <th i18n:translate="listingheader_diff">Difference</th>
                 <th i18n:translate="listingheader_state">Status</th>

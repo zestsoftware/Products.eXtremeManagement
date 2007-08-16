@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-02-14 21:54+0000\n"
+"POT-Creation-Date: 2007-08-16 11:37+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -19,78 +19,63 @@ msgstr ""
 "X-Poedit-Language: French\n"
 
 #. Default: "Send"
-#: ./skins/eXtremeManagement/update_hours_form.cpt
+#: skins/eXtremeManagement/update_hours_form.cpt:130
 msgid "Send"
 msgstr "Envoyer"
 
 #. Default: "Send a mail to this user"
-#: ./skins/eXtremeManagement/customer_view.pt
-#: ./skins/eXtremeManagement/projectmember_view.pt
+#: skins/eXtremeManagement/customer_view.pt:123
 msgid "Send a mail to this user"
 msgstr "Envoyer un courriel à cet usager"
 
-#. Default: "Visit the website"
-#: ./skins/eXtremeManagement/customer_view.pt
-msgid "Visit the website"
-msgstr "Visitez le site web"
-
 #. Default: "Back to"
-#: ./skins/eXtremeManagement/booking_month.pt
-#: ./skins/eXtremeManagement/booking_overview.pt
+#: skins/eXtremeManagement/booking_month.pt:33
 msgid "back_to"
 msgstr "Retour"
 
 #. Default: "Bookings per month"
-#: ./skins/eXtremeManagement/portlet_tasks.pt
+#: skins/eXtremeManagement/portlet_tasks.pt:44
 msgid "booking_month"
 msgstr "Entrées (bookings) par mois"
 
-#. Default: "Detailed bookings"
-#: ./skins/eXtremeManagement/portlet_tasks.pt
-msgid "booking_overview"
-msgstr "Vue d'ensemble des entrées (bookings)"
-
-#. Default: "My Projects"
-#: ./skins/eXtremeManagement/portlet_my_projects.pt
+#. Default: "<span class=\"portletTopLeft\"></span> My Projects <span class=\"portletTopRight\"></span>"
+#: skins/eXtremeManagement/portlet_my_projects.pt:13
+#, fuzzy
 msgid "box_my_projects"
 msgstr "Mes projets"
 
-#. Default: "Pending Stories"
-#: ./skins/eXtremeManagement/portlet_stories.pt
+#. Default: "<span class=\"portletTopLeft\"></span> Pending Stories <span class=\"portletTopRight\"></span>"
+#: skins/eXtremeManagement/portlet_stories.pt:14
+#, fuzzy
 msgid "box_stories"
 msgstr "Histoires-usager (stories) en attente"
 
 #. Default: "current month"
-#: ./skins/eXtremeManagement/booking_month.pt
-#: ./skins/eXtremeManagement/booking_overview.pt
+#: skins/eXtremeManagement/booking_month.pt:35
 msgid "current-month"
 msgstr "Mois courant"
 
-#. Default: "These are all tasks that have been assigned to me and are not yet worked on (so no to-do or completed status)."
-#: ./skins/eXtremeManagement/task_overview.pt
-msgid "description-open-tasks"
-msgstr "Voici toutes les tâches qui m'ont été assignées et pour lesquelles le travail n'a pas commencé (donc avec l'état \"ne pas faire\" ou \"complété\")"
-
-#. Default: "Overview of tasks that belong to me. The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
-#: ./skins/eXtremeManagement/iteration_view.pt
-#: ./skins/eXtremeManagement/task_overview.pt
+#. Default: "Overview of tasks that belong to me.  The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
+#: skins/eXtremeManagement/task_overview.pt:29
+#, fuzzy
 msgid "description-overview-my-tasks"
 msgstr "Tâches qui m'incombent.  Les totaux mentionnés s'appliquent à moi seul et en conséquence ils différent généralement d'une addition des valeurs de la colonne au-dessus."
 
-#. Default: "These are all tasks that have been assigned to me and that I should currently work on."
-#: ./skins/eXtremeManagement/task_overview.pt
-msgid "description-to-do-tasks"
-msgstr "Voici toutes les tâches qui m'ont été assignées et sur lesquelles je dois travailler."
-
-#. Default: "This is a list of all projects. Also the iterations which are completed with state, estimated and actual time. Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>. This way the administration has an overview with all iterations which are invoiced."
-#: ./skins/eXtremeManagement/project_administration.pt
+#. Default: "This is a list of all projects. Also the iterations which are completed with state, estimated and actual time.  Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>. This way the administration has an overview with all iterations which are invoiced."
+#: skins/eXtremeManagement/project_administration.pt:24
+#, fuzzy
 msgid "description_project_administration"
 msgstr "Liste de tous les projets comprenant les itérations complététes avec leur état, temps estimé et temps réel.  Lorsqu'une itération est terminée et facturée, l'état peut-être changé à <strong>Facturé</strong>.  De cette manière, l'administration peut connaître les itérations qui ont été facturées."
 
 #. Default: "To register your time (hours), use the form below and press 'Send'."
-#: ./skins/eXtremeManagement/update_hours_form.cpt
+#: skins/eXtremeManagement/update_hours_form.cpt:39
 msgid "description_time_registration"
 msgstr "Pour enregistrer votre temps (en heures), remplissez le formulaire ci-bas et cliquez sur 'Envoyer'."
+
+#. Default: "Detailed bookings"
+#: skins/eXtremeManagement/portlet_tasks.pt:37
+msgid "detailed_bookings"
+msgstr ""
 
 # 1 more: content/Customer.py
 #. Default: "Enter address."
@@ -356,131 +341,125 @@ msgid "eXtremeManagement_label_zipCode"
 msgstr "Code postal"
 
 #. Default: "email"
-#: ./skins/eXtremeManagement/projectmember_view.pt
+#: skins/eXtremeManagement/projectmember_view.pt:54
 msgid "email"
 msgstr "courriel"
 
 #. Default: "Go to"
-#: ./skins/eXtremeManagement/booking_month.pt
-#: ./skins/eXtremeManagement/booking_overview.pt
+#: skins/eXtremeManagement/booking_month.pt:26
 msgid "go_to"
 msgstr "Aller à"
 
 #. Default: "Go to overview of"
-#: ./skins/eXtremeManagement/booking_month.pt
+#: skins/eXtremeManagement/booking_month.pt:17
 msgid "go_to_overview"
 msgstr "Aller à la vue générale"
 
 #. Default: "Customer info"
-#: ./skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/customer_view.pt:8
 msgid "header_customers"
 msgstr "Information sur le client"
 
 #. Default: "Project member info"
-#: ./skins/eXtremeManagement/projectmember_view.pt
+#: skins/eXtremeManagement/projectmember_view.pt:8
 msgid "header_memberinfo"
 msgstr "Information sur les membres du projet"
 
 #. Default: "Project administration"
-#: ./skins/eXtremeManagement/project_administration.pt
+#: skins/eXtremeManagement/project_administration.pt:17
 msgid "header_project_administration"
 msgstr "Administration du projet"
 
 #. Default: "Project members"
-#: ./skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/customer_view.pt:95
 msgid "header_project_members"
 msgstr "Membres du projet"
 
 #. Default: "Time registration"
-#: ./skins/eXtremeManagement/portlet_tasks.pt
-#: ./skins/eXtremeManagement/update_hours_form.cpt
+#: skins/eXtremeManagement/portlet_tasks.pt:58
 msgid "header_time_registration"
 msgstr "Saisie du temps"
 
 #. Default: "Billable"
-#: ./skins/eXtremeManagement/booking_view.pt
+#: skins/eXtremeManagement/booking_view.pt:42
 msgid "heading-billable"
 msgstr "Facturable"
 
 #. Default: "Booking"
-#: ./skins/eXtremeManagement/booking_view.pt
+#: skins/eXtremeManagement/booking_view.pt:32
 msgid "heading-booking"
 msgstr "\"Booking\""
 
 #. Default: "Booking date"
-#: ./skins/eXtremeManagement/booking_view.pt
+#: skins/eXtremeManagement/booking_view.pt:37
 msgid "heading-booking-date"
 msgstr "Date de \"booking\""
 
-#. Default: "Bookings"
-#: ./skins/eXtremeManagement/booking_overview.pt
-#: ./skins/eXtremeManagement/task_view.pt
+#. Default: "Time Bookings"
+#: skins/eXtremeManagement/task_view.pt:83
+#, fuzzy
 msgid "heading-bookings"
 msgstr "\"Bookings\""
 
-#. Default: "Bookings per day for this month"
-#: ./skins/eXtremeManagement/booking_month.pt
+#. Default: "Bookings per day"
+#: skins/eXtremeManagement/booking_month.pt:15
+#, fuzzy
 msgid "heading-bookings-per-day"
 msgstr "\"Bookings\" par jour pour ce mois"
 
 #. Default: "Hours per employee"
-#: ./skins/eXtremeManagement/iteration_view.pt
+#: skins/eXtremeManagement/iteration_view.pt:184
 msgid "heading-hours-per-employee"
 msgstr "Heures par employé"
 
 #. Default: "My to-do tasks"
-#: ./skins/eXtremeManagement/iteration_view.pt
+#: skins/eXtremeManagement/iteration_view.pt:219
 msgid "heading-in-progress-tasks"
 msgstr "Mes tâches"
 
-#. Default: "My task overview"
-#: ./skins/eXtremeManagement/task_overview.pt
+#. Default: "My ${DYNAMIC_CONTENT} task overview"
+#: skins/eXtremeManagement/task_overview.pt:27
+#, fuzzy
 msgid "heading-my-task-overview"
 msgstr "Vue générale de mes tâches"
 
 #. Default: "My open tasks"
-#: ./skins/eXtremeManagement/iteration_view.pt
-#: ./skins/eXtremeManagement/task_overview.pt
+#: skins/eXtremeManagement/iteration_view.pt:236
 msgid "heading-open-tasks"
 msgstr "Mes tâches ouvertes"
 
 #. Default: "Stories"
-#: ./skins/eXtremeManagement/iteration_view.pt
+#: skins/eXtremeManagement/iteration_view.pt:73
 msgid "heading-stories"
 msgstr "Histoires-usager"
 
-#. Default: "My to-do tasks"
-#: ./skins/eXtremeManagement/task_overview.pt
-msgid "heading-to-do-tasks"
-msgstr "Mes tâches à faire"
-
 #. Default: "Current Iterations"
-#: ./skins/eXtremeManagement/project_view.pt
+#: skins/eXtremeManagement/project_view.pt:22
 msgid "heading_current_iterations"
 msgstr "Itérations courantes"
 
 #. Default: "Finished Iterations"
-#: ./skins/eXtremeManagement/project_view.pt
+#: skins/eXtremeManagement/project_view.pt:105
 msgid "heading_finished_iterations"
 msgstr "Itérations terminées"
 
 #. Default: "No Current Iterations"
-#: ./skins/eXtremeManagement/project_view.pt
+#: skins/eXtremeManagement/project_view.pt:79
 msgid "heading_no_current_iterations"
 msgstr "Aucune itération courante"
 
 #. Default: "Open Iterations"
-#: ./skins/eXtremeManagement/project_view.pt
+#: skins/eXtremeManagement/project_view.pt:86
 msgid "heading_open_iterations"
 msgstr "Itérations ouvertes"
 
 #. Default: "Other Content"
-#: ./skins/eXtremeManagement/project_view.pt
+#: skins/eXtremeManagement/project_view.pt:162
 msgid "heading_other_content"
 msgstr "Autre contenu"
 
 #. Default: "Tasks"
-#: ./skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/story_view.pt:115
 msgid "heading_tasks"
 msgstr "Tâches"
 
@@ -490,22 +469,18 @@ msgid "help_include_global_members"
 msgstr "Si sélectionné, les membres ayant le rôle global \"Employé\" apparaîtront dans la liste des personnes assignées à une tâche"
 
 #. Default: "Hours booked for today: ${total_booked}"
-#: ./skins/eXtremeManagement/portlet_tasks.pt
+#: skins/eXtremeManagement/portlet_tasks.pt:54
 msgid "hours_booked_today"
 msgstr "Heures entrées pour la journée : ${total_booked}"
 
-#. Default: "Date to book this on"
-#: ./skins/eXtremeManagement/update_hours_form.cpt
+#. Default: "Date to book for"
+#: skins/eXtremeManagement/update_hours_form.cpt:47
+#, fuzzy
 msgid "label_bookingdate"
 msgstr "Date du \"booking\""
 
-#. Default: "Comments:"
-#: ./skins/eXtremeManagement/update_hours_form.cpt
-msgid "label_description"
-msgstr "Commentaires:"
-
 #. Default: "Hours"
-#: ./skins/eXtremeManagement/update_hours_form.cpt
+#: skins/eXtremeManagement/update_hours_form.cpt:95
 msgid "label_hours"
 msgstr "Heures"
 
@@ -515,301 +490,324 @@ msgid "label_include_global_members"
 msgstr "Inclure les employés globaux (global employees)"
 
 #. Default: "Minutes"
-#: ./skins/eXtremeManagement/update_hours_form.cpt
+#: skins/eXtremeManagement/update_hours_form.cpt:117
 msgid "label_minutes"
 msgstr "Minutes"
 
-#. Default: "Rough Estimate: ${rough} days."
-#: ./skins/eXtremeManagement/story_view.pt
-msgid "label_roughestimate"
-msgstr "Estimé approximatif: ${rough} jours."
-
 #. Default: "last 12 months"
-#: ./skins/eXtremeManagement/booking_month.pt
+#: skins/eXtremeManagement/booking_month.pt:19
 msgid "last_12_months"
 msgstr "12 derniers mois"
 
+#. Default: "Initial Estimate (days)"
+#: skins/eXtremeManagement/story_view.pt:72
+msgid "listing_header_initial_estimate"
+msgstr ""
+
 #. Default: "Billable"
-#: ./skins/eXtremeManagement/task_view.pt
+#: skins/eXtremeManagement/task_view.pt:101
 msgid "listingheader-billable"
 msgstr "Facturable"
 
 #. Default: "Booked by"
-#: ./skins/eXtremeManagement/task_view.pt
+#: skins/eXtremeManagement/task_view.pt:98
 msgid "listingheader-booked-by"
 msgstr "\"Booké\" par"
 
 #. Default: "Booking"
-#: ./skins/eXtremeManagement/booking_overview.pt
-#: ./skins/eXtremeManagement/task_view.pt
+#: skins/eXtremeManagement/task_view.pt:92
 msgid "listingheader-booking"
 msgstr "\"Booking\""
 
 #. Default: "Date"
-#: ./skins/eXtremeManagement/task_view.pt
+#: skins/eXtremeManagement/task_view.pt:89
 msgid "listingheader-bookingdate"
 msgstr "Date"
 
 #. Default: "Date"
-#: ./skins/eXtremeManagement/booking_month.pt
-#: ./skins/eXtremeManagement/booking_overview.pt
+#: skins/eXtremeManagement/booking_details.pt:42
 msgid "listingheader-date"
 msgstr "Date"
 
+#. Default: "Start"
+#: skins/eXtremeManagement/booking_month.pt:59
+msgid "listingheader-start-of-week"
+msgstr ""
+
 #. Default: "Task"
-#: ./skins/eXtremeManagement/booking_overview.pt
+#: skins/eXtremeManagement/booking_details.pt:45
 msgid "listingheader-task"
 msgstr "Tâche"
 
 #. Default: "Time"
-#: ./skins/eXtremeManagement/booking_month.pt
-#: ./skins/eXtremeManagement/booking_overview.pt
-#: ./skins/eXtremeManagement/task_view.pt
+#: skins/eXtremeManagement/task_view.pt:95
 msgid "listingheader-time"
 msgstr "Temps"
 
+#. Default: "Total"
+#: skins/eXtremeManagement/booking_month.pt:69
+msgid "listingheader-total"
+msgstr ""
+
+#. Default: "Week number"
+#: skins/eXtremeManagement/booking_month.pt:56
+msgid "listingheader-week-number"
+msgstr ""
+
 #. Default: "Fullname"
-#: ./skins/eXtremeManagement/customer_view.pt
-#: ./skins/eXtremeManagement/projectmember_view.pt
+#: skins/eXtremeManagement/customer_view.pt:28
 msgid "listingheader_Fullname"
 msgstr "Nom complet"
 
 #. Default: "Phone"
-#: ./skins/eXtremeManagement/customer_view.pt
-#: ./skins/eXtremeManagement/projectmember_view.pt
+#: skins/eXtremeManagement/customer_view.pt:53
 msgid "listingheader_Phone"
 msgstr "Téléphone"
 
 #. Default: "Actual"
-#: ./skins/eXtremeManagement/iteration_view.pt
-#: ./skins/eXtremeManagement/project_administration.pt
-#: ./skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/task_view.pt:40
 msgid "listingheader_actual"
 msgstr "Réel"
 
+#. Default: "Time Booked"
+#: skins/eXtremeManagement/story_view.pt:90
+msgid "listingheader_actualtimebooked"
+msgstr ""
+
 #. Default: "Address"
-#: ./skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/customer_view.pt:33
 msgid "listingheader_address"
 msgstr "Adresse"
 
 #. Default: "Assignee(s)"
-#: ./skins/eXtremeManagement/story_view.pt
-#: ./skins/eXtremeManagement/task_view.pt
+#: skins/eXtremeManagement/task_view.pt:56
 msgid "listingheader_assignees"
 msgstr "Personnes assignées"
 
 #. Default: "City"
-#: ./skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/customer_view.pt:43
 msgid "listingheader_city"
 msgstr "Ville"
 
 #. Default: "Comments"
-#: ./skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/customer_view.pt:81
 msgid "listingheader_comments"
 msgstr "Commentaires"
 
 #. Default: "Country"
-#: ./skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/customer_view.pt:48
 msgid "listingheader_country"
 msgstr "pays"
 
 #. Default: "Difference"
-#: ./skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/story_view.pt:130
 msgid "listingheader_diff"
 msgstr "Différence"
 
 #. Default: "Email"
-#: ./skins/eXtremeManagement/customer_view.pt
-#: ./skins/eXtremeManagement/projectmember_view.pt
+#: skins/eXtremeManagement/customer_view.pt:109
 msgid "listingheader_email"
 msgstr "Courriel"
 
 #. Default: "Employee"
-#: ./skins/eXtremeManagement/iteration_view.pt
+#: skins/eXtremeManagement/iteration_view.pt:192
 msgid "listingheader_employee"
 msgstr "Employé"
 
 #. Default: "End date"
-#: ./skins/eXtremeManagement/iteration_view.pt
+#: skins/eXtremeManagement/iteration_view.pt:51
 msgid "listingheader_enddate"
 msgstr "Date de fin"
 
 #. Default: "Estimate"
-#: ./skins/eXtremeManagement/iteration_view.pt
-#: ./skins/eXtremeManagement/project_administration.pt
-#: ./skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/task_view.pt:33
 msgid "listingheader_estimate"
 msgstr "Estimé"
 
 #. Default: "Fax"
-#: ./skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/customer_view.pt:58
 msgid "listingheader_fax"
 msgstr "Télécopieur"
 
+#. Default: "Initial estimate (days)"
+#: skins/eXtremeManagement/iteration_view.pt:89
+msgid "listingheader_initial_estimate"
+msgstr ""
+
 #. Default: "Iteration"
-#: ./skins/eXtremeManagement/project_administration.pt
+#: skins/eXtremeManagement/project_administration.pt:61
 msgid "listingheader_iteration"
 msgstr "Itération"
 
 #. Default: "Man hours"
-#: ./skins/eXtremeManagement/iteration_view.pt
+#: skins/eXtremeManagement/iteration_view.pt:28
 msgid "listingheader_man_uren"
 msgstr "Heures-personnes"
 
 #. Default: "Name"
-#: ./skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/customer_view.pt:107
 msgid "listingheader_name"
 msgstr "Nom"
 
 #. Default: "Phone"
-#: ./skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/customer_view.pt:108
 msgid "listingheader_phone"
 msgstr "Téléphone"
 
-#. Default: "Progress"
-#: ./skins/eXtremeManagement/project_view.pt
-msgid "listingheader_progress"
-msgstr "État d'avancement"
-
 #. Default: "Project"
-#: ./skins/eXtremeManagement/project_administration.pt
+#: skins/eXtremeManagement/project_administration.pt:41
 msgid "listingheader_projects"
 msgstr "Projet"
 
 #. Default: "Start date"
-#: ./skins/eXtremeManagement/iteration_view.pt
+#: skins/eXtremeManagement/iteration_view.pt:46
 msgid "listingheader_startdate"
 msgstr "Date de début"
 
 #. Default: "Status"
-#: ./skins/eXtremeManagement/iteration_view.pt
-#: ./skins/eXtremeManagement/project_administration.pt
-#: ./skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/task_view.pt:49
 msgid "listingheader_state"
 msgstr "état"
 
 #. Default: "Story"
-#: ./skins/eXtremeManagement/iteration_view.pt
-#: ./skins/eXtremeManagement/project_view.pt
-#: ./skins/eXtremeManagement/update_hours_form.cpt
+#: skins/eXtremeManagement/story_view.pt:125
 msgid "listingheader_story"
 msgstr "Histoire-usager"
 
 #. Default: "Tasks completed"
-#: ./skins/eXtremeManagement/project_view.pt
+#: skins/eXtremeManagement/iteration_view.pt:87
 msgid "listingheader_tasks_completed"
 msgstr "Tâches complétées"
 
+#. Default: "Tasks estimate (hours)"
+#: skins/eXtremeManagement/iteration_view.pt:90
+msgid "listingheader_tasks_estimate"
+msgstr ""
+
 #. Default: "Tasks open"
-#: ./skins/eXtremeManagement/project_view.pt
+#: skins/eXtremeManagement/iteration_view.pt:86
 msgid "listingheader_tasks_open"
 msgstr "Tâches ouvertes"
 
+#. Default: "Tasks Estimate (hours)"
+#: skins/eXtremeManagement/story_view.pt:81
+msgid "listingheader_taskstimeestimated"
+msgstr ""
+
 #. Default: "Title"
-#: ./skins/eXtremeManagement/story_view.pt
-#: ./skins/eXtremeManagement/update_hours_form.cpt
+#: skins/eXtremeManagement/story_view.pt:127
 msgid "listingheader_title"
 msgstr "Titre"
 
 #. Default: "Total Actual"
-#: ./skins/eXtremeManagement/iteration_view.pt
+#: skins/eXtremeManagement/iteration_view.pt:195
 msgid "listingheader_total_actual"
 msgstr "Total réel"
 
 #. Default: "Total Difference"
-#: ./skins/eXtremeManagement/iteration_view.pt
+#: skins/eXtremeManagement/iteration_view.pt:197
 msgid "listingheader_total_difference"
 msgstr "Différence entre les totaux"
 
 #. Default: "Total Estimate"
-#: ./skins/eXtremeManagement/iteration_view.pt
+#: skins/eXtremeManagement/iteration_view.pt:193
 msgid "listingheader_total_estimate"
 msgstr "Total estimé"
 
 #. Default: "Website"
-#: ./skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/customer_view.pt:68
 msgid "listingheader_website"
 msgstr "Site web"
 
 #. Default: "Zip code"
-#: ./skins/eXtremeManagement/customer_view.pt
+#: skins/eXtremeManagement/customer_view.pt:38
 msgid "listingheader_zipCode"
 msgstr "Code postal"
 
-#. Default: "Next:"
-#: ./skins/eXtremeManagement/story_view.pt
+#. Default: "N/A"
+#: skins/eXtremeManagement/iteration_view.pt:36
+msgid "man_hours_empty"
+msgstr ""
+
+#. Default: "Next"
+#: skins/eXtremeManagement/story_view.pt:26
+#, fuzzy
 msgid "next"
 msgstr "Suivant:"
 
 #. Default: "No projects are published yet!"
-#: ./skins/eXtremeManagement/project_administration.pt
+#: skins/eXtremeManagement/project_administration.pt:93
 msgid "no_projects_found"
 msgstr "Aucun projet n'a été publié!"
 
 #. Default: "No stories published yet!"
-#: ./skins/eXtremeManagement/iteration_view.pt
+#: skins/eXtremeManagement/iteration_view.pt:243
 msgid "no_stories_published"
 msgstr "Aucune histoire-usager n'a été publiée!"
 
 #. Default: "No tasks are assigned to you!"
-#: ./skins/eXtremeManagement/update_hours_form.cpt
+#: skins/eXtremeManagement/update_hours_form.cpt:141
 msgid "no_tasks_assigned"
 msgstr "Aucune tâche ne vous a été assignée!"
 
 #. Default: "No tasks defined yet."
-#: ./skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/story_view.pt:187
 msgid "no_tasks_defined"
 msgstr "Aucune tâche n'a été définie."
 
-#. Default: "Previous:"
-#: ./skins/eXtremeManagement/story_view.pt
+#. Default: "Previous"
+#: skins/eXtremeManagement/story_view.pt:37
+#, fuzzy
 msgid "previous"
 msgstr "Précédent:"
 
 #. Default: "previous month"
-#: ./skins/eXtremeManagement/booking_month.pt
-#: ./skins/eXtremeManagement/booking_overview.pt
+#: skins/eXtremeManagement/booking_month.pt:28
 msgid "previous-month"
 msgstr "mois précédent"
 
 #. Default: "progress bar"
-#: ./skins/eXtremeManagement/project_view.pt
-msgid "progress bar"
-msgstr "Niveau de complétion (progress bar)"
-
-#. Default: "project overview"
-#: ./skins/eXtremeManagement/project_view.pt
-msgid "project overview"
-msgstr "Vue générale du projet"
+#: skins/eXtremeManagement/iteration_view.pt:123
+msgid "progress_bar"
+msgstr ""
 
 #. Default: "Project administration"
-#: ./skins/eXtremeManagement/portlet_tasks.pt
+#: skins/eXtremeManagement/portlet_tasks.pt:18
 msgid "project_administration"
 msgstr "Administration du projet"
 
+#. Default: "project overview"
+#: skins/eXtremeManagement/project_view.pt:128
+msgid "project_overview"
+msgstr ""
+
+#. Default: "Show"
+#: skins/eXtremeManagement/task_overview.pt:18
+msgid "show"
+msgstr ""
+
 #. Default: "status"
-#: ./skins/eXtremeManagement/project_view.pt
+#: skins/eXtremeManagement/project_view.pt:60
 msgid "status"
 msgstr "État"
 
 #. Default: "task icon"
-#: ./skins/eXtremeManagement/update_hours_form.cpt
-msgid "task icon"
-msgstr "Icône de tâche"
+#: skins/eXtremeManagement/update_hours_form.cpt:78
+msgid "task_icon"
+msgstr ""
 
 #. Default: "Task overview"
-#: ./skins/eXtremeManagement/portlet_tasks.pt
+#: skins/eXtremeManagement/portlet_tasks.pt:30
 msgid "task_overview"
 msgstr "Vue générale de la tâche"
 
 #. Default: "Total"
-#: ./skins/eXtremeManagement/iteration_view.pt
-#: ./skins/eXtremeManagement/story_view.pt
+#: skins/eXtremeManagement/story_view.pt:173
 msgid "total"
 msgstr "Total"
 
-#. Default: "user"
-#: ./skins/eXtremeManagement/story_view.pt
-msgid "user"
-msgstr "usager"
+#. Default: "Visit the website"
+#: skins/eXtremeManagement/customer_view.pt:71
+msgid "visit_the_website"
+msgstr ""
 

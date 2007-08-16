@@ -15,7 +15,8 @@ SEARCH_DIR=skins/$PROJECT
 SELF_MADE=i18n/generated.pot
 
 # Rebuild the .pot file of our project and merge the $SELF_MADE file in it.
-i18ndude rebuild-pot --pot i18n/$PROJECT.pot --create $PROJECT --merge $SELF_MADE $TEMPLATE_FILES
+#i18ndude rebuild-pot --pot i18n/$PROJECT.pot --create $PROJECT --merge $SELF_MADE $TEMPLATE_FILES
+i18ndude rebuild-pot --pot i18n/$PROJECT.pot --create $PROJECT --merge $SELF_MADE $SEARCH_DIR
 # Instead of $TEMPLATE_FILES you could use $SEARCH_DIR.
 
 i18ndude sync --pot i18n/$PROJECT.pot i18n/$PROJECT-*.po

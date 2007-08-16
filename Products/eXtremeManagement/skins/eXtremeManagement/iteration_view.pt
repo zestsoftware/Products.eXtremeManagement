@@ -86,8 +86,8 @@
                 <th i18n:translate="listingheader_tasks_open">Tasks open</th>
                 <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
               </tal:task_count>
-              <th i18n:translate="listingheader_size_estimate">Rough Estimate</th>
-              <th i18n:translate="listingheader_estimate">Estimate</th>
+              <th i18n:translate="listingheader_initial_estimate">Initial estimate (days)</th>
+              <th i18n:translate="listingheader_tasks_estimate">Tasks estimate (hours)</th>
               <th i18n:translate="listingheader_actual">Actual</th>
             </tr>
 
@@ -140,7 +140,12 @@
                 <td tal:content="story/completed_tasks" />
               </tal:task_count>
               <td tal:content="story/size_estimate" />
-              <td tal:content="story/estimate" />
+              <td tal:condition="story/raw_estimate"
+                  tal:content="story/estimate" />
+              <td tal:condition="not:story/raw_estimate"
+                  i18n:translate="no_tasks_defined">
+                No tasks defined yet.
+              </td>
               <td tal:content="story/actual" />
             </tr>
             <tr tal:define="number repeat/story/number"

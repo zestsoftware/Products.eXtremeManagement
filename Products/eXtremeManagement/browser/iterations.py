@@ -162,6 +162,7 @@ class IterationView(XMBaseView):
             url = brain.getURL(),
             title = brain.Title,
             description = brain.Description,
+            raw_estimate = estimate,
             estimate = formatTime(estimate),
             size_estimate = brain.size_estimate,
             actual = formatTime(actual),
