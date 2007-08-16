@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-08-16 11:37+0000\n"
+"POT-Creation-Date: 2007-08-16 11:50+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -426,11 +426,6 @@ msgstr ""
 msgid "last_12_months"
 msgstr ""
 
-#. Default: "Initial Estimate (days)"
-#: skins/eXtremeManagement/story_view.pt:72
-msgid "listing_header_initial_estimate"
-msgstr ""
-
 #. Default: "Billable"
 #: skins/eXtremeManagement/task_view.pt:101
 msgid "listingheader-billable"
@@ -556,8 +551,8 @@ msgstr ""
 msgid "listingheader_fax"
 msgstr ""
 
-#. Default: "Initial estimate (days)"
-#: skins/eXtremeManagement/iteration_view.pt:89
+#. Default: "Initial Estimate (days)"
+#: skins/eXtremeManagement/story_view.pt:72
 msgid "listingheader_initial_estimate"
 msgstr ""
 
@@ -606,19 +601,14 @@ msgstr ""
 msgid "listingheader_tasks_completed"
 msgstr ""
 
-#. Default: "Tasks estimate (hours)"
-#: skins/eXtremeManagement/iteration_view.pt:90
+#. Default: "Tasks Estimate (hours)"
+#: skins/eXtremeManagement/story_view.pt:81
 msgid "listingheader_tasks_estimate"
 msgstr ""
 
 #. Default: "Tasks open"
 #: skins/eXtremeManagement/iteration_view.pt:86
 msgid "listingheader_tasks_open"
-msgstr ""
-
-#. Default: "Tasks Estimate (hours)"
-#: skins/eXtremeManagement/story_view.pt:81
-msgid "listingheader_taskstimeestimated"
 msgstr ""
 
 #. Default: "Title"
@@ -716,7 +706,7 @@ msgstr ""
 msgid "status"
 msgstr ""
 
-#. Default: "task icon"
+#. Default: "task"
 #: skins/eXtremeManagement/update_hours_form.cpt:78
 msgid "task_icon"
 msgstr ""
@@ -731,7 +721,7 @@ msgstr ""
 msgid "total"
 msgstr ""
 
-#. Default: "Visit the website"
+#. Default: "Visit the web site"
 #: skins/eXtremeManagement/customer_view.pt:71
 msgid "visit_the_website"
 msgstr ""

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-08-16 11:37+0000\n"
+"POT-Creation-Date: 2007-08-16 11:50+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -499,11 +499,6 @@ msgstr "Minutes"
 msgid "last_12_months"
 msgstr "12 derniers mois"
 
-#. Default: "Initial Estimate (days)"
-#: skins/eXtremeManagement/story_view.pt:72
-msgid "listing_header_initial_estimate"
-msgstr ""
-
 #. Default: "Billable"
 #: skins/eXtremeManagement/task_view.pt:101
 msgid "listingheader-billable"
@@ -629,8 +624,8 @@ msgstr "Estimé"
 msgid "listingheader_fax"
 msgstr "Télécopieur"
 
-#. Default: "Initial estimate (days)"
-#: skins/eXtremeManagement/iteration_view.pt:89
+#. Default: "Initial Estimate (days)"
+#: skins/eXtremeManagement/story_view.pt:72
 msgid "listingheader_initial_estimate"
 msgstr ""
 
@@ -679,8 +674,8 @@ msgstr "Histoire-usager"
 msgid "listingheader_tasks_completed"
 msgstr "Tâches complétées"
 
-#. Default: "Tasks estimate (hours)"
-#: skins/eXtremeManagement/iteration_view.pt:90
+#. Default: "Tasks Estimate (hours)"
+#: skins/eXtremeManagement/story_view.pt:81
 msgid "listingheader_tasks_estimate"
 msgstr ""
 
@@ -688,11 +683,6 @@ msgstr ""
 #: skins/eXtremeManagement/iteration_view.pt:86
 msgid "listingheader_tasks_open"
 msgstr "Tâches ouvertes"
-
-#. Default: "Tasks Estimate (hours)"
-#: skins/eXtremeManagement/story_view.pt:81
-msgid "listingheader_taskstimeestimated"
-msgstr ""
 
 #. Default: "Title"
 #: skins/eXtremeManagement/story_view.pt:127
@@ -791,7 +781,7 @@ msgstr ""
 msgid "status"
 msgstr "État"
 
-#. Default: "task icon"
+#. Default: "task"
 #: skins/eXtremeManagement/update_hours_form.cpt:78
 msgid "task_icon"
 msgstr ""
@@ -806,7 +796,7 @@ msgstr "Vue générale de la tâche"
 msgid "total"
 msgstr "Total"
 
-#. Default: "Visit the website"
+#. Default: "Visit the web site"
 #: skins/eXtremeManagement/customer_view.pt:71
 msgid "visit_the_website"
 msgstr ""

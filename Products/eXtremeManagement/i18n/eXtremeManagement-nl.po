@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-08-16 11:37+0000\n"
+"POT-Creation-Date: 2007-08-16 11:50+0000\n"
 "PO-Revision-Date: 2007-06-06 10:30 +GMT+1\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
@@ -75,7 +75,7 @@ msgstr "Om je uren te boeken, maak je gebruik van onderstaand formulier. Vul de 
 #. Default: "Detailed bookings"
 #: skins/eXtremeManagement/portlet_tasks.pt:37
 msgid "detailed_bookings"
-msgstr ""
+msgstr "Boekingdetails"
 
 ## 1 more: content/Customer.py
 #. Default: "Enter address."
@@ -501,11 +501,6 @@ msgstr "Minuten"
 msgid "last_12_months"
 msgstr "laatste 12 maanden"
 
-#. Default: "Initial Estimate (days)"
-#: skins/eXtremeManagement/story_view.pt:72
-msgid "listing_header_initial_estimate"
-msgstr ""
-
 #. Default: "Billable"
 #: skins/eXtremeManagement/task_view.pt:101
 msgid "listingheader-billable"
@@ -534,7 +529,7 @@ msgstr "Datum"
 #. Default: "Start"
 #: skins/eXtremeManagement/booking_month.pt:59
 msgid "listingheader-start-of-week"
-msgstr ""
+msgstr "Start"
 
 #. Default: "Task"
 #: skins/eXtremeManagement/booking_details.pt:45
@@ -549,12 +544,12 @@ msgstr "Tijd"
 #. Default: "Total"
 #: skins/eXtremeManagement/booking_month.pt:69
 msgid "listingheader-total"
-msgstr ""
+msgstr "Totaal"
 
 #. Default: "Week number"
 #: skins/eXtremeManagement/booking_month.pt:56
 msgid "listingheader-week-number"
-msgstr ""
+msgstr "Weeknummer"
 
 #. Default: "Fullname"
 #: skins/eXtremeManagement/customer_view.pt:28
@@ -574,7 +569,7 @@ msgstr "Daadwerkelijk"
 #. Default: "Time Booked"
 #: skins/eXtremeManagement/story_view.pt:90
 msgid "listingheader_actualtimebooked"
-msgstr ""
+msgstr "Tijd geboekt"
 
 #. Default: "Address"
 #: skins/eXtremeManagement/customer_view.pt:33
@@ -631,10 +626,10 @@ msgstr "Geschat"
 msgid "listingheader_fax"
 msgstr "Faxnummer"
 
-#. Default: "Initial estimate (days)"
-#: skins/eXtremeManagement/iteration_view.pt:89
+#. Default: "Initial Estimate (days)"
+#: skins/eXtremeManagement/story_view.pt:72
 msgid "listingheader_initial_estimate"
-msgstr ""
+msgstr "Initiële inschatting (dagen)"
 
 #. Default: "Iteration"
 #: skins/eXtremeManagement/project_administration.pt:61
@@ -681,20 +676,15 @@ msgstr "Verhaal"
 msgid "listingheader_tasks_completed"
 msgstr "Afgeronde taken"
 
-#. Default: "Tasks estimate (hours)"
-#: skins/eXtremeManagement/iteration_view.pt:90
+#. Default: "Tasks Estimate (hours)"
+#: skins/eXtremeManagement/story_view.pt:81
 msgid "listingheader_tasks_estimate"
-msgstr ""
+msgstr "Geschatte taken (uren)"
 
 #. Default: "Tasks open"
 #: skins/eXtremeManagement/iteration_view.pt:86
 msgid "listingheader_tasks_open"
 msgstr "Openstaande taken"
-
-#. Default: "Tasks Estimate (hours)"
-#: skins/eXtremeManagement/story_view.pt:81
-msgid "listingheader_taskstimeestimated"
-msgstr ""
 
 ### iteration_view template ###
 #. Default: "Title"
@@ -730,7 +720,7 @@ msgstr "Postcode"
 #. Default: "N/A"
 #: skins/eXtremeManagement/iteration_view.pt:36
 msgid "man_hours_empty"
-msgstr ""
+msgstr "N/A"
 
 #. Default: "Next"
 #: skins/eXtremeManagement/story_view.pt:26
@@ -772,7 +762,7 @@ msgstr "vorige maand"
 #. Default: "progress bar"
 #: skins/eXtremeManagement/iteration_view.pt:123
 msgid "progress_bar"
-msgstr ""
+msgstr "voortgangsmeter"
 
 #. Default: "Project administration"
 #: skins/eXtremeManagement/portlet_tasks.pt:18
@@ -782,22 +772,23 @@ msgstr "Projectadministratie"
 #. Default: "project overview"
 #: skins/eXtremeManagement/project_view.pt:128
 msgid "project_overview"
-msgstr ""
+msgstr "projectoverzicht"
 
 #. Default: "Show"
 #: skins/eXtremeManagement/task_overview.pt:18
 msgid "show"
-msgstr ""
+msgstr "Laat zien"
 
 #. Default: "status"
 #: skins/eXtremeManagement/project_view.pt:60
 msgid "status"
 msgstr "Status"
 
-#. Default: "task icon"
+#. Default: "task"
 #: skins/eXtremeManagement/update_hours_form.cpt:78
+#, fuzzy
 msgid "task_icon"
-msgstr ""
+msgstr "taak"
 
 #. Default: "Task overview"
 #: skins/eXtremeManagement/portlet_tasks.pt:30
@@ -809,8 +800,8 @@ msgstr "Takenoverzicht"
 msgid "total"
 msgstr "Totaal"
 
-#. Default: "Visit the website"
+#. Default: "Visit the web site"
 #: skins/eXtremeManagement/customer_view.pt:71
 msgid "visit_the_website"
-msgstr ""
+msgstr "Bezoek de website"
 

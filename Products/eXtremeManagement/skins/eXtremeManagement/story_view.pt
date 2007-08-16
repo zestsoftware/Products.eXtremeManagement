@@ -70,7 +70,7 @@
                 cellspacing="0">
             <tr>
                 <th class="customer_info_header" 
-                    i18n:translate="listing_header_initial_estimate">
+                    i18n:translate="listingheader_initial_estimate">
                     Initial Estimate (days)
                 </th>
                 <td>
@@ -79,7 +79,7 @@
             </tr>
             <tr>
                 <th class="customer_info_header" 
-                    i18n:translate="listingheader_taskstimeestimated">
+                    i18n:translate="listingheader_tasks_estimate">
                     Tasks Estimate (hours)
                 </th>
                 <td>

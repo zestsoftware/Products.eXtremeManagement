@@ -71,7 +71,7 @@
                     <a tal:condition="here/getWebsite"
                        tal:attributes="href here/getWebsite"
                        tal:content="here/getWebsite"
-                       title="Visit the website"
+                       title="Visit the web site"
                        i18n:attributes="title visit_the_website" />
                     <tal:nothing tal:condition="not: here/getWebsite">...
                     </tal:nothing>

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-08-16 11:37+0000\n"
+"POT-Creation-Date: 2007-08-16 11:50+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -496,11 +496,6 @@ msgstr "Minuty"
 msgid "last_12_months"
 msgstr "posledních 12 měsíců"
 
-#. Default: "Initial Estimate (days)"
-#: skins/eXtremeManagement/story_view.pt:72
-msgid "listing_header_initial_estimate"
-msgstr ""
-
 #. Default: "Billable"
 #: skins/eXtremeManagement/task_view.pt:101
 msgid "listingheader-billable"
@@ -626,8 +621,8 @@ msgstr "Odhadnout"
 msgid "listingheader_fax"
 msgstr "Fax"
 
-#. Default: "Initial estimate (days)"
-#: skins/eXtremeManagement/iteration_view.pt:89
+#. Default: "Initial Estimate (days)"
+#: skins/eXtremeManagement/story_view.pt:72
 msgid "listingheader_initial_estimate"
 msgstr ""
 
@@ -676,8 +671,8 @@ msgstr "Požadavek"
 msgid "listingheader_tasks_completed"
 msgstr "Dokončené úkoly"
 
-#. Default: "Tasks estimate (hours)"
-#: skins/eXtremeManagement/iteration_view.pt:90
+#. Default: "Tasks Estimate (hours)"
+#: skins/eXtremeManagement/story_view.pt:81
 msgid "listingheader_tasks_estimate"
 msgstr ""
 
@@ -685,11 +680,6 @@ msgstr ""
 #: skins/eXtremeManagement/iteration_view.pt:86
 msgid "listingheader_tasks_open"
 msgstr "Otevřené úkoly"
-
-#. Default: "Tasks Estimate (hours)"
-#: skins/eXtremeManagement/story_view.pt:81
-msgid "listingheader_taskstimeestimated"
-msgstr ""
 
 #. Default: "Title"
 #: skins/eXtremeManagement/story_view.pt:127
@@ -786,7 +776,7 @@ msgstr ""
 msgid "status"
 msgstr "stav"
 
-#. Default: "task icon"
+#. Default: "task"
 #: skins/eXtremeManagement/update_hours_form.cpt:78
 msgid "task_icon"
 msgstr ""
@@ -801,7 +791,7 @@ msgstr "Přehled úkolů"
 msgid "total"
 msgstr "Celkem"
 
-#. Default: "Visit the website"
+#. Default: "Visit the web site"
 #: skins/eXtremeManagement/customer_view.pt:71
 msgid "visit_the_website"
 msgstr ""
