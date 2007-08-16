@@ -25,7 +25,7 @@ msgid "open"
 msgstr "Open"
 
 msgid "In progress"
-msgstr "In behandeling"
+msgstr "Lopend"
 
 msgid "Activate"
 msgstr "Activeren"
@@ -131,7 +131,7 @@ msgid "Improve"
 msgstr "Verbeter"
 
 msgid "In-progress"
-msgstr "In behandeling"
+msgstr "Lopend"
 
 msgid "Invoiced"
 msgstr "Gefactureerd"
