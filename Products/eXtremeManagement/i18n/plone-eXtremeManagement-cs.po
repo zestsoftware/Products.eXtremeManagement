@@ -171,7 +171,3 @@ msgstr "Postoupit k odhadnutí"
 
 msgid "To-do"
 msgstr "To-do"
-
-msgid "Active"
-msgstr "Aktivní"
-

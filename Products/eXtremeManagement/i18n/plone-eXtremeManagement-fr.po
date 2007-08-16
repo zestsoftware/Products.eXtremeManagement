@@ -173,7 +173,3 @@ msgstr "Soumettre pour obtenir un estimé"
 
 msgid "To-do"
 msgstr "À faire"
-
-msgid "Active"
-msgstr "Actif"
-

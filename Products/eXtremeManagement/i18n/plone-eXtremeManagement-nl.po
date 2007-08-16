@@ -93,9 +93,6 @@ msgstr "Taak"
 msgid "Customer Folder"
 msgstr "Klantenmap"
 
-msgid "Project Folder"
-msgstr "Projectenmap"
-
 msgid "Project Member"
 msgstr "Projectlid"
 
