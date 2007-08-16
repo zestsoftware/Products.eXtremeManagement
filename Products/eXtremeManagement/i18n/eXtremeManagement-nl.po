@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-08-16 12:32+0000\n"
+"POT-Creation-Date: 2007-08-16 12:42+0000\n"
 "PO-Revision-Date: 2007-08-16 14:20+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
@@ -583,10 +583,10 @@ msgstr "Volledige naam"
 msgid "listingheader_Phone"
 msgstr "Telefoon"
 
-#. Default: "Actual"
+#. Default: "Actual (hours)"
 #: skins/eXtremeManagement/task_view.pt:40
-msgid "listingheader_actual"
-msgstr "Daadwerkelijk"
+msgid "listingheader_actual_hours"
+msgstr "Daadwerkelijk (uren)"
 
 #. Default: "Time Booked"
 #: skins/eXtremeManagement/story_view.pt:91
@@ -618,10 +618,10 @@ msgstr "Opmerking(en)"
 msgid "listingheader_country"
 msgstr "Land"
 
-#. Default: "Difference"
+#. Default: "Difference (hours)"
 #: skins/eXtremeManagement/story_view.pt:131
-msgid "listingheader_diff"
-msgstr "Verschil"
+msgid "listingheader_diff_hours"
+msgstr "Verschil (uren)"
 
 #. Default: "Email"
 #: skins/eXtremeManagement/customer_view.pt:109
@@ -638,10 +638,10 @@ msgstr "Medewerker"
 msgid "listingheader_enddate"
 msgstr "Einddatum"
 
-#. Default: "Estimate"
+#. Default: "Estimate (hours)"
 #: skins/eXtremeManagement/task_view.pt:33
-msgid "listingheader_estimate"
-msgstr "Geschat"
+msgid "listingheader_estimate_hours"
+msgstr "Schatting (uren)"
 
 #. Default: "Fax"
 #: skins/eXtremeManagement/customer_view.pt:58

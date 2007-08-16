@@ -31,15 +31,15 @@
                 cellspacing="0">
             <tr>
                 <th class="customer_info_header" 
-                    i18n:translate="listingheader_estimate">
-                    Estimate
+                    i18n:translate="listingheader_estimate_hours">
+                    Estimate (hours)
                 </th>
                 <td tal:content="task/estimate" />
             </tr>
             <tr>
                 <th class="customer_info_header" 
-                    i18n:translate="listingheader_actual">
-                    Actual
+                    i18n:translate="listingheader_actual_hours">
+                    Actual (hours)
                 </th>
                 <td tal:content="task/actual">
                     0:00

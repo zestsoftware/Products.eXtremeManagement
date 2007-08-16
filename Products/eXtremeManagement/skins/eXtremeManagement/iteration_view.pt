@@ -39,7 +39,7 @@
         </tr>
         <tr>
           <th class="customer_info_header"
-              i18n:translate="listingheader_actual">Actual</th>
+              i18n:translate="listingheader_actual_hours">Actual (hours)</th>
           <td tal:content="iteration/actual" />
         </tr>
         <tr>
@@ -88,7 +88,7 @@
               </tal:task_count>
               <th i18n:translate="listingheader_initial_estimate">Initial estimate (days)</th>
               <th i18n:translate="listingheader_tasks_estimate">Tasks estimate (hours)</th>
-              <th i18n:translate="listingheader_actual">Actual</th>
+              <th i18n:translate="listingheader_actual_hours">Actual (hours)</th>
             </tr>
 
             <tal:repeat repeat="story stories">

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-08-16 12:32+0000\n"
+"POT-Creation-Date: 2007-08-16 12:42+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -516,9 +516,9 @@ msgstr ""
 msgid "listingheader_Phone"
 msgstr ""
 
-#. Default: "Actual"
+#. Default: "Actual (hours)"
 #: skins/eXtremeManagement/task_view.pt:40
-msgid "listingheader_actual"
+msgid "listingheader_actual_hours"
 msgstr ""
 
 #. Default: "Time Booked"
@@ -551,9 +551,9 @@ msgstr ""
 msgid "listingheader_country"
 msgstr ""
 
-#. Default: "Difference"
+#. Default: "Difference (hours)"
 #: skins/eXtremeManagement/story_view.pt:131
-msgid "listingheader_diff"
+msgid "listingheader_diff_hours"
 msgstr ""
 
 #. Default: "Email"
@@ -571,9 +571,9 @@ msgstr ""
 msgid "listingheader_enddate"
 msgstr ""
 
-#. Default: "Estimate"
+#. Default: "Estimate (hours)"
 #: skins/eXtremeManagement/task_view.pt:33
-msgid "listingheader_estimate"
+msgid "listingheader_estimate_hours"
 msgstr ""
 
 #. Default: "Fax"

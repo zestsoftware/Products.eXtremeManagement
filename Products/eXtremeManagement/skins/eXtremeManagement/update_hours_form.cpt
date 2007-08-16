@@ -68,8 +68,8 @@
                 <tr>
                     <th i18n:translate="listingheader_title">Title</th> 
                     <th i18n:translate="listingheader_story">Story</th> 
-                    <th i18n:translate="listingheader_estimate">Estimate</th>
-                    <th i18n:translate="listingheader_actual">Actual</th>
+                    <th i18n:translate="listingheader_estimate_hours">Estimate (hours)</th>
+                    <th i18n:translate="listingheader_actual_hours">Actual (hours)</th>
                 </tr>
 
                 <tr class="list-in-iteration">

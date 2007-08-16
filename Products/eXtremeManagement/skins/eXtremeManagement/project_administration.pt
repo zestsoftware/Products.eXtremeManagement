@@ -63,9 +63,9 @@
                   <th width="20%" 
                       i18n:translate="listingheader_state">Status</th>
                   <th width="15%" 
-                      i18n:translate="listingheader_estimate">Estimate</th>
+                      i18n:translate="listingheader_estimate_hours">Estimate (hours)</th>
                   <th width="15%" 
-                      i18n:translate="listingheader_actual">Actual</th>
+                      i18n:translate="listingheader_actual_hours">Actual (hours)</th>
                 </tr>
                 
                 <tr tal:repeat="iteration iterations"

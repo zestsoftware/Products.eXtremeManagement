@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-08-16 12:32+0000\n"
+"POT-Creation-Date: 2007-08-16 12:42+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -589,10 +589,10 @@ msgstr "Nom complet"
 msgid "listingheader_Phone"
 msgstr "Téléphone"
 
-#. Default: "Actual"
+#. Default: "Actual (hours)"
 #: skins/eXtremeManagement/task_view.pt:40
-msgid "listingheader_actual"
-msgstr "Réel"
+msgid "listingheader_actual_hours"
+msgstr ""
 
 #. Default: "Time Booked"
 #: skins/eXtremeManagement/story_view.pt:91
@@ -624,10 +624,10 @@ msgstr "Commentaires"
 msgid "listingheader_country"
 msgstr "pays"
 
-#. Default: "Difference"
+#. Default: "Difference (hours)"
 #: skins/eXtremeManagement/story_view.pt:131
-msgid "listingheader_diff"
-msgstr "Différence"
+msgid "listingheader_diff_hours"
+msgstr ""
 
 #. Default: "Email"
 #: skins/eXtremeManagement/customer_view.pt:109
@@ -644,10 +644,10 @@ msgstr "Employé"
 msgid "listingheader_enddate"
 msgstr "Date de fin"
 
-#. Default: "Estimate"
+#. Default: "Estimate (hours)"
 #: skins/eXtremeManagement/task_view.pt:33
-msgid "listingheader_estimate"
-msgstr "Estimé"
+msgid "listingheader_estimate_hours"
+msgstr ""
 
 #. Default: "Fax"
 #: skins/eXtremeManagement/customer_view.pt:58

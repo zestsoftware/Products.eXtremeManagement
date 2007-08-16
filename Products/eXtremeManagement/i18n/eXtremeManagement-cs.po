@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-08-16 12:32+0000\n"
+"POT-Creation-Date: 2007-08-16 12:42+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -586,10 +586,10 @@ msgstr "Celé jméno"
 msgid "listingheader_Phone"
 msgstr "Telefon"
 
-#. Default: "Actual"
+#. Default: "Actual (hours)"
 #: skins/eXtremeManagement/task_view.pt:40
-msgid "listingheader_actual"
-msgstr "Aktuální"
+msgid "listingheader_actual_hours"
+msgstr ""
 
 #. Default: "Time Booked"
 #: skins/eXtremeManagement/story_view.pt:91
@@ -621,10 +621,10 @@ msgstr "Poznámky"
 msgid "listingheader_country"
 msgstr "Země"
 
-#. Default: "Difference"
+#. Default: "Difference (hours)"
 #: skins/eXtremeManagement/story_view.pt:131
-msgid "listingheader_diff"
-msgstr "Rozdíl"
+msgid "listingheader_diff_hours"
+msgstr ""
 
 #. Default: "Email"
 #: skins/eXtremeManagement/customer_view.pt:109
@@ -641,10 +641,10 @@ msgstr "Zaměstnanec"
 msgid "listingheader_enddate"
 msgstr "Datum ukončení"
 
-#. Default: "Estimate"
+#. Default: "Estimate (hours)"
 #: skins/eXtremeManagement/task_view.pt:33
-msgid "listingheader_estimate"
-msgstr "Odhadnout"
+msgid "listingheader_estimate_hours"
+msgstr ""
 
 #. Default: "Fax"
 #: skins/eXtremeManagement/customer_view.pt:58
