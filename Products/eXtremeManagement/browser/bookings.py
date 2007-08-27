@@ -114,7 +114,8 @@ def getEndOfMonth(year, month):
 class BookingsDetailedView(BrowserView):
     """Return a list of Bookings.
     """
-
+    request = None
+    context = None
     bookinglist = []
 
     def __init__(self, context, request, year=None, month=None, memberid=None):
@@ -291,7 +292,8 @@ class WeekBookingOverview(BookingsDetailedView):
 
 
 class YearBookingOverview(BrowserView):
-
+    request = None
+    context = None
     months_list = []
 
     def __init__(self, context, request):
@@ -368,7 +370,8 @@ class BookingView(XMBaseView):
 
 
 class DayBookingOverview(BrowserView):
-
+    request = None
+    context = None
     raw_total = 0.0
     total = '0:00'
 

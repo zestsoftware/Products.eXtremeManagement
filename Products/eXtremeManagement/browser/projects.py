@@ -8,6 +8,8 @@ from Acquisition import aq_inner
 class MyProjects(BrowserView):
     """Return the projects that I have tasks in.
     """
+    request = None
+    context = None
     states = ('open', 'to-do',)
     # Use state = '' if you do not want to filter for states.
 

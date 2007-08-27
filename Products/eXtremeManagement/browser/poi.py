@@ -53,6 +53,9 @@ class IPoiView(interface.Interface):
 
 
 class PoiView(BrowserView):
+    request = None
+    context = None
+
     def _get_open_issues(self, tags=[]):
         query = {}
         if tags:

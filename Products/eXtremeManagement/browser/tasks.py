@@ -104,6 +104,8 @@ class TaskView(XMBaseView):
 class TasksDetailedView(BrowserView):
     """Return a list of Tasks for everyone with all states.
     """
+    request = None
+    context = None
 
     def __init__(self, context, request):
         super(TasksDetailedView, self).__init__(context, request)
