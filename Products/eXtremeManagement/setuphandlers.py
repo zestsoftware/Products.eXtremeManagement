@@ -197,3 +197,10 @@ def importVarious(context):
     annotate_estimate(site, logger)
     reindexIndexes(site, logger)
     logger.info('eXtremeManagement_various step imported')
+
+
+def from_plone25_to_30(context):
+    # Right, context == portal_setup here.
+    context.runAllImportStepsFromProfile(
+        'profile-Products.eXtremeManagement:eXtremeManagement-30-types',
+        purge_old=False)
