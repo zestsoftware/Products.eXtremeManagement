@@ -1,5 +1,9 @@
 from zope.event import notify
-from zope.app.event.objectevent import ObjectModifiedEvent
+try:
+    from zope.lifecycleevent import ObjectModifiedEvent
+except ImportError:
+    # BBB for Zope 2.9
+    from zope.app.event.objectevent import ObjectModifiedEvent
 from Products.PloneTestCase.setup import default_user
 
 
