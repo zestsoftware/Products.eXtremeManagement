@@ -3,14 +3,13 @@ Installation
 
   Make a backup of your site.  You can never be too careful.
 
-  Just install eXtremeManagement like you would any other Plone
-  product: put it in its own directory within the Products dir of your
-  zope instance.  Then use the portal_quickinstaller or portal_setup
-  (both will work) in Plone to install it.
+  Just put eXtremeManagement its own directory within the Products dir
+  of your zope instance.  Then use the portal_quickinstaller or
+  portal_setup (both will work) in Plone to install it.
 
   If you use instancemanager
-  (http://plone.org/products/instance-manager), then see:
-  https://svn.zestsoftware.nl/svn/zest/eXtremeManagement/integration/trunk/instancemanager.py
+  (http://plone.org/products/instance-manager), then look in the
+  instancemanager directory for a config file.
 
 
 Reinstalling
