@@ -237,7 +237,10 @@ class BookingOverview(BookingsDetailedView):
         request = self.request
         day = 1
         date = self.startDate
-        while True:
+        # We loop until we catch a DateError really, but let's throw
+        # in another check so there is even less chance of looping
+        # forever.
+        while day < 32:
             opts = dict(date=date, memberid=self.memberid)
             days_bookings = DayBookingOverview(context, request, **opts)
             if days_bookings.raw_total > 0:
@@ -248,7 +251,7 @@ class BookingOverview(BookingsDetailedView):
                 # We used to simply do date + 1, but that gave problems with
                 # Daylight Savings Time.
                 date = DateTime(self.year, self.month, day)
-            except:
+            except DateTime.DateError:
                 break
 
 
