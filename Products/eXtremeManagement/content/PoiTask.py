@@ -35,5 +35,10 @@ class PoiTask(Task):
         for issue in self.getRefs('task_issues'):
             managers.add(issue.getResponsibleManager())
         return sorted(list(managers))
-    
+
+    def view(self):
+        """
+        """
+        return self.poitask_view()
+
 atapi.registerType(PoiTask, config.PROJECTNAME)
