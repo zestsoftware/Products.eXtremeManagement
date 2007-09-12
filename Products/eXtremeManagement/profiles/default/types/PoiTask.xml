@@ -16,6 +16,7 @@
  </property>
  <property name="allow_discussion">True</property>
  <alias from="(Default)" to="poitask_view"/>
+ <alias from="base_view" to="poitask_view"/>
  <alias from="edit" to="base_edit"/>
  <alias from="properties" to="base_metadata"/>
  <action title="View" action_id="view" category="object" condition_expr=""
