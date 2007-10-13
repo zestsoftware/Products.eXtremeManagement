@@ -39,9 +39,4 @@
     url_expr="string:${folder_url}/view" visible="False">
   <permission value="View"/>
  </action>
- <action title="Sharing" action_id="local_roles" category="object"
-    condition_expr="python:1"
-    url_expr="string:${object_url}/folder_localrole_form" visible="True">
-  <permission value="View"/>
- </action>
 </object>
