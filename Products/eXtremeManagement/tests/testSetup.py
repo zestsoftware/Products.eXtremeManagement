@@ -1,7 +1,5 @@
-import os, sys
-
-import os, sys
-from Testing import ZopeTestCase
+from zope.component import getUtilitiesFor
+from plone.app.workflow.interfaces import ISharingPageRole
 from Products.CMFCore.utils import getToolByName
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 
@@ -75,6 +73,16 @@ class testSetup(eXtremeManagementTestCase):
         """
         """
         #Uncomment one of the following lines as needed
+
+    def test_extraLocalRoles(self):
+        """Test whether Employee and Customer have been added to the sharing
+        tab roles.
+
+        """
+        names = [name for (name, utility) in
+                 getUtilitiesFor(ISharingPageRole)]
+        self.failUnless('Employee' in names)
+        self.failUnless('Customer' in names)
 
 def test_suite():
     from unittest import TestSuite, makeSuite

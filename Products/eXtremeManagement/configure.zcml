@@ -8,4 +8,15 @@
 
   <include package=".timing" />
 
+  <!-- Extra local roles managed in the @@sharing view -->
+  <utility
+      name="Employee"
+      factory=".localroles.EmployeeRole"
+      />
+  <utility
+      name="Customer"
+      factory=".localroles.CustomerRole"
+      />
+
+
 </configure>
