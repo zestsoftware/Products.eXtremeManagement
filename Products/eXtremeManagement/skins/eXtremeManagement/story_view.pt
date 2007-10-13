@@ -108,7 +108,14 @@
       </div>
 
       <div tal:replace="structure story/cooked_body" />
-
+      
+      <div>
+      <!-- display contained images as thumbnails, but description is not currently reachable-->
+            <span tal:repeat="image python:here.contentValues(filter = {'portal_type':'Image'})">
+                        <a href="#" tal:attributes="href string:${image/absolute_url}/image_view_fullscreen"><span tal:content="structure image/image_thumb"/></a>
+                
+            </span>
+      </div>
       <div id="break-before-task-listing" class="visualClear"><!-- --></div>
 
       <tal:block tal:condition="items"
