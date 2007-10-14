@@ -166,13 +166,6 @@ def annotate_estimate(site, logger):
     logger.info('Annotated types with IEstimate')
 
 
-def update_security_settings(site, logger):
-    # disabled for now
-    workflow = getToolByName(site, 'portal_workflow')
-    workflow.updateRoleMappings()
-    logger.info('Updated security (workflow) settings')
-
-
 def importVarious(context):
     # Only run step if a flag file is present
     if context.readDataFile('extrememanagement_various.txt') is None:
@@ -183,7 +176,6 @@ def importVarious(context):
     # Integrate our types in kupu, if it is installed.
     configureKupu(site, logger)
     migrate_ct(site, logger)
-    #update_security_settings(site, logger)
     annotate_actual(site, logger)
     annotate_estimate(site, logger)
     add_roles_that_should_be_handled_by_rolemap_xml(site, logger)
