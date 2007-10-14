@@ -11,6 +11,11 @@ def login(browser, portal, username):
         return 'login failed'
 
 
+def logout(browser, portal):
+    browser.open(portal.absolute_url())
+    browser.getLink('Log out').click()
+
+
 def _submitChecks(browser, title):
     if title not in browser.contents:
         return 'title not in browser.contents'
