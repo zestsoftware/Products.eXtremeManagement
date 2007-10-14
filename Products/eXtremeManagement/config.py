@@ -51,3 +51,5 @@ OUR_COLLECTION_TYPES = ['ProjectFolder', 'Project', 'Iteration']
 XM_LEFT_SLOTS = ('here/portlet_stories/macros/portlet',)
 XM_RIGHT_SLOTS = ('here/portlet_tasks/macros/portlet',
                   'here/portlet_my_projects/macros/portlet',)
+
+NEW_ROLES = ['Employee', 'Customer', 'Projectmanager']

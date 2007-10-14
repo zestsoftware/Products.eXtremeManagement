@@ -129,6 +129,15 @@ def removeSkinSelection(portal, logger):
         logger.info('Removed eXtremeManagement skin selection.')
 
 
+def add_roles_that_should_be_handled_by_rolemap_xml(site, logger):
+    role_manager = site.acl_users.portal_role_manager
+    pas_roles = role_manager.listRoleIds()
+    for role in NEW_ROLES:
+        if role not in pas_roles:
+            role_manager.addRole(role)
+            logger.info('Added role %s', role)
+
+
 def annotate_actual(site, logger):
     """Make sure the right types are annotated with IActualHours.
     This updates the catalog too, which is nice.
@@ -158,6 +167,7 @@ def annotate_estimate(site, logger):
 
 
 def update_security_settings(site, logger):
+    # disabled for now
     workflow = getToolByName(site, 'portal_workflow')
     workflow.updateRoleMappings()
     logger.info('Updated security (workflow) settings')
@@ -173,9 +183,10 @@ def importVarious(context):
     # Integrate our types in kupu, if it is installed.
     configureKupu(site, logger)
     migrate_ct(site, logger)
-    update_security_settings(site, logger)
+    #update_security_settings(site, logger)
     annotate_actual(site, logger)
     annotate_estimate(site, logger)
+    add_roles_that_should_be_handled_by_rolemap_xml(site, logger)
     reindexIndexes(site, logger)
     logger.info('eXtremeManagement_various step imported')
 
