@@ -113,24 +113,6 @@ def configureKupu(portal, logger):
     logger.info('Added our types to collection and linkable of kupu')
 
 
-def addOurRoles(portal, logger):
-    """Add our extra roles to Plone.
-
-    Part of this is done through GenericSetup, but adding roles to the
-    PlonePAS role manager does not work there.
-
-    Note: in Plone 3.0 (beta) this function is not needed, in Plone
-    2.5 it is.
-    """
-
-    role_manager = portal.acl_users.portal_role_manager
-    pas_roles = role_manager.listRoleIds()
-    for role in NEW_ROLES:
-        if role not in pas_roles:
-            role_manager.addRole(role)
-            logger.info('Added role %s', role)
-
-
 def removeSkinSelection(portal, logger):
     """Undo mistake from past.
     """
@@ -188,7 +170,6 @@ def importVarious(context):
     logger = context.getLogger('eXtremeManagement')
     site = context.getSite()
     removeSkinSelection(site, logger)
-    addOurRoles(site, logger)
     # Integrate our types in kupu, if it is installed.
     configureKupu(site, logger)
     migrate_ct(site, logger)
