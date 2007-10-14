@@ -58,11 +58,12 @@
       <div class="visualClear"><!-- --></div>
       </div>
 
-      <div class="documentDescription"
-           tal:condition="iteration/description"
-           tal:content="iteration/description">
-        description
-      </div>
+      <p class="documentDescription">
+        <metal:field use-macro="python:here.widget('description', mode='view')">
+          Description
+        </metal:field>
+      </p>
+
 
       <div id="break-before-stories" class="visualClear"><!-- --></div>
 
