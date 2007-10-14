@@ -107,8 +107,6 @@
         </metal:field>
       </p>
 
-      <div tal:replace="structure provider:plone.abovecontentbody" />
-
       <metal:field use-macro="python:here.widget('mainText', mode='view')">
         Body text
       </metal:field>
