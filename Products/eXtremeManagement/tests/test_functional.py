@@ -7,8 +7,7 @@
 
 """
 
-import os, sys
-
+import os
 import glob
 from zope.testing import doctest
 import unittest
@@ -18,34 +17,18 @@ from Products.eXtremeManagement.config import GLOBALS
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementFunctionalTestCase
 from Products.eXtremeManagement.tests.utils import afterSetUp
 
-REQUIRE_TESTBROWSER = [
-    'time.txt',
-    'create.txt',
-    ]
-
 OPTIONFLAGS = (doctest.ELLIPSIS |
                doctest.NORMALIZE_WHITESPACE)
+
 
 def list_doctests():
     home = package_home(GLOBALS)
     return [filename for filename in
             glob.glob(os.path.sep.join([home, 'doc', '*.txt']))]
 
-def list_nontestbrowser_tests():
-    return [filename for filename in list_doctests()
-            if os.path.basename(filename) not in REQUIRE_TESTBROWSER]
 
 def test_suite():
-    # BBB: We can obviously remove this when testbrowser is Plone
-    #      mainstream, read: with Five 1.4.
-    try:
-        import Products.Five.testbrowser
-    except ImportError:
-        print >> sys.stderr, ("testbrowser not found; "
-                              "testbrowser tests skipped")
-        filenames = list_nontestbrowser_tests()
-    else:
-        filenames = list_doctests()
+    filenames = list_doctests()
     eXtremeManagementFunctionalTestCase.afterSetUp = afterSetUp
 
     suites = [Suite(os.path.basename(filename),
