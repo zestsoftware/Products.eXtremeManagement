@@ -1,0 +1,55 @@
+Browser security tests
+======================
+
+These tests are not exhaustive. Currently only new functionality is tested
+here.
+
+Adding items
+------------
+
+Browser setup.
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    >>> browser.handleErrors = False
+    >>> browser.addHeader('Accept-Language', 'en-US')
+    >>> from Products.eXtremeManagement.tests import browserutils
+
+Let us log all exceptions, which is useful for debugging. Also, clear
+portlet slots, to make the test browser less confused by things like
+the recent portlet and the navtree.
+
+    >>> self.portal.error_log._ignored_exceptions = ()
+    >>> self.portal.left_slots = self.portal.right_slots = []
+
+In the initial tests, something went wrong with adding projects, so we're
+testing whether adding projects is allowed at all, first.
+
+    >>> self.setRoles(['Manager'])
+    >>> def list_addable(context):
+    ...     allowed = context.getAllowedTypes()
+    ...     addable = context.getAddableTypesInMenu(allowed)
+    ...     return [ad.Title() for ad in addable]
+    >>> 'Project' in list_addable(self.portal)
+    True
+
+We test the same with a project manager.
+
+    >>> self.setRoles(['Projectmanager'])
+    >>> def list_addable(context):
+    ...     allowed = context.getAllowedTypes()
+    ...     addable = context.getAddableTypesInMenu(allowed)
+    ...     return [ad.Title() for ad in addable]
+    >>> 'Project' in list_addable(self.portal)
+    True
+
+Log in to the portal as the manager, go to the portal root and add a project.
+
+    >>> browserutils.login(browser, self.portal, 'manager')
+    >>> browserutils.addProject(browser, self.portal, 'Project1')
+
+Log in as the (global) project manager and you can also add a product.
+
+    >>> browserutils.logout(browser, self.portal)
+    >>> browserutils.login(browser, self.portal, 'projectmanager')
+    >>> browserutils.addProject(browser, self.portal, 'Project2')

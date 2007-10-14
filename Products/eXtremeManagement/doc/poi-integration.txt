@@ -26,19 +26,19 @@ model, issues correspond to tasks:
 
 Remember that a story has to be estimated and marked as so, so that
 we're able to add any tasks to it.  Therefore, right now, we shouldn't
-be able to add any tasks:
+be able to add any tasks. An image is allowed, though.
 
   >>> def list_addable(context):
   ...     allowed = context.getAllowedTypes()
   ...     addable = context.getAddableTypesInMenu(allowed)
-  ...     return ', '.join(ad.Title() for ad in addable)
+  ...     return u', '.join(ad.Title() for ad in addable)
   >>> list_addable(story1)
-  ''
+  u'Image'
 
   >>> story1.setRoughEstimate(1.5)
   >>> workflow.doActionFor(story1, 'estimate')
   >>> list_addable(story1)
-  'Issue Tracker Task, Task'
+  u'Image, Issue Tracker Task, Task'
 
 Let's create an issue tracker in the project with two issues in it:
 

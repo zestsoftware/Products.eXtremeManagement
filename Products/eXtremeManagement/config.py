@@ -38,19 +38,6 @@ ADD_CONTENT_PERMISSIONS = {
     'ProjectFolder': 'eXtremeManagement: Add ProjectFolder',
     'Booking': 'eXtremeManagement: Add Booking',
 }
-# The only settings you really should take care about are the 'DefaultRoles' for adding
-# a 'Project', 'ProjectFolder'. The other can't live for their own and therefore
-# the settings are overruled by the workflow-settings anyway.
-
-setDefaultRoles('eXtremeManagement: Add Project', ('Manager','Projectmanager'))
-setDefaultRoles('eXtremeManagement: Add Iteration', ('Manager','Projectmanager'))
-setDefaultRoles('eXtremeManagement: Add Story', ('Manager','Contributor'))
-setDefaultRoles('eXtremeManagement: Add Task', ('Manager','Contributor'))
-setDefaultRoles('eXtremeManagement: Add ProjectMember', ('Manager','Contributer'))
-setDefaultRoles('eXtremeManagement: Add Customer', ('Manager','Projectmanager'))
-setDefaultRoles('eXtremeManagement: Add CustomerFolder', ('Manager','Projectmanager'))
-setDefaultRoles('eXtremeManagement: Add ProjectFolder', ('Manager','Projectmanager'))
-setDefaultRoles('eXtremeManagement: Add Booking', ('Manager','Contributer'))
 
 # Dependend products - not quick-installed - used in testcase
 # override in custom configuration
@@ -60,8 +47,6 @@ DEPENDENCIES = ['Poi']
 # For kupu:
 OUR_LINKABLE_TYPES = ['Iteration', 'Story']
 OUR_COLLECTION_TYPES = ['ProjectFolder', 'Project', 'Iteration']
-
-NEW_ROLES = ['Employee', 'Customer']
 
 XM_LEFT_SLOTS = ('here/portlet_stories/macros/portlet',)
 XM_RIGHT_SLOTS = ('here/portlet_tasks/macros/portlet',
