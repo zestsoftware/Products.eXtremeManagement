@@ -4,176 +4,176 @@
       i18n:domain="eXtremeManagement">
 
   <body>
-  <div metal:fill-slot="main">
-    <div metal:define-macro="body"
-        tal:define="view context/@@project;
-                    main view/main;
-                    finished_iterations view/finished_iterations;
-                    current_iterations view/current_iterations;
-                    open_iterations view/open_iterations;">
+    <div metal:fill-slot="main">
+      <div metal:define-macro="body"
+           tal:define="view context/@@project;
+                       main view/main;
+                       finished_iterations view/finished_iterations;
+                       current_iterations view/current_iterations;
+                       open_iterations view/open_iterations;">
 
-      <p class="documentDescription">
-        <metal:field use-macro="python:here.widget('description', mode='view')">
-          Description
-        </metal:field>
-      </p>
+        <p class="documentDescription">
+          <metal:field use-macro="python:here.widget('description', mode='view')">
+            Description
+          </metal:field>
+        </p>
 
-      <tal:block tal:condition="current_iterations">
-        <h1 i18n:translate="heading_current_iterations">Current Iterations</h1>
-        <div class="iterations"
-             tal:repeat="curIteration current_iterations">
-          <tal:block tal:define="obj curIteration/brain/getObject;">
-            <tal:stories
-                tal:define="iteration_view obj/@@iteration;
-                            main iteration_view/main;
-                            iteration_number repeat/curIteration/number;
-                            stories iteration_view/stories;
-                            show_task_count python:True;
-                            show_progress python:True;
-                            show_totals python:False;">
-              <metal:block metal:use-macro="here/iteration_view/macros/story_list">
-                <metal:block fill-slot="extra_header">
-                  <tr>
-                    <th colspan="2"
-                        width="60%"
-                        height="30" 
-                        align="left" 
-                        class="header_iteration">
-                      <a class="header_iteration_project_overview"
-                         tal:attributes="href string:${obj/absolute_url}">
-                        <img tal:attributes="src string:${here/portal_url}/${obj/getIcon};
-                                             alt string:Project overview"/>
-                        <span tal:replace="main/title">Title</span>
-                      </a>
-                    </th>
-                    <th colspan="3"
-                        width="20%" 
-                        height="30" 
-                        align="left" 
-                        class="header_iteration">
-                      <span tal:replace="main/man_hours" /> <span i18n:translate="hours">hours</span>
-                      ( <span tal:replace="main/actual" /> <span i18n:translate="actual">actual</span>)
-                    </th>
-                    <th colspan="2"
-                        width="20%" 
-                        class="iteration-state">
-                      <span i18n:translate="status">status</span>:
-                      <span tal:content="structure curIteration/review_state"/>
-                      <img tal:attributes="src string:${curIteration/review_state}.gif;
-                                           alt curIteration/review_state" />
-                    </th>
-                  </tr>
-                  <tr>
-                    <td colspan="6"
-                        class="iteration-description"
-                        tal:content="main/description" />
-                  </tr>
+        <tal:block tal:condition="current_iterations">
+          <h1 i18n:translate="heading_current_iterations">Current Iterations</h1>
+          <div class="iterations"
+               tal:repeat="curIteration current_iterations">
+            <tal:block tal:define="obj curIteration/brain/getObject;">
+              <tal:stories
+                  tal:define="iteration_view obj/@@iteration;
+                              main iteration_view/main;
+                              iteration_number repeat/curIteration/number;
+                              stories iteration_view/stories;
+                              show_task_count python:True;
+                              show_progress python:True;
+                              show_totals python:False;">
+                <metal:block metal:use-macro="here/iteration_view/macros/story_list">
+                  <metal:block fill-slot="extra_header">
+                    <tr>
+                      <th colspan="2"
+                          width="60%"
+                          height="30"
+                          align="left"
+                          class="header_iteration">
+                        <a class="header_iteration_project_overview"
+                           tal:attributes="href string:${obj/absolute_url}">
+                          <img tal:attributes="src string:${here/portal_url}/${obj/getIcon};
+                                               alt string:Project overview"/>
+                          <span tal:replace="main/title">Title</span>
+                        </a>
+                      </th>
+                      <th colspan="3"
+                          width="20%"
+                          height="30"
+                          align="left"
+                          class="header_iteration">
+                        <span tal:replace="main/man_hours" /> <span i18n:translate="hours">hours</span>
+                        ( <span tal:replace="main/actual" /> <span i18n:translate="actual">actual</span>)
+                      </th>
+                      <th colspan="2"
+                          width="20%"
+                          class="iteration-state">
+                        <span i18n:translate="status">status</span>:
+                        <span tal:content="structure curIteration/review_state"/>
+                        <img tal:attributes="src string:${curIteration/review_state}.gif;
+                                             alt curIteration/review_state" />
+                      </th>
+                    </tr>
+                    <tr>
+                      <td colspan="6"
+                          class="iteration-description"
+                          tal:content="main/description" />
+                    </tr>
+                  </metal:block>
                 </metal:block>
-              </metal:block>
-            </tal:stories>
-          </tal:block>
-        </div>
-      </tal:block>
-
-      <tal:block tal:condition="not:current_iterations">
-        <p><strong i18n:translate="heading_no_current_iterations">
-        No Current Iterations</strong></p>
-      </tal:block>
-
-      <dl id="open_iterations"
-          class="collapsible inline collapsedOnLoad"
-          tal:condition="open_iterations">
-        <dt i18n:translate="heading_open_iterations"
-            class="collapsibleHeader">
-        Open Iterations</dt>
-
-        <dd class="iterations collapsibleContent" 
-            tal:repeat="iteration open_iterations"> 
-
-          <metal:block
-              use-macro="context/project_view/macros/simple_iteration_list" />
-
-        </dd>
-      </dl>
-
-      <br />
-      <br />
-
-      <dl id="finished_iterations"
-          class="collapsible inline collapsedOnLoad"
-          tal:condition="finished_iterations">
-        <dt i18n:translate="heading_finished_iterations"
-            class="collapsibleHeader">
-        Finished Iterations</dt>
-
-        <dd class="iterations collapsibleContent" 
-            tal:repeat="iteration finished_iterations"> 
-
-          <metal:block metal:define-macro="simple_iteration_list">
-
-            <table class="listing"
-                   width="100%"
-                   cellpadding="0" 
-                   cellspacing="0"
-                   style="font-size:100%">
-              
-              <tr>
-                <th width="60%" 
-                    height="30" 
-                    align="left" 
-                    class="header_iteration">
-                  <a  class="header_iteration_project_overview"
-                      tal:attributes="href iteration/url">
-
-                    <img tal:attributes="src string:${here/portal_url}/${iteration/icon}"
-                         alt="project overview"
-                         i18n:attributes="alt project_overview"/>
-                    <span tal:replace="iteration/title" />
-                  </a>
-                </th>
-                <th width="20%" 
-                    height="30" 
-                    align="left" 
-                    class="header_iteration">
-                  <span tal:replace="iteration/man_hours" /> <span i18n:translate="hours">hours</span>
-                  ( <span tal:replace="iteration/actual" /> <span i18n:translate="actual">actual</span>)
-                </th>
-                <th width="20%"
-                    class="iteration-state">
-                  <span i18n:translate="status">status</span>:
-                  <span tal:content="structure iteration/review_state"/>
-                  <img tal:attributes="src string:${iteration/review_state}.gif;
-                                       alt iteration/review_state" />
-                </th> 
-              </tr>
-            </table>
-            
-          </metal:block>
-        </dd>
-      </dl> 
-
-      <br />
-      <br />
-
-      <dl id="non_iterations"
-          class="collapsible inline"
-          tal:define="non_iterations view/non_iterations;"
-          tal:condition="non_iterations">
-        <dt i18n:translate="heading_other_content"
-            class="collapsibleHeader">
-        Other Content</dt>
-        <dd tal:attributes="class python:'visualIcon contenttype-' + ni.portal_type.lower() + ' collapsibleContent';" 
-            tal:repeat="ni non_iterations">
-          <div class="visualIconPadding">
-            <a tal:attributes="href ni/id;"
-               tal:content="ni/Title"/>
+              </tal:stories>
+            </tal:block>
           </div>
-        </dd>
-      </dl>
+        </tal:block>
 
+        <tal:block tal:condition="not:current_iterations">
+          <p><strong i18n:translate="heading_no_current_iterations">
+          No Current Iterations</strong></p>
+        </tal:block>
+
+        <dl id="open_iterations"
+            class="collapsible inline collapsedOnLoad"
+            tal:condition="open_iterations">
+          <dt i18n:translate="heading_open_iterations"
+              class="collapsibleHeader">
+          Open Iterations</dt>
+
+          <dd class="iterations collapsibleContent"
+              tal:repeat="iteration open_iterations">
+
+            <metal:block
+                use-macro="context/project_view/macros/simple_iteration_list" />
+
+          </dd>
+        </dl>
+
+        <br />
+        <br />
+
+        <dl id="finished_iterations"
+            class="collapsible inline collapsedOnLoad"
+            tal:condition="finished_iterations">
+          <dt i18n:translate="heading_finished_iterations"
+              class="collapsibleHeader">
+          Finished Iterations</dt>
+
+          <dd class="iterations collapsibleContent"
+              tal:repeat="iteration finished_iterations">
+
+            <metal:block metal:define-macro="simple_iteration_list">
+
+              <table class="listing"
+                     width="100%"
+                     cellpadding="0"
+                     cellspacing="0"
+                     style="font-size:100%">
+
+                <tr>
+                  <th width="60%"
+                      height="30"
+                      align="left"
+                      class="header_iteration">
+                    <a  class="header_iteration_project_overview"
+                        tal:attributes="href iteration/url">
+
+                      <img tal:attributes="src string:${here/portal_url}/${iteration/icon}"
+                           alt="project overview"
+                           i18n:attributes="alt project_overview"/>
+                      <span tal:replace="iteration/title" />
+                    </a>
+                  </th>
+                  <th width="20%"
+                      height="30"
+                      align="left"
+                      class="header_iteration">
+                    <span tal:replace="iteration/man_hours" /> <span i18n:translate="hours">hours</span>
+                    ( <span tal:replace="iteration/actual" /> <span i18n:translate="actual">actual</span>)
+                  </th>
+                  <th width="20%"
+                      class="iteration-state">
+                    <span i18n:translate="status">status</span>:
+                    <span tal:content="structure iteration/review_state"/>
+                    <img tal:attributes="src string:${iteration/review_state}.gif;
+                                         alt iteration/review_state" />
+                  </th>
+                </tr>
+              </table>
+
+            </metal:block>
+          </dd>
+        </dl>
+
+        <br />
+        <br />
+
+        <dl id="non_iterations"
+            class="collapsible inline"
+            tal:define="non_iterations view/non_iterations;"
+            tal:condition="non_iterations">
+          <dt i18n:translate="heading_other_content"
+              class="collapsibleHeader">
+          Other Content</dt>
+          <dd tal:attributes="class python:'visualIcon contenttype-' + ni.portal_type.lower() + ' collapsibleContent';"
+              tal:repeat="ni non_iterations">
+            <div class="visualIconPadding">
+              <a tal:attributes="href ni/id;"
+                 tal:content="ni/Title"/>
+            </div>
+          </dd>
+        </dl>
+
+      </div>
+
+      <metal:block metal:define-macro="folderlisting" />
     </div>
-
-    <metal:block metal:define-macro="folderlisting" />
-  </div>
   </body>
 </html>
