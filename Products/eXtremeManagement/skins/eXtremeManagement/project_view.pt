@@ -12,11 +12,11 @@
                     current_iterations view/current_iterations;
                     open_iterations view/open_iterations;">
 
-      <div class="documentDescription"
-           tal:condition="main/description"
-           tal:content="main/description">
-        description
-      </div>
+      <p class="documentDescription">
+        <metal:field use-macro="python:here.widget('description', mode='view')">
+          Description
+        </metal:field>
+      </p>
 
       <tal:block tal:condition="current_iterations">
         <h1 i18n:translate="heading_current_iterations">Current Iterations</h1>
@@ -35,7 +35,7 @@
                 <metal:block fill-slot="extra_header">
                   <tr>
                     <th colspan="2"
-                        width="60%" 
+                        width="60%"
                         height="30" 
                         align="left" 
                         class="header_iteration">
