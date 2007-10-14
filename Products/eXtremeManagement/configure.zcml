@@ -7,6 +7,9 @@
   <include package=".browser" />
 
   <include package=".timing" />
+  
+  <include package=".portlets" />
+
 
   <!-- Extra local roles managed in the @@sharing view -->
   <utility

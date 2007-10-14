@@ -1,0 +1,27 @@
+<dl class="portlet portletTempo"
+    i18n:domain="eXtremeManagent"
+>
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+	<!-- should be internationalized -->
+        Portlet Tasks aka Project Administration
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <dd class="portletItem">
+      <div tal:define="somedata view/tempo" tal:content="somedata/date" />
+    </dd>
+
+    <dd class="portletItem">
+      <div tal:define="somedata view/tempo" tal:content="somedata/time" />
+    </dd>
+
+
+
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <span class="portletBottomRight"></span>
+    </dd>
+</dl>

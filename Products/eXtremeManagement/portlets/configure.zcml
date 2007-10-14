@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="eXtremeManagement">
+
+    <!-- Ensure Plone's portlets ZCML has already been processed; without
+         this, we may get a permission lookup error
+      -->
+    <include package="plone.app.portlets" />
+
+    <plone:portlet
+       name="eXtremeManagement.TasksPortlet"
+       assignment=".portlet_tasks.Assignment"
+       interface=".portlet_tasks.ITasksPortlet"
+       renderer=".portlet_tasks.Renderer"
+       addview=".portlet_tasks.AddForm"
+       editview=".portlet_tasks.EditForm"
+       
+        />
+    
+</configure>
