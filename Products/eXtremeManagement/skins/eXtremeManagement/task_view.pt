@@ -81,52 +81,6 @@
 
         <div id="break-before-bookings" class="visualClear"><!-- --></div>
 
-        <tal:block tal:define="bookings view/bookings"
-                   tal:condition="bookings">
-          <h2 i18n:translate="heading-bookings">Time Bookings</h2>
-
-          <table border="1"
-                 class="listing xm-bookings"
-                 with="100%">
-            <tr>
-              <th i18n:translate="listingheader-bookingdate">
-                Date
-              </th>
-              <th i18n:translate="listingheader-booking">
-                Booking
-              </th>
-              <th i18n:translate="listingheader-time">
-                Time
-              </th>
-              <th i18n:translate="listingheader-booked-by">
-                Booked by
-              </th>
-              <th i18n:translate="listingheader-billable">
-                Billable
-              </th>
-            </tr>
-
-            <tr tal:repeat="booking bookings">
-              <td tal:content="booking/date">
-                2006-01-01
-              </td>
-              <td>
-                <a tal:attributes="href string:${booking/url}"
-                   class="booking_title"
-                   tal:content="booking/title" />
-                <div class="booking_description"
-                     tal:content="booking/description" />
-              </td>
-              <td tal:content="booking/actual" />
-              <td>
-                <img tal:replace="structure context/user.gif" />
-                <span tal:replace="python:context.poi_niceName(booking['creator'])">Assignee</span>
-              </td>
-              <td tal:content="booking/billable" />
-            </tr>
-          </table>
-        </tal:block>
-
       </div>
       <metal:block metal:define-macro="folderlisting" />
     </div>
