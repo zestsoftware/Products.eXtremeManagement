@@ -194,32 +194,34 @@
           </p>
           <br />
 
-          <h2 class="heading-tasks" i18n:translate="heading_attachements">Attached files and images</h2>
-          <div>
-            <!-- display contained images as thumbnails, but description is not currently reachable-->
-            <span tal:repeat="image python:here.contentValues(filter = {'portal_type':'Image'})">
-              <a href="#" tal:attributes="href string:${image/absolute_url}/image_view_fullscreen">
-                <span tal:content="structure image/image_thumb"/>
-              </a>
+          <tal:attachements
+              tal:define="images python:here.contentValues(filter = {'portal_type':'Image'});
+                          files python:here.contentValues(filter = {'portal_type':'File'})">
+            <h2 class="heading-tasks"
+                tal:condition="python: images and files"
+                i18n:translate="heading_attachements" >Attached files and images</h2>
+            <div>
+              <!-- display contained images as thumbnails, but description is not currently reachable-->
+              <span tal:repeat="image images">
+                <a href="#" tal:attributes="href string:${image/absolute_url}/image_view_fullscreen">
+                  <span tal:content="structure image/image_thumb"/>
+                </a>
 
-            </span>
-          </div>
-
-          <div>
-            <!-- display contained files as links-->
-            <div tal:repeat="file python:here.contentValues(filter = {'portal_type':'File'})">
-              <img src="#" tal:attributes="src string:/${file/getIcon}"/>
-              <a
-                  href="#"
-                  tal:attributes="href string: ${file/absolute_url}/view"
-                  tal:content="file/Title">
-
-              </a>
-
-
-
+              </span>
             </div>
-          </div>
+            <div>
+              <!-- display contained files as links-->
+              <div tal:repeat="file files">
+                <img src="#" tal:attributes="src string:/${file/getIcon}"/>
+                <a
+                    href="#"
+                    tal:attributes="href string: ${file/absolute_url}/view"
+                    tal:content="file/Title">
+                </a>
+              </div>
+            </div>
+          </tal:attachements>
+
         </metal:define>
       </div>
 
