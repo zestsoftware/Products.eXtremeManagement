@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <dc-workflow workflow_id="eXtreme_Story_Workflow"
-             title="eXtreme_Story_Workflow"
+             title="eXtreme_Story_Workflow" description=""
              state_variable="review_state"
              initial_state="draft">
  <permission>Access contents information</permission>
- <permission>Modify portal content</permission>
- <permission>View</permission>
  <permission>List folder contents</permission>
+ <permission>Modify portal content</permission>
  <permission>Review portal content</permission>
+ <permission>View</permission>
  <permission>eXtremeManagement: Add Task</permission>
  <permission>eXtremeManagement: Edit roughEstimate</permission>
  <state state_id="completed" title="Completed">
@@ -18,12 +18,14 @@
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
@@ -31,14 +33,19 @@
   </permission-map>
   <permission-map name="Review portal content"
                   acquired="True">
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="eXtremeManagement: Add Task"
+                  acquired="False">
+  </permission-map>
+  <permission-map name="eXtremeManagement: Edit roughEstimate"
                   acquired="False">
   </permission-map>
  </state>
@@ -51,6 +58,7 @@
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
                   acquired="False">
@@ -58,6 +66,7 @@
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
@@ -65,16 +74,19 @@
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Review portal content"
                   acquired="False">
    <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="eXtremeManagement: Add Task"
                   acquired="False">
@@ -83,6 +95,7 @@
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
  </state>
  <state state_id="estimated" title="Estimated">
@@ -94,36 +107,43 @@
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Review portal content"
                   acquired="True">
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="eXtremeManagement: Add Task"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="eXtremeManagement: Edit roughEstimate"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
  </state>
  <state state_id="in-progress" title="In progress">
@@ -135,29 +155,39 @@
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
    <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Review portal content"
                   acquired="True">
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="eXtremeManagement: Add Task"
                   acquired="False">
    <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="eXtremeManagement: Edit roughEstimate"
+                  acquired="True">
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
  </state>
  <state state_id="pending" title="Pending estimate">
@@ -169,29 +199,34 @@
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Review portal content"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="eXtremeManagement: Add Task"
                   acquired="False">
@@ -200,6 +235,7 @@
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
  </state>
  <transition transition_id="activate" title="Activate"
@@ -209,6 +245,7 @@
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
+   <guard-role>Projectmanager</guard-role>
    <guard-expression>here/startable</guard-expression>
   </guard>
  </transition>
@@ -220,6 +257,7 @@
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
+   <guard-role>Projectmanager</guard-role>
    <guard-expression>here/completable</guard-expression>
   </guard>
  </transition>
@@ -230,6 +268,7 @@
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
+   <guard-role>Projektmanager</guard-role>
   </guard>
  </transition>
  <transition transition_id="estimate"
@@ -239,6 +278,7 @@
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
+   <guard-role>Projectmanager</guard-role>
    <guard-expression>here/isEstimated</guard-expression>
   </guard>
  </transition>
@@ -249,6 +289,7 @@
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
+   <guard-role>Projectmanager</guard-role>
   </guard>
  </transition>
  <transition transition_id="retract" title="Retract"
@@ -259,6 +300,7 @@
    <guard-role>Customer</guard-role>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
+   <guard-role>Projectmanager</guard-role>
   </guard>
  </transition>
  <transition transition_id="submit"

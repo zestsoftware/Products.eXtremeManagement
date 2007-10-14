@@ -10,7 +10,7 @@ from Products.eXtremeManagement.interfaces import IXMStory
 schema = Schema((
     TextField(
         name='mainText',
-        allowable_content_types=('text/plain', 'text/structured',
+        allowable_content_types=('text/plain', 'text/structured', 'text/restructured',
                                  'text/html', 'application/msword',),
         default_output_type='text/html',
         required=1,

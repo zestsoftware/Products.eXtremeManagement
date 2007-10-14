@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <dc-workflow workflow_id="eXtreme_Customer_Workflow"
              title="eXtreme_Customer_Workflow"
-             state_variable="review_state"
+             description="" state_variable="review_state"
              initial_state="active">
  <permission>Access contents information</permission>
  <permission>Add portal content</permission>
@@ -18,14 +18,17 @@
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="True">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Delete objects" acquired="True">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
                   acquired="False">
@@ -33,25 +36,31 @@
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Request review" acquired="True">
    <permission-role>Customer</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="View management screens"
                   acquired="True">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
  </state>
  <variable variable_id="action" for_catalog="False"

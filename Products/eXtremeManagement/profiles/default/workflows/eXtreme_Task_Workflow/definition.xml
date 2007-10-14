@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <dc-workflow workflow_id="eXtreme_Task_Workflow"
-             title="eXtreme_Task_Workflow"
+             title="eXtreme_Task_Workflow" description=""
              state_variable="review_state"
              initial_state="open">
  <permission>Access contents information</permission>
+ <permission>Change portal events</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
- <permission>Change portal events</permission>
  <permission>eXtremeManagement: Add Booking</permission>
  <state state_id="completed" title="Completed">
   <exit-transition transition_id="reactivate"/>
@@ -16,22 +16,26 @@
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Change portal events"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
    <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="eXtremeManagement: Add Booking"
                   acquired="False">
@@ -45,29 +49,34 @@
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Change portal events"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="eXtremeManagement: Add Booking"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
  </state>
  <state state_id="to-do" title="To-do">
@@ -79,28 +88,33 @@
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Change portal events"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
-   <permission-role>Manager</permission-role>
    <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="eXtremeManagement: Add Booking"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
  </state>
  <transition transition_id="activate" title="activate"
@@ -110,6 +124,7 @@
   <guard>
    <guard-role>Manager</guard-role>
    <guard-role>Employee</guard-role>
+   <guard-role>Projectmanager</guard-role>
    <guard-expression>here/startable</guard-expression>
   </guard>
  </transition>
@@ -121,6 +136,7 @@
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
+   <guard-role>Projectmanager</guard-role>
   </guard>
  </transition>
  <transition transition_id="deactivate" title="deactivate"
@@ -129,6 +145,7 @@
   <action url="" category="workflow">deactivate</action>
   <guard>
    <guard-role>Manager</guard-role>
+   <guard-role>Projectmanager</guard-role>
   </guard>
  </transition>
  <transition transition_id="reactivate"
@@ -138,6 +155,7 @@
   <guard>
    <guard-role>Manager</guard-role>
    <guard-role>Employee</guard-role>
+   <guard-role>Manager</guard-role>
   </guard>
  </transition>
  <variable variable_id="action" for_catalog="False"
