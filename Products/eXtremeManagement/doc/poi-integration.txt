@@ -33,12 +33,12 @@ be able to add any tasks. An image is allowed, though.
   ...     addable = context.getAddableTypesInMenu(allowed)
   ...     return u', '.join(ad.Title() for ad in addable)
   >>> list_addable(story1)
-  u'Image'
+  u'File, Image'
 
   >>> story1.setRoughEstimate(1.5)
   >>> workflow.doActionFor(story1, 'estimate')
   >>> list_addable(story1)
-  u'Image, Issue Tracker Task, Task'
+  u'File, Image, Issue Tracker Task, Task'
 
 Let's create an issue tracker in the project with two issues in it:
 
