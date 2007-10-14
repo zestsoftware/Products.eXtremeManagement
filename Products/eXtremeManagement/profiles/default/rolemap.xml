@@ -107,6 +107,7 @@
                 acquire="True">
       <role name="Manager"/>
       <role name="Projectmanager"/>
+      <role name="Employee"/>
     </permission>
   </permissions>
 </rolemap>
