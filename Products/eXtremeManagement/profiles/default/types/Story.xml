@@ -15,6 +15,7 @@
   <element value="Task"/>
   <element value="PoiTask"/>
   <element value="Image"/>
+  <element value="File"/>
  </property>
  <property name="allow_discussion">True</property>
  <alias from="(Default)" to="base_view"/>
