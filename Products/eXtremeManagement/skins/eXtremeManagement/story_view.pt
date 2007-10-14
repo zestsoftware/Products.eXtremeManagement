@@ -194,6 +194,7 @@
       </p>
       <br />
 
+      <h2 class="heading-tasks" i18n:translate="heading_attachements">Attached files and images</h2>
       <div>
           <!-- display contained images as thumbnails, but description is not currently reachable-->
           <span tal:repeat="image python:here.contentValues(filter = {'portal_type':'Image'})">
