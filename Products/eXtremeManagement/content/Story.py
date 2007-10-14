@@ -10,12 +10,11 @@ from Products.eXtremeManagement.interfaces import IXMStory
 schema = Schema((
     TextField(
         name='mainText',
-        allowable_content_types=('text/plain', 'text/structured', 'text/restructured',
-                                 'text/html', 'application/msword',),
-        default_output_type='text/html',
         required=1,
+        default_output_type='text/html',
         widget=RichWidget(
             description="Enter the main description for this object.",
+            rows='20',
             label='Main text',
             label_msgid='eXtremeManagement_label_mainText',
             description_msgid='eXtremeManagement_help_mainText',

@@ -6,6 +6,7 @@ from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.atapi import *
+from Products.Archetypes.Widget import *
 
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.interfaces import IXMTask
@@ -54,7 +55,7 @@ schema = Schema((
         multiValued=1,
         vocabulary='_get_assignees',
         default_method='getDefaultAssignee',
-        widget=MultiSelectionWidget(
+        widget=InAndOutWidget(
             description="Select the member(s) to assign this task to.",
             label='Assignees',
             label_msgid='eXtremeManagement_label_assignees',
