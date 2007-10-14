@@ -1,8 +1,8 @@
 Test bookings
 =============
 
-We want to test some browser views for Bookings.
-At first there is only one Booking.
+We want to test some browser views for Bookings.  At first there is only one
+Booking (as that is added by the test/utils.py setup method).
 
     >>> from zope.publisher.browser import TestRequest
     >>> request = TestRequest()
