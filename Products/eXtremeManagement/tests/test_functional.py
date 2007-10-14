@@ -30,20 +30,9 @@ def list_doctests():
 def test_suite():
     filenames = list_doctests()
     eXtremeManagementFunctionalTestCase.afterSetUp = afterSetUp
-
     suites = [Suite(os.path.basename(filename),
                optionflags=OPTIONFLAGS,
                package='Products.eXtremeManagement.doc',
                test_class=eXtremeManagementFunctionalTestCase)
               for filename in filenames]
-
-    # BBB: Fix for http://zope.org/Collectors/Zope/2178
-    from Products.PloneTestCase import layer
-    from Products.PloneTestCase import setup
-
-    if setup.USELAYER:
-        for s in suites:
-            if not hasattr(s, 'layer'):
-                s.layer = layer.PloneSite
-
     return unittest.TestSuite(suites)
