@@ -38,16 +38,19 @@ ADD_CONTENT_PERMISSIONS = {
     'ProjectFolder': 'eXtremeManagement: Add ProjectFolder',
     'Booking': 'eXtremeManagement: Add Booking',
 }
+# The only settings you really should take care about are the 'DefaultRoles' for adding
+# a 'Project', 'ProjectFolder'. The other can't live for their own and therefore
+# the settings are overruled by the workflow-settings anyway.
 
-setDefaultRoles('eXtremeManagement: Add Project', ('Manager','Owner'))
-setDefaultRoles('eXtremeManagement: Add Iteration', ('Manager','Owner'))
-setDefaultRoles('eXtremeManagement: Add Story', ('Manager','Owner'))
-setDefaultRoles('eXtremeManagement: Add Task', ('Manager','Owner'))
-setDefaultRoles('eXtremeManagement: Add ProjectMember', ('Manager','Owner'))
-setDefaultRoles('eXtremeManagement: Add Customer', ('Manager','Owner'))
-setDefaultRoles('eXtremeManagement: Add CustomerFolder', ('Manager','Owner'))
-setDefaultRoles('eXtremeManagement: Add ProjectFolder', ('Manager','Owner'))
-setDefaultRoles('eXtremeManagement: Add Booking', ('Manager','Owner'))
+setDefaultRoles('eXtremeManagement: Add Project', ('Manager','Projectmanager'))
+setDefaultRoles('eXtremeManagement: Add Iteration', ('Manager','Projectmanager'))
+setDefaultRoles('eXtremeManagement: Add Story', ('Manager','Contributor'))
+setDefaultRoles('eXtremeManagement: Add Task', ('Manager','Contributor'))
+setDefaultRoles('eXtremeManagement: Add ProjectMember', ('Manager','Contributer'))
+setDefaultRoles('eXtremeManagement: Add Customer', ('Manager','Projectmanager'))
+setDefaultRoles('eXtremeManagement: Add CustomerFolder', ('Manager','Projectmanager'))
+setDefaultRoles('eXtremeManagement: Add ProjectFolder', ('Manager','Projectmanager'))
+setDefaultRoles('eXtremeManagement: Add Booking', ('Manager','Contributer'))
 
 # Dependend products - not quick-installed - used in testcase
 # override in custom configuration

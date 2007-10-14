@@ -17,6 +17,10 @@
       name="Customer"
       factory=".localroles.CustomerRole"
       />
+  <utility
+      name="Projectmanager"
+      factory=".localroles.ProjectmanagerRole"
+      />
 
 
 </configure>

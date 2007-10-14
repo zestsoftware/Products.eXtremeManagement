@@ -15,7 +15,7 @@ class EmployeeRole(object):
 
     title = PMF(u"title_employee_role",
                 default="Can be assigned tasks")
-    required_permission = 'Manage portal'
+    required_permission = 'eXtremeManagement: Add Project'
 
 
 class CustomerRole(object):
@@ -23,4 +23,13 @@ class CustomerRole(object):
 
     title = PMF(u"title_customer_role",
                 default="Can track project")
+    required_permission = 'eXtremeManagement: Add Project'
+
+
+class ProjectmanagerRole(object):
+    implements(ISharingPageRole)
+
+    title = PMF(u"title_projectmanager_role",
+                default="Can add project")
     required_permission = 'Manage portal'
+

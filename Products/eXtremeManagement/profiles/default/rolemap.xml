@@ -3,6 +3,12 @@
   <roles>
     <role name="Customer"/>
     <role name="Employee"/>
+    <role name="Projectmanager"/>
   </roles>
-  <permissions />
+  <permissions>
+    <permission name="Review portal content"
+                acquire="True">
+      <role name="Projectmanager"/>
+    </permission>
+  </permissions>  
 </rolemap>
