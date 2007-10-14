@@ -66,10 +66,10 @@
 
         <table class="listing"
                 width="100%"
-                cellpadding="0" 
+                cellpadding="0"
                 cellspacing="0">
             <tr>
-                <th class="customer_info_header" 
+                <th class="customer_info_header"
                     i18n:translate="listingheader_initial_estimate">
                     Initial Estimate (days)
                 </th>
@@ -79,7 +79,7 @@
                 </td>
             </tr>
             <tr>
-                <th class="customer_info_header" 
+                <th class="customer_info_header"
                     i18n:translate="listingheader_tasks_estimate">
                     Tasks Estimate (hours)
                 </th>
@@ -88,7 +88,7 @@
                 </td>
             </tr>
             <tr>
-                <th class="customer_info_header" 
+                <th class="customer_info_header"
                     i18n:translate="listingheader_actualtimebooked">
                     Time Booked
                 </th>
@@ -101,33 +101,36 @@
         <div class="visualClear"><!-- --></div>
       </div>
 
-      <div class="documentDescription"
-           tal:condition="story/description"
-           tal:content="story/description">
-        description
-      </div>
+      <p class="documentDescription">
+        <metal:field use-macro="python:here.widget('description', mode='view')">
+          Description
+        </metal:field>
+      </p>
 
-      <div tal:replace="structure story/cooked_body" />
-      
-  
+      <div tal:replace="structure provider:plone.abovecontentbody" />
+
+      <metal:field use-macro="python:here.widget('mainText', mode='view')">
+        Body text
+      </metal:field>
+
       <div id="break-before-task-listing" class="visualClear"><!-- --></div>
 
       <tal:block tal:condition="items"
                  tal:define="show_story python:False;">
         <h2 class="heading-tasks" i18n:translate="heading_tasks">Tasks</h2>
-        
+
         <metal:block metal:define-macro="tasklist_table">
           <table class="listing nosort"
                  border="1"
                  width="100%"
-                 cellpadding="0" 
+                 cellpadding="0"
                  cellspacing="0">
             <thead>
               <tr>
                 <th i18n:translate="listingheader_story"
                     tal:condition="show_story">Story</th>
                 <th i18n:translate="listingheader_title">Title</th>
-                <th i18n:translate="listingheader_estimate_hours">Estimate (hours)</th>                    
+                <th i18n:translate="listingheader_estimate_hours">Estimate (hours)</th>
                 <th i18n:translate="listingheader_actual_hours">Actual (hours)</th>
                 <th i18n:translate="listingheader_diff_hours">Difference (hours)</th>
                 <th i18n:translate="listingheader_state">Status</th>
@@ -170,9 +173,9 @@
                 </tal:assignees>
               </td>
             </tr>
-            
+
             <tr id="totalTasks">
-              <th class="td-story-title" 
+              <th class="td-story-title"
                   tal:attributes="colspan python:test(show_story, 2, 1)"
                   i18n:translate="total">
                 Total
@@ -185,37 +188,37 @@
           </table>
         </metal:block>
       </tal:block>
-      
+
       <p class="discreet"
          tal:condition="python: not items"
          i18n:translate="no_tasks_defined">
         No tasks defined yet.
       </p>
       <br />
-      
+
       <div>
           <!-- display contained images as thumbnails, but description is not currently reachable-->
           <span tal:repeat="image python:here.contentValues(filter = {'portal_type':'Image'})">
               <a href="#" tal:attributes="href string:${image/absolute_url}/image_view_fullscreen">
                   <span tal:content="structure image/image_thumb"/>
               </a>
-              
+
           </span>
       </div>
-      
+
       <div>
           <!-- display contained files as links-->
           <div tal:repeat="file python:here.contentValues(filter = {'portal_type':'File'})">
               <img src="#" tal:attributes="src string:/${file/getIcon}"/>
-              <a 
-                 href="#" 
-                 tal:attributes="href string: ${file/absolute_url}/view" 
+              <a
+                 href="#"
+                 tal:attributes="href string: ${file/absolute_url}/view"
                  tal:content="file/Title">
-                  
+
               </a>
-              
-              
-              
+
+
+
           </div>
       </div>
       </metal:define>
