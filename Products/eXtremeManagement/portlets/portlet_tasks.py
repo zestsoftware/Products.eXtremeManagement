@@ -6,6 +6,8 @@ from zope import schema
 from zope.component import getMultiAdapter
 from zope.formlib import form
 from zope.interface import implements
+from zope.component import getMultiAdapter, queryMultiAdapter, getUtility
+
 
 from plone.app.portlets.portlets import base
 from plone.memoize.instance import memoize
@@ -24,20 +26,9 @@ import datetime
 # If both show_date and show_time are False the portlet should be suppressed.
 
 class ITasksPortlet(IPortletDataProvider):
+    pass
 
-    show_date = schema.Bool(title=(u"Show Date"),
-                            description=(u"If enabled, show date; otherwise suppressed."),
-                            default=True)
-                            
-    show_time = schema.Bool(title=(u"Show Time"),
-                            description=(u"If enabled, show time; otherwise suppressed."),
-                            default=True)
-                            
-    sitewide = schema.Bool(title=(u"Sitewide Visibility"),
-                            description=(u"If enabled, portlet visible across the site. "
-                                           "If disabled, only in this folder and its "
-                                           "subfolders."),
-                            default=True)
+
 
 # The assignment is a persistent object used to store the configuration of
 # a particular instantiation of the portlet.
@@ -61,6 +52,15 @@ class Assignment(base.Assignment):
 # base.Assignment).
 
 class Renderer(base.Renderer):
+    
+    def __init__(self, context, request, view, manager, data):
+            base.Renderer.__init__(self, context, request, view, manager, data)
+            
+            self.membership = getToolByName(self.context, 'portal_membership')
+            
+            self.context_state = getMultiAdapter((context, request), name=u'plone_context_state')
+            self.portal_state = getMultiAdapter((context, request), name=u'plone_portal_state')
+            self.pas_info = getMultiAdapter((context, request), name=u'pas_info')
 
     # render() will be called to render the portlet
     
@@ -77,14 +77,21 @@ class Renderer(base.Renderer):
     # To make the view template as simple as possible, we return dicts with
     # only the necessary information.
 
-    def tempo(self):
-        data = {'date':'dont know date', 'time': 'dont know time'}
-        dt = datetime.datetime.now()
-        #if self.show_date:
-        data['date'] = str(dt)[:10]
-        #if self.show_time:
-        data['time'] = str(dt)[11:19]
-        return data
+
+    
+    def isAnon(self):
+        return self.portal_state.anonymous()
+    
+    def portal_url(self):
+        return self.portal_state.portal_url()
+    
+    def portal(self):
+        return self.portal_state.portal()
+    
+    def hasManagePermission(self):
+        return self.membership.checkPermission('Manage Portal', self.context)
+        
+        
     
 # Define the add forms and edit forms, based on zope.formlib. These use
 # the interface to determine which fields to render.
