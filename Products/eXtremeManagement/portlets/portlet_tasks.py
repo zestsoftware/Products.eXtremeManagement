@@ -1,5 +1,8 @@
-"""Define a portlet that doesn't do much besides show the date.
-Just a test before we try something real.
+"""
+The old plone2 portlet ported to plone3
+
+The filename is painful and confusing; should change it here,
+the ZCML, and the test file.
 """
 
 from zope import schema
