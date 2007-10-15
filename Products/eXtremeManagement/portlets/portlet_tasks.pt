@@ -1,133 +1,60 @@
+<dl class="portlet" id="portlet-project-administration"
+    tal:condition="not: view/isAnon">
+  
+  <dt class="portletHeader" >
+    <span class="portletTopLeft"></span>
+    <a tal:condition="view/hasManagePermission"
+       tal:attributes="href
+		       string:${view/portal_url}/project_administration">
+      <tal:admin-manager i18n:translate="project_administration">
+        Project administration [plone3]</tal:admin-manager>
+    </a>
+    <tal:admin-no-manager
+       tal:condition="python: not view.hasManagePermission()"
+       i18n:translate="project_administration">
+      Project administration [plone3]
+    </tal:admin-no-manager>
+    <span class="portletTopRight"></span>
+  </dt>
+  
+  <dd class="portletItem odd">
+    <a i18n:translate="task_overview" 
+       tal:attributes="href
+		       string:${view/portal_url}/task_overview">Task overview
+    </a>
+  </dd> 
+  
+  <dd class="portletItem even">
+    <a i18n:translate="detailed_bookings" 
+       tal:attributes="href string:${view/portal_url}/booking_details">
+      Detailed bookings
+    </a>
+  </dd>
+  
+  <dd class="portletItem odd">
+    <a i18n:translate="booking_month" 
+       tal:attributes="href
+		       string:${view/portal_url}/booking_month">Bookings per month
+    </a>
+  </dd> 
+  
+  <dd class="portletItem even"
+      tal:define="aview view/portal/@@daytotal"
+      i18n:translate="hours_booked_today">
+    Hours booked for today:
+    <span i18n:name="total_booked" tal:replace="aview/total" />
+  </dd>
+  
+  <dd class="portletItem odd">
+    <a i18n:translate="header_time_registration"
+       tal:attributes="href string:${view/portal_url}/update_hours_form">
+      Time registration
+    </a> 
+  </dd>
 
+  <dd class="portletFooter">
+    <span class="portletBottomLeft"></span>
+    <span class="portletBottomRight"></span>
+  </dd>
+</dl>
 
-
-
-
-
-
-  <dl class="portlet" id="portlet-project-administration"
-         tal:condition="not: view/isAnon">
-
-        <dt class="portletHeader" >
-          <span class="portletTopLeft"></span>
-            <a tal:condition="view/hasManagePermission"
-               tal:attributes="href
-               string:${view/portal_url}/project_administration">
-               <tal:admin-manager i18n:translate="project_administration">
-                  Project administration</tal:admin-manager>
-            </a>
-            <tal:admin-no-manager
-                tal:condition="python: not view.hasManagePermission()"
-                i18n:translate="project_administration">
-              Project administration
-            </tal:admin-no-manager>
-            <span class="portletTopRight"></span>
-        </dt>
-    
-        <dd class="portletItem odd">
-            <a i18n:translate="task_overview" 
-               tal:attributes="href
-               string:${view/portal_url}/task_overview">Task overview
-            </a>
-        </dd> 
-
-        <dd class="portletItem even">
-            <a i18n:translate="detailed_bookings" 
-               tal:attributes="href string:${view/portal_url}/booking_details">
-              Detailed bookings
-            </a>
-        </dd>
-
-        <dd class="portletItem odd">
-            <a i18n:translate="booking_month" 
-               tal:attributes="href
-               string:${view/portal_url}/booking_month">Bookings per month
-            </a>
-        </dd> 
-
-        <dd class="portletItem even"
-            tal:define="aview context/@@daytotal"
-            i18n:translate="hours_booked_today">
-            Hours booked for today:
-            <span i18n:name="total_booked" tal:replace="aview/total" />
-        </dd>
-
-        <dd class="portletItem odd">
-            <a i18n:translate="header_time_registration"
-               tal:attributes="href string:${view/portal_url}/update_hours_form">
-                Time registration
-            </a> 
-        </dd>
-        <dd class="portletFooter">
-          <span class="portletBottomLeft"></span>
-          <span class="portletBottomRight"></span>
-        </dd>
-     </dl>
-
-
-
-
-
-
-
-
-<!--
-  <dl class="portlet" id="portlet-project-administration" tal:define ="plone_view context/@@plone"
-         tal:condition="view/isAnon">
-
-        <dt class="portletHeader" >
-          <span class="portletTopLeft"></span>
-            <a tal:condition="python: plone_view.checkPermission('Manage Portal', here)"  
-               tal:attributes="href
-               string:${plone_view/portal_url}/project_administration">
-               <tal:admin-manager i18n:translate="project_administration">
-                  Project administration</tal:admin-manager>
-            </a>
-            <tal:admin-no-manager
-                tal:condition="python: not plone_view.checkPermission('Manage Portal', here)"  
-                i18n:translate="project_administration">
-              Project administration
-            </tal:admin-no-manager>
-            <span class="portletTopRight"></span>
-        </dt>
-    
-        <dd class="portletItem odd">
-            <a i18n:translate="task_overview" 
-               tal:attributes="href
-               string:${plone_view/portal_url}/task_overview">Task overview
-            </a>
-        </dd> 
-
-        <dd class="portletItem even">
-            <a i18n:translate="detailed_bookings" 
-               tal:attributes="href string:${plone_view/portal_url}/booking_details">
-              Detailed bookings
-            </a>
-        </dd>
-
-        <dd class="portletItem odd">
-            <a i18n:translate="booking_month" 
-               tal:attributes="href
-               string:${plone_view/portal_url}/booking_month">Bookings per month
-            </a>
-        </dd> 
-
-        <dd class="portletItem even"
-            tal:define="view plone_view/portal/@@daytotal"
-            i18n:translate="hours_booked_today">
-            Hours booked for today:
-            <span i18n:name="total_booked" tal:replace="view/total" />
-        </dd>
-
-        <dd class="portletItem odd">
-            <a i18n:translate="header_time_registration"
-               tal:attributes="href string:${plone_view/portal_url}/update_hours_form">
-                Time registration
-            </a> 
-        </dd>
-        <dd class="portletFooter">
-          <span class="portletBottomLeft"></span>
-          <span class="portletBottomRight"></span>
-        </dd>
-     </dl>
-     -->

@@ -10,29 +10,20 @@ from zope.component import getMultiAdapter, queryMultiAdapter, getUtility
 
 
 from plone.app.portlets.portlets import base
-from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 
-from DateTime import DateTime
-from Acquisition import aq_inner
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
 from Products.CMFCore.utils import getToolByName
-
-import datetime
 
 # This interface defines the configurable options (if any) for the portlet.
 # It will be used to generate add and edit forms.
-# If both show_date and show_time are False the portlet should be suppressed.
 
 class ITasksPortlet(IPortletDataProvider):
     pass
 
 
-
 # The assignment is a persistent object used to store the configuration of
 # a particular instantiation of the portlet.
-# ?? Why do I have to set default values above and in __init_() ?
 
 class Assignment(base.Assignment):
     implements(ITasksPortlet)
@@ -57,8 +48,8 @@ class Renderer(base.Renderer):
             base.Renderer.__init__(self, context, request, view, manager, data)
             
             self.membership = getToolByName(self.context, 'portal_membership')
-            
             self.context_state = getMultiAdapter((context, request), name=u'plone_context_state')
+            self.portal = getToolByName(self.context, 'portal_url').getPortalObject()
             self.portal_state = getMultiAdapter((context, request), name=u'plone_portal_state')
             self.pas_info = getMultiAdapter((context, request), name=u'pas_info')
 
@@ -66,27 +57,15 @@ class Renderer(base.Renderer):
     
     render = ViewPageTemplateFile('portlet_tasks.pt')
        
-    # The 'available' property is used to determine if the portlet should
-    # be shown. Suppress if we don't show date or time.
+    # The 'available' property is used to determine if the portlet should be shown.
         
     available = True
-    #@property
-    #def available(self):
-    #    return self.show_date or self.show_time
 
-    # To make the view template as simple as possible, we return dicts with
-    # only the necessary information.
-
-
-    
     def isAnon(self):
         return self.portal_state.anonymous()
     
     def portal_url(self):
         return self.portal_state.portal_url()
-    
-    def portal(self):
-        return self.portal_state.portal()
     
     def hasManagePermission(self):
         return self.membership.checkPermission('Manage Portal', self.context)
