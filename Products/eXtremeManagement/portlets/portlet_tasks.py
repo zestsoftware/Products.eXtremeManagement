@@ -64,7 +64,7 @@ class Renderer(base.Renderer):
 
     # render() will be called to render the portlet
     
-    render = ViewPageTemplateFile('tasks_portlet.pt')
+    render = ViewPageTemplateFile('portlet_tasks.pt')
        
     # The 'available' property is used to determine if the portlet should
     # be shown. Suppress if we don't show date or time.
