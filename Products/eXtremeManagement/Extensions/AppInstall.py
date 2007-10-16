@@ -9,11 +9,7 @@ def applyGenericSetupProfile(portal, out):
     setup_tool.setImportContext('profile-eXtremeManagement:default')
     print >> out, "Applying the generic setup profile for eXtremeManagement..."
     setup_tool.runAllImportSteps(purge_old=False)
-    try:
-        setup_tool.setImportContext('profile-CMFPlone:plone')
-    except KeyError:
-        # Plone 3.0 has a different profile name
-        setup_tool.setImportContext('profile-Products.CMFPlone:plone')
+    setup_tool.setImportContext('profile-Products.CMFPlone:plone')
     print >> out, "Applied the generic setup profile for eXtremeManagement"
 
 
@@ -41,11 +37,8 @@ def uninstall(portal):
 def install(self):
     out = StringIO()
     removeOldTool(self, out)
-    if HAS_GENERIC_SETUP:
-        print >> out, "Apply the generic setup profile"
-        applyGenericSetupProfile(self, out)
-        out.write("Successfully installed %s.\n" % PROJECTNAME)
-    else:
-        out.write("ERROR: Could not install %s as GenericSetup is not available.\n" % PROJECTNAME)
+    print >> out, "Apply the generic setup profile"
+    applyGenericSetupProfile(self, out)
+    out.write("Successfully installed %s.\n" % PROJECTNAME)
 
     return out.getvalue()

@@ -7,14 +7,6 @@ PROJECTNAME = "eXtremeManagement"
 GLOBALS = globals()
 product_globals = globals()
 
-# Check for GenericSetup
-try:
-    from Products.GenericSetup import EXTENSION
-    HAS_GENERIC_SETUP = True
-except:
-    HAS_GENERIC_SETUP = False
-
-
 # Permissions
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
 setDefaultRoles(DEFAULT_ADD_CONTENT_PERMISSION, ('Manager', 'Owner'))

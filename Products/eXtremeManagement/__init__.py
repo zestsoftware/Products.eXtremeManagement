@@ -48,15 +48,14 @@ def initialize(context):
                               constructors= (all_constructors[i],),
                               permission  = ADD_CONTENT_PERMISSIONS[klassname])
 
-    if HAS_GENERIC_SETUP:
-        # Register generic setup profile
-        from Products.GenericSetup import EXTENSION
-        from Products.GenericSetup import profile_registry
-        profile_registry.registerProfile(
-            name='default',
-            title='Extreme Management',
-            description='Profile for Extreme Management',
-            path='profiles/default',
-            product='eXtremeManagement',
-            profile_type=EXTENSION,
-            for_=Products.CMFPlone.interfaces.IPloneSiteRoot)
+    # Register generic setup profile
+    from Products.GenericSetup import EXTENSION
+    from Products.GenericSetup import profile_registry
+    profile_registry.registerProfile(
+        name='default',
+        title='Extreme Management',
+        description='Profile for Extreme Management',
+        path='profiles/default',
+        product='eXtremeManagement',
+        profile_type=EXTENSION,
+        for_=Products.CMFPlone.interfaces.IPloneSiteRoot)
