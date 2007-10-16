@@ -2,29 +2,12 @@
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
   <!-- All these indexes automatically get cleared during a reinstall, so -->
   <!-- we also need to reindex them in some other code. -->
- <index name="getAddress" meta_type="FieldIndex" remove="True" />
- <index name="getAssignees" meta_type="FieldwordIndex" remove="True" />
  <index name="getAssignees" meta_type="KeywordIndex">
   <indexed_attr value="getAssignees"/>
  </index>
  <index name="getBookingDate" meta_type="DateIndex">
   <property name="index_naive_time_as_local">True</property>
  </index>
- <index name="getCity" meta_type="FieldIndex" remove="True" />
- <index name="getCountry" meta_type="FieldIndex" remove="True" />
- <index name="getEmail" meta_type="FieldIndex" remove="True" />
- <index name="getEstimate" meta_type="FieldIndex" remove="True" />
- <index name="getFax" meta_type="FieldIndex" remove="True" />
- <index name="getFullname" meta_type="FieldIndex" remove="True" />
- <index name="getHours" meta_type="FieldIndex" remove="True" />
- <index name="getMinutes" meta_type="FieldIndex" remove="True" />
- <index name="getName" meta_type="FieldIndex" remove="True" />
- <index name="getPhone" meta_type="FieldIndex" remove="True" />
- <index name="getRawActualHours" meta_type="FieldIndex" remove="True" />
- <index name="getRawDifference" remove="True" />
- <index name="getRawEstimate" meta_type="FieldIndex" remove="True" />
- <index name="getWebsite" meta_type="FieldIndex" remove="True" />
- <index name="getZipCode" meta_type="FieldIndex" remove="True" />
  <column value="getAssignees"/>
  <column value="getBillable"/>
  <column value="getBookingDate"/>
