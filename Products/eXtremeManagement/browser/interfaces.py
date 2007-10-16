@@ -1,9 +1,5 @@
 from zope.interface import Attribute
-try:
-    from zope.publisher.interfaces.browser import IBrowserView
-except ImportError:
-    # BBB for Zope 2.9/
-    from zope.app.publisher.interfaces.browser import IBrowserView
+from zope.publisher.interfaces.browser import IBrowserView
 
 
 class IMyProjects(IBrowserView):

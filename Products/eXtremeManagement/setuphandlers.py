@@ -1,10 +1,7 @@
 import os.path
 from zope.event import notify
-try:
-    from zope.lifecycleevent import ObjectModifiedEvent
-except ImportError:
-    # BBB for Zope 2.9
-    from zope.app.event.objectevent import ObjectModifiedEvent
+from zope.lifecycleevent import ObjectModifiedEvent
+from zope.app.event.objectevent import ObjectModifiedEvent
 from Products.CMFCore.utils import getToolByName
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.timing.interfaces import IActualHours

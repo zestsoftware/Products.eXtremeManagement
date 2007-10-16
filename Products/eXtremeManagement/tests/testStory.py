@@ -1,10 +1,6 @@
 import os, sys
 from zope.event import notify
-try:
-    from zope.lifecycleevent import ObjectModifiedEvent
-except ImportError:
-    # BBB for Zope 2.9
-    from zope.app.event.objectevent import ObjectModifiedEvent
+from zope.lifecycleevent import ObjectModifiedEvent
 from zope.app.container.contained import ObjectMovedEvent
 
 from Testing import ZopeTestCase
