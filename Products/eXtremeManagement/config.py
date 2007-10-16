@@ -7,14 +7,6 @@ PROJECTNAME = "eXtremeManagement"
 GLOBALS = globals()
 product_globals = globals()
 
-# Check for Plone 2.1
-try:
-    from Products.CMFPlone.migrations import v2_1
-except ImportError:
-    HAS_PLONE21 = False
-else:
-    HAS_PLONE21 = True
-
 # Check for GenericSetup
 try:
     from Products.GenericSetup import EXTENSION

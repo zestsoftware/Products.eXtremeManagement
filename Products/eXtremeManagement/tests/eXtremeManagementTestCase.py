@@ -9,11 +9,6 @@ from Products.eXtremeManagement.timing.interfaces import IActualHours
 from Products.eXtremeManagement.timing.interfaces import IEstimate
 
 
-# Add common dependencies
-if not HAS_PLONE21:
-    DEPENDENCIES.append('Archetypes')
-    PRODUCT_DEPENDENCIES.append('MimetypesRegistry')
-    PRODUCT_DEPENDENCIES.append('PortalTransforms')
 PRODUCT_DEPENDENCIES.append('eXtremeManagement')
 
 # Install all (product-) dependencies, install them too
