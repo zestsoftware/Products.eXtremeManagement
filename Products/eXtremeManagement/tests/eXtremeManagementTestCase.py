@@ -2,7 +2,6 @@ import os, sys, code
 
 from Testing import ZopeTestCase
 from Products.PloneTestCase import PloneTestCase
-from Products.eXtremeManagement.config import HAS_PLONE21
 from Products.eXtremeManagement.config import PRODUCT_DEPENDENCIES
 from Products.eXtremeManagement.config import DEPENDENCIES
 from Products.eXtremeManagement.timing.interfaces import IActualHours
