@@ -155,7 +155,6 @@ def importVarious(context):
         return
     logger = context.getLogger('eXtremeManagement')
     site = context.getSite()
-    removeSkinSelection(site, logger)
     # Integrate our types in kupu, if it is installed.
     configureKupu(site, logger)
     migrate_ct(site, logger)
