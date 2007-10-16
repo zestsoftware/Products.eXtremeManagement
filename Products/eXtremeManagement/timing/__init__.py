@@ -1,7 +1,5 @@
-import zope.annotation
-from zope.interface import implements, alsoProvides, classImplements
+from zope.interface import implements
 from zope.annotation.interfaces import IAnnotations
-from zope.annotation.interfaces import IAttributeAnnotatable
 from persistent.dict import PersistentDict
 from Products.CMFPlone import CatalogTool as catalogtool
 from Products.eXtremeManagement.timing.interfaces import IActualHours

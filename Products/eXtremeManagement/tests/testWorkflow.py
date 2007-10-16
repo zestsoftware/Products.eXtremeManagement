@@ -1,6 +1,3 @@
-import os, sys
-
-from Testing import ZopeTestCase
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.PloneTestCase.setup import default_user
 

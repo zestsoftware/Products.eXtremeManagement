@@ -1,8 +1,8 @@
 from StringIO import StringIO
 
-from Acquisition import aq_inner, ImplicitAcquisitionWrapper
-from Products.PageTemplates.PageTemplate import PageTemplate
 from Acquisition import aq_inner
+from Acquisition import ImplicitAcquisitionWrapper
+from Products.PageTemplates.PageTemplate import PageTemplate
 
 from Products.CMFCore.utils import getToolByName
 

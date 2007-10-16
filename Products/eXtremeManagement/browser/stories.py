@@ -1,8 +1,8 @@
 from Acquisition import aq_inner
+from Acquisition import aq_parent
 from Products.CMFCore.utils import getToolByName
 
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
-from Acquisition import aq_inner, aq_parent
 from Products.eXtremeManagement.timing.interfaces import IActualHours
 from Products.eXtremeManagement.timing.interfaces import IEstimate
 from Products.eXtremeManagement.utils import formatTime

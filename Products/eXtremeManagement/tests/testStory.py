@@ -1,9 +1,5 @@
-import os, sys
 from zope.event import notify
 from zope.lifecycleevent import ObjectModifiedEvent
-from zope.app.container.contained import ObjectMovedEvent
-
-from Testing import ZopeTestCase
 import transaction
 
 from Products.eXtremeManagement.config import *

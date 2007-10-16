@@ -1,8 +1,5 @@
-import os, sys
 from zope.event import notify
 from zope.lifecycleevent import ObjectModifiedEvent
-
-from Testing import ZopeTestCase
 
 from Products.CMFCore.utils import getToolByName
 
@@ -10,8 +7,6 @@ from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.Task import Task
 from Products.eXtremeManagement.interfaces import IXMTask
-from Products.eXtremeManagement.timing.interfaces import IActualHours
-from Products.eXtremeManagement.timing.interfaces import IEstimate
 from Products.eXtremeManagement.tests.utils import createBooking
 
 

@@ -1,10 +1,7 @@
-import string
-
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.permissions import ManageProperties
 from Products.Archetypes.atapi import *
 
 from Products.eXtremeManagement.config import *

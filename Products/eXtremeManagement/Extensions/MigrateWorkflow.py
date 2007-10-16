@@ -1,5 +1,4 @@
 from Products.CMFCore.utils import getToolByName
-from StringIO import StringIO
 
 def migratePreWorkflowUninstall(self, out):
     portal = getToolByName(self, 'portal_url').getPortalObject()

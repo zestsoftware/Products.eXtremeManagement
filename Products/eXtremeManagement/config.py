@@ -1,5 +1,4 @@
 from Products.CMFCore.permissions import setDefaultRoles
-from Products.CMFCore.utils import getToolByName
 
 PROJECTNAME = "eXtremeManagement"
 

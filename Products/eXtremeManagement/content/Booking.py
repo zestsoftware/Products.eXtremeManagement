@@ -2,7 +2,6 @@ from zope.interface import implements
 from DateTime import DateTime
 from AccessControl import ClassSecurityInfo
 
-from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.atapi import *
 
 from Products.eXtremeManagement.config import *

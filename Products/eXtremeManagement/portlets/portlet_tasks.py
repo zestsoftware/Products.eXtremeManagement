@@ -5,12 +5,9 @@ The filename is painful and confusing; should change it here,
 the ZCML, and the test file.
 """
 
-from zope import schema
 from zope.component import getMultiAdapter
 from zope.formlib import form
 from zope.interface import implements
-from zope.component import getMultiAdapter, queryMultiAdapter, getUtility
-
 
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider

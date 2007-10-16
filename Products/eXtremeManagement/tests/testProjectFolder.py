@@ -1,7 +1,3 @@
-import os, sys
-
-from Testing import ZopeTestCase
-
 from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
