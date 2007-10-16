@@ -42,7 +42,7 @@ ADD_CONTENT_PERMISSIONS = {
 # Dependend products - not quick-installed - used in testcase
 # override in custom configuration
 PRODUCT_DEPENDENCIES = []
-DEPENDENCIES = ['Poi']
+DEPENDENCIES = ['Poi', 'xm.booking']
 
 # For kupu:
 OUR_LINKABLE_TYPES = ['Iteration', 'Story']
