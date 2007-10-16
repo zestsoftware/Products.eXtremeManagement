@@ -73,9 +73,11 @@ def migrate_bookings(portal, logger):
 def migrate_ct(portal, logger):
     #migrate_projects(portal, logger)
     #migrate_iterations(portal, logger)
-    migrate_stories(portal, logger)
-    migrate_tasks(portal, logger)
-    migrate_bookings(portal, logger)
+    #migrate_stories(portal, logger)
+    #migrate_tasks(portal, logger)
+    #migrate_bookings(portal, logger)
+    # Nothing needed at the moment.
+    pass
 
 
 def configureKupu(portal, logger):
@@ -108,22 +110,6 @@ def configureKupu(portal, logger):
                                    'old_type'      : 'collection',
                                    'portal_types'  :  collection},))
     logger.info('Added our types to collection and linkable of kupu')
-
-
-def removeSkinSelection(portal, logger):
-    """Undo mistake from past.
-    """
-    sk_tool = getToolByName(portal, 'portal_skins')
-    if 'eXtremeManagement' in sk_tool.getSkinSelections():
-        # If eXtremeManagement is the default selection, reset it to
-        # Plone Default.
-        if sk_tool.getDefaultSkin() == 'eXtremeManagement':
-            sk_tool.default_skin = 'Plone Default'
-            logger.info('Default skin reset from eXtremeManagement to Plone Default.')
-        # Remove our own skin selection.
-        sk_tool.manage_skinLayers(chosen=['eXtremeManagement'],
-                                  del_skin='Delete')
-        logger.info('Removed eXtremeManagement skin selection.')
 
 
 def add_roles_that_should_be_handled_by_rolemap_xml(site, logger):
@@ -173,8 +159,8 @@ def importVarious(context):
     # Integrate our types in kupu, if it is installed.
     configureKupu(site, logger)
     migrate_ct(site, logger)
-    annotate_actual(site, logger)
-    annotate_estimate(site, logger)
+    #annotate_actual(site, logger)
+    #annotate_estimate(site, logger)
     add_roles_that_should_be_handled_by_rolemap_xml(site, logger)
     reindexIndexes(site, logger)
     logger.info('eXtremeManagement_various step imported')
