@@ -18,7 +18,7 @@
  <alias from="properties" to="base_metadata"/>
  <alias from="view" to="base_view"/>
  <action title="view" action_id="view" category="object" condition_expr=""
-    url_expr="string:${object_url}/../base_view" visible="True">
+    url_expr="string:${object_url}/base_view" visible="True">
   <permission value="View"/>
  </action>
  <action title="Edit" action_id="edit" category="object" condition_expr=""
