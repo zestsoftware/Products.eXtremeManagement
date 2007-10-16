@@ -5,6 +5,15 @@
     i18n_domain="eXtremeManagement">
 
   <genericsetup:registerProfile
+      name="eXtremeManagement"
+      title="Extreme Management"
+      directory="profiles/default"
+      description="Profile for Extreme Management"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      />
+
+  <genericsetup:registerProfile
       name="eXtremeManagement-30-types"
       title="eXtremeManagement types fix for Plone 3.0"
       directory="profiles/30"

@@ -1,12 +1,20 @@
-import os.path
-from zope.event import notify
-from zope.lifecycleevent import ObjectModifiedEvent
-from zope.app.event.objectevent import ObjectModifiedEvent
+import transaction
 from Products.CMFCore.utils import getToolByName
-from Products.eXtremeManagement.config import *
+from Products.eXtremeManagement import config
 from Products.eXtremeManagement.timing.interfaces import IActualHours
 from Products.eXtremeManagement.timing.interfaces import IEstimate
 
+
+def install_dependencies(site, logger):
+    qi = getToolByName(site, 'portal_quickinstaller')
+    for product in config.DEPENDENCIES:
+        if not qi.isProductInstalled(product):
+            qi.installProduct(product)
+            transaction.savepoint(optimistic=True)
+            logger.info("Installed %s.", product)
+    # Now reinstall all products for good measure.
+    qi.reinstallProducts(config.DEPENDENCIES)
+    logger.info("Reinstalled %s.", config.DEPENDENCIES)
 
 def reindexIndexes(site, logger):
     """Reindex some indexes.
@@ -93,11 +101,11 @@ def configureKupu(portal, logger):
     #mediaobject = list(kupuTool.getPortalTypesForResourceType('mediaobject'))
     collection = list(kupuTool.getPortalTypesForResourceType('collection'))
 
-    for type in OUR_LINKABLE_TYPES:
+    for type in config.OUR_LINKABLE_TYPES:
         if type not in linkable:
             linkable.append(type)
 
-    for type in OUR_COLLECTION_TYPES:
+    for type in config.OUR_COLLECTION_TYPES:
         if type not in collection:
             collection.append(type)
 
@@ -115,7 +123,7 @@ def configureKupu(portal, logger):
 def add_roles_that_should_be_handled_by_rolemap_xml(site, logger):
     role_manager = site.acl_users.portal_role_manager
     pas_roles = role_manager.listRoleIds()
-    for role in NEW_ROLES:
+    for role in config.NEW_ROLES:
         if role not in pas_roles:
             role_manager.addRole(role)
             logger.info('Added role %s', role)
@@ -155,6 +163,7 @@ def importVarious(context):
         return
     logger = context.getLogger('eXtremeManagement')
     site = context.getSite()
+    install_dependencies(site, logger)
     # Integrate our types in kupu, if it is installed.
     configureKupu(site, logger)
     migrate_ct(site, logger)
