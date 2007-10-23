@@ -1,9 +1,14 @@
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
 
-from Products.Archetypes.atapi import *
+from Products.Archetypes.atapi import BaseContent
+from Products.Archetypes.atapi import BaseSchema
+from Products.Archetypes.atapi import IntegerWidget
+from Products.Archetypes.atapi import registerType
+from Products.Archetypes.atapi import Schema
+from Products.Archetypes.atapi import StringField
+from Products.Archetypes.atapi import StringWidget
 
-from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.interfaces import IXMProjectMember
 
 schema = Schema((

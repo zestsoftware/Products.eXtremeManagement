@@ -5,10 +5,19 @@ from zope.interface import implements
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.utils import getToolByName
-from Products.Archetypes.atapi import *
-from Products.Archetypes.Widget import *
+from Products.Archetypes.atapi import BaseFolder
+from Products.Archetypes.atapi import BaseFolderSchema
+from Products.Archetypes.atapi import DisplayList
+from Products.Archetypes.atapi import InAndOutWidget
+from Products.Archetypes.atapi import IntegerField
+from Products.Archetypes.atapi import IntegerWidget
+from Products.Archetypes.atapi import LinesField
+from Products.Archetypes.atapi import registerType
+from Products.Archetypes.atapi import RichWidget
+from Products.Archetypes.atapi import Schema
+from Products.Archetypes.atapi import SelectionWidget
+from Products.Archetypes.atapi import TextField
 
-from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.interfaces import IXMTask
 from Products.eXtremeManagement.Extensions.workflow_scripts import mailMessage
 from Products.eXtremeManagement.content.schemata import quarter_vocabulary

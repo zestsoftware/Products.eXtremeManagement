@@ -2,9 +2,17 @@ from zope.interface import implements
 from DateTime import DateTime
 from AccessControl import ClassSecurityInfo
 
-from Products.Archetypes.atapi import *
+from Products.Archetypes.atapi import Schema
+from Products.Archetypes.atapi import IntegerField
+from Products.Archetypes.atapi import SelectionWidget
+from Products.Archetypes.atapi import BooleanWidget
+from Products.Archetypes.atapi import DateTimeField
+from Products.Archetypes.atapi import CalendarWidget
+from Products.Archetypes.atapi import BaseSchema
+from Products.Archetypes.atapi import BaseContent
+from Products.Archetypes.atapi import registerType
+from Products.Archetypes.atapi import BooleanField
 
-from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.interfaces import IXMBooking
 from Products.eXtremeManagement.content.schemata import quarter_vocabulary, hour_vocabulary
 

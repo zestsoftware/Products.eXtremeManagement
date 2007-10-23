@@ -2,9 +2,13 @@ from zope.interface import implements
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.utils import getToolByName
-from Products.Archetypes.atapi import *
+from Products.Archetypes.atapi import BooleanField
+from Products.Archetypes.atapi import BooleanWidget
+from Products.Archetypes.atapi import MetadataSchema
+from Products.Archetypes.atapi import OrderedBaseFolder
+from Products.Archetypes.atapi import OrderedBaseFolderSchema
+from Products.Archetypes.atapi import registerType
 
-from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.interfaces import IXMProject
 
 MetaSchema = MetadataSchema((

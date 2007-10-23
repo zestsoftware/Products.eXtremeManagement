@@ -1,6 +1,5 @@
 from Products.Archetypes import atapi
 
-from Products.eXtremeManagement import config
 from Products.eXtremeManagement.content.Task import Task
 
 class PoiTask(Task):

@@ -1,10 +1,15 @@
 from AccessControl import ClassSecurityInfo
 from zope.interface import implements
 
-from Products.Archetypes.atapi import *
+from Products.Archetypes.atapi import IntegerWidget
+from Products.Archetypes.atapi import OrderedBaseFolder
+from Products.Archetypes.atapi import OrderedBaseFolderSchema
+from Products.Archetypes.atapi import registerType
+from Products.Archetypes.atapi import Schema
+from Products.Archetypes.atapi import StringField
+from Products.Archetypes.atapi import StringWidget
 
 from Products.eXtremeManagement.interfaces.IXMCustomer import IXMCustomer as IXMCustomerZope2
-from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.interfaces import IXMCustomer
 
 schema = Schema((
