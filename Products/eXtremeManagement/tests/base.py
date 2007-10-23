@@ -1,5 +1,5 @@
-from Testing import ZopeTestCase
-from Products.PloneTestCase import PloneTestCase
+from Testing import ZopeTestCase as ztc
+from Products.PloneTestCase import PloneTestCase as ptc
 from Products.eXtremeManagement.config import PRODUCT_DEPENDENCIES
 from Products.eXtremeManagement.config import DEPENDENCIES
 from Products.eXtremeManagement.timing.interfaces import IActualHours
@@ -10,16 +10,16 @@ PRODUCT_DEPENDENCIES.append('eXtremeManagement')
 
 # Install all (product-) dependencies, install them too
 for dependency in PRODUCT_DEPENDENCIES + DEPENDENCIES:
-    ZopeTestCase.installProduct(dependency)
+    ztc.installProduct(dependency)
 
-ZopeTestCase.installProduct('eXtremeManagement')
+ztc.installProduct('eXtremeManagement')
 
 PRODUCTS = list()
 PRODUCTS += DEPENDENCIES
 PRODUCTS.append('eXtremeManagement')
-PloneTestCase.setupPloneSite(products=PRODUCTS)
+ptc.setupPloneSite(products=PRODUCTS)
 
-class eXtremeManagementTestCase(PloneTestCase.PloneTestCase):
+class eXtremeManagementTestCase(ptc.ptc):
     """Base TestCase for eXtremeManagement."""
 
     def assertObjectBrainEquality(self, attribute, value, obj, portal_type):
@@ -68,5 +68,5 @@ class eXtremeManagementTestCase(PloneTestCase.PloneTestCase):
 
 
 
-class eXtremeManagementFunctionalTestCase(PloneTestCase.FunctionalTestCase, eXtremeManagementTestCase):
+class eXtremeManagementFunctionalTestCase(ptc.FunctionalTestCase, eXtremeManagementTestCase):
     """Base TestCase for eXtremeManagement."""
