@@ -1,4 +1,3 @@
-from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.Customer import Customer
 from Products.eXtremeManagement.interfaces import IXMCustomer

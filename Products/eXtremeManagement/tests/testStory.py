@@ -2,7 +2,6 @@ from zope.event import notify
 from zope.lifecycleevent import ObjectModifiedEvent
 import transaction
 
-from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.Story import Story
 from Products.eXtremeManagement.interfaces import IXMStory

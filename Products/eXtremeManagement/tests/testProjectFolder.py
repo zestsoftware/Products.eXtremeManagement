@@ -1,4 +1,3 @@
-from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
 from Products.eXtremeManagement.interfaces import IXMProjectFolder

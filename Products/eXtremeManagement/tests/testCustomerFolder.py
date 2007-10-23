@@ -1,4 +1,3 @@
-from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.CustomerFolder import CustomerFolder
 from Products.eXtremeManagement.interfaces import IXMCustomerFolder

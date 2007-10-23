@@ -3,7 +3,6 @@ from zope.lifecycleevent import ObjectModifiedEvent
 
 from Products.CMFCore.utils import getToolByName
 
-from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.Task import Task
 from Products.eXtremeManagement.interfaces import IXMTask

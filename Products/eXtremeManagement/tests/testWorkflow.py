@@ -1,7 +1,6 @@
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.PloneTestCase.setup import default_user
 
-from Products.eXtremeManagement.config import *
 from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
 
 
