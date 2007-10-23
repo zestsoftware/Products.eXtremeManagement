@@ -7,14 +7,15 @@ from Products.eXtremeManagement.timing.interfaces import IEstimate
 
 def install_dependencies(site, logger):
     qi = getToolByName(site, 'portal_quickinstaller')
-    for product in config.DEPENDENCIES:
+    dependencies = ['Poi', 'xm.booking']
+    for product in dependencies:
         if not qi.isProductInstalled(product):
             qi.installProduct(product)
             transaction.savepoint(optimistic=True)
             logger.info("Installed %s.", product)
     # Now reinstall all products for good measure.
-    qi.reinstallProducts(config.DEPENDENCIES)
-    logger.info("Reinstalled %s.", config.DEPENDENCIES)
+    qi.reinstallProducts(dependencies)
+    logger.info("Reinstalled %s.", dependencies)
 
 def reindexIndexes(site, logger):
     """Reindex some indexes.

@@ -20,11 +20,6 @@ ADD_CONTENT_PERMISSIONS = {
     'Booking': 'eXtremeManagement: Add Booking',
 }
 
-# Dependend products - not quick-installed - used in testcase
-# override in custom configuration
-PRODUCT_DEPENDENCIES = []
-DEPENDENCIES = ['Poi', 'xm.booking']
-
 # For kupu:
 OUR_LINKABLE_TYPES = ['Iteration', 'Story']
 OUR_COLLECTION_TYPES = ['ProjectFolder', 'Project', 'Iteration']

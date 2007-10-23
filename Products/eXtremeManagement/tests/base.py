@@ -1,25 +1,28 @@
+from Products.Five import zcml
+from Products.Five import fiveconfigure
 from Testing import ZopeTestCase as ztc
 from Products.PloneTestCase import PloneTestCase as ptc
-from Products.eXtremeManagement.config import PRODUCT_DEPENDENCIES
-from Products.eXtremeManagement.config import DEPENDENCIES
+from Products.PloneTestCase.layer import onsetup
 from Products.eXtremeManagement.timing.interfaces import IActualHours
 from Products.eXtremeManagement.timing.interfaces import IEstimate
 
-
-PRODUCT_DEPENDENCIES.append('eXtremeManagement')
-
-# Install all (product-) dependencies, install them too
-for dependency in PRODUCT_DEPENDENCIES + DEPENDENCIES:
-    ztc.installProduct(dependency)
-
 ztc.installProduct('eXtremeManagement')
+ztc.installProduct('Poi')
 
-PRODUCTS = list()
-PRODUCTS += DEPENDENCIES
-PRODUCTS.append('eXtremeManagement')
-ptc.setupPloneSite(products=PRODUCTS)
+@onsetup
+def xm_setup():
+    """Set up our Plone Site.
+    """
+    fiveconfigure.debug_mode = True
+    import xm.booking
+    zcml.load_config('configure.zcml', xm.booking)
+    fiveconfigure.debug_mode = False
 
-class eXtremeManagementTestCase(ptc.ptc):
+
+xm_setup()
+ptc.setupPloneSite(products=['eXtremeManagement'])
+
+class eXtremeManagementTestCase(ptc.PloneTestCase):
     """Base TestCase for eXtremeManagement."""
 
     def assertObjectBrainEquality(self, attribute, value, obj, portal_type):
