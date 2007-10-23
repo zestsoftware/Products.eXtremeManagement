@@ -1,7 +1,7 @@
 from zope.component import getUtilitiesFor
 from plone.app.workflow.interfaces import ISharingPageRole
 from Products.CMFCore.utils import getToolByName
-from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
+from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
 
 class testSetup(eXtremeManagementTestCase):
     """ Test cases for the generic setup of the product

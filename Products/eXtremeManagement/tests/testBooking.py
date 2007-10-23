@@ -1,4 +1,4 @@
-from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
+from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.Booking import Booking
 from Products.eXtremeManagement.interfaces import IXMBooking
 from Products.eXtremeManagement.timing.interfaces import IActualHours

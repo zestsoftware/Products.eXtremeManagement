@@ -8,7 +8,7 @@ from plone.portlets.interfaces import IPortletDataProvider
 from plone.portlets.interfaces import IPortletRenderer
 
 from Products.eXtremeManagement.portlets import portlet_tasks
-from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
+from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
 
 from plone.app.portlets.storage import PortletAssignmentMapping
 

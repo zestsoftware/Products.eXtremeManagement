@@ -3,7 +3,7 @@ from zope.lifecycleevent import ObjectModifiedEvent
 
 from Products.CMFCore.utils import getToolByName
 
-from Products.eXtremeManagement.tests.eXtremeManagementTestCase import eXtremeManagementTestCase
+from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.Task import Task
 from Products.eXtremeManagement.interfaces import IXMTask
 from Products.eXtremeManagement.tests.utils import createBooking
