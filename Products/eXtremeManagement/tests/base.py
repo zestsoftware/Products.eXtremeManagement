@@ -70,10 +70,3 @@ class eXtremeManagementTestCase(PloneTestCase.PloneTestCase):
 
 class eXtremeManagementFunctionalTestCase(PloneTestCase.FunctionalTestCase, eXtremeManagementTestCase):
     """Base TestCase for eXtremeManagement."""
-
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(eXtremeManagementTestCase))
-    return suite
