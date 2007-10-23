@@ -22,11 +22,11 @@ def initialize(context):
 
     # Initialize portal content
     all_content_types, all_constructors, all_ftis = process_types(
-        listTypes(config.PROJECTNAME),
-        config.PROJECTNAME)
+        listTypes('eXtremeManagement'),
+        'eXtremeManagement')
 
     cmfutils.ContentInit(
-        config.PROJECTNAME + ' Content',
+        'eXtremeManagement Content',
         content_types      = all_content_types,
         permission         = config.DEFAULT_ADD_CONTENT_PERMISSION,
         extra_constructors = all_constructors,

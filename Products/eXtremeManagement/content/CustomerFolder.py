@@ -27,4 +27,4 @@ class CustomerFolder(OrderedBaseFolder):
     schema = CustomerFolder_schema
 
 
-registerType(CustomerFolder, PROJECTNAME)
+registerType(CustomerFolder, 'eXtremeManagement')

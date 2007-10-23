@@ -26,4 +26,4 @@ class ProjectFolder(OrderedBaseFolder):
     schema = ProjectFolder_schema
 
 
-registerType(ProjectFolder, PROJECTNAME)
+registerType(ProjectFolder, 'eXtremeManagement')

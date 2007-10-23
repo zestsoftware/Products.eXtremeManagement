@@ -88,4 +88,4 @@ class Iteration(OrderedBaseFolder):
                 return False
         return True
 
-registerType(Iteration, PROJECTNAME)
+registerType(Iteration, 'eXtremeManagement')

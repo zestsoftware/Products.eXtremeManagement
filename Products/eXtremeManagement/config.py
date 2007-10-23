@@ -1,7 +1,5 @@
 from Products.CMFCore.permissions import setDefaultRoles
 
-PROJECTNAME = "eXtremeManagement"
-
 # One of these could be probably removed
 GLOBALS = globals()
 product_globals = globals()

@@ -192,4 +192,4 @@ class Task(BaseFolder):
         return ''
 
 
-registerType(Task, PROJECTNAME)
+registerType(Task, 'eXtremeManagement')

@@ -156,4 +156,4 @@ class Story(OrderedBaseFolder):
         return self.contentValues(filter={'portal_type': ['Task', 'PoiTask']})
 
 
-registerType(Story, PROJECTNAME)
+registerType(Story, 'eXtremeManagement')

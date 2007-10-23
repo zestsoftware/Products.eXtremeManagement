@@ -117,4 +117,4 @@ class Customer(OrderedBaseFolder):
         """
         pass
 
-registerType(Customer, PROJECTNAME)
+registerType(Customer, 'eXtremeManagement')

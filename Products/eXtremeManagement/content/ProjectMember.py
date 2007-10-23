@@ -59,4 +59,4 @@ class ProjectMember(BaseContent):
     _at_rename_after_creation = True
     schema = ProjectMember_schema
 
-registerType(ProjectMember, PROJECTNAME)
+registerType(ProjectMember, 'eXtremeManagement')

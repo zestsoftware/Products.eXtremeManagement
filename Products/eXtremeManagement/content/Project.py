@@ -100,4 +100,4 @@ class Project(OrderedBaseFolder):
         return memberIds
 
 
-registerType(Project, PROJECTNAME)
+registerType(Project, 'eXtremeManagement')

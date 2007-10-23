@@ -104,4 +104,4 @@ class Booking(BaseContent):
         self.setId(newId)
 
 
-registerType(Booking, PROJECTNAME)
+registerType(Booking, 'eXtremeManagement')

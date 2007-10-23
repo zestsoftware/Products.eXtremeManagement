@@ -41,4 +41,4 @@ class PoiTask(Task):
         """
         return self.poitask_view()
 
-atapi.registerType(PoiTask, config.PROJECTNAME)
+atapi.registerType(PoiTask, 'eXtremeManagement')
