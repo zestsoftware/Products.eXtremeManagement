@@ -1,23 +1,10 @@
 from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
-from Products.eXtremeManagement.content.Iteration import Iteration
 from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
-from Products.eXtremeManagement.interfaces import IXMIteration
 
 
 class testIteration(eXtremeManagementTestCase):
     """ test-cases for class(es) Iteration
     """
-
-    def afterSetUp(self):
-        """
-        """
-        pass
-
-    def test_interfaces(self):
-        """ Test that Iteration plays nice with interfaces.
-        """
-        self.failUnless(IXMIteration.implementedBy(Iteration))
-        self.failUnless(IXMIteration.providedBy(Iteration('blah')))
 
     def test_call_iteration(self):
         """ Test that you can add and call an Iteration

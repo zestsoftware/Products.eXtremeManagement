@@ -3,8 +3,6 @@ from zope.lifecycleevent import ObjectModifiedEvent
 import transaction
 
 from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
-from Products.eXtremeManagement.content.Story import Story
-from Products.eXtremeManagement.interfaces import IXMStory
 from utils import createBooking
 
 
@@ -35,12 +33,6 @@ class testStory(eXtremeManagementTestCase):
         self.task = self.story.task
 
         self.catalog = self.portal.portal_catalog
-
-    def test_interfaces(self):
-        """ Test that Story plays nice with interfaces.
-        """
-        self.failUnless(IXMStory.implementedBy(Story))
-        self.failUnless(IXMStory.providedBy(self.story))
 
     def test_EstimateAndActual(self):
         """

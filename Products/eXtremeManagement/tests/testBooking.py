@@ -1,6 +1,4 @@
 from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
-from Products.eXtremeManagement.content.Booking import Booking
-from Products.eXtremeManagement.interfaces import IXMBooking
 from Products.eXtremeManagement.timing.interfaces import IActualHours
 
 
@@ -30,12 +28,6 @@ class testBooking(eXtremeManagementTestCase):
         self.task = self.story.task
         self.task.invokeFactory('Booking', id='booking', hours=3, minutes=15)
         self.booking = self.task.booking
-
-    def test_interfaces(self):
-        """ Test that Booking plays nice with interfaces.
-        """
-        self.failUnless(IXMBooking.implementedBy(Booking))
-        self.failUnless(IXMBooking.providedBy(self.booking))
 
     def test_ActualHours(self):
         """

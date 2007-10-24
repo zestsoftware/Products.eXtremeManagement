@@ -4,8 +4,6 @@ from zope.lifecycleevent import ObjectModifiedEvent
 from Products.CMFCore.utils import getToolByName
 
 from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
-from Products.eXtremeManagement.content.Task import Task
-from Products.eXtremeManagement.interfaces import IXMTask
 from Products.eXtremeManagement.tests.utils import createBooking
 
 
@@ -33,20 +31,6 @@ class testTask(eXtremeManagementTestCase):
         self.workflow.doActionFor(self.story, 'estimate')
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
-
-    def test_catalog(self):
-        """See if no TempFolders from portal factory are inadvertently
-        added to the catalog.
-        """
-        # XXX We do not catch the actual error here.  At least with
-        # the faulty code this test also passes. :-(
-        self.assertEqual(len(self.catalog(portal_type='TempFolder')), 0)
-
-    def test_interfaces(self):
-        """ Test that Task plays nice with interfaces.
-        """
-        self.failUnless(IXMTask.implementedBy(Task))
-        self.failUnless(IXMTask.providedBy(self.task))
 
     def test__get_assignees(self):
         self.assertEqual(self.task._get_assignees().items(),

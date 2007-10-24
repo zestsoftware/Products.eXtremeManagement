@@ -1,7 +1,6 @@
 from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.Project import Project
 from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
-from Products.eXtremeManagement.interfaces import IXMProject
 
 
 class testProject(eXtremeManagementTestCase):
@@ -16,12 +15,6 @@ class testProject(eXtremeManagementTestCase):
         self.projects = self.folder.projects
         self.projects.invokeFactory('Project', id='project')
         self.project = self.projects.project
-
-    def test_interfaces(self):
-        """ Test that Project plays nice with interfaces.
-        """
-        self.failUnless(IXMProject.implementedBy(Project))
-        self.failUnless(IXMProject.providedBy(self.project))
 
     def test_getProject(self):
         """ Test that you can add and call a Project item

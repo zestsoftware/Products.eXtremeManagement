@@ -1,6 +1,5 @@
 from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
 from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
-from Products.eXtremeManagement.interfaces import IXMProjectFolder
 
 
 class testProjectFolder(eXtremeManagementTestCase):
@@ -16,12 +15,6 @@ class testProjectFolder(eXtremeManagementTestCase):
 
         self.projects.invokeFactory('Project', id='project')
         self.project = self.projects.project
-
-    def test_interfaces(self):
-        """ Test that ProjectFolder plays nice with interfaces.
-        """
-        self.failUnless(IXMProjectFolder.implementedBy(ProjectFolder))
-        self.failUnless(IXMProjectFolder.providedBy(self.projects))
 
     def test_projectFolder(self):
         """Test adding a ProjectFolder in the portal root
