@@ -59,7 +59,7 @@
 
   <adapter
       provides=".interfaces.IActualHours"
-      for="Products.eXtremeManagement.timing.interfaces.IActualHoursContainer"
+      for=".interfaces.IActualHoursContainer"
       factory=".ActualHoursContainer"
       />
 

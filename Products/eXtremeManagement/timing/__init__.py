@@ -2,9 +2,9 @@ from zope.interface import implements
 from zope.annotation.interfaces import IAnnotations
 from persistent.dict import PersistentDict
 from Products.CMFPlone import CatalogTool as catalogtool
-from Products.eXtremeManagement.timing.interfaces import IActualHours
-from Products.eXtremeManagement.timing.interfaces import IEstimate
-from Products.eXtremeManagement.timing.interfaces import ISizeEstimate
+from interfaces import IActualHours
+from interfaces import IEstimate
+from interfaces import ISizeEstimate
 
 
 class ActualHoursContainer(object):

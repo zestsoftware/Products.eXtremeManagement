@@ -60,7 +60,7 @@
 
   <adapter
       provides=".interfaces.IEstimate"
-      for="Products.eXtremeManagement.timing.interfaces.IEstimateContainer"
+      for=".interfaces.IEstimateContainer"
       factory=".EstimateContainer"
       />
 
