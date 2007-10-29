@@ -3,7 +3,6 @@
 import unittest
 from zope.component import testing
 from zope.testing.doctestunit import DocTestSuite
-from zope.testing.doctestunit import DocFileSuite
 from zope.testing import doctest
 
 base_modulestring = 'Products.eXtremeManagement.'
@@ -40,13 +39,5 @@ def test_suite():
                              setUp=setUp,
                              tearDown=tearDown)
         suites.addTest(suite)
-
-    suites.addTest(
-        DocFileSuite('tests.txt',
-                     optionflags=OPTIONFLAGS,
-                     package='xm.booking.timing',
-                     setUp=setUp,
-                     tearDown=tearDown)
-        )
 
     return suites
