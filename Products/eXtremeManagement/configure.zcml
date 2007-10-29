@@ -1,13 +1,15 @@
 <configure xmlns="http://namespaces.zope.org/zope">
 
+  <include package="xm.booking" />
+  
   <include file="deprecation.zcml" />
 
   <include file="profiles.zcml" />
 
+  <include file="timing.zcml" />
+
   <include package=".browser" />
 
-  <include package=".timing" />
-  
   <include package=".portlets" />
 
 

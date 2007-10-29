@@ -7,8 +7,8 @@ from Products.PageTemplates.PageTemplate import PageTemplate
 from Products.CMFCore.utils import getToolByName
 
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
-from Products.eXtremeManagement.timing.interfaces import IActualHours
-from Products.eXtremeManagement.timing.interfaces import IEstimate
+from xm.booking.timing.interfaces import IActualHours
+from xm.booking.timing.interfaces import IEstimate
 from Products.eXtremeManagement.content.Iteration import UNACCEPTABLE_STATUSES \
      as UNACCEPTABLE_STORY_STATUSES
 from Products.eXtremeManagement.utils import formatTime

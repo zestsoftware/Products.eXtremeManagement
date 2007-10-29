@@ -3,8 +3,8 @@ from Products.Five import fiveconfigure
 from Testing import ZopeTestCase as ztc
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
-from Products.eXtremeManagement.timing.interfaces import IActualHours
-from Products.eXtremeManagement.timing.interfaces import IEstimate
+from xm.booking.timing.interfaces import IActualHours
+from xm.booking.timing.interfaces import IEstimate
 
 ztc.installProduct('eXtremeManagement')
 ztc.installProduct('Poi')

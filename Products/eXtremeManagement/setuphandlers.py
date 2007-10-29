@@ -1,8 +1,8 @@
 import transaction
 from Products.CMFCore.utils import getToolByName
 from Products.eXtremeManagement import config
-from Products.eXtremeManagement.timing.interfaces import IActualHours
-from Products.eXtremeManagement.timing.interfaces import IEstimate
+from xm.booking.timing.interfaces import IActualHours
+from xm.booking.timing.interfaces import IEstimate
 
 
 def install_dependencies(site, logger):

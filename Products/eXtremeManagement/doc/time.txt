@@ -48,7 +48,7 @@ We also have a task with an estimate of 5 and one half hours.
     '5'
     >>> browser.getControl(name='minutes').value
     ['30']
-    >>> from Products.eXtremeManagement.timing import IEstimate
+    >>> from xm.booking.timing.interfaces import IEstimate
     >>> estimate = IEstimate(self.task)
     >>> estimate.estimate
     5.5

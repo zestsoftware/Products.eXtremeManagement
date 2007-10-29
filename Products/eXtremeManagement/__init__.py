@@ -8,9 +8,6 @@ from Products.Archetypes import listTypes
 
 from Products.eXtremeManagement import config
 
-# importing 'timing' sets up some interfaces.
-from Products.eXtremeManagement import timing
-
 DirectoryView.registerDirectory('skins', config.product_globals)
 DirectoryView.registerDirectory('skins/eXtremeManagement',
                                 config.product_globals)

@@ -44,7 +44,7 @@ def test_suite():
     suites.addTest(
         DocFileSuite('tests.txt',
                      optionflags=OPTIONFLAGS,
-                     package='Products.eXtremeManagement.timing',
+                     package='xm.booking.timing',
                      setUp=setUp,
                      tearDown=tearDown)
         )

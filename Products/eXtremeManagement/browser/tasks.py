@@ -5,8 +5,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
-from Products.eXtremeManagement.timing.interfaces import IActualHours
-from Products.eXtremeManagement.timing.interfaces import IEstimate
+from xm.booking.timing.interfaces import IActualHours
+from xm.booking.timing.interfaces import IEstimate
 from Products.eXtremeManagement.utils import formatTime
 from Products.eXtremeManagement.utils import getStateSortedContents
 

@@ -1,0 +1,89 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml">
+
+  <include package="zope.annotation" />
+  <include package="xm.booking" />
+
+  <!-- IObjectMovedEvent also includes Added and Removed -->
+  <!-- Maybe listen to IObjectInitializedEvent from Archetypes -->
+  <!-- We need to keep checking (re)moving though. -->
+
+  <subscriber
+      for="Products.eXtremeManagement.interfaces.IXMBooking
+           zope.app.container.interfaces.IObjectMovedEvent"
+      handler="xm.booking.timing.events.addedActualHours"
+      />
+ 
+  <subscriber
+      for="Products.eXtremeManagement.interfaces.IXMBooking
+           zope.app.event.interfaces.IObjectModifiedEvent"
+      handler="xm.booking.timing.events.modifiedActualHours"
+      />
+
+  <subscriber
+      for="Products.eXtremeManagement.interfaces.IXMTask
+           zope.app.container.interfaces.IObjectMovedEvent"
+      handler="xm.booking.timing.events.addedEstimate"
+      />
+ 
+  <subscriber
+      for="Products.eXtremeManagement.interfaces.IXMTask
+           zope.app.event.interfaces.IObjectModifiedEvent"
+      handler="xm.booking.timing.events.modifiedEstimate"
+      />
+
+
+  <!-- Say which of our content types should be enhanced with actual
+       hours. -->
+
+  <class class="Products.eXtremeManagement.content.Iteration.Iteration">
+    <implements interface="xm.booking.timing.interfaces.IActualHoursContainer" />
+  </class>
+
+  <class class="Products.eXtremeManagement.content.Story.Story">
+    <implements interface="xm.booking.timing.interfaces.IActualHoursContainer" />
+  </class>
+
+  <class class="Products.eXtremeManagement.content.Task.Task">
+    <implements interface="xm.booking.timing.interfaces.IActualHoursContainer" />
+  </class>
+
+  <class class="Products.eXtremeManagement.content.PoiTask.PoiTask">
+    <implements interface="xm.booking.timing.interfaces.IActualHoursContainer" />
+  </class>
+
+  <class class="Products.eXtremeManagement.content.Booking.Booking">
+    <implements interface="xm.booking.timing.interfaces.IActualHours" />
+  </class>
+
+
+ 
+  <!-- Say which of our content types should be enhanced with
+       duration estimates. -->
+
+  <class class="Products.eXtremeManagement.content.Iteration.Iteration">
+    <implements interface="xm.booking.timing.interfaces.IEstimateContainer" />
+  </class>
+
+  <class class="Products.eXtremeManagement.content.Story.Story">
+    <implements interface="xm.booking.timing.interfaces.IEstimateContainer" />
+  </class>
+
+  <class class="Products.eXtremeManagement.content.Task.Task">
+    <implements interface="xm.booking.timing.interfaces.IEstimate" />
+  </class>
+
+  <class class="Products.eXtremeManagement.content.PoiTask.PoiTask">
+    <implements interface="xm.booking.timing.interfaces.IEstimate" />
+  </class>
+
+
+  <!-- Say which of our content types should be enhanced with
+       size estimates. -->
+
+  <class class="Products.eXtremeManagement.content.Story.Story">
+    <implements interface="xm.booking.timing.interfaces.ISizeEstimate" />
+  </class>
+
+</configure>

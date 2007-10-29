@@ -1,5 +1,5 @@
 from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
-from Products.eXtremeManagement.timing.interfaces import IActualHours
+from xm.booking.timing.interfaces import IActualHours
 
 
 class testBooking(eXtremeManagementTestCase):

@@ -2,7 +2,7 @@ from Products.CMFCore.utils import getToolByName
 from types import StringTypes
 import logging
 
-from Products.eXtremeManagement.timing import IEstimate
+from xm.booking.timing.interfaces import IEstimate
 
 ##########################
 # Task Workflow scripts #
