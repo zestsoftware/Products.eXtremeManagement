@@ -6,23 +6,15 @@ class testProjectFolder(eXtremeManagementTestCase):
     """ test-cases for class ProjectFolder
     """
 
-    def afterSetUp(self):
-        """
-        """
-        self.setRoles(['Manager'])
-        self.portal.invokeFactory('ProjectFolder', id='projects')
-        self.projects = self.folder.projects
-
-        self.projects.invokeFactory('Project', id='project')
-        self.project = self.projects.project
-
     def test_projectFolder(self):
-        """Test adding a ProjectFolder in the portal root
+        """Test adding a ProjectFolder.  And adding a Project in that.
         """
-        self.loginAsPortalOwner()
-        p=ProjectFolder('projects01')
-        self.portal._setObject('projects01',p)
-        self.failUnless( self.portal.projects01.portal_type == 'ProjectFolder')
+        self.setRoles(['Projectmanager'])
+        self.folder.invokeFactory('ProjectFolder', id='projects')
+        self.failUnless(self.folder.projects.portal_type == 'ProjectFolder')
+
+        self.folder.projects.invokeFactory('Project', id='project')
+        self.failUnless(self.folder.projects.project.portal_type == 'Project')
 
 
 def test_suite():

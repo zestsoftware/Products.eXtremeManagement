@@ -17,22 +17,17 @@ class testProject(eXtremeManagementTestCase):
         self.project = self.projects.project
 
     def test_getProject(self):
-        """ Test that you can add and call a Project item
-        """
-        self.loginAsPortalOwner()
-        p=ProjectFolder('projects01')
-        self.portal._setObject('projects01',p)
-        self.failUnless( self.portal.projects01.portal_type == 'ProjectFolder')
+        """ Test that you can add and a Project item.
 
-        o=Project('temp_Project')
-        self.portal.projects01._setObject('temp_Project', o)
-        self.failUnless( self.portal.projects01.temp_Project.portal_type == 'Project')
+        Well, we added it already; we just need to test if a proper
+        object is there.
+        """
+        self.failUnless(self.portal.projects.project.portal_type == 'Project')
 
     def test_getMembers(self):
         """
         """
         self.assertEqual(self.project.getMembers(), [])
-        self.setRoles(['Manager'])
         self.membership = self.portal.portal_membership
         self.membership.addMember('employee1', 'secret', ['Employee'], [])
         self.membership.addMember('employee2', 'secret', [], [])
