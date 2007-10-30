@@ -430,7 +430,9 @@ class DayBookingOverview(BrowserView):
     def update(self):
         bookingbrains = self.catalog.searchResults(
             portal_type='Booking',
-            getBookingDate=self.date,
+            getBookingDate={ "query": [self.date.earliestTime(),
+                                       self.date.latestTime()], 
+                             "range": "minmax"},
             Creator=self.memberid,
             path=self.searchpath)
 
