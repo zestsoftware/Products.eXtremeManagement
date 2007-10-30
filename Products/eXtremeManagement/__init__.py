@@ -8,9 +8,9 @@ from Products.Archetypes import listTypes
 
 from Products.eXtremeManagement import config
 
-DirectoryView.registerDirectory('skins', config.product_globals)
+DirectoryView.registerDirectory('skins', config.xm_globals)
 DirectoryView.registerDirectory('skins/eXtremeManagement',
-                                config.product_globals)
+                                config.xm_globals)
 
 def initialize(context):
     # imports packages and types for registration

@@ -12,8 +12,8 @@ import glob
 from zope.testing import doctest
 import unittest
 from Globals import package_home
+from Products.eXtremeManagement.config import xm_globals
 from Testing.ZopeTestCase import FunctionalDocFileSuite as Suite
-from Products.eXtremeManagement.config import GLOBALS
 from Products.eXtremeManagement.tests.base import eXtremeManagementFunctionalTestCase
 from Products.eXtremeManagement.tests.utils import afterSetUp
 
@@ -22,7 +22,7 @@ OPTIONFLAGS = (doctest.ELLIPSIS |
 
 
 def list_doctests():
-    home = package_home(GLOBALS)
+    home = package_home(xm_globals)
     return [filename for filename in
             glob.glob(os.path.sep.join([home, 'doc', '*.txt']))]
 

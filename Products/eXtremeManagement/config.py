@@ -1,8 +1,7 @@
 from Products.CMFCore.permissions import setDefaultRoles
 
 # One of these could be probably removed
-GLOBALS = globals()
-product_globals = globals()
+xm_globals = globals()
 
 # Permissions
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
