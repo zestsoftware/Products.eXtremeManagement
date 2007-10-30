@@ -1,6 +1,6 @@
-from zLOG import LOG, DEBUG
-LOG('eXtremeManagement', DEBUG, 'Installing Product')
-
+import logging
+log = logging.getLogger("eXtremeManagement")
+log.debug('Start initialization of product.')
 from Products.CMFCore import utils as cmfutils
 from Products.Archetypes.atapi import process_types
 from Products.Archetypes import listTypes
