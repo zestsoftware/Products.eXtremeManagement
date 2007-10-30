@@ -314,7 +314,11 @@ class WeekBookingOverview(BookingsDetailedView):
                     daynumber = 1
                     year, month = getNextYearMonth(
                         year, month)
-                    date = DateTime(year, month, daynumber)
+                    try:
+                        date = DateTime(year, month, daynumber)
+                    except DateTime.DateError:
+                        # This Should Not Happen (tm)
+                        break
 
             # Add the info to the dict for this week
             weekinfo['days'] = daylist
