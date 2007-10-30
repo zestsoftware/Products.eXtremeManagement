@@ -121,7 +121,6 @@ class BookingsDetailedView(BrowserView):
     def __init__(self, context, request, year=None, month=None, memberid=None):
         self.context = context
         self.request = request
-        context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
 
         self.year = year or self.request.form.get('year', DateTime().year())
@@ -335,7 +334,6 @@ class YearBookingOverview(BrowserView):
 
     def __init__(self, context, request):
         super(YearBookingOverview, self).__init__(context, request)
-        context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
 
         self.base_year = int(self.request.form.get('base_year', DateTime().year()))
@@ -414,7 +412,6 @@ class DayBookingOverview(BrowserView):
 
     def __init__(self, context, request, memberid=None, date=None):
         super(DayBookingOverview, self).__init__(context, request)
-        context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
 
         self.memberid = memberid or self.request.form.get('memberid')

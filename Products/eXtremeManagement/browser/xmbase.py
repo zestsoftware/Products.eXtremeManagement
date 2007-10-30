@@ -12,10 +12,6 @@ class XMBaseView(BrowserView):
     request = None
     context = None
 
-    def __init__(self, context, request):
-        super(XMBaseView, self).__init__(context, request)
-        context = aq_inner(context)
- 
     def main(self):
         """Get a dict with info from this object.
         """

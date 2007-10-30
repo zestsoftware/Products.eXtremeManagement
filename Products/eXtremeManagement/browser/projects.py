@@ -42,10 +42,6 @@ class ProjectAdminView(XMBaseView):
     Specifically: which iterations can be invoiced.
     """
 
-    def __init__(self, context, request):
-        super(ProjectAdminView, self).__init__(context, request)
-        context = aq_inner(context)
- 
     def projectlist(self):
         context = aq_inner(self.context)
         searchpath = '/'.join(context.getPhysicalPath())

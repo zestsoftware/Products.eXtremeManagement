@@ -1,5 +1,6 @@
 import textwrap
 
+from Acquisition import aq_inner, aq_parent
 from zope import interface
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
@@ -65,7 +66,7 @@ class PoiView(BrowserView):
         issues = [b.getObject() for b in issues_brains]
 
         # Skip issues that are already linked into this iteration:
-        iteration = self.context.aq_inner.aq_parent
+        iteration = aq_parent(aq_inner(self.context))
         iteration_path = '/'.join(iteration.getPhysicalPath())
         def is_linked_into_iteration(issue):
             tasks = issue.getBRefs('task_issues')
@@ -99,10 +100,10 @@ class PoiView(BrowserView):
             review_state=['estimated', 'in-progress'])
 
     def _lookup_project(self):
-        item = self.context.aq_inner
+        item = aq_inner(self.context)
         while (item is not None and
                getattr(item, 'portal_type', None) != 'Project'):
-            item = getattr(item, 'aq_parent', None)
+            item = aq_parent(item)
         return item
 
     def _add_message(self, message, type='info'):

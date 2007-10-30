@@ -109,7 +109,6 @@ class TasksDetailedView(BrowserView):
 
     def __init__(self, context, request):
         super(TasksDetailedView, self).__init__(context, request)
-        context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
         self.filter = dict(portal_type=['Task', 'PoiTask'],
                            sort_on='getObjPositionInParent')
@@ -210,7 +209,6 @@ class MyTasksDetailedView(TasksDetailedView):
 
     def __init__(self, context, request, state=None, memberid=None):
         super(MyTasksDetailedView, self).__init__(context, request)
-        context = aq_inner(context)
         self.memberid = memberid or self.request.form.get('memberid')
         if self.memberid is None:
             member = context.portal_membership.getAuthenticatedMember()
@@ -260,7 +258,6 @@ class EmployeeTotalsView(TasksDetailedView):
 
     def __init__(self, context, request):
         super(EmployeeTotalsView, self).__init__(context, request)
-        context = aq_inner(context)
         self.catalog = getToolByName(context, 'portal_catalog')
 
     def totals(self):
