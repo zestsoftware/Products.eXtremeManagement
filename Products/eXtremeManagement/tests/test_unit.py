@@ -1,7 +1,4 @@
-#! /usr/bin/env python2.4
-
 import unittest
-from zope.component import testing
 from zope.testing.doctestunit import DocTestSuite
 from zope.testing import doctest
 
@@ -13,19 +10,6 @@ modules = (
     'utils',
     )
 
-
-class testDocUnitTests:
-    """
-    """
-    pass
-
-
-def setUp(test):
-    testing.setUp(test)
-
-def tearDown(test):
-    testing.tearDown(test)
-
 OPTIONFLAGS = (doctest.ELLIPSIS |
                doctest.NORMALIZE_WHITESPACE)
 
@@ -35,9 +19,7 @@ def test_suite():
     for mod in modules:
         mod = base_modulestring + mod
         suite = DocTestSuite(module=mod,
-                             optionflags=OPTIONFLAGS,
-                             setUp=setUp,
-                             tearDown=tearDown)
+                             optionflags=OPTIONFLAGS)
         suites.addTest(suite)
 
     return suites
