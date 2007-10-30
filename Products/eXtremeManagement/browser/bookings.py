@@ -263,9 +263,28 @@ class WeekBookingOverview(BookingsDetailedView):
         context = aq_inner(self.context)
         request = self.request
         weeklist = []
-        # Start at first day of the week
-        # With the DateTime.week() method Monday is considered the first day.
-        date = self.startDate - self.startDate.dow() + 1
+        # Start at first day of the week.  Note: with the
+        # DateTime.week() method Monday is considered the first day,
+        # even though DateTime.dow() says Sunday is day zero.  To make
+        # things worse, if say Sunday is 1 October, we want to start
+        # with the week of Monday 25 September.
+
+        # Go to the beginning of the week that has the first day of
+        # this month.  How many days do we have to subtract for that?
+        offset = self.startDate.dow() - 1
+        if offset < 0:
+            # Only happens for Sunday
+            offset += 7
+
+        if offset == 0:
+            date = self.startDate
+            year, month = self.year, self.month
+        else:
+            year, month = getPrevYearMonth(
+                self.year, self.month)
+            last_day = getEndOfMonth(year, month).day()
+            date = DateTime(year, month, last_day - offset + 1)
+        daynumber = date.day()
         # Assemble info for at most one month:
         while date.month() <= self.month and date.year() <= self.year:
             weekinfo = dict(
@@ -273,10 +292,10 @@ class WeekBookingOverview(BookingsDetailedView):
                 week_start = context.restrictedTraverse('@@plone').toLocalizedTime(date),
                 )
             # Start the week cleanly
-            day = 0
+            day_of_week = 0
             daylist = []
             raw_total = 0.0
-            while day < 7:
+            while day_of_week < 7:
                 opts = dict(date=date, memberid=self.memberid)
                 days_bookings = DayBookingOverview(context, request, **opts)
                 if days_bookings.raw_total > 0:
@@ -284,8 +303,19 @@ class WeekBookingOverview(BookingsDetailedView):
                 else:
                     daylist.append(dict(total=None, day_of_week=date.Day()))
                 raw_total += days_bookings.raw_total
-                day += 1
-                date += 1
+                day_of_week += 1
+                daynumber += 1
+                try:
+                    # We used to simply do date + 1, but that gave
+                    # problems with Daylight Savings Time.
+                    date = DateTime(year, month, daynumber)
+                except DateTime.DateError:
+                    # End of month reached, so go to the next.
+                    daynumber = 1
+                    year, month = getNextYearMonth(
+                        year, month)
+                    date = DateTime(year, month, daynumber)
+
             # Add the info to the dict for this week
             weekinfo['days'] = daylist
             weekinfo['week_total'] = formatTime(raw_total)

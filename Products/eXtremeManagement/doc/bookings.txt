@@ -143,3 +143,13 @@ Sunday 29 October, at least in The Netherlands.
     5
     >>> len(BookingsDetailedView(self.portal, TestRequest(form={'year': 2006, 'month': 11})).bookinglist)
     1
+
+This does not show any errors though.  Which reminds us to test the
+WeekBookingOverview.  This inherits from the BookingsDetailedView, but
+gives a different overview.  Of course it suffers from DST bugs too if
+we are not careful.
+
+    >>> from Products.eXtremeManagement.browser.bookings import WeekBookingOverview
+    >>> view = WeekBookingOverview(self.portal, TestRequest(form={'year': 2006, 'month': 10}))
+    >>> [week['week_total'] for week in view.bookinglist]
+    ['1:00', '0:00', '0:00', '0:00', '2:00', '3:00']
