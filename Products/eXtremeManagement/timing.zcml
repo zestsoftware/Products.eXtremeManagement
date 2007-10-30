@@ -17,7 +17,7 @@
  
   <subscriber
       for="Products.eXtremeManagement.interfaces.IXMBooking
-           zope.app.event.interfaces.IObjectModifiedEvent"
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       handler="xm.booking.timing.events.modifiedActualHours"
       />
 
@@ -29,7 +29,7 @@
  
   <subscriber
       for="Products.eXtremeManagement.interfaces.IXMTask
-           zope.app.event.interfaces.IObjectModifiedEvent"
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       handler="xm.booking.timing.events.modifiedEstimate"
       />
 
