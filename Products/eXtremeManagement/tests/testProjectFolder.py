@@ -3,7 +3,7 @@ from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
 
 
 class testProjectFolder(eXtremeManagementTestCase):
-    """ test-cases for class(es) ProjectFolder
+    """ test-cases for class ProjectFolder
     """
 
     def afterSetUp(self):

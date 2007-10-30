@@ -8,7 +8,7 @@ from Products.eXtremeManagement.tests.utils import createBooking
 
 
 class testTask(eXtremeManagementTestCase):
-    """ test-cases for class(es) Task
+    """ test-cases for class Task
     """
 
     def afterSetUp(self):

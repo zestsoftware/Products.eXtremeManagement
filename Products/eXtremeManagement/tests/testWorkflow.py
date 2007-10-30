@@ -5,7 +5,7 @@ from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
 
 
 class testWorkflow(eXtremeManagementTestCase):
-    """ test-cases for class(es) 
+    """ test-cases for workflow
     """
 
     def afterSetUp(self):

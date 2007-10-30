@@ -4,7 +4,7 @@ from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
 
 
 class testProject(eXtremeManagementTestCase):
-    """ test-cases for class(es) Project
+    """ test-cases for class Project
     """
 
     def afterSetUp(self):

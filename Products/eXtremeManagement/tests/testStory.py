@@ -7,7 +7,7 @@ from utils import createBooking
 
 
 class testStory(eXtremeManagementTestCase):
-    """ test-cases for class(es) Story
+    """ test-cases for class Story
     """
 
     def afterSetUp(self):

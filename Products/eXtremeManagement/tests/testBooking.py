@@ -3,7 +3,7 @@ from xm.booking.timing.interfaces import IActualHours
 
 
 class testBooking(eXtremeManagementTestCase):
-    """ test-cases for class(es) Booking
+    """ test-cases for class Booking
     """
 
     def afterSetUp(self):

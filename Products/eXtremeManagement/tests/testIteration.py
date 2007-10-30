@@ -3,7 +3,7 @@ from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
 
 
 class testIteration(eXtremeManagementTestCase):
-    """ test-cases for class(es) Iteration
+    """ test-cases for class Iteration
     """
 
     def test_call_iteration(self):
