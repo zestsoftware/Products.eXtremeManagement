@@ -7,11 +7,6 @@ class testSetup(eXtremeManagementTestCase):
     """ Test cases for the generic setup of the product
     """
 
-    def afterSetUp(self):
-        """
-        """
-        pass
-
     def test_types(self):
         """
         """
@@ -68,11 +63,6 @@ class testSetup(eXtremeManagementTestCase):
                 'metaTypesNotToList')
             for ptype in ('Booking','Task','ProjectMember'):
                 self.failUnless(ptype in metaTypesNotToList)
-
-    def test_testCustomizePortal(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
 
     def test_extraLocalRoles(self):
         """Test whether Employee and Customer have been added to the sharing

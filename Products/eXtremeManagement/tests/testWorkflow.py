@@ -42,8 +42,6 @@ class testWorkflow(eXtremeManagementTestCase):
         self.project.invokeFactory('Story', id='projectstory')
         self.projectstory = self.project.projectstory
 
-        #self.assertEqual(self.workflow.getInfoFor(self.story,'review_state'), 'draft')
-
         self.login('employee')
         self.assertEqual(self.story.isEstimated(), False)
         self.story.update(roughEstimate=4.5)
@@ -264,11 +262,6 @@ class testWorkflow(eXtremeManagementTestCase):
         self.setRoles(['Manager'])
         self.tryForbiddenTransition(self.booking, 'booking', 'activate')
         self.tryForbiddenTransition(self.booking, 'booking', 'submit')
-
-    def test_operation_1(self):
-        """
-        """
-        #Uncomment one of the following lines as needed
 
     def tryFullStoryRoute(self):
         """Test transitions of the Story Content Type
