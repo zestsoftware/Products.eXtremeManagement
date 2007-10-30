@@ -115,3 +115,31 @@ Daylight Savings Time can be annoying.  Bookings at Monday March 27
     >>> bookview = BookingsDetailedView(self.portal, request)
     >>> len(bookview.bookinglist)
     1
+
+And in practice we noticed that it can apparantely also go wrong when
+going from summer to winter time.  So we add a few bookings around
+that time too.
+
+In 2006 DST kicked in during the night of Saturday 28 October and
+Sunday 29 October, at least in The Netherlands.
+
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt1', hours=1, bookingDate=DateTime('2006-10-01'))
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt28', hours=1, bookingDate=DateTime('2006-10-28'))
+    >>> len(BookingsDetailedView(self.portal, TestRequest(form={'year': 2006, 'month': 10})).bookinglist)
+    2
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt29', hours=1, bookingDate=DateTime('2006-10-29'))
+    >>> len(BookingsDetailedView(self.portal, TestRequest(form={'year': 2006, 'month': 10})).bookinglist)
+    3
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt30', hours=1, bookingDate=DateTime('2006-10-30'))
+    >>> len(BookingsDetailedView(self.portal, TestRequest(form={'year': 2006, 'month': 10})).bookinglist)
+    4
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt31', hours=1, bookingDate=DateTime('2006-10-31'))
+    >>> len(BookingsDetailedView(self.portal, TestRequest(form={'year': 2006, 'month': 10})).bookinglist)
+    5
+    >>> len(BookingsDetailedView(self.portal, TestRequest(form={'year': 2006, 'month': 11})).bookinglist)
+    0
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-nov1', hours=1, bookingDate=DateTime('2006-11-01'))
+    >>> len(BookingsDetailedView(self.portal, TestRequest(form={'year': 2006, 'month': 10})).bookinglist)
+    5
+    >>> len(BookingsDetailedView(self.portal, TestRequest(form={'year': 2006, 'month': 11})).bookinglist)
+    1
