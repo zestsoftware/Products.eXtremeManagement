@@ -2,15 +2,11 @@ from zLOG import LOG, DEBUG
 LOG('eXtremeManagement', DEBUG, 'Installing Product')
 
 from Products.CMFCore import utils as cmfutils
-from Products.CMFCore import DirectoryView
 from Products.Archetypes.atapi import process_types
 from Products.Archetypes import listTypes
 
 from Products.eXtremeManagement import config
 
-DirectoryView.registerDirectory('skins', config.xm_globals)
-DirectoryView.registerDirectory('skins/eXtremeManagement',
-                                config.xm_globals)
 
 def initialize(context):
     # imports packages and types for registration
