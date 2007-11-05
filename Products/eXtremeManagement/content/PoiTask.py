@@ -26,6 +26,14 @@ class PoiTask(Task):
             issue = brain.getObject()
             label = '#%s: %s' % (issue.getId(), issue.Title())
             pairs.append((issue.UID(), label))
+        # Guard against losing our issues when they are closed and we
+        # still want to edit this PoiTask.  See
+        # http://plone.org/products/extreme-management-tool/issues/58/
+        keys = [key for key, value in pairs]
+        for issue in self.getIssues():
+            if issue.UID() not in keys:
+                label = '#%s: %s' % (issue.getId(), issue.Title())
+                pairs.append((issue.UID(), label))
         pairs = sorted(pairs, lambda a,b: cmp(a[1], b[1]))
         return atapi.DisplayList(pairs)
 
