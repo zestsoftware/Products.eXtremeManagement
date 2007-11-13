@@ -15,12 +15,11 @@
   <element value="Booking"/>
  </property>
  <property name="allow_discussion">True</property>
- <alias from="(Default)" to="poitask_view"/>
- <alias from="base_view" to="poitask_view"/>
+ <alias from="(Default)" to="task_view"/>
  <alias from="edit" to="base_edit"/>
  <alias from="properties" to="base_metadata"/>
  <action title="View" action_id="view" category="object" condition_expr=""
-    url_expr="string:${object_url}/poitask_view" visible="True">
+    url_expr="string:${object_url}" visible="True">
   <permission value="View"/>
  </action>
  <action title="Edit" action_id="edit" category="object" condition_expr=""
