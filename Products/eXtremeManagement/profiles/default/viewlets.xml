@@ -1,0 +1,5 @@
+<object>
+  <order manager="plone.abovecontentbody" skinname="*">
+    <viewlet name="xm.poi.related-issues" />
+  </order>
+</object>
