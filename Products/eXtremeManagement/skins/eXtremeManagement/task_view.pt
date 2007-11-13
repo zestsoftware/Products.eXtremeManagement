@@ -4,8 +4,9 @@
       i18n:domain="eXtremeManagement">
 
   <body>
-    <div metal:fill-slot="main">
-      <div metal:define-macro="body"
+
+    <metal:main fill-slot="main">
+      <tal:main-macro metal:define-macro="main"
            tal:define="view context/@@task;
                        task view/main;
                        tasks python:context.aq_parent.getFolderContents();
@@ -16,6 +17,23 @@
                        startable context/startable">
 
         <metal:prevnext use-macro="context/story_view/macros/previous_next" />
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading"> 
+            <metal:field use-macro="python:here.widget('title', mode='view')">
+            Title
+            </metal:field>
+        </h1>
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p class="documentDescription">
+            <metal:field use-macro="python:here.widget('description', mode='view')">
+            Description
+            </metal:field>
+        </p>
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
 
         <div class="xm-details">
           <dl tal:condition="not:startable" class="not-startable">
@@ -68,22 +86,15 @@
           <div class="visualClear"><!-- --></div>
         </div>
 
-        <p class="documentDescription">
-          <metal:field use-macro="python:here.widget('description', mode='view')">
-            Description
-          </metal:field>
-        </p>
-        <div metal:define-slot="after-description" />
-
         <metal:field use-macro="python:here.widget('mainText', mode='view')">
           Body text
         </metal:field>
 
-
         <div id="break-before-bookings" class="visualClear"><!-- --></div>
 
-      </div>
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+      </tal:main-macro>
       <metal:block metal:define-macro="folderlisting" />
-    </div>
+    </metal:main>
   </body>
 </html>
