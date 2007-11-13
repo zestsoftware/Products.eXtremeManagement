@@ -20,7 +20,6 @@
  <property name="allow_discussion">False</property>
  <alias from="(Default)" to="base_view"/>
  <alias from="edit" to="base_edit"/>
- <alias from="properties" to="base_metadata"/>
  <alias from="view" to="base_view"/>
  <action title="View" action_id="view" category="object" condition_expr=""
     url_expr="string:${object_url}/base_view" visible="True">
@@ -28,11 +27,6 @@
  </action>
  <action title="Edit" action_id="edit" category="object" condition_expr=""
     url_expr="string:${object_url}/base_edit" visible="True">
-  <permission value="Modify portal content"/>
- </action>
- <action title="Properties" action_id="metadata" category="object"
-    condition_expr="" url_expr="string:${object_url}/base_metadata"
-    visible="True">
   <permission value="Modify portal content"/>
  </action>
  <action title="References" action_id="references" category="object"
