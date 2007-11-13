@@ -129,5 +129,13 @@
       allowed_interface=".poi.IPoiView"
       />
 
+  <viewlet
+      name="xm.poi.related-issues"
+      for="Products.eXtremeManagement.interfaces.xmtask.IIssueTask"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+      template="related_issues.pt"
+      permission="zope2.View"
+      />
+
 
 </configure>

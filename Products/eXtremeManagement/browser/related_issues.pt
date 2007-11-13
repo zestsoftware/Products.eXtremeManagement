@@ -1,0 +1,14 @@
+<span i18n:translate="related_issues">Related issues</span>:
+<ul>
+  <tal:repeat repeat="issue context/getIssues">
+    <li tal:define="state python:context.portal_workflow.getInfoFor(issue,
+                    'review_state')">
+      <a tal:attributes="href issue/absolute_url;
+                         class string:state-${state}"
+         tal:content="python:'#%s: %s' % (issue.getId(), issue.title_or_id())">
+        My issue
+      </a>
+      (<span tal:replace="state" />)
+    </li>
+  </tal:repeat>
+</ul>
