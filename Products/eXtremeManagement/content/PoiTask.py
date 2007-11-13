@@ -1,10 +1,13 @@
+from zope.interface import implements
 from Products.Archetypes import atapi
 
 from Products.eXtremeManagement.content.Task import Task
+from Products.eXtremeManagement.interfaces.xmtask import IIssueTask
 
 class PoiTask(Task):
     portal_type = meta_type = 'PoiTask'
     archetype_name = 'Issue Tracker Task'
+    implements(IIssueTask)
     
     schema = Task.schema.copy() + atapi.Schema((
         atapi.ReferenceField('issues',

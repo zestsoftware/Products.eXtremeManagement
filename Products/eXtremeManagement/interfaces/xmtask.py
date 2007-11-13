@@ -9,3 +9,10 @@ class IXMTask(Interface):
 
     A Task contains Bookings.
     """
+
+
+class IIssueTask(IXMTask):
+    """eXtremeManagement Issue Task
+
+    Task that has links to (poi) issues.
+    """

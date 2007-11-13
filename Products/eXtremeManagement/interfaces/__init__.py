@@ -7,6 +7,7 @@ from xmproject import IXMProject
 from xmiteration import IXMIteration
 from xmstory import IXMStory
 from xmtask import IXMTask
+from xmtask import IIssueTask
 from xmbooking import IXMBooking
 
 our_interfaces = (
@@ -18,6 +19,7 @@ our_interfaces = (
     IXMIteration,
     IXMStory,
     IXMTask,
+    IIssueTask,
     IXMBooking,
     )
 
