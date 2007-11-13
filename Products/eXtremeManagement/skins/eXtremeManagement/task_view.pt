@@ -73,6 +73,7 @@
             Description
           </metal:field>
         </p>
+        <div metal:define-slot="after-description" />
 
         <metal:field use-macro="python:here.widget('mainText', mode='view')">
           Body text
