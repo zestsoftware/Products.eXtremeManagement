@@ -1,4 +1,7 @@
-<configure xmlns="http://namespaces.zope.org/browser">
+<configure
+    xmlns="http://namespaces.zope.org/browser"
+    xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml">
 
   <page
       name="myprojects"
@@ -129,6 +132,9 @@
       allowed_interface=".poi.IPoiView"
       />
 
+
+  <!-- viewlets -->
+
   <viewlet
       name="xm.poi.related-issues"
       for="Products.eXtremeManagement.interfaces.xmtask.IIssueTask"
@@ -138,4 +144,15 @@
       />
 
 
+  <!-- configlets -->
+
+
+  <page
+      zcml:condition="installed plone.app.controlpanel"
+      name="xm-controlpanel"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".maintenance.XMControlPanel"
+      permission="cmf.ManagePortal"
+      />
+  
 </configure>

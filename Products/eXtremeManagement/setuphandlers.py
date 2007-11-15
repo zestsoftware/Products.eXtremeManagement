@@ -133,6 +133,9 @@ def add_roles_that_should_be_handled_by_rolemap_xml(site, logger):
 def annotate_actual(site, logger):
     """Make sure the right types are annotated with IActualHours.
     This updates the catalog too, which is nice.
+
+    Note: you can also use the xm configlet in the plone control panel
+    for this.
     """
     cat = getToolByName(site, 'portal_catalog')
     for portal_type in ('Booking', 'Task', 'PoiTask', 'Story', 'Iteration'):
@@ -147,6 +150,9 @@ def annotate_actual(site, logger):
 def annotate_estimate(site, logger):
     """Make sure the right types are annotated with IEstimate.
     This updates the catalog too, which is nice.
+
+    Note: you can also use the xm configlet in the plone control panel
+    for this.
     """
     cat = getToolByName(site, 'portal_catalog')
     for portal_type in ('Task', 'PoiTask', 'Story', 'Iteration'):
