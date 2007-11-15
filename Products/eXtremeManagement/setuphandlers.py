@@ -1,8 +1,6 @@
 import transaction
 from Products.CMFCore.utils import getToolByName
 from Products.eXtremeManagement import config
-from xm.booking.timing.interfaces import IActualHours
-from xm.booking.timing.interfaces import IEstimate
 
 
 def install_dependencies(site, logger):
@@ -130,40 +128,6 @@ def add_roles_that_should_be_handled_by_rolemap_xml(site, logger):
             logger.info('Added role %s', role)
 
 
-def annotate_actual(site, logger):
-    """Make sure the right types are annotated with IActualHours.
-    This updates the catalog too, which is nice.
-
-    Note: you can also use the xm configlet in the plone control panel
-    for this.
-    """
-    cat = getToolByName(site, 'portal_catalog')
-    for portal_type in ('Booking', 'Task', 'PoiTask', 'Story', 'Iteration'):
-        brains = cat(portal_type=portal_type)
-        for brain in brains:
-            obj = brain.getObject()
-            anno = IActualHours(obj)
-            anno.recalc()
-    logger.info('Annotated types with IActualHours')
-
-
-def annotate_estimate(site, logger):
-    """Make sure the right types are annotated with IEstimate.
-    This updates the catalog too, which is nice.
-
-    Note: you can also use the xm configlet in the plone control panel
-    for this.
-    """
-    cat = getToolByName(site, 'portal_catalog')
-    for portal_type in ('Task', 'PoiTask', 'Story', 'Iteration'):
-        brains = cat(portal_type=portal_type)
-        for brain in brains:
-            obj = brain.getObject()
-            anno = IEstimate(obj)
-            anno.recalc()
-    logger.info('Annotated types with IEstimate')
-
-
 def importVarious(context):
     # Only run step if a flag file is present
     if context.readDataFile('extrememanagement_various.txt') is None:
@@ -174,8 +138,6 @@ def importVarious(context):
     # Integrate our types in kupu, if it is installed.
     configureKupu(site, logger)
     migrate_ct(site, logger)
-    #annotate_actual(site, logger)
-    #annotate_estimate(site, logger)
     add_roles_that_should_be_handled_by_rolemap_xml(site, logger)
     reindexIndexes(site, logger)
     logger.info('eXtremeManagement_various step imported')
