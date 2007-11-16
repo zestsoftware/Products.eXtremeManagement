@@ -160,11 +160,17 @@ class testWorkflow(eXtremeManagementTestCase):
                                   'in-progress', 'complete', 'completed')
         self.tryForbiddenTransition(self.iteration, 'completed', 'reactivate')
 
-        # Only a Manager can do an invoice
+        # Only a Manager can make invoicing decisions.
+        self.tryForbiddenTransition(self.iteration, 'completed', 'no-invoicing')
         self.tryForbiddenTransition(self.iteration, 'completed', 'invoice')
         self.login('customer')
+        self.tryForbiddenTransition(self.iteration, 'completed', 'no-invoicing')
         self.tryForbiddenTransition(self.iteration, 'completed', 'invoice')
         self.login('manager')
+        self.tryAllowedTransition(self.iteration, 'iteration',
+                                  'completed', 'no-invoicing', 'own-account')
+        self.tryAllowedTransition(self.iteration, 'iteration',
+                                  'own-account', 'reconsider-invoicing', 'completed')
         self.tryAllowedTransition(self.iteration, 'iteration',
                                   'completed', 'invoice', 'invoiced')
 

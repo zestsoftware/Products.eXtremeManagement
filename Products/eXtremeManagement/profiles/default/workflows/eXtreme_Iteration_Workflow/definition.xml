@@ -1,32 +1,27 @@
 <?xml version="1.0"?>
-<dc-workflow workflow_id="eXtreme_Iteration_Workflow"
-             title="eXtreme_Iteration_Workflow"
-             description="" state_variable="review_state"
-             initial_state="new">
+<dc-workflow workflow_id="eXtreme_Iteration_Workflow" title="eXtreme_Iteration_Workflow" description="" state_variable="review_state" initial_state="new">
  <permission>Access contents information</permission>
  <permission>List folder contents</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
  <permission>eXtremeManagement: Add Story</permission>
  <state state_id="completed" title="Completed">
-  <exit-transition transition_id="reactivate"/>
+  <exit-transition transition_id="no-invoicing"/>
   <exit-transition transition_id="invoice"/>
-  <permission-map name="Access contents information"
-                  acquired="False">
+  <exit-transition transition_id="reactivate"/>
+  <permission-map name="Access contents information" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="List folder contents"
-                  acquired="False">
+  <permission-map name="List folder contents" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="Modify portal content"
-                  acquired="False">
+  <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
@@ -37,29 +32,25 @@
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="eXtremeManagement: Add Story"
-                  acquired="False">
+  <permission-map name="eXtremeManagement: Add Story" acquired="False">
   </permission-map>
  </state>
  <state state_id="in-progress" title="In-progress">
   <exit-transition transition_id="retract"/>
   <exit-transition transition_id="complete"/>
-  <permission-map name="Access contents information"
-                  acquired="False">
+  <permission-map name="Access contents information" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="List folder contents"
-                  acquired="False">
+  <permission-map name="List folder contents" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="Modify portal content"
-                  acquired="False">
+  <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
@@ -70,27 +61,23 @@
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="eXtremeManagement: Add Story"
-                  acquired="False">
+  <permission-map name="eXtremeManagement: Add Story" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
  </state>
  <state state_id="invoiced" title="Invoiced">
-  <permission-map name="Access contents information"
-                  acquired="False">
+  <permission-map name="Access contents information" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="List folder contents"
-                  acquired="False">
+  <permission-map name="List folder contents" acquired="False">
    <permission-role>Owner</permission-role>
   </permission-map>
-  <permission-map name="Modify portal content"
-                  acquired="False">
+  <permission-map name="Modify portal content" acquired="False">
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Customer</permission-role>
@@ -99,30 +86,26 @@
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="eXtremeManagement: Add Story"
-                  acquired="False">
+  <permission-map name="eXtremeManagement: Add Story" acquired="False">
   </permission-map>
  </state>
  <state state_id="new" title="New">
   <exit-transition transition_id="start"/>
-  <permission-map name="Access contents information"
-                  acquired="False">
+  <permission-map name="Access contents information" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="List folder contents"
-                  acquired="False">
+  <permission-map name="List folder contents" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="Modify portal content"
-                  acquired="False">
+  <permission-map name="Modify portal content" acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
@@ -134,17 +117,39 @@
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="eXtremeManagement: Add Story"
-                  acquired="False">
+  <permission-map name="eXtremeManagement: Add Story" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
  </state>
- <transition transition_id="complete" title="Finish"
-             new_state="completed" trigger="USER"
-             before_script="" after_script="">
+ <state state_id="own-account" title="For own account">
+  <description>Iteration is completed but will not be invoiced to a Customer.</description>
+  <exit-transition transition_id="reconsider-invoicing"/>
+  <permission-map name="Access contents information" acquired="True">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="List folder contents" acquired="True">
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="True">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="eXtremeManagement: Add Story" acquired="True">
+  </permission-map>
+ </state>
+ <transition transition_id="complete" title="Finish" new_state="completed" trigger="USER" before_script="" after_script="">
   <action url="" category="workflow">Finish</action>
   <guard>
    <guard-role>Employee</guard-role>
@@ -153,36 +158,44 @@
    <guard-expression>here/completable</guard-expression>
   </guard>
  </transition>
- <transition transition_id="invoice" title="Invoice"
-             new_state="invoiced" trigger="USER"
-             before_script="" after_script="">
+ <transition transition_id="no-invoicing" title="No Invoicing" new_state="own-account" trigger="USER" before_script="" after_script="">
+  <description>Do not invoice this Iteration as it is for our own account.</description>
+  <action url="" category="workflow">No Invoicing</action>
+  <guard>
+   <guard-role>Manager</guard-role>
+   <guard-role>ProjectManager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="invoice" title="Invoice" new_state="invoiced" trigger="USER" before_script="" after_script="">
   <action url="" category="workflow">Invoice</action>
   <guard>
    <guard-role>Manager</guard-role>
    <guard-role>Projectmanager</guard-role>
   </guard>
  </transition>
- <transition transition_id="reactivate" title="Reactivate"
-             new_state="in-progress" trigger="USER"
-             before_script="" after_script="">
+ <transition transition_id="reactivate" title="Reactivate" new_state="in-progress" trigger="USER" before_script="" after_script="">
   <action url="" category="workflow">Reactivate</action>
   <guard>
    <guard-role>Manager</guard-role>
    <guard-role>Projectmanager</guard-role>
   </guard>
  </transition>
- <transition transition_id="retract" title="Retract"
-             new_state="new" trigger="USER" before_script=""
-             after_script="">
+ <transition transition_id="reconsider-invoicing" title="Reconsider Invoicing" new_state="completed" trigger="USER" before_script="" after_script="">
+  <description>Reconsider our invoicing decision.</description>
+  <action url="" category="workflow">Reconsider Invoicing</action>
+  <guard>
+   <guard-role>Manager</guard-role>
+   <guard-role>ProjectManager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="retract" title="Retract" new_state="new" trigger="USER" before_script="" after_script="">
   <action url="" category="workflow">Retract</action>
   <guard>
    <guard-role>Manager</guard-role>
    <guard-role>Projectmanager</guard-role>
   </guard>
  </transition>
- <transition transition_id="start" title="Start working"
-             new_state="in-progress" trigger="USER"
-             before_script="" after_script="startIteration">
+ <transition transition_id="start" title="Start working" new_state="in-progress" trigger="USER" before_script="" after_script="startIteration">
   <action url="" category="workflow">Start working</action>
   <guard>
    <guard-role>Employee</guard-role>
@@ -191,8 +204,7 @@
    <guard-expression>here/startable</guard-expression>
   </guard>
  </transition>
- <variable variable_id="action" for_catalog="False"
-           for_status="True" update_always="True">
+ <variable variable_id="action" for_catalog="False" for_status="True" update_always="True">
   <description>The last transition</description>
   <default>
    
@@ -201,8 +213,7 @@
   <guard>
   </guard>
  </variable>
- <variable variable_id="actor" for_catalog="False"
-           for_status="True" update_always="True">
+ <variable variable_id="actor" for_catalog="False" for_status="True" update_always="True">
   <description>The ID of the user who performed the last transition</description>
   <default>
    
@@ -211,8 +222,7 @@
   <guard>
   </guard>
  </variable>
- <variable variable_id="comments" for_catalog="False"
-           for_status="True" update_always="True">
+ <variable variable_id="comments" for_catalog="False" for_status="True" update_always="True">
   <description>Comments about the last transition</description>
   <default>
    
@@ -221,8 +231,7 @@
   <guard>
   </guard>
  </variable>
- <variable variable_id="review_history" for_catalog="False"
-           for_status="False" update_always="False">
+ <variable variable_id="review_history" for_catalog="False" for_status="False" update_always="False">
   <description>Provides access to workflow history</description>
   <default>
    
@@ -233,8 +242,7 @@
    <guard-permission>Review portal content</guard-permission>
   </guard>
  </variable>
- <variable variable_id="time" for_catalog="False"
-           for_status="True" update_always="True">
+ <variable variable_id="time" for_catalog="False" for_status="True" update_always="True">
   <description>Time of the last transition</description>
   <default>
    
@@ -243,8 +251,5 @@
   <guard>
   </guard>
  </variable>
- <script script_id="startIteration" type="External Method"
-         filename=""
-         module="eXtremeManagement.workflow_scripts"
-         function="startIteration"/>
+ <script script_id="startIteration" type="External Method" filename="" module="eXtremeManagement.workflow_scripts" function="startIteration"/>
 </dc-workflow>
