@@ -30,12 +30,12 @@ def initialize(context):
         ).initialize(context)
 
     # Give it some extra permissions to control them on a per class limit
-    for i in range(0,len(all_content_types)):
+    for i in range(0, len(all_content_types)):
         klassname=all_content_types[i].__name__
         if not klassname in config.ADD_CONTENT_PERMISSIONS:
             continue
 
         context.registerClass(
             meta_type   = all_ftis[i]['meta_type'],
-            constructors= (all_constructors[i],),
+            constructors= (all_constructors[i], ),
             permission  = config.ADD_CONTENT_PERMISSIONS[klassname])
