@@ -36,14 +36,14 @@
               </label>
             </div>
           </tal:repeat>
-          
+
           <input type="submit" value="Add Tasks" />
-          
+
         </form>
       </dd>
 
       <dd class="portletItem odd">
-        Note that only issues that arent' already mapped into this
+        Note that only issues that aren't already mapped into this
         iteration will be added.
       </dd>
 
