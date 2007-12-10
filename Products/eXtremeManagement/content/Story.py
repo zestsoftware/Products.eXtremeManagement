@@ -16,7 +16,6 @@ from Products.eXtremeManagement.interfaces import IXMStory
 schema = Schema((
     TextField(
         name='mainText',
-        required=1,
         default_output_type='text/html',
         widget=RichWidget(
             description="Enter the main description for this object.",
