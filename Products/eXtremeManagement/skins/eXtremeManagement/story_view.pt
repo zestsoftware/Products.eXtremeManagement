@@ -107,9 +107,11 @@
             </metal:field>
           </p>
 
+          <div tal:attributes="class string:kssattr-atuid-${context/UID}">
           <metal:field use-macro="python:here.widget('mainText', mode='view')">
             Body text
           </metal:field>
+          </div>
 
           <div id="break-before-task-listing" class="visualClear"><!-- --></div>
 
