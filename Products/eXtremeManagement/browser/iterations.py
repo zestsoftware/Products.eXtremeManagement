@@ -1,5 +1,3 @@
-from StringIO import StringIO
-
 from Acquisition import aq_inner
 from Acquisition import ImplicitAcquisitionWrapper
 from Products.PageTemplates.PageTemplate import PageTemplate
@@ -13,45 +11,6 @@ from Products.eXtremeManagement.content.Iteration import \
     UNACCEPTABLE_STATUSES as UNACCEPTABLE_STORY_STATUSES
 from Products.eXtremeManagement.utils import formatTime
 from Products.eXtremeManagement.utils import getStateSortedContents
-
-
-def _store_on_context(obj, *args, **kwargs):
-    KEY = '_v_XM_cache'
-    if not hasattr(obj.context.aq_base, KEY):
-        setattr(obj.context, KEY, {})
-    return getattr(obj.context, KEY)
-
-
-def _render_details_cachekey(obj, storybrain):
-    key = StringIO()
-
-    def add(brain):
-        key.write(brain.getPath())
-        key.write('\n')
-        key.write(brain.modified)
-        key.write('\n\n')
-
-    catalog = getToolByName(obj.context, 'portal_catalog')
-    add(storybrain)
-    for brain in catalog(portal_type='Task', path=storybrain.getPath()):
-        add(brain)
-
-    return key.getvalue()
-
-
-def cache(get_key, get_cache):
-
-    def decorator(fun):
-
-        def replacement(*args, **kwargs):
-            key = get_key(*args, **kwargs)
-            cache = get_cache(*args, **kwargs)
-            cached_value = cache.get(key)
-            if cached_value is None:
-                cache[key] = fun(*args, **kwargs)
-            return cache[key]
-        return replacement
-    return decorator
 
 
 def degrade_headers(html, howmuch=2):
@@ -197,7 +156,6 @@ class IterationView(XMBaseView):
         result = view.tasklist()
         return result
 
-    @cache(_render_details_cachekey, _store_on_context)
     def render_details(self, storybrain):
         story = storybrain.getObject()
         info = story.restrictedTraverse('@@story').main()
