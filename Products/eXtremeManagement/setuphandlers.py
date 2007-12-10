@@ -15,29 +15,22 @@ def install_dependencies(site, logger):
     qi.reinstallProducts(dependencies)
     logger.info("Reinstalled %s.", dependencies)
 
-def reindexIndexes(site, logger):
-    """Reindex some indexes.
 
-    Indexes that are added in the catalog.xml file get cleared
-    everytime the GenericSetup profile is applied.  So we need to
-    reindex them.
+def addCatalogIndexes(site, logger):
+    """Add our indexes to the catalog.
 
-    Since we are forced to do that, we might as well make sure that
-    these get reindexed in the correct order.  At least it *might*
-    help for some of the indexes for estimates and booked hours to be
-    reindexed in a specific order.
+    Doing it here instead of in profiles/default/catalog.xml means we
+    do not need to reindex those indexes after every reinstall.
     """
-    cat = getToolByName(site, 'portal_catalog')
-    indexes = [
-        'getAssignees',
-        'getBookingDate',
-        ]
-    # Don't reindex an index if it isn't actually in the catalog.
-    # Should not happen, but cannot do any harm.
-    ids = [id for id in indexes if id in cat.indexes()]
-    if ids:
-        cat.manage_reindexIndex(ids=ids)
-    logger.info('Reindexed getAssignees and getBookingDate')
+    catalog = getToolByName(site, 'portal_catalog')
+    indexes = catalog.indexes()
+    wanted = (("getAssignees", "KeywordIndex"),
+              ("getBookingDate", "DateIndex"))
+
+    for name, meta_type in wanted:
+        if name not in indexes:
+            catalog.addIndex(name, meta_type)
+            logger.info("Added %s for field %s.", meta_type, name)
 
 
 def _migrateSchema(site, contentType, logger):
@@ -139,7 +132,7 @@ def importVarious(context):
     configureKupu(site, logger)
     migrate_ct(site, logger)
     add_roles_that_should_be_handled_by_rolemap_xml(site, logger)
-    reindexIndexes(site, logger)
+    addCatalogIndexes(site, logger)
     logger.info('eXtremeManagement_various step imported')
 
 

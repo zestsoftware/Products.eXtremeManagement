@@ -1,13 +1,5 @@
 <?xml version="1.0"?>
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
-  <!-- All these indexes automatically get cleared during a reinstall, so -->
-  <!-- we also need to reindex them in some other code. -->
- <index name="getAssignees" meta_type="KeywordIndex">
-  <indexed_attr value="getAssignees"/>
- </index>
- <index name="getBookingDate" meta_type="DateIndex">
-  <property name="index_naive_time_as_local">True</property>
- </index>
  <column value="getAssignees"/>
  <column value="getBillable"/>
  <column value="getBookingDate"/>

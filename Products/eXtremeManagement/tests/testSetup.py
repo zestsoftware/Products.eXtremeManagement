@@ -2,6 +2,8 @@ from zope.component import getUtilitiesFor
 from plone.app.workflow.interfaces import ISharingPageRole
 from Products.CMFCore.utils import getToolByName
 from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
+from DateTime import DateTime
+
 
 class testSetup(eXtremeManagementTestCase):
     """ Test cases for the generic setup of the product
@@ -74,6 +76,62 @@ class testSetup(eXtremeManagementTestCase):
         self.failUnless('Employee' in names)
         self.failUnless('Customer' in names)
 
+    def testReinstall(self):
+        """Reinstalling should not empty our indexes.
+        """
+        # First of all, our indexes should already be in the catalog
+        # at this point.
+        catalog = self.portal.portal_catalog
+        wanted = ("getAssignees", "getBookingDate")
+        indexes = catalog.indexes()
+        for idx in wanted:
+            self.failUnless(idx in indexes)
+
+        def results(**kwargs):
+            # Small helper function.
+            return len(catalog.searchResults(**kwargs))
+
+        oneday = DateTime(2000, 1, 1)
+        self.assertEquals(results(portal_type='Task',
+                                  getAssignees='employee'), 0)
+        self.assertEquals(results(getBookingDate=oneday), 0)
+
+        # We add some content that should show up in those indexes.
+        self.setRoles(['Manager'])
+        membership = self.portal.portal_membership
+        membership.addMember('employee', 'secret', ['Employee'], [])
+        self.portal.invokeFactory('ProjectFolder', id='projects')
+        projects = self.portal.projects
+        projects.invokeFactory('Project', id='project')
+        project = projects.project
+        project.invokeFactory('Iteration', id='iteration')
+        iteration = project.iteration
+        iteration.invokeFactory('Story', id='story')
+        story = iteration.story
+        story.update(roughEstimate=1.5)
+        self.portal.portal_workflow.doActionFor(story, 'estimate')
+        story.invokeFactory('Task', id='task')
+        task = story.task
+        task.update(assignees='employee')
+        task.invokeFactory('Booking', id='booking', hours=3, minutes=15,
+                           bookingDate=oneday)
+        booking = task.booking
+
+        # Now something should be in the catalog.
+        self.assertEquals(results(portal_type='Task',
+                                  getAssignees='employee'), 1)
+        self.assertEquals(results(getBookingDate=oneday), 1)
+
+        # Now we reinstall.
+        quickinstaller = self.portal.portal_quickinstaller
+        quickinstaller.reinstallProducts(['eXtremeManagement'])
+
+        # Now we should still have a match.
+        self.assertEquals(results(portal_type='Task',
+                                  getAssignees='employee'), 1)
+        self.assertEquals(results(getBookingDate=oneday), 1)
+
+   
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
