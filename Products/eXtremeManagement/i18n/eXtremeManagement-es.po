@@ -1,0 +1,781 @@
+# translation of eXtremeManagement-es.po to Spanish
+# Emanuel Sartor <emanuel@menttes.com>, 2007.
+# ArchGenXML generated POT File
+msgid ""
+msgstr ""
+"Project-Id-Version: eXtremeManagement-es\n"
+"POT-Creation-Date: 2007-10-08 22:56+0000\n"
+"PO-Revision-Date: 2007-12-09 14:30-0300\n"
+"Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: es\n"
+"Language-Name: Español\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"Domain: eXtremeManagement\n"
+"X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
+"X-Generator: KBabel 1.11.4\n"
+
+# Note for translators
+# I don't know of any good translations for: user story, story and booking. So
+# the English words are used instead.
+# In some contexts, 'booking' was translated as 'registro'.
+
+#. Default: "Send"
+#: skins/eXtremeManagement/update_hours_form.cpt:130
+msgid "Send"
+msgstr "Enviar"
+
+#. Default: "Send a mail to this user"
+#: skins/eXtremeManagement/projectmember_view.pt:49
+msgid "Send a mail to this user"
+msgstr "Enviar un mail a este usuario"
+
+#. Default: "actual"
+#: skins/eXtremeManagement/project_view.pt:55
+msgid "actual"
+msgstr "real"
+
+#. Default: "Back to"
+#: skins/eXtremeManagement/booking_month.pt:33
+msgid "back_to"
+msgstr "Volver a"
+
+#. Default: "Bookings per month"
+#: skins/eXtremeManagement/portlet_tasks.pt:44
+msgid "booking_month"
+msgstr "Bookings por mes"
+
+#. Default: "My Projects"
+#: skins/eXtremeManagement/portlet_my_projects.pt:15
+msgid "box_my_projects"
+msgstr "Mis Proyectos"
+
+#. Default: "Pending Stories"
+#: skins/eXtremeManagement/portlet_stories.pt:16
+msgid "box_stories"
+msgstr "User Stories Pendientes"
+
+#. Default: "Cannot Activate"
+#: skins/eXtremeManagement/task_view.pt:22
+msgid "cannot_activate"
+msgstr "No se puede activar"
+
+#. Default: "current month"
+#: skins/eXtremeManagement/booking_month.pt:35
+msgid "current-month"
+msgstr "mes actual"
+
+#. Default: "days"
+#: skins/eXtremeManagement/story_view.pt:78
+msgid "days"
+msgstr "días"
+
+#. Default: "Overview of tasks that belong to me.  The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
+#: skins/eXtremeManagement/task_overview.pt:29
+msgid "description-overview-my-tasks"
+msgstr "Visión general de las tareas que me pertenecen. Los totales mencionados son mi tiempo total, por lo que usualmente diferirán de agregarles los números de la columna arriba de ellos."
+
+#. Default: "This is a list of all projects. Also the iterations which are completed with state, estimated and actual time.  Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>. This way the administration has an overview with all iterations which are invoiced."
+#: skins/eXtremeManagement/project_administration.pt:24
+msgid "description_project_administration"
+msgstr "Esta es una lista de todos los proyectos. También las iteraciones que se han completado con estado, estimado y tiempo efectivo. Una vez que una iteración es completada y facturada, el estado puede ser cambiado a invoiced. De esta forma el administrador tiene una vista general de todas las iteraciones que se facturaron."
+
+#. Default: "To register your time (hours), use the form below and press 'Send'."
+#: skins/eXtremeManagement/update_hours_form.cpt:39
+msgid "description_time_registration"
+msgstr "Para registrar su tiempo (horas), use el formulario de abajo y presione 'Enviar'."
+
+#. Default: "Detailed bookings"
+#: skins/eXtremeManagement/portlet_tasks.pt:37
+msgid "detailed_bookings"
+msgstr "Bookings detallados"
+
+#. Default: "Enter address."
+#: content/Customer.py
+msgid "eXtremeManagement_help_address"
+msgstr "Ingrese la dirección"
+
+#. Default: "Select the member(s) to assign this task to."
+#: content/Task.py
+msgid "eXtremeManagement_help_assignees"
+msgstr "Seleccione los miembros a los cuales se asigna esta tarea."
+
+#. Default: "Date that you worked on this task"
+#: content/Booking.py
+msgid "eXtremeManagement_help_bookingDate"
+msgstr "Fecha en la que usted trabajó en esta tarea"
+
+#. Default: "Enter city name."
+#: content/Customer.py
+msgid "eXtremeManagement_help_city"
+msgstr "Ingrese nombre de ciudad."
+
+#. Default: "Enter country."
+#: content/Customer.py
+msgid "eXtremeManagement_help_country"
+msgstr "Ingrese país."
+
+#. Default: "Enter your email address."
+#: content/ProjectMember.py
+msgid "eXtremeManagement_help_email"
+msgstr "Ingrese su dirección de email."
+
+#. Default: "Enter your fax number."
+#: content/Customer.py
+msgid "eXtremeManagement_help_fax"
+msgstr "Ingrese su número de fax."
+
+#. Default: "Enter a name, eg. John Smith."
+#: content/ProjectMember.py
+msgid "eXtremeManagement_help_fullname"
+msgstr "Ingrese un nombre, ej. John Smith."
+
+#. Default: "Enter the estimated time (in hours)."
+#: content/Task.py
+msgid "eXtremeManagement_help_hours"
+msgstr "Ingrese el tiempo estimado (en horas)."
+
+#. Default: "Enter the main description for this object."
+#: content/Story.py
+msgid "eXtremeManagement_help_mainText"
+msgstr "Ingrese la descripción principal para este objeto."
+
+#. Default: "Enter the rest of the estimated time in minutes"
+#: content/Task.py
+msgid "eXtremeManagement_help_minutes"
+msgstr "Ingrese el resto del tiempo estimado en minutos"
+
+#. Default: "Enter the company name for this customer"
+#: content/Customer.py
+msgid "eXtremeManagement_help_name"
+msgstr "Ingrese el nombre de la compañía para este cliente"
+
+#. Default: "Enter your phone number."
+#: content/ProjectMember.py
+#: content/Customer.py
+msgid "eXtremeManagement_help_phone"
+msgstr "Ingrese su número de teléfono."
+
+#. Default: "Enter a rough estimate in days (tip: use multiples of 0.5 days)"
+#: content/Story.py
+msgid "eXtremeManagement_help_roughEstimate"
+msgstr "Ingrese una estimación aproximada en días (consejo: use multiplos de 0.5 días)"
+
+#. Default: "Enter your website address."
+#: content/Customer.py
+msgid "eXtremeManagement_help_website"
+msgstr "Ingrese la dirección de su sitio web."
+
+#. Default: "Enter zip code."
+#: content/Customer.py
+msgid "eXtremeManagement_help_zipCode"
+msgstr "Ingrese el código postal."
+
+#. Default: "Address"
+#: content/Customer.py
+msgid "eXtremeManagement_label_address"
+msgstr "Dirección"
+
+#. Default: "Assignees"
+#: content/Task.py
+msgid "eXtremeManagement_label_assignees"
+msgstr "Asignados"
+
+#. Default: "Billable"
+#: content/Booking.py
+msgid "eXtremeManagement_label_billable"
+msgstr "Facturable"
+
+#. Default: "Bookingdate"
+#: content/Booking.py
+msgid "eXtremeManagement_label_bookingDate"
+msgstr "Fecha de booking"
+
+#. Default: "City"
+#: content/Customer.py
+msgid "eXtremeManagement_label_city"
+msgstr "Ciudad"
+
+#. Default: "Country"
+#: content/Customer.py
+msgid "eXtremeManagement_label_country"
+msgstr "País"
+
+#. Default: "Email"
+#: content/ProjectMember.py
+msgid "eXtremeManagement_label_email"
+msgstr "Email"
+
+#. Default: "Enddate"
+#: content/Iteration.py
+msgid "eXtremeManagement_label_endDate"
+msgstr "Fecha de fin"
+
+#. Default: "Fax"
+#: content/Customer.py
+msgid "eXtremeManagement_label_fax"
+msgstr "Fax"
+
+#. Default: "Fullname"
+#: content/ProjectMember.py
+msgid "eXtremeManagement_label_fullname"
+msgstr "Nombre completo"
+
+#. Default: "Hours"
+#: content/Task.py
+#: content/Booking.py
+msgid "eXtremeManagement_label_hours"
+msgstr "Horas"
+
+#. Default: "Maintext"
+#: content/Story.py
+#: content/Task.py
+msgid "eXtremeManagement_label_mainText"
+msgstr "Texto principal"
+
+#. Default: "Manhours"
+#: content/Iteration.py
+msgid "eXtremeManagement_label_manHours"
+msgstr "Horas hombre"
+
+#. Default: "Minutes"
+#: content/Task.py
+#: content/Booking.py
+msgid "eXtremeManagement_label_minutes"
+msgstr "Minutos"
+
+#. Default: "Name"
+#: content/Customer.py
+msgid "eXtremeManagement_label_name"
+msgstr "Nombre"
+
+#. Default: "Phone"
+#: content/ProjectMember.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_phone"
+msgstr "Teléfono"
+
+#. Default: "Rawactualhours"
+#: content/Task.py
+msgid "eXtremeManagement_label_rawActualHours"
+msgstr "Horas reales sin procesar"
+
+#. Default: "Rawdifference"
+#: content/Task.py
+msgid "eXtremeManagement_label_rawDifference"
+msgstr "Diferencia sin procesar"
+
+#. Default: "Rawestimate"
+#: content/Task.py
+msgid "eXtremeManagement_label_rawEstimate"
+msgstr "Estimación sin procesar"
+
+#. Default: "Roughestimate"
+#: content/Story.py
+msgid "eXtremeManagement_label_roughEstimate"
+msgstr "Estimación aproximada"
+
+#. Default: "Startdate"
+#: content/Iteration.py
+msgid "eXtremeManagement_label_startDate"
+msgstr "Fecha de inicio"
+
+#. Default: "Website"
+#: content/Customer.py
+msgid "eXtremeManagement_label_website"
+msgstr "Sitio web"
+
+#. Default: "Zipcode"
+#: content/Customer.py
+msgid "eXtremeManagement_label_zipCode"
+msgstr "Código postal"
+
+#. Default: "email"
+#: skins/eXtremeManagement/projectmember_view.pt:54
+msgid "email"
+msgstr "email"
+
+#. Default: "Go to"
+#: skins/eXtremeManagement/booking_month.pt:26
+msgid "go_to"
+msgstr "Ir a"
+
+#. Default: "Go to overview of"
+#: skins/eXtremeManagement/booking_month.pt:17
+msgid "go_to_overview"
+msgstr "Ir a vista general de"
+
+#. Default: "Customer info"
+#: skins/eXtremeManagement/customer_view.pt:8
+msgid "header_customers"
+msgstr "Información de cliente"
+
+#. Default: "Project member info"
+#: skins/eXtremeManagement/projectmember_view.pt:8
+msgid "header_memberinfo"
+msgstr "Información de miembro de proyecto"
+
+#. Default: "Project administration"
+#: skins/eXtremeManagement/project_administration.pt:17
+msgid "header_project_administration"
+msgstr "Administración del proyecto"
+
+#. Default: "Project members"
+#: skins/eXtremeManagement/customer_view.pt:95
+msgid "header_project_members"
+msgstr "Miembros del proyecto"
+
+#. Default: "Time registration"
+#: skins/eXtremeManagement/update_hours_form.cpt:32
+msgid "header_time_registration"
+msgstr "Registro de tiempo"
+
+#. Default: "Billable"
+#: skins/eXtremeManagement/booking_view.pt:42
+msgid "heading-billable"
+msgstr "Facturable"
+
+#. Default: "Booking"
+#: skins/eXtremeManagement/booking_view.pt:32
+msgid "heading-booking"
+msgstr "Booking"
+
+#. Default: "Booking date"
+#: skins/eXtremeManagement/booking_view.pt:37
+msgid "heading-booking-date"
+msgstr "Fecha de booking"
+
+#. Default: "Time Bookings"
+#: skins/eXtremeManagement/task_view.pt:83
+msgid "heading-bookings"
+msgstr "Bookings de tiempo"
+
+#. Default: "Bookings per day"
+#: skins/eXtremeManagement/booking_month.pt:15
+msgid "heading-bookings-per-day"
+msgstr "Bookings por día"
+
+#. Default: "Hours per employee"
+#: skins/eXtremeManagement/iteration_view.pt:192
+msgid "heading-hours-per-employee"
+msgstr "Horas por empleado"
+
+#. Default: "My to-do tasks"
+#: skins/eXtremeManagement/iteration_view.pt:227
+msgid "heading-in-progress-tasks"
+msgstr "Mis tareas por hacer"
+
+#. Default: "My ${state} task overview"
+#: skins/eXtremeManagement/task_overview.pt:27
+msgid "heading-my-task-overview"
+msgstr "Vista general de mis tareas ${state}"
+
+#. Default: "My open tasks"
+#: skins/eXtremeManagement/iteration_view.pt:244
+msgid "heading-open-tasks"
+msgstr "Mis tareas abiertas"
+
+#. Default: "Stories"
+#: skins/eXtremeManagement/iteration_view.pt:73
+msgid "heading-stories"
+msgstr "User Stories"
+
+#. Default: "Current Iterations"
+#: skins/eXtremeManagement/project_view.pt:22
+msgid "heading_current_iterations"
+msgstr "Iteraciones actuales"
+
+#. Default: "Finished Iterations"
+#: skins/eXtremeManagement/project_view.pt:105
+msgid "heading_finished_iterations"
+msgstr "Iteraciones finalizadas"
+
+#. Default: "No Current Iterations"
+#: skins/eXtremeManagement/project_view.pt:79
+msgid "heading_no_current_iterations"
+msgstr "Iteraciones no actuales"
+
+#. Default: "Open Iterations"
+#: skins/eXtremeManagement/project_view.pt:86
+msgid "heading_open_iterations"
+msgstr "Iteraciones Abiertas"
+
+#. Default: "Other Content"
+#: skins/eXtremeManagement/project_view.pt:162
+msgid "heading_other_content"
+msgstr "Otro Contenido"
+
+#. Default: "Tasks"
+#: skins/eXtremeManagement/story_view.pt:116
+msgid "heading_tasks"
+msgstr "Tareas"
+
+#. Default: "If selected, Members with a global role 'Employee' will appear in the assignees list of a Task."
+#: content/Project.py
+msgid "help_include_global_members"
+msgstr "Si está seleccionado, los Miembros con rol global 'Employee' aparecerán en la lista de asignados de una Tarea."
+
+#. Default: "Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown)."
+#: skins/eXtremeManagement/story_view.pt:56
+msgid "help_needs_estimate"
+msgstr "No se puede comenzar a trabajar en este user story hasta que haya sido estimado (colocar un valor de estimación y seleccionar 'estimar' en la lista desplegable de estado)."
+
+#. Default: "The Initial estimate of the story is a rough estimate in days.  The Tasks estimate is the total estimate in hours for all tasks.  If there is a big difference there could be a logical explanation.  You should investigate that to be sure."
+#: skins/eXtremeManagement/iteration_view.pt:180
+msgid "help_stories_table"
+msgstr "La estimación inicial del user story es una estimación aproximada en días. La Estimación de la tarea es la estimación total en horas de todas las tareas. Si hay una gran diferencia, puede haber una explicación lógica. Usted debería investigarlo para estar seguro."
+
+#. Default: "hours"
+#: skins/eXtremeManagement/project_view.pt:54
+msgid "hours"
+msgstr "horas"
+
+#. Default: "Hours booked for today: ${total_booked}"
+#: skins/eXtremeManagement/portlet_tasks.pt:54
+msgid "hours_booked_today"
+msgstr "Horas registradas hoy: ${total_booked}"
+
+#. Default: "iteration"
+#: skins/eXtremeManagement/project_administration.pt:74
+msgid "iteration"
+msgstr "Iteración"
+
+#. Default: "Date to book for"
+#: skins/eXtremeManagement/update_hours_form.cpt:47
+msgid "label_bookingdate"
+msgstr "Fecha en la cual registrar"
+
+#. Default: "Hours"
+#: skins/eXtremeManagement/update_hours_form.cpt:95
+msgid "label_hours"
+msgstr "Horas"
+
+#. Default: "Include global Employees"
+#: content/Project.py
+msgid "label_include_global_members"
+msgstr "Incluir Employees globales"
+
+#. Default: "Minutes"
+#: skins/eXtremeManagement/update_hours_form.cpt:117
+msgid "label_minutes"
+msgstr "Minutos"
+
+#. Default: "last 12 months"
+#: skins/eXtremeManagement/booking_month.pt:19
+msgid "last_12_months"
+msgstr "últimos 12 meses"
+
+#. Default: "Billable"
+#: skins/eXtremeManagement/task_view.pt:101
+msgid "listingheader-billable"
+msgstr "Facturable"
+
+#. Default: "Booked by"
+#: skins/eXtremeManagement/task_view.pt:98
+msgid "listingheader-booked-by"
+msgstr "Registrado por"
+
+#. Default: "Booking"
+#: skins/eXtremeManagement/task_view.pt:92
+msgid "listingheader-booking"
+msgstr "Booking"
+
+#. Default: "Date"
+#: skins/eXtremeManagement/task_view.pt:89
+msgid "listingheader-bookingdate"
+msgstr "Fecha"
+
+#. Default: "Date"
+#: skins/eXtremeManagement/booking_details.pt:42
+msgid "listingheader-date"
+msgstr "Fecha"
+
+#. Default: "Start"
+#: skins/eXtremeManagement/booking_month.pt:59
+msgid "listingheader-start-of-week"
+msgstr "Inicio"
+
+#. Default: "Task"
+#: skins/eXtremeManagement/booking_details.pt:45
+msgid "listingheader-task"
+msgstr "Tarea"
+
+#. Default: "Time"
+#: skins/eXtremeManagement/task_view.pt:95
+msgid "listingheader-time"
+msgstr "Tiempo"
+
+#. Default: "Total"
+#: skins/eXtremeManagement/booking_month.pt:69
+msgid "listingheader-total"
+msgstr "Total"
+
+#. Default: "Week number"
+#: skins/eXtremeManagement/booking_month.pt:56
+msgid "listingheader-week-number"
+msgstr "Número de semana"
+
+#. Default: "Fullname"
+#: skins/eXtremeManagement/projectmember_view.pt:29
+msgid "listingheader_Fullname"
+msgstr "Nombre completo"
+
+#. Default: "Phone"
+#: skins/eXtremeManagement/projectmember_view.pt:37
+msgid "listingheader_Phone"
+msgstr "Teléfono"
+
+#. Default: "Actual (hours)"
+#: skins/eXtremeManagement/project_administration.pt:67
+msgid "listingheader_actual_hours"
+msgstr "Real (horas)"
+
+#. Default: "Time Booked"
+#: skins/eXtremeManagement/story_view.pt:91
+msgid "listingheader_actualtimebooked"
+msgstr "Tiempo registrado"
+
+#. Default: "Address"
+#: skins/eXtremeManagement/customer_view.pt:33
+msgid "listingheader_address"
+msgstr "Dirección"
+
+#. Default: "Assignee(s)"
+#: skins/eXtremeManagement/task_view.pt:56
+msgid "listingheader_assignees"
+msgstr "Asignado(s)"
+
+#. Default: "City"
+#: skins/eXtremeManagement/customer_view.pt:43
+msgid "listingheader_city"
+msgstr "Ciudad"
+
+#. Default: "Comments"
+#: skins/eXtremeManagement/customer_view.pt:81
+msgid "listingheader_comments"
+msgstr "Comentarios"
+
+#. Default: "Country"
+#: skins/eXtremeManagement/customer_view.pt:48
+msgid "listingheader_country"
+msgstr "País"
+
+#. Default: "Difference (hours)"
+#: skins/eXtremeManagement/story_view.pt:131
+msgid "listingheader_diff_hours"
+msgstr "Diferencia (horas)"
+
+#. Default: "Email"
+#: skins/eXtremeManagement/projectmember_view.pt:44
+msgid "listingheader_email"
+msgstr "Email"
+
+#. Default: "Employee"
+#: skins/eXtremeManagement/iteration_view.pt:200
+msgid "listingheader_employee"
+msgstr "Empleado"
+
+#. Default: "End date"
+#: skins/eXtremeManagement/iteration_view.pt:51
+msgid "listingheader_enddate"
+msgstr "Fecha de fin"
+
+#. Default: "Estimate (hours)"
+#: skins/eXtremeManagement/project_administration.pt:65
+msgid "listingheader_estimate_hours"
+msgstr "Estimación (horas)"
+
+#. Default: "Fax"
+#: skins/eXtremeManagement/customer_view.pt:58
+msgid "listingheader_fax"
+msgstr "Fax"
+
+#. Default: "Initial Estimate (days)"
+#: skins/eXtremeManagement/story_view.pt:72
+msgid "listingheader_initial_estimate"
+msgstr "Estimación Inicial (días)"
+
+#. Default: "Iteration"
+#: skins/eXtremeManagement/project_administration.pt:61
+msgid "listingheader_iteration"
+msgstr "Iteración"
+
+#. Default: "Man hours"
+#: skins/eXtremeManagement/iteration_view.pt:28
+msgid "listingheader_man_uren"
+msgstr "Horas hombre"
+
+#. Default: "Name"
+#: skins/eXtremeManagement/customer_view.pt:107
+msgid "listingheader_name"
+msgstr "Nombre"
+
+#. Default: "Phone"
+#: skins/eXtremeManagement/customer_view.pt:108
+msgid "listingheader_phone"
+msgstr "Teléfono"
+
+#. Default: "Project"
+#: skins/eXtremeManagement/project_administration.pt:41
+msgid "listingheader_projects"
+msgstr "Proyecto"
+
+#. Default: "Start date"
+#: skins/eXtremeManagement/iteration_view.pt:46
+msgid "listingheader_startdate"
+msgstr "Fecha de inicio"
+
+#. Default: "Status"
+#: skins/eXtremeManagement/project_administration.pt:63
+msgid "listingheader_state"
+msgstr "Estado"
+
+#. Default: "Story"
+#: skins/eXtremeManagement/story_view.pt:126
+msgid "listingheader_story"
+msgstr "User Story"
+
+#. Default: "Tasks completed"
+#: skins/eXtremeManagement/iteration_view.pt:87
+msgid "listingheader_tasks_completed"
+msgstr "Tareas completadas"
+
+#. Default: "Tasks Estimate (hours)"
+#: skins/eXtremeManagement/story_view.pt:82
+msgid "listingheader_tasks_estimate"
+msgstr "Estimación de tareas (horas)"
+
+#. Default: "Tasks open"
+#: skins/eXtremeManagement/iteration_view.pt:86
+msgid "listingheader_tasks_open"
+msgstr "Tareas abiertas"
+
+#. Default: "Title"
+#: skins/eXtremeManagement/story_view.pt:128
+msgid "listingheader_title"
+msgstr "Título"
+
+#. Default: "Total Actual"
+#: skins/eXtremeManagement/iteration_view.pt:203
+msgid "listingheader_total_actual"
+msgstr "Total Real"
+
+#. Default: "Total Difference"
+#: skins/eXtremeManagement/iteration_view.pt:205
+msgid "listingheader_total_difference"
+msgstr "Diferencia Total"
+
+#. Default: "Total Estimate"
+#: skins/eXtremeManagement/iteration_view.pt:201
+msgid "listingheader_total_estimate"
+msgstr "Estimación Total"
+
+#. Default: "Website"
+#: skins/eXtremeManagement/customer_view.pt:68
+msgid "listingheader_website"
+msgstr "Sitio web"
+
+#. Default: "Zip code"
+#: skins/eXtremeManagement/customer_view.pt:38
+msgid "listingheader_zipCode"
+msgstr "Código postal"
+
+#. Default: "N/A"
+#: skins/eXtremeManagement/iteration_view.pt:36
+msgid "man_hours_empty"
+msgstr "N/D"
+
+#. Default: "Needs Estimate"
+#: skins/eXtremeManagement/story_view.pt:55
+msgid "needs_estimate"
+msgstr "Necesita Estimación"
+
+#. Default: "Next"
+#: skins/eXtremeManagement/story_view.pt:26
+msgid "next"
+msgstr "Siguiente"
+
+#. Default: "No projects are published yet!"
+#: skins/eXtremeManagement/project_administration.pt:94
+msgid "no_projects_found"
+msgstr "¡Aún no hay proyectos publicados!"
+
+#. Default: "No stories published yet!"
+#: skins/eXtremeManagement/iteration_view.pt:251
+msgid "no_stories_published"
+msgstr "¡Aún no hay User Stories publicados!"
+
+#. Default: "No tasks are assigned to you!"
+#: skins/eXtremeManagement/update_hours_form.cpt:141
+msgid "no_tasks_assigned"
+msgstr "¡No hay tareas asignadas a usted!"
+
+#. Default: "No tasks defined yet."
+#: skins/eXtremeManagement/story_view.pt:188
+msgid "no_tasks_defined"
+msgstr "Aún no hay tareas definidas."
+
+#. Default: "Previous"
+#: skins/eXtremeManagement/story_view.pt:37
+msgid "previous"
+msgstr "Anterior"
+
+#. Default: "previous month"
+#: skins/eXtremeManagement/booking_month.pt:28
+msgid "previous-month"
+msgstr "mes anterior"
+
+#. Default: "progress bar"
+#: skins/eXtremeManagement/iteration_view.pt:126
+msgid "progress_bar"
+msgstr "barra de progreso"
+
+#. Default: "Project administration"
+#: skins/eXtremeManagement/portlet_tasks.pt:18
+msgid "project_administration"
+msgstr "Administración del proyecto"
+
+#. Default: "project overview"
+#: skins/eXtremeManagement/project_view.pt:128
+msgid "project_overview"
+msgstr "vista general del proyecto"
+
+#. Default: "Related issues"
+#: skins/eXtremeManagement/poitask_view.pt:10
+msgid "related_issues"
+msgstr "Incidencias relacionadas"
+
+#. Default: "Show Tasks with state:"
+#: skins/eXtremeManagement/task_overview.pt:18
+msgid "show_tasks_with_state"
+msgstr "Mostrar Tareas con estado:"
+
+#. Default: "status"
+#: skins/eXtremeManagement/project_view.pt:60
+msgid "status"
+msgstr "estado"
+
+#. Default: "task"
+#: skins/eXtremeManagement/update_hours_form.cpt:78
+msgid "task_icon"
+msgstr "tarea"
+
+#. Default: "Task overview"
+#: skins/eXtremeManagement/portlet_tasks.pt:30
+msgid "task_overview"
+msgstr "Vista general de tarea"
+
+#. Default: "Total"
+#: skins/eXtremeManagement/story_view.pt:174
+msgid "total"
+msgstr "Total"
+
+#. Default: "Visit the web site"
+#: skins/eXtremeManagement/customer_view.pt:71
+msgid "visit_the_website"
+msgstr "Visite el sitio web"
+
