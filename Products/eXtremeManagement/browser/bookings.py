@@ -5,6 +5,7 @@ from Acquisition import aq_inner
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from xm.booking.timing.interfaces import IActualHours
 from Products.eXtremeManagement.utils import formatTime
+from plone.memoize.view import memoize
 
 
 def getNextYearMonth(year, month):
@@ -239,12 +240,14 @@ class BookingOverview(BookingsDetailedView):
         # We loop until we catch a DateError really, but let's throw
         # in another check so there is even less chance of looping
         # forever.
+        days_bookings = DayBookingOverview(context, request,
+                                           memberid=self.memberid)
         while day < 32:
-            opts = dict(date=date, memberid=self.memberid)
-            days_bookings = DayBookingOverview(context, request, **opts)
-            if days_bookings.raw_total > 0:
-                self.bookinglist.append((date, days_bookings.total, date.Day()))
-                self.raw_total += days_bookings.raw_total
+            day_total = days_bookings.raw_total(date=date)
+            if day_total > 0:
+                self.bookinglist.append((date, days_bookings.total(date=date),
+                                         date.Day()))
+                self.raw_total += day_total
             day += 1
             try:
                 # We used to simply do date + 1, but that gave problems with
@@ -294,14 +297,16 @@ class WeekBookingOverview(BookingsDetailedView):
             day_of_week = 0
             daylist = []
             raw_total = 0.0
+            days_bookings = DayBookingOverview(context, request,
+            memberid=self.memberid)
             while day_of_week < 7:
-                opts = dict(date=date, memberid=self.memberid)
-                days_bookings = DayBookingOverview(context, request, **opts)
-                if days_bookings.raw_total > 0:
-                    daylist.append(dict(total=days_bookings.total, day_of_week=date.Day()))
+                day_total = days_bookings.raw_total(date=date)
+                if day_total > 0:
+                    daylist.append(dict(total=days_bookings.total(date=date),
+                                        day_of_week=date.Day()))
                 else:
                     daylist.append(dict(total=None, day_of_week=date.Day()))
-                raw_total += days_bookings.raw_total
+                raw_total += day_total
                 day_of_week += 1
                 daynumber += 1
                 try:
@@ -405,28 +410,27 @@ class BookingView(XMBaseView):
 
 
 class DayBookingOverview(BrowserView):
-    request = None
-    context = None
-
-    def __init__(self, context, request, memberid=None, date=None):
+        
+    def __init__(self, context, request, memberid=None):
         super(DayBookingOverview, self).__init__(context, request)
         self.catalog = getToolByName(context, 'portal_catalog')
 
         self.memberid = memberid or self.request.form.get('memberid')
+        memberid = memberid or self.request.form.get('memberid')
         if self.memberid is None:
             member = context.portal_membership.getAuthenticatedMember()
             self.memberid = member.id
-        # Where do we want to search?
         self.searchpath = '/'.join(context.getPhysicalPath())
 
-        self.date = date or self.request.form.get('date', DateTime().earliestTime())
-        
-    @property
-    def raw_total(self):
+    @memoize
+    def raw_total(self, date=None):
+        """Raw total booked hours for a member for this date.
+        """
+        date = date or self.request.form.get('date', DateTime().earliestTime())
         bookingbrains = self.catalog.searchResults(
             portal_type='Booking',
-            getBookingDate={ "query": [self.date.earliestTime(),
-                                       self.date.latestTime()], 
+            getBookingDate={ "query": [date.earliestTime(),
+                                       date.latestTime()], 
                              "range": "minmax"},
             Creator=self.memberid,
             path=self.searchpath)
@@ -436,6 +440,5 @@ class DayBookingOverview(BrowserView):
             actualList.append(bb.actual_time)
         return sum(actualList)
 
-    @property
-    def total(self):
-        return formatTime(self.raw_total)
+    def total(self, date=None):
+        return formatTime(self.raw_total(date))

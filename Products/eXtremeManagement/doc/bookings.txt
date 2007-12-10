@@ -148,13 +148,14 @@ DST bugs too if we are not careful.
 First let's test some days.
 
     >>> from Products.eXtremeManagement.browser.bookings import DayBookingOverview
-    >>> DayBookingOverview(self.portal, TestRequest(form={'date': DateTime(2006, 10, 27)})).total
+    >>> dayview = DayBookingOverview(self.portal, TestRequest())
+    >>> dayview.total(date=DateTime(2006, 10, 27))
     '0:00'
-    >>> DayBookingOverview(self.portal, TestRequest(form={'date': DateTime(2006, 10, 28)})).total
+    >>> dayview.total(date=DateTime(2006, 10, 28))
     '2:00'
-    >>> DayBookingOverview(self.portal, TestRequest(form={'date': DateTime(2006, 10, 29)})).total
+    >>> dayview.total(date=DateTime(2006, 10, 29))
     '3:00'
-    >>> DayBookingOverview(self.portal, TestRequest(form={'date': DateTime(2006, 10, 30)})).total
+    >>> dayview.total(date=DateTime(2006, 10, 30))
     '4:00'
 
 Now we test the week view.

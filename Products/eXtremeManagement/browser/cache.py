@@ -25,7 +25,8 @@ class CacheHelperView(BrowserView):
         """Return my # of hours."""
         context = aq_inner(self.context)
         portal = getToolByName(context, 'portal_url').getPortalObject()
-        return portal.restrictedTraverse('@@daytotal/total')
+        daytotal = portal.restrictedTraverse('@@daytotal')
+        return daytotal.total()
 
     def my_projects(self):
         """Return hash of my projects."""

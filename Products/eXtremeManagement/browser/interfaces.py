@@ -92,8 +92,13 @@ class IDayBookingOverview(IBrowserView):
     """Return overview of bookings for a day
     """
 
-    raw_total =  Attribute("Raw total booked hours for this day")
-    total =  Attribute("Formatted total booked hours for this day")
+    def raw_total():
+        """Raw total booked hours for this day.
+        """
+
+    def total():
+        """Formatted total booked hours for this day.
+        """
 
 
 class IXMBaseView(IBrowserView):
