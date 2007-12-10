@@ -407,8 +407,6 @@ class BookingView(XMBaseView):
 class DayBookingOverview(BrowserView):
     request = None
     context = None
-    raw_total = 0.0
-    total = '0:00'
 
     def __init__(self, context, request, memberid=None, date=None):
         super(DayBookingOverview, self).__init__(context, request)
@@ -422,9 +420,9 @@ class DayBookingOverview(BrowserView):
         self.searchpath = '/'.join(context.getPhysicalPath())
 
         self.date = date or self.request.form.get('date', DateTime().earliestTime())
-        self.update()
         
-    def update(self):
+    @property
+    def raw_total(self):
         bookingbrains = self.catalog.searchResults(
             portal_type='Booking',
             getBookingDate={ "query": [self.date.earliestTime(),
@@ -433,9 +431,11 @@ class DayBookingOverview(BrowserView):
             Creator=self.memberid,
             path=self.searchpath)
 
-        if bookingbrains:
-            actualList = []
-            for bb in bookingbrains:
-                actualList.append(bb.actual_time)
-            self.raw_total = sum(actualList)
-        self.total = formatTime(self.raw_total)
+        actualList = []
+        for bb in bookingbrains:
+            actualList.append(bb.actual_time)
+        return sum(actualList)
+
+    @property
+    def total(self):
+        return formatTime(self.raw_total)

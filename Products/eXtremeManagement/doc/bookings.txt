@@ -1,11 +1,18 @@
 Test bookings
 =============
 
-We want to test some browser views for Bookings.  At first there is only one
-Booking (as that is added by the test/utils.py setup method).
+We want to test some browser views for Bookings.  We need some test
+requests.  A request needs to be annotatable as we use memoize.
 
     >>> from zope.publisher.browser import TestRequest
+    >>> from zope.annotation.interfaces import IAttributeAnnotatable
+    >>> from zope.interface import classImplements
+    >>> classImplements(TestRequest, IAttributeAnnotatable)
     >>> request = TestRequest()
+
+At first there is only one Booking (as that is added by the
+test/utils.py setup method).
+
     >>> len(self.catalog(portal_type='Booking'))
     1
     >>> from Products.eXtremeManagement.browser.bookings import BookingsDetailedView

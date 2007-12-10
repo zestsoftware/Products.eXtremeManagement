@@ -20,7 +20,7 @@ to us there.
     1
     >>> from Products.eXtremeManagement.browser.projects import MyProjects
     >>> myprojects = MyProjects(self.portal, TestRequest())
-    >>> myprojects.projectlist()
+    >>> myprojects.projectlist
     []
 
 Now we add ourselves and another employee to the assignees of a task
@@ -29,6 +29,6 @@ in that project.  Now the portlet should return a result.
     >>> self.task.setAssignees(('employee', self.default_user,))
     >>> self.task.reindexObject()
     >>> myprojects = MyProjects(self.portal, TestRequest())
-    >>> myprojects.projectlist()
+    >>> myprojects.projectlist
     [<Products.ZCatalog.Catalog.mybrains object at ...>]
 
