@@ -7,6 +7,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.interfaces import IReferenceable
 from Products.statusmessages.interfaces import IStatusMessage
 
+
 def abbreviate(text, width=15, ellipsis='...'):
     """Abbreviate a given text.
 
@@ -26,7 +27,7 @@ def abbreviate(text, width=15, ellipsis='...'):
 
 class IPoiView(interface.Interface):
     """See doc/poi-integration.txt"""
-    
+
     def add_tasks_from_tags(tags):
         """Takes a number of tags and looks for issues in the project
         that have those tags.  Adds those issues to the current
@@ -47,6 +48,7 @@ class IPoiView(interface.Interface):
         """A list of dicts containing information about tasks that the
         current context (=issue) is linked from.
         """
+
     def stories_to_add_to():
         """Returns a dict with information about stories that we can
         add tasks to.
@@ -68,6 +70,7 @@ class PoiView(BrowserView):
         # Skip issues that are already linked into this iteration:
         iteration = aq_parent(aq_inner(self.context))
         iteration_path = '/'.join(iteration.getPhysicalPath())
+
         def is_linked_into_iteration(issue):
             tasks = issue.getBRefs('task_issues')
             for task in tasks:
@@ -76,10 +79,10 @@ class PoiView(BrowserView):
                     return True
             else:
                 return False
-        
+
         ignore = [i for i in issues if is_linked_into_iteration(i)]
         return ([i for i in issues if i not in ignore], ignore)
-    
+
     def get_open_issues_in_project(self, **kwargs):
         project = self._lookup_project()
         if project is None:
@@ -114,7 +117,7 @@ class PoiView(BrowserView):
         issues, ignore = self._get_open_issues(tags)
         for issue in issues:
             self.add_issue_to_story(self.context, issue)
-        
+
         if len(issues):
             names = ', '.join([i.Title() or i.getId() for i in issues])
             self._add_message('Added tasks for issues: %s.' % names)
@@ -149,21 +152,20 @@ class PoiView(BrowserView):
     def links(self):
         if not IReferenceable.providedBy(self.context):
             return []
-        
+
         value = []
         workflow = getToolByName(self.context, 'portal_workflow')
 
         tasks = self.context.getBRefs('task_issues')
         tasks = sorted(tasks,
-                       lambda a,b: cmp(a.ModificationDate(),
+                       lambda a, b: cmp(a.ModificationDate(),
                                        b.ModificationDate()))
         for task in tasks:
             value.append(
                 dict(iterationid=task.getPhysicalPath()[-3],
                      title=abbreviate(task.Title() or task.getId(), width=25),
                      url=task.absolute_url(),
-                     state=workflow.getInfoFor(task, 'review_state'))
-                )
+                     state=workflow.getInfoFor(task, 'review_state')))
         return value
 
     def stories_to_add_to(self):
@@ -175,8 +177,7 @@ class PoiView(BrowserView):
             value.append(
                 dict(iterationid=story.getPhysicalPath()[-2],
                      uid=story.UID(),
-                     title=abbreviate(story.Title() or story.getId()))
-                )
+                     title=abbreviate(story.Title() or story.getId())))
         return value
 
     def add_issue_to_story(self, story_or_uid, issue=None):
@@ -197,7 +198,7 @@ class PoiView(BrowserView):
             name = 'copy-of-%s' % name
         if name.startswith('copy-of'):
             title = (title and 'Copy of %s' % title) or name
-        
+
         story.invokeFactory('PoiTask',
                             id=name,
                             title=title,

@@ -11,7 +11,7 @@ class MyProjects(BrowserView):
     """
     request = None
     context = None
-    states = ('open', 'to-do',)
+    states = ('open', 'to-do')
     # Use state = '' if you do not want to filter for states.
 
     @property
@@ -20,7 +20,7 @@ class MyProjects(BrowserView):
         context = aq_inner(self.context)
         # Get a list of all projects
         catalog = getToolByName(context, 'portal_catalog')
-        projectbrains = catalog.searchResults(portal_type='Project',)
+        projectbrains = catalog.searchResults(portal_type='Project')
 
         # Get the id of the currently logged in member
         membership = getToolByName(context, 'portal_membership')
@@ -123,15 +123,15 @@ class ProjectView(ProjectAdminView):
         return returnvalue
 
     def finished_iterations(self):
-        states = ('completed','invoiced')
+        states = ('completed', 'invoiced')
         return self.getIterations(states)
 
     def current_iterations(self):
-        states = ('in-progress',)
+        states = ('in-progress', )
         return self.getIterations(states)
 
     def open_iterations(self):
-        states = ('new',)
+        states = ('new', )
         return self.getIterations(states)
 
     def getIterations(self, states=None):

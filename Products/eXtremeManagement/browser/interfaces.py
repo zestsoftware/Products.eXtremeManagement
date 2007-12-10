@@ -86,7 +86,7 @@ class IYearBookingOverview(IBrowserView):
     def months_list():
         """List with info about the past twelve months
         """
-    
+
 
 class IDayBookingOverview(IBrowserView):
     """Return overview of bookings for a day
@@ -131,6 +131,7 @@ class ITaskView(IXMBaseView):
     def bookings():
         """Return the Bookings of this Task,  sorted by bookingDate
         """
+
 
 class IStoryView(IXMBaseView):
     """Info about a story
@@ -177,6 +178,7 @@ class IIterationView(IXMBaseView):
         """Titles of the tasks that cannot be started.
         """
 
+
 class IEmployeeTotalsView(IBrowserView):
     """Return totals for employees
     """
@@ -193,6 +195,7 @@ class IProjectView(IXMBaseView):
     def main():
         """Get a dict with info from this object.
         """
+
     def finished_iterations():
         """Return completed and invoiced iterations
         """

@@ -12,7 +12,12 @@ from plone.app.form.validators import null_validator
 class XMControlPanel(ControlPanelForm):
     form_fields = FormFieldsets()
     label = _(u"eXtremeManagement maintenance")
-    description = _(u"Perform various maintenance tasks.  If you know the totals are wrong, you can recalculate them here.  This should normally not be needed, so do not touch this unless you know what you are doing.  Then again, it does not hurt, except that it takes a long time.")
+    description = _(
+        u"Perform various maintenance tasks. "
+        "If you know the totals are wrong, you can recalculate them here. "
+        "This should normally not be needed, so do not touch this unless "
+        "you know what you are doing.  Then again, it does not hurt, except "
+        "that it takes a long time.")
 
     @form.action(
         _(u'label_recalculate_actual_hours',

@@ -139,12 +139,11 @@ class TasksDetailedView(BrowserView):
         if not sort_by_state:
             task_list.sort(
                 lambda a, b: cmp(a['story_title'], b['story_title']) or
-                             cmp(a['title'], b['title'])
-                )
+                             cmp(a['title'], b['title']))
         info = dict(tasks = task_list,
                     totals = self.getTaskTotals(brains))
         return info
-        
+
     def portion(self, task):
         """What portion of a task should be added to the total?
         Specifically: should we adjust for the number of assignees?
