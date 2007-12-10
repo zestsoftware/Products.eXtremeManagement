@@ -154,5 +154,15 @@
       class=".maintenance.XMControlPanel"
       permission="cmf.ManagePortal"
       />
-  
+
+  <!-- Cache helper -->
+  <browser:page
+      for="*"
+      name="cache_helper_view"
+      class=".cache.CacheHelperView"
+      permission="zope.Public"
+      allowed_attributes="etag"
+      />
+
+
 </configure>
