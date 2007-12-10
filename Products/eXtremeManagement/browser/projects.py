@@ -3,6 +3,7 @@ from Products.Five.browser import BrowserView
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
 from Acquisition import aq_inner
+from plone.memoize.view import memoize
 
 
 class MyProjects(BrowserView):
@@ -14,6 +15,7 @@ class MyProjects(BrowserView):
     # Use state = '' if you do not want to filter for states.
 
     @property
+    @memoize
     def projectlist(self):
         context = aq_inner(self.context)
         # Get a list of all projects
