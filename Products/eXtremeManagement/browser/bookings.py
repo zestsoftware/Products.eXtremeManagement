@@ -414,6 +414,8 @@ class BookingView(XMBaseView):
 
 
 class DayBookingOverview(BrowserView):
+    request = None
+    context = None
 
     def __init__(self, context, request, memberid=None):
         super(DayBookingOverview, self).__init__(context, request)
