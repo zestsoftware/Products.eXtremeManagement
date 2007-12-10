@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-11-15 14:03+0000\n"
+"POT-Creation-Date: 2007-12-10 10:22+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -24,7 +24,7 @@ msgid "Send"
 msgstr "Envoyer"
 
 #. Default: "Send a mail to this user"
-#: skins/eXtremeManagement/customer_view.pt:123
+#: skins/eXtremeManagement/projectmember_view.pt:49
 msgid "Send a mail to this user"
 msgstr "Envoyer un courriel à cet usager"
 
@@ -56,7 +56,7 @@ msgid "box_stories"
 msgstr "Histoires-usager (stories) en attente"
 
 #. Default: "Cannot Activate"
-#: skins/eXtremeManagement/task_view.pt:40
+#: skins/eXtremeManagement/story_view.pt:61
 msgid "cannot_activate"
 msgstr ""
 
@@ -391,7 +391,7 @@ msgid "header_project_members"
 msgstr "Membres du projet"
 
 #. Default: "Time registration"
-#: skins/eXtremeManagement/portlet_tasks.pt:58
+#: skins/eXtremeManagement/update_hours_form.cpt:32
 msgid "header_time_registration"
 msgstr "Saisie du temps"
 
@@ -575,17 +575,17 @@ msgid "listingheader-week-number"
 msgstr ""
 
 #. Default: "Fullname"
-#: skins/eXtremeManagement/customer_view.pt:28
+#: skins/eXtremeManagement/projectmember_view.pt:29
 msgid "listingheader_Fullname"
 msgstr "Nom complet"
 
 #. Default: "Phone"
-#: skins/eXtremeManagement/customer_view.pt:53
+#: skins/eXtremeManagement/projectmember_view.pt:37
 msgid "listingheader_Phone"
 msgstr "Téléphone"
 
 #. Default: "Actual (hours)"
-#: skins/eXtremeManagement/task_view.pt:58
+#: skins/eXtremeManagement/story_view.pt:132
 msgid "listingheader_actual_hours"
 msgstr ""
 
@@ -600,7 +600,7 @@ msgid "listingheader_address"
 msgstr "Adresse"
 
 #. Default: "Assignee(s)"
-#: skins/eXtremeManagement/task_view.pt:74
+#: skins/eXtremeManagement/story_view.pt:135
 msgid "listingheader_assignees"
 msgstr "Personnes assignées"
 
@@ -625,7 +625,7 @@ msgid "listingheader_diff_hours"
 msgstr ""
 
 #. Default: "Email"
-#: skins/eXtremeManagement/customer_view.pt:109
+#: skins/eXtremeManagement/projectmember_view.pt:44
 msgid "listingheader_email"
 msgstr "Courriel"
 
@@ -640,7 +640,7 @@ msgid "listingheader_enddate"
 msgstr "Date de fin"
 
 #. Default: "Estimate (hours)"
-#: skins/eXtremeManagement/task_view.pt:51
+#: skins/eXtremeManagement/story_view.pt:131
 msgid "listingheader_estimate_hours"
 msgstr ""
 
@@ -685,7 +685,7 @@ msgid "listingheader_startdate"
 msgstr "Date de début"
 
 #. Default: "Status"
-#: skins/eXtremeManagement/task_view.pt:67
+#: skins/eXtremeManagement/story_view.pt:134
 msgid "listingheader_state"
 msgstr "état"
 

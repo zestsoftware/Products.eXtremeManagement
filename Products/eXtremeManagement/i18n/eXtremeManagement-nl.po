@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-11-15 14:03+0000\n"
+"POT-Creation-Date: 2007-12-10 10:22+0000\n"
 "PO-Revision-Date: 2007-08-16 15:20+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
@@ -24,7 +24,7 @@ msgid "Send"
 msgstr "Versturen"
 
 #. Default: "Send a mail to this user"
-#: skins/eXtremeManagement/customer_view.pt:123
+#: skins/eXtremeManagement/projectmember_view.pt:49
 msgid "Send a mail to this user"
 msgstr "Stuur een mail naar deze gebruiker"
 
@@ -54,7 +54,7 @@ msgid "box_stories"
 msgstr "In te schatten verhalen"
 
 #. Default: "Cannot Activate"
-#: skins/eXtremeManagement/task_view.pt:40
+#: skins/eXtremeManagement/story_view.pt:61
 msgid "cannot_activate"
 msgstr "Kan niet activeren"
 
@@ -388,7 +388,7 @@ msgid "header_project_members"
 msgstr "Projectleden"
 
 #. Default: "Time registration"
-#: skins/eXtremeManagement/portlet_tasks.pt:58
+#: skins/eXtremeManagement/update_hours_form.cpt:32
 msgid "header_time_registration"
 msgstr "Uren registratie"
 
@@ -570,17 +570,17 @@ msgid "listingheader-week-number"
 msgstr "Weeknummer"
 
 #. Default: "Fullname"
-#: skins/eXtremeManagement/customer_view.pt:28
+#: skins/eXtremeManagement/projectmember_view.pt:29
 msgid "listingheader_Fullname"
 msgstr "Volledige naam"
 
 #. Default: "Phone"
-#: skins/eXtremeManagement/customer_view.pt:53
+#: skins/eXtremeManagement/projectmember_view.pt:37
 msgid "listingheader_Phone"
 msgstr "Telefoon"
 
 #. Default: "Actual (hours)"
-#: skins/eXtremeManagement/task_view.pt:58
+#: skins/eXtremeManagement/story_view.pt:132
 msgid "listingheader_actual_hours"
 msgstr "Daadwerkelijk (uren)"
 
@@ -595,7 +595,7 @@ msgid "listingheader_address"
 msgstr "Adres"
 
 #. Default: "Assignee(s)"
-#: skins/eXtremeManagement/task_view.pt:74
+#: skins/eXtremeManagement/story_view.pt:135
 msgid "listingheader_assignees"
 msgstr "Toegewezen aan"
 
@@ -620,7 +620,7 @@ msgid "listingheader_diff_hours"
 msgstr "Verschil (uren)"
 
 #. Default: "Email"
-#: skins/eXtremeManagement/customer_view.pt:109
+#: skins/eXtremeManagement/projectmember_view.pt:44
 msgid "listingheader_email"
 msgstr "E-mail"
 
@@ -635,7 +635,7 @@ msgid "listingheader_enddate"
 msgstr "Einddatum"
 
 #. Default: "Estimate (hours)"
-#: skins/eXtremeManagement/task_view.pt:51
+#: skins/eXtremeManagement/story_view.pt:131
 msgid "listingheader_estimate_hours"
 msgstr "Schatting (uren)"
 
@@ -680,7 +680,7 @@ msgid "listingheader_startdate"
 msgstr "Startdatum"
 
 #. Default: "Status"
-#: skins/eXtremeManagement/task_view.pt:67
+#: skins/eXtremeManagement/story_view.pt:134
 msgid "listingheader_state"
 msgstr "Status"
 
