@@ -34,7 +34,7 @@ class CacheHelperView(BrowserView):
         projects = portal.restrictedTraverse('@@myprojects/projectlist')
         uids = [project.UID for project in projects]
         uid_string = ' '.join(uids)
-        return hash(uid_string)
+        return str(hash(uid_string))
 
     def etag(self):
         """Return normal extra ETag components for philips.

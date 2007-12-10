@@ -13,6 +13,7 @@ class MyProjects(BrowserView):
     states = ('open', 'to-do',)
     # Use state = '' if you do not want to filter for states.
 
+    @property
     def projectlist(self):
         context = aq_inner(self.context)
         # Get a list of all projects
