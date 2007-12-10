@@ -99,7 +99,6 @@ def getEndOfMonth(year, month):
     DateTime('2008/02/29 23:59:59 GMT+1')
 
     """
-    
     if month in (1, 3, 5, 7, 8, 10, 12):
         day = 31
     elif month == 2:
@@ -125,7 +124,8 @@ class BookingsDetailedView(BrowserView):
         self.catalog = getToolByName(context, 'portal_catalog')
 
         self.year = year or self.request.form.get('year', DateTime().year())
-        self.month = month or self.request.form.get('month', DateTime().month())
+        self.month = month or self.request.form.get('month',
+                                                    DateTime().month())
         self.previous = self.request.form.get('previous')
         self.next = self.request.form.get('next')
         self.memberid = memberid or self.request.form.get('memberid')
@@ -152,8 +152,8 @@ class BookingsDetailedView(BrowserView):
         # period, memberid, etc
         bookingbrains = self.catalog.searchResults(
             portal_type='Booking',
-            getBookingDate={ "query": [self.startDate, self.endDate],
-                             "range": "minmax"},
+            getBookingDate={"query": [self.startDate, self.endDate],
+                            "range": "minmax"},
             sort_on='getBookingDate',
             Creator=self.memberid,
             path=self.searchpath)
@@ -189,13 +189,13 @@ class BookingsDetailedView(BrowserView):
         # Get info about grand grand (grand) parent Project
         # Booking is in Task is in Story.
         # Story can be in Iteration or directly in Project.
-        bookingpath =  bookingbrain.getPath().split('/')
-        path =  '/'.join(bookingpath[:-3])
+        bookingpath = bookingbrain.getPath().split('/')
+        path = '/'.join(bookingpath[:-3])
         search_filter = dict(portal_type='Project', path=path)
         results = self.catalog(**search_filter)
         if len(results) == 0:
             # Presumably we found an Iteration, so try one level up.
-            path =  '/'.join(bookingpath[:-4])
+            path = '/'.join(bookingpath[:-4])
             search_filter = dict(portal_type='Project', path=path)
             results = self.catalog(**search_filter)
         try:
@@ -207,12 +207,13 @@ class BookingsDetailedView(BrowserView):
             project_title = 'Unknown project'
 
         # Get info about parent Task
-        path =  '/'.join(bookingpath[:-1])
+        path = '/'.join(bookingpath[:-1])
         search_filter = dict(portal_type=['Task', 'PoiTask'], path=path)
         taskbrain = self.catalog(**search_filter)[0]
 
+        toLocalizedTime = context.restrictedTraverse('@@plone').toLocalizedTime
         returnvalue = dict(
-            booking_date = context.restrictedTraverse('@@plone').toLocalizedTime(bookingbrain.getBookingDate),
+            booking_date = toLocalizedTime(bookingbrain.getBookingDate),
             day_of_week = bookingbrain.getBookingDate.Day(),
             project_title = project_title,
             task_url = taskbrain.getURL(),
@@ -288,10 +289,11 @@ class WeekBookingOverview(BookingsDetailedView):
             date = DateTime(year, month, last_day - offset + 1)
         daynumber = date.day()
         # Assemble info for at most one month:
+        ploneview = context.restrictedTraverse('@@plone')
         while date.month() <= self.month and date.year() <= self.year:
             weekinfo = dict(
                 week_number = date.week(),
-                week_start = context.restrictedTraverse('@@plone').toLocalizedTime(date),
+                week_start = ploneview.toLocalizedTime(date),
                 )
             # Start the week cleanly
             day_of_week = 0
@@ -341,7 +343,8 @@ class YearBookingOverview(BrowserView):
         super(YearBookingOverview, self).__init__(context, request)
         self.catalog = getToolByName(context, 'portal_catalog')
 
-        self.base_year = int(self.request.form.get('base_year', DateTime().year()))
+        self.base_year = int(self.request.form.get('base_year',
+                                                   DateTime().year()))
         self.base_month = DateTime().month()
         self.raw_total = 0.0
         self.update()
@@ -366,7 +369,7 @@ class YearBookingOverview(BrowserView):
         self.months_list = []
         month = self.base_month
         year = self.base_year
-        
+
         for dmonth in range(12):
             year, month = getPrevYearMonth(year, month)
             opts = dict(year=year, month=month)
@@ -383,7 +386,7 @@ class YearBookingOverview(BrowserView):
 class BookingView(XMBaseView):
     """Simply return info about a Booking.
     """
- 
+
     def main(self):
         """Get a dict with info from this Booking.
         """
@@ -395,11 +398,12 @@ class BookingView(XMBaseView):
         else:
             # What the???
             actual = -99.0
+        ploneview = context.restrictedTraverse('@@plone')
         returnvalue = dict(
             title = context.title_or_id(),
             description = context.Description(),
             actual = formatTime(actual),
-            booking_date = context.restrictedTraverse('@@plone').toLocalizedTime(context.getBookingDate()),
+            booking_date = ploneview.toLocalizedTime(context.getBookingDate()),
             billable = context.getBillable(),
             creator = context.Creator(),
             # base_view of a booking gets redirected to the task view,
@@ -410,7 +414,7 @@ class BookingView(XMBaseView):
 
 
 class DayBookingOverview(BrowserView):
-        
+
     def __init__(self, context, request, memberid=None):
         super(DayBookingOverview, self).__init__(context, request)
         self.catalog = getToolByName(context, 'portal_catalog')
@@ -429,9 +433,9 @@ class DayBookingOverview(BrowserView):
         date = date or self.request.form.get('date', DateTime().earliestTime())
         bookingbrains = self.catalog.searchResults(
             portal_type='Booking',
-            getBookingDate={ "query": [date.earliestTime(),
-                                       date.latestTime()], 
-                             "range": "minmax"},
+            getBookingDate={"query": [date.earliestTime(),
+                                      date.latestTime()],
+                            "range": "minmax"},
             Creator=self.memberid,
             path=self.searchpath)
 
