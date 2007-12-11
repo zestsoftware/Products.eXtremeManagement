@@ -120,7 +120,10 @@
             <h2 class="heading-tasks" i18n:translate="heading_tasks">Tasks</h2>
 
             <metal:block metal:define-macro="tasklist_table">
-              <table class="listing nosort"
+              <table tal:define="show_story show_story|request/form/show_story;
+                                 items items|request/form/tasks;
+                                 totals totals|request/form/totals;"
+                     class="listing nosort tasklist_table"
                      border="1"
                      width="100%"
                      cellpadding="0"

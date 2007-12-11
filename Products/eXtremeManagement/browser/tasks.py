@@ -3,6 +3,11 @@ from Acquisition import aq_inner
 
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
+from plone.app.kss.plonekssview import PloneKSSView
+from plone.app.layout.viewlets import ViewletBase
+from kss.core import kssaction
 
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from xm.booking.timing.interfaces import IActualHours
@@ -289,3 +294,147 @@ class EmployeeTotalsView(TasksDetailedView):
                 memberlist.append(info)
 
         return memberlist
+
+
+class TaskForm(ViewletBase):
+
+    render = ViewPageTemplateFile("add_task.pt")
+
+
+class Create(BrowserView):
+    """Create a new task"""
+
+    def __call__(self):
+        form = self.request.form
+        title = form.get('title', '')
+        hours = form.get('hours', 0)
+        minutes = form.get('minutes', 0)
+        context = aq_inner(self.context)
+        create_task(self.context, title=title, hours=hours, minutes=minutes)
+        self.request.response.redirect(self.context.absolute_url())
+
+
+class Add(PloneKSSView):
+
+    @kssaction
+    def add_task(self, data):
+        # We *really* need the inner acquisition chain for context
+        # here.  Otherwise the aq_parent is the view instead of the
+        # story, which means the totals for the story are not
+        # recalculated.  Sneaky! :)
+        context = aq_inner(self.context)
+        create_task(context, title=data.title,
+                       hours=data.hours, minutes=data.minutes)
+        core = self.getCommandSet('core')
+
+        # Refresh the tasks table
+        story_view = context.restrictedTraverse('@@story')
+        tasks = story_view.tasks()
+        kwargs = {}
+        kwargs['show_story'] = False
+        kwargs['tasks'] = tasks['tasks']
+        kwargs['totals'] = tasks['totals']
+        content = self.macroContent('story_view/macros/tasklist_table',
+                                    **kwargs)
+        selector = core.getCssSelector('.tasklist_table')
+        core.replaceHTML(selector, content)
+
+        # Refresh the add task form
+        viewlet = TaskForm(context, self.request, None, None)
+        viewlet.update()
+        rendered = viewlet.render()
+        selector = core.getHtmlIdSelector('add-task')
+        core.replaceHTML(selector, rendered)
+
+
+def create_task(context, title='Task', hours=0, minutes=0):
+    """Create a task.
+
+    We introduce a Mock Task class for testing.
+
+    >>> class MockTask(object):
+    ...     def __init__(self, **kwargs):
+    ...         for key, value in kwargs.items():
+    ...             self.__setattr__(key, value)
+
+    Let's try this.
+
+    >>> task1 = MockTask(id=42, blah='h2g2')
+    >>> task1.id
+    42
+    >>> task1.blah
+    'h2g2'
+    >>> task1.title
+    Traceback (most recent call last):
+    ...
+    AttributeError: 'MockTask' object has no attribute 'title'
+
+
+    For now Tasks are added in Stories, so we create a Mock Story
+    class.
+
+    >>> class MockStory(object):
+    ...     def __init__(self):
+    ...         self.items = []
+    ...     def invokeFactory(self, type, **kwargs):
+    ...         if type != 'Task':
+    ...             raise Exception('We want only Tasks.')
+    ...         self.items.append(MockTask(**kwargs))
+    ...     def objectIds(self):
+    ...         return [x.id for x in self.items]
+    >>> context = MockStory()
+    >>> context.objectIds()
+    []
+    >>> context.invokeFactory('Solfatara')
+    Traceback (most recent call last):
+    ...
+    Exception: We want only Tasks.
+
+
+    XXX We may want to put these Mocks and their tests into another
+    class that we can use in other places as well.
+
+    Try a few stupid things.
+
+    >>> create_task()
+    Traceback (most recent call last):
+    ...
+    TypeError: create_task() takes at least 1 argument (0 given)
+    >>> create_task(context, id='Peroni')
+    Traceback (most recent call last):
+    ...
+    TypeError: create_task() got an unexpected keyword argument 'id'
+
+    Right, the basics seem to work.  Now we go and create some
+    Tasks with this function.  We have some defaults in place.
+
+    >>> create_task(context)
+    >>> context.objectIds()
+    ['1']
+    >>> task = context.items[0]
+    >>> task.title
+    'Task'
+    >>> task.hours
+    0
+    >>> task.minutes
+    0
+
+    Now add some non default values.
+
+    >>> create_task(context, title='Buongiorno', hours=3, minutes=15)
+    >>> context.objectIds()
+    ['1', '2']
+    >>> task = context.items[-1]
+    >>> task.title
+    'Buongiorno'
+    >>> task.hours
+    3
+    >>> task.minutes
+    15
+
+    """
+    idx = 1
+    while str(idx) in context.objectIds():
+        idx = idx + 1
+    context.invokeFactory('Task', id=str(idx), title=title,
+                          hours=hours, minutes=minutes)

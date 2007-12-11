@@ -100,6 +100,22 @@
       allowed_interface=".interfaces.ITaskView"
       />
 
+  <!-- kss action for adding a task -->
+  <page
+      name="xm_add_task"
+      for="Products.eXtremeManagement.interfaces.xmstory.IXMStory"
+      class=".tasks.Add"
+      attribute="add_task"
+      permission="zope2.View"
+      /> <!-- Should be another permission -->
+
+  <page
+      name="xm_create_task"
+      for="Products.eXtremeManagement.interfaces.xmstory.IXMStory"
+      class=".tasks.Create"
+      permission="zope2.View"
+      /> <!-- Should be another permission -->
+
   <page
       name="story"
       class=".stories.StoryView"
@@ -143,9 +159,21 @@
       permission="zope2.View"
       />
 
+  <viewlet
+      name="xm.add_task_form"
+      for="Products.eXtremeManagement.interfaces.xmstory.IXMStory"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+      class=".tasks.TaskForm"
+      permission="zope2.View"
+      />
+
+  <!-- kss -->
+  <resource
+      file="extrememanagement.kss"
+      name="extrememanagement.kss"
+      />
 
   <!-- configlets -->
-
 
   <page
       zcml:condition="installed plone.app.controlpanel"

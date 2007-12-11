@@ -7,6 +7,7 @@ modules = (
     'browser.bookings',
     'browser.iterations',
     'browser.poi',
+    'browser.tasks',
     'utils',
     )
 

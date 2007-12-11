@@ -153,6 +153,9 @@ class IStoryView(IXMBaseView):
         """Titles of the tasks that cannot be started.
         """
 
+    def show_add_task_form():
+        """Return whether the add task form should be shown or not"""
+
 
 class IIterationView(IXMBaseView):
     """Info about a iteration

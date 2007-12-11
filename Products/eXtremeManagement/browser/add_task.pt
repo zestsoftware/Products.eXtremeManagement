@@ -1,0 +1,48 @@
+<div id="add-task"
+     i18n:domain="eXtremeManagement"
+     tal:define="story_view context/@@story"
+     tal:condition="story_view/show_add_task_form">
+
+  <form name="add_task"
+        method="post"
+        id="addtaskform"
+        action=""
+        tal:attributes="action string:${context/absolute_url}/@@xm_create_task">
+    <input name="title"
+           value=""
+           type="text"
+           size="30"
+           id="new-task" />
+    <!-- This should not be hardcoded -->
+    <select name="hours" id="hours">
+      <option selected="selected"
+              value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+    <span>:</span>
+    <!-- Pulldown when longer -->
+    <select name="minutes" id="minutes">
+
+      <option selected="selected"
+              value="0">0</option>
+      <option value="15">15</option>
+      <option value="30">30</option>
+      <option value="45">45</option>
+    </select>
+
+    <input value="Add task"
+           id="submit-task"
+           i18n:attributes="value label_add_task;"
+           type="submit"
+           class="standalone"/>
+  </form>
+</div>

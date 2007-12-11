@@ -70,3 +70,7 @@ class StoryView(XMBaseView):
                  for x in self.context.getStoryTasks()
                  if not x.startable()]
         return ', '.join(tasks)
+
+    def show_add_task_form(self):
+        addable = [t.Metatype() for t in self.context.allowedContentTypes()]
+        return 'Task' in addable

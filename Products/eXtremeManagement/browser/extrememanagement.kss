@@ -1,0 +1,8 @@
+/* Add notes and remove notes */
+
+#submit-task:click {
+    evt-click-preventdefault: true;
+    evt-click-allowbubbling: true;
+    action-server: xm_add_task;
+    xm_add_task-data: currentForm();
+    }
