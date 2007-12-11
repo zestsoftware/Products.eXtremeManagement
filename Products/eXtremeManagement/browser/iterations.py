@@ -1,4 +1,5 @@
 from Acquisition import aq_inner
+from Acquisition import aq_parent
 from Acquisition import ImplicitAcquisitionWrapper
 from Products.PageTemplates.PageTemplate import PageTemplate
 
@@ -61,6 +62,13 @@ class IterationView(XMBaseView):
         size_estimate = sum([item.size_estimate for item in items
                              if item.size_estimate is not None])
 
+        review_state = workflow.getInfoFor(context, 'review_state')
+        if review_state in ['completed', 'invoiced']:
+            budget_left = None
+        else:
+            budget_left = self.actual_budget_left()
+        if budget_left is not None:
+            budget_left = formatTime(budget_left)
         ploneview = context.restrictedTraverse('@@plone')
         returnvalue = dict(
             title = context.Title(),
@@ -72,7 +80,8 @@ class IterationView(XMBaseView):
             size_estimate = size_estimate,
             actual = formatTime(actual),
             difference = formatTime(estimate - actual),
-            review_state = workflow.getInfoFor(context, 'review_state'),
+            review_state = review_state,
+            budget_left = budget_left
             )
         return returnvalue
 
@@ -240,3 +249,16 @@ class IterationView(XMBaseView):
                 return max_percentage
             return percentage
         return 0
+
+    def actual_budget_left(self):
+        context = self.context
+        project = aq_parent(aq_inner(self.context))
+        hours_left = project.getBudgetHours()
+        if not hours_left:
+            return None
+        contentfilter = dict(portal_type = 'Iteration')
+        iteration_brains = project.getFolderContents(contentfilter)
+        for brain in iteration_brains:
+            iteration = brain.getObject()
+            hours_left -= IActualHours(brain.getObject()).actual_time
+        return hours_left

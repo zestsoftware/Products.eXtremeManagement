@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2007-12-10 19:40+0000\n"
+"POT-Creation-Date: 2007-12-11 19:12+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Preferred-Encodings: latin1 utf-8\n"
 "Domain: eXtremeManagement\n"
 
-#: ./browser/maintenance.py:15
-msgid "Perform various maintenance tasks.  If you know the totals are wrong, you can recalculate them here.  This should normally not be needed, so do not touch this unless you know what you are doing.  Then again, it does not hurt, except that it takes a long time."
+#: ./browser/maintenance.py:20
+msgid "Perform various maintenance tasks. If you know the totals are wrong, you can recalculate them here. This should normally not be needed, so do not touch this unless you know what you are doing.  Then again, it does not hurt, except that it takes a long time."
 msgstr ""
 
 #. Default: "Send"
@@ -432,6 +432,11 @@ msgstr ""
 msgid "heading_tasks"
 msgstr ""
 
+#. Default: "Enter the budget of the project in hours."
+#: content/Project.py
+msgid "help_budgetHours"
+msgstr ""
+
 #. Default: "If selected, Members with a global role 'Employee' will appear in the assignees list of a Task."
 #: content/Project.py
 msgid "help_include_global_members"
@@ -472,6 +477,11 @@ msgstr ""
 msgid "label_bookingdate"
 msgstr ""
 
+#. Default: "Budget (hours)"
+#: ./skins/eXtremeManagement/project_view.pt
+msgid "label_budgetHours"
+msgstr ""
+
 #. Default: "Hours"
 #: ./skins/eXtremeManagement/update_hours_form.cpt
 msgid "label_hours"
@@ -487,11 +497,11 @@ msgstr ""
 msgid "label_minutes"
 msgstr ""
 
-#: ./browser/maintenance.py:19
+#: ./browser/maintenance.py:24
 msgid "label_recalculate_actual_hours"
 msgstr ""
 
-#: ./browser/maintenance.py:39
+#: ./browser/maintenance.py:44
 msgid "label_recalculate_estimated_time"
 msgstr ""
 
@@ -546,6 +556,11 @@ msgstr ""
 #: ./skins/eXtremeManagement/projectmember_view.pt
 #: ./skins/eXtremeManagement/customer_view.pt
 msgid "listingheader_Phone"
+msgstr ""
+
+#. Default: "Actual budget left (hours)"
+#: ./skins/eXtremeManagement/iteration_view.pt
+msgid "listingheader_actual_budget_left"
 msgstr ""
 
 #. Default: "Actual (hours)"

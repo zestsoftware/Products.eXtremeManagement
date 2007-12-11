@@ -1,7 +1,10 @@
 2007-12-11 - mark
 
-  - Added form to the bottom of the story view (using a viewlet) to
+  - Added a form to the bottom of the story view (using a viewlet) to
     quickly add multiple tasks.
+
+  - Added a budget field to the project content type and show the hours left
+    on the iteration view (for open iterations).
 
 2007-06-18 - rocky
 

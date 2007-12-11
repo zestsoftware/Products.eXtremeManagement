@@ -18,6 +18,14 @@
           </metal:field>
         </p>
 
+        <p class="documentDescription"
+           tal:condition="context/getBudgetHours">
+          <span i18n:translate="label_budgetHours">Budget (hours)</span>:
+          <metal:field use-macro="python:here.widget('budgetHours', mode='view')">
+            Budget Hours
+          </metal:field>
+        </p>
+
         <tal:block tal:condition="current_iterations">
           <h1 i18n:translate="heading_current_iterations">Current Iterations</h1>
           <div class="iterations"

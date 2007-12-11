@@ -4,10 +4,13 @@ from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.atapi import BooleanField
 from Products.Archetypes.atapi import BooleanWidget
+from Products.Archetypes.atapi import DecimalWidget
+from Products.Archetypes.atapi import FloatField
 from Products.Archetypes.atapi import MetadataSchema
 from Products.Archetypes.atapi import OrderedBaseFolder
 from Products.Archetypes.atapi import OrderedBaseFolderSchema
 from Products.Archetypes.atapi import registerType
+from Products.Archetypes.atapi import Schema
 
 from Products.eXtremeManagement.interfaces import IXMProject
 
@@ -26,10 +29,25 @@ MetaSchema = MetadataSchema((
             visible=dict(edit=1, view=0)),)
 ),)
 
+DefaultSchema = Schema((
+    FloatField(
+        name='budgetHours',
+        write_permission="eXtremeManagement: Edit bugetHours",
+        validators=('isDecimal',),
+        widget=DecimalWidget(
+            description="Enter the budget of the project in hours.",
+            label='Budget (hours)',
+            label_msgid='label_budgetHours',
+            description_msgid='help_budgetHours',
+            i18n_domain='eXtremeManagement'),
+    ),
+),)
+
+
 FolderSchema = OrderedBaseFolderSchema.copy()
 FolderSchema['description'].isMetadata = False
 FolderSchema['description'].schemata = 'default'
-Project_schema = FolderSchema +  MetaSchema
+Project_schema = FolderSchema +  MetaSchema + DefaultSchema
 Project_schema.moveField('includeGlobalMembers', pos='top')
 
 

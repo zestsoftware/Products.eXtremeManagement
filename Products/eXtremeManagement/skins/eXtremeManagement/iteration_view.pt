@@ -42,6 +42,11 @@
                   i18n:translate="listingheader_actual_hours">Actual (hours)</th>
               <td tal:content="iteration/actual" />
             </tr>
+            <tr tal:condition="iteration/budget_left">
+              <th class="customer_info_header"
+                  i18n:translate="listingheader_actual_budget_left">Actual budget left (hours)</th>
+              <td tal:content="iteration/budget_left" />
+            </tr>
             <tr>
               <th class="customer_info_header"
                   i18n:translate="listingheader_startdate">Start date</th>

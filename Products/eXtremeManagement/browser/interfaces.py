@@ -181,6 +181,9 @@ class IIterationView(IXMBaseView):
         """Titles of the tasks that cannot be started.
         """
 
+    def actual_budget_left():
+        """Return the hours left in the project.
+        """
 
 class IEmployeeTotalsView(IBrowserView):
     """Return totals for employees
