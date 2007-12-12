@@ -192,5 +192,13 @@
       allowed_attributes="etag"
       />
 
-
+  <!-- charts -->
+  <page
+      name="chart"
+      class=".chart.ChartView"
+      for="*"
+      permission="zope2.View"
+      allowed_interface=".chart.IChartView"
+      />
+  
 </configure>

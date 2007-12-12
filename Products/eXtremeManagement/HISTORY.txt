@@ -1,3 +1,12 @@
+2007-12-12 - joris
+
+  - Added charts to xm tool. Because this is the first release of charts
+    they are disabled by default in the code. To enable the graphs, set
+    GRAPHS to True in the config.py.
+
+  - There is now one view with a chart: the Project view has a estimated
+    hours and worked hours per iteration chart.
+
 2007-12-11 - mark
 
   - Added a form to the bottom of the story view (using a viewlet) to
