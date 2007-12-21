@@ -5,7 +5,7 @@ from Products.CMFCore.utils import getToolByName
 
 from xm.booking.timing.interfaces import IActualHours
 
-from chart_api import Chart, LINE
+from chart_api import Chart, LINE, nice_axis_step
 
 
 class IChartView(interface.Interface):
@@ -72,7 +72,9 @@ class ChartView(BrowserView):
         chart.setDataColors(['8cacbb', '008000'])
         chart.setLegend(['estimated', 'worked'])
         iter_num = '|'.join([str(i) for i in range(len(iterations))])
-        day_num = '|'.join([str(i) for i in range(0, int(total_max+2), 2)])
+        step = nice_axis_step(total_max)
+        y_max = total_max + step
+        day_num = '|'.join([str(i) for i in range(0, y_max, step)])
         xtra = '&chxt=x,y,x,y&chxl='
         xtra += '0:|%s|' % iter_num
         xtra += '1:|%s|' % day_num

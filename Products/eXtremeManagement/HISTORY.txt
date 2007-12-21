@@ -4,6 +4,9 @@
     and optimistically renamed it project_chart in anticipation of
     more charts
 
+  - Dynamically scale the labels for the y-axis so it shows human
+    readable steps like 1, 2, 5, 10, 20, ...
+
 2007-12-12 - joris
 
   - Added charts to xm tool. Because this is the first release of charts

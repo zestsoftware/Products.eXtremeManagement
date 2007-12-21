@@ -247,6 +247,68 @@ class Chart(object):
             url += self._custom
         return url
 
+
+def nice_axis_step(number):
+    """Returns a nice step size if the maximum number is <number>
+       This is handy when you want a maximum of 10 axis labels, but
+       the maximum of your data is not fixed.
+
+       >>> nice_axis_step(0)
+       1
+       >>> nice_axis_step(1)
+       1
+       >>> nice_axis_step(2)
+       1
+       >>> nice_axis_step(10)
+       2
+       >>> nice_axis_step(11)
+       2
+       >>> nice_axis_step(40)
+       5
+       >>> nice_axis_step(95)
+       10
+       >>> nice_axis_step(105)
+       20
+       >>> nice_axis_step(100000000)
+       20000000
+    """
+    nice_steps = nice_step_generator()
+    step = nice_steps.next()
+    while(1):
+        if number/step < 10:
+            return step
+        step = nice_steps.next()
+
+
+def nice_step_generator():
+    """Generator for the list [1, 2, 5, 10, 20, 50, 100,....]
+       This is a helper function for the nice_axis_step
+
+       >>> gen = nice_step_generator()
+
+       >>> gen.next()
+       1
+       >>> gen.next()
+       2
+       >>> gen.next()
+       5
+       >>> gen.next()
+       10
+       >>> gen.next()
+       20
+       >>> gen.next()
+       50
+       >>> gen.next()
+       100
+    """
+    order = 1
+    while(1):
+        yield order*1
+        yield order*2
+        yield order*5
+        order *= 10
+
+
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
