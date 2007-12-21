@@ -8,11 +8,13 @@ def install_dependencies(site, logger):
     dependencies = ['Poi', 'xm.booking']
     for product in dependencies:
         if not qi.isProductInstalled(product):
+            # Install not yet installed product
             qi.installProduct(product)
             transaction.savepoint(optimistic=True)
             logger.info("Installed %s.", product)
-    # Now reinstall all products for good measure.
-    qi.reinstallProducts(dependencies)
+        else:
+            # Reinstall already installed product
+            qi.reinstallProducts([product])
     logger.info("Reinstalled %s.", dependencies)
 
 
