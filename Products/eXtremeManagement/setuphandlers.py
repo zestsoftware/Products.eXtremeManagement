@@ -13,10 +13,13 @@ def install_dependencies(site, logger):
             transaction.savepoint(optimistic=True)
             logger.info("Installed %s.", product)
         else:
-            # Reinstall already installed product
-            qi.reinstallProducts([product])
-    logger.info("Reinstalled %s.", dependencies)
-
+            # Possibly reinstall already installed product
+            installed = qi[product].getInstalledVersion()
+            available = qi.getProductVersion(product)
+            if installed != available:
+                qi.reinstallProducts([product])
+                logger.info("Reinstalled %s: from %s to %s.",
+                            product, installed, available)
 
 def addCatalogIndexes(site, logger):
     """Add our indexes to the catalog.
