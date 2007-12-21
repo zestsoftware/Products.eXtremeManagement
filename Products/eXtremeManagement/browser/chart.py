@@ -5,7 +5,6 @@ from Products.CMFCore.utils import getToolByName
 
 from xm.booking.timing.interfaces import IActualHours
 
-from Products.eXtremeManagement.config import GRAPHS
 from chart_api import Chart, LINE
 
 
@@ -24,9 +23,12 @@ class IChartView(interface.Interface):
 class ChartView(BrowserView):
 
     def has_data(self):
-        if not GRAPHS:
-            return False
+        portal_properties = getToolByName(self.context, 'portal_properties')
+        xm_props = portal_properties.xm_properties
         if self.context.portal_type == 'Project':
+            if (not hasattr(xm_props, 'project_chart')
+                or not xm_props.project_chart):
+                return False
             return len(self.get_iterations()) > 1
         return False
 

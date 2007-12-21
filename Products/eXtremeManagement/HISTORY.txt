@@ -1,3 +1,9 @@
+2007-12-21 - joris
+
+  - Moved the graph option from the config.py to the xm_properties
+    and optimistically renamed it project_chart in anticipation of
+    more charts
+
 2007-12-12 - joris
 
   - Added charts to xm tool. Because this is the first release of charts

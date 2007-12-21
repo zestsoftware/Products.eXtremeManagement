@@ -42,5 +42,6 @@
      type="int">90</property>
   <property name="send_task_mails"
      type="boolean">True</property>
+  <property name="project_chart" type="boolean">False</property>
  </object>
 </object>

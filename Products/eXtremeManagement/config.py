@@ -28,6 +28,3 @@ XM_RIGHT_SLOTS = ('here/portlet_tasks/macros/portlet',
                   'here/portlet_my_projects/macros/portlet',)
 
 NEW_ROLES = ['Employee', 'Customer', 'Projectmanager']
-
-# Here we can turn graphs on or off
-GRAPHS = False
