@@ -1,3 +1,8 @@
+2008-01-02 - maurits
+
+  - Bugfix: no bookings were shown for January in the booking month
+    overview.
+
 2007-12-21 - joris
 
   - Moved the graph option from the config.py to the xm_properties
@@ -23,6 +28,11 @@
 
   - Added a budget field to the project content type and show the hours left
     on the iteration view (for open iterations).
+
+2007-10-30 - maurits
+
+  - Bugfix: DST bug in the week/month bookings overview and possibly
+    some more.  It adds a good number of tests for that as well.
 
 2007-06-18 - rocky
 
