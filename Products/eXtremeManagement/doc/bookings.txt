@@ -195,3 +195,12 @@ Let's also look at week 5.
     {'total': '6:00', 'day_of_week': 'Wednesday'}
     >>> view.bookinglist[5]['days'][3]
     {'total': None, 'day_of_week': 'Thursday'}
+
+At the beginning of the year things can go wrong, so test that too.
+
+    >>> jan1 = DateTime('2002-01-01')
+    >>> self.task.invokeFactory('Booking', id='jan102', hours=1, bookingDate=jan1)
+    'jan102'
+    >>> view = WeekBookingOverview(self.portal, TestRequest(form={'year': 2002, 'month': 1}))
+    >>> [week['week_total'] for week in view.bookinglist]
+    ['1:00', '0:00', '0:00', '0:00', '0:00']

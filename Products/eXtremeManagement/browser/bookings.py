@@ -292,7 +292,10 @@ class WeekBookingOverview(BookingsDetailedView):
         daynumber = date.day()
         # Assemble info for at most one month:
         ploneview = context.restrictedTraverse('@@plone')
-        while date.month() <= self.month and date.year() <= self.year:
+
+        # When comparing dates, make sure December of previous year is
+        # less than January of this year.
+        while date.month() + 12 * date.year() <= self.month + 12 * self.year:
             weekinfo = dict(
                 week_number = date.week(),
                 week_start = ploneview.toLocalizedTime(date),
