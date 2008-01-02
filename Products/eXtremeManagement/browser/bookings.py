@@ -126,6 +126,8 @@ class BookingsDetailedView(BrowserView):
         self.year = year or self.request.form.get('year', DateTime().year())
         self.month = month or self.request.form.get('month',
                                                     DateTime().month())
+        self.year = int(self.year)
+        self.month = int(self.month)
         self.previous = self.request.form.get('previous')
         self.next = self.request.form.get('next')
         self.memberid = memberid or self.request.form.get('memberid')
