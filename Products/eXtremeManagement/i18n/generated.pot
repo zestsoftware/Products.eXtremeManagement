@@ -226,12 +226,6 @@ msgstr ""
 msgid "help_include_global_members"
 msgstr ""
 
-
-#. Default: "Budget (hours)"
-#: content/Project.py
-msgid "label_budgetHours"
-msgstr ""
-
 #. Default: "Enter the budget of the project in hours."
 #: content/Project.py
 msgid "help_budgetHours"

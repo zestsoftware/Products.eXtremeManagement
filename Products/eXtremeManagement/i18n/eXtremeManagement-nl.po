@@ -1,10 +1,9 @@
-# Translation of eXtremeManagement.pot to Dutch
 # Ahmad Hadi <ahadi@zestsoftware.nl>, 2005
 # Maurits van Rees <m.van.rees@zestsoftware.nl>, 2006
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-01-07 16:25+0000\n"
+"POT-Creation-Date: 2008-01-07 17:12+0000\n"
 "PO-Revision-Date: 2007-12-11 20:19+0100\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
@@ -74,15 +73,13 @@ msgstr "dagen"
 
 #. Default: "Overview of tasks that belong to me.  The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
 #: ./skins/eXtremeManagement/task_overview.pt:29
-#, fuzzy
 msgid "description-overview-my-tasks"
 msgstr "Overzicht van de taken die aan mij zijn toegewezen.  De genoemde totalen zijn totaaltijden voor mijzelf. Ze zullen normaal gesproken afwijken van de uitkomst van het optellen van de kolom erboven."
 
-#. Default: "This is a list of all projects. Also the iterations which are completed with state, estimated and actual time.  Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>. This way the administration has an overview with all iterations which are invoiced."
+#. Default: "This is a list of all projects. Also the iterations which are completed, with estimated and actual time.  Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>.  This way the administration has an overview with all iterations which are not yet invoiced."
 #: ./skins/eXtremeManagement/project_administration.pt:24
-#, fuzzy
 msgid "description_project_administration"
-msgstr "Dit is een lijst met alle projecten. Hierin worden alle iteraties getoond met de status, schatting en de daadwerkelijk gewerkte uren. Zodra een iteratie gefactureerd wordt, kan de status veranderd worden naar <strong>gefactureerd</strong>. Zo heeft de administratie een overzicht van iteraties die gefactureerd zijn."
+msgstr "Dit is een lijst met alle projecten. Ook de afgeronde iteraties met de geschatte en daadwerkelijk gewerkte uren. Zodra een iteratie gefactureerd wordt, kan de status veranderd worden naar <strong>Gefactureerd</strong>. Zo heeft de administratie op deze pagina een overzicht van iteraties die nog niet gefactureerd zijn."
 
 #. Default: "To register your time (hours), use the form below and press 'Send'."
 #: ./skins/eXtremeManagement/update_hours_form.cpt:39
@@ -505,9 +502,8 @@ msgstr "Kan niet beginnen met werken aan deze Story totdat het is geschat (vul e
 
 #. Default: "The Initial estimate of the story is a rough estimate in days.  The Tasks estimate is the total estimate in hours for all tasks.  If there is a big difference there could be a logical explanation.  You should investigate that to be sure."
 #: ./skins/eXtremeManagement/iteration_view.pt:196
-#, fuzzy
 msgid "help_stories_table"
-msgstr "De Initiële inschatting van de story is een ruwe schatting in dagen.  Geschatte taken is het totaal aantal uren ingeschat voor alle taken.  Als er een groot verschil tussen zit, kan daar een logische verklaring voor zijn.  Onderzoekt u dat alstublieft om er zeker van te zijn."
+msgstr "De initiële inschatting van de story is een ruwe schatting in dagen.  Geschatte taken is het totaal aantal uren ingeschat voor alle taken.  Als er een groot verschil tussen zit, kan daar een logische verklaring voor zijn.  Onderzoekt u dat alstublieft om er zeker van te zijn."
 
 #. Default: "hours"
 #: ./skins/eXtremeManagement/project_view.pt:67
@@ -520,7 +516,7 @@ msgid "hours_booked_today"
 msgstr "Uren geboekt voor deze dag: ${total_booked}"
 
 #. Default: "iteration"
-#: ./skins/eXtremeManagement/project_administration.pt:74
+#: ./skins/eXtremeManagement/project_administration.pt:72
 msgid "iteration"
 msgstr "iteratie"
 
@@ -791,7 +787,7 @@ msgid "next"
 msgstr "volgende"
 
 #. Default: "No projects are published yet!"
-#: ./skins/eXtremeManagement/project_administration.pt:94
+#: ./skins/eXtremeManagement/project_administration.pt:87
 msgid "no_projects_found"
 msgstr "Er zijn nog geen projecten gepubliceerd!"
 
@@ -823,7 +819,7 @@ msgstr "vorige maand"
 #. Default: "progress bar"
 #: ./skins/eXtremeManagement/iteration_view.pt:142
 msgid "progress_bar"
-msgstr ""
+msgstr "voortgangsbalk"
 
 #. Default: "Project administration"
 #: ./skins/eXtremeManagement/portlet_tasks.pt:18
@@ -833,7 +829,7 @@ msgstr "Projectadministratie"
 #. Default: "project overview"
 #: ./skins/eXtremeManagement/project_view.pt:141
 msgid "project_overview"
-msgstr ""
+msgstr "Projectoverzicht"
 
 #. Default: "Show Tasks with state:"
 #: ./skins/eXtremeManagement/task_overview.pt:18
@@ -848,7 +844,7 @@ msgstr "Status"
 #. Default: "task"
 #: ./skins/eXtremeManagement/update_hours_form.cpt:78
 msgid "task_icon"
-msgstr ""
+msgstr "taak"
 
 #. Default: "Task overview"
 #: ./skins/eXtremeManagement/portlet_tasks.pt:30
@@ -863,5 +859,5 @@ msgstr "Totaal"
 #. Default: "Visit the web site"
 #: ./skins/eXtremeManagement/customer_view.pt:71
 msgid "visit_the_website"
-msgstr ""
+msgstr "Bezoek de website"
 

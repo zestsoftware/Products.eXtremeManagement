@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement-es\n"
-"POT-Creation-Date: 2008-01-07 16:25+0000\n"
+"POT-Creation-Date: 2008-01-07 17:12+0000\n"
 "PO-Revision-Date: 2007-12-09 14:30-0300\n"
 "Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
 "Language-Team: Spanish\n"
@@ -83,7 +83,7 @@ msgstr "días"
 msgid "description-overview-my-tasks"
 msgstr "Visión general de las tareas que me pertenecen. Los totales mencionados son mi tiempo total, por lo que usualmente diferirán de agregarles los números de la columna arriba de ellos."
 
-#. Default: "This is a list of all projects. Also the iterations which are completed with state, estimated and actual time.  Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>. This way the administration has an overview with all iterations which are invoiced."
+#. Default: "This is a list of all projects. Also the iterations which are completed, with estimated and actual time.  Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>.  This way the administration has an overview with all iterations which are not yet invoiced."
 #: ./skins/eXtremeManagement/project_administration.pt:24
 #, fuzzy
 msgid "description_project_administration"
@@ -461,7 +461,7 @@ msgid "hours_booked_today"
 msgstr "Horas registradas hoy: ${total_booked}"
 
 #. Default: "iteration"
-#: ./skins/eXtremeManagement/project_administration.pt:74
+#: ./skins/eXtremeManagement/project_administration.pt:72
 msgid "iteration"
 msgstr "Iteración"
 
@@ -731,7 +731,7 @@ msgid "next"
 msgstr "Siguiente"
 
 #. Default: "No projects are published yet!"
-#: ./skins/eXtremeManagement/project_administration.pt:94
+#: ./skins/eXtremeManagement/project_administration.pt:87
 msgid "no_projects_found"
 msgstr "¡Aún no hay proyectos publicados!"
 
