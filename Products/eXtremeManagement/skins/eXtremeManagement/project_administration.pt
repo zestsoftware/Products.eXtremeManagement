@@ -23,12 +23,12 @@
         
         <p class="discreet" 
            i18n:translate="description_project_administration"> 
-          This is a list of all projects. Also the iterations
-          which are completed with state, estimated and actual
-          time.  Once an iteration is completed and invoiced, the
-          status can be changed to <strong>Invoiced</strong>.
-          This way the administration has an overview with all
-          iterations which are invoiced.
+          This is a list of all projects. Also the iterations which
+          are completed, with estimated and actual time.  Once an
+          iteration is completed and invoiced, the status can be
+          changed to <strong>Invoiced</strong>.  This way the
+          administration has an overview with all iterations which are
+          not yet invoiced.
         </p>
 
         <table class="listing"
@@ -60,8 +60,6 @@
                 <tr class="iteration-table-header">
                   <th width="50%"
                       i18n:translate="listingheader_iteration">Iteration</th>
-                  <th width="20%" 
-                      i18n:translate="listingheader_state">Status</th>
                   <th width="15%" 
                       i18n:translate="listingheader_estimate_hours">Estimate (hours)</th>
                   <th width="15%" 
@@ -77,11 +75,6 @@
                     <a tal:attributes="href iteration/url"
                        tal:content="iteration/title" /> 
                   </td>
-                  <td tal:content="iteration/review_state"
-                      i18n:domain="plone"
-                      i18n:translate=""
-                      class=""
-                      tal:attributes="class python:'td-center state-'+normalizeString(iteration['review_state'])" />
                   <td tal:content="iteration/estimate" />
                   <td tal:content="iteration/actual" />
                 </tr>
