@@ -30,6 +30,6 @@ class ProjectmanagerRole(object):
     implements(ISharingPageRole)
 
     title = PMF(u"title_projectmanager_role",
-                default="Can add project")
+                default="Can manage project")
     required_permission = 'Manage portal'
 
