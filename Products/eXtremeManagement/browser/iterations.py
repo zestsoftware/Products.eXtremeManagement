@@ -70,10 +70,14 @@ class IterationView(XMBaseView):
         if budget_left is not None:
             budget_left = formatTime(budget_left)
         ploneview = context.restrictedTraverse('@@plone')
+        if hasattr(context, 'getManHours'):
+            manhours = context.getManHours()
+        else:
+            manhours = None
         returnvalue = dict(
             title = context.Title(),
             description = context.Description(),
-            man_hours = context.getManHours(),
+            man_hours = manhours,
             start_date = ploneview.toLocalizedTime(context.getStartDate()),
             end_date = ploneview.toLocalizedTime(context.getEndDate()),
             estimate = formatTime(estimate),

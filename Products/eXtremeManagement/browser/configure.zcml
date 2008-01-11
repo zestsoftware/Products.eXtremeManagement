@@ -133,6 +133,14 @@
       />
 
   <page
+      name="iteration"
+      class=".iterations.IterationView"
+      for="Products.eXtremeManagement.interfaces.IXMOffer"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IIterationView"
+      />
+
+  <page
       name="project"
       class=".projects.ProjectView"
       for="Products.eXtremeManagement.interfaces.IXMProject"
@@ -200,5 +208,5 @@
       permission="zope2.View"
       allowed_interface=".chart.IChartView"
       />
-  
+
 </configure>

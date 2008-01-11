@@ -13,40 +13,11 @@
                        stories view/stories;">
 
         <div class="xm-details">
-          <dl class="not-startable"
-              tal:condition="not:context/startable"
-              tal:define="stories_not_startable view/story_titles_not_startable">
-            <dt i18n:translate="cannot_activate">Cannot Activate</dt>
-            <dd tal:condition="stories_not_startable">There are stories which cannot be activated, please see: <span tal:replace="stories_not_startable"></span>.</dd>
-          </dl>
 
           <table class="listing"
                  width="100%"
                  cellpadding="0"
                  cellspacing="0">
-            <tr>
-              <th class="customer_info_header"
-                  i18n:translate="listingheader_man_uren">Man hours</th>
-              <td>
-                <tal:manhours tal:condition="iteration/man_hours">
-                  <span tal:replace="iteration/man_hours" />
-                  <span tal:define="hours_per_day portal/portal_properties/xm_properties/hours_per_day"
-                        tal:replace="python: '(%s days)' % str(iteration['man_hours']/hours_per_day)" />
-                </tal:manhours>
-                <span tal:condition="not:iteration/man_hours"
-                      i18n:translate="man_hours_empty">N/A</span>
-              </td>
-            </tr>
-            <tr>
-              <th class="customer_info_header"
-                  i18n:translate="listingheader_actual_hours">Actual (hours)</th>
-              <td tal:content="iteration/actual" />
-            </tr>
-            <tr tal:condition="iteration/budget_left">
-              <th class="customer_info_header"
-                  i18n:translate="listingheader_actual_budget_left">Actual budget left (hours)</th>
-              <td tal:content="iteration/budget_left" />
-            </tr>
             <tr>
               <th class="customer_info_header"
                   i18n:translate="listingheader_startdate">Start date</th>
@@ -82,10 +53,7 @@
 
         <div id="break-before-stories" class="visualClear"><!-- --></div>
 
-        <tal:subitems tal:condition="stories"
-                      tal:define="show_task_count python:False;
-                                  show_progress python:False;
-                                  show_totals python:True">
+        <tal:subitems tal:condition="stories">
           <h1 i18n:translate="heading-stories">Stories</h1>
 
           <metal:stories metal:define-macro="story_list">
@@ -97,14 +65,7 @@
               <metal:block define-slot="extra_header" />
               <tr>
                 <th i18n:translate="listingheader_story">Story</th>
-                <th i18n:translate="listingheader_state">Status</th>
-                <tal:task_count tal:condition="show_task_count">
-                  <th i18n:translate="listingheader_tasks_open">Tasks open</th>
-                  <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
-                </tal:task_count>
                 <th i18n:translate="listingheader_initial_estimate">Initial estimate (days)</th>
-                <th i18n:translate="listingheader_tasks_estimate">Tasks estimate (hours)</th>
-                <th i18n:translate="listingheader_actual_hours">Actual (hours)</th>
               </tr>
 
               <tal:repeat repeat="story stories">
@@ -121,58 +82,13 @@
                     </div>
 
                   </td>
-                  <td tal:define="review_state story/review_state"
-                      tal:content="story/review_state_title"
-                      tal:condition="not:show_progress"
-                      i18n:domain="plone"
-                      i18n:translate=""
-                      class=""
-                      tal:attributes="class python:'td-center state-'+normalizeString(review_state)" />
-
-                  <td class="progress_details"
-                      tal:condition="show_progress"
-                      width="150">
-                    <span class="progress_percentage">
-                      (<span i18n:domain="plone"
-                      i18n:translate="" tal:content="story/review_state_title" />)
-                      <tal:percentage tal:content="story/progress" />%&nbsp;
-                    </span>
-                    <br />
-                    <div class="progress_bar">
-                      <img tal:condition="story/is_completed"
-                           src="progress-complete.gif"
-                           height="10"
-                           tal:attributes="width story/progress"
-                           alt="progress bar"
-                           i18n:attributes="alt progress_bar" />
-                      <img tal:condition="not:story/is_completed"
-                           src="progress.gif"
-                           height="10"
-                           tal:attributes="width story/progress"
-                           alt="progress bar"
-                           i18n:attributes="alt progress_bar" />
-                    </div>
-                  </td>
-
-                  <tal:task_count tal:condition="show_task_count">
-                    <td tal:content="story/open_tasks" />
-                    <td tal:content="story/completed_tasks" />
-                  </tal:task_count>
                   <td tal:content="story/size_estimate" />
-                  <td tal:condition="story/raw_estimate"
-                      tal:content="story/estimate" />
-                  <td tal:condition="not:story/raw_estimate"
-                      i18n:translate="no_tasks_defined">
-                    No tasks defined yet.
-                  </td>
-                  <td tal:content="story/actual" />
                 </tr>
                 <tr tal:define="number repeat/story/number"
                     tal:attributes="id string:toggle-item-${iteration_number}-${number}"
                     style="display:none"
                     class="toggle-item">
-                  <td colspan="5"
-                      tal:attributes="colspan python:test(show_task_count, 7, 5)">
+                  <td colspan="2">
                     <div>
                       <a tal:attributes="href string:javascript:toggle_item('${iteration_number}-${number}')"
                          class="toggle-handle">[ &uarr; ]</a>&nbsp;
@@ -182,86 +98,13 @@
                 </tr>
               </tal:repeat>
 
-              <tr id="totalTasks"
-                  tal:condition="show_totals">
+              <tr id="totalTasks">
                 <th class="td-story-title"
-                    colspan="2"
-                    tal:attributes="colspan python:test(show_task_count, 4, 2)"
                     i18n:translate="total">Total</th>
                 <th tal:content="iteration/size_estimate" />
-                <th tal:content="iteration/estimate" />
-                <th tal:content="iteration/actual" />
               </tr>
             </table>
-            <p class="discreet" i18n:translate="help_stories_table">
-              The Initial estimate of the story is a rough estimate in
-              days.  The Tasks estimate is the total estimate in hours
-              for all tasks.  If there is a big difference there could
-              be a logical explanation.  You should investigate that to
-              be sure.
-            </p>
           </metal:stories>
-
-          <tal:membertasks
-              tal:define="membertasks context/@@employee_totals/totals;"
-              tal:condition="membertasks">
-            <h1 i18n:translate="heading-hours-per-employee">
-            Hours per employee</h1>
-            <table class="listing hours-per-employee"
-                   border="1"
-                   cellpadding="0"
-                   cellspacing="0">
-
-              <tr>
-                <th i18n:translate="listingheader_employee">Employee</th>
-                <th i18n:translate="listingheader_total_estimate">
-                Total Estimate</th>
-                <th i18n:translate="listingheader_total_actual">
-                Total Actual</th>
-                <th i18n:translate="listingheader_total_difference">
-                Total Difference</th>
-              </tr>
-
-              <tr tal:repeat="info membertasks"
-                  tal:attributes="class string:list-in-iteration">
-                <tal:member>
-                  <td tal:content="info/memberid"
-                      class="td-memberid" />
-                  <td tal:content="info/estimate" />
-                  <td tal:content="info/actual" />
-                  <td tal:content="info/difference" />
-                </tal:member>
-              </tr>
-            </table>
-          </tal:membertasks>
-
-          <tal:tasks define="show_story python:True;">
-            <tal:todo tal:define="info view/todo_tasks;">
-              <tal:items tal:condition="info/tasks"
-                         tal:define="items info/tasks;
-                                     totals info/totals;">
-                <h1 i18n:translate="heading-in-progress-tasks">My to-do
-                tasks</h1>
-                <p i18n:translate="description-overview-my-tasks">
-                  Overview of tasks that belong to me.  The totals
-                  mentioned are the total time for myself, so they will
-                  usually differ from adding the numbers of the column
-                  above it.
-                </p>
-                <table metal:use-macro="here/story_view/macros/tasklist_table" />
-              </tal:items>
-            </tal:todo>
-
-
-            <tal:open tal:define="info view/open_tasks;">
-              <tal:items tal:condition="info/tasks"
-                         tal:define="items info/tasks;
-                                     totals info/totals;">
-                <h1 i18n:translate="heading-open-tasks">My open tasks</h1>
-                <table metal:use-macro="here/story_view/macros/tasklist_table" />
-              </tal:items>
-            </tal:open>
-          </tal:tasks>
         </tal:subitems>
 
         <p class="discreet"
