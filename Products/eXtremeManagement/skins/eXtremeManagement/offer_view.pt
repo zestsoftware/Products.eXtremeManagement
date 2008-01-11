@@ -54,57 +54,38 @@
         <div id="break-before-stories" class="visualClear"><!-- --></div>
 
         <tal:subitems tal:condition="stories">
-          <h1 i18n:translate="heading-stories">Stories</h1>
+          <table width="100%"
+                 cellpadding="0"
+                 cellspacing="0">
+            <tr>
+              <th class="offer-story-title-header"
+                  i18n:translate="heading-stories">Stories</th>
+              <th class="offer-story-estimate-header"
+                  i18n:translate="listingheader_initial_estimate">
+                Initial estimate (days)
+              </th>
+            </tr>
 
-          <metal:stories metal:define-macro="story_list">
-            <table class="listing"
-                   width="100%"
-                   border="1"
-                   cellpadding="0"
-                   cellspacing="0">
-              <metal:block define-slot="extra_header" />
+            <tal:repeat repeat="story stories">
               <tr>
-                <th i18n:translate="listingheader_story">Story</th>
-                <th i18n:translate="listingheader_initial_estimate">Initial estimate (days)</th>
+                <td>
+                  <span class="offer-story-title" tal:content="story/title" /><br>
+                  <span class="offer-story-main"
+                        tal:define="storyid story/story_id;
+                                    story_obj python:context[storyid]"
+                        tal:content="structure story_obj/getMainText" />
+                </td>
+                <td class="offer-story-estimate" tal:content="story/size_estimate" />
               </tr>
+            </tal:repeat>
 
-              <tal:repeat repeat="story stories">
-                <tr tal:define="number repeat/story/number"
-                    tal:attributes="id string:toggle-header-${iteration_number}-${number}"
-                    class="list-in-iteration">
-                  <td class="td-story-title">
-                    <div>
-                      <a tal:attributes="href string:javascript:toggle_item('${iteration_number}-${number}')"
-                         class="toggle-handle">[ &darr; ]</a>&nbsp;
-                      <a class="storyTitle_iteration_overview"
-                         tal:attributes="href string:${story/url}"
-                         tal:content="story/title" />
-                    </div>
-
-                  </td>
-                  <td tal:content="story/size_estimate" />
-                </tr>
-                <tr tal:define="number repeat/story/number"
-                    tal:attributes="id string:toggle-item-${iteration_number}-${number}"
-                    style="display:none"
-                    class="toggle-item">
-                  <td colspan="2">
-                    <div>
-                      <a tal:attributes="href string:javascript:toggle_item('${iteration_number}-${number}')"
-                         class="toggle-handle">[ &uarr; ]</a>&nbsp;
-                      <tal:details content="structure story/details" />
-                    </div>
-                  </td>
-                </tr>
-              </tal:repeat>
-
-              <tr id="totalTasks">
-                <th class="td-story-title"
-                    i18n:translate="total">Total</th>
-                <th tal:content="iteration/size_estimate" />
-              </tr>
-            </table>
-          </metal:stories>
+            <tr id="totalTasks">
+              <th class="offer-story-title-footer"
+                  i18n:translate="total">Total</th>
+              <th class="offer-story-estimate-footer"
+                  tal:content="iteration/size_estimate" />
+            </tr>
+          </table>
         </tal:subitems>
 
         <p class="discreet"

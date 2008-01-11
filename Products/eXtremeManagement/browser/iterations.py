@@ -138,6 +138,7 @@ class IterationView(XMBaseView):
         estimate = brain.estimate
         actual = brain.actual_time
         returnvalue = dict(
+            story_id = brain.getId,
             url = brain.getURL(),
             title = brain.Title,
             description = brain.Description,

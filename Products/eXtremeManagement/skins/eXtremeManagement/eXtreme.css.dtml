@@ -267,4 +267,45 @@ UL.xm-assignees LI {
     width: 100%;
 }
 
+/* Offer view */
+
+table th.offer-story-title-header {
+    background: none;
+    border-bottom: 1px solid #8CACBB;
+    text-align: left;
+    font-weight: normal;
+    font-size: 160%;
+    padding-top: 1em;
+}
+
+table th.offer-story-estimate-header {
+    width: 150px;
+    background: none;
+    border-bottom: 1px solid #8CACBB;
+    text-align: right;
+    font-weight: bold;
+    vertical-align: bottom;
+}
+
+.offer-story-title {
+    font-weight: bold;
+}
+
+.offer-story-estimate {
+    text-align: right;
+    vertical-align: top;
+}
+
+table th.offer-story-title-footer {
+    background: none;
+    text-align: left;
+    font-weight: bold;
+}
+
+table th.offer-story-estimate-footer {
+    background: none;
+    text-align: right;
+    font-weight: bold;
+}
+
 /* </dtml-with> */
