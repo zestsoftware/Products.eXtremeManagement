@@ -1,3 +1,9 @@
+2008-01-11 - joris and mark
+
+  - Additional content type: Offer.
+    To bundle all the initial stories when a project starts.
+
+
 2008-01-02 - maurits
 
   - Bugfix: no bookings were shown for January in the booking month

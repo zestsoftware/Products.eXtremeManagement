@@ -9,3 +9,7 @@ Jodok Batlogg <jodok.batlogg@lovelysystems.com>
 Harald Frießnegger <harald.friessnegger@lovelysystems.com>
 
 Daniel Nouri <daniel.nouri@gmail.com>
+
+Joris Slob <j.slob@zestsoftware.nl>
+
+Mark van Lent <m.vanlent@zestsoftware.nl>

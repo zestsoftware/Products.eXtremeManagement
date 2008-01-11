@@ -6,6 +6,7 @@
  <object name="eXtreme_Customer_Workflow" meta_type="Workflow"/>
  <object name="eXtreme_Default_Workflow" meta_type="Workflow"/>
  <object name="eXtreme_Iteration_Workflow" meta_type="Workflow"/>
+ <object name="eXtreme_Offer_Workflow" meta_type="Workflow"/>
  <object name="eXtreme_Project_Workflow" meta_type="Workflow"/>
  <object name="eXtreme_Story_Workflow" meta_type="Workflow"/>
  <object name="eXtreme_Task_Workflow" meta_type="Workflow"/>
@@ -24,6 +25,9 @@
   </type>
   <type type_id="Iteration">
    <bound-workflow workflow_id="eXtreme_Iteration_Workflow"/>
+  </type>
+  <type type_id="Offer">
+   <bound-workflow workflow_id="eXtreme_Offer_Workflow"/>
   </type>
   <type type_id="PoiIssue">
    <bound-workflow workflow_id="poi_issue_workflow"/>

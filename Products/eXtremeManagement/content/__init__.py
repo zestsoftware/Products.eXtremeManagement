@@ -1,6 +1,7 @@
 # Classes
 import Project
 import Iteration
+import Offer
 import Story
 import Task
 import ProjectMember

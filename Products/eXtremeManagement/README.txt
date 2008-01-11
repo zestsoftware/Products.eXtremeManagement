@@ -24,6 +24,11 @@ Content Types
       period of 2 to 4 weeks in which a number of stories will be
       implemented.
 
+    * Offer
+      Contains the stories that a customer wants in this Project. It
+      is used as a way to bundle the wishes of the client and give a
+      first indication of the size of a project.
+
     * Story
       The customer can define new features by describing these feature
       in a story.

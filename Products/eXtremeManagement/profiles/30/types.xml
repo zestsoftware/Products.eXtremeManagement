@@ -4,6 +4,7 @@
  <object name="Customer" meta_type="Factory-based Type Information"/>
  <object name="CustomerFolder" meta_type="Factory-based Type Information"/>
  <object name="Iteration" meta_type="Factory-based Type Information"/>
+ <!-- <object name="Offer" meta_type="Factory-based Type Information"/> -->
  <object name="Project" meta_type="Factory-based Type Information"/>
  <object name="ProjectFolder" meta_type="Factory-based Type Information"/>
  <object name="ProjectMember" meta_type="Factory-based Type Information"/>

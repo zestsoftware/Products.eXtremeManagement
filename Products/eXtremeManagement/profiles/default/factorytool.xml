@@ -5,6 +5,7 @@
   <type portal_type="Customer"/>
   <type portal_type="CustomerFolder"/>
   <type portal_type="Iteration"/>
+  <type portal_type="Offer"/>
   <type portal_type="Project"/>
   <type portal_type="ProjectFolder"/>
   <type portal_type="ProjectMember"/>

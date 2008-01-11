@@ -18,6 +18,7 @@
    <element value="ProjectFolder"/>
    <element value="Project"/>
    <element value="Iteration"/>
+   <element value="Offer"/>
    <element value="Story"/>
    <element value="Task"/>
   </property>
@@ -27,6 +28,7 @@
    <element value="ProjectFolder"/>
    <element value="Project"/>
    <element value="Iteration"/>
+   <element value="Offer"/>
    <element value="Story"/>
    <element value="Task"/>
   </property>

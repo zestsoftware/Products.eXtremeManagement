@@ -5,6 +5,7 @@ from xmprojectmember import IXMProjectMember
 from xmprojectfolder import IXMProjectFolder
 from xmproject import IXMProject
 from xmiteration import IXMIteration
+from xmoffer import IXMOffer
 from xmstory import IXMStory
 from xmtask import IXMTask
 from xmtask import IIssueTask
@@ -17,6 +18,7 @@ our_interfaces = (
     IXMProjectFolder,
     IXMProject,
     IXMIteration,
+    IXMOffer,
     IXMStory,
     IXMTask,
     IIssueTask,

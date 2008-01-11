@@ -50,6 +50,12 @@ def addIteration(browser, container, title):
     return addSimpleType(browser, container, title, 'Iteration')
 
 
+def addOffer(browser, container, title):
+    """Add an Offer.
+    """
+    return addSimpleType(browser, container, title, 'Offer')
+
+
 def addStory(browser, container, title, text, estimate=None):
     """Add a Story.
     """

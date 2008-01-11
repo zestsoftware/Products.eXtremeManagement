@@ -25,6 +25,11 @@ def afterSetUp(self):
     self.projects.invokeFactory('Project', id='project')
     self.project = self.projects.project
     self.membership.setLocalRoles(self.project, [default_user], 'Employee')
+    self.project.invokeFactory('Offer', id='offer')
+    self.offer = self.project.offer
+    self.offer.invokeFactory('Story', id='story')
+    self.offerstory = self.offer.story
+    self.offerstory.update(roughEstimate=1.5)
     self.project.invokeFactory('Iteration', id='iteration')
     self.iteration = self.project.iteration
     self.iteration.invokeFactory('Story', id='story')

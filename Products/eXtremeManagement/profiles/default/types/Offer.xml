@@ -1,22 +1,18 @@
 <?xml version="1.0"?>
-<object name="Project" meta_type="Factory-based Type Information"
+<object name="Offer" meta_type="Factory-based Type Information"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title">Project</property>
+ <property name="title">Offer</property>
  <property name="description">
       </property>
- <property name="content_icon">project_icon.gif</property>
- <property name="content_meta_type">Project</property>
+ <property name="content_icon">offer_icon.gif</property>
+ <property name="content_meta_type">Offer</property>
  <property name="product">eXtremeManagement</property>
- <property name="factory">addProject</property>
+ <property name="factory">addOffer</property>
  <property name="immediate_view">base_view</property>
- <property name="global_allow">True</property>
+ <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
-  <element value="Iteration"/>
-  <element value="Offer"/>
   <element value="Story"/>
-  <element value="Folder"/>
-  <element value="PoiTracker"/>
  </property>
  <property name="allow_discussion">False</property>
  <alias from="(Default)" to="base_view"/>

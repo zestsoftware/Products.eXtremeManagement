@@ -19,6 +19,7 @@ class testSetup(eXtremeManagementTestCase):
         self.failUnless('ProjectFolder' in ids)
         self.failUnless('Project' in ids)
         self.failUnless('Iteration' in ids)
+        self.failUnless('Offer' in ids)
         self.failUnless('Story' in ids)
         self.failUnless('Task' in ids)
         self.failUnless('Booking' in ids)
@@ -33,6 +34,7 @@ class testSetup(eXtremeManagementTestCase):
         ids = self.portal.portal_workflow.objectIds()
         self.failUnless('eXtreme_Project_Workflow' in ids)
         self.failUnless('eXtreme_Iteration_Workflow' in ids)
+        self.failUnless('eXtreme_Offer_Workflow' in ids)
         self.failUnless('eXtreme_Story_Workflow' in ids)
         self.failUnless('eXtreme_Task_Workflow' in ids)
         self.failUnless('eXtreme_Default_Workflow' in ids)
@@ -43,6 +45,7 @@ class testSetup(eXtremeManagementTestCase):
 
         self.failUnless('eXtreme_Project_Workflow' in getChain('Project'))
         self.failUnless('eXtreme_Iteration_Workflow' in getChain('Iteration'))
+        self.failUnless('eXtreme_Offer_Workflow' in getChain('Offer'))
         self.failUnless('eXtreme_Story_Workflow' in getChain('Story'))
         self.failUnless('eXtreme_Task_Workflow' in getChain('Task'))
         self.failUnless('eXtreme_Task_Workflow' in getChain('PoiTask'))
@@ -104,6 +107,9 @@ class testSetup(eXtremeManagementTestCase):
         projects = self.portal.projects
         projects.invokeFactory('Project', id='project')
         project = projects.project
+        project.invokeFactory('Offer', id='offer')
+        offer = project.offer
+        offer.invokeFactory('Story', id='story')
         project.invokeFactory('Iteration', id='iteration')
         iteration = project.iteration
         iteration.invokeFactory('Story', id='story')

@@ -5,6 +5,7 @@ from Products.eXtremeManagement.interfaces import IXMBooking
 from Products.eXtremeManagement.interfaces import IXMCustomer
 from Products.eXtremeManagement.interfaces import IXMCustomerFolder
 from Products.eXtremeManagement.interfaces import IXMIteration
+from Products.eXtremeManagement.interfaces import IXMOffer
 from Products.eXtremeManagement.interfaces import IXMProject
 from Products.eXtremeManagement.interfaces import IXMProjectFolder
 from Products.eXtremeManagement.interfaces import IXMProjectMember
@@ -16,6 +17,7 @@ from Products.eXtremeManagement.content.Booking import Booking
 from Products.eXtremeManagement.content.Customer import Customer
 from Products.eXtremeManagement.content.CustomerFolder import CustomerFolder
 from Products.eXtremeManagement.content.Iteration import Iteration
+from Products.eXtremeManagement.content.Offer import Offer
 from Products.eXtremeManagement.content.Project import Project
 from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
 from Products.eXtremeManagement.content.ProjectMember import ProjectMember
@@ -39,6 +41,9 @@ class testCase(eXtremeManagementTestCase):
 
         self.failUnless(IXMIteration.implementedBy(Iteration))
         self.failUnless(IXMIteration.providedBy(Iteration('blah')))
+
+        self.failUnless(IXMOffer.implementedBy(Offer))
+        self.failUnless(IXMOffer.providedBy(Offer('blah')))
 
         self.failUnless(IXMProject.implementedBy(Project))
         self.failUnless(IXMProject.providedBy(Project('blah')))

@@ -30,6 +30,9 @@ class testWorkflow(eXtremeManagementTestCase):
         self.project = self.projects.project
         self.project.manage_addLocalRoles('customer',['Customer'])
 
+        self.project.invokeFactory('Offer', id='offer')
+        self.offer = self.project.offer
+
         self.project.invokeFactory('Iteration', id='iteration')
         self.iteration = self.project.iteration
 
@@ -113,6 +116,31 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryForbiddenTransition(self.project, 'active', 'close')
         self.login('customer')
         self.tryForbiddenTransition(self.project, 'active', 'close')
+
+    def test_offer_transitions(self):
+        """Test transitions of the Offer Content Type
+        """
+        # Manager can do all transitions on an iteration:
+        self.login('manager')
+        self.tryAllowedTransition(self.offer, 'offer',
+                                  'private', 'publish', 'published')
+        self.tryAllowedTransition(self.offer, 'offer',
+                                  'published', 'retract', 'private')
+        
+        # Now try forbidden transactions for customer and employee
+        self.login('customer')
+        self.tryForbiddenTransition(self.offer, 'private', 'publish')
+        self.login('employee')
+        self.tryForbiddenTransition(self.offer, 'private', 'publish')
+
+        self.login('manager')
+        self.tryAllowedTransition(self.offer, 'offer',
+                                  'private', 'publish', 'published')
+
+        self.login('customer')
+        self.tryForbiddenTransition(self.offer, 'published', 'retract')
+        self.login('employee')
+        self.tryForbiddenTransition(self.offer, 'published', 'retract')
 
     def test_iteration_transitions(self):
         """Test transitions of the Iteration Content Type
