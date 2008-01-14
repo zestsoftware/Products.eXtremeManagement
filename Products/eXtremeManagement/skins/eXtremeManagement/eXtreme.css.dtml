@@ -273,43 +273,62 @@ UL.xm-assignees LI {
 
 /* Offer view */
 
-table th.offer-story-title-header {
-    background: none;
-    border-bottom: 1px solid #8CACBB;
-    text-align: left;
-    font-weight: normal;
-    font-size: 160%;
-    padding-top: 1em;
+#offerView {
+  border: 1px solid #8CACBB;
+  border-top: none;
+  margin-bottom: 10px;
+  margin-top: 15px;
 }
 
-table th.offer-story-estimate-header {
-    width: 150px;
-    background: none;
-    border-bottom: 1px solid #8CACBB;
-    text-align: right;
-    font-weight: bold;
-    vertical-align: bottom;
+#offerViewHeader {
+  position: relative;
 }
 
-.offer-story-title {
-    font-weight: bold;
+#offerViewHeader h2 {
+  font-size: 130%;
+  font-weight: bold;
+  border-bottom: 1px solid #8CACBB;
 }
 
-.offer-story-estimate {
-    text-align: right;
-    vertical-align: top;
+.offer-story-estimate-header {
+  position: absolute;
+  right: 2px;
+  top: -12px;
 }
 
-table th.offer-story-title-footer {
-    background: none;
-    text-align: left;
-    font-weight: bold;
+#offerView h2 {
+  background-color: #EEF3F5;
+  padding: 2px;
+  font-size: 120%;
+  border: 1px solid #8CACBB;
+  border-bottom: none;
+  font-weight: bold;
+  margin: 0;
+  border-right: none;
+  border-left: none;
 }
 
-table th.offer-story-estimate-footer {
-    background: none;
-    text-align: right;
-    font-weight: bold;
+#offerView h3 {
+  font-size: 110%;
+}
+
+.offer-story-text {
+  padding: 2px 2px 25px 2px;
+}
+
+.offer-story-estimate,
+#totalTasks .offer-story-estimate-footer {
+  text-align: right;
+}
+
+#totalTasks {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+#totalTasks td {
+  padding: 5px 2px;
+  border-top: 1px dotted #8CACBB;
 }
 
 /* </dtml-with> */

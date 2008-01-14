@@ -57,37 +57,48 @@
         <div id="break-before-stories" class="visualClear"><!-- --></div>
 
         <tal:subitems tal:condition="stories">
+          <div id="offerViewHeader">
+            <h2 class="offer-story-estimate-header"
+                i18n:translate="listingheader_initial_estimate">
+              Initial estimate (days)
+            </h2>
+            <h2 i18n:translate="heading-stories"
+              class="offer-story-header">Stories</h2>
+            <div class="visualClear" />
+          </div>
+          
           <table width="100%"
                  cellpadding="0"
-                 cellspacing="0">
-            <tr>
-              <th class="offer-story-title-header"
-                  i18n:translate="heading-stories">Stories</th>
-              <th class="offer-story-estimate-header"
-                  i18n:translate="listingheader_initial_estimate">
-                Initial estimate (days)
-              </th>
-            </tr>
-
-            <tal:repeat repeat="story stories">
-              <tr>
+                 cellspacing="0"
+                 id="offerView">
+            <tbody valign="top">
+              <tal:repeat repeat="story stories">
+              <tr class="storyTitle-storyEstimate">
                 <td>
-                  <span class="offer-story-title" tal:content="story/title" /><br />
-                  <span class="offer-story-main"
-                        tal:define="storyid story/story_id;
-                                    story_obj python:context[storyid]"
-                        tal:content="structure story_obj/getMainText" />
+                  <h2 tal:content="story/title" />
                 </td>
-                <td class="offer-story-estimate" tal:content="story/size_estimate" />
+                <td class="offer-story-estimate">
+                  <h2 tal:content="story/size_estimate" />
+                </td>
               </tr>
-            </tal:repeat>
-
-            <tr id="totalTasks">
-              <th class="offer-story-title-footer"
-                  i18n:translate="total">Total</th>
-              <th class="offer-story-estimate-footer"
-                  tal:content="iteration/size_estimate" />
-            </tr>
+              <tr>
+                <td colspan="2" class="offer-story-text">
+                  <span tal:define="storyid story/story_id;
+                                    story_obj python:context[storyid]"
+                      tal:replace="structure story_obj/getMainText" />
+                </td>
+              </tr>
+              </tal:repeat>
+            </tbody>
+            
+            <tfoot id="totalTasks">
+              <tr>
+                <td class="offer-story-title-footer"
+                    i18n:translate="total">Total</td>
+                <td class="offer-story-estimate-footer"
+                    tal:content="iteration/size_estimate" />
+              </tr>
+            </tfoot>
           </table>
         </tal:subitems>
 
