@@ -72,7 +72,7 @@
             <tal:repeat repeat="story stories">
               <tr>
                 <td>
-                  <span class="offer-story-title" tal:content="story/title" /><br>
+                  <span class="offer-story-title" tal:content="story/title" /><br />
                   <span class="offer-story-main"
                         tal:define="storyid story/story_id;
                                     story_obj python:context[storyid]"
