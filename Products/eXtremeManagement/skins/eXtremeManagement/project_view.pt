@@ -13,8 +13,9 @@
                        open_iterations view/open_iterations;">
 
         <div tal:condition="context/@@chart/has_data">
-            <img alt="velocity chart"
-                 tal:attributes="src context/@@chart/velocity_chart" />
+            <img tal:attributes="src context/@@chart/velocity_chart"
+                 alt="velocity chart"
+                 i18n:attributes="alt" />
         </div>
 
         <p class="documentDescription">

@@ -44,13 +44,13 @@
                                bookings view/bookinglist;"
                    tal:condition="bookings">
           <metal:month metal:define-macro="month_booking_summary">
-          <h2>
+          <h2 i18n:translate="heading-bookings-per-month">
             Bookings for the month
-            <tal:month tal:replace="main/month" /> / <tal:year tal:replace="main/year" />
+            <tal:month i18n:name="month" tal:replace="main/month" /> / <tal:year i18n:name="year" tal:replace="main/year" />
           </h2>
-          
-          <table border="1" 
-                 class="listing" 
+
+          <table border="1"
+                 class="listing"
                  with="100%">
             <tr>
               <th i18n:translate="listingheader-week-number">
@@ -59,18 +59,18 @@
               <th i18n:translate="listingheader-start-of-week">
                 Start
               </th>
-              <th>Monday</th>
-              <th>Tuesday</th>
-              <th>Wednesday</th>
-              <th>Thursday</th>
-              <th>Friday</th>
-              <th>Saturday</th>
-              <th>Sunday</th>
+              <th i18n:translate="weekday_mon" i18n:domain="plone">Monday</th>
+              <th i18n:translate="weekday_tue" i18n:domain="plone">Tuesday</th>
+              <th i18n:translate="weekday_wed" i18n:domain="plone">Wednesday</th>
+              <th i18n:translate="weekday_thu" i18n:domain="plone">Thursday</th>
+              <th i18n:translate="weekday_fri" i18n:domain="plone">Friday</th>
+              <th i18n:translate="weekday_sat" i18n:domain="plone">Saturday</th>
+              <th i18n:translate="weekday_sun" i18n:domain="plone">Sunday</th>
               <th i18n:translate="listingheader-total">
                 Total
               </th>
             </tr>
-            
+
             <tr tal:repeat="week bookings">
               <td tal:content="week/week_number">
                 42
@@ -105,4 +105,3 @@
     </tal:main>
     </body>
 </html>
-

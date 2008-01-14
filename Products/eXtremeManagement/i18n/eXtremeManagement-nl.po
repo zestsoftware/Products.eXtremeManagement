@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-01-14 10:23+0000\n"
-"PO-Revision-Date: 2008-01-14 10:57+0100\n"
+"POT-Creation-Date: 2008-01-14 11:46+0000\n"
+"PO-Revision-Date: 2008-01-14 12:44+0100\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,16 @@ msgstr ""
 "Preferred-Encodings: latin1 utf-8\n"
 "Domain: eXtremeManagement\n"
 "X-Is-Fallback-For: nl-be\n"
+
+#. Default: "Add Tasks"
+#: ./skins/eXtremeManagement/portlet_poi.pt:46
+msgid "Add Tasks"
+msgstr "Voeg taken toe"
+
+#. Default: "Note that only issues that aren't already mapped into this iteration will be added."
+#: ./skins/eXtremeManagement/portlet_poi.pt:54
+msgid "Note that only issues that aren't already mapped into this iteration will be added."
+msgstr "Merk op dat alleen issues die nog niet binnen de iteratie zijn gekoppeld, zullen worden toegevoegd."
 
 #. Default: "Offer"
 #: content/Offer.py
@@ -32,17 +42,22 @@ msgid "Send"
 msgstr "Versturen"
 
 #. Default: "Send a mail to this user"
-#: ./skins/eXtremeManagement/customer_view.pt:123
+#: ./skins/eXtremeManagement/projectmember_view.pt:49
 msgid "Send a mail to this user"
 msgstr "Stuur een mail naar deze gebruiker"
 
 #. Default: "actual"
-#: ./skins/eXtremeManagement/project_view.pt:68
+#: ./skins/eXtremeManagement/project_view.pt:78
 msgid "actual"
 msgstr "daadwerkelijk"
 
+#. Default: "Add a task in"
+#: ./skins/eXtremeManagement/portlet_poi.pt:98
+msgid "add-task-in"
+msgstr "Voeg taak toe in"
+
 #. Default: "Back to"
-#: ./skins/eXtremeManagement/booking_details.pt:24
+#: ./skins/eXtremeManagement/booking_month.pt:33
 msgid "back_to"
 msgstr "Terug naar"
 
@@ -62,12 +77,12 @@ msgid "box_stories"
 msgstr "In te schatten verhalen"
 
 #. Default: "Cannot Activate"
-#: ./skins/eXtremeManagement/iteration_view.pt:19
+#: ./skins/eXtremeManagement/story_view.pt:61
 msgid "cannot_activate"
 msgstr "Kan niet activeren"
 
 #. Default: "current month"
-#: ./skins/eXtremeManagement/booking_details.pt:26
+#: ./skins/eXtremeManagement/booking_month.pt:35
 msgid "current-month"
 msgstr "huidige maand"
 
@@ -77,7 +92,7 @@ msgid "days"
 msgstr "dagen"
 
 #. Default: "Overview of tasks that belong to me.  The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
-#: ./skins/eXtremeManagement/iteration_view.pt:245
+#: ./skins/eXtremeManagement/task_overview.pt:29
 msgid "description-overview-my-tasks"
 msgstr "Overzicht van de taken die aan mij zijn toegewezen.  De genoemde totalen zijn totaaltijden voor mijzelf. Ze zullen normaal gesproken afwijken van de uitkomst van het optellen van de kolom erboven."
 
@@ -379,7 +394,7 @@ msgid "estimated_start_project"
 msgstr "Geschatte start project"
 
 #. Default: "Go to"
-#: ./skins/eXtremeManagement/booking_details.pt:16
+#: ./skins/eXtremeManagement/booking_month.pt:26
 msgid "go_to"
 msgstr "Ga naar"
 
@@ -387,6 +402,11 @@ msgstr "Ga naar"
 #: ./skins/eXtremeManagement/booking_month.pt:17
 msgid "go_to_overview"
 msgstr "Ga naar overzicht van"
+
+#. Default: "Create tasks from issues"
+#: ./skins/eXtremeManagement/portlet_poi.pt:27
+msgid "header-create-tasks-from-issues"
+msgstr "Maak taken van issues"
 
 ### customer_view template ###
 #. Default: "Customer info"
@@ -410,7 +430,7 @@ msgid "header_project_members"
 msgstr "Projectleden"
 
 #. Default: "Time registration"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:58
+#: ./skins/eXtremeManagement/update_hours_form.cpt:32
 msgid "header_time_registration"
 msgstr "Uren registratie"
 
@@ -439,6 +459,11 @@ msgstr "Boekingen"
 msgid "heading-bookings-per-day"
 msgstr "Boekingen per dag"
 
+#. Default: "Bookings for the month ${month} / ${year}"
+#: ./skins/eXtremeManagement/booking_month.pt:49
+msgid "heading-bookings-per-month"
+msgstr "Boekingen voor de maand ${month} / ${year}"
+
 #. Default: "Hours per employee"
 #: ./skins/eXtremeManagement/iteration_view.pt:208
 msgid "heading-hours-per-employee"
@@ -459,6 +484,11 @@ msgstr "Mijn ${state} taakoverzicht"
 msgid "heading-open-tasks"
 msgstr "Mijn open taken"
 
+#. Default: "Related XM Tasks"
+#: ./skins/eXtremeManagement/portlet_poi.pt:75
+msgid "heading-related-xm-tasks"
+msgstr "Gerelateerde XM taken"
+
 #. Default: "Stories"
 #: ./skins/eXtremeManagement/iteration_view.pt:89
 msgid "heading-stories"
@@ -470,22 +500,22 @@ msgid "heading_attachements"
 msgstr "Toegevoegde bestanden en afbeeldingen"
 
 #. Default: "Attachments"
-#: ./skins/eXtremeManagement/project_view.pt:177
+#: ./skins/eXtremeManagement/project_view.pt:179
 msgid "heading_attachments"
 msgstr "Bijlage(n)"
 
 #. Default: "Current Iterations"
-#: ./skins/eXtremeManagement/project_view.pt:35
+#: ./skins/eXtremeManagement/project_view.pt:45
 msgid "heading_current_iterations"
 msgstr "Huidige iteraties"
 
 #. Default: "Finished Iterations"
-#: ./skins/eXtremeManagement/project_view.pt:121
+#: ./skins/eXtremeManagement/project_view.pt:123
 msgid "heading_finished_iterations"
 msgstr "Afgesloten iteraties"
 
 #. Default: "Open Iterations"
-#: ./skins/eXtremeManagement/project_view.pt:102
+#: ./skins/eXtremeManagement/project_view.pt:104
 msgid "heading_open_iterations"
 msgstr "Open iteraties"
 
@@ -516,7 +546,7 @@ msgid "help_stories_table"
 msgstr "De initiële inschatting van de story is een ruwe schatting in dagen.  Geschatte taken is het totaal aantal uren ingeschat voor alle taken.  Als er een groot verschil tussen zit, kan daar een logische verklaring voor zijn.  Onderzoekt u dat alstublieft om er zeker van te zijn."
 
 #. Default: "hours"
-#: ./skins/eXtremeManagement/project_view.pt:67
+#: ./skins/eXtremeManagement/project_view.pt:77
 msgid "hours"
 msgstr "uren"
 
@@ -541,7 +571,7 @@ msgid "label_bookingdate"
 msgstr "Datum om dit op te boeken"
 
 #. Default: "Budget (hours)"
-#: ./skins/eXtremeManagement/project_view.pt:28
+#: ./skins/eXtremeManagement/project_view.pt:29
 msgid "label_budgetHours"
 msgstr "Budget (uren)"
 
@@ -601,7 +631,7 @@ msgid "listingheader-time"
 msgstr "Tijd"
 
 #. Default: "Total"
-#: ./skins/eXtremeManagement/booking_details.pt:79
+#: ./skins/eXtremeManagement/booking_month.pt:69
 msgid "listingheader-total"
 msgstr "Totaal"
 
@@ -611,12 +641,12 @@ msgid "listingheader-week-number"
 msgstr "Weeknummer"
 
 #. Default: "Fullname"
-#: ./skins/eXtremeManagement/customer_view.pt:28
+#: ./skins/eXtremeManagement/projectmember_view.pt:29
 msgid "listingheader_Fullname"
 msgstr "Volledige naam"
 
 #. Default: "Phone"
-#: ./skins/eXtremeManagement/customer_view.pt:53
+#: ./skins/eXtremeManagement/projectmember_view.pt:37
 msgid "listingheader_Phone"
 msgstr "Telefoon"
 
@@ -626,7 +656,7 @@ msgid "listingheader_actual_budget_left"
 msgstr "Daadwerkelijk resterende budget (uren)"
 
 #. Default: "Actual (hours)"
-#: ./skins/eXtremeManagement/iteration_view.pt:41
+#: ./skins/eXtremeManagement/story_view.pt:137
 msgid "listingheader_actual_hours"
 msgstr "Daadwerkelijk (uren)"
 
@@ -666,7 +696,7 @@ msgid "listingheader_diff_hours"
 msgstr "Verschil (uren)"
 
 #. Default: "Email"
-#: ./skins/eXtremeManagement/customer_view.pt:109
+#: ./skins/eXtremeManagement/projectmember_view.pt:44
 msgid "listingheader_email"
 msgstr "E-mail"
 
@@ -681,7 +711,7 @@ msgid "listingheader_enddate"
 msgstr "Einddatum"
 
 #. Default: "Estimate (hours)"
-#: ./skins/eXtremeManagement/project_administration.pt:63
+#: ./skins/eXtremeManagement/story_view.pt:136
 msgid "listingheader_estimate_hours"
 msgstr "Schatting (uren)"
 
@@ -690,8 +720,8 @@ msgstr "Schatting (uren)"
 msgid "listingheader_fax"
 msgstr "Faxnummer"
 
-#. Default: "Initial estimate (days)"
-#: ./skins/eXtremeManagement/iteration_view.pt:105
+#. Default: "Initial Estimate (days)"
+#: ./skins/eXtremeManagement/story_view.pt:72
 msgid "listingheader_initial_estimate"
 msgstr "Initiële inschatting (dagen)"
 
@@ -726,12 +756,12 @@ msgid "listingheader_startdate"
 msgstr "Startdatum"
 
 #. Default: "Status"
-#: ./skins/eXtremeManagement/iteration_view.pt:100
+#: ./skins/eXtremeManagement/story_view.pt:139
 msgid "listingheader_state"
 msgstr "Status"
 
 #. Default: "Story"
-#: ./skins/eXtremeManagement/iteration_view.pt:99
+#: ./skins/eXtremeManagement/story_view.pt:133
 msgid "listingheader_story"
 msgstr "Verhaal"
 
@@ -740,8 +770,8 @@ msgstr "Verhaal"
 msgid "listingheader_tasks_completed"
 msgstr "Afgeronde taken"
 
-#. Default: "Tasks estimate (hours)"
-#: ./skins/eXtremeManagement/iteration_view.pt:106
+#. Default: "Tasks Estimate (hours)"
+#: ./skins/eXtremeManagement/story_view.pt:82
 msgid "listingheader_tasks_estimate"
 msgstr "Geschatte taken (uren)"
 
@@ -812,7 +842,7 @@ msgid "no_tasks_assigned"
 msgstr "Op dit moment heb jij geen taken!"
 
 #. Default: "No tasks defined yet."
-#: ./skins/eXtremeManagement/iteration_view.pt:164
+#: ./skins/eXtremeManagement/story_view.pt:195
 msgid "no_tasks_defined"
 msgstr "Nog geen taken gedefinieerd."
 
@@ -822,7 +852,7 @@ msgid "previous"
 msgstr "vorige"
 
 #. Default: "previous month"
-#: ./skins/eXtremeManagement/booking_details.pt:18
+#: ./skins/eXtremeManagement/booking_month.pt:28
 msgid "previous-month"
 msgstr "vorige maand"
 
@@ -837,7 +867,7 @@ msgid "project_administration"
 msgstr "Projectadministratie"
 
 #. Default: "project overview"
-#: ./skins/eXtremeManagement/project_view.pt:144
+#: ./skins/eXtremeManagement/project_view.pt:146
 msgid "project_overview"
 msgstr "Projectoverzicht"
 
@@ -847,7 +877,7 @@ msgid "show_tasks_with_state"
 msgstr "Laat Taken zien met status:"
 
 #. Default: "status"
-#: ./skins/eXtremeManagement/project_view.pt:73
+#: ./skins/eXtremeManagement/project_view.pt:83
 msgid "status"
 msgstr "Status"
 
@@ -862,9 +892,14 @@ msgid "task_overview"
 msgstr "Takenoverzicht"
 
 #. Default: "Total"
-#: ./skins/eXtremeManagement/iteration_view.pt:187
+#: ./skins/eXtremeManagement/story_view.pt:181
 msgid "total"
 msgstr "Totaal"
+
+#. Default: "velocity chart"
+#: ./skins/eXtremeManagement/project_view.pt:16
+msgid "velocity chart"
+msgstr "snelheidsgrafiek"
 
 #. Default: "Visit the web site"
 #: ./skins/eXtremeManagement/customer_view.pt:71

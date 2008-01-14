@@ -3,15 +3,19 @@
       i18n:domain="plone">
 <body>
 
-  This is really two portlets in one.  Depending on what the context
-  is, we:
+  <tal:comment tal:condition="nothing">
+    <!--
+        This is really two portlets in one.  Depending on what the context
+        is, we:
 
-    - Provide a form for mass-creating Poi Tasks out of Poi Issues
-      when we're looking at an open story.
+        - Provide a form for mass-creating Poi Tasks out of Poi Issues
+          when we're looking at an open story.
 
-    - Provide links to relevant Poi Tasks when the user is looking at
-      an issue that's linked from one Poi Task, and a way to create a
-      task for this issue in an open story.
+        - Provide links to relevant Poi Tasks when the user is looking at
+          an issue that's linked from one Poi Task, and a way to create a
+          task for this issue in an open story.
+    -->
+  </tal:comment>
 
 <metal:macro define-macro="portlet"
              tal:define="view nocall:context/@@xm-poi">
@@ -20,7 +24,9 @@
     <dl class="portlet" id="portlet-xmpoi">
       <dt class="portletHeader">
         <span class="portletTopLeft"></span>
-        Create tasks from issues
+        <span tal:omit-tag=""
+              i18n:domain="eXtremeManagement"
+              i18n:translate="header-create-tasks-from-issues">Create tasks from issues</span>
         <span class="portletTopRight"></span>
       </dt>
 
@@ -37,12 +43,17 @@
             </div>
           </tal:repeat>
 
-          <input type="submit" value="Add Tasks" />
+          <input type="submit"
+                 value="Add Tasks"
+                 i18n:domain="eXtremeManagement"
+                 i18n:attributes="value" />
 
         </form>
       </dd>
 
-      <dd class="portletItem odd">
+      <dd class="portletItem odd"
+          i18n:domain="eXtremeManagement"
+          i18n:translate="">
         Note that only issues that aren't already mapped into this
         iteration will be added.
       </dd>
@@ -61,7 +72,9 @@
     <dl class="portlet" id="portlet-xmpoi">
       <dt class="portletHeader">
             <span class="portletTopLeft"></span>
-              Related XM Tasks
+            <span tal:omit-tag=""
+                  i18n:domain="eXtremeManagement"
+                  i18n:translate="heading-related-xm-tasks">Related XM Tasks</span>
             <span class="portletTopRight"></span>
       </dt>
 
@@ -82,7 +95,9 @@
           tal:condition="python:stories and context.portal_type == 'PoiIssue'">
         <form action="./@@xm-poi">
           <div class="field">
-            <label for="story">Add a task in</label>
+            <label for="story"
+                   i18n:domain="eXtremeManagement"
+                   i18n:translate="add-task-in">Add a task in</label>
             <select id="story" name="story">
               <option tal:repeat="story stories"
                       tal:attributes="value story/uid"
@@ -91,7 +106,9 @@
               </option>
             </select>
           </div>
-          <input type="submit" value="Add" />
+          <input type="submit"
+                 value="Add"
+                 i18n:attributes="value"/>
         </form>
       </dd>
       <dd class="portletFooter">
