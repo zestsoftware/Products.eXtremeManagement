@@ -174,7 +174,7 @@ class ProjectView(ProjectAdminView):
         cfilter = dict(portal_type='Offer')
         offer_brains = context.getFolderContents(cfilter)
         results = []
-        if offer_brains is not None:
+        if offer_brains:
             plone_view = getMultiAdapter((context, self.request), name=u'plone')
             icon = plone_view.getIcon(offer_brains[0].getObject())
             for offer in offer_brains:
