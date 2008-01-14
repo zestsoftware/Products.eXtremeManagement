@@ -1,3 +1,4 @@
+from zope.component import getMultiAdapter
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
@@ -174,9 +175,12 @@ class ProjectView(ProjectAdminView):
         offer_brains = context.getFolderContents(cfilter)
         results = []
         if offer_brains is not None:
+            plone_view = getMultiAdapter((context, self.request), name=u'plone')
+            icon = plone_view.getIcon(offer_brains[0].getObject())
             for offer in offer_brains:
                 results.append(dict(title = offer.Title,
-                                    url = offer.getURL))
+                                    url = offer.getURL,
+                                    icon = icon.html_tag()))
         if results == []:
             return None
         else:

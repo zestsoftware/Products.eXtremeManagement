@@ -133,6 +133,10 @@
 
 /* ----end project administration view ---- */
 
+.offers_listing {
+    list-style-image: none !important;
+    list-style-type: none !important;
+}
 
 .listing th {
     padding-top: 2px;
