@@ -1,8 +1,13 @@
+2008-01-14 - jladage
+
+  - Renamed non_iterations to attachment, because we filter our both
+    iterations and offers. Minor changes to the project view, including
+    translations
+
 2008-01-11 - joris and mark
 
   - Additional content type: Offer.
     To bundle all the initial stories when a project starts.
-
 
 2008-01-02 - maurits
 

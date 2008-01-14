@@ -151,16 +151,18 @@ class ProjectView(ProjectAdminView):
             iteration_list.append(info)
         return iteration_list
 
-    def non_iterations(self):
-        """Return folder contents that are not iterations
+    def attachments(self):
+        """Return folder contents that are not iterations or offers
         """
         context = aq_inner(self.context)
-        cfilter = dict(portal_type='Iteration')
+        cfilter = dict(portal_type=('Iteration','Offer'))
         iteration_brains = context.getFolderContents(cfilter)
         iteration_ids = [brain.id for brain in iteration_brains]
         all_brains = context.getFolderContents()
         brains = [brain for brain in all_brains
                   if brain.id not in iteration_ids]
+        if brains == []:
+            return None
         return brains
 
     def offers(self):

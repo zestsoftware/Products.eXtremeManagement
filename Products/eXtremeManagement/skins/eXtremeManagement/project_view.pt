@@ -88,9 +88,9 @@
           </div>
         </tal:block>
 
-        <tal:block tal:condition="python: not current_iterations and  view/offers">
+        <tal:block tal:condition="view/offers">
         <ul>
-           <li tal:repeat="offer offers"><a tal:attributes="href offer/url"
+           <li tal:repeat="offer view/offers"><a tal:attributes="href offer/url"
                 tal:content="offer/title"> My Offer</a></li>
         </ul>
           
@@ -173,13 +173,12 @@
 
         <dl id="non_iterations"
             class="collapsible inline"
-            tal:define="non_iterations view/non_iterations;"
-            tal:condition="non_iterations">
-          <dt i18n:translate="heading_other_content"
+            tal:condition="view/attachments">
+          <dt i18n:translate="heading_attachments"
               class="collapsibleHeader">
-          Other Content</dt>
+          Attachments</dt>
           <dd tal:attributes="class python:'visualIcon contenttype-' + ni.portal_type.lower() + ' collapsibleContent';"
-              tal:repeat="ni non_iterations">
+              tal:repeat="ni view/attachments">
             <div class="visualIconPadding">
               <a tal:attributes="href ni/id;"
                  tal:content="ni/Title"/>

@@ -1,4 +1,4 @@
-# /bin/sh
+# /bin/bash
 
 # Project name
 PROJECT=eXtremeManagement
@@ -8,7 +8,7 @@ PROJECT=eXtremeManagement
 # Browser views can help there.
 # Also ignore xm_dashboard.pt as that has too many errors according to
 # i18ndude, and I do not use it currently.
-TEMPLATE_FILES=$(find -name booking_year.pt -prune -o -name xm_dashboard.pt -prune -o -name '*pt' -print)
+TEMPLATE_FILES=$(find . -name booking_year.pt -prune -o -name xm_dashboard.pt -prune -o -name '*pt' -print)
 # Directory that will be search for i18n tags, including subdirs.
 SEARCH_DIR=.
 # Merge the contents of this file into the i18n created file.

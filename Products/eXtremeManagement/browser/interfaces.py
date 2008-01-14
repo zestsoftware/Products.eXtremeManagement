@@ -214,6 +214,10 @@ class IProjectView(IXMBaseView):
         """Return new iterations
         """
 
-    def non_iterations():
+    def attachments():
         """Return folder contents that are not iterations
+        """
+
+    def offers():
+        """ Return a list of dicts with title and url of offers
         """
