@@ -230,3 +230,8 @@ msgstr ""
 #: content/Project.py
 msgid "help_budgetHours"
 msgstr ""
+
+#. Default: "Offer"
+#: content/Offer.py
+msgid "Offer"
+msgstr ""

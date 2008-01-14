@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-01-07 17:12+0000\n"
+"POT-Creation-Date: 2008-01-14 09:20+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -16,6 +16,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin2\n"
 "Domain: eXtremeManagement\n"
 
+#. Default: "Offer"
+#: content/Offer.py
+msgid "Offer"
+msgstr ""
+
 #: ./browser/maintenance.py:15
 msgid "Perform various maintenance tasks. If you know the totals are wrong, you can recalculate them here. This should normally not be needed, so do not touch this unless you know what you are doing.  Then again, it does not hurt, except that it takes a long time."
 msgstr ""
@@ -26,7 +31,7 @@ msgid "Send"
 msgstr "Odeslat"
 
 #. Default: "Send a mail to this user"
-#: ./skins/eXtremeManagement/customer_view.pt:123
+#: ./skins/eXtremeManagement/projectmember_view.pt:49
 msgid "Send a mail to this user"
 msgstr "Odeslat email tomuto uživateli"
 
@@ -58,7 +63,7 @@ msgid "box_stories"
 msgstr "Nevyřešené požadavky"
 
 #. Default: "Cannot Activate"
-#: ./skins/eXtremeManagement/task_view.pt:40
+#: ./skins/eXtremeManagement/story_view.pt:61
 msgid "cannot_activate"
 msgstr ""
 
@@ -396,7 +401,7 @@ msgid "header_project_members"
 msgstr "Členové projektu"
 
 #. Default: "Time registration"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:58
+#: ./skins/eXtremeManagement/update_hours_form.cpt:32
 msgid "header_time_registration"
 msgstr "Časový záznam"
 
@@ -464,22 +469,17 @@ msgid "heading_current_iterations"
 msgstr "Aktuální iterace"
 
 #. Default: "Finished Iterations"
-#: ./skins/eXtremeManagement/project_view.pt:118
+#: ./skins/eXtremeManagement/project_view.pt:121
 msgid "heading_finished_iterations"
 msgstr "Uzavřené iterace"
 
-#. Default: "No Current Iterations"
-#: ./skins/eXtremeManagement/project_view.pt:92
-msgid "heading_no_current_iterations"
-msgstr "Žádné aktuální iterace"
-
 #. Default: "Open Iterations"
-#: ./skins/eXtremeManagement/project_view.pt:99
+#: ./skins/eXtremeManagement/project_view.pt:102
 msgid "heading_open_iterations"
 msgstr "Otevřené iterace"
 
 #. Default: "Other Content"
-#: ./skins/eXtremeManagement/project_view.pt:175
+#: ./skins/eXtremeManagement/project_view.pt:178
 msgid "heading_other_content"
 msgstr "Ostatní obsah"
 
@@ -605,12 +605,12 @@ msgid "listingheader-week-number"
 msgstr ""
 
 #. Default: "Fullname"
-#: ./skins/eXtremeManagement/customer_view.pt:28
+#: ./skins/eXtremeManagement/projectmember_view.pt:29
 msgid "listingheader_Fullname"
 msgstr "Celé jméno"
 
 #. Default: "Phone"
-#: ./skins/eXtremeManagement/customer_view.pt:53
+#: ./skins/eXtremeManagement/projectmember_view.pt:37
 msgid "listingheader_Phone"
 msgstr "Telefon"
 
@@ -620,7 +620,7 @@ msgid "listingheader_actual_budget_left"
 msgstr ""
 
 #. Default: "Actual (hours)"
-#: ./skins/eXtremeManagement/task_view.pt:58
+#: ./skins/eXtremeManagement/story_view.pt:137
 msgid "listingheader_actual_hours"
 msgstr ""
 
@@ -635,7 +635,7 @@ msgid "listingheader_address"
 msgstr "Adresa"
 
 #. Default: "Assignee(s)"
-#: ./skins/eXtremeManagement/task_view.pt:74
+#: ./skins/eXtremeManagement/story_view.pt:140
 msgid "listingheader_assignees"
 msgstr "Přidělený(í)"
 
@@ -660,7 +660,7 @@ msgid "listingheader_diff_hours"
 msgstr ""
 
 #. Default: "Email"
-#: ./skins/eXtremeManagement/customer_view.pt:109
+#: ./skins/eXtremeManagement/projectmember_view.pt:44
 msgid "listingheader_email"
 msgstr "Email"
 
@@ -675,7 +675,7 @@ msgid "listingheader_enddate"
 msgstr "Datum ukončení"
 
 #. Default: "Estimate (hours)"
-#: ./skins/eXtremeManagement/task_view.pt:51
+#: ./skins/eXtremeManagement/story_view.pt:136
 msgid "listingheader_estimate_hours"
 msgstr ""
 
@@ -720,7 +720,7 @@ msgid "listingheader_startdate"
 msgstr "Datum začátku"
 
 #. Default: "Status"
-#: ./skins/eXtremeManagement/task_view.pt:67
+#: ./skins/eXtremeManagement/story_view.pt:139
 msgid "listingheader_state"
 msgstr "Stav"
 
@@ -830,7 +830,7 @@ msgid "project_administration"
 msgstr "Správa projektu"
 
 #. Default: "project overview"
-#: ./skins/eXtremeManagement/project_view.pt:141
+#: ./skins/eXtremeManagement/project_view.pt:144
 msgid "project_overview"
 msgstr ""
 

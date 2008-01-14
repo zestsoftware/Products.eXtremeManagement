@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement-es\n"
-"POT-Creation-Date: 2008-01-07 17:12+0000\n"
+"POT-Creation-Date: 2008-01-14 09:20+0000\n"
 "PO-Revision-Date: 2007-12-09 14:30-0300\n"
 "Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
 "Language-Team: Spanish\n"
@@ -18,6 +18,11 @@ msgstr ""
 "Domain: eXtremeManagement\n"
 "X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
 "X-Generator: KBabel 1.11.4\n"
+
+#. Default: "Offer"
+#: content/Offer.py
+msgid "Offer"
+msgstr ""
 
 #: ./browser/maintenance.py:15
 msgid "Perform various maintenance tasks. If you know the totals are wrong, you can recalculate them here. This should normally not be needed, so do not touch this unless you know what you are doing.  Then again, it does not hurt, except that it takes a long time."
@@ -33,7 +38,7 @@ msgid "Send"
 msgstr "Enviar"
 
 #. Default: "Send a mail to this user"
-#: ./skins/eXtremeManagement/customer_view.pt:123
+#: ./skins/eXtremeManagement/projectmember_view.pt:49
 msgid "Send a mail to this user"
 msgstr "Enviar un mail a este usuario"
 
@@ -63,7 +68,7 @@ msgid "box_stories"
 msgstr "User Stories Pendientes"
 
 #. Default: "Cannot Activate"
-#: ./skins/eXtremeManagement/task_view.pt:40
+#: ./skins/eXtremeManagement/story_view.pt:61
 msgid "cannot_activate"
 msgstr "No se puede activar"
 
@@ -339,7 +344,7 @@ msgid "header_project_members"
 msgstr "Miembros del proyecto"
 
 #. Default: "Time registration"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:58
+#: ./skins/eXtremeManagement/update_hours_form.cpt:32
 msgid "header_time_registration"
 msgstr "Registro de tiempo"
 
@@ -405,22 +410,17 @@ msgid "heading_current_iterations"
 msgstr "Iteraciones actuales"
 
 #. Default: "Finished Iterations"
-#: ./skins/eXtremeManagement/project_view.pt:118
+#: ./skins/eXtremeManagement/project_view.pt:121
 msgid "heading_finished_iterations"
 msgstr "Iteraciones finalizadas"
 
-#. Default: "No Current Iterations"
-#: ./skins/eXtremeManagement/project_view.pt:92
-msgid "heading_no_current_iterations"
-msgstr "Iteraciones no actuales"
-
 #. Default: "Open Iterations"
-#: ./skins/eXtremeManagement/project_view.pt:99
+#: ./skins/eXtremeManagement/project_view.pt:102
 msgid "heading_open_iterations"
 msgstr "Iteraciones Abiertas"
 
 #. Default: "Other Content"
-#: ./skins/eXtremeManagement/project_view.pt:175
+#: ./skins/eXtremeManagement/project_view.pt:178
 msgid "heading_other_content"
 msgstr "Otro Contenido"
 
@@ -546,12 +546,12 @@ msgid "listingheader-week-number"
 msgstr "Número de semana"
 
 #. Default: "Fullname"
-#: ./skins/eXtremeManagement/customer_view.pt:28
+#: ./skins/eXtremeManagement/projectmember_view.pt:29
 msgid "listingheader_Fullname"
 msgstr "Nombre completo"
 
 #. Default: "Phone"
-#: ./skins/eXtremeManagement/customer_view.pt:53
+#: ./skins/eXtremeManagement/projectmember_view.pt:37
 msgid "listingheader_Phone"
 msgstr "Teléfono"
 
@@ -561,7 +561,7 @@ msgid "listingheader_actual_budget_left"
 msgstr ""
 
 #. Default: "Actual (hours)"
-#: ./skins/eXtremeManagement/task_view.pt:58
+#: ./skins/eXtremeManagement/story_view.pt:137
 msgid "listingheader_actual_hours"
 msgstr "Real (horas)"
 
@@ -576,7 +576,7 @@ msgid "listingheader_address"
 msgstr "Dirección"
 
 #. Default: "Assignee(s)"
-#: ./skins/eXtremeManagement/task_view.pt:74
+#: ./skins/eXtremeManagement/story_view.pt:140
 msgid "listingheader_assignees"
 msgstr "Asignado(s)"
 
@@ -601,7 +601,7 @@ msgid "listingheader_diff_hours"
 msgstr "Diferencia (horas)"
 
 #. Default: "Email"
-#: ./skins/eXtremeManagement/customer_view.pt:109
+#: ./skins/eXtremeManagement/projectmember_view.pt:44
 msgid "listingheader_email"
 msgstr "Email"
 
@@ -616,7 +616,7 @@ msgid "listingheader_enddate"
 msgstr "Fecha de fin"
 
 #. Default: "Estimate (hours)"
-#: ./skins/eXtremeManagement/task_view.pt:51
+#: ./skins/eXtremeManagement/story_view.pt:136
 msgid "listingheader_estimate_hours"
 msgstr "Estimación (horas)"
 
@@ -661,7 +661,7 @@ msgid "listingheader_startdate"
 msgstr "Fecha de inicio"
 
 #. Default: "Status"
-#: ./skins/eXtremeManagement/task_view.pt:67
+#: ./skins/eXtremeManagement/story_view.pt:139
 msgid "listingheader_state"
 msgstr "Estado"
 
@@ -771,7 +771,7 @@ msgid "project_administration"
 msgstr "Administración del proyecto"
 
 #. Default: "project overview"
-#: ./skins/eXtremeManagement/project_view.pt:141
+#: ./skins/eXtremeManagement/project_view.pt:144
 msgid "project_overview"
 msgstr ""
 

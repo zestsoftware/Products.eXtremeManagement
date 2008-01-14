@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-01-07 17:12+0000\n"
-"PO-Revision-Date: 2007-12-11 20:19+0100\n"
+"POT-Creation-Date: 2008-01-14 09:20+0000\n"
+"PO-Revision-Date: 2008-01-14 10:07+0100\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,11 @@ msgstr ""
 "Domain: eXtremeManagement\n"
 "X-Is-Fallback-For: nl-be\n"
 
+#. Default: "Offer"
+#: content/Offer.py
+msgid "Offer"
+msgstr "Offerte"
+
 #: ./browser/maintenance.py:15
 msgid "Perform various maintenance tasks. If you know the totals are wrong, you can recalculate them here. This should normally not be needed, so do not touch this unless you know what you are doing.  Then again, it does not hurt, except that it takes a long time."
 msgstr "Voer diverse onderhoudstaken uit. Wanneer u weet dat de totalen verkeerd zijn, kunt u ze hier herberekenen. Dit zou normaal gesproken niet nodig hoeven zijn, dus voer dit alleen uit wanneer u weet waar u mee bezig bent. Aan de andere kant, het kan ook niet echt kwaad, behalve dat het lang duurt."
@@ -27,7 +32,7 @@ msgid "Send"
 msgstr "Versturen"
 
 #. Default: "Send a mail to this user"
-#: ./skins/eXtremeManagement/customer_view.pt:123
+#: ./skins/eXtremeManagement/projectmember_view.pt:49
 msgid "Send a mail to this user"
 msgstr "Stuur een mail naar deze gebruiker"
 
@@ -57,7 +62,7 @@ msgid "box_stories"
 msgstr "In te schatten verhalen"
 
 #. Default: "Cannot Activate"
-#: ./skins/eXtremeManagement/task_view.pt:40
+#: ./skins/eXtremeManagement/story_view.pt:61
 msgid "cannot_activate"
 msgstr "Kan niet activeren"
 
@@ -395,7 +400,7 @@ msgid "header_project_members"
 msgstr "Projectleden"
 
 #. Default: "Time registration"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:58
+#: ./skins/eXtremeManagement/update_hours_form.cpt:32
 msgid "header_time_registration"
 msgstr "Uren registratie"
 
@@ -460,22 +465,17 @@ msgid "heading_current_iterations"
 msgstr "Huidige iteraties"
 
 #. Default: "Finished Iterations"
-#: ./skins/eXtremeManagement/project_view.pt:118
+#: ./skins/eXtremeManagement/project_view.pt:121
 msgid "heading_finished_iterations"
 msgstr "Afgesloten iteraties"
 
-#. Default: "No Current Iterations"
-#: ./skins/eXtremeManagement/project_view.pt:92
-msgid "heading_no_current_iterations"
-msgstr "Geen huidige iteraties"
-
 #. Default: "Open Iterations"
-#: ./skins/eXtremeManagement/project_view.pt:99
+#: ./skins/eXtremeManagement/project_view.pt:102
 msgid "heading_open_iterations"
 msgstr "Open iteraties"
 
 #. Default: "Other Content"
-#: ./skins/eXtremeManagement/project_view.pt:175
+#: ./skins/eXtremeManagement/project_view.pt:178
 msgid "heading_other_content"
 msgstr "Andere inhoud"
 
@@ -601,12 +601,12 @@ msgid "listingheader-week-number"
 msgstr "Weeknummer"
 
 #. Default: "Fullname"
-#: ./skins/eXtremeManagement/customer_view.pt:28
+#: ./skins/eXtremeManagement/projectmember_view.pt:29
 msgid "listingheader_Fullname"
 msgstr "Volledige naam"
 
 #. Default: "Phone"
-#: ./skins/eXtremeManagement/customer_view.pt:53
+#: ./skins/eXtremeManagement/projectmember_view.pt:37
 msgid "listingheader_Phone"
 msgstr "Telefoon"
 
@@ -616,7 +616,7 @@ msgid "listingheader_actual_budget_left"
 msgstr "Daadwerkelijk resterende budget (uren)"
 
 #. Default: "Actual (hours)"
-#: ./skins/eXtremeManagement/task_view.pt:58
+#: ./skins/eXtremeManagement/story_view.pt:137
 msgid "listingheader_actual_hours"
 msgstr "Daadwerkelijk (uren)"
 
@@ -631,7 +631,7 @@ msgid "listingheader_address"
 msgstr "Adres"
 
 #. Default: "Assignee(s)"
-#: ./skins/eXtremeManagement/task_view.pt:74
+#: ./skins/eXtremeManagement/story_view.pt:140
 msgid "listingheader_assignees"
 msgstr "Toegewezen aan"
 
@@ -656,7 +656,7 @@ msgid "listingheader_diff_hours"
 msgstr "Verschil (uren)"
 
 #. Default: "Email"
-#: ./skins/eXtremeManagement/customer_view.pt:109
+#: ./skins/eXtremeManagement/projectmember_view.pt:44
 msgid "listingheader_email"
 msgstr "E-mail"
 
@@ -671,7 +671,7 @@ msgid "listingheader_enddate"
 msgstr "Einddatum"
 
 #. Default: "Estimate (hours)"
-#: ./skins/eXtremeManagement/task_view.pt:51
+#: ./skins/eXtremeManagement/story_view.pt:136
 msgid "listingheader_estimate_hours"
 msgstr "Schatting (uren)"
 
@@ -716,7 +716,7 @@ msgid "listingheader_startdate"
 msgstr "Startdatum"
 
 #. Default: "Status"
-#: ./skins/eXtremeManagement/task_view.pt:67
+#: ./skins/eXtremeManagement/story_view.pt:139
 msgid "listingheader_state"
 msgstr "Status"
 
@@ -827,7 +827,7 @@ msgid "project_administration"
 msgstr "Projectadministratie"
 
 #. Default: "project overview"
-#: ./skins/eXtremeManagement/project_view.pt:141
+#: ./skins/eXtremeManagement/project_view.pt:144
 msgid "project_overview"
 msgstr "Projectoverzicht"
 
