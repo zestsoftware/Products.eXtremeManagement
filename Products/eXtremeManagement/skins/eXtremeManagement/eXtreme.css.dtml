@@ -296,16 +296,18 @@ UL.xm-assignees LI {
   top: -12px;
 }
 
-#offerView h2 {
+.storyTitle-storyEstimate td {
   background-color: #EEF3F5;
+  border-top: 1px solid #8CACBB;
+  border-bottom: 1px solid #8CACBB;
+}
+
+#offerView h2 {
   padding: 2px;
   font-size: 120%;
-  border: 1px solid #8CACBB;
-  border-bottom: none;
   font-weight: bold;
   margin: 0;
-  border-right: none;
-  border-left: none;
+  border-bottom: none;
 }
 
 #offerView h3 {

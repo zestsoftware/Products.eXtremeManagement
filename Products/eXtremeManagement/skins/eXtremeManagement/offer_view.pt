@@ -78,7 +78,10 @@
                   <h2 tal:content="story/title" />
                 </td>
                 <td class="offer-story-estimate">
-                  <h2 tal:content="story/size_estimate" />
+                  <h2 tal:condition="story/size_estimate" 
+                    tal:content="story/size_estimate" />
+                    <tal:empty condition="not: story/size_estimate">
+                    &nbsp;</tal:empty>
                 </td>
               </tr>
               <tr>
