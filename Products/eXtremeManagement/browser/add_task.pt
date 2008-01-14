@@ -29,14 +29,26 @@
       <option value="10">10</option>
     </select>
     <span>:</span>
-    <!-- Pulldown when longer -->
-    <select name="minutes" id="minutes">
 
+    <select name="minutes" id="minutes">
       <option selected="selected"
               value="0">0</option>
       <option value="15">15</option>
       <option value="30">30</option>
       <option value="45">45</option>
+    </select>
+
+    <select name="assignees"
+            id="assignees"
+            tal:define="assignees story_view/get_possible_assignees"
+            tal:condition="assignees">
+      <tal:assignees repeat="assignee assignees">
+        <option value=""
+                selected=""
+                tal:attributes="value python:assignee[0];
+                                selected python:assignee[2]"
+                tal:content="python:assignee[1]" />
+      </tal:assignees>
     </select>
 
     <input value="Add task"

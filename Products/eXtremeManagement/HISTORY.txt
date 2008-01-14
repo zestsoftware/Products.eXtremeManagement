@@ -1,3 +1,10 @@
+20080-1-14 - mark
+
+  - It is now also possible to directly assign someone to a task when
+    using the form at the bottom of the story view.
+
+  - Made several strings in page templates i18n aware.
+
 2008-01-14 - jladage
 
   - Renamed non_iterations to attachment, because we filter our both

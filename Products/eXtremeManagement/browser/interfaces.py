@@ -156,6 +156,12 @@ class IStoryView(IXMBaseView):
     def show_add_task_form():
         """Return whether the add task form should be shown or not"""
 
+    def get_possible_assignees():
+        """Return a list of (id, name, selected) tuples of employees which
+        can be assigned to tasks in this story.
+        The selected element can be used to determine the default assignee.
+        """
+
 
 class IIterationView(IXMBaseView):
     """Info about a iteration
@@ -184,6 +190,7 @@ class IIterationView(IXMBaseView):
     def actual_budget_left():
         """Return the hours left in the project.
         """
+
 
 class IEmployeeTotalsView(IBrowserView):
     """Return totals for employees

@@ -309,8 +309,10 @@ class Create(BrowserView):
         title = form.get('title', '')
         hours = form.get('hours', 0)
         minutes = form.get('minutes', 0)
+        assignees = form.get('assignees', 0)
         context = aq_inner(self.context)
-        create_task(self.context, title=title, hours=hours, minutes=minutes)
+        create_task(self.context, title=title, hours=hours, minutes=minutes,
+                    assignees=assignees)
         self.request.response.redirect(self.context.absolute_url())
 
 
@@ -324,7 +326,8 @@ class Add(PloneKSSView):
         # recalculated.  Sneaky! :)
         context = aq_inner(self.context)
         create_task(context, title=data.title,
-                       hours=data.hours, minutes=data.minutes)
+                    hours=data.hours, minutes=data.minutes,
+                    assignees=data.assignees)
         core = self.getCommandSet('core')
 
         # Refresh the tasks table
@@ -347,7 +350,8 @@ class Add(PloneKSSView):
         core.replaceHTML(selector, rendered)
 
 
-def create_task(context, title='Task', hours=0, minutes=0):
+def create_task(context, title='Task', hours=0, minutes=0,
+                assignees=None):
     """Create a task.
 
     We introduce a Mock Task class for testing.
@@ -421,7 +425,7 @@ def create_task(context, title='Task', hours=0, minutes=0):
 
     Now add some non default values.
 
-    >>> create_task(context, title='Buongiorno', hours=3, minutes=15)
+    >>> create_task(context, title='Buongiorno', hours=3, minutes=15, assignees='JohnDoe')
     >>> context.objectIds()
     ['1', '2']
     >>> task = context.items[-1]
@@ -431,10 +435,12 @@ def create_task(context, title='Task', hours=0, minutes=0):
     3
     >>> task.minutes
     15
+    >>> task.assignees
+    'JohnDoe'
 
     """
     idx = 1
     while str(idx) in context.objectIds():
         idx = idx + 1
     context.invokeFactory('Task', id=str(idx), title=title,
-                          hours=hours, minutes=minutes)
+                          hours=hours, minutes=minutes, assignees=assignees)

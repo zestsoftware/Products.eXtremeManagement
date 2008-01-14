@@ -74,3 +74,26 @@ class StoryView(XMBaseView):
     def show_add_task_form(self):
         addable = [t.Metatype() for t in self.context.allowedContentTypes()]
         return 'Task' in addable
+
+    def get_possible_assignees(self):
+        mtool = getToolByName(self, 'portal_membership')
+        currentUser = mtool.getAuthenticatedMember().getId()
+        # all the member that work on this project
+        # XXX test if user folders somewhere else are recognized too
+        employees = self.context.getProject().getMembers(role='Employee')
+        assignables = []
+        # build result
+        for memberId in employees:
+            if memberId == currentUser:
+                default = 'selected'
+            else:
+                default = ''
+            member = mtool.getMemberById(memberId)
+            if member is not None:
+                fullname = member.getProperty('fullname', None)
+                # if fullname is '' or None, return the id
+                name = fullname and fullname.strip() or member.getId()
+            else:
+                name = memberId
+            assignables.append((memberId, name, default))
+        return assignables
