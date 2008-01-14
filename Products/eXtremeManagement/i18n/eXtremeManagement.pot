@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-01-14 09:20+0000\n"
+"POT-Creation-Date: 2008-01-14 09:54+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -302,6 +302,16 @@ msgstr ""
 #. Default: "email"
 #: ./skins/eXtremeManagement/projectmember_view.pt:54
 msgid "email"
+msgstr ""
+
+#. Default: "Estimated release date"
+#: ./skins/eXtremeManagement/offer_view.pt:35
+msgid "estimated_release_date"
+msgstr ""
+
+#. Default: "Estimated start of project"
+#: ./skins/eXtremeManagement/offer_view.pt:25
+msgid "estimated_start_project"
 msgstr ""
 
 #. Default: "Go to"

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-01-14 09:20+0000\n"
+"POT-Creation-Date: 2008-01-14 09:54+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -372,6 +372,16 @@ msgstr "Code postal"
 #: ./skins/eXtremeManagement/projectmember_view.pt:54
 msgid "email"
 msgstr "courriel"
+
+#. Default: "Estimated release date"
+#: ./skins/eXtremeManagement/offer_view.pt:35
+msgid "estimated_release_date"
+msgstr ""
+
+#. Default: "Estimated start of project"
+#: ./skins/eXtremeManagement/offer_view.pt:25
+msgid "estimated_start_project"
+msgstr ""
 
 #. Default: "Go to"
 #: ./skins/eXtremeManagement/booking_month.pt:26

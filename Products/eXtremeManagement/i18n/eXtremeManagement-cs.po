@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-01-14 09:20+0000\n"
+"POT-Creation-Date: 2008-01-14 09:54+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -369,6 +369,16 @@ msgstr "PSČ"
 #: ./skins/eXtremeManagement/projectmember_view.pt:54
 msgid "email"
 msgstr "email"
+
+#. Default: "Estimated release date"
+#: ./skins/eXtremeManagement/offer_view.pt:35
+msgid "estimated_release_date"
+msgstr ""
+
+#. Default: "Estimated start of project"
+#: ./skins/eXtremeManagement/offer_view.pt:25
+msgid "estimated_start_project"
+msgstr ""
 
 #. Default: "Go to"
 #: ./skins/eXtremeManagement/booking_month.pt:26

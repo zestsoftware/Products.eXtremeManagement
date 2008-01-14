@@ -10,17 +10,20 @@
            tal:define="view context/@@iteration;
                        iteration view/main;
                        iteration_number string:1;
-                       stories view/stories;">
+                       stories view/stories;
+                       start context/getStartDate;
+                       end context/getEndDate;">
 
-        <div class="xm-details">
+        <div class="xm-details"
+             tal:condition="python: start or end">
 
           <table class="listing"
                  width="100%"
                  cellpadding="0"
                  cellspacing="0">
-            <tr>
+            <tr tal:condition="start">
               <th class="customer_info_header"
-                  i18n:translate="listingheader_startdate">Start date</th>
+                  i18n:translate="estimated_start_project">Estimated start of project</th>
               <td>
                 <metal:field use-macro="python:here.widget('startDate',
                                         mode='view')">
@@ -28,9 +31,9 @@
                 </metal:field>
               </td>
             </tr>
-            <tr>
+            <tr tal:condition="end">
               <th class="customer_info_header"
-                  i18n:translate="listingheader_enddate">End date</th>
+                  i18n:translate="estimated_release_date">Estimated release date</th>
               <td>
                 <metal:field use-macro="python:here.widget('endDate',
                                         mode='view')">

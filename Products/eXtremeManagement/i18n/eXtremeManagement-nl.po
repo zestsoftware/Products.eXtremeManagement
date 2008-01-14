@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-01-14 09:20+0000\n"
-"PO-Revision-Date: 2008-01-14 10:07+0100\n"
+"POT-Creation-Date: 2008-01-14 09:54+0000\n"
+"PO-Revision-Date: 2008-01-14 10:57+0100\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -367,6 +367,16 @@ msgstr "Postcode"
 #: ./skins/eXtremeManagement/projectmember_view.pt:54
 msgid "email"
 msgstr "email"
+
+#. Default: "Estimated release date"
+#: ./skins/eXtremeManagement/offer_view.pt:35
+msgid "estimated_release_date"
+msgstr "Geschatte release datum"
+
+#. Default: "Estimated start of project"
+#: ./skins/eXtremeManagement/offer_view.pt:25
+msgid "estimated_start_project"
+msgstr "Geschatte start project"
 
 #. Default: "Go to"
 #: ./skins/eXtremeManagement/booking_month.pt:26
@@ -860,4 +870,3 @@ msgstr "Totaal"
 #: ./skins/eXtremeManagement/customer_view.pt:71
 msgid "visit_the_website"
 msgstr "Bezoek de website"
-
