@@ -155,10 +155,27 @@ class ProjectView(ProjectAdminView):
         """Return folder contents that are not iterations
         """
         context = aq_inner(self.context)
-        filter = dict(portal_type='Iteration')
-        iteration_brains = context.getFolderContents(filter)
+        cfilter = dict(portal_type='Iteration')
+        iteration_brains = context.getFolderContents(cfilter)
         iteration_ids = [brain.id for brain in iteration_brains]
         all_brains = context.getFolderContents()
         brains = [brain for brain in all_brains
                   if brain.id not in iteration_ids]
         return brains
+
+    def offers(self):
+        """Return list of dicts with the title and url to the offers inside a
+        project.
+        """
+        context = aq_inner(self.context)
+        cfilter = dict(portal_type='Offer')
+        offer_brains = context.getFolderContents(cfilter)
+        results = []
+        if offer_brains is not None:
+            for offer in offer_brains:
+                results.append(dict(title = offer.Title,
+                                    url = offer.getURL))
+        if results == []:
+            return None
+        else:
+            return results

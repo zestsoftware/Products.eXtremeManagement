@@ -16,6 +16,8 @@
   <element value="Offer"/>
   <element value="Story"/>
   <element value="Folder"/>
+  <element value="File"/>
+  <element value="Image"/>
   <element value="PoiTracker"/>
  </property>
  <property name="allow_discussion">False</property>

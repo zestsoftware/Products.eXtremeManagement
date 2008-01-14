@@ -88,9 +88,12 @@
           </div>
         </tal:block>
 
-        <tal:block tal:condition="not:current_iterations">
-          <p><strong i18n:translate="heading_no_current_iterations">
-          No Current Iterations</strong></p>
+        <tal:block tal:condition="python: not current_iterations and  view/offers">
+        <ul>
+           <li tal:repeat="offer offers"><a tal:attributes="href offer/url"
+                tal:content="offer/title"> My Offer</a></li>
+        </ul>
+          
         </tal:block>
 
         <dl id="open_iterations"
