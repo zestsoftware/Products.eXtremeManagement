@@ -192,7 +192,7 @@
             </metal:block>
           </tal:block>
 
-          <p class="discreet"
+          <p class="discreet tasklist_table"
              tal:condition="python: not items"
              i18n:translate="no_tasks_defined">
             No tasks defined yet.
