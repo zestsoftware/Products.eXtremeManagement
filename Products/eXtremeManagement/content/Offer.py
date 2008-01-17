@@ -1,6 +1,8 @@
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
 
+from Products.Archetypes.atapi import BooleanField
+from Products.Archetypes.atapi import BooleanWidget
 from Products.Archetypes.atapi import CalendarWidget
 from Products.Archetypes.atapi import DateTimeField
 from Products.Archetypes.atapi import OrderedBaseFolder
@@ -27,6 +29,17 @@ schema = Schema((
             show_hm=False,
             label='End date',
             label_msgid='eXtremeManagement_label_endDate',
+            i18n_domain='eXtremeManagement'),
+    ),
+    BooleanField(
+        name='show_draft',
+        default="False",
+        widget=BooleanWidget(
+            label='Show draft state',
+            label_msgid='eXtremeManagement_label_show_draft',
+            description='Check this to have the Offer view '
+                        'mark stories which are still in the draft state',
+            description_msgid='eXtremeManagement_help_show_draft',
             i18n_domain='eXtremeManagement'),
     ),
 ), )

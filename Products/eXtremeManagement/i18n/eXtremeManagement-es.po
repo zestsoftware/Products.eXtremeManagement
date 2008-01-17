@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement-es\n"
-"POT-Creation-Date: 2008-01-14 11:46+0000\n"
+"POT-Creation-Date: 2008-01-17 16:46+0000\n"
 "PO-Revision-Date: 2007-12-09 14:30-0300\n"
 "Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
 "Language-Team: Spanish\n"
@@ -194,6 +194,11 @@ msgstr "Ingrese su número de teléfono."
 msgid "eXtremeManagement_help_roughEstimate"
 msgstr "Ingrese una estimación aproximada en días (consejo: use multiplos de 0.5 días)"
 
+#. Default: "Check this to have the Offer view mark stories which are still in the draft state"
+#: content/Offer.py
+msgid "eXtremeManagement_help_show_draft"
+msgstr ""
+
 #. Default: "Enter your website address."
 #: content/Customer.py
 msgid "eXtremeManagement_help_website"
@@ -308,6 +313,11 @@ msgstr "Estimación sin procesar"
 msgid "eXtremeManagement_label_roughEstimate"
 msgstr "Estimación aproximada"
 
+#. Default: "Show draft state"
+#: content/Offer.py
+msgid "eXtremeManagement_label_show_draft"
+msgstr ""
+
 #. Default: "Startdate"
 #: content/Iteration.py
 msgid "eXtremeManagement_label_startDate"
@@ -329,12 +339,12 @@ msgid "email"
 msgstr "email"
 
 #. Default: "Estimated release date"
-#: ./skins/eXtremeManagement/offer_view.pt:35
+#: ./skins/eXtremeManagement/offer_view.pt:36
 msgid "estimated_release_date"
 msgstr ""
 
 #. Default: "Estimated start of project"
-#: ./skins/eXtremeManagement/offer_view.pt:25
+#: ./skins/eXtremeManagement/offer_view.pt:26
 msgid "estimated_start_project"
 msgstr ""
 
@@ -506,7 +516,7 @@ msgid "iteration"
 msgstr "Iteración"
 
 #. Default: "Add task"
-#: ./browser/add_task.pt:42
+#: ./browser/add_task.pt:54
 msgid "label_add_task"
 msgstr ""
 

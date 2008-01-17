@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-01-14 11:46+0000\n"
-"PO-Revision-Date: 2008-01-14 12:44+0100\n"
+"POT-Creation-Date: 2008-01-17 16:46+0000\n"
+"PO-Revision-Date: 2008-01-17 17:48+0100\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -212,6 +212,11 @@ msgstr "Voer uw telefoonnummer in."
 msgid "eXtremeManagement_help_roughEstimate"
 msgstr "Voer een ruwe schatting in dagen in (tip: gebruik stappen van 0.5 dagen)"
 
+#. Default: "Check this to have the Offer view mark stories which are still in the draft state"
+#: content/Offer.py
+msgid "eXtremeManagement_help_show_draft"
+msgstr "Vink deze optie aan om in de Offerte pagina de verhalen te markeren die nog in concept staan."
+
 #. Enter your website address.
 #. website
 #. Default: "Enter your website address."
@@ -358,6 +363,11 @@ msgstr "Schatting"
 msgid "eXtremeManagement_label_roughEstimate"
 msgstr "Ruwe schatting"
 
+#. Default: "Show draft state"
+#: content/Offer.py
+msgid "eXtremeManagement_label_show_draft"
+msgstr "Toon concept status"
+
 #. Default: "Startdate"
 #. Startdate
 #: content/Iteration.py
@@ -384,12 +394,12 @@ msgid "email"
 msgstr "email"
 
 #. Default: "Estimated release date"
-#: ./skins/eXtremeManagement/offer_view.pt:35
+#: ./skins/eXtremeManagement/offer_view.pt:36
 msgid "estimated_release_date"
 msgstr "Geschatte release datum"
 
 #. Default: "Estimated start of project"
-#: ./skins/eXtremeManagement/offer_view.pt:25
+#: ./skins/eXtremeManagement/offer_view.pt:26
 msgid "estimated_start_project"
 msgstr "Geschatte start project"
 
@@ -561,7 +571,7 @@ msgid "iteration"
 msgstr "iteratie"
 
 #. Default: "Add task"
-#: ./browser/add_task.pt:42
+#: ./browser/add_task.pt:54
 msgid "label_add_task"
 msgstr "Voeg taak toe"
 
@@ -905,4 +915,3 @@ msgstr "snelheidsgrafiek"
 #: ./skins/eXtremeManagement/customer_view.pt:71
 msgid "visit_the_website"
 msgstr "Bezoek de website"
-

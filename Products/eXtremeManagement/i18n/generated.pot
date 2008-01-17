@@ -235,3 +235,13 @@ msgstr ""
 #: content/Offer.py
 msgid "Offer"
 msgstr ""
+
+#. Default: "Show draft state"
+#: content/Offer.py
+msgid "eXtremeManagement_label_show_draft"
+msgstr ""
+
+#. Default: "Check this to have the Offer view mark stories which are still in the draft state"
+#: content/Offer.py
+msgid "eXtremeManagement_help_show_draft"
+msgstr ""

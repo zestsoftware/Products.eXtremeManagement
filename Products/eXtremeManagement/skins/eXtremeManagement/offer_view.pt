@@ -12,7 +12,8 @@
                        iteration_number string:1;
                        stories view/stories;
                        start context/getStartDate;
-                       end context/getEndDate;">
+                       end context/getEndDate;
+                       show_draft context/getShow_draft|nothing;">
 
         <div class="xm-details"
              tal:condition="python: start or end">
@@ -66,7 +67,7 @@
               class="offer-story-header">Stories</h2>
             <div class="visualClear" />
           </div>
-          
+
           <table width="100%"
                  cellpadding="0"
                  cellspacing="0"
@@ -75,13 +76,28 @@
               <tal:repeat repeat="story stories">
               <tr class="storyTitle-storyEstimate">
                 <td>
-                  <h2 tal:content="story/title" />
+                  <h2>
+                    <span tal:replace="story/title" />
+                    <tal:showstate condition="python: show_draft and story['review_state'] == 'draft'">
+                      <span class="state-draft">
+                        (<span i18n:domain="plone"
+                               i18n:translate="Draft">Draft</span>)
+                      </span>
+                    </tal:showstate>
+                  </h2>
                 </td>
                 <td class="offer-story-estimate">
-                  <h2 tal:condition="story/size_estimate" 
-                    tal:content="story/size_estimate" />
-                    <tal:empty condition="not: story/size_estimate">
-                    &nbsp;</tal:empty>
+                  <h2 tal:define="draft python: show_draft and story['review_state'] == 'draft';"
+                      tal:condition="story/size_estimate">
+                    <span class="state-draft"
+                          tal:condition="draft"
+                          tal:content="story/size_estimate" />
+                    <span tal:condition="not: draft"
+                          tal:content="story/size_estimate" />
+                  </h2>
+                  <tal:empty condition="not: story/size_estimate">
+                    &nbsp;
+                  </tal:empty>
                 </td>
               </tr>
               <tr>
@@ -93,7 +109,7 @@
               </tr>
               </tal:repeat>
             </tbody>
-            
+
             <tfoot id="totalTasks">
               <tr>
                 <td class="offer-story-title-footer"
