@@ -5,6 +5,7 @@
              initial_state="private">
  <permission>Access contents information</permission>
  <permission>Add portal content</permission>
+ <permission>Copy or Move</permission>
  <permission>Delete objects</permission>
  <permission>List folder contents</permission>
  <permission>Modify portal content</permission>
@@ -14,7 +15,6 @@
  <permission>eXtremeManagement: Add Iteration</permission>
  <permission>eXtremeManagement: Add Story</permission>
  <permission>eXtremeManagement: Edit budgetHours</permission>
- <permission>Copy or Move</permission>
  <state state_id="active" title="Active">
   <exit-transition transition_id="close"/>
   <exit-transition transition_id="deactivate"/>
@@ -101,7 +101,15 @@
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
   </permission-map>
-  <permission-map name="Delete objects" acquired="True">
+  <permission-map name="Copy or Move" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="Delete objects" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
                   acquired="False">
