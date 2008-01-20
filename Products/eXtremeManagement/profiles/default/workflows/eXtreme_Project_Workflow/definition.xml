@@ -31,7 +31,6 @@
    <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Delete objects" acquired="True">
-   <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
@@ -77,6 +76,9 @@
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="eXtremeManagement: Edit budgetHours"
+                  acquired="True">
   </permission-map>
  </state>
  <state state_id="completed" title="Completed">
@@ -230,7 +232,7 @@
            for_status="True" update_always="True">
   <description>The last transition</description>
   <default>
-
+   
    <expression>transition/getId|nothing</expression>
   </default>
   <guard>
@@ -240,7 +242,7 @@
            for_status="True" update_always="True">
   <description>The ID of the user who performed the last transition</description>
   <default>
-
+   
    <expression>user/getId</expression>
   </default>
   <guard>
@@ -250,7 +252,7 @@
            for_status="True" update_always="True">
   <description>Comments about the last transition</description>
   <default>
-
+   
    <expression>python:state_change.kwargs.get('comment', '')</expression>
   </default>
   <guard>
@@ -260,7 +262,7 @@
            for_status="False" update_always="False">
   <description>Provides access to workflow history</description>
   <default>
-
+   
    <expression>state_change/getHistory</expression>
   </default>
   <guard>
@@ -272,7 +274,7 @@
            for_status="True" update_always="True">
   <description>Time of the last transition</description>
   <default>
-
+   
    <expression>state_change/getDateTime</expression>
   </default>
   <guard>
