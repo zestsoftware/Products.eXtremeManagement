@@ -1,3 +1,11 @@
+2008-01-20 - jladage
+
+  - Up till now Customers had 'Delete object' and 'Copy and Move' permission
+    with a project. Also the new Offer content type was addable by Customer.
+    These security issues are now corrected. To update your site security,
+    reinstall the product and hit the "Update security setting" in the
+    portal_workflow.
+
 20080-1-14 - mark
 
   - It is now also possible to directly assign someone to a task when
