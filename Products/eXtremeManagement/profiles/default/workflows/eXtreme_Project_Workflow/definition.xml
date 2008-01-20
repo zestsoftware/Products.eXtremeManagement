@@ -14,6 +14,7 @@
  <permission>eXtremeManagement: Add Iteration</permission>
  <permission>eXtremeManagement: Add Story</permission>
  <permission>eXtremeManagement: Edit budgetHours</permission>
+ <permission>Copy or Move</permission>
  <state state_id="active" title="Active">
   <exit-transition transition_id="close"/>
   <exit-transition transition_id="deactivate"/>
@@ -30,8 +31,16 @@
    <permission-role>Employee</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="Delete objects" acquired="True">
+  <permission-map name="Copy or Move" acquired="False">
    <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="Delete objects" acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
@@ -136,8 +145,16 @@
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="Delete objects" acquired="True">
+  <permission-map name="Copy or Move" acquired="False">
    <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="Delete objects" acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
