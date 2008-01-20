@@ -109,5 +109,10 @@
       <role name="Projectmanager"/>
       <role name="Employee"/>
     </permission>
+    <permission name="eXtremeManagement: Add Offer"
+                acquire="True">
+      <role name="Manager"/>
+      <role name="Projectmanager"/>
+    </permission>
   </permissions>
 </rolemap>

@@ -17,12 +17,14 @@ ADD_CONTENT_PERMISSIONS = {
     'CustomerFolder': 'eXtremeManagement: Add CustomerFolder',
     'ProjectFolder': 'eXtremeManagement: Add ProjectFolder',
     'Booking': 'eXtremeManagement: Add Booking',
+    'Offer': 'eXtremeManagement: Add Offer',
 }
 
 # For kupu:
 OUR_LINKABLE_TYPES = ['Iteration', 'Story']
-OUR_COLLECTION_TYPES = ['ProjectFolder', 'Project', 'Iteration']
+OUR_COLLECTION_TYPES = ['ProjectFolder', 'Project', 'Iteration', 'Offer']
 
+# Deprecated can be removed?
 XM_LEFT_SLOTS = ('here/portlet_stories/macros/portlet',)
 XM_RIGHT_SLOTS = ('here/portlet_tasks/macros/portlet',
                   'here/portlet_my_projects/macros/portlet',)
