@@ -133,11 +133,11 @@
       />
 
   <page
-      name="iteration"
-      class=".iterations.IterationView"
+      name="offer"
+      class=".offers.OfferView"
       for="Products.eXtremeManagement.interfaces.IXMOffer"
       permission="zope2.View"
-      allowed_interface=".interfaces.IIterationView"
+      allowed_interface=".interfaces.IOfferView"
       />
 
   <page

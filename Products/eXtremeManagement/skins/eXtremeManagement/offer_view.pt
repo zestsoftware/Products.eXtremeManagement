@@ -7,13 +7,12 @@
 
     <div metal:fill-slot="main">
       <div metal:define-macro="body"
-           tal:define="view context/@@iteration;
+           tal:define="view context/@@offer;
                        iteration view/main;
-                       iteration_number string:1;
                        stories view/stories;
                        start context/getStartDate;
-                       end context/getEndDate;
-                       show_draft context/getShow_draft|nothing;">
+                       end context/getEndDate;">
+
 
         <div class="xm-details"
              tal:condition="python: start or end">
@@ -78,34 +77,28 @@
                 <td>
                   <h2>
                     <span tal:replace="story/title" />
-                    <tal:showstate condition="python: show_draft and story['review_state'] == 'draft'">
-                      <span class="state-draft">
-                        (<span i18n:domain="plone"
-                               i18n:translate="Draft">Draft</span>)
-                      </span>
-                    </tal:showstate>
+                    <span class=""
+                          tal:attributes="class story/draft_class"
+                          tal:condition="story/show_draft_story">
+                      (<span i18n:domain="plone"
+                             i18n:translate="Draft">Draft</span>)
+                    </span>
                   </h2>
                 </td>
                 <td class="offer-story-estimate">
-                  <h2 tal:define="draft python: show_draft and story['review_state'] == 'draft';"
-                      tal:condition="story/size_estimate">
-                    <span class="state-draft"
-                          tal:condition="draft"
-                          tal:content="story/size_estimate" />
-                    <span tal:condition="not: draft"
-                          tal:content="story/size_estimate" />
-                  </h2>
+                  <h2 class=""
+                      tal:condition="story/size_estimate"
+                      tal:attributes="class story/draft_class"
+                      tal:content="story/size_estimate" />
                   <tal:empty condition="not: story/size_estimate">
                     &nbsp;
                   </tal:empty>
                 </td>
               </tr>
               <tr>
-                <td colspan="2" class="offer-story-text">
-                  <span tal:define="storyid story/story_id;
-                                    story_obj python:context[storyid]"
-                      tal:replace="structure story_obj/getMainText" />
-                </td>
+                <td colspan="2"
+                    class="offer-story-text"
+                    tal:content="structure story/main_text" />
               </tr>
               </tal:repeat>
             </tbody>

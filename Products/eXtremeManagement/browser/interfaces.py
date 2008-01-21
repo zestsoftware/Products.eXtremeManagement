@@ -164,7 +164,7 @@ class IStoryView(IXMBaseView):
 
 
 class IIterationView(IXMBaseView):
-    """Info about a iteration
+    """Info about an iteration
     """
 
     def main():
@@ -189,6 +189,23 @@ class IIterationView(IXMBaseView):
 
     def actual_budget_left():
         """Return the hours left in the project.
+        """
+
+
+class IOfferView(IIterationView):
+    """Info about an offer.
+    """
+
+    def main():
+        """Get a dict with info from this object.
+        """
+
+    def stories():
+        """Return the Stories of this Offer.
+        """
+
+    def show_draft():
+        """Return whether draft state of stories should be shown in the view.
         """
 
 
