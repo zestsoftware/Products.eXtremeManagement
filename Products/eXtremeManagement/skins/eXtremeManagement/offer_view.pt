@@ -83,6 +83,14 @@
                       (<span i18n:domain="plone"
                              i18n:translate="Draft">Draft</span>)
                     </span>
+                    <a href=""
+                       tal:condition="story/editable"
+                       tal:attributes="href string:${story/url}/edit">
+                      <img src="edit.gif" alt="Edit" title="Edit"
+                           i18n:domain="plone"
+                           i18n:attributes="alt;
+                                            title"/>
+                    </a>
                   </h2>
                 </td>
                 <td class="offer-story-estimate">
