@@ -38,7 +38,7 @@ class OfferView(IterationView):
                 draft_class = 'state-draft'
             else:
                 draft_class = ''
-            editable = (membership.checkPermission('Manage Portal', story_obj)
+            editable = (membership.checkPermission('Modify portal content', story_obj)
                 or membership.checkPermission(
                     'eXtremeManagement: Edit roughEstimate', story_obj))
             story = dict(

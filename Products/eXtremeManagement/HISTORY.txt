@@ -1,3 +1,11 @@
+2008-01-21 - mark
+
+  - The offer view has its own browser view class now.
+
+  - In the offer view a story can be edited by a single click on the
+    pencil icon. (That is, is the user has the "Modify portal content"
+    permission on the stories.)
+
 2008-01-20 - jladage
 
   - Up till now Customers had 'Delete object' and 'Copy and Move' permission
@@ -6,7 +14,7 @@
     reinstall the product and hit the "Update security setting" in the
     portal_workflow.
 
-20080-1-14 - mark
+20080-01-14 - mark
 
   - It is now also possible to directly assign someone to a task when
     using the form at the bottom of the story view.
