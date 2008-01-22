@@ -64,6 +64,13 @@ class Iteration(OrderedBaseFolder):
     _at_rename_after_creation = True
     schema = Iteration_schema
 
+    security.declarePublic('getIteration')
+    def getIteration(self):
+        """
+        Return self. Useful while doing aquisition down the tree.
+        """
+        return self
+
     security.declarePublic('startable')
     def startable(self):
         """
