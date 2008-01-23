@@ -176,7 +176,10 @@
                     <div>
                       <a tal:attributes="href string:javascript:toggle_item('${iteration_number}-${number}')"
                          class="toggle-handle">[ &uarr; ]</a>&nbsp;
-                      <tal:details content="structure story/details" />
+                      <tal:details content="string:was: structure story/details" />
+                      <!--tal:block
+                          define="realtasks story/info"
+                          replace="structure provider:xm.tasklist.simple" /-->
                     </div>
                   </td>
                 </tr>
@@ -248,7 +251,9 @@
                   usually differ from adding the numbers of the column
                   above it.
                 </p>
-                <table metal:use-macro="here/story_view/macros/tasklist_table" />
+                <tal:block
+                    define="realtasks info"
+                    replace="structure provider:xm.tasklist.simple" />
               </tal:items>
             </tal:todo>
 
@@ -258,7 +263,9 @@
                          tal:define="items info/tasks;
                                      totals info/totals;">
                 <h1 i18n:translate="heading-open-tasks">My open tasks</h1>
-                <table metal:use-macro="here/story_view/macros/tasklist_table" />
+                <tal:block
+                    define="realtasks info"
+                    replace="structure provider:xm.tasklist.simple" />
               </tal:items>
             </tal:open>
           </tal:tasks>

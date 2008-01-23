@@ -37,7 +37,10 @@
                                show_story python:True;
                                totals project_info/totals;">
           <h2 tal:content="project_info/project/Title" />
-          <table metal:use-macro="here/story_view/macros/tasklist_table" />
+          <tal:block
+              define="realtasks project_info"
+              replace="structure provider:xm.tasklist.simple" />
+          <!--table metal:use-macro="here/story_view/macros/tasklist_table" /-->
         </tal:block>
       </tal:loop>
 

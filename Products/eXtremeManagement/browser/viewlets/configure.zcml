@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+    <!-- Add manager... -->
+    <browser:viewletManager
+        name="xm.tasklist.simple"
+        provides=".interfaces.ISimpleTaskList"
+        permission="zope2.View"
+        class=".manager.SimpleTaskListManager"
+        />
+
+</configure>
