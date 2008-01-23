@@ -178,7 +178,8 @@ class ProjectView(ProjectAdminView):
             plone_view = getMultiAdapter((context, self.request), name=u'plone')
             icon = plone_view.getIcon(offer_brains[0].getObject())
             for offer in offer_brains:
-                results.append(dict(title = offer.Title,
+                results.append(dict(brain = offer,
+                                    title = offer.Title,
                                     url = offer.getURL,
                                     icon = icon.html_tag()))
         if results == []:
