@@ -40,7 +40,7 @@
         <metal:define define-macro="details"
                       tal:define="view context/@@story;
                                   story view/main;
-                                  tasklist view/tasks;
+                                  tasklist view/tasklist;
                                   items tasklist/tasks;
                                   totals tasklist/totals;
                                   estimated context/isEstimated;

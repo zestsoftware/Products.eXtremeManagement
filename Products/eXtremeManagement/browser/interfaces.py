@@ -145,7 +145,7 @@ class IStoryView(IXMBaseView):
         """Get a dict with totals for this Story.
         """
 
-    def tasks():
+    def tasklist():
         """Return the Tasks of this Story
         """
 

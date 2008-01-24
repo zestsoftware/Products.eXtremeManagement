@@ -342,7 +342,7 @@ class Add(PloneKSSView):
                                     manager = 'plone.belowcontentbody',
                                     name = 'xm.add_task_form')
 
-    def tasks(self):
+    def tasklist(self):
         context = aq_inner(self.context)
         story_view = context.restrictedTraverse('@@story')
         tasks = story_view.tasks()

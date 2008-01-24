@@ -17,12 +17,9 @@ class SimpleTaskListManager(Explicit):
 
         # XXX All views should have the same method here.
         try:
-            self.tasks = view.tasks()
+            self.tasks = view.tasklist()
         except AttributeError:
-            try:
-                self.tasks = view.tasklist()
-            except AttributeError:
-                self.tasks = None
+            self.tasks = None
 
     def update(self):
         pass
