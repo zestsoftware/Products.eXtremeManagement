@@ -9,13 +9,13 @@ class SimpleTaskListManager(Explicit):
     template = ViewPageTemplateFile('templates/manage_simple_tasklist.pt')
     render = template
     realtasks = None
+    show_story = False
 
     def __init__(self, context, request, view):
         self.context = context
         self.request = request
         self.__parent__ = view
 
-        # XXX All views should have the same method here.
         try:
             self.tasks = view.tasklist()
         except AttributeError:

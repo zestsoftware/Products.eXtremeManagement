@@ -33,15 +33,11 @@
       </p>
 
       <tal:loop tal:repeat="project_info projects">
-        <tal:block tal:define="items project_info/tasks;
-                               show_story python:True;
-                               totals project_info/totals;">
-          <h2 tal:content="project_info/project/Title" />
-          <tal:block
-              define="realtasks project_info"
-              replace="structure provider:xm.tasklist.simple" />
-          <!--table metal:use-macro="here/story_view/macros/tasklist_table" /-->
-        </tal:block>
+        <h2 tal:content="project_info/project/Title" />
+        <tal:block
+            define="realtasks project_info;
+                    show_story python:True;"
+            replace="structure provider:xm.tasklist.simple" />
       </tal:loop>
 
     </tal:main>
