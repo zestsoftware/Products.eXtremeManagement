@@ -3,16 +3,29 @@
             view nocall:story_object/@@story;
             realtasks view/tasklist;">
 
-  <p class="documentDescription">
+  <!-- The KSS is not working here.
+  <div tal:attributes="class string:kssattr-atuid-${story_object/UID}">
     <metal:field use-macro="python:story_object.widget('description', mode='view')">
       Description
     </metal:field>
-  </p>
+  </div>
 
   <div tal:attributes="class string:kssattr-atuid-${story_object/UID}">
     <metal:field use-macro="python:story_object.widget('mainText', mode='view')">
       Body text
     </metal:field>
   </div>
+  -->
+
+  <p class="documentDescription"
+     tal:content="story_object/Description">
+    Description
+  </p>
+
+  <div tal:replace="structure story_object/mainText">
+      Body text
+  </div>
+
   <div tal:replace="structure provider:xm.tasklist.simple" />
+
 </tal:block>
