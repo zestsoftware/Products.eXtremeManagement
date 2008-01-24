@@ -12,5 +12,4 @@ function toggle_display(id) {
 
 function toggle_item(number) {
     toggle_display('toggle-item-' + number);
-    toggle_display('toggle-header-' + number);
 }
