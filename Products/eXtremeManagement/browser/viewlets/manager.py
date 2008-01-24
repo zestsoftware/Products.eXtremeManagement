@@ -20,13 +20,12 @@ class SimpleTaskListManager(Explicit):
         self.context = context
         self.request = request
         self.__parent__ = view
-        """
+
         # XXX All views should have the same method here.
         try:
             self.tasks = view.tasks()
         except AttributeError:
             self.tasks = view.tasklist()
-        """
 
     def update(self):
         pass

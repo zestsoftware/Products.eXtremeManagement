@@ -329,25 +329,24 @@ class Add(PloneKSSView):
                     hours=data.hours, minutes=data.minutes,
                     assignees=data.assignees)
         core = self.getCommandSet('core')
+        zopecommands = self.getCommandSet('zope')
 
         # Refresh the tasks table
-        story_view = context.restrictedTraverse('@@story')
-        tasks = story_view.tasks()
-        kwargs = {}
-        kwargs['show_story'] = False
-        kwargs['tasks'] = tasks['tasks']
-        kwargs['totals'] = tasks['totals']
-        content = self.macroContent('story_view/macros/tasklist_table',
-                                    **kwargs)
         selector = core.getCssSelector('.tasklist_table')
-        core.replaceHTML(selector, content)
+        zopecommands.refreshProvider(selector,
+                                     name='xm.tasklist.simple')
 
         # Refresh the add task form
-        viewlet = TaskForm(context, self.request, None, None)
-        viewlet.update()
-        rendered = viewlet.render()
         selector = core.getHtmlIdSelector('add-task')
-        core.replaceHTML(selector, rendered)
+        zopecommands.refreshViewlet(selector,
+                                    manager = 'plone.belowcontentbody',
+                                    name = 'xm.add_task_form')
+
+    def tasks(self):
+        context = aq_inner(self.context)
+        story_view = context.restrictedTraverse('@@story')
+        tasks = story_view.tasks()
+        return tasks
 
 
 def create_task(context, title='Task', hours=0, minutes=0,
@@ -425,7 +424,8 @@ def create_task(context, title='Task', hours=0, minutes=0,
 
     Now add some non default values.
 
-    >>> create_task(context, title='Buongiorno', hours=3, minutes=15, assignees='JohnDoe')
+    >>> create_task(context, title='Buongiorno', hours=3, minutes=15,
+    ...             assignees='JohnDoe')
     >>> context.objectIds()
     ['1', '2']
     >>> task = context.items[-1]
