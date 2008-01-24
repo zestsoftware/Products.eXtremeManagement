@@ -1,11 +1,5 @@
 from Acquisition import Explicit
-from Acquisition import aq_inner
-from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from zope.component import getMultiAdapter
-from zope.viewlet.interfaces import IViewlet
-from zope.component import getUtility, getAdapters
-from zope.component import getMultiAdapter, queryMultiAdapter
 from interfaces import ISimpleTaskList
 from zope.interface import implements
 
