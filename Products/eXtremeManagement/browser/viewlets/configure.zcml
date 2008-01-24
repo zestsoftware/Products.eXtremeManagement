@@ -16,4 +16,11 @@
         class=".manager.SimpleTaskListManager"
         />
 
+    <browser:viewletManager
+        name="xm.story.details"
+        provides=".interfaces.IStoryDetails"
+        permission="zope2.View"
+        class=".manager.StoryDetailsProvider"
+        />
+
 </configure>

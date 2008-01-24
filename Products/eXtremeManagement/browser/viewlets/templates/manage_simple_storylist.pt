@@ -138,10 +138,8 @@
                class="toggle-handle">[ &uarr; ]</a>&nbsp;
             <tal:block
                 define="brains python:context.uid_catalog(UID=story['uid']);
-                        story_object python:brains[0].getObject();
-                        view story_object/@@story;
-                        tasklist view/tasklist;"
-                replace="structure provider:xm.tasklist.simple" />
+                        story_object python:brains[0].getObject();"
+                replace="structure provider:xm.story.details" />
           </div>
         </td>
       </tr>

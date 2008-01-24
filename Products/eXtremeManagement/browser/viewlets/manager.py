@@ -2,6 +2,7 @@ from Acquisition import Explicit
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from interfaces import ISimpleTaskList
 from interfaces import ISimpleStoryList
+from interfaces import IStoryDetails
 from zope.interface import implements
 
 
@@ -38,6 +39,21 @@ class SimpleStoryListManager(Explicit):
     show_progress = False
     show_totals = False
     iteration_number = '1'
+
+    def __init__(self, context, request, view):
+        self.context = context
+        self.request = request
+        self.__parent__ = view
+
+    def update(self):
+        pass
+
+
+class StoryDetailsProvider(Explicit):
+    implements(IStoryDetails)
+    template = ViewPageTemplateFile('templates/manage_story_details.pt')
+    render = template
+    story_object = None
 
     def __init__(self, context, request, view):
         self.context = context

@@ -29,3 +29,13 @@ class ISimpleStoryList(IViewletManager):
     show_totals = zope.schema.Bool(title=u'Show totals for the iteration.')
 
 directlyProvides(ISimpleStoryList, ITALNamespaceData)
+
+
+class IStoryDetails(IViewletManager):
+    realtasks = zope.schema.Text(
+        title=u'Alternative for tasks that might be in the view.')
+    story_object = zope.schema.Bool(title=u'Story object whose details should be rendered.')
+
+directlyProvides(IStoryDetails, ITALNamespaceData)
+
+
