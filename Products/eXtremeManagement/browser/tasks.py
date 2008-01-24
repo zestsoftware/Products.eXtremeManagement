@@ -311,9 +311,9 @@ class Create(BrowserView):
         minutes = form.get('minutes', 0)
         assignees = form.get('assignees', 0)
         context = aq_inner(self.context)
-        create_task(self.context, title=title, hours=hours, minutes=minutes,
+        create_task(context, title=title, hours=hours, minutes=minutes,
                     assignees=assignees)
-        self.request.response.redirect(self.context.absolute_url())
+        self.request.response.redirect(context.absolute_url())
 
 
 class Add(PloneKSSView):
