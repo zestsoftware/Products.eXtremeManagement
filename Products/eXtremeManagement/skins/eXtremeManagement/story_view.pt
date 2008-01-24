@@ -37,14 +37,14 @@
           </div>
         </metal:prevnext>
 
-        <metal:define define-macro="details"
-                      tal:define="view context/@@story;
-                                  story view/main;
-                                  tasklist view/tasklist;
-                                  items tasklist/tasks;
-                                  totals tasklist/totals;
-                                  estimated context/isEstimated;
-                                  startable context/startable">
+        <tal:details
+            define="view context/@@story;
+                    story view/main;
+                    tasklist view/tasklist;
+                    items tasklist/tasks;
+                    totals tasklist/totals;
+                    estimated context/isEstimated;
+                    startable context/startable">
 
           <div class="xm-details" tal:condition="python:not estimated or not startable">
             <dl tal:condition="not:estimated" class="needs-estimate">
@@ -155,7 +155,7 @@
             </div>
           </tal:attachements>
 
-        </metal:define>
+        </tal:details>
       </div>
 
       <metal:block metal:define-macro="folderlisting" />
