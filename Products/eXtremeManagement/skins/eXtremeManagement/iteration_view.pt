@@ -9,7 +9,6 @@
       <div metal:define-macro="body"
            tal:define="view context/@@iteration;
                        iteration view/main;
-                       iteration_number string:1;
                        stories view/stories;">
 
         <div class="xm-details">
@@ -88,122 +87,11 @@
                                   show_totals python:True">
           <h1 i18n:translate="heading-stories">Stories</h1>
 
-          <metal:stories metal:define-macro="story_list">
-            <table class="listing"
-                   width="100%"
-                   border="1"
-                   cellpadding="0"
-                   cellspacing="0">
-              <metal:block define-slot="extra_header" />
-              <tr>
-                <th i18n:translate="listingheader_story">Story</th>
-                <th i18n:translate="listingheader_state">Status</th>
-                <tal:task_count tal:condition="show_task_count">
-                  <th i18n:translate="listingheader_tasks_open">Tasks open</th>
-                  <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
-                </tal:task_count>
-                <th i18n:translate="listingheader_initial_estimate">Initial estimate (days)</th>
-                <th i18n:translate="listingheader_tasks_estimate">Tasks estimate (hours)</th>
-                <th i18n:translate="listingheader_actual_hours">Actual (hours)</th>
-              </tr>
-
-              <tal:repeat repeat="story stories">
-                <tr tal:define="number repeat/story/number"
-                    tal:attributes="id string:toggle-header-${iteration_number}-${number}"
-                    class="list-in-iteration">
-                  <td class="td-story-title">
-                    <div>
-                      <a tal:attributes="href string:javascript:toggle_item('${iteration_number}-${number}')"
-                         class="toggle-handle">[ &darr; ]</a>&nbsp;
-                      <a class="storyTitle_iteration_overview"
-                         tal:attributes="href string:${story/url}"
-                         tal:content="story/title" />
-                    </div>
-
-                  </td>
-                  <td tal:define="review_state story/review_state"
-                      tal:content="story/review_state_title"
-                      tal:condition="not:show_progress"
-                      i18n:domain="plone"
-                      i18n:translate=""
-                      class=""
-                      tal:attributes="class python:'td-center state-'+normalizeString(review_state)" />
-
-                  <td class="progress_details"
-                      tal:condition="show_progress"
-                      width="150">
-                    <span class="progress_percentage">
-                      (<span i18n:domain="plone"
-                      i18n:translate="" tal:content="story/review_state_title" />)
-                      <tal:percentage tal:content="story/progress" />%&nbsp;
-                    </span>
-                    <br />
-                    <div class="progress_bar">
-                      <img tal:condition="story/is_completed"
-                           src="progress-complete.gif"
-                           height="10"
-                           tal:attributes="width story/progress"
-                           alt="progress bar"
-                           i18n:attributes="alt progress_bar" />
-                      <img tal:condition="not:story/is_completed"
-                           src="progress.gif"
-                           height="10"
-                           tal:attributes="width story/progress"
-                           alt="progress bar"
-                           i18n:attributes="alt progress_bar" />
-                    </div>
-                  </td>
-
-                  <tal:task_count tal:condition="show_task_count">
-                    <td tal:content="story/open_tasks" />
-                    <td tal:content="story/completed_tasks" />
-                  </tal:task_count>
-                  <td tal:content="story/size_estimate" />
-                  <td tal:condition="story/raw_estimate"
-                      tal:content="story/estimate" />
-                  <td tal:condition="not:story/raw_estimate"
-                      i18n:translate="no_tasks_defined">
-                    No tasks defined yet.
-                  </td>
-                  <td tal:content="story/actual" />
-                </tr>
-                <tr tal:define="number repeat/story/number"
-                    tal:attributes="id string:toggle-item-${iteration_number}-${number}"
-                    style="display:none"
-                    class="toggle-item">
-                  <td colspan="5"
-                      tal:attributes="colspan python:test(show_task_count, 7, 5)">
-                    <div>
-                      <a tal:attributes="href string:javascript:toggle_item('${iteration_number}-${number}')"
-                         class="toggle-handle">[ &uarr; ]</a>&nbsp;
-                      <!-- story/info is never available here, as it is not in the story dict. -->
-                      <tal:block
-                          define="realtasks story/info|nothing"
-                          replace="structure provider:xm.tasklist.simple" />
-                    </div>
-                  </td>
-                </tr>
-              </tal:repeat>
-
-              <tr id="totalTasks"
-                  tal:condition="show_totals">
-                <th class="td-story-title"
-                    colspan="2"
-                    tal:attributes="colspan python:test(show_task_count, 4, 2)"
-                    i18n:translate="total">Total</th>
-                <th tal:content="iteration/size_estimate" />
-                <th tal:content="iteration/estimate" />
-                <th tal:content="iteration/actual" />
-              </tr>
-            </table>
-            <p class="discreet" i18n:translate="help_stories_table">
-              The Initial estimate of the story is a rough estimate in
-              days.  The Tasks estimate is the total estimate in hours
-              for all tasks.  If there is a big difference there could
-              be a logical explanation.  You should investigate that to
-              be sure.
-            </p>
-          </metal:stories>
+          <div
+              tal:define="iteration_dict iteration;
+                          iteration_object nocall:context;
+                          realstories stories;"
+              tal:replace="structure provider:xm.storylist.simple" />
 
           <tal:membertasks
               tal:define="membertasks context/@@employee_totals/totals;"

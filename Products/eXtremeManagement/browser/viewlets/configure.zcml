@@ -2,7 +2,13 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser">
 
-    <!-- Add manager... -->
+    <browser:viewletManager
+        name="xm.storylist.simple"
+        provides=".interfaces.ISimpleStoryList"
+        permission="zope2.View"
+        class=".manager.SimpleStoryListManager"
+        />
+
     <browser:viewletManager
         name="xm.tasklist.simple"
         provides=".interfaces.ISimpleTaskList"
