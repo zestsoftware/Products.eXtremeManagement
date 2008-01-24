@@ -176,10 +176,10 @@
                     <div>
                       <a tal:attributes="href string:javascript:toggle_item('${iteration_number}-${number}')"
                          class="toggle-handle">[ &uarr; ]</a>&nbsp;
-                      <tal:details content="string:was: structure story/details" />
-                      <!--tal:block
-                          define="realtasks story/info"
-                          replace="structure provider:xm.tasklist.simple" /-->
+                      <!-- story/info is never available here, as it is not in the story dict. -->
+                      <tal:block
+                          define="realtasks story/info|nothing"
+                          replace="structure provider:xm.tasklist.simple" />
                     </div>
                   </td>
                 </tr>

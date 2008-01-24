@@ -115,11 +115,9 @@
                      tal:define="show_story python:False;">
             <h2 class="heading-tasks" i18n:translate="heading_tasks">Tasks</h2>
 
-            <metal:block metal:define-macro="tasklist_table">
-              <tal:replace
-                  define="realtasks tasklist"
-                  replace="structure provider:xm.tasklist.simple" />
-            </metal:block>
+            <tal:replace
+                define="realtasks tasklist"
+                replace="structure provider:xm.tasklist.simple" />
           </tal:block>
 
           <p class="discreet tasklist_table"

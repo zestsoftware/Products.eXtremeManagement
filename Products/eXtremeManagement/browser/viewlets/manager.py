@@ -19,7 +19,10 @@ class SimpleTaskListManager(Explicit):
         try:
             self.tasks = view.tasks()
         except AttributeError:
-            self.tasks = view.tasklist()
+            try:
+                self.tasks = view.tasklist()
+            except AttributeError:
+                self.tasks = None
 
     def update(self):
         pass

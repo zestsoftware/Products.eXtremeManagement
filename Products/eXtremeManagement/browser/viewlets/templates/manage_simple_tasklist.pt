@@ -1,7 +1,7 @@
 <tal:tasklist
     tal:define="tasklist python: view.realtasks or view.tasks;
-                items tasklist/tasks;
-                totals tasklist/totals;">
+                items tasklist/tasks|nothing;
+                totals tasklist/totals|nothing;">
   <tal:block tal:condition="items"
              tal:define="show_story python:False;">
 
