@@ -9,11 +9,12 @@ from plone.app.kss.plonekssview import PloneKSSView
 from plone.app.layout.viewlets import ViewletBase
 from kss.core import kssaction
 
-from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from xm.booking.timing.interfaces import IActualHours
 from xm.booking.timing.interfaces import IEstimate
+from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
 from Products.eXtremeManagement.utils import getStateSortedContents
+from Products.eXtremeManagement import XMMessageFactory as _
 
 
 class TaskView(XMBaseView):
@@ -325,9 +326,16 @@ class Add(PloneKSSView):
         # story, which means the totals for the story are not
         # recalculated.  Sneaky! :)
         context = aq_inner(self.context)
-        create_task(context, title=data.title,
+        plone_commands = self.getCommandSet('plone')
+        title = data.get('title')
+        if not title:
+            plone_commands.issuePortalMessage(_(u'Title is required'),
+                                              msgtype='error')
+            return None
+        assignees = data.get('assignees')
+        create_task(context, title=title,
                     hours=data.hours, minutes=data.minutes,
-                    assignees=data.assignees)
+                    assignees=assignees)
         core = self.getCommandSet('core')
 
         # Refresh the tasks table
@@ -348,6 +356,10 @@ class Add(PloneKSSView):
         rendered = viewlet.render()
         selector = core.getHtmlIdSelector('add-task')
         core.replaceHTML(selector, rendered)
+
+        # Set a portal message to inform the user of the change.
+        plone_commands.issuePortalMessage(_(u'Task added'),
+                                          msgtype='info')
 
 
 def create_task(context, title='Task', hours=0, minutes=0,

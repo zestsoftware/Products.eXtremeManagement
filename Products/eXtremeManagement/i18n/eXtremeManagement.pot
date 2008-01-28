@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-01-17 16:46+0000\n"
+"POT-Creation-Date: 2008-01-28 11:19+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -43,6 +43,14 @@ msgstr ""
 #. Default: "Send a mail to this user"
 #: ./skins/eXtremeManagement/projectmember_view.pt:49
 msgid "Send a mail to this user"
+msgstr ""
+
+#: ./browser/tasks.py:362
+msgid "Task added"
+msgstr ""
+
+#: ./browser/tasks.py:334
+msgid "Title is required"
 msgstr ""
 
 #. Default: "actual"
@@ -330,12 +338,12 @@ msgid "email"
 msgstr ""
 
 #. Default: "Estimated release date"
-#: ./skins/eXtremeManagement/offer_view.pt:36
+#: ./skins/eXtremeManagement/offer_view.pt:35
 msgid "estimated_release_date"
 msgstr ""
 
 #. Default: "Estimated start of project"
-#: ./skins/eXtremeManagement/offer_view.pt:26
+#: ./skins/eXtremeManagement/offer_view.pt:25
 msgid "estimated_start_project"
 msgstr ""
 
