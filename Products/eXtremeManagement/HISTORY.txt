@@ -1,3 +1,11 @@
+2008-01-28 - mark
+
+  - Make the add task KSS form more robust to also cope with a lack of
+    assignees.
+
+  - While we're at it: also add portal messages to provide feedback to
+    the user when the task is added and when there is no title.
+
 2008-01-21 - mark
 
   - The offer view has its own browser view class now.

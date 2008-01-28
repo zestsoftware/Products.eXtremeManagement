@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-01-17 16:46+0000\n"
-"PO-Revision-Date: 2008-01-17 17:48+0100\n"
+"POT-Creation-Date: 2008-01-28 11:19+0000\n"
+"PO-Revision-Date: 2008-01-28 09:54+0100\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -45,6 +45,14 @@ msgstr "Versturen"
 #: ./skins/eXtremeManagement/projectmember_view.pt:49
 msgid "Send a mail to this user"
 msgstr "Stuur een mail naar deze gebruiker"
+
+#: ./browser/tasks.py:362
+msgid "Task added"
+msgstr "Taak toegevoegd"
+
+#: ./browser/tasks.py:334
+msgid "Title is required"
+msgstr "Titel is verplicht"
 
 #. Default: "actual"
 #: ./skins/eXtremeManagement/project_view.pt:78
@@ -394,12 +402,12 @@ msgid "email"
 msgstr "email"
 
 #. Default: "Estimated release date"
-#: ./skins/eXtremeManagement/offer_view.pt:36
+#: ./skins/eXtremeManagement/offer_view.pt:35
 msgid "estimated_release_date"
 msgstr "Geschatte release datum"
 
 #. Default: "Estimated start of project"
-#: ./skins/eXtremeManagement/offer_view.pt:26
+#: ./skins/eXtremeManagement/offer_view.pt:25
 msgid "estimated_start_project"
 msgstr "Geschatte start project"
 
@@ -915,3 +923,4 @@ msgstr "snelheidsgrafiek"
 #: ./skins/eXtremeManagement/customer_view.pt:71
 msgid "visit_the_website"
 msgstr "Bezoek de website"
+
