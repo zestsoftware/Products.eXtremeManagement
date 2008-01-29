@@ -134,8 +134,6 @@
         <td colspan="5"
             tal:attributes="colspan python:show_task_count and 7 or 5">
           <div>
-            <a tal:attributes="href string:javascript:toggle_item('${iteration_number}-${number}')"
-               class="toggle-handle">[ &uarr; ]</a>&nbsp;
             <tal:block
                 define="brains python:context.uid_catalog(UID=story['uid']);
                         story_object python:brains[0].getObject();"
