@@ -357,7 +357,7 @@ class Add(PloneKSSView):
     def tasklist(self):
         context = aq_inner(self.context)
         story_view = context.restrictedTraverse('@@story')
-        tasks = story_view.tasks()
+        tasks = story_view.tasklist()
         return tasks
 
 
