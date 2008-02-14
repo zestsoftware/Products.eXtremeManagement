@@ -1,3 +1,7 @@
+2008-02-14 - mark and maurits
+
+  - Replaced the macros in the iteration and story views by providers.
+
 2008-01-28 - mark
 
   - Make the add task KSS form more robust to also cope with a lack of
