@@ -1,7 +1,5 @@
 from Acquisition import aq_inner
 from Acquisition import aq_parent
-from Acquisition import ImplicitAcquisitionWrapper
-from Products.PageTemplates.PageTemplate import PageTemplate
 
 from Products.CMFCore.utils import getToolByName
 
@@ -14,29 +12,9 @@ from Products.eXtremeManagement.utils import formatTime
 from Products.eXtremeManagement.utils import getStateSortedContents
 
 
-def degrade_headers(html, howmuch=2):
-    """
-      >>> degrade_headers('<h1>Hello</h1><h2>World</h2>')
-      '<h3>Hello</h3><h4>World</h4>'
-      >>> degrade_headers('<h0>Funny things</h0><h2>as input</h2>')
-      '<h2>Funny things</h2><h4>as input</h4>'
-    """
-    for number in range(6, -1, -1):
-        html = html.replace('<h%s' % number, '<h%s' % (number + howmuch))
-        html = html.replace('</h%s>' % number, '</h%s>' % (number + howmuch))
-    return html
-
-
 class IterationView(XMBaseView):
     """Simply return info about a Iteration.
     """
-
-    details_template = PageTemplate()
-    details_template.write("""
-    <metal:define metal:use-macro='context/global_defines/macros/defines' />
-    <h0 tal:content='context/Title'>Story title</h0>
-    <metal:use use-macro='context/story_view/macros/details' />
-    """)
 
     def main(self):
         """Get a dict with info from this Context.
@@ -100,7 +78,6 @@ class IterationView(XMBaseView):
 
         for storybrain in storybrains:
             info = self.storybrain2dict(storybrain)
-            info['details'] = self.render_details(storybrain)
             story_list.append(info)
 
         return story_list
@@ -139,6 +116,7 @@ class IterationView(XMBaseView):
         actual = brain.actual_time
         returnvalue = dict(
             story_id = brain.getId,
+            uid = brain.UID,
             url = brain.getURL(),
             title = brain.Title,
             description = brain.Description,
@@ -169,12 +147,6 @@ class IterationView(XMBaseView):
         view = context.restrictedTraverse('@@mytask_details')
         result = view.tasklist()
         return result
-
-    def render_details(self, storybrain):
-        story = storybrain.getObject()
-        info = story.restrictedTraverse('@@story').main()
-        rendered = ImplicitAcquisitionWrapper(self.details_template, story)()
-        return degrade_headers(rendered)
 
     def story_titles_not_startable(self):
         context = aq_inner(self.context)

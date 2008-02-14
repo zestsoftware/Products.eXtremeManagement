@@ -1,0 +1,74 @@
+<tal:tasklist
+    define="tasklist python: view.realtasks or view.tasks;
+            items tasklist/tasks|nothing;
+            totals tasklist/totals|nothing;
+            show_story view/show_story;"
+    condition="items">
+
+  <table class="listing nosort tasklist_table"
+         border="1"
+         width="100%"
+         cellpadding="0"
+         cellspacing="0">
+    <thead>
+      <tr>
+        <th i18n:translate="listingheader_story"
+            tal:condition="show_story">Story</th>
+        <th i18n:translate="listingheader_title">Title</th>
+        <th i18n:translate="listingheader_estimate_hours">Estimate (hours)</th>
+        <th i18n:translate="listingheader_actual_hours">Actual (hours)</th>
+        <th i18n:translate="listingheader_diff_hours">Difference (hours)</th>
+        <th i18n:translate="listingheader_state">Status</th>
+        <th i18n:translate="listingheader_assignees">Assignee(s)</th>
+      </tr>
+    </thead>
+
+
+    <tr tal:repeat="task items"
+        class="list-in-iteration">
+      <tal:story condition="show_story">
+        <tal:comment replace="nothing">
+          This part is also used in other templates via a
+          metal macro, so we have to get the story url and
+          title from the task items and not from the context
+          or view/main.
+        </tal:comment>
+        <td class="td-story-title">
+          <a tal:attributes="href task/story_url"
+             tal:content="task/story_title" />
+        </td>
+      </tal:story>
+      <td class="td-story-title">
+        <a tal:attributes="href task/url"
+           tal:content="task/title" />
+      </td>
+      <td tal:content="task/estimate" />
+      <td tal:content="task/actual" />
+      <td tal:content="task/difference" />
+      <td tal:content="task/review_state_title"
+          i18n:domain="plone"
+          i18n:translate=""
+          class=""
+          tal:attributes="class python:'td-center state-'+task['review_state']" />
+      <td class="td-center">
+        <tal:assignees tal:repeat="employee task/assignees">
+          <img tal:replace="structure context/user.gif" />
+          <span tal:replace="employee">Assignee</span>
+          <br />
+        </tal:assignees>
+      </td>
+    </tr>
+
+    <tr id="totalTasks">
+      <th class="td-story-title"
+          tal:attributes="colspan python:show_story and 2 or 1"
+          i18n:translate="total">
+        Total
+      </th>
+      <th tal:content="totals/estimate" />
+      <th tal:content="totals/actual" />
+      <th tal:content="totals/difference" />
+      <th colspan="2">&nbsp;</th>
+    </tr>
+  </table>
+</tal:tasklist>

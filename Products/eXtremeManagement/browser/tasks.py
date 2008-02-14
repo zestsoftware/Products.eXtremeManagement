@@ -312,9 +312,9 @@ class Create(BrowserView):
         minutes = form.get('minutes', 0)
         assignees = form.get('assignees', 0)
         context = aq_inner(self.context)
-        create_task(self.context, title=title, hours=hours, minutes=minutes,
+        create_task(context, title=title, hours=hours, minutes=minutes,
                     assignees=assignees)
-        self.request.response.redirect(self.context.absolute_url())
+        self.request.response.redirect(context.absolute_url())
 
 
 class Add(PloneKSSView):
@@ -337,29 +337,28 @@ class Add(PloneKSSView):
                     hours=data.hours, minutes=data.minutes,
                     assignees=assignees)
         core = self.getCommandSet('core')
+        zopecommands = self.getCommandSet('zope')
 
         # Refresh the tasks table
-        story_view = context.restrictedTraverse('@@story')
-        tasks = story_view.tasks()
-        kwargs = {}
-        kwargs['show_story'] = False
-        kwargs['tasks'] = tasks['tasks']
-        kwargs['totals'] = tasks['totals']
-        content = self.macroContent('story_view/macros/tasklist_table',
-                                    **kwargs)
         selector = core.getCssSelector('.tasklist_table')
-        core.replaceHTML(selector, content)
+        zopecommands.refreshProvider(selector,
+                                     name='xm.tasklist.simple')
 
         # Refresh the add task form
-        viewlet = TaskForm(context, self.request, None, None)
-        viewlet.update()
-        rendered = viewlet.render()
         selector = core.getHtmlIdSelector('add-task')
-        core.replaceHTML(selector, rendered)
+        zopecommands.refreshViewlet(selector,
+                                    manager = 'plone.belowcontentbody',
+                                    name = 'xm.add_task_form')
 
         # Set a portal message to inform the user of the change.
         plone_commands.issuePortalMessage(_(u'Task added'),
                                           msgtype='info')
+
+    def tasklist(self):
+        context = aq_inner(self.context)
+        story_view = context.restrictedTraverse('@@story')
+        tasks = story_view.tasklist()
+        return tasks
 
 
 def create_task(context, title='Task', hours=0, minutes=0,
@@ -437,7 +436,8 @@ def create_task(context, title='Task', hours=0, minutes=0,
 
     Now add some non default values.
 
-    >>> create_task(context, title='Buongiorno', hours=3, minutes=15, assignees='JohnDoe')
+    >>> create_task(context, title='Buongiorno', hours=3, minutes=15,
+    ...             assignees='JohnDoe')
     >>> context.objectIds()
     ['1', '2']
     >>> task = context.items[-1]

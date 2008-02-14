@@ -1,0 +1,26 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+    <browser:viewletManager
+        name="xm.storylist.simple"
+        provides=".interfaces.ISimpleStoryList"
+        permission="zope2.View"
+        class=".manager.SimpleStoryListManager"
+        />
+
+    <browser:viewletManager
+        name="xm.tasklist.simple"
+        provides=".interfaces.ISimpleTaskList"
+        permission="zope2.View"
+        class=".manager.SimpleTaskListManager"
+        />
+
+    <browser:viewletManager
+        name="xm.story.details"
+        provides=".interfaces.IStoryDetails"
+        permission="zope2.View"
+        class=".manager.StoryDetailsProvider"
+        />
+
+</configure>

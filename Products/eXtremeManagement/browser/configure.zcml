@@ -3,6 +3,8 @@
     xmlns:zope="http://namespaces.zope.org/zope"
     xmlns:zcml="http://namespaces.zope.org/zcml">
 
+  <include package=".viewlets" />
+
   <page
       name="myprojects"
       class=".projects.MyProjects"

@@ -75,6 +75,10 @@
     text-align: left !important;
 }
 
+.clear-bottom {
+    border-bottom: 1px solid #FFFFFF;
+}
+
 .list-in-iteration {
     text-align: right;
 }
