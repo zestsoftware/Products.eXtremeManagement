@@ -23,22 +23,34 @@ class MyProjects(BrowserView):
         catalog = getToolByName(context, 'portal_catalog')
         projectbrains = catalog.searchResults(portal_type='Project')
 
-        # Get the id of the currently logged in member
-        membership = getToolByName(context, 'portal_membership')
-        member = membership.getAuthenticatedMember()
-        memberid = member.id
-        plist = []
-        for projectbrain in projectbrains:
-            searchpath = projectbrain.getPath()
-            taskbrains = catalog.searchResults(portal_type=['Task', 'PoiTask'],
-                                               getAssignees=memberid,
-                                               review_state=self.states,
-                                               path=searchpath)
+        if len(projectbrains) <= 1:
+            # If there is maximal 1 project: return it...
+            return projectbrains
+        else:
+            # ... otherwise filter them.
+            membership = getToolByName(context, 'portal_membership')
+            member = membership.getAuthenticatedMember()
+            memberid = member.id
 
-            if len(taskbrains) > 0:
-                plist.append(projectbrain)
+            # Customers see all projects:
+            projectbrain = projectbrains[0]
+            if 'Customer' in member.getRolesInContext(
+                    projectbrain.getObject()):
+                return projectbrains
 
-        return plist
+            # Otherwise only show the projects with open tasks assigned to
+            # this user.
+            plist = []
+            for projectbrain in projectbrains:
+                searchpath = projectbrain.getPath()
+                taskbrains = catalog.searchResults(portal_type=['Task',
+                                                                'PoiTask'],
+                                                   getAssignees=memberid,
+                                                   review_state=self.states,
+                                                   path=searchpath)
+                if len(taskbrains) > 0:
+                    plist.append(projectbrain)
+            return plist
 
 
 class ProjectAdminView(XMBaseView):
@@ -156,7 +168,8 @@ class ProjectView(ProjectAdminView):
         """Return folder contents that are not iterations or offers
         """
         context = aq_inner(self.context)
-        cfilter = dict(portal_type=('Iteration','Offer'))
+        cfilter = dict(portal_type=('Iteration',
+                                    'Offer'))
         iteration_brains = context.getFolderContents(cfilter)
         iteration_ids = [brain.id for brain in iteration_brains]
         all_brains = context.getFolderContents()
@@ -175,7 +188,8 @@ class ProjectView(ProjectAdminView):
         offer_brains = context.getFolderContents(cfilter)
         results = []
         if offer_brains:
-            plone_view = getMultiAdapter((context, self.request), name=u'plone')
+            plone_view = getMultiAdapter((context, self.request),
+                                         name=u'plone')
             icon = plone_view.getIcon(offer_brains[0].getObject())
             for offer in offer_brains:
                 results.append(dict(brain = offer,
