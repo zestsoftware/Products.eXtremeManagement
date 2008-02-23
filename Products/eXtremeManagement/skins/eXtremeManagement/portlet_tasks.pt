@@ -4,7 +4,8 @@
 
     <body>
 
-    <div metal:define-macro="portlet">
+    <div metal:define-macro="portlet"
+         tal:condition="python: mtool.checkPermission('eXtremeManagement: Add Booking', here)">
 
      <dl class="portlet" id="portlet-project-administration"
          tal:condition="not:isAnon">
