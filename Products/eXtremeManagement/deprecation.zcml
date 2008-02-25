@@ -19,6 +19,9 @@
       class=".content.Iteration.Iteration" />
 
   <deprecatedManageAddDelete
+      class=".content.Offer.Offer" />
+
+  <deprecatedManageAddDelete
       class=".content.Story.Story" />
 
   <deprecatedManageAddDelete
