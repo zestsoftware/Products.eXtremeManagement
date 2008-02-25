@@ -1,3 +1,8 @@
+2008-02-25 - mark
+
+  - Change in the iteration workflow so the sharing tab is not shown
+    for iterations and all content contained in them.
+
 2008-02-14 - mark and maurits
 
   - Replaced the macros in the iteration and story views by providers.
