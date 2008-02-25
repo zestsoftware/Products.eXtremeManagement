@@ -1,3 +1,9 @@
+2008-02-25 - jladage
+
+  - Refactored the QuickInstaller code to use Install.py again to make sure
+    our dependencies are installed correctly. Also move the GS profiles
+    of xm.booking and xm.portlets to this profile.
+
 2008-02-25 - mark
 
   - Change in the iteration workflow so the sharing tab is not shown
