@@ -10,7 +10,8 @@ A request needs to be annotatable as we use memoize.
     >>> classImplements(TestRequest, IAttributeAnnotatable)
 
 Currently there is one Project, but we do not have any tasks assigned
-to us there.
+to us there.  Since there is only one project, we simply show that one
+and do not bother with filtering.
 
     >>> from urllib import unquote
     >>> def physicalPathFromURL(self, URL):
@@ -27,10 +28,19 @@ to us there.
     >>> from Products.eXtremeManagement.browser.projects import MyProjects
     >>> myprojects = MyProjects(self.portal, TestRequest())
     >>> myprojects.projectlist
+    [<Products.ZCatalog.Catalog.mybrains object at ...>]
+
+We add another Project so we have to do some filtering.
+
+    >>> self.setRoles(['Manager'])
+    >>> dummy = self.portal.invokeFactory('Project', 'my-project')
+    >>> self.setRoles(['Employee'])
+    >>> myprojects = MyProjects(self.portal, TestRequest())
+    >>> myprojects.projectlist
     []
 
 Now we add ourselves and another employee to the assignees of a task
-in that project.  Now the portlet should return a result.
+in one of the projects.  Now the portlet should return a result.
 
     >>> self.task.setAssignees(('employee', self.default_user,))
     >>> self.task.reindexObject()
