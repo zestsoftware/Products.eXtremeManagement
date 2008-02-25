@@ -3,8 +3,6 @@ from Products.CMFCore.utils import getToolByName
 
 PRODUCT_DEPENDENCIES = ('Poi',)
 
-EXTENSION_PROFILES = ('Products.eXtremeManagement:default',)
-
 def install(self, reinstall=False):
     """Install a set of products (which themselves may either use Install.py
     or GenericSetup extension profiles for their configuration) and then
@@ -26,7 +24,7 @@ def install(self, reinstall=False):
             portal_quickinstaller.installProduct(product)
             transaction.savepoint()
 
-    portal_setup.runAllImportStepsFromProfile('profile-Products.eXtremeManagement:default',
+    portal_setup.runAllImportStepsFromProfile('profile-eXtremeManagement:default',
                                               purge_old=False)
     product_name = extension_id.split(':')[0]
     portal_quickinstaller.notifyInstalled(product_name)

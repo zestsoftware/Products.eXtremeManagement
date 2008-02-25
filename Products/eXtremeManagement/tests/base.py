@@ -6,8 +6,8 @@ from Products.PloneTestCase.layer import onsetup
 from xm.booking.timing.interfaces import IActualHours
 from xm.booking.timing.interfaces import IEstimate
 
-ztc.installProduct('eXtremeManagement')
 ztc.installProduct('Poi')
+ztc.installProduct('eXtremeManagement')
 
 @onsetup
 def xm_setup():
@@ -15,7 +15,9 @@ def xm_setup():
     """
     fiveconfigure.debug_mode = True
     import xm.booking
+    import xm.portlets
     zcml.load_config('configure.zcml', xm.booking)
+    zcml.load_config('configure.zcml', xm.portlets)
     fiveconfigure.debug_mode = False
 
 
