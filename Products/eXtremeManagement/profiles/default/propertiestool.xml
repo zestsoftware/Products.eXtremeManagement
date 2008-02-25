@@ -11,28 +11,6 @@
    <element value="Task"/>
   </property>
  </object>
- <object name="site_properties" meta_type="Plone Property Sheet">
-  <property name="use_folder_tabs" type="lines" purge="False">
-   <element value="CustomerFolder"/>
-   <element value="Customer"/>
-   <element value="ProjectFolder"/>
-   <element value="Project"/>
-   <element value="Iteration"/>
-   <element value="Offer"/>
-   <element value="Story"/>
-   <element value="Task"/>
-  </property>
-  <property name="typesLinkToFolderContentsInFC" type="lines" purge="False">
-   <element value="CustomerFolder"/>
-   <element value="Customer"/>
-   <element value="ProjectFolder"/>
-   <element value="Project"/>
-   <element value="Iteration"/>
-   <element value="Offer"/>
-   <element value="Story"/>
-   <element value="Task"/>
-  </property>
- </object>
  <object name="xm_properties" meta_type="Plone Property Sheet">
   <property name="title">eXtremeManagement properties</property>
   <property name="hours_per_day" type="float">8.0</property>

@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <portlets>
-  
   <portlet
       addview="eXtremeManagement.TasksPortlet"
       title="Tasks portlet"
@@ -11,5 +10,4 @@
       title="Project links"
       description="Portlets for xm"
       />
-
 </portlets>
