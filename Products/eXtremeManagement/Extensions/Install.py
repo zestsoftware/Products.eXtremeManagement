@@ -24,8 +24,7 @@ def install(self, reinstall=False):
             portal_quickinstaller.installProduct(product)
             transaction.savepoint()
 
-    portal_setup.runAllImportStepsFromProfile('profile-eXtremeManagement:default',
+    portal_setup.runAllImportStepsFromProfile('profile-Products.eXtremeManagement:default',
                                               purge_old=False)
-    product_name = extension_id.split(':')[0]
-    portal_quickinstaller.notifyInstalled(product_name)
+    portal_quickinstaller.notifyInstalled('profile-Products.eXtremeManagement')
     transaction.savepoint()

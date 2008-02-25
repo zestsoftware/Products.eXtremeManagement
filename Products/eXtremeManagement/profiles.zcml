@@ -5,7 +5,7 @@
     i18n_domain="eXtremeManagement">
 
   <genericsetup:registerProfile
-      name="eXtremeManagement"
+      name="default"
       title="Extreme Management"
       directory="profiles/default"
       description="Profile for Extreme Management"
@@ -14,7 +14,7 @@
       />
 
   <genericsetup:registerProfile
-      name="eXtremeManagement-30-types"
+      name="30"
       title="eXtremeManagement types fix for Plone 3.0"
       directory="profiles/30"
       description="eXtremeManagement types actions fix for Plone 3.0."
@@ -30,6 +30,6 @@
       destination="1.5"
       handler="Products.eXtremeManagement.setuphandlers.from_plone25_to_30"
       sortkey="1"
-      profile="Products.eXtremeManagement:eXtremeManagement-30-types" />
+      profile="Products.eXtremeManagement:30" />
 
 </configure>
