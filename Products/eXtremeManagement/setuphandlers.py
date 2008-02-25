@@ -1,25 +1,5 @@
-import transaction
 from Products.CMFCore.utils import getToolByName
 from Products.eXtremeManagement import config
-
-
-def install_dependencies(site, logger):
-    qi = getToolByName(site, 'portal_quickinstaller')
-    dependencies = ['Poi', 'xm.booking']
-    for product in dependencies:
-        if not qi.isProductInstalled(product):
-            # Install not yet installed product
-            qi.installProduct(product)
-            transaction.savepoint(optimistic=True)
-            logger.info("Installed %s.", product)
-        else:
-            # Possibly reinstall already installed product
-            installed = qi[product].getInstalledVersion()
-            available = qi.getProductVersion(product)
-            if installed != available:
-                qi.reinstallProducts([product])
-                logger.info("Reinstalled %s: from %s to %s.",
-                            product, installed, available)
 
 def addCatalogIndexes(site, logger):
     """Add our indexes to the catalog.
@@ -132,7 +112,6 @@ def importVarious(context):
         return
     logger = context.getLogger('eXtremeManagement')
     site = context.getSite()
-    install_dependencies(site, logger)
     # Integrate our types in kupu, if it is installed.
     configureKupu(site, logger)
     migrate_ct(site, logger)
