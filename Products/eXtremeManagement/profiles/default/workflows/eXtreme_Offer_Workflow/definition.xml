@@ -8,6 +8,7 @@
  <permission>Modify portal content</permission>
  <permission>View</permission>
  <permission>eXtremeManagement: Add Story</permission>
+ <permission>Change local roles</permission>
  <state state_id="private" title="Private">
   <description>Can only be seen and edited by the owner.
 </description>
@@ -43,6 +44,8 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="Change local roles" acquired="False">
   </permission-map>
  </state>
  <state state_id="published" title="Published">
@@ -82,6 +85,8 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="Change local roles" acquired="False">
   </permission-map>
  </state>
  <transition transition_id="publish"
