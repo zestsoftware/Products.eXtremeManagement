@@ -320,21 +320,22 @@ class Create(BrowserView):
 class Add(PloneKSSView):
 
     @kssaction
-    def add_task(self, data):
+    def add_task(self):
         # We *really* need the inner acquisition chain for context
         # here.  Otherwise the aq_parent is the view instead of the
         # story, which means the totals for the story are not
         # recalculated.  Sneaky! :)
         context = aq_inner(self.context)
         plone_commands = self.getCommandSet('plone')
-        title = data.get('title')
+        title = self.request.form.get('title')
         if not title:
             plone_commands.issuePortalMessage(_(u'Title is required'),
                                               msgtype='error')
             return None
-        assignees = data.get('assignees')
+        assignees = self.request.form.get('assignees')
         create_task(context, title=title,
-                    hours=data.hours, minutes=data.minutes,
+                    hours=self.request.form.get('hours'),
+                    minutes=self.request.form.get('minutes'),
                     assignees=assignees)
         core = self.getCommandSet('core')
         zopecommands = self.getCommandSet('zope')
