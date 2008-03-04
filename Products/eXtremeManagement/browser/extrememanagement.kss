@@ -4,5 +4,5 @@
     evt-click-preventdefault: true;
     evt-click-allowbubbling: true;
     action-server: xm_add_task;
-    xm_add_task-data: currentForm();
+    xm_add_task-kssSubmitForm: currentForm();
     }
