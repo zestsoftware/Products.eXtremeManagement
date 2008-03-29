@@ -39,7 +39,7 @@ schema = Schema((
     ),
     BooleanField(
         name='billable',
-        default="True",
+        default_method='is_billable',
         widget=BooleanWidget(
             label='Billable',
             label_msgid='eXtremeManagement_label_billable',
@@ -86,6 +86,10 @@ class Booking(BaseContent):
     @property
     def actual_time(self):
         return self.getHours() + (self.getMinutes() / 60.0)
+        
+    def is_billable(self):
+        """ Get the default from the project setting. """
+        return self.getBillableProject()
 
     security.declarePublic('recalc')
     def recalc(self):

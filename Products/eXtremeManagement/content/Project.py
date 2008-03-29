@@ -34,7 +34,16 @@ DefaultSchema = Schema((
             description_msgid = "help_include_global_members",
             label = "Include global Employees",
             label_msgid = "label_include_global_members",
-            i18n_domain = "eXtremeManagement"),)
+            i18n_domain = "eXtremeManagement"),
+    ),
+    BooleanField(
+        name='billableProject',
+        default="True",
+        widget=BooleanWidget(
+            label='Billable',
+            label_msgid='eXtremeManagement_label_billable',
+            i18n_domain='eXtremeManagement')
+    ),
 ),)
 
 
