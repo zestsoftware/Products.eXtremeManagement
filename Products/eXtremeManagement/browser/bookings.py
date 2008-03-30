@@ -146,7 +146,9 @@ class BookingsDetailedView(BrowserView):
         self.searchpath = '/'.join(context.getPhysicalPath())
         self.bookinglist = []
         self.raw_total = 0
+        self.perc_billable = 0.0
         self.update()
+        self.fmt_perc_billable = str(self.perc_billable) + ' %'
         self.total = formatTime(self.raw_total)
 
     def update(self):
@@ -173,6 +175,7 @@ class BookingsDetailedView(BrowserView):
             year = self.year,
             raw_total = self.raw_total,
             total = self.total,
+            perc_billable = self.fmt_perc_billable,
             )
         return month_info
 
@@ -292,10 +295,13 @@ class WeekBookingOverview(BookingsDetailedView):
         daynumber = date.day()
         # Assemble info for at most one month:
         ploneview = context.restrictedTraverse('@@plone')
+        num_weeks = 0
+        in_this_month = True
 
         # When comparing dates, make sure December of previous year is
         # less than January of this year.
         while date.month() + 12 * date.year() <= self.month + 12 * self.year:
+            num_weeks += 1
             weekinfo = dict(
                 week_number = date.week(),
                 week_start = ploneview.toLocalizedTime(date),
@@ -306,14 +312,27 @@ class WeekBookingOverview(BookingsDetailedView):
             raw_total = 0.0
             days_bookings = DayBookingOverview(context, request,
             memberid=self.memberid)
+            week_billable = 0.0
+            worked_days = 0
             while day_of_week < 7:
+                worked_days += 1
                 day_total = days_bookings.raw_total(date=date)
+                week_billable += days_bookings.billable(date=date)
+                ui_class = 'not-enough'
                 if day_total > 0:
+                    if date.month() == self.startDate.month():
+                        raw_total += day_total
+                        if day_total < 8:
+                            ui_class = 'good'
+                    else:
+                        in_this_month = False
+                        ui_class = 'greyed'
                     daylist.append(dict(total=days_bookings.total(date=date),
-                                        day_of_week=date.Day()))
+                                        day_of_week=date.Day(),
+                                        style=ui_class))
                 else:
-                    daylist.append(dict(total=None, day_of_week=date.Day()))
-                raw_total += day_total
+                    daylist.append(dict(total=None, day_of_week=date.Day(),
+                                        style=ui_class))
                 day_of_week += 1
                 daynumber += 1
                 try:
@@ -334,9 +353,19 @@ class WeekBookingOverview(BookingsDetailedView):
             # Add the info to the dict for this week
             weekinfo['days'] = daylist
             weekinfo['week_total'] = formatTime(raw_total)
+            week_perc_billable = week_billable / worked_days
+            fmt_perc_billable = str(week_perc_billable) + ' %'
+            weekinfo['perc_billable'] = fmt_perc_billable
             self.bookinglist.append(weekinfo)
             # update month total
-            self.raw_total += raw_total
+            if in_this_month:
+                self.raw_total += raw_total
+            else:
+                in_this_month = True
+            # add weekly total
+            self.perc_billable += week_perc_billable
+        # divide by the number of weeks
+        self.perc_billable = self.perc_billable / num_weeks
 
 
 class YearBookingOverview(BrowserView):
@@ -432,6 +461,27 @@ class DayBookingOverview(BrowserView):
             member = context.portal_membership.getAuthenticatedMember()
             self.memberid = member.id
         self.searchpath = '/'.join(context.getPhysicalPath())
+
+    @memoize
+    def billable(self, date=None):
+        """return a percentage for billable hours"""
+        date = date or self.request.form.get('date', DateTime().earliestTime())
+        bookingbrains = self.catalog.searchResults(
+            portal_type='Booking',
+            getBookingDate={"query": [date.earliestTime(), date.latestTime()],
+                            "range": "minmax"},
+            Creator=self.memberid,
+            path=self.searchpath)
+        scores = dict(billable=0.0, unbillable=0.0)
+        for bb in bookingbrains:
+            if bb.getBillable:
+                scores['billable'] += bb.actual_time
+            else:
+                scores['unbillable'] += bb.actual_time
+        if scores['billable'] == 0.0:
+            return 0.0
+        else:
+            return scores['unbillable']/scores['billable']*100
 
     @memoize
     def raw_total(self, date=None):
