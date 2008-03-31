@@ -337,4 +337,22 @@ UL.xm-assignees LI {
   border-top: 1px dotted #8CACBB;
 }
 
+/* booking_month  */
+
+.greyed {
+    color:Grey;
+    background-color: #EEF3F5;
+}
+
+.good {
+    color:Back;
+}
+
+.not-enough {
+    color: Red;
+    background-color: #FFDDCC;
+}
+
+
+
 /* </dtml-with> */

@@ -1,3 +1,12 @@
+2008-03-30 - jladage
+
+  - Added 'billableProject' field to the Project content type. A booking
+    will set the default value according to the projects value.
+
+  - Extended the month_booking view with percentage of billable work, excluded
+    double entries from previous months in total hours and greyed out those
+    cells. If the employee booked less than 8 hours a day it's marked red.
+
 2008-02-25 - jladage
 
   - Refactored the QuickInstaller code to use Install.py again to make sure

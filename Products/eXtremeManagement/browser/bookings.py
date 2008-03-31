@@ -148,7 +148,8 @@ class BookingsDetailedView(BrowserView):
         self.raw_total = 0
         self.perc_billable = 0.0
         self.update()
-        self.fmt_perc_billable = str(self.perc_billable) + ' %'
+        self.fmt_perc_billable = "%0.1f" % self.perc_billable + ' %'
+
         self.total = formatTime(self.raw_total)
 
     def update(self):
@@ -301,7 +302,6 @@ class WeekBookingOverview(BookingsDetailedView):
         # When comparing dates, make sure December of previous year is
         # less than January of this year.
         while date.month() + 12 * date.year() <= self.month + 12 * self.year:
-            num_weeks += 1
             weekinfo = dict(
                 week_number = date.week(),
                 week_start = ploneview.toLocalizedTime(date),
@@ -315,19 +315,23 @@ class WeekBookingOverview(BookingsDetailedView):
             week_billable = 0.0
             worked_days = 0
             while day_of_week < 7:
-                worked_days += 1
                 day_total = days_bookings.raw_total(date=date)
-                week_billable += days_bookings.billable(date=date)
-                ui_class = 'not-enough'
+                day_billable = days_bookings.billable(date=date)
+                ui_class = 'greyed'
                 if day_total > 0:
                     if date.month() == self.startDate.month():
                         raw_total += day_total
-                        if day_total < 8:
+                        if day_billable != 0:
+                           week_billable += day_billable
+                           worked_days += 1
+                        if day_total >= 8:
                             ui_class = 'good'
+                        else:
+                            ui_class = 'not-enough'
                     else:
                         in_this_month = False
                         ui_class = 'greyed'
-                    daylist.append(dict(total=days_bookings.total(date=date),
+                    daylist.append(dict(total=day_total,
                                         day_of_week=date.Day(),
                                         style=ui_class))
                 else:
@@ -353,8 +357,12 @@ class WeekBookingOverview(BookingsDetailedView):
             # Add the info to the dict for this week
             weekinfo['days'] = daylist
             weekinfo['week_total'] = formatTime(raw_total)
-            week_perc_billable = week_billable / worked_days
-            fmt_perc_billable = str(week_perc_billable) + ' %'
+            if worked_days > 0:
+                week_perc_billable = week_billable / worked_days
+                num_weeks += 1
+            else:
+                week_perc_billable = 0.0
+            fmt_perc_billable = "%0.1f" % week_perc_billable + ' %'
             weekinfo['perc_billable'] = fmt_perc_billable
             self.bookinglist.append(weekinfo)
             # update month total
@@ -364,8 +372,9 @@ class WeekBookingOverview(BookingsDetailedView):
                 in_this_month = True
             # add weekly total
             self.perc_billable += week_perc_billable
-        # divide by the number of weeks
-        self.perc_billable = self.perc_billable / num_weeks
+        # divide by the number of weeks 
+        if num_weeks > 0:
+            self.perc_billable = self.perc_billable / num_weeks
 
 
 class YearBookingOverview(BrowserView):
@@ -472,16 +481,14 @@ class DayBookingOverview(BrowserView):
                             "range": "minmax"},
             Creator=self.memberid,
             path=self.searchpath)
-        scores = dict(billable=0.0, unbillable=0.0)
+        billable=0.0
         for bb in bookingbrains:
             if bb.getBillable:
-                scores['billable'] += bb.actual_time
-            else:
-                scores['unbillable'] += bb.actual_time
-        if scores['billable'] == 0.0:
+                billable += bb.actual_time
+        if billable == 0:
             return 0.0
         else:
-            return scores['unbillable']/scores['billable']*100
+            return billable/8*100
 
     @memoize
     def raw_total(self, date=None):
