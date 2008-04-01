@@ -179,22 +179,22 @@ Let's look at week 4 of that month, at the end of which the DST kicks in.
     >>> week4['week_number']
     43
     >>> week4['days'][0]
-    {'total': None, 'day_of_week': 'Monday'}
+    {'style': 'greyed', 'total': None, 'day_of_week': 'Monday'}
     >>> week4['days'][5]
-    {'total': '2:00', 'day_of_week': 'Saturday'}
+    {'style': 'not-enough', 'total': '2:00', 'day_of_week': 'Saturday'}
     >>> week4['days'][6]
-    {'total': '3:00', 'day_of_week': 'Sunday'}
+    {'style': 'not-enough', 'total': '3:00', 'day_of_week': 'Sunday'}
 
 Let's also look at week 5.
 
     >>> view.bookinglist[5]['days'][0]
-    {'total': '4:00', 'day_of_week': 'Monday'}
+    {'style': 'not-enough', 'total': '4:00', 'day_of_week': 'Monday'}
     >>> view.bookinglist[5]['days'][1]
-    {'total': '5:00', 'day_of_week': 'Tuesday'}
+    {'style': 'not-enough', 'total': '5:00', 'day_of_week': 'Tuesday'}
     >>> view.bookinglist[5]['days'][2]
-    {'total': '6:00', 'day_of_week': 'Wednesday'}
+    {'style': 'greyed', 'total': '6:00', 'day_of_week': 'Wednesday'}
     >>> view.bookinglist[5]['days'][3]
-    {'total': None, 'day_of_week': 'Thursday'}
+    {'style': 'greyed', 'total': None, 'day_of_week': 'Thursday'}
 
 At the beginning of the year things can go wrong, so test that too.
 

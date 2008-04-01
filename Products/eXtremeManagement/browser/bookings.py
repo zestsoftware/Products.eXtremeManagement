@@ -331,7 +331,7 @@ class WeekBookingOverview(BookingsDetailedView):
                     else:
                         in_this_month = False
                         ui_class = 'greyed'
-                    daylist.append(dict(total=day_total,
+                    daylist.append(dict(total=formatTime(day_total),
                                         day_of_week=date.Day(),
                                         style=ui_class))
                 else:
