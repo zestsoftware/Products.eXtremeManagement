@@ -148,7 +148,7 @@
                 <img src="#" tal:attributes="src string:/${file/getIcon}"/>
                 <a
                     href="#"
-                    tal:attributes="href string: ${file/absolute_url}/view"
+                    tal:attributes="href string:${file/absolute_url}/view"
                     tal:content="file/Title">
                 </a>
               </div>
