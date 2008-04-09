@@ -122,12 +122,13 @@ class BookingsDetailedView(BrowserView):
         self.context = context
         self.request = request
         self.catalog = getToolByName(context, 'portal_catalog')
-
         self.year = year or self.request.form.get('year', DateTime().year())
         self.month = month or self.request.form.get('month',
                                                     DateTime().month())
-        self.year = int(self.year)
-        self.month = int(self.month)
+        if isinstance(self.year, basestring):
+            self.year = int(self.year)
+        if isinstance(self.month, basestring):
+            self.month = int(self.month)
         self.previous = self.request.form.get('previous')
         self.next = self.request.form.get('next')
         self.memberid = memberid or self.request.form.get('memberid')
@@ -322,14 +323,13 @@ class WeekBookingOverview(BookingsDetailedView):
                     if date.month() == self.startDate.month():
                         raw_total += day_total
                         if day_billable != 0:
-                           week_billable += day_billable
-                           worked_days += 1
+                            week_billable += day_billable
+                            worked_days += 1
                         if day_total >= 8:
                             ui_class = 'good'
                         else:
                             ui_class = 'not-enough'
                     else:
-                        in_this_month = False
                         ui_class = 'greyed'
                     daylist.append(dict(total=formatTime(day_total),
                                         day_of_week=date.Day(),
@@ -366,13 +366,10 @@ class WeekBookingOverview(BookingsDetailedView):
             weekinfo['perc_billable'] = fmt_perc_billable
             self.bookinglist.append(weekinfo)
             # update month total
-            if in_this_month:
-                self.raw_total += raw_total
-            else:
-                in_this_month = True
+            self.raw_total += raw_total
             # add weekly total
             self.perc_billable += week_perc_billable
-        # divide by the number of weeks 
+        # divide by the number of weeks
         if num_weeks > 0:
             self.perc_billable = self.perc_billable / num_weeks
 
