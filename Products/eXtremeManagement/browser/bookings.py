@@ -149,9 +149,6 @@ class BookingsDetailedView(BrowserView):
         self.raw_total = 0
         self.perc_billable = 0.0
         self.update()
-        self.fmt_perc_billable = "%0.1f" % self.perc_billable + ' %'
-
-        self.total = formatTime(self.raw_total)
 
     def update(self):
         # Get all bookings brains with the given restrictions of
@@ -372,6 +369,8 @@ class WeekBookingOverview(BookingsDetailedView):
         # divide by the number of weeks
         if num_weeks > 0:
             self.perc_billable = self.perc_billable / num_weeks
+        self.fmt_perc_billable = "%0.1f" % self.perc_billable + ' %'
+        self.total = formatTime(self.raw_total)
 
 
 class YearBookingOverview(BrowserView):
@@ -468,7 +467,6 @@ class DayBookingOverview(BrowserView):
             self.memberid = member.id
         self.searchpath = '/'.join(context.getPhysicalPath())
 
-    @memoize
     def billable(self, date=None):
         """return a percentage for billable hours"""
         date = date or self.request.form.get('date', DateTime().earliestTime())
@@ -487,7 +485,6 @@ class DayBookingOverview(BrowserView):
         else:
             return billable/8*100
 
-    @memoize
     def raw_total(self, date=None):
         """Raw total booked hours for a member for this date.
         """
