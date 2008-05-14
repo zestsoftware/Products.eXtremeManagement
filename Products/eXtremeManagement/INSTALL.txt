@@ -3,21 +3,22 @@ Installation
 
   Make a backup of your site.  You can never be too careful.
 
-  Just put eXtremeManagement its own directory within the Products dir
-  of your zope instance.  Then use the portal_quickinstaller or
-  portal_setup (both will work) in Plone to install it.
+  Easiest is using buildout: just add Products.eXtremeManagement in
+  the main eggs section.
 
-  If you use instancemanager
-  (http://plone.org/products/instance-manager), then look in the
-  instancemanager directory for a config file.
+  If you are not using buildout:
 
+  - Put eXtremeManagement its own directory within the Products dir of
+    your zope instance.
 
-Reinstalling
-============
+  - In the lib/python directory of your instance create a directory
+    ``xm``.  Put an empty ``__init__.py`` file in that directory.
+    From the cheese shop (http://pypi.python.org/pypi/) get xm.booking
+    and xm.portlets.  Unpack these and arrange it so that the ``xm``
+    directory has the ``booking`` directory from ``xm.booking`` and
+    the ``portlets`` directory from ``xm.portlets``.
 
-  When you reinstall, eXtremeManagement will perform automatic
-  migration of previous content.  So this can take a while.  Make a
-  backup of your site.  You can never be too careful.
+  Then use the portal_quickinstaller in Plone to install it.
 
 
 Dependencies
@@ -25,18 +26,10 @@ Dependencies
 
   * Plone:
 
-    - 2.5.3 with Zope 2.9 OR
+    - 3.0 or 3.1 with Zope 2.10
 
-    - 3.0 (beta) with Zope 2.10
-
-
-  * Poi with its dependencies; at Zest Software we are currently (June
-    2007) using the trunk bundle:
-
-    https://svn.plone.org/svn/collective/Poi/bundles/trunk
-
-    The 10 bundle is fine as well.  On Plone 3.0 you should be using
-    the plone3 Poi bundle.
+  * Poi with its dependencies.  Get a bundle with products fit for the
+    Plone version you are using: http://plone.org/products/poi
 
     With Poi installed, eXtremeManagement allows you to add an issue
     tracker in a project.  And you can add PoiTasks to Stories, which
@@ -48,18 +41,13 @@ Dependencies
     developers like Poi. :)
 
 
-Additional dependencies for development
-=======================================
+Extras
+======
 
- * PloneTestCase:
-   https://svn.plone.org/svn/collective/PloneTestCase/trunk/ or the
-   latest tar.gz (install as a product).  Make sure that all tests run
-   before you check in changes.
-
- * Five 1.4 or higher is recommended as then you can run the
-   testbrowser tests.  Zope 2.10 already comes with Five 1.5, so you
-   are fine there, but Zope 2.9 only has Five 1.3.  So you need to add
-   a newer version to the Products dir of your instance then.
+  If you have a project management website you should consider
+  installing the ``xm.theme`` package.  This gets rid of part of the
+  default Plone UI so it fits a project management site more.  Try
+  this out locally before you use it in production.
 
 
 Conflicting Products
