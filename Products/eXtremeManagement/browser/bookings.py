@@ -166,6 +166,14 @@ class BookingsDetailedView(BrowserView):
             self.bookinglist.append(info)
             self.raw_total += bookingbrain.actual_time
 
+    @property
+    def total(self):
+        return formatTime(self.raw_total)
+
+    @property
+    def fmt_perc_billable(self):
+        return "%0.1f" % self.perc_billable + ' %'
+
     def main(self):
         """Return a dict of the main stuff of this period.
         """
@@ -369,8 +377,6 @@ class WeekBookingOverview(BookingsDetailedView):
         # divide by the number of weeks
         if num_weeks > 0:
             self.perc_billable = self.perc_billable / num_weeks
-        self.fmt_perc_billable = "%0.1f" % self.perc_billable + ' %'
-        self.total = formatTime(self.raw_total)
 
 
 class YearBookingOverview(BrowserView):
@@ -387,7 +393,10 @@ class YearBookingOverview(BrowserView):
         self.base_month = DateTime().month()
         self.raw_total = 0.0
         self.update()
-        self.total = formatTime(self.raw_total)
+
+    @property
+    def total(self):
+        return formatTime(self.raw_total)
 
     def main(self):
         """Return a dict of the main stuff of this period.
