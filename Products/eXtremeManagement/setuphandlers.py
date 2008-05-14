@@ -123,5 +123,5 @@ def importVarious(context):
 def from_plone25_to_30(context):
     # Right, context == portal_setup here.
     context.runAllImportStepsFromProfile(
-        'profile-Products.eXtremeManagement:eXtremeManagement-30-types',
+        'profile-Products.eXtremeManagement:30',
         purge_old=False)
