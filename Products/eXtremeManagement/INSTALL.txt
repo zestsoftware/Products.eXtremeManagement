@@ -54,8 +54,8 @@ Conflicting Products
 ====================
 
   * eXtremeManagement is known not to work with ZEPP/PlonePM, another
-  project management product.  It uses a Task content type, just like
-  eXtremeManagement does.  This causes problems.  If you want to try
-  out both, do that in separate Zope instances.
+    project management product.  It uses a Task content type, just
+    like eXtremeManagement does.  This causes problems.  If you want
+    to try out both, do that in separate Zope instances.
 
   * Same is true for PloneBooking.
