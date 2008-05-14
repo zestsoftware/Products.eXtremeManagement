@@ -1,3 +1,8 @@
+2008-05-14 - maurits
+
+  - Fixed some bugs around bookings, mostly the detailed bookings view,
+    including fixing some test failures.
+
 2008-03-30 - jladage
 
   - Added 'billableProject' field to the Project content type. A booking

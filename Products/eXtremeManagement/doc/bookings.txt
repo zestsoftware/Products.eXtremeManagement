@@ -167,7 +167,7 @@ Does it give the right totals for each week (and the correct amount of
 weeks)?
 
     >>> [week['week_total'] for week in view.bookinglist]
-    ['1:00', '0:00', '0:00', '0:00', '5:00', '15:00']
+    ['1:00', '0:00', '0:00', '0:00', '5:00', '9:00']
     >>> [week['week_number'] for week in view.bookinglist]
     [39, 40, 41, 42, 43, 44]
 
