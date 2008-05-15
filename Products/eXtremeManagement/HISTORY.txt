@@ -1,3 +1,9 @@
+2008-05-15 - maurits
+
+  - Removed the upgrade profile for moving to 3.0 (that was removing a
+    few actions from content types) as it was confusing for developers
+    and now also for the quick installer.
+
 2008-05-14 - maurits
 
   - Do not send task emails when updating the task schema, also when

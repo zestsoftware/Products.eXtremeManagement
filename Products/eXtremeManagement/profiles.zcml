@@ -13,23 +13,4 @@
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       />
 
-  <genericsetup:registerProfile
-      name="30"
-      title="eXtremeManagement types fix for Plone 3.0"
-      directory="profiles/30"
-      description="eXtremeManagement types actions fix for Plone 3.0."
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      />
-
-  <genericsetup:upgradeStep
-      zcml:condition="installed Products.GenericSetup.upgrade"
-      title="eXtremeManagement types fix for Plone 3.0"
-      description="eXtremeManagement types actions fix for Plone 3.0."
-      source="1.1"
-      destination="1.5"
-      handler="Products.eXtremeManagement.setuphandlers.from_plone25_to_30"
-      sortkey="1"
-      profile="Products.eXtremeManagement:30" />
-
 </configure>

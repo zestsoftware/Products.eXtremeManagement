@@ -3,6 +3,8 @@
 
   <include package="xm.booking" />
   
+  <include package="xm.portlets" />
+  
   <include file="deprecation.zcml" />
 
   <include file="profiles.zcml" />
