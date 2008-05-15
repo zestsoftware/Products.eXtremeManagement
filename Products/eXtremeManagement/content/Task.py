@@ -160,6 +160,11 @@ class Task(BaseFolder):
         # TODO: this should definitely be moved out into a event handler
         # as a content class should be pretty dumb, it should not know it
         # needs to send out emails ... separation of concerns - Rocky
+        if self.REQUEST.get('SCHEMA_UPDATE', '0') == '1':
+            # Schema update in progress!  We definitely do not want to
+            # send emails now as that would be spamming.
+            return
+
         portal_properties = getToolByName(self, 'portal_properties')
         xm_props = portal_properties.xm_properties
         if not xm_props.send_task_mails:

@@ -1,5 +1,8 @@
 2008-05-14 - maurits
 
+  - Do not send task emails when updating the task schema, also when
+    not using the (commented out) method in setuphandlers.py.
+
   - Fixed some bugs around bookings, mostly the detailed bookings view,
     including fixing some test failures.
 

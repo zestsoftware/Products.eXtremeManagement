@@ -24,6 +24,7 @@ def _migrateSchema(site, contentType, logger):
         form = {}
     dummyRequest = dummy()
     dummy.form[contentType] = 1
+    dummy.form['update_all'] = 1
     at.manage_updateSchema(update_all=1,
                            REQUEST=dummyRequest)
     logger.info('Migrated schema of %s', contentType)
