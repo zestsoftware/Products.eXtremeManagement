@@ -26,5 +26,6 @@ def install(self, reinstall=False):
 
     portal_setup.runAllImportStepsFromProfile('profile-Products.eXtremeManagement:default',
                                               purge_old=False)
-    portal_quickinstaller.notifyInstalled('profile-Products.eXtremeManagement')
+    # No need to notify the quick installer that our own profile has
+    # been installed.
     transaction.savepoint()

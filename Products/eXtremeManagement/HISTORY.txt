@@ -1,5 +1,11 @@
 2008-05-15 - maurits
 
+  - In install.py do not notify the quick installer that we have
+    installed our own GS profile; meanwhile there were three
+    references to eXtremeManagement, Products.eXtremeManagement and
+    profile-Products.eXtremeManagement in the quick installer in a
+    test site.
+
   - Removed the upgrade profile for moving to 3.0 (that was removing a
     few actions from content types) as it was confusing for developers
     and now also for the quick installer.
