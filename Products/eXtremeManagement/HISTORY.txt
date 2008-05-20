@@ -1,5 +1,10 @@
 2008-05-20 - maurits
 
+  - Remove empty interfaces/IXMCustomer.py and accompanying Zope 3
+    bridge.
+
+  - Lots of pep8/pyflakes cleanup.
+
   - Remove the unused migration functions from setuphandlers.py.
 
 2008-05-15 - maurits

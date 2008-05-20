@@ -1,4 +1,3 @@
-import IXMCustomer as IXMCustomerZope2
 from xmcustomerfolder import IXMCustomerFolder
 from xmcustomer import IXMCustomer
 from xmprojectmember import IXMProjectMember
@@ -30,11 +29,3 @@ from zope.app.content.interfaces import IContentType
 
 for iface in our_interfaces:
     alsoProvides(iface, IContentType)
-
-# Only add zope 3 bridges if you somehow need them.
-# If this gets removed by someone who knows what he is doing, that is
-# fine with me.  [Maurits.]
-from Interface.bridge import createZope3Bridge
-createZope3Bridge(IXMCustomer, IXMCustomerZope2,
-                  'IXMCustomer')
-
