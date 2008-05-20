@@ -1,3 +1,7 @@
+2008-05-20 - maurits
+
+  - Remove the unused migration functions from setuphandlers.py.
+
 2008-05-15 - maurits
 
   - In install.py do not notify the quick installer that we have
