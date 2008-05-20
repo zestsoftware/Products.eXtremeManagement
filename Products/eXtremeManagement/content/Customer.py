@@ -9,8 +9,6 @@ from Products.Archetypes.atapi import Schema
 from Products.Archetypes.atapi import StringField
 from Products.Archetypes.atapi import StringWidget
 
-from Products.eXtremeManagement.interfaces.IXMCustomer import IXMCustomer as \
-    IXMCustomerZope2
 from Products.eXtremeManagement.interfaces import IXMCustomer
 
 schema = Schema((
@@ -107,7 +105,7 @@ class Customer(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (OrderedBaseFolder.__implements__, IXMCustomerZope2)
+    __implements__ = (OrderedBaseFolder.__implements__, )
     implements(IXMCustomer)
     archetype_name = 'Customer'
     portal_type = meta_type = 'Customer'
