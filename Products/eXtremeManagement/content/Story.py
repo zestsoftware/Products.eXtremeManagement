@@ -1,3 +1,4 @@
+import logging
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
 
@@ -12,6 +13,9 @@ from Products.Archetypes.atapi import Schema
 from Products.Archetypes.atapi import TextField
 
 from Products.eXtremeManagement.interfaces import IXMStory
+
+log = logging.getLogger("eXtremeManagement Story")
+
 
 schema = Schema((
     TextField(
@@ -85,17 +89,16 @@ class Story(OrderedBaseFolder):
         """ Generate sequential IDs for tasks
         With thanks to Upfront Systems for their code from Upfront Project
         """
-        if type_name == 'Task':
-            tasks = self.getStoryTasks()
-            taskids = [0]
-            for task in tasks:
+        if type_name in ('Task', 'PoiTask'):
+            ids = self.contentIds()
+            intids = []
+            for id in ids:
                 try:
-                    taskid = task.getId()
-                    taskids.append(int(taskid))
+                    intids.append(int(id))
                 except:
-                    print 'WARNING: non-integer taskid found: %s' % taskid
-            lastTaskId = max(taskids) + 1
-            return str(lastTaskId)
+                    pass
+            new_id = max(intids) + 1
+            return str(new_id)
         else:
             return self.aq_parent.generateUniqueId(type_name)
 
@@ -103,7 +106,7 @@ class Story(OrderedBaseFolder):
 
     def isCompleted(self):
         """
-        Returns True is the Story has review_state 'completed'.
+        Returns True if the Story has review_state 'completed'.
         """
         portal = getToolByName(self, 'portal_url').getPortalObject()
         wf_tool = getToolByName(portal, 'portal_workflow')

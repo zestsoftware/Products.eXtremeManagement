@@ -29,8 +29,8 @@ class testStory(eXtremeManagementTestCase):
         self.assertEqual(self.story.isEstimated(), False)
         self.story.update(roughEstimate=4.5)
         self.workflow.doActionFor(self.story, 'estimate')
-        self.story.invokeFactory('Task', id='task')
-        self.task = self.story.task
+        self.story.invokeFactory('Task', id='1')
+        self.task = self.story['1']
 
         self.catalog = self.portal.portal_catalog
 
@@ -54,8 +54,8 @@ class testStory(eXtremeManagementTestCase):
         self.assertAnnotationStoryBrainHoursEquality(self.story, 1)
 
         # Add a task.
-        self.story.invokeFactory('Task', id='task2')
-        self.task2 = self.story.task2
+        self.story.invokeFactory('Task', id='2')
+        self.task2 = self.story['2']
         self.task2.update(hours=2)
         notify(ObjectModifiedEvent(self.task2))
         self.assertAnnotationStoryBrainEstimateEquality(self.story, 6)
@@ -69,7 +69,7 @@ class testStory(eXtremeManagementTestCase):
         copy = self.story.copy_of_story
 
         # make sure deleting a task updates the story's catalog entry
-        self.story.manage_delObjects(ids=['task'])
+        self.story.manage_delObjects(ids=['1'])
         self.assertAnnotationStoryBrainEstimateEquality(self.story, 2)
         self.assertAnnotationStoryBrainHoursEquality(self.story, 1)
 
@@ -88,7 +88,7 @@ class testStory(eXtremeManagementTestCase):
 
         # We need to commit a few times, before this works in tests.
         transaction.savepoint(optimistic=True)
-        cut_data = self.story.manage_cutObjects(ids=['task2'])
+        cut_data = self.story.manage_cutObjects(ids=['2'])
         story2.manage_pasteObjects(cut_data)
         self.assertAnnotationStoryBrainEstimateEquality(self.story, 0.0)
         self.assertAnnotationStoryBrainHoursEquality(self.story, 0)
@@ -103,6 +103,39 @@ class testStory(eXtremeManagementTestCase):
         self.story.update(roughEstimate=0)
         self.assertEqual(self.story.isEstimated(), False)
         self.logout()
+
+    def test_generateUniqueId(self):
+        # The generateUniqueId method is called when a content type
+        # gets added to this story.
+        story = self.story
+
+        # The default is like this: 'foo_type.2008-05-20.3289113493'
+        self.failUnless(
+            story.generateUniqueId('Foo Type').startswith('foo_type.'))
+
+        # When adding Tasks we choose integer ids.  We have one task
+        # already, so the next unique id should be 2:
+        self.assertEqual(story.generateUniqueId('Task'), '2')
+
+        # This id gets used for new tasks.  But that is hard to test
+        # here with invokeFactory.  We will just pretend that it works
+        # and see if the generateUniqueId function can handle what we
+        # throw at it.
+        story.invokeFactory('Task', '2')
+        self.assertEqual(story.generateUniqueId('Task'), '3')
+
+        # If we add a task with a 'too high' id so it leaves a gap, we
+        # do not try to be clever and fill the gaps.
+        story.invokeFactory('Task', '9')
+        self.assertEqual(story.generateUniqueId('Task'), '10')
+
+        # PoiTasks should get the same treatment
+        self.assertEqual(story.generateUniqueId('PoiTask'), '10')
+        story.invokeFactory('PoiTask', '15')
+        self.assertEqual(story.generateUniqueId('Task'), '16')
+        self.assertEqual(story.generateUniqueId('PoiTask'), '16')
+
+
 
     def assertStoryBrainEquality(self, attribute, value, story=None):
         """Test equality of Story and storybrain from catalog.
