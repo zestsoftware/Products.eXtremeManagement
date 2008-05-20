@@ -28,11 +28,16 @@ def formatTime(time):
     >>> formatTime(0.999)
     '1:00'
 
+    What if we try to crash the function?
+
+    >>> formatTime('foo')
+    '?:??'
+
     """
     try:
         hours = int(time)
         minutes = int(round((time - hours)*60))
-    except TypeError:
+    except ValueError:
         return '?:??'
     # Adjust for rounding:
     if minutes == 60:
