@@ -1,6 +1,4 @@
-<dl class="portlet" id="portlet-project-administration"
-    tal:condition="not: view/isAnon">
-  
+<dl class="portlet" id="portlet-project-administration">
   <dt class="portletHeader" >
     <span class="portletTopLeft"></span>
     <a tal:condition="view/hasManagePermission"
