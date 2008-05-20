@@ -27,12 +27,21 @@ def list_doctests():
             glob.glob(os.path.sep.join([home, 'doc', '*.txt']))]
 
 
+def setUp(test):
+    # A test request needs to be annotatable as we use memoize.
+    from zope.publisher.browser import TestRequest
+    from zope.annotation.interfaces import IAttributeAnnotatable
+    from zope.interface import classImplements
+    classImplements(TestRequest, IAttributeAnnotatable)
+
+
 def test_suite():
     filenames = list_doctests()
     eXtremeManagementFunctionalTestCase.afterSetUp = afterSetUp
     suites = [Suite(os.path.basename(filename),
                optionflags=OPTIONFLAGS,
                package='Products.eXtremeManagement.doc',
+               setUp=setUp,
                test_class=eXtremeManagementFunctionalTestCase)
               for filename in filenames]
     return unittest.TestSuite(suites)

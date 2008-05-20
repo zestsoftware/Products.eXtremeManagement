@@ -1,14 +1,6 @@
 Test portlets
 =============
 
-We want to test some portlets.  We need some test requests for that.
-A request needs to be annotatable as we use memoize.
-
-    >>> from zope.publisher.browser import TestRequest
-    >>> from zope.annotation.interfaces import IAttributeAnnotatable
-    >>> from zope.interface import classImplements
-    >>> classImplements(TestRequest, IAttributeAnnotatable)
-
 Currently there is one Project, but we do not have any tasks assigned
 to us there.  Since there is only one project, we simply show that one
 and do not bother with filtering.
@@ -20,6 +12,7 @@ and do not bother with filtering.
     ...     if URL.find( '://') >= 0:
     ...         path = path[2:]
     ...     return map(unquote, path)
+    >>> from zope.publisher.browser import TestRequest
     >>> TestRequest.physicalPathFromURL = physicalPathFromURL
     >>> len(self.catalog(portal_type='Project'))
     1
