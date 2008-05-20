@@ -5,7 +5,6 @@ from Acquisition import aq_inner
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from xm.booking.timing.interfaces import IActualHours
 from Products.eXtremeManagement.utils import formatTime
-from plone.memoize.view import memoize
 
 
 def getNextYearMonth(year, month):
