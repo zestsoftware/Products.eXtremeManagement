@@ -1,5 +1,4 @@
 from Products.Five.browser import BrowserView
-from Acquisition import aq_inner
 
 
 class XMBaseView(BrowserView):

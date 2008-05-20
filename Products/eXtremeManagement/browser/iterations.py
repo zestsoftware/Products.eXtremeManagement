@@ -63,7 +63,7 @@ class IterationView(XMBaseView):
             actual = formatTime(actual),
             difference = formatTime(estimate - actual),
             review_state = review_state,
-            budget_left = budget_left
+            budget_left = budget_left,
             )
         return returnvalue
 
