@@ -145,4 +145,3 @@ def getStateSortedContents(items):
         else:
             otherItems.append(item)
     return firstItems + otherItems
-

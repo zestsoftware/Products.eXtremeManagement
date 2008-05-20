@@ -24,9 +24,4 @@ ADD_CONTENT_PERMISSIONS = {
 OUR_LINKABLE_TYPES = ['Iteration', 'Story']
 OUR_COLLECTION_TYPES = ['ProjectFolder', 'Project', 'Iteration', 'Offer']
 
-# Deprecated can be removed?
-XM_LEFT_SLOTS = ('here/portlet_stories/macros/portlet',)
-XM_RIGHT_SLOTS = ('here/portlet_tasks/macros/portlet',
-                  'here/portlet_my_projects/macros/portlet',)
-
 NEW_ROLES = ['Employee', 'Customer', 'Projectmanager']

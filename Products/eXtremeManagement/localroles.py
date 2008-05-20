@@ -3,12 +3,10 @@ from plone.app.workflow.interfaces import ISharingPageRole
 
 # Please keep this 'PMF' and not '_' as otherwise i18ndude picks it
 # up, does not realize it is for the plone domain and puts it in the
-# pot/po files of plonehrm.  Alternatively: exclude this file in
+# pot/po files of xm.  Alternatively: exclude this file in
 # rebuild_i18n.sh
 from Products.CMFPlone import PloneMessageFactory as PMF
 
-
-# Only managers can manage these
 
 class EmployeeRole(object):
     implements(ISharingPageRole)

@@ -23,10 +23,10 @@ def initialize(context):
 
     cmfutils.ContentInit(
         'eXtremeManagement Content',
-        content_types      = all_content_types,
-        permission         = config.DEFAULT_ADD_CONTENT_PERMISSION,
+        content_types = all_content_types,
+        permission = config.DEFAULT_ADD_CONTENT_PERMISSION,
         extra_constructors = all_constructors,
-        fti                = all_ftis,
+        fti = all_ftis,
         ).initialize(context)
 
     # Give it some extra permissions to control them on a per class limit
@@ -36,6 +36,6 @@ def initialize(context):
             continue
 
         context.registerClass(
-            meta_type   = all_ftis[i]['meta_type'],
-            constructors= (all_constructors[i], ),
-            permission  = config.ADD_CONTENT_PERMISSIONS[klassname])
+            meta_type = all_ftis[i]['meta_type'],
+            constructors = (all_constructors[i], ),
+            permission = config.ADD_CONTENT_PERMISSIONS[klassname])
