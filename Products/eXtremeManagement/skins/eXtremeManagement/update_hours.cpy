@@ -9,6 +9,7 @@
 ##
 REQUEST = context.REQUEST
 
+
 def strip_uid(attr):
     """
     attr is of the form: 'uid_attribute'.
@@ -22,9 +23,10 @@ def strip_uid(attr):
         return (attr[:-12], 'description')
     return (None, None)
 
+
 def getValue(attr):
-     return REQUEST.form[attr]
-    
+    return REQUEST.form[attr]
+
 for attr in REQUEST.form.keys():
     uid, field = strip_uid(attr)
     if uid and field == 'hours':
@@ -36,17 +38,16 @@ for attr in REQUEST.form.keys():
             booking_date = REQUEST.get('booking_date')
             description = getValue(uid+'_description')
             bookings = task.contentValues()
-            idx =1            
+            idx =1
             while str(idx) in task.objectIds():
                 idx = idx + 1
-            
-            task.invokeFactory('Booking', 
+
+            task.invokeFactory('Booking',
                                idx,
                                title=task.title,
-                               description=description, 
-                               hours=hours, 
+                               description=description,
+                               hours=hours,
                                minutes=minutes,
                                bookingDate=booking_date)
-    
-return state.set(portal_status_message='Your booking is done!')
 
+return state.set(portal_status_message='Your booking is done!')

@@ -9,9 +9,10 @@
 ##
 REQUEST = context.REQUEST
 
+
 def getValue(attr):
-     return REQUEST.form[attr]
-    
+    return REQUEST.form[attr]
+
 for key in REQUEST.form.keys():
     if key == 'hours':
         hours = getValue('hours')
@@ -22,16 +23,15 @@ for key in REQUEST.form.keys():
 
 if hours != '0' or minutes != '0':
     bookings = context.contentValues()
-    idx =1            
+    idx =1
     while str(idx) in task.objectIds():
-         idx = idx + 1
-        
-    task.invokeFactory('Booking', 
+        idx = idx + 1
+
+    task.invokeFactory('Booking',
                         idx,
                         title=task.title,
-                        description=description, 
-                        hours=hours, 
+                        description=description,
+                        hours=hours,
                         minutes=minutes)
-    
-return state.set(portal_status_message='Your booking is done!')
 
+return state.set(portal_status_message='Your booking is done!')
