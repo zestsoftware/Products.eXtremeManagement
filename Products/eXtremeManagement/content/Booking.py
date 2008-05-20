@@ -14,13 +14,14 @@ from Products.Archetypes.atapi import registerType
 from Products.Archetypes.atapi import BooleanField
 
 from Products.eXtremeManagement.interfaces import IXMBooking
-from Products.eXtremeManagement.content.schemata import quarter_vocabulary, hour_vocabulary
+from Products.eXtremeManagement.content.schemata import quarter_vocabulary
+from Products.eXtremeManagement.content.schemata import hour_vocabulary
 
 schema = Schema((
     IntegerField(
         name='hours',
         vocabulary=hour_vocabulary,
-        validators=('isInt',),
+        validators=('isInt', ),
         default=0,
         widget=SelectionWidget(
             label='Hours',
@@ -30,7 +31,7 @@ schema = Schema((
     IntegerField(
         name='minutes',
         vocabulary=quarter_vocabulary,
-        validators=('isInt',),
+        validators=('isInt', ),
         default=0,
         widget=SelectionWidget(
             label='Minutes',
@@ -49,7 +50,7 @@ schema = Schema((
         name='bookingDate',
         required=1,
         default_method=DateTime,
-        validators=('isValidDate',),
+        validators=('isValidDate', ),
         widget=CalendarWidget(
             show_hm=False,
             description="Date that you worked on this task",
@@ -58,7 +59,7 @@ schema = Schema((
             description_msgid='eXtremeManagement_help_bookingDate',
             i18n_domain='eXtremeManagement'),
     ),
-),)
+), )
 
 BaseSchema = BaseSchema.copy()
 BaseSchema['id'].widget.visible = dict(edit=0, view=0)
@@ -71,7 +72,7 @@ class Booking(BaseContent):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (BaseContent.__implements__,)
+    __implements__ = (BaseContent.__implements__, )
     implements(IXMBooking)
 
     # This name appears in the 'add' box
@@ -82,16 +83,16 @@ class Booking(BaseContent):
     _at_rename_after_creation = True
     schema = Booking_schema
 
-    # This looks like a nice and simple version of a ComputedField
     @property
     def actual_time(self):
         return self.getHours() + (self.getMinutes() / 60.0)
-        
+
     def is_billable(self):
         """ Get the default from the project setting. """
         return self.getBillableProject()
 
     security.declarePublic('recalc')
+
     def recalc(self):
         """See the IActualHours interface.
         With our implementation we only need a reindex here actually.
@@ -99,6 +100,7 @@ class Booking(BaseContent):
         self.reindexObject(idxs=['actual_time'])
 
     security.declarePublic('_renameAfterCreation')
+
     def _renameAfterCreation(self, check_auto_id=False):
         parent = self.aq_inner.aq_parent
         maxId = 0

@@ -28,15 +28,16 @@ schema = Schema((
     FloatField(
         name='roughEstimate',
         write_permission="eXtremeManagement: Edit roughEstimate",
-        validators=('isDecimal',),
+        validators=('isDecimal', ),
         widget=DecimalWidget(
-            description="Enter a rough estimate in days (tip: use multiples of 0.5 days)",
+            description="Enter a rough estimate in days "
+                        "(tip: use multiples of 0.5 days)",
             label='Rough estimate',
             label_msgid='eXtremeManagement_label_roughEstimate',
             description_msgid='eXtremeManagement_help_roughEstimate',
             i18n_domain='eXtremeManagement'),
     ),
-),)
+), )
 
 FolderSchema = OrderedBaseFolderSchema.copy()
 FolderSchema['id'].widget.visible = dict(edit=0, view=0)
@@ -47,7 +48,7 @@ class Story(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (OrderedBaseFolder.__implements__,)
+    __implements__ = (OrderedBaseFolder.__implements__, )
     implements(IXMStory)
 
     # This name appears in the 'add' box
@@ -63,6 +64,7 @@ class Story(OrderedBaseFolder):
         return self.getRoughEstimate()
 
     security.declarePublic('recalc')
+
     def recalc(self):
         """See the ISizeEstimate interface.
         With our implementation we only need a reindex here actually.
@@ -70,6 +72,7 @@ class Story(OrderedBaseFolder):
         self.reindexObject(idxs=['size_estimate'])
 
     security.declarePublic('CookedBody')
+
     def CookedBody(self):
         """
         Dummy attribute to allow drop-in replacement of Document
@@ -77,6 +80,7 @@ class Story(OrderedBaseFolder):
         return self.getMainText()
 
     security.declarePublic('generateUniqueId')
+
     def generateUniqueId(self, type_name):
         """ Generate sequential IDs for tasks
         With thanks to Upfront Systems for their code from Upfront Project
@@ -96,16 +100,18 @@ class Story(OrderedBaseFolder):
             return self.aq_parent.generateUniqueId(type_name)
 
     security.declarePublic('isCompleted')
+
     def isCompleted(self):
         """
         Returns True is the Story has review_state 'completed'.
         """
-        portal = getToolByName(self,'portal_url').getPortalObject()
+        portal = getToolByName(self, 'portal_url').getPortalObject()
         wf_tool = getToolByName(portal, 'portal_workflow')
         state = wf_tool.getInfoFor(self, 'review_state')
         return state == 'completed'
 
     security.declarePublic('isEstimated')
+
     def isEstimated(self):
         """
         True when roughEstimate is set.  Actually, it could be an old
@@ -117,16 +123,17 @@ class Story(OrderedBaseFolder):
         return self.getRoughEstimate() > 0
 
     security.declarePublic('startable')
+
     def startable(self):
         """
         Test if all tasks in this story can be activated and if the
         Story itself has been estimated.  If the story is somehow
         already in-progress or completed, then that is fine as well.
         """
-        unAcceptableStatuses = ['draft','pending']
-        portal = getToolByName(self,'portal_url').getPortalObject()
+        unAcceptableStatuses = ['draft', 'pending']
+        portal = getToolByName(self, 'portal_url').getPortalObject()
         wf_tool = getToolByName(portal, 'portal_workflow')
-        review_state = wf_tool.getInfoFor(self,'review_state')
+        review_state = wf_tool.getInfoFor(self, 'review_state')
         if review_state in unAcceptableStatuses:
             return False
         if not self.isEstimated():
@@ -141,20 +148,22 @@ class Story(OrderedBaseFolder):
             return True
 
     security.declarePublic('completable')
+
     def completable(self):
         """
         Test if all tasks in this iteration have completed.
         """
-        portal = getToolByName(self,'portal_url').getPortalObject()
+        portal = getToolByName(self, 'portal_url').getPortalObject()
         wf_tool = getToolByName(portal, 'portal_workflow')
         tasks = self.getStoryTasks()
         for task in tasks:
-            review_state = wf_tool.getInfoFor(task,'review_state')
+            review_state = wf_tool.getInfoFor(task, 'review_state')
             if review_state != 'completed':
                 return False
         return True
 
     security.declarePublic('getStoryTasks')
+
     def getStoryTasks(self):
         """return the tasks of this story
         """

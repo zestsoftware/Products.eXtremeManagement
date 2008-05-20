@@ -9,7 +9,8 @@ from Products.Archetypes.atapi import Schema
 from Products.Archetypes.atapi import StringField
 from Products.Archetypes.atapi import StringWidget
 
-from Products.eXtremeManagement.interfaces.IXMCustomer import IXMCustomer as IXMCustomerZope2
+from Products.eXtremeManagement.interfaces.IXMCustomer import IXMCustomer as \
+    IXMCustomerZope2
 from Products.eXtremeManagement.interfaces import IXMCustomer
 
 schema = Schema((
@@ -82,7 +83,7 @@ schema = Schema((
             label='Fax',
             label_msgid='eXtremeManagement_label_fax',
             description_msgid='eXtremeManagement_help_fax',
-            i18n_domain='eXtremeManagement',)
+            i18n_domain='eXtremeManagement')
     ),
     StringField(
         name='website',
@@ -93,7 +94,7 @@ schema = Schema((
             description_msgid='eXtremeManagement_help_website',
             i18n_domain='eXtremeManagement')
     ),
-),)
+), )
 
 FolderSchema = OrderedBaseFolderSchema.copy()
 FolderSchema['description'].isMetadata = False
@@ -117,6 +118,7 @@ class Customer(OrderedBaseFolder):
 
     # Methods from Interface IXMCustomer
     security.declarePublic('getName')
+
     def getName(self):
         """
         """

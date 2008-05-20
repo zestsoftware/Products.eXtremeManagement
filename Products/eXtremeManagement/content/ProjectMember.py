@@ -42,7 +42,7 @@ schema = Schema((
             description_msgid='eXtremeManagement_help_email',
             i18n_domain='eXtremeManagement')
     ),
-),)
+), )
 
 BaseSchema = BaseSchema.copy()
 BaseSchema['id'].widget.visible = dict(edit=0, view=0)
@@ -53,7 +53,7 @@ class ProjectMember(BaseContent):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (BaseContent.__implements__,)
+    __implements__ = (BaseContent.__implements__, )
     implements(IXMProjectMember)
 
     # This name appears in the 'add' box

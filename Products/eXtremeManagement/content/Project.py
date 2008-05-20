@@ -13,11 +13,11 @@ from Products.Archetypes.atapi import Schema
 
 from Products.eXtremeManagement.interfaces import IXMProject
 
-DefaultSchema = Schema((            
+DefaultSchema = Schema((
     FloatField(
         name='budgetHours',
         write_permission="eXtremeManagement: Edit bugetHours",
-        validators=('isDecimal',),
+        validators=('isDecimal', ),
         widget=DecimalWidget(
             description="Enter the budget of the project in hours.",
             label='Budget (hours)',
@@ -44,7 +44,7 @@ DefaultSchema = Schema((
             label_msgid='eXtremeManagement_label_billable',
             i18n_domain='eXtremeManagement')
     ),
-),)
+), )
 
 
 FolderSchema = OrderedBaseFolderSchema.copy()
@@ -57,7 +57,7 @@ class Project(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (OrderedBaseFolder.__implements__,)
+    __implements__ = (OrderedBaseFolder.__implements__, )
     implements(IXMProject)
 
     # This name appears in the 'add' box
@@ -69,6 +69,7 @@ class Project(OrderedBaseFolder):
     schema = Project_schema
 
     security.declarePublic('getProject')
+
     def getProject(self):
         """
         returns self - useful while doing aquisition many levels down the tree
@@ -76,6 +77,7 @@ class Project(OrderedBaseFolder):
         return self
 
     security.declarePublic('getMembers')
+
     def getMembers(self, role='Employee'):
         """
         get a list of all memberids that have the role ``role``

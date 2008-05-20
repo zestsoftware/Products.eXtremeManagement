@@ -16,7 +16,7 @@ from Products.eXtremeManagement.interfaces import IXMIteration
 schema = Schema((
     DateTimeField(
         name='startDate',
-        validators=('isValidDate',),
+        validators=('isValidDate', ),
         widget=CalendarWidget(
             show_hm=False,
             label='Start date',
@@ -25,7 +25,7 @@ schema = Schema((
     ),
     DateTimeField(
         name='endDate',
-        validators=('isValidDate',),
+        validators=('isValidDate', ),
         widget=CalendarWidget(
             show_hm=False,
             label='End date',
@@ -34,26 +34,27 @@ schema = Schema((
     ),
     IntegerField(
         name='manHours',
-        validators=('isInt',),
+        validators=('isInt', ),
         widget=IntegerWidget(
             label='Man hours',
             label_msgid='eXtremeManagement_label_manHours',
             i18n_domain='eXtremeManagement'),
     ),
-),)
+), )
 
 FolderSchema = OrderedBaseFolderSchema.copy()
 FolderSchema['description'].isMetadata = False
 FolderSchema['description'].schemata = 'default'
 Iteration_schema = FolderSchema + schema
 
-UNACCEPTABLE_STATUSES = ['draft','pending']
+UNACCEPTABLE_STATUSES = ['draft', 'pending']
+
 
 class Iteration(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (OrderedBaseFolder.__implements__,)
+    __implements__ = (OrderedBaseFolder.__implements__, )
     implements(IXMIteration)
 
     # This name appears in the 'add' box
@@ -65,6 +66,7 @@ class Iteration(OrderedBaseFolder):
     schema = Iteration_schema
 
     security.declarePublic('getIteration')
+
     def getIteration(self):
         """
         Return self. Useful while doing aquisition down the tree.
@@ -72,31 +74,33 @@ class Iteration(OrderedBaseFolder):
         return self
 
     security.declarePublic('startable')
+
     def startable(self):
         """
         Test if all stories in this iteration have statuses that are
         okay.  Usually that status should be 'estimated', but at least
         it should not be 'draft' or 'pending'.
         """
-        portal = getToolByName(self,'portal_url').getPortalObject()
+        portal = getToolByName(self, 'portal_url').getPortalObject()
         wf_tool = getToolByName(portal, 'portal_workflow')
         stories = self.contentValues(filter={'portal_type': 'Story'})
         for story in stories:
-            review_state = wf_tool.getInfoFor(story,'review_state')
+            review_state = wf_tool.getInfoFor(story, 'review_state')
             if review_state in UNACCEPTABLE_STATUSES:
                 return False
         return True
 
     security.declarePublic('completable')
+
     def completable(self):
         """
         Test if all stories in this iteration have completed.
         """
-        portal = getToolByName(self,'portal_url').getPortalObject()
+        portal = getToolByName(self, 'portal_url').getPortalObject()
         wf_tool = getToolByName(portal, 'portal_workflow')
         stories = self.contentValues(filter={'portal_type': 'Story'})
         for story in stories:
-            review_state = wf_tool.getInfoFor(story,'review_state')
+            review_state = wf_tool.getInfoFor(story, 'review_state')
             if review_state != 'completed':
                 return False
         return True

@@ -1,7 +1,8 @@
 import transaction
 from Products.CMFCore.utils import getToolByName
 
-PRODUCT_DEPENDENCIES = ('Poi',)
+PRODUCT_DEPENDENCIES = ('Poi', )
+
 
 def install(self, reinstall=False):
     """Install a set of products (which themselves may either use Install.py
@@ -24,8 +25,9 @@ def install(self, reinstall=False):
             portal_quickinstaller.installProduct(product)
             transaction.savepoint()
 
-    portal_setup.runAllImportStepsFromProfile('profile-Products.eXtremeManagement:default',
-                                              purge_old=False)
+    portal_setup.runAllImportStepsFromProfile(
+        'profile-Products.eXtremeManagement:default',
+        purge_old=False)
     # No need to notify the quick installer that our own profile has
     # been installed.
     transaction.savepoint()

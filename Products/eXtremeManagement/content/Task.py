@@ -26,7 +26,8 @@ from Products.eXtremeManagement.content.schemata import quarter_vocabulary
 schema = Schema((
     TextField(
         name='mainText',
-        allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword',),
+        allowable_content_types=('text/plain', 'text/structured',
+                                 'text/html', 'application/msword', ),
         default_output_type='text/html',
         widget=RichWidget(
             label='Main text',
@@ -37,7 +38,7 @@ schema = Schema((
         name='hours',
         default="0",
         label="Estimated hours",
-        validators=('isInt',),
+        validators=('isInt', ),
         widget=IntegerWidget(
             description="Enter the estimated time (in hours).",
             label='Hours',
@@ -48,7 +49,7 @@ schema = Schema((
     IntegerField(
         name='minutes',
         vocabulary=quarter_vocabulary,
-        validators=('isInt',),
+        validators=('isInt', ),
         default="0",
         label="Estimated minutes",
         widget=SelectionWidget(
@@ -70,7 +71,7 @@ schema = Schema((
             description_msgid='eXtremeManagement_help_assignees',
             i18n_domain='eXtremeManagement'),
     ),
-),)
+), )
 
 FolderSchema = BaseFolderSchema.copy()
 FolderSchema['description'].isMetadata = False
@@ -82,7 +83,7 @@ class Task(BaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (BaseFolder.__implements__,)
+    __implements__ = (BaseFolder.__implements__, )
     implements(IXMTask)
 
     # This name appears in the 'add' box
@@ -95,11 +96,13 @@ class Task(BaseFolder):
     log = logging.getLogger("eXtremeManagement Task")
 
     # This looks like a nice and simple version of a ComputedField
+
     @property
     def estimate(self):
         return self.getHours() + (self.getMinutes() / 60.0)
 
     security.declarePublic('recalc')
+
     def recalc(self):
         """See the IEstimate interface.
         With our implementation we only need a reindex here actually.
@@ -107,6 +110,7 @@ class Task(BaseFolder):
         self.reindexObject(idxs=['actual_time'])
 
     security.declarePublic('_get_assignees')
+
     def _get_assignees(self):
         """
         returns a list of team members
@@ -121,7 +125,7 @@ class Task(BaseFolder):
         for memberId in employees:
             member = mt.getMemberById(memberId)
             if member is not None:
-                fullname =  member.getProperty('fullname', None)
+                fullname = member.getProperty('fullname', None)
                 # if fullname is '' or None, return the id
                 name = fullname and fullname.strip() or member.getId()
             else:
@@ -131,6 +135,7 @@ class Task(BaseFolder):
         return DisplayList(assignables)
 
     security.declarePublic('setAssignees')
+
     def setAssignees(self, value, **kw):
         """Overwrite the default setter.  Send an email should on assignment.
 
@@ -176,17 +181,19 @@ class Task(BaseFolder):
             for employee in new_employees:
                 self.log.debug('Sending email to %s for task %s.',
                                employee, self.id)
-                mailMessage(portal, self, 'New Task assigned',
-                            employee, self.log)
+                mailMessage(portal, self, 'New Task assigned', employee)
 
     security.declarePublic('CookedBody')
+
     def CookedBody(self):
         """
         Dummy attribute to allow drop-in replacement of Document
         """
         return self.getMainText()
 
+
     security.declarePublic('startable')
+
     def startable(self):
         """
         A task should have an assignee and either an estimate or a

@@ -4,24 +4,25 @@ from Products.Archetypes import atapi
 from Products.eXtremeManagement.content.Task import Task
 from Products.eXtremeManagement.interfaces.xmtask import IIssueTask
 
+
 class PoiTask(Task):
     portal_type = meta_type = 'PoiTask'
     archetype_name = 'Issue Tracker Task'
     implements(IIssueTask)
-    
+
     schema = Task.schema.copy() + atapi.Schema((
         atapi.ReferenceField('issues',
                              multiValued=1,
                              relationship='task_issues',
-                             allowed_types=('PoiIssue',),
+                             allowed_types=('PoiIssue', ),
                              vocabulary='vocabulary_issues',
                              ),
         ))
-    
+
     schema.moveField('issues', after='title')
     schema['mainText'].widget.visible = dict(edit=0, view=0)
     schema['assignees'].widget.visible = dict(edit=0, view=1)
-    
+
     def vocabulary_issues(self):
         pairs = []
         poiview = self.restrictedTraverse('@@xm-poi')
@@ -37,7 +38,7 @@ class PoiTask(Task):
             if issue.UID() not in keys:
                 label = '#%s: %s' % (issue.getId(), issue.Title())
                 pairs.append((issue.UID(), label))
-        pairs = sorted(pairs, lambda a,b: cmp(a[1], b[1]))
+        pairs = sorted(pairs, lambda a, b: cmp(a[1], b[1]))
         return atapi.DisplayList(pairs)
 
     def getAssignees(self):
