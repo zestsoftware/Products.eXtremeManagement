@@ -26,7 +26,8 @@ def _submitChecks(browser, title):
 def addSimpleType(browser, container, title, type_name):
     """Add a content type with just a title.
     """
-    browser.open(container.absolute_url() + '/createObject?type_name=' + type_name)
+    browser.open(
+        container.absolute_url() + '/createObject?type_name=' + type_name)
     browser.getControl(name='title').value = title
     browser.getControl(name='form_submit').click()
     return _submitChecks(browser, title)

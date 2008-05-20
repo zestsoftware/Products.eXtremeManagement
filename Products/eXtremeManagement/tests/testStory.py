@@ -21,7 +21,7 @@ class testStory(eXtremeManagementTestCase):
         self.projects = self.folder.projects
         self.projects.invokeFactory('Project', id='project')
         self.project = self.projects.project
-        self.project.manage_addLocalRoles('customer',['Customer'])
+        self.project.manage_addLocalRoles('customer', ['Customer'])
         self.project.invokeFactory('Iteration', id='iteration')
         self.iteration = self.project.iteration
         self.iteration.invokeFactory('Story', id='story')
@@ -63,7 +63,7 @@ class testStory(eXtremeManagementTestCase):
         self.assertAnnotationStoryBrainHoursEquality(self.story, 2)
 
         # make a copy to test later
-        
+
         copydata = self.iteration.manage_copyObjects(self.story.getId())
         self.iteration.manage_pasteObjects(copydata)
         copy = self.story.copy_of_story

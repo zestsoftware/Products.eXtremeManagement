@@ -28,7 +28,7 @@ class testWorkflow(eXtremeManagementTestCase):
 
         self.projects.invokeFactory('Project', id='project')
         self.project = self.projects.project
-        self.project.manage_addLocalRoles('customer',['Customer'])
+        self.project.manage_addLocalRoles('customer', ['Customer'])
 
         self.project.invokeFactory('Offer', id='offer')
         self.offer = self.project.offer
@@ -55,7 +55,7 @@ class testWorkflow(eXtremeManagementTestCase):
         # Get a startable task
         self.story.invokeFactory('Task', id='task')
         self.task = self.story.task
-        self.task.update(assignees=('employee',))
+        self.task.update(assignees=('employee', ))
         self.task.update(hours=1)
         self.assertEqual(self.task.startable(), True)
 
@@ -75,13 +75,21 @@ class testWorkflow(eXtremeManagementTestCase):
         them to be.
         """
 
-        self.assertEqual(self.workflow.getInfoFor(self.projects,'review_state'), 'visible')
-        self.assertEqual(self.workflow.getInfoFor(self.project,'review_state'), 'private')
-        self.assertEqual(self.workflow.getInfoFor(self.iteration,'review_state'), 'new')
-        self.assertEqual(self.workflow.getInfoFor(self.story,'review_state'), 'draft')
-        self.assertEqual(self.workflow.getInfoFor(self.projectstory,'review_state'), 'draft')
-        self.assertEqual(self.workflow.getInfoFor(self.task,'review_state'), 'open')
-        self.assertEqual(self.workflow.getInfoFor(self.booking,'review_state'), 'booking')
+        self.assertEqual(
+            self.workflow.getInfoFor(self.projects, 'review_state'), 'visible')
+        self.assertEqual(
+            self.workflow.getInfoFor(self.project, 'review_state'), 'private')
+        self.assertEqual(
+            self.workflow.getInfoFor(self.iteration, 'review_state'), 'new')
+        self.assertEqual(
+            self.workflow.getInfoFor(self.story, 'review_state'), 'draft')
+        self.assertEqual(
+            self.workflow.getInfoFor(self.projectstory, 'review_state'),
+            'draft')
+        self.assertEqual(
+            self.workflow.getInfoFor(self.task, 'review_state'), 'open')
+        self.assertEqual(
+            self.workflow.getInfoFor(self.booking, 'review_state'), 'booking')
 
     def test_project_transitions(self):
         """Test transitions of the Project Content Type
@@ -126,7 +134,7 @@ class testWorkflow(eXtremeManagementTestCase):
                                   'private', 'publish', 'published')
         self.tryAllowedTransition(self.offer, 'offer',
                                   'published', 'retract', 'private')
-        
+
         # Now try forbidden transactions for customer and employee
         self.login('customer')
         self.tryForbiddenTransition(self.offer, 'private', 'publish')
@@ -167,8 +175,9 @@ class testWorkflow(eXtremeManagementTestCase):
         self.assertEqual(self.iteration.completable(), True)
         self.assertEqual(self.workflow.getInfoFor(self.story, 'review_state'),
                          'completed')
-        self.assertEqual(self.workflow.getInfoFor(self.iteration, 'review_state'),
-                         'completed')
+        self.assertEqual(
+            self.workflow.getInfoFor(self.iteration, 'review_state'),
+            'completed')
         # Now revert
         self.tryAllowedTransition(self.iteration, 'iteration',
                                   'completed', 'reactivate', 'in-progress')
@@ -189,16 +198,19 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryForbiddenTransition(self.iteration, 'completed', 'reactivate')
 
         # Only a Manager can make invoicing decisions.
-        self.tryForbiddenTransition(self.iteration, 'completed', 'no-invoicing')
+        self.tryForbiddenTransition(
+            self.iteration, 'completed', 'no-invoicing')
         self.tryForbiddenTransition(self.iteration, 'completed', 'invoice')
         self.login('customer')
-        self.tryForbiddenTransition(self.iteration, 'completed', 'no-invoicing')
+        self.tryForbiddenTransition(
+            self.iteration, 'completed', 'no-invoicing')
         self.tryForbiddenTransition(self.iteration, 'completed', 'invoice')
         self.login('manager')
         self.tryAllowedTransition(self.iteration, 'iteration',
                                   'completed', 'no-invoicing', 'own-account')
-        self.tryAllowedTransition(self.iteration, 'iteration',
-                                  'own-account', 'reconsider-invoicing', 'completed')
+        self.tryAllowedTransition(
+            self.iteration, 'iteration', 'own-account', 'reconsider-invoicing',
+            'completed')
         self.tryAllowedTransition(self.iteration, 'iteration',
                                   'completed', 'invoice', 'invoiced')
 
@@ -237,7 +249,7 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(self.project, 'project',
                                   'private', 'activate', 'active')
         self.setRoles(['Member'])
-        self.project.manage_addLocalRoles(self.default_user,['Customer'])
+        self.project.manage_addLocalRoles(self.default_user, ['Customer'])
         # draft -> pending -> draft
         self.tryAllowedTransition(self.story, 'story',
                                   'draft', 'submit', 'pending')
@@ -323,15 +335,18 @@ class testWorkflow(eXtremeManagementTestCase):
         # Iteration.
         self.tryAllowedTransition(self.iteration, 'iteration',
                                   'new', 'start', 'in-progress')
-        self.assertEqual(self.workflow.getInfoFor(self.story,'review_state'), 'in-progress')
-        self.assertEqual(self.workflow.getInfoFor(self.task,'review_state'), 'to-do')
+        self.assertEqual(self.workflow.getInfoFor(self.story, 'review_state'),
+                         'in-progress')
+        self.assertEqual(self.workflow.getInfoFor(self.task, 'review_state'),
+                         'to-do')
 
         # in-progress -> completed
         # This is done automatically when all tasks of this story have
         # been completed.
         self.tryAllowedTransition(self.task, 'task',
                                   'to-do', 'complete', 'completed')
-        self.assertEqual(self.workflow.getInfoFor(self.story,'review_state'), 'completed')
+        self.assertEqual(self.workflow.getInfoFor(self.story, 'review_state'),
+                         'completed')
 
         # completed -> in-progress
         self.tryAllowedTransition(self.story, 'story',
@@ -360,14 +375,16 @@ class testWorkflow(eXtremeManagementTestCase):
                          newState)
         self.failUnless(self.catalog(id=ctId, review_state=newState))
 
-    def twoStepTransition(self, ctObject, ctId, originalState, workflowTransition,
+    def twoStepTransition(self, ctObject, ctId, originalState,
+                          workflowTransition,
                           newState, loginName, useRole='Manager'):
         """
         Try a forbidden transition as user loginName.
         Then do the allowed transition as the default_user with role useRole.
         """
         self.login(loginName)
-        self.tryForbiddenTransition(ctObject, originalState, workflowTransition)
+        self.tryForbiddenTransition(ctObject, originalState,
+                                    workflowTransition)
         self.login(default_user)
         self.setRoles([useRole])
         self.tryAllowedTransition(ctObject, ctId, originalState,
@@ -396,7 +413,8 @@ class testWorkflow(eXtremeManagementTestCase):
         self.assertEqual(self.workflow.getInfoFor(ctObject, 'review_state'),
                          originalState)
         self.assertRaises(WorkflowException,
-                          self.workflow.doActionFor, ctObject, workflowTransition)
+                          self.workflow.doActionFor, ctObject,
+                          workflowTransition)
 
 
 def test_suite():

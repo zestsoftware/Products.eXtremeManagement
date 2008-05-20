@@ -9,20 +9,22 @@ from xm.booking.timing.interfaces import IEstimate
 ztc.installProduct('Poi')
 ztc.installProduct('eXtremeManagement')
 
+
 @onsetup
 def xm_setup():
     """Set up our Plone Site.
     """
     fiveconfigure.debug_mode = True
     import xm.booking
-    import xm.portlets
     zcml.load_config('configure.zcml', xm.booking)
+    import xm.portlets
     zcml.load_config('configure.zcml', xm.portlets)
     fiveconfigure.debug_mode = False
 
 
 xm_setup()
 ptc.setupPloneSite(products=['eXtremeManagement'])
+
 
 class eXtremeManagementTestCase(ptc.PloneTestCase):
     """Base TestCase for eXtremeManagement."""
@@ -43,9 +45,11 @@ class eXtremeManagementTestCase(ptc.PloneTestCase):
         if task is None:
             # Use default task
             task = self.task
-        return self.assertObjectBrainEquality(attribute, value, task, portal_type='Task')
+        return self.assertObjectBrainEquality(
+            attribute, value, task, portal_type='Task')
 
-    def assertAnnotationGeneralBrainHoursEquality(self, obj, value, portal_type):
+    def assertAnnotationGeneralBrainHoursEquality(self, obj, value,
+                                                  portal_type):
         ann = IActualHours(obj)
         self.assertEqual(ann.actual_time, value)
         brains = self.catalog(portal_type=portal_type,
@@ -58,7 +62,8 @@ class eXtremeManagementTestCase(ptc.PloneTestCase):
     def assertAnnotationStoryBrainHoursEquality(self, obj, value):
         self.assertAnnotationGeneralBrainHoursEquality(obj, value, 'Story')
 
-    def assertAnnotationGeneralBrainEstimateEquality(self, obj, value, portal_type):
+    def assertAnnotationGeneralBrainEstimateEquality(self, obj, value,
+                                                     portal_type):
         ann = IEstimate(obj)
         self.assertEqual(ann.estimate, value)
         brains = self.catalog(portal_type=portal_type,
@@ -72,6 +77,6 @@ class eXtremeManagementTestCase(ptc.PloneTestCase):
         self.assertAnnotationGeneralBrainEstimateEquality(obj, value, 'Task')
 
 
-
-class eXtremeManagementFunctionalTestCase(ptc.FunctionalTestCase, eXtremeManagementTestCase):
+class eXtremeManagementFunctionalTestCase(ptc.FunctionalTestCase,
+                                          eXtremeManagementTestCase):
     """Base TestCase for eXtremeManagement."""

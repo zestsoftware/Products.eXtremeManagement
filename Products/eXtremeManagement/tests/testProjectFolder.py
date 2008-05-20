@@ -1,5 +1,4 @@
 from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
-from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
 
 
 class testProjectFolder(eXtremeManagementTestCase):

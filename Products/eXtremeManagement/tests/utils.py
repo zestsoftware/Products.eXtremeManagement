@@ -19,7 +19,8 @@ def afterSetUp(self):
     self.membership.addMember('manager', 'secret', ['Manager'], [])
     self.membership.addMember('employee', 'secret', ['Employee'], [])
     self.membership.addMember('developer', 'secret', ['Employee'], [])
-    self.membership.addMember('projectmanager', 'secret', ['Projectmanager'], [])
+    self.membership.addMember('projectmanager', 'secret', ['Projectmanager'],
+                              [])
     self.portal.invokeFactory('ProjectFolder', id='projects')
     self.projects = self.folder.projects
     self.projects.invokeFactory('Project', id='project')

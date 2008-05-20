@@ -14,7 +14,8 @@ import unittest
 from Globals import package_home
 from Products.eXtremeManagement.config import xm_globals
 from Testing.ZopeTestCase import FunctionalDocFileSuite as Suite
-from Products.eXtremeManagement.tests.base import eXtremeManagementFunctionalTestCase
+from Products.eXtremeManagement.tests.base import \
+    eXtremeManagementFunctionalTestCase
 from Products.eXtremeManagement.tests.utils import afterSetUp
 
 OPTIONFLAGS = (doctest.ELLIPSIS |

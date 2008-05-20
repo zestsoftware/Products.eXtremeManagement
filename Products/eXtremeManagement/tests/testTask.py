@@ -12,7 +12,7 @@ class testTask(eXtremeManagementTestCase):
     """
 
     def afterSetUp(self):
-        self.catalog =  getToolByName(self.portal, 'portal_catalog')
+        self.catalog = getToolByName(self.portal, 'portal_catalog')
         self.workflow = self.portal.portal_workflow
         self.setRoles(['Manager'])
         self.membership = self.portal.portal_membership
@@ -36,7 +36,7 @@ class testTask(eXtremeManagementTestCase):
         self.assertEqual(self.task._get_assignees().items(),
                          (('developer', 'developer'),
                           ('employee', 'employee')))
-        self.project.manage_addLocalRoles('klant',['Employee'])
+        self.project.manage_addLocalRoles('klant', ['Employee'])
         self.assertEqual(self.task._get_assignees().items(),
                          (('klant', 'klant'),
                           ('developer', 'developer'),
@@ -72,7 +72,7 @@ class testTask(eXtremeManagementTestCase):
         self.assertAnnotationTaskBrainHoursEquality(self.task, 1.25)
 
         # make a copy to test later
-        
+
         copydata = self.story.manage_copyObjects(self.task.getId())
         self.story.manage_pasteObjects(copydata)
         copy = self.story.copy_of_task
@@ -99,7 +99,7 @@ class testTask(eXtremeManagementTestCase):
     def test_startable(self):
         """
         """
-        self.assertEqual(self.workflow.getInfoFor(self.task,'review_state'),
+        self.assertEqual(self.workflow.getInfoFor(self.task, 'review_state'),
                          'open')
         self.assertEqual(self.task.startable(), False)
         self.task.update(assignees='developer')
@@ -116,7 +116,7 @@ class testTask(eXtremeManagementTestCase):
         self.assertEqual(self.task.startable(), False)
         self.task.update(minutes=15)
         self.assertEqual(self.task.startable(), True)
-        self.task.update(assignees=('',))
+        self.task.update(assignees=('', ))
         self.assertEqual(self.task.startable(), False)
 
         self.story.invokeFactory('Task', id='task2')
@@ -133,10 +133,11 @@ class testTask(eXtremeManagementTestCase):
         self.assertTaskBrainEquality('getAssignees', ())
 
         self.task.update(assignees='developer')
-        self.assertTaskBrainEquality('getAssignees', ('developer',))
+        self.assertTaskBrainEquality('getAssignees', ('developer', ))
 
-        self.task.update(assignees=('developer','employee',))
-        self.assertTaskBrainEquality('getAssignees', ('developer','employee',))
+        self.task.update(assignees=('developer', 'employee', ))
+        self.assertTaskBrainEquality('getAssignees',
+                                     ('developer', 'employee', ))
 
         self.task.update(assignees='')
         self.assertTaskBrainEquality('getAssignees', ())
@@ -149,10 +150,10 @@ class testTask(eXtremeManagementTestCase):
         self.assertEqual(self.story.task1.getAssignees(), ())
 
         self.login('employee')
-        self.project.manage_addLocalRoles('employee',['Employee'])
+        self.project.manage_addLocalRoles('employee', ['Employee'])
         self.assertEqual(self.task.getDefaultAssignee(), 'employee')
         self.story.invokeFactory('Task', id='task2')
-        self.assertEqual(self.story.task2.getAssignees(), ('employee',))
+        self.assertEqual(self.story.task2.getAssignees(), ('employee', ))
 
         self.login('klant')
         self.assertEqual(self.task.getDefaultAssignee(), '')

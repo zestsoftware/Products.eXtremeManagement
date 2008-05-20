@@ -53,20 +53,23 @@ class testSetup(eXtremeManagementTestCase):
         self.failUnless('folder_workflow' in getChain('ProjectFolder'))
         self.failUnless('eXtreme_Customer_Workflow' in getChain('Customer'))
         self.failUnless('eXtreme_Booking_Workflow' in getChain('Booking'))
-        self.failUnless('eXtreme_Default_Workflow' in getChain('ProjectMember'))
+        self.failUnless(
+            'eXtreme_Default_Workflow' in getChain('ProjectMember'))
 
     def test_customizePortal(self):
         """
         """
         props_tool = getToolByName(self.portal, 'portal_properties')
-        if props_tool.navtree_properties.hasProperty('rolesSeeUnpublishedContent'):
-            rolesSeeUnpublishedContent = props_tool.navtree_properties.getProperty('rolesSeeUnpublishedContent')
+        nav_props = props_tool.navtree_properties
+        if nav_props.hasProperty(
+            'rolesSeeUnpublishedContent'):
+            rolesSeeUnpublishedContent = nav_props.getProperty(
+                'rolesSeeUnpublishedContent')
             self.failUnless('Customer' in rolesSeeUnpublishedContent)
 
-        if props_tool.navtree_properties.hasProperty('metaTypesNotToList'):
-            metaTypesNotToList = props_tool.navtree_properties.getProperty(
-                'metaTypesNotToList')
-            for ptype in ('Booking','Task','ProjectMember'):
+        if nav_props.hasProperty('metaTypesNotToList'):
+            metaTypesNotToList = nav_props.getProperty('metaTypesNotToList')
+            for ptype in ('Booking', 'Task', 'ProjectMember'):
                 self.failUnless(ptype in metaTypesNotToList)
 
     def test_extraLocalRoles(self):
@@ -137,7 +140,7 @@ class testSetup(eXtremeManagementTestCase):
                                   getAssignees='employee'), 1)
         self.assertEquals(results(getBookingDate=oneday), 1)
 
-   
+
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
