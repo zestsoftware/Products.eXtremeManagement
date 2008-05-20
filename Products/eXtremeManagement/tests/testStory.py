@@ -115,6 +115,14 @@ class testStory(eXtremeManagementTestCase):
         self.failIf(self.story.completable())
         self.failIf(self.story.isCompleted())
 
+        # The story has been estimated, but what if we change the
+        # rough estimate back to zero?
+        self.story.update(roughEstimate=0)
+        self.failIf(self.story.startable())
+        self.failIf(self.story.completable())
+        self.failIf(self.story.isCompleted())
+        self.story.update(roughEstimate=4.5)
+
         # Make task startable.
         self.task.update(hours=4, assignees='developer')
         self.failUnless(self.story.startable())
@@ -139,12 +147,6 @@ class testStory(eXtremeManagementTestCase):
         self.failUnless(self.story.startable())
         self.failIf(self.story.completable())
         self.failUnless(self.story.isCompleted())
-
-        # A fresh story is also not startable yet simply because it
-        # has not been estimated yet.
-        self.iteration.invokeFactory('Story', id='story2')
-        story2 = self.iteration.story2
-        self.failIf(story2.startable())
 
 
     def test_generateUniqueId(self):
