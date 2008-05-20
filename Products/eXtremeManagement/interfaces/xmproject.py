@@ -9,4 +9,3 @@ class IXMProject(Interface):
 
     A Project can at least contain Iterations.
     """
-

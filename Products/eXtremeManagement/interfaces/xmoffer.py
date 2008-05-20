@@ -7,4 +7,3 @@ class IXMOffer(Interface):
     An Offer is a collection of Stories that constitute the
     initial estimation of the entire project.
     """
-

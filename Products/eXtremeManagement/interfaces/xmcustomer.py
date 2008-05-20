@@ -8,4 +8,3 @@ class IXMCustomer(Interface):
 
     This Folder can contain ProjectMembers.
     """
-
