@@ -95,6 +95,10 @@ class testStory(eXtremeManagementTestCase):
         self.assertAnnotationStoryBrainEstimateEquality(story2, 2)
         self.assertAnnotationStoryBrainHoursEquality(story2, 1)
 
+        # The recalc method is tested in xm.booking, but we can at
+        # least call it once here.
+        self.story.recalc()
+
     def test_isEstimated(self):
         """
         """
@@ -103,6 +107,39 @@ class testStory(eXtremeManagementTestCase):
         self.story.update(roughEstimate=0)
         self.assertEqual(self.story.isEstimated(), False)
         self.logout()
+
+    def test_startable_completed(self):
+        # Stories start out as not startable, not completable and not
+        # completed.
+        self.failIf(self.story.startable())
+        self.failIf(self.story.completable())
+        self.failIf(self.story.isCompleted())
+
+        # Make task startable.
+        self.task.update(hours=4, assignees='developer')
+        self.failUnless(self.story.startable())
+        self.failIf(self.story.completable())
+        self.failIf(self.story.isCompleted())
+
+        # Activate the story
+        self.workflow.doActionFor(self.story, 'activate')
+        self.failUnless(self.story.startable())
+        self.failIf(self.story.completable())
+        self.failIf(self.story.isCompleted())
+        
+        # Complete the task.  That transitions the story also automatically.
+        self.workflow.doActionFor(self.task, 'complete')
+        self.failUnless(self.story.startable())
+        self.failUnless(self.story.completable())
+        self.failUnless(self.story.isCompleted())
+
+        # When the task get reactivated the story stays in the
+        # completed state but is not completable anymore.
+        self.workflow.doActionFor(self.task, 'reactivate')
+        self.failUnless(self.story.startable())
+        self.failIf(self.story.completable())
+        self.failUnless(self.story.isCompleted())
+
 
     def test_generateUniqueId(self):
         # The generateUniqueId method is called when a content type
