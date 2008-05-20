@@ -140,6 +140,12 @@ class testStory(eXtremeManagementTestCase):
         self.failIf(self.story.completable())
         self.failUnless(self.story.isCompleted())
 
+        # A fresh story is also not startable yet simply because it
+        # has not been estimated yet.
+        self.iteration.invokeFactory('Story', id='story2')
+        story2 = self.iteration.story2
+        self.failIf(story2.startable())
+
 
     def test_generateUniqueId(self):
         # The generateUniqueId method is called when a content type
@@ -159,6 +165,11 @@ class testStory(eXtremeManagementTestCase):
         # and see if the generateUniqueId function can handle what we
         # throw at it.
         story.invokeFactory('Task', '2')
+        self.assertEqual(story.generateUniqueId('Task'), '3')
+
+        # Any content items that somehow have a non integer id, should
+        # not give errors.
+        story.invokeFactory('Task', 'non-integer-id')
         self.assertEqual(story.generateUniqueId('Task'), '3')
 
         # If we add a task with a 'too high' id so it leaves a gap, we
