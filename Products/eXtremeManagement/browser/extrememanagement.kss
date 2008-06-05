@@ -1,4 +1,4 @@
-/* Add notes and remove notes */
+/* Add a Task. */
 
 #submit-task:click {
     evt-click-preventdefault: true;
