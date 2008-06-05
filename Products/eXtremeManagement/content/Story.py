@@ -91,10 +91,10 @@ class Story(OrderedBaseFolder):
         """
         if type_name in ('Task', 'PoiTask'):
             ids = self.contentIds()
-            intids = []
-            for id in ids:
+            intids = [0]
+            for id_ in ids:
                 try:
-                    intids.append(int(id))
+                    intids.append(int(id_))
                 except:
                     pass
             new_id = max(intids) + 1

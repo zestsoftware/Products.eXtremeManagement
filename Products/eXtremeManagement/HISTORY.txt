@@ -1,3 +1,8 @@
+2008-06-05 - maurits
+
+  - Fixed own mistake in generateUniqueId where this would fail if
+    there were no tasks in the story yet.
+
 2008-05-20 - maurits
 
   - Remove empty interfaces/IXMCustomer.py and accompanying Zope 3
