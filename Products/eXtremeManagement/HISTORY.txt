@@ -1,5 +1,10 @@
 2008-06-05 - maurits
 
+  - Do not load the details for all stories in the project or
+    iteration view.  Instead use KSS to show those details when
+    wanted.  eXtreme.js is no longer needed, but can't be properly
+    removed from the javascript registry with GenericSetup.
+
   - Fixed own mistake in generateUniqueId where this would fail if
     there were no tasks in the story yet.
 

@@ -1,4 +1,5 @@
 from Acquisition import Explicit
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from interfaces import ISimpleTaskList
 from interfaces import ISimpleStoryList
@@ -58,6 +59,10 @@ class StoryDetailsProvider(Explicit):
     def __init__(self, context, request, view):
         self.context = context
         self.request = request
+        uid = request.get('uid')
+        if uid is not None:
+            brains = getToolByName(context, 'uid_catalog')(UID=uid)
+            self.story_object = brains[0].getObject()
         self.__parent__ = view
 
     def update(self):

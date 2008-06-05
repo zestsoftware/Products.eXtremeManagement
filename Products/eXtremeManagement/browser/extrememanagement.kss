@@ -6,3 +6,13 @@
     action-server: xm_add_task;
     xm_add_task-kssSubmitForm: currentForm();
     }
+
+
+/* Expand/shrink the details of a story. */
+
+.toggle-story:click {
+    evt-click-preventdefault: false;
+    evt-click-allowbubbling: true;
+    action-server: xm_toggle_story;
+    xm_toggle_story-uid: kssAttr('uid');
+    }

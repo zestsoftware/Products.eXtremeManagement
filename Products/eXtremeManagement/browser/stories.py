@@ -6,6 +6,8 @@ from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from xm.booking.timing.interfaces import IActualHours
 from xm.booking.timing.interfaces import IEstimate
 from Products.eXtremeManagement.utils import formatTime
+from kss.core import kssaction
+from plone.app.kss.plonekssview import PloneKSSView
 
 
 class StoryView(XMBaseView):
@@ -97,3 +99,25 @@ class StoryView(XMBaseView):
                 name = memberId
             assignables.append((memberId, name, default))
         return assignables
+
+
+class StoryToggle(PloneKSSView):
+    """KSS for toggling the display of a story.
+    """
+
+    @kssaction
+    def xm_toggle_story(self, uid):
+        """Toggle the display of the story with the given uid.
+        """
+        # Render the story details provider for this story
+        zope = self.getCommandSet('zope')
+        zope.refreshProvider('#story-details-target-' + uid,
+                             'xm.story.details')
+
+        # Toggle the display of the story details by toggling the
+        # class.
+        core = self.getCommandSet('core')
+        core.toggleClass('#story-details-' + uid, 'story-details-empty')
+
+        # Toggle the display of the bottom line of the main story row.
+        core.toggleClass('#story-title-' + uid, 'clear-bottom')

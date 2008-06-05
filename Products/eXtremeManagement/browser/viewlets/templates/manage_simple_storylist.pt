@@ -67,18 +67,16 @@
     </tr>
 
     <tal:repeat repeat="story stories">
-      <tr tal:define="number repeat/story/number"
-          tal:attributes="id string:toggle-header-${iteration_number}-${number}"
-          class="list-in-iteration">
-        <td class="td-story-title">
+      <tr class="list-in-iteration toggle-story"
+          tal:attributes="class string:list-in-iteration toggle-story kssattr-uid-${story/uid};">
+        <td class="td-story-title"
+            tal:attributes="id string:story-title-${story/uid}">
           <div>
-            <a tal:attributes="href string:javascript:toggle_item('${iteration_number}-${number}')"
-               class="toggle-handle">[ &darr; ]</a>&nbsp;
+            [ &darr; ]&nbsp;
             <a class="storyTitle_iteration_overview"
                tal:attributes="href string:${story/url}"
                tal:content="story/title" />
           </div>
-
         </td>
         <td tal:define="review_state story/review_state"
             tal:content="story/review_state_title"
@@ -127,18 +125,14 @@
         </td>
         <td tal:content="story/actual" />
       </tr>
-      <tr tal:define="number repeat/story/number"
-          tal:attributes="id string:toggle-item-${iteration_number}-${number}"
-          style="display:none"
-          class="toggle-item">
+      <tr class="story-details-empty"
+          tal:attributes="id string:story-details-${story/uid};">
         <td colspan="5"
-            tal:attributes="colspan python:show_task_count and 7 or 5">
-          <div>
-            <tal:block
-                define="brains python:context.uid_catalog(UID=story['uid']);
-                        story_object python:brains[0].getObject();"
-                replace="structure provider:xm.story.details" />
-          </div>
+            tal:attributes="colspan python:view.show_task_count and 7 or 5;">
+          <span
+              tal:attributes="id string:story-details-target-${story/uid};">
+            Target for KSS to place the story details.
+          </span>
         </td>
       </tr>
     </tal:repeat>

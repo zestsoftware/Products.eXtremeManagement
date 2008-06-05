@@ -353,6 +353,8 @@ UL.xm-assignees LI {
     background-color: #FFDDCC;
 }
 
-
+.story-details-empty {
+  display:none;
+}
 
 /* </dtml-with> */

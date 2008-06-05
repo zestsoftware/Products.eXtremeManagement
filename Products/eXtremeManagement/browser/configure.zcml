@@ -183,6 +183,15 @@
       name="extrememanagement.kss"
       />
 
+  <page
+      for="*"
+      class=".stories.StoryToggle"
+      attribute="xm_toggle_story"
+      name="xm_toggle_story"
+      permission="zope2.View"
+      />
+
+
   <!-- configlets -->
 
   <page
