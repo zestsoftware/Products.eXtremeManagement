@@ -120,11 +120,6 @@
                 replace="structure provider:xm.tasklist.simple" />
           </tal:block>
 
-          <p class="discreet tasklist_table"
-             tal:condition="python: not items"
-             i18n:translate="no_tasks_defined">
-            No tasks defined yet.
-          </p>
           <br />
 
           <tal:attachements

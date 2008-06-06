@@ -1,15 +1,17 @@
 <tal:tasklist
+    i18n:domain="eXtremeManagement"
     define="tasklist python: view.realtasks or view.tasks;
             items tasklist/tasks|nothing;
             totals tasklist/totals|nothing;
-            show_story view/show_story;"
-    condition="items">
+            show_story view/show_story;">
 
   <table class="listing nosort tasklist_table"
+         id="task-list-for-story"
          border="1"
          width="100%"
          cellpadding="0"
-         cellspacing="0">
+         cellspacing="0"
+         tal:condition="items">
     <thead>
       <tr>
         <th i18n:translate="listingheader_story"
@@ -71,4 +73,10 @@
       <th colspan="2">&nbsp;</th>
     </tr>
   </table>
+  <p class="discreet tasklist_table"
+     id="task-list-for-story"
+     tal:condition="not:items"
+     i18n:translate="no_tasks_defined">
+    No tasks defined yet.
+  </p>
 </tal:tasklist>

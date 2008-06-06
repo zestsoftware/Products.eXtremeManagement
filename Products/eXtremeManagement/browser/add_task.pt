@@ -1,7 +1,13 @@
 <div id="add-task"
      i18n:domain="eXtremeManagement"
-     tal:define="story_view context/@@story"
-     tal:condition="story_view/show_add_task_form">
+     tal:define="story_view context/@@story">
+<span
+    style="display:none"
+    tal:condition="not:story_view/show_add_task_form">
+  No task add form.
+</span>
+<tal:addtask
+    condition="story_view/show_add_task_form">
 
   <form name="add_task"
         method="post"
@@ -57,4 +63,6 @@
            type="submit"
            class="standalone"/>
   </form>
+</tal:addtask>
 </div>
+
