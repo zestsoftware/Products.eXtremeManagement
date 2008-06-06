@@ -191,6 +191,7 @@
       permission="zope2.View"
       />
 
+  <zope:subscriber handler=".xm_kss.workflow_changed"/>
 
   <!-- configlets -->
 

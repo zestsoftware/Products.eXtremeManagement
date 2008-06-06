@@ -1,3 +1,9 @@
+2008-06-06 - maurits
+
+  - Register event handler to update some viewlets on the story page
+    when that story gets a workflow transition.
+
+
 2008-06-06 - maurits + jladage
 
   - Added getLayout method to Project.py.  This exists to please the
