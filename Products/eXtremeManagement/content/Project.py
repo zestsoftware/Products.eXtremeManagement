@@ -68,11 +68,21 @@ class Project(OrderedBaseFolder):
     _at_rename_after_creation = True
     schema = Project_schema
 
+    security.declarePublic('getLayout')
+
+    def getLayout(self):
+        """This exists to please the discussion form.
+
+        Needed because we do not mix in the DynamicViewFTI class.
+        Note: this is also used by e.g. Stories by using acquisition.
+        """
+        return 'base_view'
+
     security.declarePublic('getProject')
 
     def getProject(self):
         """
-        returns self - useful while doing aquisition many levels down the tree
+        returns self - useful while doing acquisition many levels down the tree
         """
         return self
 

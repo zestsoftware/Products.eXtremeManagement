@@ -1,3 +1,11 @@
+2008-06-06 - maurits + jladage
+
+  - Added getLayout method to Project.py.  This exists to please the
+    discussion form.  Needed because we do not mix in the
+    DynamicViewFTI class.  Note: this is also used by e.g. Stories by
+    using acquisition.
+
+
 2008-06-05 - maurits
 
   - Do not load the details for all stories in the project or
