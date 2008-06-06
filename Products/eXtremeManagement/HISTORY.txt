@@ -1,5 +1,12 @@
 2008-06-06 - maurits
 
+  - Split single kss event handler on the IAfterTransitionEvent into a
+    story and task specific one.
+
+  - Used xm.AddTask in a few spots.
+
+  - Added permissions.zcml for defining permissions like xm.AddProject.
+
   - Register event handler to update some viewlets on the story page
     when that story gets a workflow transition.
 

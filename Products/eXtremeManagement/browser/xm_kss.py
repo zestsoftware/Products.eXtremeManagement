@@ -1,16 +1,22 @@
-from Acquisition import aq_inner
 from zope.component import adapter
 from kss.core.interfaces import IKSSView
 from Products.DCWorkflow.interfaces import IAfterTransitionEvent
-#from plone.app.kss.plonekssview import PloneKSSView
-from Products.eXtremeManagement.interfaces.xmstory import IXMStory
+from Products.eXtremeManagement.interfaces import IXMStory
+from Products.eXtremeManagement.interfaces import IXMTask
+
 
 @adapter(IXMStory, IKSSView, IAfterTransitionEvent)
-def workflow_changed(obj, view, event):
+def story_workflow_changed(obj, view, event):
     if not (event.old_state is event.new_state):
-        #obj.reindexObject()
         viewletReloader = ViewletReloader(view)
-        viewletReloader.xm_change_workflow_state()
+        viewletReloader.update_story_viewlets()
+
+
+@adapter(IXMTask, IKSSView, IAfterTransitionEvent)
+def task_workflow_changed(obj, view, event):
+    if not (event.old_state is event.new_state):
+        viewletReloader = ViewletReloader(view)
+        viewletReloader.update_task_viewlets()
 
 
 class ViewletReloader(object):
@@ -22,11 +28,18 @@ class ViewletReloader(object):
         self.context = view.context
         self.request = view.request
 
-    def xm_change_workflow_state(self):
-        """Refresh some viewlets.
+    def update_story_viewlets(self):
+        """Refresh story viewlets.
         """
         zope = self.view.getCommandSet('zope')
         zope.refreshProvider('#task-list-for-story',
                              'xm.tasklist.simple')
         zope.refreshViewlet('#add-task', 'plone.belowcontentbody',
                             'xm.add_task_form')
+
+    def update_task_viewlets(self):
+        """Refresh task viewlets.
+        """
+        zope = self.view.getCommandSet('zope')
+        zope.refreshViewlet('#add-booking', 'plone.belowcontentbody',
+                            'xm.add_booking_form')

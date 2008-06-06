@@ -1,6 +1,8 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:cmf="http://namespaces.zope.org/cmf">
 
+  <include file="permissions.zcml" />
+
   <include package="xm.booking" />
   
   <include package="xm.portlets" />

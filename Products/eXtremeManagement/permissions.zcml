@@ -1,0 +1,44 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="eXtremeManagement">
+
+  <permission
+    id="xm.AddProject"
+    title="eXtremeManagement: Add Project/" />
+
+  <permission
+    id="xm.AddIteration"
+    title="eXtremeManagement: Add Iteration/" />
+
+  <permission
+    id="xm.AddStory"
+    title="eXtremeManagement: Add Story/" />
+
+  <permission
+    id="xm.AddTask"
+    title="eXtremeManagement: Add Task/" />
+
+  <permission
+    id="xm.AddProjectMember"
+    title="eXtremeManagement: Add ProjectMember/" />
+
+  <permission
+    id="xm.AddCustomer"
+    title="eXtremeManagement: Add Customer/" />
+
+  <permission
+    id="xm.AddCustomerFolder"
+    title="eXtremeManagement: Add CustomerFolder/" />
+
+  <permission
+    id="xm.AddProjectFolder"
+    title="eXtremeManagement: Add ProjectFolder/" />
+
+  <permission
+    id="xm.AddBooking"
+    title="eXtremeManagement: Add Booking/" />
+
+  <permission
+    id="xm.Add"
+    title="eXtremeManagement: Add Offer/" />
+
+</configure>

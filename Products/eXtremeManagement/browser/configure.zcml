@@ -108,15 +108,15 @@
       for="Products.eXtremeManagement.interfaces.xmstory.IXMStory"
       class=".tasks.Add"
       attribute="add_task"
-      permission="zope2.View"
-      /> <!-- Should be another permission -->
+      permission="xm.AddTask"
+      />
 
   <page
       name="xm_create_task"
       for="Products.eXtremeManagement.interfaces.xmstory.IXMStory"
       class=".tasks.Create"
-      permission="zope2.View"
-      /> <!-- Should be another permission -->
+      permission="xm.AddTask"
+      />
 
   <page
       name="story"
@@ -191,7 +191,8 @@
       permission="zope2.View"
       />
 
-  <zope:subscriber handler=".xm_kss.workflow_changed"/>
+  <zope:subscriber handler=".xm_kss.story_workflow_changed"/>
+  <zope:subscriber handler=".xm_kss.task_workflow_changed"/>
 
   <!-- configlets -->
 
