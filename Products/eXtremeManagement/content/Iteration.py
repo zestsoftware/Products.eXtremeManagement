@@ -1,6 +1,8 @@
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
 
+from DateTime import DateTime
+
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.atapi import CalendarWidget
 from Products.Archetypes.atapi import DateTimeField
@@ -22,6 +24,7 @@ schema = Schema((
             label='Start date',
             label_msgid='eXtremeManagement_label_startDate',
             i18n_domain='eXtremeManagement'),
+        default_method='defaultStartDate'
     ),
     DateTimeField(
         name='endDate',
@@ -104,5 +107,13 @@ class Iteration(OrderedBaseFolder):
             if review_state != 'completed':
                 return False
         return True
+
+    security.declarePublic('defaultStartDate')
+
+    def defaultStartDate(self):
+        """
+        Return the current DateTime as default for the startDate.
+        """
+        return DateTime()
 
 registerType(Iteration, 'eXtremeManagement')

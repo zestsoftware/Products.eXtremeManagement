@@ -1,3 +1,8 @@
+2008-06-10 - mr_savage
+
+  - content/iteration.py set the default for the startDate to current
+    DateTime
+
 2008-06-06 - maurits
 
   - Split single kss event handler on the IAfterTransitionEvent into a
