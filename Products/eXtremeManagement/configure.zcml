@@ -35,4 +35,25 @@
   <cmf:registerDirectory name="eXtremeManagement"/>
 
 
+  <!-- Adapter for getting issues adding a PoiTask -->
+  <adapter
+      provides=".interfaces.xmissuegetter.IXMIssueGetter"
+      for=".interfaces.xmtask.IIssueTask *"
+      factory=".adapters.XMIssueGetter"
+      />
+
+  <adapter
+      provides=".interfaces.xmissuegetter.IXMIssueGetter"
+      for=".interfaces.xmstory.IXMStory *"
+      factory=".adapters.XMIssueGetter"
+      />
+
+  <adapter
+      provides=".interfaces.xmissuegetter.IXMIssueGetter"
+      for="Products.Poi.interfaces.IIssue *"
+      factory=".adapters.XMIssueGetter"
+      />
+
+
+
 </configure>

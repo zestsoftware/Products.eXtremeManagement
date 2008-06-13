@@ -2,10 +2,12 @@ import textwrap
 
 from Acquisition import aq_inner, aq_parent
 from zope import interface
+from zope.component import getMultiAdapter
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.interfaces import IReferenceable
 from Products.statusmessages.interfaces import IStatusMessage
+from Products.eXtremeManagement.interfaces.xmissuegetter import IXMIssueGetter
 
 
 def abbreviate(text, width=15, ellipsis='...'):
@@ -84,18 +86,8 @@ class PoiView(BrowserView):
         return ([i for i in issues if i not in ignore], ignore)
 
     def get_open_issues_in_project(self, **kwargs):
-        project = self._lookup_project()
-        if project is None:
-            return []
-        assert project.portal_type == 'Project', (
-            "Failed to get associated project.")
-        catalog = getToolByName(self.context, 'portal_catalog')
-        query = dict(portal_type='PoiIssue',
-                     review_state=['in-progress', 'open',
-                                   'unconfirmed', 'new'],
-                     path='/'.join(project.getPhysicalPath()))
-        query.update(kwargs)
-        return catalog(**query)
+        return getMultiAdapter((self.context, self.request), 
+                               IXMIssueGetter).get_issues(**kwargs)
 
     def get_open_stories_in_project(self, **kwargs):
         return self.get_open_issues_in_project(

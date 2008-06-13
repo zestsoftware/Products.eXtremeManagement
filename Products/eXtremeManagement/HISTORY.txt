@@ -1,3 +1,13 @@
+2008-06-13 - mr_savage
+
+  - browser/poi.py get_open_issues_in_project() now internally 
+      calls a multi adapter ( context, request ) to get issues
+  - adapters.py
+      default implementation of IXMIssueGetter
+  - interfaces/xmissuegetter.py IXMIssueGetter interface
+  - configure.zcml
+       adapter registration
+
 2008-06-10 - mr_savage
 
   - content/iteration.py set the default for the startDate to current
