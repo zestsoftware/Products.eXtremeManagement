@@ -1,5 +1,12 @@
 2008-06-16 - mr_savage
 
+  - skins/booking_details.pt
+    changed tal to use urlparameter memberid when constructing links
+    to previous / current month if param present in
+    request
+
+2008-06-16 - mr_savage
+
   - skins/booking_year.pt
     changed tal to use urlparameter memberid when constructing links
     to previous / next year if param present in
