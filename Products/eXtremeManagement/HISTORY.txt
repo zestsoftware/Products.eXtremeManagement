@@ -1,3 +1,10 @@
+2008-06-16 - mr_savage
+
+  - skins/booking_month.pt
+    changed tal to use urlparameter memberid when constructing links
+    to booking_year, previous-month, current-month if param present in
+    request
+
 2008-06-13 - mr_savage
 
   - browser/poi.py get_open_issues_in_project() now internally 

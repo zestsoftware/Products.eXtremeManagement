@@ -16,25 +16,37 @@
          <p>
            <span i18n:translate="go_to_overview">
            Go to overview of
-           </span> <a
-           tal:attributes="href string:booking_year"
-           i18n:translate="last_12_months">last 12 months</a>.
+           </span> 
+           <a tal:condition="not: request/memberid|nothing"
+              tal:attributes="href string:booking_year"
+              i18n:translate="last_12_months">last 12 months</a>
+           <a tal:condition="request/memberid|nothing"
+              tal:attributes="href string:booking_year?memberid=${request/memberid}"
+              i18n:translate="last_12_months">last 12 months</a>.
          </p>
          <tal:othermonths
              tal:define="contextlink string:${here/absolute_url}/${template/id}">
             <p tal:condition="not:request/previous|nothing">
               <tal:goto i18n:translate="go_to">
                 Go to
-              </tal:goto> <a
-                tal:attributes="href string:${contextlink}?previous=1"
-                i18n:translate="previous-month">previous month</a>.
+              </tal:goto> 
+              <a tal:condition="not: request/memberid|nothing"
+                 tal:attributes="href string:${contextlink}?previous=1"
+                 i18n:translate="previous-month">previous month</a>
+              <a tal:condition="request/memberid|nothing"
+                 tal:attributes="href string:${contextlink}?previous=1&memberid=${request/memberid}"
+                 i18n:translate="previous-month">previous month</a>.
             </p>
             <p tal:condition="request/previous|nothing">
               <tal:back i18n:translate="back_to">
                 Back to
-              </tal:back> <a
-              tal:attributes="href string:${contextlink}"
-              i18n:translate="current-month">current month</a>.
+              </tal:back> 
+             <a tal:condition="not: request/memberid|nothing"
+                 tal:attributes="href string:${contextlink}"
+                 i18n:translate="current-month">current month</a>
+             <a tal:condition="request/memberid|nothing"
+                 tal:attributes="href string:${contextlink}?memberid=${request/memberid}"
+                 i18n:translate="current-month">current month</a>.
             </p>
          </tal:othermonths>
 
