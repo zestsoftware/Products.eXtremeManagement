@@ -31,11 +31,13 @@ class ViewletReloader(object):
     def update_story_viewlets(self):
         """Refresh story viewlets.
         """
-        zope = self.view.getCommandSet('zope')
-        zope.refreshProvider('#task-list-for-story',
-                             'xm.tasklist.simple')
-        zope.refreshViewlet('#add-task', 'plone.belowcontentbody',
-                            'xm.add_task_form')
+        if IXMStory.providedBy(self.context):
+            # only do this if the context is actually a Story.
+            zope = self.view.getCommandSet('zope')
+            zope.refreshProvider('#task-list-for-story',
+                                 'xm.tasklist.simple')
+            zope.refreshViewlet('#add-task', 'plone.belowcontentbody',
+                                'xm.add_task_form')
 
     def update_task_viewlets(self):
         """Refresh task viewlets.

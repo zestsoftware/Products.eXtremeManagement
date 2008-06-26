@@ -3,6 +3,7 @@
 
 2008-06-26 - seletz
 
+  - browser/xm_kss.py: Only update story viewlets in story context.
   - browser/viewlets/manager.py: delegate icon fetching to the view, and do it
     there such that it only returns the icon name.  That fixes the
     icon-of-iteration-is-not-found-if-site-is-named-plone bug.
