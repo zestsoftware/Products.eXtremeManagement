@@ -1,5 +1,8 @@
 2008-06-26 - seletz
 
+  - skins/eXtremeManagement/story_view.pt: Render the task list even
+    if empty; otherwise the KSS-ified task adding cannot refresh the
+    task list.
   - browser/xm_kss.py: fix comparsion of WF event states to fix a
     ComponentLookupError if adding tasks using KSS in a story.
   - added mr_savage and myself to the AUTHORS.txt (no CONTRIBUTORS.txt?)
