@@ -111,8 +111,7 @@
 
           <div id="break-before-task-listing" class="visualClear"><!-- --></div>
 
-          <tal:block tal:condition="items"
-                     tal:define="show_story python:False;">
+          <tal:block tal:define="show_story python:False;">
             <h2 class="heading-tasks" i18n:translate="heading_tasks">Tasks</h2>
 
             <tal:replace
