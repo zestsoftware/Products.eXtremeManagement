@@ -7,14 +7,14 @@ from Products.eXtremeManagement.interfaces import IXMTask
 
 @adapter(IXMStory, IKSSView, IAfterTransitionEvent)
 def story_workflow_changed(obj, view, event):
-    if not (event.old_state is event.new_state):
+    if not (event.old_state == event.new_state):
         viewletReloader = ViewletReloader(view)
         viewletReloader.update_story_viewlets()
 
 
 @adapter(IXMTask, IKSSView, IAfterTransitionEvent)
 def task_workflow_changed(obj, view, event):
-    if not (event.old_state is event.new_state):
+    if not (event.old_state == event.new_state):
         viewletReloader = ViewletReloader(view)
         viewletReloader.update_task_viewlets()
 

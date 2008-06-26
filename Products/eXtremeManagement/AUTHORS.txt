@@ -16,3 +16,8 @@ Joris Slob <j.slob@zestsoftware.nl>
 
 Mark van Lent <m.vanlent@zestsoftware.nl>
 
+Hans-Peter Locher <hans-peter.locher@inquant.de>
+
+Stefan Eletzhofer <stefan.eletzhofer@inquant.de>
+
+
