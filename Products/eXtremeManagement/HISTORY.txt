@@ -3,6 +3,9 @@
 
 2008-06-26 - seletz
 
+  - browser/viewlets/manager.py: delegate icon fetching to the view, and do it
+    there such that it only returns the icon name.  That fixes the
+    icon-of-iteration-is-not-found-if-site-is-named-plone bug.
   - browser/xm_kss.py: Only update viewlet for task bookings if we're actually
     in task context.  Otherwise we'll get a ComponentLookupError if the story
     gets activated (tasks get automatically transitioned from new->activated).

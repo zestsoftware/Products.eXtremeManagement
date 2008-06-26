@@ -46,6 +46,12 @@ class SimpleStoryListManager(Explicit):
         self.request = request
         self.__parent__ = view
 
+    def iteration_icon(self):
+        # the (1) is needed otherwise getIcon() will return
+        # 'plone/iteration_icon.gif', which is wrong. The template
+        # will add the $portal_url prefix
+        return self.iteration_object.getIcon(1)
+
     def update(self):
         pass
 

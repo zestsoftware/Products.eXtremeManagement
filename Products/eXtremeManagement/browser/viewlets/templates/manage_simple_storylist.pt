@@ -3,6 +3,7 @@
             iteration_object nocall:view/iteration_object;
             iteration_dict view/iteration_dict;
             iteration_number view/iteration_number;
+            iteration_icon view/iteration_icon;
             show_iteration view/show_iteration;
             show_task_count view/show_task_count;
             show_progress view/show_progress;
@@ -24,7 +25,7 @@
             class="header_iteration">
           <a class="header_iteration_project_overview"
              tal:attributes="href string:${iteration_object/absolute_url}">
-            <img tal:attributes="src string:${here/portal_url}/${iteration_object/getIcon};
+            <img tal:attributes="src string:${here/portal_url}/${iteration_icon};
                                  alt string:Iteration overview"/>
             <span tal:replace="iteration_dict/title">Title</span>
           </a>
