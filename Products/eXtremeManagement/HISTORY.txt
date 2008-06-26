@@ -1,3 +1,6 @@
+1.6 rc8 (2008-06-26)
+--------------------
+
 2008-06-26 - seletz
 
   - skins/eXtremeManagement/story_view.pt: Render the task list even
