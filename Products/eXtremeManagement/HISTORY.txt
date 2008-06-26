@@ -1,7 +1,11 @@
 1.6 rc9 (unreleased)
 --------------------
 
-- Nothing yet
+2008-06-26 - seletz
+
+  - browser/xm_kss.py: Only update viewlet for task bookings if we're actually
+    in task context.  Otherwise we'll get a ComponentLookupError if the story
+    gets activated (tasks get automatically transitioned from new->activated).
 
 
 1.6 rc8 (2008-06-26)

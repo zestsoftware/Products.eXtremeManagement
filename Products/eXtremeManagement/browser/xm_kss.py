@@ -40,6 +40,8 @@ class ViewletReloader(object):
     def update_task_viewlets(self):
         """Refresh task viewlets.
         """
-        zope = self.view.getCommandSet('zope')
-        zope.refreshViewlet('#add-booking', 'plone.belowcontentbody',
-                            'xm.add_booking_form')
+        if IXMTask.providedBy(self.context):
+            # only do this if the context is actually a task.
+            zope = self.view.getCommandSet('zope')
+            zope.refreshViewlet('#add-booking', 'plone.belowcontentbody',
+                                'xm.add_booking_form')
