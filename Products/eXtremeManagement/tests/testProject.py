@@ -65,7 +65,7 @@ class testProject(eXtremeManagementTestCase):
         self.failUnless(self.membership.checkPermission(
             'eXtremeManagement: Edit budgetHours', self.project))
 
-        # We should be able to set the budget hours as ProjectManager
+        # We should be able to set the budget hours as Projectmanager
         self.login('projectmanager')
         self.failUnless(self.membership.checkPermission(
             'eXtremeManagement: Edit budgetHours', self.project))

@@ -268,7 +268,7 @@
   <guard>
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
-   <guard-role>Projektmanager</guard-role>
+   <guard-role>Projectmanager</guard-role>
   </guard>
  </transition>
  <transition transition_id="estimate"

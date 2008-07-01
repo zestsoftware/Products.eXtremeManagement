@@ -1,7 +1,10 @@
 1.6 rc10 (unreleased)
 ---------------------
 
-Nothing yet.
+2008-07-01 - maurits
+
+  - Fixed typos that referred to a different spelling of the
+    Projectmanager role.
 
 
 1.6 rc9 (2008-06-30)

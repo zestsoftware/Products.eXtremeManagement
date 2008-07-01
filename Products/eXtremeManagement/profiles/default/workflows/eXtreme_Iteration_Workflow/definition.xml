@@ -210,7 +210,7 @@
   <action url="" category="workflow">No Invoicing</action>
   <guard>
    <guard-role>Manager</guard-role>
-   <guard-role>ProjectManager</guard-role>
+   <guard-role>Projectmanager</guard-role>
   </guard>
  </transition>
  <transition transition_id="reactivate" title="Reactivate"
@@ -230,7 +230,7 @@
   <action url="" category="workflow">Reconsider Invoicing</action>
   <guard>
    <guard-role>Manager</guard-role>
-   <guard-role>ProjectManager</guard-role>
+   <guard-role>Projectmanager</guard-role>
   </guard>
  </transition>
  <transition transition_id="retract" title="Retract"
