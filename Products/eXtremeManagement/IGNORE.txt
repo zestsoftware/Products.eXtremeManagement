@@ -1,2 +1,0 @@
-# svn ps svn:ignore -F IGNORE.txt .
-*.pyc
