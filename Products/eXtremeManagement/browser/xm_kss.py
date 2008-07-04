@@ -1,6 +1,7 @@
 from zope.component import adapter
 from kss.core.interfaces import IKSSView
 from Products.DCWorkflow.interfaces import IAfterTransitionEvent
+
 from Products.eXtremeManagement.interfaces import IXMStory
 from Products.eXtremeManagement.interfaces import IXMTask
 
