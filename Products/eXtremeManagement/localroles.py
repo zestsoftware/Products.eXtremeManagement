@@ -30,4 +30,3 @@ class ProjectmanagerRole(object):
     title = PMF(u"title_projectmanager_role",
                 default="Can manage project")
     required_permission = 'Manage portal'
-
