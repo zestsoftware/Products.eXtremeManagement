@@ -1,13 +1,12 @@
 import datetime
-from Acquisition import aq_inner
 
+from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
+from kss.core import kssaction
 from plone.app.kss.plonekssview import PloneKSSView
 from plone.app.layout.viewlets import ViewletBase
-from kss.core import kssaction
 
 from xm.booking.timing.interfaces import IActualHours
 from xm.booking.timing.interfaces import IEstimate
