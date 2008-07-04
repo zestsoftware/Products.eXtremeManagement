@@ -1,13 +1,13 @@
 from Acquisition import aq_inner
 from Acquisition import aq_parent
 from Products.CMFCore.utils import getToolByName
-
-from Products.eXtremeManagement.browser.xmbase import XMBaseView
-from xm.booking.timing.interfaces import IActualHours
-from xm.booking.timing.interfaces import IEstimate
-from Products.eXtremeManagement.utils import formatTime
 from kss.core import kssaction
 from plone.app.kss.plonekssview import PloneKSSView
+
+from Products.eXtremeManagement.browser.xmbase import XMBaseView
+from Products.eXtremeManagement.utils import formatTime
+from xm.booking.timing.interfaces import IActualHours
+from xm.booking.timing.interfaces import IEstimate
 
 
 class StoryView(XMBaseView):
