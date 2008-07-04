@@ -7,6 +7,7 @@ from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.interfaces import IReferenceable
 from Products.statusmessages.interfaces import IStatusMessage
+
 from Products.eXtremeManagement.interfaces.xmissuegetter import IXMIssueGetter
 
 
@@ -86,7 +87,7 @@ class PoiView(BrowserView):
         return ([i for i in issues if i not in ignore], ignore)
 
     def get_open_issues_in_project(self, **kwargs):
-        return getMultiAdapter((self.context, self.request), 
+        return getMultiAdapter((self.context, self.request),
                                IXMIssueGetter).get_issues(**kwargs)
 
     def get_open_stories_in_project(self, **kwargs):
