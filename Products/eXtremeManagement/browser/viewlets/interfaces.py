@@ -34,8 +34,7 @@ directlyProvides(ISimpleStoryList, ITALNamespaceData)
 class IStoryDetails(IViewletManager):
     realtasks = zope.schema.Text(
         title=u'Alternative for tasks that might be in the view.')
-    story_object = zope.schema.Bool(title=u'Story object whose details should be rendered.')
+    story_object = zope.schema.Bool(
+        title=u'Story object whose details should be rendered.')
 
 directlyProvides(IStoryDetails, ITALNamespaceData)
-
-
