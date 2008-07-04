@@ -38,7 +38,7 @@ class CacheHelperView(BrowserView):
         return str(hash(uid_string))
 
     def etag(self):
-        """Return normal extra ETag components for philips.
+        """Return normal extra ETag components.
 
         Only location is used as an extra differentiator now, but
         later the current display and current default page should be
