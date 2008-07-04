@@ -8,10 +8,8 @@ the ZCML, and the test file.
 from zope.component import getMultiAdapter
 from zope.formlib import form
 from zope.interface import implements
-
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 
