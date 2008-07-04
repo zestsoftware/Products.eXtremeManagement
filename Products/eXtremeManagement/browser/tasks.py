@@ -24,8 +24,8 @@ class TaskView(XMBaseView):
         super(TaskView, self).__init__(context, request)
 
         propstool = getToolByName(context, 'portal_properties')
-        self.friendlyDateFormat = \
-            propstool.site_properties.getProperty('friendlyDateFormat', None)
+        self.friendlyDateFormat = propstool.site_properties.getProperty(
+            'friendlyDateFormat', None)
 
     def main(self):
         """Get a dict with info from this Task.
