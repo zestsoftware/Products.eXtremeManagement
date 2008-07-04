@@ -1,10 +1,11 @@
 from Acquisition import Explicit
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.interface import implements
+
 from interfaces import ISimpleTaskList
 from interfaces import ISimpleStoryList
 from interfaces import IStoryDetails
-from zope.interface import implements
 
 
 class SimpleTaskListManager(Explicit):
