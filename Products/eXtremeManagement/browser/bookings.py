@@ -2,8 +2,9 @@ from Products.CMFCore.utils import getToolByName
 from DateTime import DateTime
 from Products.Five.browser import BrowserView
 from Acquisition import aq_inner
-from Products.eXtremeManagement.browser.xmbase import XMBaseView
+
 from xm.booking.timing.interfaces import IActualHours
+from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
 
 
