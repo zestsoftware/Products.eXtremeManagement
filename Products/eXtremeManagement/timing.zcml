@@ -14,7 +14,7 @@
            zope.app.container.interfaces.IObjectMovedEvent"
       handler="xm.booking.timing.events.addedActualHours"
       />
- 
+
   <subscriber
       for="Products.eXtremeManagement.interfaces.IXMBooking
            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
@@ -26,7 +26,7 @@
            zope.app.container.interfaces.IObjectMovedEvent"
       handler="xm.booking.timing.events.addedEstimate"
       />
- 
+
   <subscriber
       for="Products.eXtremeManagement.interfaces.IXMTask
            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
@@ -58,7 +58,7 @@
   </class>
 
 
- 
+
   <!-- Say which of our content types should be enhanced with
        duration estimates. -->
 
