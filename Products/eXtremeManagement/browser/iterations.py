@@ -86,6 +86,8 @@ class IterationView(XMBaseView):
         """
         context = aq_inner(self.context)
         review_state_id = brain.review_state
+        # TODO: the following two lines are executed for every story: better
+        # just grab them once with an @Lazy. [reinout]
         workflow = getToolByName(context, 'portal_workflow')
         catalog = getToolByName(context, 'portal_catalog')
 
