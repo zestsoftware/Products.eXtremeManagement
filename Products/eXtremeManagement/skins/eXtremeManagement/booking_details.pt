@@ -5,7 +5,7 @@
 
   <head>
     <metal:block fill-slot="top_slot"
-		 tal:define="dummy python:request.set('disable_border', 1)" />
+                 tal:define="dummy python:request.set('disable_border', 1)" />
   </head>
 
   <body>
@@ -15,7 +15,7 @@
       <p tal:condition="not:request/previous|nothing">
         <tal:goto i18n:translate="go_to">
           Go to
-        </tal:goto> 
+        </tal:goto>
         <a tal:condition="not: request/memberid|nothing"
            tal:attributes="href string:${template/absolute_url}?previous=1"
            i18n:translate="previous-month">previous month</a>
@@ -26,7 +26,7 @@
       <p tal:condition="request/previous|nothing">
         <tal:back i18n:translate="back_to">
           Back to
-        </tal:back> 
+        </tal:back>
         <a tal:condition="not: request/memberid|nothing"
            tal:attributes="href string:${template/absolute_url}"
            i18n:translate="current-month">current month</a>
@@ -38,59 +38,58 @@
                              view context/@@monthbooking_details;
                              main view/main;
                              bookings view/bookinglist"
-		 tal:condition="bookings">
-	<h1 i18n:translate="heading-bookings">Bookings</h1>
-	
-	<table border="1" 
-	       class="listing" 
-	       with="100%">
-	  <tr>
-	    <th i18n:translate="listingheader-date">
-	      Date
-	    </th>
-	    <th i18n:translate="listingheader-task">
-	      Task
-	    </th>
-	    <th i18n:translate="listingheader-booking">
-	      Booking
-	    </th>
-	    <th i18n:translate="listingheader-time">
-	      Time
-	    </th>
-	  </tr>
-	  
-	  <tr tal:repeat="booking bookings">
-	    <td>
-	      <span tal:content="booking/day_of_week" />
-	      <span tal:content="booking/booking_date" />
-	      <br />
-	      <span class="discreet"
-		    tal:content="booking/project_title" />
-	    </td>
-	    <td>
-	      <a tal:attributes="href booking/task_url"
-             class="booking_title"
-             tal:content="booking/task_title" />
-	    </td>
-	    <td>
-	      <a tal:attributes="href booking/booking_url"
-             class="booking_title"
-             tal:content="booking/booking_title" />
-          <div class="booking_description" 
-               tal:content="booking/booking_description" />
-	    </td>
-	    <td tal:content="booking/booking_hours" />
-	  </tr>
-      <tr>
-        <th i18n:translate="listingheader-total"
-            colspan="3">
-          Total
-        </th>
-        <th tal:content="main/total" />
-      </tr>
-	</table>
+                 tal:condition="bookings">
+        <h1 i18n:translate="heading-bookings">Bookings</h1>
+
+        <table border="1"
+               class="listing"
+               with="100%">
+          <tr>
+            <th i18n:translate="listingheader-date">
+              Date
+            </th>
+            <th i18n:translate="listingheader-task">
+              Task
+            </th>
+            <th i18n:translate="listingheader-booking">
+              Booking
+            </th>
+            <th i18n:translate="listingheader-time">
+              Time
+            </th>
+          </tr>
+
+          <tr tal:repeat="booking bookings">
+            <td>
+              <span tal:content="booking/day_of_week" />
+              <span tal:content="booking/booking_date" />
+              <br />
+              <span class="discreet"
+                    tal:content="booking/project_title" />
+            </td>
+            <td>
+              <a tal:attributes="href booking/task_url"
+                 class="booking_title"
+                 tal:content="booking/task_title" />
+            </td>
+            <td>
+              <a tal:attributes="href booking/booking_url"
+                 class="booking_title"
+                 tal:content="booking/booking_title" />
+              <div class="booking_description"
+                   tal:content="booking/booking_description" />
+            </td>
+            <td tal:content="booking/booking_hours" />
+          </tr>
+          <tr>
+            <th i18n:translate="listingheader-total"
+                colspan="3">
+              Total
+            </th>
+            <th tal:content="main/total" />
+          </tr>
+        </table>
       </tal:block>
     </tal:main>
   </body>
 </html>
-

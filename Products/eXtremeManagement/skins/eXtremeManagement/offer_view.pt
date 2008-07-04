@@ -63,7 +63,7 @@
               Initial estimate (days)
             </h2>
             <h2 i18n:translate="heading-stories"
-              class="offer-story-header">Stories</h2>
+                class="offer-story-header">Stories</h2>
             <div class="visualClear" />
           </div>
 
@@ -73,41 +73,41 @@
                  id="offerView">
             <tbody valign="top">
               <tal:repeat repeat="story stories">
-              <tr class="storyTitle-storyEstimate">
-                <td>
-                  <h2>
-                    <span tal:replace="story/title" />
-                    <span class=""
-                          tal:attributes="class story/draft_class"
-                          tal:condition="story/show_draft_story">
-                      (<span i18n:domain="plone"
-                             i18n:translate="Draft">Draft</span>)
-                    </span>
-                    <a href=""
-                       tal:condition="story/editable"
-                       tal:attributes="href string:${story/url}/edit">
-                      <img src="edit.gif" alt="Edit" title="Edit"
-                           i18n:domain="plone"
-                           i18n:attributes="alt;
-                                            title"/>
-                    </a>
-                  </h2>
-                </td>
-                <td class="offer-story-estimate">
-                  <h2 class=""
-                      tal:condition="story/size_estimate"
-                      tal:attributes="class story/draft_class"
-                      tal:content="story/size_estimate" />
-                  <tal:empty condition="not: story/size_estimate">
-                    &nbsp;
-                  </tal:empty>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2"
-                    class="offer-story-text"
-                    tal:content="structure story/main_text" />
-              </tr>
+                <tr class="storyTitle-storyEstimate">
+                  <td>
+                    <h2>
+                      <span tal:replace="story/title" />
+                      <span class=""
+                            tal:attributes="class story/draft_class"
+                            tal:condition="story/show_draft_story">
+                        (<span i18n:domain="plone"
+                        i18n:translate="Draft">Draft</span>)
+                      </span>
+                      <a href=""
+                         tal:condition="story/editable"
+                         tal:attributes="href string:${story/url}/edit">
+                        <img src="edit.gif" alt="Edit" title="Edit"
+                             i18n:domain="plone"
+                             i18n:attributes="alt;
+                                              title"/>
+                      </a>
+                    </h2>
+                  </td>
+                  <td class="offer-story-estimate">
+                    <h2 class=""
+                        tal:condition="story/size_estimate"
+                        tal:attributes="class story/draft_class"
+                        tal:content="story/size_estimate" />
+                    <tal:empty condition="not: story/size_estimate">
+                      &nbsp;
+                    </tal:empty>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2"
+                      class="offer-story-text"
+                      tal:content="structure story/main_text" />
+                </tr>
               </tal:repeat>
             </tbody>
 

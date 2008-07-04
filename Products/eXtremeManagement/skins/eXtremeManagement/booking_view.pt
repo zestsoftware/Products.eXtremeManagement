@@ -17,29 +17,29 @@
     <metal:block metal:define-macro="header"
                  tal:define="view context/@@booking;
                              booking view/main">
-       <h1 tal:content="booking/title" class="documentFirstHeading" />
-       <div class="documentDescription"
-            tal:condition="booking/description"
-            tal:content="booking/description">description
-       </div>
-       <link REL="stylesheet" TYPE="text/css" href="eXtreme.css" />
+      <h1 tal:content="booking/title" class="documentFirstHeading" />
+      <div class="documentDescription"
+           tal:condition="booking/description"
+           tal:content="booking/description">description
+      </div>
+      <link REL="stylesheet" TYPE="text/css" href="eXtreme.css" />
     </metal:block>
-   
+
     <metal:block metal:define-macro="body"
                  tal:define="view context/@@booking;
                              booking view/main">
 
-      <h5 class="header-booking-hours" 
+      <h5 class="header-booking-hours"
           i18n:translate="heading-booking">Booking
       </h5>
       <span tal:content="booking/actual">3:14</span>
 
-      <h5 class="header-booking-date" 
+      <h5 class="header-booking-date"
           i18n:translate="heading-booking-date">Booking date
       </h5>
       <span tal:content="booking/booking_date">2006-01-01</span>
 
-      <h5 class="header-billable" 
+      <h5 class="header-billable"
           i18n:translate="heading-billable">Billable
       </h5>
       <span tal:content="booking/billable" />

@@ -2,70 +2,70 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       i18n:domain="eXtremeManagement">
 
-    <body>
+  <body>
 
     <div metal:define-macro="portlet"
          tal:condition="python: mtool.checkPermission('eXtremeManagement: Add Booking', here)">
 
-     <dl class="portlet" id="portlet-project-administration"
-         tal:condition="not:isAnon">
+      <dl class="portlet" id="portlet-project-administration"
+          tal:condition="not:isAnon">
 
         <dt class="portletHeader" >
           <span class="portletTopLeft"></span>
-            <!-- Make the header a link for Managers. -->
-            <a tal:condition="python: mtool.checkPermission('Manage Portal', here)"  
-               tal:attributes="href
-               string:${portal_url}/project_administration">
-               <tal:admin-manager i18n:translate="project_administration">
-                  Project administration</tal:admin-manager>
-            </a>
-            <tal:admin-no-manager
-                tal:condition="python: not mtool.checkPermission('Manage Portal', here)"  
-                i18n:translate="project_administration">
-              Project administration
-            </tal:admin-no-manager>
-            <span class="portletTopRight"></span>
+          <!-- Make the header a link for Managers. -->
+          <a tal:condition="python: mtool.checkPermission('Manage Portal', here)"
+             tal:attributes="href
+                             string:${portal_url}/project_administration">
+            <tal:admin-manager i18n:translate="project_administration">
+            Project administration</tal:admin-manager>
+          </a>
+          <tal:admin-no-manager
+              tal:condition="python: not mtool.checkPermission('Manage Portal', here)"
+              i18n:translate="project_administration">
+            Project administration
+          </tal:admin-no-manager>
+          <span class="portletTopRight"></span>
         </dt>
-    
+
         <dd class="portletItem odd">
-            <a i18n:translate="task_overview" 
-               tal:attributes="href
-               string:${portal_url}/task_overview">Task overview
-            </a>
-        </dd> 
+          <a i18n:translate="task_overview"
+             tal:attributes="href
+                             string:${portal_url}/task_overview">Task overview
+          </a>
+        </dd>
 
         <dd class="portletItem even">
-            <a i18n:translate="detailed_bookings" 
-               tal:attributes="href string:${portal_url}/booking_details">
-              Detailed bookings
-            </a>
+          <a i18n:translate="detailed_bookings"
+             tal:attributes="href string:${portal_url}/booking_details">
+            Detailed bookings
+          </a>
         </dd>
 
         <dd class="portletItem odd">
-            <a i18n:translate="booking_month" 
-               tal:attributes="href
-               string:${portal_url}/booking_month">Bookings per month
-            </a>
-        </dd> 
+          <a i18n:translate="booking_month"
+             tal:attributes="href
+                             string:${portal_url}/booking_month">Bookings per month
+          </a>
+        </dd>
 
         <dd class="portletItem even"
             tal:define="view portal/@@daytotal"
             i18n:translate="hours_booked_today">
-            Hours booked for today:
-            <span i18n:name="total_booked" tal:replace="view/total" />
+          Hours booked for today:
+          <span i18n:name="total_booked" tal:replace="view/total" />
         </dd>
 
         <dd class="portletItem odd">
-            <a i18n:translate="header_time_registration"
-               tal:attributes="href string:${portal_url}/update_hours_form">
-                Time registration
-            </a> 
+          <a i18n:translate="header_time_registration"
+             tal:attributes="href string:${portal_url}/update_hours_form">
+            Time registration
+          </a>
         </dd>
         <dd class="portletFooter">
           <span class="portletBottomLeft"></span>
           <span class="portletBottomRight"></span>
         </dd>
-     </dl>
+      </dl>
     </div>
-    </body>
+  </body>
 </html>

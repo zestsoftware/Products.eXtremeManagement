@@ -1,124 +1,124 @@
 <html xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       i18n:domain="plone">
-<body>
+  <body>
 
-  <tal:comment tal:condition="nothing">
-    <!--
-        This is really two portlets in one.  Depending on what the context
-        is, we:
+    <tal:comment tal:condition="nothing">
+      <!--
+          This is really two portlets in one.  Depending on what the context
+          is, we:
 
-        - Provide a form for mass-creating Poi Tasks out of Poi Issues
-          when we're looking at an open story.
+- Provide a form for mass-creating Poi Tasks out of Poi Issues
+when we're looking at an open story.
 
-        - Provide links to relevant Poi Tasks when the user is looking at
-          an issue that's linked from one Poi Task, and a way to create a
-          task for this issue in an open story.
-    -->
-  </tal:comment>
+- Provide links to relevant Poi Tasks when the user is looking at
+an issue that's linked from one Poi Task, and a way to create a
+task for this issue in an open story.
+      -->
+    </tal:comment>
 
-<metal:macro define-macro="portlet"
-             tal:define="view nocall:context/@@xm-poi">
+    <metal:macro define-macro="portlet"
+                 tal:define="view nocall:context/@@xm-poi">
 
-  <div tal:condition="view/can_add_tasks">
-    <dl class="portlet" id="portlet-xmpoi">
-      <dt class="portletHeader">
-        <span class="portletTopLeft"></span>
-        <span tal:omit-tag=""
-              i18n:domain="eXtremeManagement"
-              i18n:translate="header-create-tasks-from-issues">Create tasks from issues</span>
-        <span class="portletTopRight"></span>
-      </dt>
-
-      <dd class="portletItem even">
-        <form action="./@@xm-poi">
-          <tal:repeat repeat="tag view/available_tags">
-            <div class="field">
-              <input tal:attributes="value tag; id string:tag-${tag}"
-                     type="checkbox" name="tags:list" />
-              <label tal:attributes="for string:tag-${tag}"
-                     tal:content="tag">
-                Your tag
-              </label>
-            </div>
-          </tal:repeat>
-
-          <input type="submit"
-                 value="Add Tasks"
-                 i18n:domain="eXtremeManagement"
-                 i18n:attributes="value" />
-
-        </form>
-      </dd>
-
-      <dd class="portletItem odd"
-          i18n:domain="eXtremeManagement"
-          i18n:translate="">
-        Note that only issues that aren't already mapped into this
-        iteration will be added.
-      </dd>
-
-      <dd class="portletFooter">
-        <span class="portletBottomLeft"></span>
-        <span class="portletBottomRight"></span>
-      </dd>
-    </dl>
-  </div>
-
-  <tal:condition condition="python:context.portal_type == 'PoiIssue'">
-  <div tal:define="links view/links;
-                   stories view/stories_to_add_to"
-       tal:condition="python:links or stories">
-    <dl class="portlet" id="portlet-xmpoi">
-      <dt class="portletHeader">
+      <div tal:condition="view/can_add_tasks">
+        <dl class="portlet" id="portlet-xmpoi">
+          <dt class="portletHeader">
             <span class="portletTopLeft"></span>
             <span tal:omit-tag=""
                   i18n:domain="eXtremeManagement"
-                  i18n:translate="heading-related-xm-tasks">Related XM Tasks</span>
+                  i18n:translate="header-create-tasks-from-issues">Create tasks from issues</span>
             <span class="portletTopRight"></span>
-      </dt>
+          </dt>
 
-      <dd tal:condition="links"
-          class="portletItem odd">
-        <ul>
-          <li tal:repeat="link links">
-            <a tal:attributes="href link/url;
-                               class string:task-link state-${link/state}"
-               tal:content="string:${link/iterationid}: ${link/title}">
-                Task Title
-            </a>
-          </li>
-        </ul>
-      </dd>
+          <dd class="portletItem even">
+            <form action="./@@xm-poi">
+              <tal:repeat repeat="tag view/available_tags">
+                <div class="field">
+                  <input tal:attributes="value tag; id string:tag-${tag}"
+                         type="checkbox" name="tags:list" />
+                  <label tal:attributes="for string:tag-${tag}"
+                         tal:content="tag">
+                    Your tag
+                  </label>
+                </div>
+              </tal:repeat>
 
-      <dd class="portletItem even"
-          tal:condition="python:stories and context.portal_type == 'PoiIssue'">
-        <form action="./@@xm-poi">
-          <div class="field">
-            <label for="story"
-                   i18n:domain="eXtremeManagement"
-                   i18n:translate="add-task-in">Add a task in</label>
-            <select id="story" name="story">
-              <option tal:repeat="story stories"
-                      tal:attributes="value story/uid"
-                      tal:content="string:${story/iterationid}: ${story/title}">
-                Some story
-              </option>
-            </select>
-          </div>
-          <input type="submit"
-                 value="Add"
-                 i18n:attributes="value"/>
-        </form>
-      </dd>
-      <dd class="portletFooter">
-        <span class="portletBottomLeft"></span>
-        <span class="portletBottomRight"></span>
-      </dd>
-    </dl>
-  </div>
-  </tal:condition>
+              <input type="submit"
+                     value="Add Tasks"
+                     i18n:domain="eXtremeManagement"
+                     i18n:attributes="value" />
 
-</metal:macro>
-</body>
+            </form>
+          </dd>
+
+          <dd class="portletItem odd"
+              i18n:domain="eXtremeManagement"
+              i18n:translate="">
+            Note that only issues that aren't already mapped into this
+            iteration will be added.
+          </dd>
+
+          <dd class="portletFooter">
+            <span class="portletBottomLeft"></span>
+            <span class="portletBottomRight"></span>
+          </dd>
+        </dl>
+      </div>
+
+      <tal:condition condition="python:context.portal_type == 'PoiIssue'">
+        <div tal:define="links view/links;
+                         stories view/stories_to_add_to"
+             tal:condition="python:links or stories">
+          <dl class="portlet" id="portlet-xmpoi">
+            <dt class="portletHeader">
+              <span class="portletTopLeft"></span>
+              <span tal:omit-tag=""
+                    i18n:domain="eXtremeManagement"
+                    i18n:translate="heading-related-xm-tasks">Related XM Tasks</span>
+              <span class="portletTopRight"></span>
+            </dt>
+
+            <dd tal:condition="links"
+                class="portletItem odd">
+              <ul>
+                <li tal:repeat="link links">
+                  <a tal:attributes="href link/url;
+                                     class string:task-link state-${link/state}"
+                     tal:content="string:${link/iterationid}: ${link/title}">
+                    Task Title
+                  </a>
+                </li>
+              </ul>
+            </dd>
+
+            <dd class="portletItem even"
+                tal:condition="python:stories and context.portal_type == 'PoiIssue'">
+              <form action="./@@xm-poi">
+                <div class="field">
+                  <label for="story"
+                         i18n:domain="eXtremeManagement"
+                         i18n:translate="add-task-in">Add a task in</label>
+                  <select id="story" name="story">
+                    <option tal:repeat="story stories"
+                            tal:attributes="value story/uid"
+                            tal:content="string:${story/iterationid}: ${story/title}">
+                      Some story
+                    </option>
+                  </select>
+                </div>
+                <input type="submit"
+                       value="Add"
+                       i18n:attributes="value"/>
+              </form>
+            </dd>
+            <dd class="portletFooter">
+              <span class="portletBottomLeft"></span>
+              <span class="portletBottomRight"></span>
+            </dd>
+          </dl>
+        </div>
+      </tal:condition>
+
+    </metal:macro>
+  </body>
 </html>

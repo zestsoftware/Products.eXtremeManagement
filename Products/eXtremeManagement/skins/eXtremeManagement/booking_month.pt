@@ -3,59 +3,59 @@
       i18n:domain="eXtremeManagement"
       metal:use-macro="here/main_template/macros/master">
 
-    <head>
-        <metal:block fill-slot="top_slot"
-                     tal:define="dummy python:request.set('disable_border', 1)" />
-    </head>
+  <head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border', 1)" />
+  </head>
 
-    <body>
+  <body>
 
     <tal:main metal:fill-slot="main">
 
       <h1 i18n:translate="heading-bookings-per-day">Bookings per day</h1>
-         <p>
-           <span i18n:translate="go_to_overview">
-           Go to overview of
-           </span> 
-           <a tal:condition="not: request/memberid|nothing"
-              tal:attributes="href string:booking_year"
-              i18n:translate="last_12_months">last 12 months</a>
-           <a tal:condition="request/memberid|nothing"
-              tal:attributes="href string:booking_year?memberid=${request/memberid}"
-              i18n:translate="last_12_months">last 12 months</a>.
-         </p>
-         <tal:othermonths
-             tal:define="contextlink string:${here/absolute_url}/${template/id}">
-            <p tal:condition="not:request/previous|nothing">
-              <tal:goto i18n:translate="go_to">
-                Go to
-              </tal:goto> 
-              <a tal:condition="not: request/memberid|nothing"
-                 tal:attributes="href string:${contextlink}?previous=1"
-                 i18n:translate="previous-month">previous month</a>
-              <a tal:condition="request/memberid|nothing"
-                 tal:attributes="href string:${contextlink}?previous=1&memberid=${request/memberid}"
-                 i18n:translate="previous-month">previous month</a>.
-            </p>
-            <p tal:condition="request/previous|nothing">
-              <tal:back i18n:translate="back_to">
-                Back to
-              </tal:back> 
-             <a tal:condition="not: request/memberid|nothing"
-                 tal:attributes="href string:${contextlink}"
-                 i18n:translate="current-month">current month</a>
-             <a tal:condition="request/memberid|nothing"
-                 tal:attributes="href string:${contextlink}?memberid=${request/memberid}"
-                 i18n:translate="current-month">current month</a>.
-            </p>
-         </tal:othermonths>
+      <p>
+        <span i18n:translate="go_to_overview">
+          Go to overview of
+        </span>
+        <a tal:condition="not: request/memberid|nothing"
+           tal:attributes="href string:booking_year"
+           i18n:translate="last_12_months">last 12 months</a>
+        <a tal:condition="request/memberid|nothing"
+           tal:attributes="href string:booking_year?memberid=${request/memberid}"
+           i18n:translate="last_12_months">last 12 months</a>.
+      </p>
+      <tal:othermonths
+          tal:define="contextlink string:${here/absolute_url}/${template/id}">
+        <p tal:condition="not:request/previous|nothing">
+          <tal:goto i18n:translate="go_to">
+            Go to
+          </tal:goto>
+          <a tal:condition="not: request/memberid|nothing"
+             tal:attributes="href string:${contextlink}?previous=1"
+             i18n:translate="previous-month">previous month</a>
+          <a tal:condition="request/memberid|nothing"
+             tal:attributes="href string:${contextlink}?previous=1&memberid=${request/memberid}"
+             i18n:translate="previous-month">previous month</a>.
+        </p>
+        <p tal:condition="request/previous|nothing">
+          <tal:back i18n:translate="back_to">
+            Back to
+          </tal:back>
+          <a tal:condition="not: request/memberid|nothing"
+             tal:attributes="href string:${contextlink}"
+             i18n:translate="current-month">current month</a>
+          <a tal:condition="request/memberid|nothing"
+             tal:attributes="href string:${contextlink}?memberid=${request/memberid}"
+             i18n:translate="current-month">current month</a>.
+        </p>
+      </tal:othermonths>
 
-        <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
-                               view context/@@weekbookings;
-                               main view/main;
-                               bookings view/bookinglist;"
-                   tal:condition="bookings">
-          <metal:month metal:define-macro="month_booking_summary">
+      <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
+                             view context/@@weekbookings;
+                             main view/main;
+                             bookings view/bookinglist;"
+                 tal:condition="bookings">
+        <metal:month metal:define-macro="month_booking_summary">
           <h2 i18n:translate="heading-bookings-per-month">
             Bookings for the month
             <tal:month i18n:name="month" tal:replace="main/month" /> / <tal:year i18n:name="year" tal:replace="main/year" />
@@ -91,18 +91,18 @@
               </tal:days>
               <td tal:content="week/week_total">2007-06-10</td>
               <td tal:content="week/perc_billable">80 %</td>
-              
+
             </tr>
             <tr>
               <th i18n:translate="listingheader-total"
                   colspan="9">Total</th>
               <th tal:content="main/total">245:45</th>
               <th tal:content="main/perc_billable"> 40 % </th>
-              
+
             </tr>
           </table>
-          </metal:month>
-        </tal:block>
+        </metal:month>
+      </tal:block>
     </tal:main>
-    </body>
+  </body>
 </html>

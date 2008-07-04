@@ -16,7 +16,7 @@
 
       <p>
         <tal:show i18n:translate="show_tasks_with_state">
-          Show Tasks with state:</tal:show>
+        Show Tasks with state:</tal:show>
         <tal:options tal:repeat="state view/possible_states">
           <a tal:condition="not: request/memberid|nothing"
              tal:attributes="href string:${template/absolute_url}?state=${state}"

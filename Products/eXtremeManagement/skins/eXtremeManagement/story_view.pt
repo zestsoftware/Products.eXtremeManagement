@@ -104,9 +104,9 @@
           </p>
 
           <div tal:attributes="class string:kssattr-atuid-${context/UID}">
-          <metal:field use-macro="python:context.widget('mainText', mode='view')">
-            Body text
-          </metal:field>
+            <metal:field use-macro="python:context.widget('mainText', mode='view')">
+              Body text
+            </metal:field>
           </div>
 
           <div id="break-before-task-listing" class="visualClear"><!-- --></div>

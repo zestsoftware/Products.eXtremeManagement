@@ -14,15 +14,15 @@
               tal:define="view context/@@projectadmin;
                           projects view/projectlist;">
 
-      <h1 i18n:translate="header_project_administration" 
+      <h1 i18n:translate="header_project_administration"
           class="documentFirstHeading">
         Project administration
       </h1>
 
       <tal:block tal:condition="projects">
-        
-        <p class="discreet" 
-           i18n:translate="description_project_administration"> 
+
+        <p class="discreet"
+           i18n:translate="description_project_administration">
           This is a list of all projects. Also the iterations which
           are completed, with estimated and actual time.  Once an
           iteration is completed and invoiced, the status can be
@@ -32,11 +32,11 @@
         </p>
 
         <table class="listing"
-               border="1" 
+               border="1"
                width="100%"
-               cellpadding="0" 
+               cellpadding="0"
                cellspacing="0">
-          
+
           <tr>
             <th i18n:translate="listingheader_projects">Project</th>
           </tr>
@@ -47,25 +47,25 @@
               <a tal:attributes="href project/url"
                  class="project_title"
                  tal:content="project/title" />
-              <div class="project_description" 
+              <div class="project_description"
                    tal:content="project/description" />
-              
-              <table width="95%" 
+
+              <table width="95%"
                      cellpadding="0"
                      cellspacing="3"
                      class="iteration-table"
                      tal:define="iterations project_info/iterations;"
-                     tal:condition="iterations"> 
+                     tal:condition="iterations">
 
                 <tr class="iteration-table-header">
                   <th width="50%"
                       i18n:translate="listingheader_iteration">Iteration</th>
-                  <th width="15%" 
+                  <th width="15%"
                       i18n:translate="listingheader_estimate_hours">Estimate (hours)</th>
-                  <th width="15%" 
+                  <th width="15%"
                       i18n:translate="listingheader_actual_hours">Actual (hours)</th>
                 </tr>
-                
+
                 <tr tal:repeat="iteration iterations"
                     class="project-list-info">
                   <td class="td-story-title">
@@ -73,7 +73,7 @@
                          alt="iteration"
                          i18n:attributes="alt iteration" />
                     <a tal:attributes="href iteration/url"
-                       tal:content="iteration/title" /> 
+                       tal:content="iteration/title" />
                   </td>
                   <td tal:content="iteration/estimate" />
                   <td tal:content="iteration/actual" />
@@ -84,8 +84,8 @@
         </table>
       </tal:block>
 
-      <p tal:condition="not:projects" 
-         class="discreet" 
+      <p tal:condition="not:projects"
+         class="discreet"
          i18n:translate="no_projects_found">No projects are published yet!</p>
 
     </tal:main>

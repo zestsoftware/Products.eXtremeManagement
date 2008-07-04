@@ -13,9 +13,9 @@
                        open_iterations view/open_iterations;">
 
         <div tal:condition="context/@@chart/has_data">
-            <img tal:attributes="src context/@@chart/velocity_chart"
-                 alt="velocity chart"
-                 i18n:attributes="alt" />
+          <img tal:attributes="src context/@@chart/velocity_chart"
+               alt="velocity chart"
+               i18n:attributes="alt" />
         </div>
 
         <p class="documentDescription">
@@ -33,12 +33,12 @@
         </p>
 
         <tal:block tal:condition="view/offers">
-        <ul class="offers_listing">
-           <li tal:repeat="offer view/offers">
-             <a tal:attributes="href offer/url">
-               <img tal:replace="structure offer/icon"/>
-               <span tal:replace="offer/title">My Offer</span></a></li>
-        </ul>
+          <ul class="offers_listing">
+            <li tal:repeat="offer view/offers">
+              <a tal:attributes="href offer/url">
+                <img tal:replace="structure offer/icon"/>
+            <span tal:replace="offer/title">My Offer</span></a></li>
+          </ul>
         </tal:block>
 
         <tal:block tal:condition="current_iterations">

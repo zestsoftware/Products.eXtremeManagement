@@ -13,20 +13,20 @@
                         base_year main/base_year;
                         base_month main/base_month;
                         total main/total;">
-        
+
         <p tal:define="contextlink string:${here/absolute_url}/${template/id}">
-          <span>Go to 
-            <a tal:condition="not: request/memberid|nothing"
-               tal:attributes="href string:${contextlink}?base_year=${main/prev_year}">previous</a>
-            <a tal:condition="request/memberid|nothing"
-              tal:attributes="href string:${contextlink}?base_year=${main/prev_year}&memberid=${request/memberid}">previous</a>
-           </span>
-           <span tal:condition="main/display_next_year"> or 
-             <a tal:condition="not: request/memberid|nothing"
-                tal:attributes="href string:${contextlink}?base_year=${main/next_year}">next</a>
-             <a tal:condition="request/memberid|nothing"
-                tal:attributes="href string:${contextlink}?base_year=${main/next_year}&memberid=${request/memberid}">next</a>
-           </span> 12 months.
+          <span>Go to
+          <a tal:condition="not: request/memberid|nothing"
+             tal:attributes="href string:${contextlink}?base_year=${main/prev_year}">previous</a>
+          <a tal:condition="request/memberid|nothing"
+             tal:attributes="href string:${contextlink}?base_year=${main/prev_year}&memberid=${request/memberid}">previous</a>
+          </span>
+          <span tal:condition="main/display_next_year"> or
+          <a tal:condition="not: request/memberid|nothing"
+             tal:attributes="href string:${contextlink}?base_year=${main/next_year}">next</a>
+          <a tal:condition="request/memberid|nothing"
+             tal:attributes="href string:${contextlink}?base_year=${main/next_year}&memberid=${request/memberid}">next</a>
+          </span> 12 months.
         </p>
 
         <tal:months tal:repeat="month_info view/months_list">

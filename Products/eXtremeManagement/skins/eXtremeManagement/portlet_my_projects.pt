@@ -2,42 +2,39 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       i18n:domain="eXtremeManagement">
 
-    <body>
-    
+  <body>
+
     <!-- The 'my projects' box -->
     <div metal:define-macro="portlet"
          tal:define="view context/@@myprojects;
                      results view/projectlist;"
          tal:condition="python:results">
-        <dl class="portlet" id="portlet-my-projects">
-            <dt class="portletHeader">
-              <span class="portletTopLeft"></span>
-                <span i18n:translate="box_my_projects">My Projects</span>
-              <span class="portletTopRight"></span>
-            </dt>
-            <tal:block tal:repeat="item results">
-            <dd tal:define="oddrow repeat/item/odd;
-                            end repeat/item/end;
-                            oddeven python:test(oddrow, ' even', ' odd');
-                            class python:'portletItem' + oddeven;"
-                tal:attributes="class class">
-              <div class="visualIcon contenttype-project">
-                <div class="visualIconPadding">
-                  <a tal:attributes="href item/getURL">
-                    <span tal:replace="item/Title" />
-                  </a>
-                </div>
+      <dl class="portlet" id="portlet-my-projects">
+        <dt class="portletHeader">
+          <span class="portletTopLeft"></span>
+          <span i18n:translate="box_my_projects">My Projects</span>
+          <span class="portletTopRight"></span>
+        </dt>
+        <tal:block tal:repeat="item results">
+          <dd tal:define="oddrow repeat/item/odd;
+                          end repeat/item/end;
+                          oddeven python:test(oddrow, ' even', ' odd');
+                          class python:'portletItem' + oddeven;"
+              tal:attributes="class class">
+            <div class="visualIcon contenttype-project">
+              <div class="visualIconPadding">
+                <a tal:attributes="href item/getURL">
+                  <span tal:replace="item/Title" />
+                </a>
               </div>
-            </dd>
-            </tal:block>
-            <dd class="portletFooter">
-              <span class="portletBottomLeft"></span>
-              <span class="portletBottomRight"></span>
-            </dd>
-        </dl>
+            </div>
+          </dd>
+        </tal:block>
+        <dd class="portletFooter">
+          <span class="portletBottomLeft"></span>
+          <span class="portletBottomRight"></span>
+        </dd>
+      </dl>
     </div>
-    </body>
+  </body>
 </html>
- 
-
-
