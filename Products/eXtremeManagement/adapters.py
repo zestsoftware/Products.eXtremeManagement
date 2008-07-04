@@ -1,6 +1,7 @@
 from Acquisition import aq_inner, aq_parent
 from Products.CMFCore.utils import getToolByName
 
+
 class XMIssueGetter(object):
 
     def __init__(self, context, request):
