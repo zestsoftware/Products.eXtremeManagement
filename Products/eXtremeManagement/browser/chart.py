@@ -1,10 +1,8 @@
 from zope import interface
-
-from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
+from Products.Five import BrowserView
 
 from xm.booking.timing.interfaces import IActualHours
-
 from chart_api import Chart, LINE, nice_axis_step
 
 
