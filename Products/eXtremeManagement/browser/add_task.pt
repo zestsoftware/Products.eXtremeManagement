@@ -1,68 +1,67 @@
 <div id="add-task"
      i18n:domain="eXtremeManagement"
      tal:define="story_view context/@@story">
-<span
-    style="display:none"
-    tal:condition="not:story_view/show_add_task_form">
-  No task add form.
-</span>
-<tal:addtask
-    condition="story_view/show_add_task_form">
+  <span
+      style="display:none"
+      tal:condition="not:story_view/show_add_task_form">
+    No task add form.
+  </span>
+  <tal:addtask
+      condition="story_view/show_add_task_form">
 
-  <form name="add_task"
-        method="post"
-        id="addtaskform"
-        action=""
-        tal:attributes="action string:${context/absolute_url}/@@xm_create_task">
-    <input name="title"
-           value=""
-           type="text"
-           size="30"
-           id="new-task" />
-    <!-- This should not be hardcoded -->
-    <select name="hours" id="hours">
-      <option selected="selected"
-              value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-    </select>
-    <span>:</span>
+    <form name="add_task"
+          method="post"
+          id="addtaskform"
+          action=""
+          tal:attributes="action string:${context/absolute_url}/@@xm_create_task">
+      <input name="title"
+             value=""
+             type="text"
+             size="30"
+             id="new-task" />
+      <!-- This should not be hardcoded -->
+      <select name="hours" id="hours">
+        <option selected="selected"
+                value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+      <span>:</span>
 
-    <select name="minutes" id="minutes">
-      <option selected="selected"
-              value="0">0</option>
-      <option value="15">15</option>
-      <option value="30">30</option>
-      <option value="45">45</option>
-    </select>
+      <select name="minutes" id="minutes">
+        <option selected="selected"
+                value="0">0</option>
+        <option value="15">15</option>
+        <option value="30">30</option>
+        <option value="45">45</option>
+      </select>
 
-    <select name="assignees"
-            id="assignees"
-            tal:define="assignees story_view/get_possible_assignees"
-            tal:condition="assignees">
-      <tal:assignees repeat="assignee assignees">
-        <option value=""
-                selected=""
-                tal:attributes="value python:assignee[0];
-                                selected python:assignee[2]"
-                tal:content="python:assignee[1]" />
-      </tal:assignees>
-    </select>
+      <select name="assignees"
+              id="assignees"
+              tal:define="assignees story_view/get_possible_assignees"
+              tal:condition="assignees">
+        <tal:assignees repeat="assignee assignees">
+          <option value=""
+                  selected=""
+                  tal:attributes="value python:assignee[0];
+                                  selected python:assignee[2]"
+                  tal:content="python:assignee[1]" />
+        </tal:assignees>
+      </select>
 
-    <input value="Add task"
-           id="submit-task"
-           i18n:attributes="value label_add_task;"
-           type="submit"
-           class="standalone"/>
-  </form>
-</tal:addtask>
+      <input value="Add task"
+             id="submit-task"
+             i18n:attributes="value label_add_task;"
+             type="submit"
+             class="standalone"/>
+    </form>
+  </tal:addtask>
 </div>
-
