@@ -1,12 +1,13 @@
 from zope.formlib import form
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
-from xm.booking.timing.interfaces import IActualHours
-from xm.booking.timing.interfaces import IEstimate
-from Products.eXtremeManagement import XMMessageFactory as _
 from plone.app.controlpanel.form import ControlPanelForm
 from plone.fieldsets import FormFieldsets
 from plone.app.form.validators import null_validator
+
+from xm.booking.timing.interfaces import IActualHours
+from xm.booking.timing.interfaces import IEstimate
+from Products.eXtremeManagement import XMMessageFactory as _
 
 
 class XMControlPanel(ControlPanelForm):
