@@ -1,14 +1,15 @@
 import logging
-log = logging.getLogger("eXtremeManagement")
-log.debug('Start initialization of product.')
 
 from zope.i18nmessageid import MessageFactory
-XMMessageFactory = MessageFactory('eXtremeManagement')
 from Products.CMFCore import utils as cmfutils
 from Products.Archetypes.atapi import process_types
 from Products.Archetypes import listTypes
 
 from Products.eXtremeManagement import config
+
+logger = logging.getLogger("eXtremeManagement")
+logger.debug('Start initialization of product.')
+XMMessageFactory = MessageFactory('eXtremeManagement')
 
 
 def initialize(context):
