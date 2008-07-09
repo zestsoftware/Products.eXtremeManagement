@@ -1,15 +1,11 @@
 1.6 rc10 (unreleased)
 ---------------------
 
-2008-07-09 - maurits
+- Fixed name of permissions that had a rogue slash at the end.  Silly
+  me.  [maurits]
 
-  - Fixed name of permissions that had a rogue slash at the end.
-    Silly me.
-
-2008-07-01 - maurits
-
-  - Fixed typos that referred to a different spelling of the
-    Projectmanager role.
+- Fixed typos that referred to a different spelling of the
+  Projectmanager role.  [maurits]
 
 
 1.6 rc9 (2008-06-30)
