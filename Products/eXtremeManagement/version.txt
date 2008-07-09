@@ -1,1 +1,1 @@
-1.6rc10
+1.6rc11 (unreleased)
