@@ -2,7 +2,7 @@ from zope.formlib import form
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from plone.app.controlpanel.form import ControlPanelForm
-from plone.fieldsets import FormFieldsets
+from plone.fieldsets.fieldsets import FormFieldsets
 from plone.app.form.validators import null_validator
 
 from xm.booking.timing.interfaces import IActualHours
