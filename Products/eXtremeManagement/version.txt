@@ -1,1 +1,1 @@
-1.6rc11 (unreleased)
+1.6

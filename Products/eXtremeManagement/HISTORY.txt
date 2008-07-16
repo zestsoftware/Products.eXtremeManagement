@@ -1,7 +1,7 @@
-1.6rc11 (unreleased)
+1.6
 ---------------------
 
-- Nothing yet.
+- Official Release, no changes since rc10 
 
 
 1.6 rc10 (2008-07-09)
