@@ -30,8 +30,9 @@ setup(name='Products.eXtremeManagement',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
-          'xm.booking',
-          'xm.portlets',
+          'xm.booking >= 0.5, <= 0.6dev',
+          'xm.portlets >= 0.5, <= 0.6dev',
+		    
       ],
       entry_points="""
       # -*- Entry points: -*-
