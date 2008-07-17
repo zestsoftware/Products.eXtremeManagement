@@ -6,7 +6,10 @@
 2008-07-17 - jladage
 
   - Added migration for content types 'ProjectFolder' and 'CustomerFolder'
-    back to regular folders. 
+    back to regular folders.
+  - Added a note about upgrading from older versions than 2.0.
+  - Marked all code related to the following content types with BBB for easy
+    cleanup in the next release.
 
 1.6
 ---------------------

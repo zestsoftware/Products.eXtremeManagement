@@ -12,6 +12,7 @@ FolderSchema['description'].isMetadata = False
 FolderSchema['description'].schemata = 'default'
 ProjectFolder_schema = FolderSchema
 
+# BBB Can be removed in release 2.1
 
 class ProjectFolder(OrderedBaseFolder):
     """

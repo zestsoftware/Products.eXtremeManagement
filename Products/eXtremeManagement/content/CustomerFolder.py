@@ -11,6 +11,7 @@ FolderSchema['description'].isMetadata = False
 FolderSchema['description'].schemata = 'default'
 CustomerFolder_schema = FolderSchema
 
+# BBB Can be removed in release 2.1
 
 class CustomerFolder(OrderedBaseFolder):
     """

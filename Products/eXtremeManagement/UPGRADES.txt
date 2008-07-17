@@ -1,0 +1,6 @@
+Upgrades
+========
+
+When upgrading from a version older than 2.0, please install version 2.0 first and
+run the upgrade step in portal_setup in the ZMI.
+

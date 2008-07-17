@@ -23,7 +23,7 @@ class testWorkflow(eXtremeManagementTestCase):
         #self.login('initial')
         self.login('manager')
         # Create a projectfolder in the portal root
-        self.portal.invokeFactory('ProjectFolder', id='projects')
+        self.portal.invokeFactory('Folder', id='projects')
         self.projects = self.folder.projects
 
         self.projects.invokeFactory('Project', id='project')
@@ -76,7 +76,7 @@ class testWorkflow(eXtremeManagementTestCase):
         """
 
         self.assertEqual(
-            self.workflow.getInfoFor(self.projects, 'review_state'), 'visible')
+            self.workflow.getInfoFor(self.projects, 'review_state'), 'private')
         self.assertEqual(
             self.workflow.getInfoFor(self.project, 'review_state'), 'private')
         self.assertEqual(

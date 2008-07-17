@@ -11,6 +11,8 @@ from Products.Archetypes.atapi import StringWidget
 
 from Products.eXtremeManagement.interfaces import IXMCustomer
 
+# BBB Can be removed in release 2.1
+
 schema = Schema((
     StringField(
         name='name',

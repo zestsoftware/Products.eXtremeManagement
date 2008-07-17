@@ -18,6 +18,15 @@
       title="eXtremeManagement: Add Task" />
 
   <permission
+      id="xm.AddBooking"
+      title="eXtremeManagement: Add Booking" />
+
+  <permission
+      id="xm.Add"
+      title="eXtremeManagement: Add Offer" />
+
+  <!-- BBB can be removed in release 2.1 -->
+  <permission
       id="xm.AddProjectMember"
       title="eXtremeManagement: Add ProjectMember" />
 
@@ -32,13 +41,5 @@
   <permission
       id="xm.AddProjectFolder"
       title="eXtremeManagement: Add ProjectFolder" />
-
-  <permission
-      id="xm.AddBooking"
-      title="eXtremeManagement: Add Booking" />
-
-  <permission
-      id="xm.Add"
-      title="eXtremeManagement: Add Offer" />
 
 </configure>

@@ -14,15 +14,17 @@ from Products.eXtremeManagement.interfaces import IXMTask
 
 # Import our content types
 from Products.eXtremeManagement.content.Booking import Booking
-from Products.eXtremeManagement.content.Customer import Customer
-from Products.eXtremeManagement.content.CustomerFolder import CustomerFolder
 from Products.eXtremeManagement.content.Iteration import Iteration
 from Products.eXtremeManagement.content.Offer import Offer
 from Products.eXtremeManagement.content.Project import Project
-from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
-from Products.eXtremeManagement.content.ProjectMember import ProjectMember
 from Products.eXtremeManagement.content.Story import Story
 from Products.eXtremeManagement.content.Task import Task
+
+# BBB can be removed in release 2.1
+from Products.eXtremeManagement.content.ProjectFolder import ProjectFolder
+from Products.eXtremeManagement.content.ProjectMember import ProjectMember
+from Products.eXtremeManagement.content.Customer import Customer
+from Products.eXtremeManagement.content.CustomerFolder import CustomerFolder
 
 
 class testCase(eXtremeManagementTestCase):
@@ -33,12 +35,6 @@ class testCase(eXtremeManagementTestCase):
         self.failUnless(IXMBooking.implementedBy(Booking))
         self.failUnless(IXMBooking.providedBy(Booking('blah')))
 
-        self.failUnless(IXMCustomer.implementedBy(Customer))
-        self.failUnless(IXMCustomer.providedBy(Customer('blah')))
-
-        self.failUnless(IXMCustomerFolder.implementedBy(CustomerFolder))
-        self.failUnless(IXMCustomerFolder.providedBy(CustomerFolder('blah')))
-
         self.failUnless(IXMIteration.implementedBy(Iteration))
         self.failUnless(IXMIteration.providedBy(Iteration('blah')))
 
@@ -48,17 +44,25 @@ class testCase(eXtremeManagementTestCase):
         self.failUnless(IXMProject.implementedBy(Project))
         self.failUnless(IXMProject.providedBy(Project('blah')))
 
+        self.failUnless(IXMStory.implementedBy(Story))
+        self.failUnless(IXMStory.providedBy(Story('blah')))
+
+        self.failUnless(IXMTask.implementedBy(Task))
+        self.failUnless(IXMTask.providedBy(Task('blah')))
+        
+        # BBB can be removed in release 2.1
+        self.failUnless(IXMCustomer.implementedBy(Customer))
+        self.failUnless(IXMCustomer.providedBy(Customer('blah')))
+
+        self.failUnless(IXMCustomerFolder.implementedBy(CustomerFolder))
+        self.failUnless(IXMCustomerFolder.providedBy(CustomerFolder('blah')))
+
         self.failUnless(IXMProjectFolder.implementedBy(ProjectFolder))
         self.failUnless(IXMProjectFolder.providedBy(ProjectFolder('blah')))
 
         self.failUnless(IXMProjectMember.implementedBy(ProjectMember))
         self.failUnless(IXMProjectMember.providedBy(ProjectMember('blah')))
 
-        self.failUnless(IXMStory.implementedBy(Story))
-        self.failUnless(IXMStory.providedBy(Story('blah')))
-
-        self.failUnless(IXMTask.implementedBy(Task))
-        self.failUnless(IXMTask.providedBy(Task('blah')))
 
 
 def test_suite():
