@@ -1,11 +1,12 @@
 2.0 alpha
 ---------------------
-
+2008-07-17 - mirella
+  - changed width of storylist table in 97% for fixing IE7 problem of overlap.
+  
 2008-07-17 - jladage
 
   - Added migration for content types 'ProjectFolder' and 'CustomerFolder'
     back to regular folders. 
-
 
 1.6
 ---------------------
