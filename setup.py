@@ -105,6 +105,7 @@ information will be shown about the stories.
           # -*- Extra requirements: -*-
           'xm.booking',
           'xm.portlets',
+	  'Products.contentmigration == 1.0b4',
       ],
       entry_points="""
       # -*- Entry points: -*-
