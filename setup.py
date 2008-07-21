@@ -5,6 +5,9 @@ versionfile = open(os.path.join('Products', 'eXtremeManagement', 'version.txt'))
 version = versionfile.read().strip()
 versionfile.close()
 
+def read(*rnames):
+    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+
 setup(name='Products.eXtremeManagement',
       version=version,
       description="Project administration which supports the eXtreme Programming Methodology.",
@@ -42,7 +45,7 @@ setup(name='Products.eXtremeManagement',
           # -*- Extra requirements: -*-
           'xm.booking',
           'xm.portlets',
-	  'Products.contentmigration == 1.0b4',
+          'Products.contentmigration == 1.0b4',
       ],
       entry_points="""
       # -*- Entry points: -*-
