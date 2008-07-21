@@ -10,6 +10,7 @@
             show_totals view/show_totals;"
     condition="stories">
   <table class="listing"
+         id="story-listing"
          width="97%"
          border="1"
          cellpadding="0"
@@ -68,7 +69,8 @@
 
     <tal:repeat repeat="story stories">
       <tr class="list-in-iteration toggle-story"
-          tal:attributes="class string:list-in-iteration toggle-story kssattr-uid-${story/uid};">
+          tal:attributes="class string:list-in-iteration toggle-story kssattr-uid-${story/uid};
+                          id string:kssattr-uid-${story/uid};">
         <td class="td-story-title"
             tal:attributes="id string:story-title-${story/uid}">
           <div>

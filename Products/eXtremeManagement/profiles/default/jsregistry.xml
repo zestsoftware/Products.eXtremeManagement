@@ -2,4 +2,20 @@
 <object name="portal_javascripts" meta_type="JavaScripts Registry">
  <javascript cacheable="True" compression="safe" cookable="True"
     enabled="False" expression="" id="eXtreme.js" inline="False"/>
+ <!-- YUI DND Plugin -->
+ <javascript cacheable="True" compression="safe" cookable="True"
+    enabled="True" expression="" id="++resource++yahoo.js" inline="False"
+    insert-after="jquery.js"/>
+ <javascript cacheable="True" compression="safe" cookable="True"
+    enabled="True" expression="" id="++resource++dom.js" inline="False"
+    insert-after="++resource++yahoo.js"/>
+ <javascript cacheable="True" compression="safe" cookable="True"
+    enabled="True" expression="" id="++resource++event.js" inline="False"
+    insert-after="++resource++dom.js"/>
+ <javascript cacheable="True" compression="safe" cookable="True"
+    enabled="True" expression="" id="++resource++animation.js"
+    inline="False" insert-after="++resource++event.js"/>
+ <javascript cacheable="True" compression="safe" cookable="True"
+    enabled="True" expression="" id="++resource++dragdrop.js" inline="False"
+    insert-after="++resource++animation.js"/>
 </object>

@@ -16,3 +16,19 @@
     action-server: xm_toggle_story;
     xm_toggle_story-uid: kssAttr('uid');
     }
+
+/* Allow drag-and-drop of stories within the iteration */
+/* yuidnd needs work, uncomment this to see the result
+.list-in-iteration:yuidnd-dragstart {
+    }
+    
+#story-listing:yuidnd-drop {
+    evt-yuidnd-drop-action: 'order';
+    }
+
+.list-in-iteration:yuidnd-dragsuccess {
+    action-server: drop;
+    drop-container: pass(dropContainerId);
+    drop-index: pass(dropIndex);
+    }
+*/
