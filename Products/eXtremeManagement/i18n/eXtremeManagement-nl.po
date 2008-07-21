@@ -92,7 +92,7 @@ msgstr "dagen"
 #. Default: "Overview of tasks that belong to me.  The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
 #: ./skins/eXtremeManagement/iteration_view.pt:136
 msgid "description-overview-my-tasks"
-msgstr "Overzicht van de taken die aan mij zijn toegewezen.  De genoemde totalen zijn totaaltijden voor mijzelf. Ze zullen normaal gesproken afwijken van de uitkomst van het optellen van de kolom erboven."
+msgstr "Overzicht van de taken die aan mij zijn toegewezen. De genoemde totalen zijn totaaltijden voor mijzelf. Ze zullen normaal gesproken afwijken van de uitkomst van het optellen van de kolom erboven."
 
 #. Default: "This is a list of all projects. Also the iterations which are completed, with estimated and actual time.  Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>.  This way the administration has an overview with all iterations which are not yet invoiced."
 #: ./skins/eXtremeManagement/project_administration.pt:24
@@ -425,7 +425,7 @@ msgstr "Projectlid"
 #. Default: "Project administration"
 #: ./skins/eXtremeManagement/project_administration.pt:17
 msgid "header_project_administration"
-msgstr "Project administratie"
+msgstr "Projectadministratie"
 
 #. Default: "Project members"
 #: ./skins/eXtremeManagement/customer_view.pt:95
@@ -435,7 +435,7 @@ msgstr "Projectleden"
 #. Default: "Time registration"
 #: ./skins/eXtremeManagement/portlet_tasks.pt:59
 msgid "header_time_registration"
-msgstr "Uren registratie"
+msgstr "Urenregistratie"
 
 #. Default: "Billable"
 #: ./skins/eXtremeManagement/booking_view.pt:42
@@ -838,4 +838,3 @@ msgstr "snelheidsgrafiek"
 #: ./skins/eXtremeManagement/customer_view.pt:71
 msgid "visit_the_website"
 msgstr "Bezoek de website"
-
