@@ -17,7 +17,7 @@
          cellspacing="0">
 
     <tal:extraheader condition="show_iteration">
-      <tr>
+      <tr class="IterationTitle">
         <th colspan="1"
             width="60%"
             height="30"
@@ -44,8 +44,9 @@
             height="30"
             align="left"
             class="header_iteration">
-          <span tal:replace="iteration_dict/man_hours" /> <span i18n:translate="hours">hours</span>
-          ( <span tal:replace="iteration_dict/actual" /> <span i18n:translate="actual">actual</span>)
+          <span i18n:domain="eXtremeManagement" 
+            i18n:translate="Actual_hours">Actual hours</span>
+           <span tal:replace="iteration_dict/actual" /> 
         </th>
       </tr>
       <tr>
@@ -55,16 +56,29 @@
       </tr>
     </tal:extraheader>
 
-    <tr>
-      <th i18n:translate="listingheader_story">Story</th>
-      <th i18n:translate="listingheader_state">Status</th>
+    <tr class="StatusOfStories">
+      <th i18n:domain="eXtremeManagement" 
+         i18n:translate="listingheader_story">Story</th>
+      <th i18n:domain="eXtremeManagement"  
+         i18n:translate="listingheader_state">Status</th>
+      <!--   
       <tal:task_count tal:condition="show_task_count">
         <th i18n:translate="listingheader_tasks_open">Tasks open</th>
         <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
       </tal:task_count>
-      <th i18n:translate="listingheader_initial_estimate">Initial estimate (days)</th>
-      <th i18n:translate="listingheader_tasks_estimate">Tasks estimate (hours)</th>
-      <th i18n:translate="listingheader_actual_hours">Actual (hours)</th>
+   -->
+      <th i18n:domain="eXtremeManagement"  
+         i18n:translate="listingheader_initial_estimate">
+         Initial estimate (days)
+      </th>
+      <th i18n:domain="eXtremeManagement"  
+         i18n:translate="listingheader_tasks_estimate">
+         Tasks estimate (hours)
+      </th>
+      <th>
+         <span i18n:domain="eXtremeManagement" 
+         i18n:translate="Actual_hours">Actual hours</span>
+      </th>
     </tr>
 
     <tal:repeat repeat="story stories">
@@ -93,11 +107,14 @@
             tal:condition="show_progress"
             width="150">
           <span class="progress_percentage">
-            (<span i18n:domain="plone"
-            i18n:translate="" tal:content="story/review_state_title" />)
+             <span>
+                (<tal:block i18n:domain="plone"
+                  i18n:translate="" 
+                  content="story/review_state_title" />)
+            </span>
             <tal:percentage tal:content="story/progress" />%&nbsp;
           </span>
-          <br />
+
           <div class="progress_bar">
             <img tal:condition="story/is_completed"
                  src="progress-complete.gif"
@@ -113,11 +130,13 @@
                  i18n:attributes="alt progress_bar" />
           </div>
         </td>
-
+        
+        <!-- is the information below really important for the projectleader/customer?
         <tal:task_count tal:condition="show_task_count">
           <td tal:content="story/open_tasks" />
           <td tal:content="story/completed_tasks" />
         </tal:task_count>
+        -->
         <td tal:content="story/size_estimate" />
         <td tal:condition="story/raw_estimate"
             tal:content="story/estimate" />
