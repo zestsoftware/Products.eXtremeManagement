@@ -43,10 +43,11 @@
 }
 
 .progress_bar {
-    border: 1px solid #8CACBB;
-    width: 100px;
-    height: 10px;
-    text-align: left;
+  width: 100px;
+  height: 10px;
+  text-align: left;
+  margin-top: 2px;
+  background-color: #edebeb;
 }
 
 .tasks, .td-center {
@@ -72,7 +73,8 @@
 }
 
 .td-story-title, .td-memberid {
-    text-align: left !important;
+  text-align: left !important;
+  cursor: pointer;
 }
 
 .clear-bottom {
@@ -209,25 +211,25 @@
 
 
 .xm-details {
-    float: right;
-    width: 40%;
-    border: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
-    background-color: &dtml-globalBackgroundColor;;
-    margin-left: 0.5em;
+  float: right;
+  width: 40%;
+  border: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
+  background-color: &dtml-globalBackgroundColor;;
+  margin-left: 0.5em;
 }
 
-.xm-details DL {
+.xm-details dl {
     margin: 0;
     padding: 1em;
     font-size: 0.9em;
 }
 
-.xm-details DT {
+.xm-details dt {
     color: #f66;
     margin: 0;
 }
 
-.xm-details DD {
+.xm-details dd {
     margin: 0;
     color: &dtml-discreetColor;;
     margin: 0;
@@ -235,24 +237,25 @@
     background: transparent url(&dtml-portal_url;/bullet.gif) no-repeat;
 }
 
-.xm-details TABLE {
-    width: 100%;
-    margin: 0;
-    border: 0;
-    border-top: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
+.xm-details table {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-top: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
 }
 
-.xm-details TABLE TD {
+.xm-details table td {
     background-color: &dtml-backgroundColor;;
     border: 0;
-    border-top: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
-    border-right: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
+    border-top: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
+    border-right: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
 }
 
-.xm-details TABLE TH {
-    border: 0;
-    border-right: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
-    border-top: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
+.xm-details table th {
+  border: 0;
+  border-right: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
+  border-top: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
+  background-color: #EDEBEB;
 }
 
 .xm-bookings {
