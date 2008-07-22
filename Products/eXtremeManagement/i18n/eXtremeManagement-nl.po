@@ -838,3 +838,8 @@ msgstr "snelheidsgrafiek"
 #: ./skins/eXtremeManagement/customer_view.pt:71
 msgid "visit_the_website"
 msgstr "Bezoek de website"
+
+#. Default: "Actual hours"
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:48
+msgid "Actual_hours"
+msgstr "Gewerkte uren"

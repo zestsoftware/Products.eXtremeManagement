@@ -772,3 +772,8 @@ msgstr ""
 msgid "visit_the_website"
 msgstr ""
 
+#. Default: "Actual hours"
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:48
+msgid "Actual_hours"
+msgstr ""
+
