@@ -1,14 +1,21 @@
 2.0 alpha
 ---------------------
+
+2008-07-23 - markvl
+
+  - Made the check for customers in the myprojects view more
+    robust. Employees which also have a customer role are no longer
+    seen as customers.
+
 2008-07-23 - mirella
- - added translations
- - show in iteration view the budget left in a row below the  total.
- - removed actual hours and budget left hours from the table above the stories.
- - fixed width of the table
+  - added translations
+  - show in iteration view the budget left in a row below the  total.
+  - removed actual hours and budget left hours from the table above the stories.
+  - fixed width of the table
 
 2008-07-17 - mirella
   - changed width of storylist table in 97% for fixing IE7 problem of overlap.
-  
+
 2008-07-17 - jladage
 
   - Added migration for content types 'ProjectFolder' and 'CustomerFolder'
@@ -20,7 +27,7 @@
 1.6
 ---------------------
 
-- Official Release, no changes since rc10 
+- Official Release, no changes since rc10
 
 
 1.6 rc10 (2008-07-09)
