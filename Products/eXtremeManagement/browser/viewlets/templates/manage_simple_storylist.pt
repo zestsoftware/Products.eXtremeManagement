@@ -7,20 +7,13 @@
             show_iteration view/show_iteration;
             show_task_count view/show_task_count;
             show_progress view/show_progress;
-            show_totals view/show_totals;"
+            show_totals view/show_totals;
+            iteration_view iteration_object/@@iteration"
     condition="stories">
-  <table class="listing"
-         id="story-listing"
-         width="97%"
-         border="1"
-         cellpadding="0"
-         cellspacing="0">
 
     <tal:extraheader condition="show_iteration">
       <tr class="IterationTitle">
-        <th colspan="1"
-            width="60%"
-            height="30"
+        <th height="30"
             align="left"
             class="header_iteration">
           <a class="header_iteration_project_overview"
@@ -31,22 +24,12 @@
           </a>
         </th>
         <th colspan="1"
-            tal:attributes="colspan python: show_task_count and 3 or 1"
-            width="20%"
+            tal:attributes="colspan python: show_task_count and 4 or 1"
             class="iteration-state">
           <span i18n:translate="status">status</span>:
           <span tal:content="structure iteration_dict/review_state"/>
           <img tal:attributes="src string:${iteration_dict/review_state}.gif;
                                alt iteration_dict/review_state" />
-        </th>
-        <th colspan="3"
-            width="20%"
-            height="30"
-            align="left"
-            class="header_iteration">
-          <span i18n:domain="eXtremeManagement" 
-            i18n:translate="Actual_hours">Actual hours</span>
-           <span tal:replace="iteration_dict/actual" /> 
         </th>
       </tr>
       <tr>
@@ -58,24 +41,22 @@
 
     <tr class="StatusOfStories">
       <th i18n:domain="eXtremeManagement" 
-         i18n:translate="listingheader_story">Story</th>
+         i18n:translate="listingheader_story"
+         class="storyHeader">Story</th>
       <th i18n:domain="eXtremeManagement"  
-         i18n:translate="listingheader_state">Status</th>
-      <!--   
-      <tal:task_count tal:condition="show_task_count">
-        <th i18n:translate="listingheader_tasks_open">Tasks open</th>
-        <th i18n:translate="listingheader_tasks_completed">Tasks completed</th>
-      </tal:task_count>
-   -->
+         i18n:translate="listingheader_state"
+         class="statusHeader">Status</th>
       <th i18n:domain="eXtremeManagement"  
-         i18n:translate="listingheader_initial_estimate">
+         i18n:translate="listingheader_initial_estimate"
+         class="initEstimateHeader">
          Initial estimate (days)
       </th>
       <th i18n:domain="eXtremeManagement"  
-         i18n:translate="listingheader_tasks_estimate">
+         i18n:translate="listingheader_tasks_estimate"
+         class="tasksEstimateHeader">
          Tasks estimate (hours)
       </th>
-      <th>
+      <th class="actualHoursHeader">
          <span i18n:domain="eXtremeManagement" 
          i18n:translate="Actual_hours">Actual hours</span>
       </th>
@@ -131,12 +112,6 @@
           </div>
         </td>
         
-        <!-- is the information below really important for the projectleader/customer?
-        <tal:task_count tal:condition="show_task_count">
-          <td tal:content="story/open_tasks" />
-          <td tal:content="story/completed_tasks" />
-        </tal:task_count>
-        -->
         <td tal:content="story/size_estimate" />
         <td tal:condition="story/raw_estimate"
             tal:content="story/estimate" />
@@ -157,24 +132,17 @@
         </td>
       </tr>
     </tal:repeat>
-
+    
     <tr id="totalTasks"
-        tal:condition="show_totals">
-      <th class="td-story-title"
-          colspan="2"
-          tal:attributes="colspan python:show_task_count and 4 or 2"
-          i18n:translate="total">Total</th>
-      <th tal:content="iteration_dict/size_estimate" />
-      <th tal:content="iteration_dict/estimate" />
-      <th tal:content="iteration_dict/actual" />
+       tal:condition="show_totals">
+          <th class="td-story-title"
+             colspan="2"
+             tal:attributes="colspan python:show_task_count and 4 or 2"
+             i18n:translate="total"
+             i18n:domain="eXtremeManagement">Total</th>
+          <th tal:content="iteration_dict/size_estimate" />
+          <th tal:content="iteration_dict/estimate" />
+          <th tal:content="iteration_dict/actual" />
     </tr>
-  </table>
-
-  <p class="discreet" i18n:translate="help_stories_table">
-    The Initial estimate of the story is a rough estimate in
-    days.  The Tasks estimate is the total estimate in hours
-    for all tasks.  If there is a big difference there could
-    be a logical explanation.  You should investigate that to
-    be sure.
-  </p>
 </tal:storylist>
+

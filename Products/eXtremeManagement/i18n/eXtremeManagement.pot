@@ -777,3 +777,12 @@ msgstr ""
 msgid "Actual_hours"
 msgstr ""
 
+#. Default: "Actual hours this iteration"
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:139
+msgid "actual_hours_iteration"
+msgstr ""
+
+#. Default: "Budget (hours), left for this project"
+#: ./skins/eXtremeManagement/iteration_view.pt:104
+msgid "budget_left_thisproject"
+msgstr ""

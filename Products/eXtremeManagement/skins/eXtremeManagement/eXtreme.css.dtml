@@ -332,7 +332,13 @@ UL.xm-assignees LI {
 
 #totalTasks {
   font-weight: bold;
-  font-size: 120%;
+  font-size: 110%;
+}
+
+#totalTasks th {
+  text-transform: none;
+  background-color: transparent;
+  font-weight: bold;
 }
 
 #totalTasks td {

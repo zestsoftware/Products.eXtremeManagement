@@ -1,5 +1,11 @@
 2.0 alpha
 ---------------------
+2008-07-23 - mirella
+ - added translations
+ - show in iteration view the budget left in a row below the  total.
+ - removed actual hours and budget left hours from the table above the stories.
+ - fixed width of the table
+
 2008-07-17 - mirella
   - changed width of storylist table in 97% for fixing IE7 problem of overlap.
   
