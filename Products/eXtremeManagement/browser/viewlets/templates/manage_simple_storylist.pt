@@ -9,9 +9,8 @@
             show_progress view/show_progress;
             show_totals view/show_totals;"
     condition="stories">
-
   <table class="listing"
-         width="100%"
+         width="97%"
          border="1"
          cellpadding="0"
          cellspacing="0">
@@ -149,6 +148,7 @@
       <th tal:content="iteration_dict/actual" />
     </tr>
   </table>
+
   <p class="discreet" i18n:translate="help_stories_table">
     The Initial estimate of the story is a rough estimate in
     days.  The Tasks estimate is the total estimate in hours
