@@ -1,0 +1,44 @@
+Release Management
+==================
+
+Products.eXtremeManagement currently requires two additional package and
+might increase over time:
+
+ - xm.booking
+
+ - xm.portlet
+
+We manage these packages with the install_requires option in the setup.py.
+As a result users of xm only have to place Products.eXtremeManagement in
+their buildout.cfg. The setuptools will do the rest by installing the correct
+packages.
+
+For each release of Products.eXtremeManagement the version range which is
+valid for that release will be added to the install_requires argument.
+
+Example of trunk::
+
+      install_requires=[
+          'setuptools',
+          # -*- Extra requirements: -*-
+          'xm.booking',
+          'xm.portlets',
+      ], 
+
+On the trunk we always work with the latest version of both package, so we
+don't specify any versions here..
+
+Example of the 1.6 tag::
+
+      install_requires=[
+          'setuptools',
+          # -*- Extra requirements: -*-
+          'xm.booking >= 0.5, <= 0.6dev',
+          'xm.portlets >= 0.5, <= 0.6dev',
+      ], 
+
+On this tag we set the minimum version to 0.5 and the maximum to 0.6dev.
+Installing this egg will pick up support releases like 0.5.1 but will
+ignore newer versions. 0.6 and higher.
+
+

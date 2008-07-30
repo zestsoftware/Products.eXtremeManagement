@@ -13,16 +13,19 @@ class testSetup(eXtremeManagementTestCase):
         """
         """
         ids = self.portal.portal_types.objectIds()
-        self.failUnless('CustomerFolder' in ids)
-        self.failUnless('Customer' in ids)
-        self.failUnless('ProjectMember' in ids)
-        self.failUnless('ProjectFolder' in ids)
         self.failUnless('Project' in ids)
         self.failUnless('Iteration' in ids)
         self.failUnless('Offer' in ids)
         self.failUnless('Story' in ids)
         self.failUnless('Task' in ids)
+        self.failUnless('PoiTask' in ids)
         self.failUnless('Booking' in ids)
+        
+        # BBB can be removed in release 2.1
+        self.failUnless('CustomerFolder' in ids)
+        self.failUnless('Customer' in ids)
+        self.failUnless('ProjectMember' in ids)
+        self.failUnless('ProjectFolder' in ids)
 
     def test_skins(self):
         """
@@ -42,17 +45,18 @@ class testSetup(eXtremeManagementTestCase):
 
     def test_workflowChains(self):
         getChain = self.portal.portal_workflow.getChainForPortalType
-
         self.failUnless('eXtreme_Project_Workflow' in getChain('Project'))
         self.failUnless('eXtreme_Iteration_Workflow' in getChain('Iteration'))
         self.failUnless('eXtreme_Offer_Workflow' in getChain('Offer'))
         self.failUnless('eXtreme_Story_Workflow' in getChain('Story'))
         self.failUnless('eXtreme_Task_Workflow' in getChain('Task'))
         self.failUnless('eXtreme_Task_Workflow' in getChain('PoiTask'))
+        self.failUnless('eXtreme_Booking_Workflow' in getChain('Booking'))
+
+        # BBB can be removed in release 2.1
         self.failUnless('folder_workflow' in getChain('CustomerFolder'))
         self.failUnless('folder_workflow' in getChain('ProjectFolder'))
         self.failUnless('eXtreme_Customer_Workflow' in getChain('Customer'))
-        self.failUnless('eXtreme_Booking_Workflow' in getChain('Booking'))
         self.failUnless(
             'eXtreme_Default_Workflow' in getChain('ProjectMember'))
 
@@ -106,7 +110,7 @@ class testSetup(eXtremeManagementTestCase):
         self.setRoles(['Manager'])
         membership = self.portal.portal_membership
         membership.addMember('employee', 'secret', ['Employee'], [])
-        self.portal.invokeFactory('ProjectFolder', id='projects')
+        self.portal.invokeFactory('Folder', id='projects')
         projects = self.portal.projects
         projects.invokeFactory('Project', id='project')
         project = projects.project

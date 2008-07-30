@@ -32,7 +32,7 @@ def addSimpleType(browser, container, title, type_name):
     browser.getControl(name='form_submit').click()
     return _submitChecks(browser, title)
 
-
+# BBB Can be removed in release 2.1
 def addProjectFolder(browser, container, title):
     """Add a ProjectFolder
     """

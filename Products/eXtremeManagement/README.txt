@@ -6,22 +6,18 @@ Features
 --------
 
 This application provides project administration which supports the
-eXtreme Programming Methodology.  By developing a number of new
-content types we can use iterations, Stories and tasks to manage our
-XP projects.
-
+eXtreme Programming Methodology.
 
 Content Types
 -------------
 
     * Project
-      Multiple projects can be added by employees. For each project
-      contact information of team members, iterations and stories can
-      be added by both the customers and employees.
+      Multiple projects can be added by employees. For each project,
+      iterations and stories can be added by both the customers and employees.
 
     * Iteration
       The project will be planned with iterations. An iteration is a
-      period of 2 to 4 weeks in which a number of stories will be
+      period of 1 to 3 weeks in which a number of stories will be
       implemented.
 
     * Offer
@@ -35,26 +31,29 @@ Content Types
 
     * Task
       The employees can estimate the story by defining tasks.
+    
+    * Booking
+      While working on tasks the employees can track time and easily book
+      those at the end of the day.
 
 
 Workflow
 --------
 
 Customers can create stories and submit them for estimating. The
-employees will find pending stories in the review portlet and can
-start adding more detailed tasks.
+employees will find pending stories in the review portlet. He will fill-in a
+rough estimate and change the state by using the 'mark estimated' transition.
 
-After the employee has finished reviewing the story and giving it a
-rough estimate, he can set the estimate transition.  The customer can
-then move the story to the preferred iteration.
+The customers are able to prioritize the stories based on value for the
+organisation and the rough estimate. When the team has committed to the number
+of stories, they can start writing tasks and provide estimates for each task.
 
-Of course this can be done with customer and employees together during
-an iteration meeting.  In most cases: anything that the customer can
-do, the employee can do as well.  A Manager can do anything.
+After all tasks have been written and estimated the iteration can be
+started by following the transition 'start working'. This will set the status
+of all tasks to 'todo', so developers will see their tasks in the todo list.
 
-After the stories are assigned to the iteration, the state of the
-iteration can be set to 'active'. Now employees can book their working
-hours on the tasks as the project goes on.
+When completing all tasks in a story the story itself will be set to
+'completed'.
 
 
 Time Registration
@@ -67,7 +66,7 @@ task and describe the work in the comment field.
 Project overview
 ----------------
 
-Customers can monitor all progress at the project overview page. This
+Customers can monitor all progress at the Iteration overview page. This
 gives the customer the "Overall Plan" by showing each iteration in a
 list with progress bars. By clicking on an iteration more detailed
 information will be shown about the stories.

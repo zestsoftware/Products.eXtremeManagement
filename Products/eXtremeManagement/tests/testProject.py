@@ -9,7 +9,7 @@ class testProject(eXtremeManagementTestCase):
         """
         """
         self.setRoles(['Manager'])
-        self.portal.invokeFactory('ProjectFolder', id='projects')
+        self.portal.invokeFactory('Folder', id='projects')
         self.projects = self.folder.projects
         self.projects.invokeFactory('Project', id='project')
         self.project = self.projects.project

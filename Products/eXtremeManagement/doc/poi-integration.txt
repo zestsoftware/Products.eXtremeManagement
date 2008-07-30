@@ -19,7 +19,7 @@ We create a project, an iteration, and a story.  Note that in our
 model, issues correspond to tasks:
 
   >>> projectfolder = \
-  ...     self.portal[self.portal.invokeFactory('ProjectFolder', 'folder')]
+  ...     self.portal[self.portal.invokeFactory('Folder', 'folder')]
   >>> project = projectfolder[projectfolder.invokeFactory('Project', 'project')]
   >>> iteration1 = project[project.invokeFactory('Iteration', 'iteration1')]
   >>> story1 = iteration1[iteration1.invokeFactory('Story', 'story1')]

@@ -18,15 +18,11 @@ Log in to the portal as the manager.
 
     >>> browserutils.login(browser, self.portal, 'manager')
 
-Add a ProjectFolder.
-
-    >>> browserutils.addProjectFolder(browser, self.portal, 'New Projects folder')
-    >>> self.newprojects = self.portal['new-projects-folder']
 
 Add a Project there.
 
-    >>> browserutils.addProject(browser, self.newprojects, 'Project')
-    >>> self.newproject = self.newprojects.project
+    >>> browserutils.addProject(browser, self.portal, 'Project')
+    >>> self.newproject = self.portal.project
 
 Add an Iteration there.
 

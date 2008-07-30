@@ -13,4 +13,13 @@
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       />
 
+  <genericsetup:upgradeStep
+      zcml:condition="installed Products.GenericSetup.upgrade"
+      title="Migrate old types"
+      description="A number of content types are not used and will be removed."
+      source="1.6"
+      destination="2.0"
+      handler="Products.eXtremeManagement.setuphandlers.upgrade_from_16_to_20"
+      profile="Products.eXtremeManagement:default"/>
+
 </configure>

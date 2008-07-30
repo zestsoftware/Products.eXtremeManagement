@@ -83,6 +83,19 @@
       <role name="Manager"/>
       <role name="Projectmanager"/>
     </permission>
+    <permission name="eXtremeManagement: Add Booking"
+                acquire="True">
+      <role name="Manager"/>
+      <role name="Projectmanager"/>
+      <role name="Employee"/>
+    </permission>
+    <permission name="eXtremeManagement: Add Offer"
+                acquire="True">
+      <role name="Manager"/>
+      <role name="Projectmanager"/>
+    </permission>
+
+    <!-- BBB can be removed in release 2.1 -->
     <permission name="eXtremeManagement: Add ProjectMember"
                 acquire="True">
       <role name="Manager"/>
@@ -103,16 +116,6 @@
       <role name="Manager"/>
       <role name="Projectmanager"/>
     </permission>
-    <permission name="eXtremeManagement: Add Booking"
-                acquire="True">
-      <role name="Manager"/>
-      <role name="Projectmanager"/>
-      <role name="Employee"/>
-    </permission>
-    <permission name="eXtremeManagement: Add Offer"
-                acquire="True">
-      <role name="Manager"/>
-      <role name="Projectmanager"/>
-    </permission>
+
   </permissions>
 </rolemap>

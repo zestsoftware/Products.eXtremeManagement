@@ -1,4 +1,7 @@
 from Products.CMFCore.utils import getToolByName
+from Products.contentmigration.basemigrator.walker import CatalogWalker
+from Products.contentmigration.archetypes import ATFolderMigrator 
+
 from Products.eXtremeManagement import config
 
 
@@ -59,6 +62,26 @@ def add_roles_that_should_be_handled_by_rolemap_xml(site, logger):
         if role not in pas_roles:
             role_manager.addRole(role)
             logger.info('Added role %s', role)
+
+
+def upgrade_from_16_to_20(context):
+    site = getToolByName(context, 'portal_url').getPortalObject()
+    types = dict(ProjectFolder='Folder', CustomerFolder='Folder')
+    
+    class ProjectFolderMigrator(ATFolderMigrator):
+        src_portal_type = src_meta_type = 'ProjectFolder'
+        dst_portal_type = dst_meta_type = 'Folder'
+
+    projectfolders = CatalogWalker(site, ProjectFolderMigrator)
+    projectfolders.go()
+
+    class CustomerFolderMigrator(ATFolderMigrator):
+        src_portal_type = src_meta_type = 'CustomerFolder'
+        dst_portal_type = dst_meta_type = 'Folder'
+
+    customerfolders = CatalogWalker(site, CustomerFolderMigrator)
+    customerfolders.go()
+
 
 
 def importVarious(context):

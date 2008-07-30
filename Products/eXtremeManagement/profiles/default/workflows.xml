@@ -17,12 +17,6 @@
   <type type_id="Booking">
    <bound-workflow workflow_id="eXtreme_Booking_Workflow"/>
   </type>
-  <type type_id="Customer">
-   <bound-workflow workflow_id="eXtreme_Customer_Workflow"/>
-  </type>
-  <type type_id="CustomerFolder">
-   <bound-workflow workflow_id="folder_workflow"/>
-  </type>
   <type type_id="Iteration">
    <bound-workflow workflow_id="eXtreme_Iteration_Workflow"/>
   </type>
@@ -44,12 +38,6 @@
   <type type_id="Project">
    <bound-workflow workflow_id="eXtreme_Project_Workflow"/>
   </type>
-  <type type_id="ProjectFolder">
-   <bound-workflow workflow_id="folder_workflow"/>
-  </type>
-  <type type_id="ProjectMember">
-   <bound-workflow workflow_id="eXtreme_Default_Workflow"/>
-  </type>
   <type type_id="Story">
    <bound-workflow workflow_id="eXtreme_Story_Workflow"/>
   </type>
@@ -58,6 +46,20 @@
   </type>
   <type type_id="PoiTask">
    <bound-workflow workflow_id="eXtreme_Task_Workflow"/>
+  </type>
+  
+  <!-- BBB can be removed in release 2.1 -->
+  <type type_id="ProjectFolder">
+   <bound-workflow workflow_id="folder_workflow"/>
+  </type>
+  <type type_id="ProjectMember">
+   <bound-workflow workflow_id="eXtreme_Default_Workflow"/>
+  </type>
+  <type type_id="Customer">
+   <bound-workflow workflow_id="eXtreme_Customer_Workflow"/>
+  </type>
+  <type type_id="CustomerFolder">
+   <bound-workflow workflow_id="folder_workflow"/>
   </type>
  </bindings>
 </object>

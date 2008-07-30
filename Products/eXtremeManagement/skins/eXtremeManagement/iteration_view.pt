@@ -38,33 +38,13 @@
             </tr>
             <tr>
               <th class="customer_info_header"
-                  i18n:translate="listingheader_actual_hours">Actual (hours)</th>
-              <td tal:content="iteration/actual" />
-            </tr>
-            <tr tal:condition="iteration/budget_left">
-              <th class="customer_info_header"
-                  i18n:translate="listingheader_actual_budget_left">Actual budget left (hours)</th>
-              <td tal:content="iteration/budget_left" />
-            </tr>
-            <tr>
-              <th class="customer_info_header"
                   i18n:translate="listingheader_startdate">Start date</th>
-              <td>
-                <metal:field use-macro="python:here.widget('startDate',
-                                        mode='view')">
-                  Variable goes here
-                </metal:field>
-              </td>
+              <td tal:content="python:here.toLocalizedTime(here.startDate,long_format=0)" />
             </tr>
             <tr>
               <th class="customer_info_header"
                   i18n:translate="listingheader_enddate">End date</th>
-              <td>
-                <metal:field use-macro="python:here.widget('endDate',
-                                        mode='view')">
-                  Variable goes here
-                </metal:field>
-              </td>
+              <td tal:content="python:here.toLocalizedTime(here.endDate,long_format=0)" />
             </tr>
 
           </table>
@@ -86,12 +66,34 @@
                                   show_progress python:False;
                                   show_totals python:True">
           <h1 i18n:translate="heading-stories">Stories</h1>
-
-          <div
+          
+          <table class="listing"
+                 id="story-listing"
+                 width="97%"
+                 border="1"
+                 cellpadding="0"
+                 cellspacing="0">
+             <tal:block
               tal:define="iteration_dict iteration;
                           iteration_object nocall:context;
                           realstories stories;"
               tal:replace="structure provider:xm.storylist.simple" />
+             <tr class="totalOfProject"
+                 tal:condition="iteration/budget_left">
+                 <th colspan="4"
+                    i18n:translate="label_remaining_budget">Remaining budget (hours)</th>
+                 <th tal:content="iteration/budget_left" />
+              </tr>
+          </table>
+
+          <p class="discreet" i18n:translate="help_stories_table">
+            The Initial estimate of the story is a rough estimate in
+            days.  The Tasks estimate is the total estimate in hours
+            for all tasks.  If there is a big difference there could
+            be a logical explanation.  You should investigate that to
+            be sure.
+          </p>
+
 
           <tal:membertasks
               tal:define="membertasks context/@@employee_totals/totals;"

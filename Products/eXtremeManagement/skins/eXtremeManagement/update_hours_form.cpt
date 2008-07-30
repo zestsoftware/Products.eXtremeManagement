@@ -66,14 +66,15 @@
 
             <tal:loop tal:repeat="task tasks">
               <tr>
-                <th i18n:translate="listingheader_title">Title</th>
+                  <th>Naam project, taak:</th>
+                <!--<th i18n:translate="listingheader_title">Title</th>-->
                 <th i18n:translate="listingheader_story">Story</th>
                 <th i18n:translate="listingheader_estimate_hours">Estimate (hours)</th>
                 <th i18n:translate="listingheader_actual_hours">Actual (hours)</th>
               </tr>
 
               <tr class="list-in-iteration">
-                <td class="td-story-title">
+                <td class="td-story-title">                  
                   <a tal:attributes="href task/url">
                     <img src="task_icon.gif"
                          alt="task"

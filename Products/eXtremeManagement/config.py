@@ -12,12 +12,13 @@ ADD_CONTENT_PERMISSIONS = {
     'Story': 'eXtremeManagement: Add Story',
     'Task': 'eXtremeManagement: Add Task',
     'PoiTask': 'eXtremeManagement: Add Task',
+    'Booking': 'eXtremeManagement: Add Booking',
+    'Offer': 'eXtremeManagement: Add Offer',
+    # BBB perms below can be removed in release 2.1
     'ProjectMember': 'eXtremeManagement: Add ProjectMember',
     'Customer': 'eXtremeManagement: Add Customer',
     'CustomerFolder': 'eXtremeManagement: Add CustomerFolder',
     'ProjectFolder': 'eXtremeManagement: Add ProjectFolder',
-    'Booking': 'eXtremeManagement: Add Booking',
-    'Offer': 'eXtremeManagement: Add Offer',
 }
 
 # For kupu:

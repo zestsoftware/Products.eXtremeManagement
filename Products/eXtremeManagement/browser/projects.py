@@ -33,10 +33,14 @@ class MyProjects(BrowserView):
             member = membership.getAuthenticatedMember()
             memberid = member.id
 
-            # Customers see all projects:
+            # Customers see all their projects (which should be a
+            # limited number anyway).
+            # Quick'n'Dirty check: pick the first project and check
+            # whether the user has the customer role, but is not an
+            # employee.
             projectbrain = projectbrains[0]
-            if 'Customer' in member.getRolesInContext(
-                    projectbrain.getObject()):
+            roles = member.getRolesInContext(projectbrain.getObject())
+            if 'Customer' in roles and 'Employee' not in roles:
                 return projectbrains
 
             # Otherwise only show the projects with open tasks assigned to

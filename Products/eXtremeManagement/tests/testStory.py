@@ -17,7 +17,7 @@ class testStory(eXtremeManagementTestCase):
         self.membership.addMember('customer', 'secret', ['Customer'], [])
         self.membership.addMember('employee', 'secret', ['Employee'], [])
         self.setRoles(['Manager'])
-        self.portal.invokeFactory('ProjectFolder', id='projects')
+        self.portal.invokeFactory('Folder', id='projects')
         self.projects = self.folder.projects
         self.projects.invokeFactory('Project', id='project')
         self.project = self.projects.project

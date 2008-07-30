@@ -4,15 +4,6 @@
   <!-- when starting up anyway. -->
 
   <deprecatedManageAddDelete
-      class=".content.CustomerFolder.CustomerFolder" />
-
-  <deprecatedManageAddDelete
-      class=".content.Customer.Customer" />
-
-  <deprecatedManageAddDelete
-      class=".content.ProjectFolder.ProjectFolder" />
-
-  <deprecatedManageAddDelete
       class=".content.Project.Project" />
 
   <deprecatedManageAddDelete
@@ -29,5 +20,16 @@
 
   <deprecatedManageAddDelete
       class=".content.Booking.Booking" />
+
+  <!-- BBB can be removed in release 2.1 -->
+  <deprecatedManageAddDelete
+      class=".content.CustomerFolder.CustomerFolder" />
+
+  <deprecatedManageAddDelete
+      class=".content.Customer.Customer" />
+
+  <deprecatedManageAddDelete
+      class=".content.ProjectFolder.ProjectFolder" />
+
 
 </configure>
