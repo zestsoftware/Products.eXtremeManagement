@@ -39,31 +39,23 @@
       </tr>
     </tal:extraheader>
 
-    <tr class="StatusOfStories">
-      <th i18n:domain="eXtremeManagement" 
-         i18n:translate="listingheader_story"
-         class="storyHeader">Story</th>
-      <th i18n:domain="eXtremeManagement"  
-         i18n:translate="listingheader_state"
-         class="statusHeader">Status</th>
-      <th i18n:domain="eXtremeManagement"  
-         i18n:translate="listingheader_initial_estimate"
-         class="initEstimateHeader">
-         Initial estimate (days)
-      </th>
-      <th i18n:domain="eXtremeManagement"  
-         i18n:translate="listingheader_tasks_estimate"
-         class="tasksEstimateHeader">
-         Tasks estimate (hours)
-      </th>
-      <th class="actualHoursHeader">
-         <span i18n:domain="eXtremeManagement" 
-         i18n:translate="Actual_hours">Actual hours</span>
-      </th>
+    <tr class="StatusOfStories"
+        i18n:domain="eXtremeManagement">
+      <th i18n:translate="listingheader_story"
+          class="storyHeader">Story</th>
+      <th i18n:translate="listingheader_state"
+          class="statusHeader">Status</th>
+      <th i18n:translate="listingheader_initial_estimate"
+          class="initEstimateHeader">Initial estimate (days)</th>
+      <th i18n:translate="listingheader_tasks_estimate"
+          class="tasksEstimateHeader">Tasks estimate (hours)</th>
+      <th class="actualHoursHeader"
+          i18n:translate="Actual_hours">Actual hours</th>
     </tr>
 
     <tal:repeat repeat="story stories">
       <tr class="list-in-iteration toggle-story"
+          i18n:domain="eXtremeManagement"
           tal:attributes="class string:list-in-iteration toggle-story kssattr-uid-${story/uid};
                           id string:kssattr-uid-${story/uid};">
         <td class="td-story-title"

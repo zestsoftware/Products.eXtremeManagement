@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-07-30 10:10+0000\n"
+"POT-Creation-Date: 2008-07-30 10:46+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Poedit-Language: French\n"
 
 #. Default: "Actual hours"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:60
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:52
 msgid "Actual_hours"
 msgstr ""
 
@@ -700,7 +700,7 @@ msgid "listingheader_fax"
 msgstr "Télécopieur"
 
 #. Default: "Initial estimate (days)"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:49
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:48
 msgid "listingheader_initial_estimate"
 msgstr ""
 
@@ -740,12 +740,12 @@ msgid "listingheader_state"
 msgstr "état"
 
 #. Default: "Story"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:43
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:44
 msgid "listingheader_story"
 msgstr "Histoire-usager"
 
 #. Default: "Tasks estimate (hours)"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:54
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:50
 msgid "listingheader_tasks_estimate"
 msgstr ""
 
@@ -806,7 +806,7 @@ msgid "no_stories_published"
 msgstr "Aucune histoire-usager n'a été publiée!"
 
 #. Default: "No tasks defined yet."
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:76
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:110
 msgid "no_tasks_defined"
 msgstr "Aucune tâche n'a été définie."
 
@@ -826,6 +826,11 @@ msgstr "Précédent:"
 msgid "previous-month"
 msgstr "mois précédent"
 
+#. Default: "progress bar"
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:92
+msgid "progress_bar"
+msgstr ""
+
 #. Default: "Project administration"
 #: ./skins/eXtremeManagement/portlet_tasks.pt:19
 msgid "project_administration"
@@ -842,7 +847,7 @@ msgid "task_overview"
 msgstr "Vue générale de la tâche"
 
 #. Default: "Total"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:138
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:130
 msgid "total"
 msgstr "Total"
 
@@ -854,5 +859,40 @@ msgstr ""
 #. Default: "Visit the web site"
 #: ./skins/eXtremeManagement/customer_view.pt:71
 msgid "visit_the_website"
+msgstr ""
+
+#. Default: "Friday"
+#: ./skins/eXtremeManagement/booking_month.pt:74
+msgid "weekday_fri"
+msgstr ""
+
+#. Default: "Monday"
+#: ./skins/eXtremeManagement/booking_month.pt:70
+msgid "weekday_mon"
+msgstr ""
+
+#. Default: "Saturday"
+#: ./skins/eXtremeManagement/booking_month.pt:75
+msgid "weekday_sat"
+msgstr ""
+
+#. Default: "Sunday"
+#: ./skins/eXtremeManagement/booking_month.pt:76
+msgid "weekday_sun"
+msgstr ""
+
+#. Default: "Thursday"
+#: ./skins/eXtremeManagement/booking_month.pt:73
+msgid "weekday_thu"
+msgstr ""
+
+#. Default: "Tuesday"
+#: ./skins/eXtremeManagement/booking_month.pt:71
+msgid "weekday_tue"
+msgstr ""
+
+#. Default: "Wednesday"
+#: ./skins/eXtremeManagement/booking_month.pt:72
+msgid "weekday_wed"
 msgstr ""
 

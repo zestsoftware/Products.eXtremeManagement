@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-07-30 10:10+0000\n"
+"POT-Creation-Date: 2008-07-30 10:46+0000\n"
 "PO-Revision-Date: 2008-01-28 09:54+0100\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Is-Fallback-For: nl-be\n"
 
 #. Default: "Actual hours"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:60
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:52
 msgid "Actual_hours"
 msgstr "Gewerkte uren"
 
@@ -694,7 +694,7 @@ msgid "listingheader_fax"
 msgstr "Faxnummer"
 
 #. Default: "Initial estimate (days)"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:49
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:48
 msgid "listingheader_initial_estimate"
 msgstr "Initiële inschatting (dagen)"
 
@@ -734,12 +734,12 @@ msgid "listingheader_state"
 msgstr "Status"
 
 #. Default: "Story"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:43
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:44
 msgid "listingheader_story"
 msgstr "Verhaal"
 
 #. Default: "Tasks estimate (hours)"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:54
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:50
 msgid "listingheader_tasks_estimate"
 msgstr "Schatting taken (uren)"
 
@@ -800,7 +800,7 @@ msgid "no_stories_published"
 msgstr "Er zijn op dit moment geen stories gedefinieerd!"
 
 #. Default: "No tasks defined yet."
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:76
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:110
 msgid "no_tasks_defined"
 msgstr "Nog geen taken gedefinieerd."
 
@@ -819,6 +819,11 @@ msgstr "vorige"
 msgid "previous-month"
 msgstr "vorige maand"
 
+#. Default: "progress bar"
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:92
+msgid "progress_bar"
+msgstr ""
+
 #. Default: "Project administration"
 #: ./skins/eXtremeManagement/portlet_tasks.pt:19
 msgid "project_administration"
@@ -835,7 +840,7 @@ msgid "task_overview"
 msgstr "Takenoverzicht"
 
 #. Default: "Total"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:138
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:130
 msgid "total"
 msgstr "Totaal"
 
@@ -848,4 +853,39 @@ msgstr "snelheidsgrafiek"
 #: ./skins/eXtremeManagement/customer_view.pt:71
 msgid "visit_the_website"
 msgstr "Bezoek de website"
+
+#. Default: "Friday"
+#: ./skins/eXtremeManagement/booking_month.pt:74
+msgid "weekday_fri"
+msgstr "vrijdag"
+
+#. Default: "Monday"
+#: ./skins/eXtremeManagement/booking_month.pt:70
+msgid "weekday_mon"
+msgstr "maandag"
+
+#. Default: "Saturday"
+#: ./skins/eXtremeManagement/booking_month.pt:75
+msgid "weekday_sat"
+msgstr "zaterdag"
+
+#. Default: "Sunday"
+#: ./skins/eXtremeManagement/booking_month.pt:76
+msgid "weekday_sun"
+msgstr "zondag"
+
+#. Default: "Thursday"
+#: ./skins/eXtremeManagement/booking_month.pt:73
+msgid "weekday_thu"
+msgstr "donderdag"
+
+#. Default: "Tuesday"
+#: ./skins/eXtremeManagement/booking_month.pt:71
+msgid "weekday_tue"
+msgstr "dinsdag"
+
+#. Default: "Wednesday"
+#: ./skins/eXtremeManagement/booking_month.pt:72
+msgid "weekday_wed"
+msgstr "woensdag"
 
