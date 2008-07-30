@@ -23,7 +23,6 @@ setup(name='Products.eXtremeManagement',
       + '\n' +
       read('Products', 'eXtremeManagement', 'HISTORY.txt')
       ),
-      # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
         "Framework :: Zope2",
@@ -43,8 +42,8 @@ setup(name='Products.eXtremeManagement',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
-          'xm.booking',
-          'xm.portlets',
+          'xm.booking >= 0.5, <= 0.6dev',
+          'xm.portlets >= 0.5, <= 0.6dev',
 	  'kss.plugin.yuidnd',
           'Products.contentmigration == 1.0b4',
       ],

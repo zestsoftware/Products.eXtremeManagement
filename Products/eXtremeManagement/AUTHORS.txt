@@ -8,7 +8,7 @@ Mirella van Teulingen <m.van.teulingen@zestsoftware.nl>
 
 Jodok Batlogg <jodok.batlogg@lovelysystems.com>
 
-Harald Frießnegger <harald.friessnegger@lovelysystems.com>
+Harald Friessnegger <harald.friessnegger@lovelysystems.com>
 
 Daniel Nouri <daniel.nouri@gmail.com>
 
