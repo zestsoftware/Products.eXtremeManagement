@@ -91,7 +91,7 @@
              <tr class="totalOfProject"
                  tal:condition="iteration/budget_left">
                  <th colspan="4"
-                    i18n:translate="budget_left_thisproject">Budget (hours), left for this project</th>
+                    i18n:translate="label_remaining_budget">Remaining budget (hours)</th>
                  <th tal:content="iteration/budget_left" />
               </tr>
           </table>

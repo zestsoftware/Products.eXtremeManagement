@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-07-17 18:18+0000\n"
+"POT-Creation-Date: 2008-07-30 10:10+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -17,6 +17,11 @@ msgstr ""
 "Domain: eXtremeManagement\n"
 "X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 "X-Poedit-Language: French\n"
+
+#. Default: "Actual hours"
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:60
+msgid "Actual_hours"
+msgstr ""
 
 #. Default: "Add Tasks"
 #: ./skins/eXtremeManagement/portlet_poi.pt:46
@@ -93,7 +98,7 @@ msgid "days"
 msgstr ""
 
 #. Default: "Overview of tasks that belong to me.  The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
-#: ./skins/eXtremeManagement/iteration_view.pt:136
+#: ./skins/eXtremeManagement/iteration_view.pt:148
 #, fuzzy
 msgid "description-overview-my-tasks"
 msgstr "Tâches qui m'incombent.  Les totaux mentionnés s'appliquent à moi seul et en conséquence ils différent généralement d'une addition des valeurs de la colonne au-dessus."
@@ -474,12 +479,12 @@ msgid "heading-bookings-per-month"
 msgstr ""
 
 #. Default: "Hours per employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:99
+#: ./skins/eXtremeManagement/iteration_view.pt:111
 msgid "heading-hours-per-employee"
 msgstr "Heures par employé"
 
 #. Default: "My to-do tasks"
-#: ./skins/eXtremeManagement/iteration_view.pt:134
+#: ./skins/eXtremeManagement/iteration_view.pt:146
 msgid "heading-in-progress-tasks"
 msgstr "Mes tâches"
 
@@ -490,7 +495,7 @@ msgid "heading-my-task-overview"
 msgstr "Vue générale de mes tâches"
 
 #. Default: "My open tasks"
-#: ./skins/eXtremeManagement/iteration_view.pt:153
+#: ./skins/eXtremeManagement/iteration_view.pt:165
 msgid "heading-open-tasks"
 msgstr "Mes tâches ouvertes"
 
@@ -500,7 +505,7 @@ msgid "heading-related-xm-tasks"
 msgstr ""
 
 #. Default: "Stories"
-#: ./skins/eXtremeManagement/iteration_view.pt:88
+#: ./skins/eXtremeManagement/iteration_view.pt:78
 msgid "heading-stories"
 msgstr "Histoires-usager"
 
@@ -532,6 +537,11 @@ msgstr "Si sélectionné, les membres ayant le rôle global \"Employé\" appara�
 #. Default: "Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown)."
 #: ./skins/eXtremeManagement/story_view.pt:52
 msgid "help_needs_estimate"
+msgstr ""
+
+#. Default: "The Initial estimate of the story is a rough estimate in days.  The Tasks estimate is the total estimate in hours for all tasks.  If there is a big difference there could be a logical explanation.  You should investigate that to be sure."
+#: ./skins/eXtremeManagement/iteration_view.pt:99
+msgid "help_stories_table"
 msgstr ""
 
 #. Default: "Hours booked for today: ${total_booked}"
@@ -567,6 +577,11 @@ msgstr ""
 #. Default: "Recalculate estimated time"
 #: ./browser/maintenance.py:44
 msgid "label_recalculate_estimated_time"
+msgstr ""
+
+#. Default: "Remaining budget (hours)"
+#: ./skins/eXtremeManagement/iteration_view.pt:93
+msgid "label_remaining_budget"
 msgstr ""
 
 #. Default: "last 12 months"
@@ -619,11 +634,6 @@ msgstr "Nom complet"
 msgid "listingheader_Phone"
 msgstr "Téléphone"
 
-#. Default: "Actual budget left (hours)"
-#: ./skins/eXtremeManagement/iteration_view.pt:45
-msgid "listingheader_actual_budget_left"
-msgstr ""
-
 #. Default: "Actual (hours)"
 #: ./browser/viewlets/templates/manage_simple_tasklist.pt:21
 msgid "listingheader_actual_hours"
@@ -670,12 +680,12 @@ msgid "listingheader_email"
 msgstr "Courriel"
 
 #. Default: "Employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:107
+#: ./skins/eXtremeManagement/iteration_view.pt:119
 msgid "listingheader_employee"
 msgstr "Employé"
 
 #. Default: "End date"
-#: ./skins/eXtremeManagement/iteration_view.pt:60
+#: ./skins/eXtremeManagement/iteration_view.pt:50
 msgid "listingheader_enddate"
 msgstr "Date de fin"
 
@@ -690,7 +700,7 @@ msgid "listingheader_fax"
 msgstr "Télécopieur"
 
 #. Default: "Initial estimate (days)"
-#: ./skins/eXtremeManagement/offer_view.pt:61
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:49
 msgid "listingheader_initial_estimate"
 msgstr ""
 
@@ -720,22 +730,22 @@ msgid "listingheader_projects"
 msgstr "Projet"
 
 #. Default: "Start date"
-#: ./skins/eXtremeManagement/iteration_view.pt:50
+#: ./skins/eXtremeManagement/iteration_view.pt:40
 msgid "listingheader_startdate"
 msgstr "Date de début"
 
 #. Default: "Status"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:23
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:46
 msgid "listingheader_state"
 msgstr "état"
 
 #. Default: "Story"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:17
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:43
 msgid "listingheader_story"
 msgstr "Histoire-usager"
 
-#. Default: "Tasks Estimate (hours)"
-#: ./skins/eXtremeManagement/story_view.pt:78
+#. Default: "Tasks estimate (hours)"
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:54
 msgid "listingheader_tasks_estimate"
 msgstr ""
 
@@ -745,17 +755,17 @@ msgid "listingheader_title"
 msgstr "Titre"
 
 #. Default: "Total Actual"
-#: ./skins/eXtremeManagement/iteration_view.pt:110
+#: ./skins/eXtremeManagement/iteration_view.pt:122
 msgid "listingheader_total_actual"
 msgstr "Total réel"
 
 #. Default: "Total Difference"
-#: ./skins/eXtremeManagement/iteration_view.pt:112
+#: ./skins/eXtremeManagement/iteration_view.pt:124
 msgid "listingheader_total_difference"
 msgstr "Différence entre les totaux"
 
 #. Default: "Total Estimate"
-#: ./skins/eXtremeManagement/iteration_view.pt:108
+#: ./skins/eXtremeManagement/iteration_view.pt:120
 msgid "listingheader_total_estimate"
 msgstr "Total estimé"
 
@@ -791,7 +801,7 @@ msgid "no_projects_found"
 msgstr "Aucun projet n'a été publié!"
 
 #. Default: "No stories published yet!"
-#: ./skins/eXtremeManagement/iteration_view.pt:162
+#: ./skins/eXtremeManagement/iteration_view.pt:174
 msgid "no_stories_published"
 msgstr "Aucune histoire-usager n'a été publiée!"
 
@@ -832,7 +842,7 @@ msgid "task_overview"
 msgstr "Vue générale de la tâche"
 
 #. Default: "Total"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:65
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:138
 msgid "total"
 msgstr "Total"
 
@@ -846,17 +856,3 @@ msgstr ""
 msgid "visit_the_website"
 msgstr ""
 
-#. Default: "Actual hours"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:48
-msgid "Actual_hours"
-msgstr ""
-
-#. Default: "Actual hours this iteration"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:139
-msgid "actual_hours_iteration"
-msgstr ""
-
-#. Default: "Budget (hours), left for this project"
-#: ./skins/eXtremeManagement/iteration_view.pt:104
-msgid "budget_left_thisproject"
-msgstr ""
