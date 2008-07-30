@@ -89,8 +89,10 @@
                     tal:attributes="class day/style"
                     tal:condition="not:day/total">&nbsp;</td>
               </tal:days>
-              <td tal:content="week/week_total">2007-06-10</td>
-              <td tal:content="week/perc_billable">80 %</td>
+              <td tal:content="week/week_total"
+                  tal:attributes="class week/total_style">2007-06-10</td>
+              <td tal:content="week/perc_billable"
+                  tal:attributes="class week/perc_style">80 %</td>
 
             </tr>
             <tr>

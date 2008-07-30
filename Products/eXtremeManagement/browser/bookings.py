@@ -330,10 +330,7 @@ class WeekBookingOverview(BookingsDetailedView):
                         if day_billable != 0:
                             week_billable += day_billable
                             worked_days += 1
-                        if day_total >= 8:
-                            ui_class = 'good'
-                        else:
-                            ui_class = 'not-enough'
+                        ui_class = 'good'
                     else:
                         ui_class = 'greyed'
                     daylist.append(dict(total=formatTime(day_total),
@@ -368,6 +365,15 @@ class WeekBookingOverview(BookingsDetailedView):
             else:
                 week_perc_billable = 0.0
             fmt_perc_billable = "%0.1f" % week_perc_billable + ' %'
+            weekinfo['total_style'] = weekinfo['perc_style'] = 'greyed'
+            if weekinfo['week_number'] < DateTime().week():
+                weekinfo['total_style'] = weekinfo['perc_style'] = 'good'
+            if raw_total < 40.0 and \
+                weekinfo['week_number'] < DateTime().week():
+                weekinfo['total_style'] = 'not-enough'
+            if week_perc_billable < 0.5 and \
+                weekinfo['week_number'] < DateTime().week():
+                weekinfo['perc_style'] = 'not-enough'
             weekinfo['perc_billable'] = fmt_perc_billable
             self.bookinglist.append(weekinfo)
             # update month total

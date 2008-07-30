@@ -1,6 +1,12 @@
 2.0 alpha
 ---------------------
 
+2008-07-30 - jladage
+
+  - bookings per month now doesn't highlight days with less than 8 hours.
+    Instead it highlight if the hours per week is below 40 hours and if the
+    billable percentage for a week is below 50%.
+
 2008-07-23 - markvl
 
   - Made the check for customers in the myprojects view more
