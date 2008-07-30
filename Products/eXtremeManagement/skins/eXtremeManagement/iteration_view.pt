@@ -39,22 +39,12 @@
             <tr>
               <th class="customer_info_header"
                   i18n:translate="listingheader_startdate">Start date</th>
-              <td>
-                <metal:field use-macro="python:here.widget('startDate',
-                                        mode='view')">
-                  Variable goes here
-                </metal:field>
-              </td>
+              <td tal:content="python:here.toLocalizedTime(here.startDate,long_format=0)" />
             </tr>
             <tr>
               <th class="customer_info_header"
                   i18n:translate="listingheader_enddate">End date</th>
-              <td>
-                <metal:field use-macro="python:here.widget('endDate',
-                                        mode='view')">
-                  Variable goes here
-                </metal:field>
-              </td>
+              <td tal:content="python:here.toLocalizedTime(here.endDate,long_format=0)" />
             </tr>
 
           </table>
