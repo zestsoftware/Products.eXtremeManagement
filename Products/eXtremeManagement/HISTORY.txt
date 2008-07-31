@@ -1,5 +1,9 @@
 2.0 alpha
 ---------------------
+2008-07-31 - mirella
+ 
+  - generated i18ndude and added the missing dutch translations.
+
 2008-07-30 - mirella
  
   - removed hours/minutes from iteration view of start and enddate 

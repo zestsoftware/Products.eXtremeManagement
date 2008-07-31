@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-07-30 10:46+0000\n"
+"POT-Creation-Date: 2008-07-31 09:24+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -38,6 +38,11 @@ msgstr ""
 
 #: ./browser/maintenance.py:16
 msgid "Perform various maintenance tasks. If you know the totals are wrong, you can recalculate them here. This should normally not be needed, so do not touch this unless you know what you are doing.  Then again, it does not hurt, except that it takes a long time."
+msgstr ""
+
+#. Default: "Send"
+#: ./skins/eXtremeManagement/update_hours_form.cpt:131
+msgid "Send"
 msgstr ""
 
 #. Default: "Send a mail to this user"
@@ -94,13 +99,18 @@ msgid "days"
 msgstr ""
 
 #. Default: "Overview of tasks that belong to me.  The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
-#: ./skins/eXtremeManagement/iteration_view.pt:148
+#: ./skins/eXtremeManagement/iteration_view.pt:138
 msgid "description-overview-my-tasks"
 msgstr ""
 
 #. Default: "This is a list of all projects. Also the iterations which are completed, with estimated and actual time.  Once an iteration is completed and invoiced, the status can be changed to <strong>Invoiced</strong>.  This way the administration has an overview with all iterations which are not yet invoiced."
 #: ./skins/eXtremeManagement/project_administration.pt:24
 msgid "description_project_administration"
+msgstr ""
+
+#. Default: "To register your time (hours), use the form below and press 'Send'."
+#: ./skins/eXtremeManagement/update_hours_form.cpt:39
+msgid "description_time_registration"
 msgstr ""
 
 #. Default: "Detailed bookings"
@@ -408,12 +418,12 @@ msgid "heading-bookings-per-month"
 msgstr ""
 
 #. Default: "Hours per employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:111
+#: ./skins/eXtremeManagement/iteration_view.pt:101
 msgid "heading-hours-per-employee"
 msgstr ""
 
 #. Default: "My to-do tasks"
-#: ./skins/eXtremeManagement/iteration_view.pt:146
+#: ./skins/eXtremeManagement/iteration_view.pt:136
 msgid "heading-in-progress-tasks"
 msgstr ""
 
@@ -423,7 +433,7 @@ msgid "heading-my-task-overview"
 msgstr ""
 
 #. Default: "My open tasks"
-#: ./skins/eXtremeManagement/iteration_view.pt:165
+#: ./skins/eXtremeManagement/iteration_view.pt:155
 msgid "heading-open-tasks"
 msgstr ""
 
@@ -433,7 +443,7 @@ msgid "heading-related-xm-tasks"
 msgstr ""
 
 #. Default: "Stories"
-#: ./skins/eXtremeManagement/iteration_view.pt:78
+#: ./skins/eXtremeManagement/iteration_view.pt:68
 msgid "heading-stories"
 msgstr ""
 
@@ -468,7 +478,7 @@ msgid "help_needs_estimate"
 msgstr ""
 
 #. Default: "The Initial estimate of the story is a rough estimate in days.  The Tasks estimate is the total estimate in hours for all tasks.  If there is a big difference there could be a logical explanation.  You should investigate that to be sure."
-#: ./skins/eXtremeManagement/iteration_view.pt:99
+#: ./skins/eXtremeManagement/iteration_view.pt:89
 msgid "help_stories_table"
 msgstr ""
 
@@ -487,14 +497,29 @@ msgstr ""
 msgid "label_add_task"
 msgstr ""
 
+#. Default: "Date to book for"
+#: ./skins/eXtremeManagement/update_hours_form.cpt:47
+msgid "label_bookingdate"
+msgstr ""
+
 #. Default: "Budget (hours)"
 #: ./skins/eXtremeManagement/project_view.pt:29
 msgid "label_budgetHours"
 msgstr ""
 
+#. Default: "Hours"
+#: ./skins/eXtremeManagement/update_hours_form.cpt:96
+msgid "label_hours"
+msgstr ""
+
 #. Default: "Include global Employees"
 #: content/Project.py
 msgid "label_include_global_members"
+msgstr ""
+
+#. Default: "Minutes"
+#: ./skins/eXtremeManagement/update_hours_form.cpt:118
+msgid "label_minutes"
 msgstr ""
 
 #. Default: "Recalculate actual hours"
@@ -508,7 +533,7 @@ msgid "label_recalculate_estimated_time"
 msgstr ""
 
 #. Default: "Remaining budget (hours)"
-#: ./skins/eXtremeManagement/iteration_view.pt:93
+#: ./skins/eXtremeManagement/iteration_view.pt:83
 msgid "label_remaining_budget"
 msgstr ""
 
@@ -608,12 +633,12 @@ msgid "listingheader_email"
 msgstr ""
 
 #. Default: "Employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:119
+#: ./skins/eXtremeManagement/iteration_view.pt:109
 msgid "listingheader_employee"
 msgstr ""
 
 #. Default: "End date"
-#: ./skins/eXtremeManagement/iteration_view.pt:50
+#: ./skins/eXtremeManagement/iteration_view.pt:45
 msgid "listingheader_enddate"
 msgstr ""
 
@@ -683,17 +708,17 @@ msgid "listingheader_title"
 msgstr ""
 
 #. Default: "Total Actual"
-#: ./skins/eXtremeManagement/iteration_view.pt:122
+#: ./skins/eXtremeManagement/iteration_view.pt:112
 msgid "listingheader_total_actual"
 msgstr ""
 
 #. Default: "Total Difference"
-#: ./skins/eXtremeManagement/iteration_view.pt:124
+#: ./skins/eXtremeManagement/iteration_view.pt:114
 msgid "listingheader_total_difference"
 msgstr ""
 
 #. Default: "Total Estimate"
-#: ./skins/eXtremeManagement/iteration_view.pt:120
+#: ./skins/eXtremeManagement/iteration_view.pt:110
 msgid "listingheader_total_estimate"
 msgstr ""
 
@@ -728,8 +753,13 @@ msgid "no_projects_found"
 msgstr ""
 
 #. Default: "No stories published yet!"
-#: ./skins/eXtremeManagement/iteration_view.pt:174
+#: ./skins/eXtremeManagement/iteration_view.pt:164
 msgid "no_stories_published"
+msgstr ""
+
+#. Default: "No tasks are assigned to you!"
+#: ./skins/eXtremeManagement/update_hours_form.cpt:142
+msgid "no_tasks_assigned"
 msgstr ""
 
 #. Default: "No tasks defined yet."
@@ -765,6 +795,11 @@ msgstr ""
 #. Default: "Show Tasks with state:"
 #: ./skins/eXtremeManagement/task_overview.pt:18
 msgid "show_tasks_with_state"
+msgstr ""
+
+#. Default: "task"
+#: ./skins/eXtremeManagement/update_hours_form.cpt:79
+msgid "task_icon"
 msgstr ""
 
 #. Default: "Task overview"
