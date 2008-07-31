@@ -1,6 +1,14 @@
 Change log
 ==========
 
+1.6.2 (unreleased)
+------------------
+
+- Now loading the zcml from kss.plugin.yuidnd automatically, so that
+  package does not need to be included in [instance]zcml of
+  buildout.cfg anymore.  [maurits]
+
+
 1.6.1 (2008-07-31)
 ---------------------
 2008-07-30 - mirella
@@ -41,6 +49,7 @@ Change log
   - Added a note about upgrading from older versions than 2.0.
   - Marked all code related to the following content types with BBB for easy
     cleanup in the next release.
+
 
 1.6 final (2008-07-16)
 ----------------------
