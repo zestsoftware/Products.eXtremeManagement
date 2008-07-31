@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-07-31 09:24+0000\n"
-"PO-Revision-Date: 2008-01-28 09:54+0100\n"
+"POT-Creation-Date: 2008-07-31 14:08+0000\n"
+"PO-Revision-Date: 2008-07-31 09:54+0100\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgid "Perform various maintenance tasks. If you know the totals are wrong, you 
 msgstr "Voer diverse onderhoudstaken uit. Wanneer u weet dat de totalen verkeerd zijn, kunt u ze hier herberekenen. Dit zou normaal gesproken niet nodig hoeven zijn, dus voer dit alleen uit wanneer u weet waar u mee bezig bent. Aan de andere kant, het kan ook niet echt kwaad, behalve dat het lang duurt."
 
 #. Default: "Send"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:131
+#: ./skins/eXtremeManagement/update_hours_form.cpt:128
 msgid "Send"
 msgstr "Verzenden"
 
@@ -574,7 +574,7 @@ msgid "label_budgetHours"
 msgstr "Budget (uren)"
 
 #. Default: "Hours"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:96
+#: ./skins/eXtremeManagement/update_hours_form.cpt:93
 msgid "label_hours"
 msgstr "Uren"
 
@@ -584,7 +584,7 @@ msgid "label_include_global_members"
 msgstr "Neem globale medewerkers mee"
 
 #. Default: "Minutes"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:118
+#: ./skins/eXtremeManagement/update_hours_form.cpt:115
 msgid "label_minutes"
 msgstr "Minuten"
 
@@ -825,7 +825,7 @@ msgid "no_stories_published"
 msgstr "Er zijn op dit moment geen stories gedefinieerd!"
 
 #. Default: "No tasks are assigned to you!"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:142
+#: ./skins/eXtremeManagement/update_hours_form.cpt:139
 msgid "no_tasks_assigned"
 msgstr "Er zijn geen taken aan je toegekend!"
 
@@ -865,7 +865,7 @@ msgid "show_tasks_with_state"
 msgstr "Laat Taken zien met status:"
 
 #. Default: "task"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:79
+#: ./skins/eXtremeManagement/update_hours_form.cpt:76
 msgid "task_icon"
 msgstr "Taak"
 

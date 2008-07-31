@@ -62,7 +62,7 @@
           </h2>
 
           <table border="1"
-                 class="listing"
+                 class="listing booking-per-month"
                  with="100%">
             <tr >
               <th i18n:translate="listingheader-week-number">Week</th>
@@ -90,12 +90,15 @@
                     tal:condition="not:day/total">&nbsp;</td>
               </tal:days>
               <td tal:content="week/week_total"
-                  tal:attributes="class week/total_style">2007-06-10</td>
+                  tal:attributes="class string:${week/perc_style} TotalperWeek">
+                  2007-06-10
+              </td>
               <td tal:content="week/perc_billable"
-                  tal:attributes="class week/perc_style">80 %</td>
-
+                  tal:attributes="class string:${week/perc_style} TotalperWeek">
+                  80 %
+              </td>
             </tr>
-            <tr>
+            <tr class="bookingTotal">
               <th i18n:translate="listingheader-total"
                   colspan="9">Total</th>
               <th tal:content="main/total">245:45</th>

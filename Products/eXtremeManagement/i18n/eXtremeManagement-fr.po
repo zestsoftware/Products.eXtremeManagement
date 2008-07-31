@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-07-31 09:24+0000\n"
+"POT-Creation-Date: 2008-07-31 14:08+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -43,7 +43,7 @@ msgid "Perform various maintenance tasks. If you know the totals are wrong, you 
 msgstr ""
 
 #. Default: "Send"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:131
+#: ./skins/eXtremeManagement/update_hours_form.cpt:128
 msgid "Send"
 msgstr ""
 
@@ -580,7 +580,7 @@ msgid "label_budgetHours"
 msgstr ""
 
 #. Default: "Hours"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:96
+#: ./skins/eXtremeManagement/update_hours_form.cpt:93
 msgid "label_hours"
 msgstr ""
 
@@ -590,7 +590,7 @@ msgid "label_include_global_members"
 msgstr "Inclure les employés globaux (global employees)"
 
 #. Default: "Minutes"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:118
+#: ./skins/eXtremeManagement/update_hours_form.cpt:115
 msgid "label_minutes"
 msgstr ""
 
@@ -831,7 +831,7 @@ msgid "no_stories_published"
 msgstr "Aucune histoire-usager n'a été publiée!"
 
 #. Default: "No tasks are assigned to you!"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:142
+#: ./skins/eXtremeManagement/update_hours_form.cpt:139
 msgid "no_tasks_assigned"
 msgstr ""
 
@@ -872,7 +872,7 @@ msgid "show_tasks_with_state"
 msgstr ""
 
 #. Default: "task"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:79
+#: ./skins/eXtremeManagement/update_hours_form.cpt:76
 msgid "task_icon"
 msgstr ""
 

@@ -107,11 +107,20 @@
 
 /* ----project administration view ---- */
 
-
 .project_title, .booking_title,
 .header_projectmember_listing th,
 .hours-comments {
-    font-weight: bold;
+  font-weight: bold !important;
+}
+
+.booking-per-month th {
+  background: transparent url(++resource++xm.theme.images/iterationBG.jpg) repeat-x top;
+  font-weight: bold !important;
+}
+
+.bookingTotal th,
+.TotalperWeek {
+  text-align: right;
 }
 
 .project_iterations {
