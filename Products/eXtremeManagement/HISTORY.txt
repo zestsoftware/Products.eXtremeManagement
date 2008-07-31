@@ -1,7 +1,7 @@
 2.0 alpha
 ---------------------
 2008-07-31 - mirella
- 
+  - minor css changes to booking_month.pt
   - added translatations and description for employees overview.
   - added odd color ad padding to employees overview.
   - generated i18ndude and added the missing dutch translations.
