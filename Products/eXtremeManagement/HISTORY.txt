@@ -2,6 +2,8 @@
 ---------------------
 2008-07-31 - mirella
  
+  - added translatations and description for employees overview.
+  - added odd color ad padding to employees overview.
   - generated i18ndude and added the missing dutch translations.
   - update_hours_form placed bookingsdate next to title.
   - <th> has nowrap and left/right padding.
