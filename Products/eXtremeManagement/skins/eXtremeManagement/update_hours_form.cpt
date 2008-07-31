@@ -44,8 +44,9 @@
         <form tal:define="errors options/state/getErrors"
               tal:attributes="action string:${here/absolute_url}/${template/id};"
               method="post">
-          <tal:date i18n:translate="label_bookingdate">
-          Date to book for</tal:date>
+          <div class="label-bookingdate" 
+               i18n:translate="label_bookingdate">
+               Date to book for</div>
 
           <div tal:define="inputname string:booking_date;
                            formname string:update_hours_form;
@@ -54,16 +55,12 @@
                            inputvalue python:test(formvalue,formvalue,inputvalue);
                            show_jscal python: 1;
                            show_hm python:False;
-                           tabindex tabindex/next;">
+                           tabindex tabindex/next;"
+               tal:omit-tag="">
             <tal:calendar metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox" />
           </div>
 
-          <table class="listing"
-                 border="1"
-                 width="100%"
-                 cellpadding="0"
-                 cellspacing="0">
-
+          <table class="listing hour-registration" border="1">
             <tal:loop tal:repeat="task tasks">
               <tr>
                   <th>Naam project, taak:</th>

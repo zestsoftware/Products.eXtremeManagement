@@ -3,6 +3,8 @@
 2008-07-31 - mirella
  
   - generated i18ndude and added the missing dutch translations.
+  - update_hours_form placed bookingsdate next to title.
+  - <th> has nowrap and left/right padding.
 
 2008-07-30 - mirella
  

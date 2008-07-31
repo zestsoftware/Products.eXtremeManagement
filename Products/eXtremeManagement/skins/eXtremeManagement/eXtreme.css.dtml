@@ -166,6 +166,28 @@
 
 /* ---- end hours view ---- */
 
+/* *** Start update_hours_form *** */
+
+.hour-registration {
+  width: 100%;
+  border-collapse: 0;
+  border-spacign: 0;
+}
+
+table.hour-registration th {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  white-space: nowrap;
+  
+}
+
+.label-bookingdate {
+  font-weight: bold;
+  float: left;
+  padding-right: 5px;
+}
+
+/* *** End update_hours_form *** */
 
 /* ---- dashboard ---- */
 
