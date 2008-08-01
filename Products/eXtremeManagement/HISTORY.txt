@@ -3,6 +3,7 @@
 
 2008-08-01 - mirella
   - fixed name typo in css
+  - Fix a Plone 3.0 support issue in the javascript registry.[jladage]
 
 2008-07-31 - mirella
   - minor css changes to booking_month.pt
@@ -11,6 +12,9 @@
   - generated i18ndude and added the missing dutch translations.
   - update_hours_form placed bookingsdate next to title.
   - <th> has nowrap and left/right padding.
+  - Now loading the zcml from kss.plugin.yuidnd automatically, so that
+    package does not need to be included in [instance]zcml of
+    buildout.cfg anymore.  [maurits]
 
 2008-07-30 - mirella
  

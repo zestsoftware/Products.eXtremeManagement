@@ -5,7 +5,7 @@
  <!-- YUI DND Plugin -->
  <javascript cacheable="True" compression="safe" cookable="True"
     enabled="True" expression="" id="++resource++yahoo.js" inline="False"
-    insert-after="jquery.js"/>
+    insert-before="++resource++kukit.js"/>
  <javascript cacheable="True" compression="safe" cookable="True"
     enabled="True" expression="" id="++resource++dom.js" inline="False"
     insert-after="++resource++yahoo.js"/>
