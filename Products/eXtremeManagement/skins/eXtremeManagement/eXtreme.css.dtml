@@ -113,11 +113,6 @@
   font-weight: bold !important;
 }
 
-.booking-per-month th {
-  background: transparent url(++resource++xm.theme.images/IterationBG.jpg) repeat-x top;
-  font-weight: bold !important;
-}
-
 .bookingTotal th,
 .TotalperWeek {
   text-align: right;
