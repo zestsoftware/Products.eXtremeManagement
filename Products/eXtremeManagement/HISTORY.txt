@@ -1,5 +1,11 @@
 2.0 alpha
 ---------------------
+2008-08-01 - mirella
+  - made gradient images bigger in height for layout reasons.
+  - fixed name typo in css
+  - placed the gradient images in bottom in the used classes.
+  
+
 2008-07-31 - mirella
   - minor css changes to booking_month.pt
   - added translatations and description for employees overview.

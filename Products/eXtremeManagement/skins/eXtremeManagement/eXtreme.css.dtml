@@ -114,7 +114,7 @@
 }
 
 .booking-per-month th {
-  background: transparent url(++resource++xm.theme.images/iterationBG.jpg) repeat-x top;
+  background: transparent url(++resource++xm.theme.images/IterationBG.jpg) repeat-x top;
   font-weight: bold !important;
 }
 
