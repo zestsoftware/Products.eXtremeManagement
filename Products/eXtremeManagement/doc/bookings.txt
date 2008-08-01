@@ -178,16 +178,16 @@ Let's look at week 4 of that month, at the end of which the DST kicks in.
     >>> week4['days'][0]
     {'style': 'greyed', 'total': None, 'day_of_week': 'Monday'}
     >>> week4['days'][5]
-    {'style': 'not-enough', 'total': '2:00', 'day_of_week': 'Saturday'}
+    {'style': 'good', 'total': '2:00', 'day_of_week': 'Saturday'}
     >>> week4['days'][6]
-    {'style': 'not-enough', 'total': '3:00', 'day_of_week': 'Sunday'}
+    {'style': 'good', 'total': '3:00', 'day_of_week': 'Sunday'}
 
 Let's also look at week 5.
 
     >>> view.bookinglist[5]['days'][0]
-    {'style': 'not-enough', 'total': '4:00', 'day_of_week': 'Monday'}
+    {'style': 'good', 'total': '4:00', 'day_of_week': 'Monday'}
     >>> view.bookinglist[5]['days'][1]
-    {'style': 'not-enough', 'total': '5:00', 'day_of_week': 'Tuesday'}
+    {'style': 'good', 'total': '5:00', 'day_of_week': 'Tuesday'}
     >>> view.bookinglist[5]['days'][2]
     {'style': 'greyed', 'total': '6:00', 'day_of_week': 'Wednesday'}
     >>> view.bookinglist[5]['days'][3]
