@@ -4,6 +4,10 @@ Change log
 1.6.2 (unreleased)
 ------------------
 
+- Show attachments (Image, File, most importantly Story) in the
+  project view, but only when xm.theme is not available, as that has a
+  portlet and another view for this info.  [maurits]
+
 - Added tests for style conditions, which lead me to a bug in the logic. In
   the booking_month view, in case someone worked less than 40 hours in a week
   that total will be highligted. [jladage]

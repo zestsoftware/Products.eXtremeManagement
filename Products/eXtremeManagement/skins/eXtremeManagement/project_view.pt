@@ -79,6 +79,15 @@
           </p>
         </tal:block>
 
+        <!-- Only needed when xm.theme is not installed. -->
+        <ul tal:condition="view/show_attachments"
+            tal:define="plone_portal_state context/@@plone_portal_state;
+                        portal_url plone_portal_state/portal_url;">
+          <li tal:repeat="item view/attachments">
+            <img tal:attributes="src string:${portal_url}/${item/getIcon}" />
+            <a tal:attributes="href item/getURL" tal:content="item/Title" />
+          </li>
+        </ul>
       </div>
 
       <metal:block metal:define-macro="folderlisting" />
