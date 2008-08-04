@@ -70,16 +70,16 @@
             </tal:block>
             </table>
           </div>
+          <p class="discreet" i18n:translate="help_stories_table">
+            The Initial estimate of the story is a rough estimate in
+            days.  The Tasks estimate is the total estimate in hours
+            for all tasks.  If there is a big difference there could
+            be a logical explanation.  You should investigate that to
+            be sure.
+          </p>
         </tal:block>
 
       </div>
-      <p class="discreet" i18n:translate="help_stories_table">
-        The Initial estimate of the story is a rough estimate in
-        days.  The Tasks estimate is the total estimate in hours
-        for all tasks.  If there is a big difference there could
-        be a logical explanation.  You should investigate that to
-        be sure.
-      </p>
 
       <metal:block metal:define-macro="folderlisting" />
     </div>
