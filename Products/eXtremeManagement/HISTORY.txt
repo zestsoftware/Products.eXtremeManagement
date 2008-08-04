@@ -1,6 +1,12 @@
 2.0 alpha (unreleased)
 ---------------------
 
+2008-08-04 - maurits
+  - Show attachments (Image, File, most importantly Story) in the
+    project view, but only when xm.theme is not available, as that has
+    a portlet and another view for this info.  (Merged from
+    branches/1.6, r69421 and r69426.)
+
 2008-08-01 - mirella
   - fixed name typo in css
   - Fix a Plone 3.0 support issue in the javascript registry.[jladage]

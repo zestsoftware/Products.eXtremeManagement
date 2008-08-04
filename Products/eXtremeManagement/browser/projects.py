@@ -1,8 +1,16 @@
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from zope.cachedescriptors.property import Lazy
 from plone.memoize.view import memoize
 from zope.component import getMultiAdapter
+try:
+    import xm.theme
+except ImportError:
+    HAS_XM_THEME = False
+else:
+    HAS_XM_THEME = True
+
 
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
@@ -169,6 +177,17 @@ class ProjectView(ProjectAdminView):
             iteration_list.append(info)
         return iteration_list
 
+    def show_attachments(self):
+        """Should attachments be shown?
+
+        Not when there are no attachments and also not when xm.theme
+        is installed as the attachments can be seen in portlets then.
+        """
+        if HAS_XM_THEME:
+            return False
+        return len(self.attachments) != 0
+
+    @Lazy
     def attachments(self):
         """Return folder contents that are not iterations or offers
         """
@@ -180,8 +199,6 @@ class ProjectView(ProjectAdminView):
         all_brains = context.getFolderContents()
         brains = [brain for brain in all_brains
                   if brain.id not in iteration_ids]
-        if brains == []:
-            return None
         return brains
 
     def offers(self):
@@ -201,7 +218,4 @@ class ProjectView(ProjectAdminView):
                                     title = offer.Title,
                                     url = offer.getURL,
                                     icon = icon.html_tag()))
-        if results == []:
-            return None
-        else:
-            return results
+        return results
