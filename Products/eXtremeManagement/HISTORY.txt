@@ -1,26 +1,31 @@
 2.0 alpha (unreleased)
 ---------------------
 
-2008-08-04 - maurits
   - Show attachments (Image, File, most importantly Story) in the
     project view, but only when xm.theme is not available, as that has
     a portlet and another view for this info.  (Merged from
     branches/1.6, r69421 and r69426.)
+    
+  - Added tests for style conditions, which lead me to a bug in the logic. In
+    the booking_month view, in case someone worked less than 40 hours in a week
+    that total will be highligted. [jladage]
 
-2008-08-01 - mirella
-  - fixed name typo in css
   - Fix a Plone 3.0 support issue in the javascript registry.[jladage]
 
-2008-07-31 - mirella
-  - minor css changes to booking_month.pt
-  - added translatations and description for employees overview.
-  - added odd color ad padding to employees overview.
-  - generated i18ndude and added the missing dutch translations.
-  - update_hours_form placed bookingsdate next to title.
-  - <th> has nowrap and left/right padding.
+  - fixed name typo in css [mirella]
+
+  - minor css changes to booking_month.pt, added translatations and
+    description for employees overview. Added odd color ad padding to
+    employees overview, generated i18ndude and added the missing dutch
+    translations and update_hours_form placed bookingsdate next to title.
+    <th> has nowrap and left/right padding.[mirella]
+
   - Now loading the zcml from kss.plugin.yuidnd automatically, so that
-    package does not need to be included in [instance]zcml of
-    buildout.cfg anymore.  [maurits]
+    package does not need to be included in [instance]zcml of buildout.cfg
+    anymore. [maurits]
+
+1.6.1 (2008-07-31)
+---------------------
 
 2008-07-30 - mirella
  

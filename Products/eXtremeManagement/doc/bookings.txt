@@ -127,16 +127,34 @@ that time too.
 In 2006 DST kicked in during the night of Saturday 28 October and
 Sunday 29 October, at least in The Netherlands.
 
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt1', hours=1, bookingDate=DateTime('2006-10-01'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt28', hours=2, bookingDate=DateTime('2006-10-28'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt29', hours=3, bookingDate=DateTime('2006-10-29'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt30', hours=4, bookingDate=DateTime('2006-10-30'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt31', hours=5, bookingDate=DateTime('2006-10-31'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-nov1', hours=6, bookingDate=DateTime('2006-11-01'))
-    >>> len(BookingsDetailedView(self.portal, TestRequest(form={'year': 2006, 'month': 10})).bookinglist)
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt1', hours=1,
+    ...                                 bookingDate=DateTime('2006-10-01'))
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt28', hours=2,
+    ...                                 bookingDate=DateTime('2006-10-28'))
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt29', hours=3,
+    ...                                 bookingDate=DateTime('2006-10-29'))
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt30', hours=4,
+    ...                                 bookingDate=DateTime('2006-10-30'))
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt31', hours=5,
+    ...                                 bookingDate=DateTime('2006-10-31'))
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-nov1', hours=6,
+    ...                                bookingDate=DateTime('2006-11-01'))
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-nov6', hours=8,
+    ...                                 bookingDate=DateTime('2006-11-06'))
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-nov7', hours=8,
+    ...                                 bookingDate=DateTime('2006-11-07'))
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-nov8', hours=8,
+    ...                                 bookingDate=DateTime('2006-11-08'))
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-nov9', hours=8,
+    ...                                 bookingDate=DateTime('2006-11-09'))
+    >>> dummy = self.task.invokeFactory('Booking', id='emp-nov10', hours=8,
+    ...                                 bookingDate=DateTime('2006-11-10'))
+    >>> len(BookingsDetailedView(self.portal, TestRequest(form={'year': 2006,
+    ...                                           'month': 10})).bookinglist)
     5
-    >>> len(BookingsDetailedView(self.portal, TestRequest(form={'year': 2006, 'month': 11})).bookinglist)
-    1
+    >>> len(BookingsDetailedView(self.portal, TestRequest(form={'year': 2006,
+    ...                                           'month': 11})).bookinglist)
+    6
 
 This does not show any errors though.  Which reminds us to test the
 WeekBookingOverview and DayBookingOverview.  These can suffers from
@@ -155,42 +173,64 @@ First let's test some days.
     >>> dayview.total(date=DateTime(2006, 10, 30))
     '4:00'
 
-Now we test the week view.
+Now we test the week view for oktober and november.
 
     >>> from Products.eXtremeManagement.browser.bookings import WeekBookingOverview
-    >>> view = WeekBookingOverview(self.portal, TestRequest(form={'year': 2006, 'month': 10}))
+    >>> okt = WeekBookingOverview(self.portal, TestRequest(form={'year': 2006,
+    ...                                                    'month': 10}))
+    >>> nov =  WeekBookingOverview(self.portal, TestRequest(form={'year': 2006,
+    ...                                                     'month': 11}))
 
 Does it give the right totals for each week (and the correct amount of
 weeks)?
 
-    >>> [week['week_total'] for week in view.bookinglist]
+    >>> [week['week_total'] for week in okt.bookinglist]
     ['1:00', '0:00', '0:00', '0:00', '5:00', '9:00']
-    >>> [week['week_number'] for week in view.bookinglist]
+    >>> [week['week_number'] for week in okt.bookinglist]
     [39, 40, 41, 42, 43, 44]
+    >>> [week['week_total'] for week in nov.bookinglist]
+    ['6:00', '40:00', '0:00', '0:00', '0:00']
+    
+When the week total is below 40 hours the entry should be highligted. In
+November we added exactly 40 hours in week 45.
+   >>> week45 = nov.bookinglist[1]
+   >>> week45['week_number']
+   45
+   >>> week45['week_total']
+   '40:00'
+   >>> week45['total_style']
+   'good'
 
-Let's look at week 4 of that month, at the end of which the DST kicks in.
 
-    >>> week4 = view.bookinglist[4]
-    >>> week4['week_start']
+Let's look at week 43 in oktober, at the end of which the DST kicks in.
+
+    >>> week43 = okt.bookinglist[4]
+    >>> week43['week_start']
     'Oct 23, 2006'
-    >>> week4['week_number']
+    >>> week43['week_number']
     43
-    >>> week4['days'][0]
+    >>> week43['week_total']
+    '5:00'
+    >>> week43['total_style']
+    'not-enough'
+    >>> week43['days'][0]
     {'style': 'greyed', 'total': None, 'day_of_week': 'Monday'}
-    >>> week4['days'][5]
+    >>> week43['days'][5]
     {'style': 'good', 'total': '2:00', 'day_of_week': 'Saturday'}
-    >>> week4['days'][6]
+    >>> week43['days'][6]
     {'style': 'good', 'total': '3:00', 'day_of_week': 'Sunday'}
+    >>> week43['total_style']
+    'not-enough'
 
 Let's also look at week 5.
 
-    >>> view.bookinglist[5]['days'][0]
+    >>> okt.bookinglist[5]['days'][0]
     {'style': 'good', 'total': '4:00', 'day_of_week': 'Monday'}
-    >>> view.bookinglist[5]['days'][1]
+    >>> okt.bookinglist[5]['days'][1]
     {'style': 'good', 'total': '5:00', 'day_of_week': 'Tuesday'}
-    >>> view.bookinglist[5]['days'][2]
+    >>> okt.bookinglist[5]['days'][2]
     {'style': 'greyed', 'total': '6:00', 'day_of_week': 'Wednesday'}
-    >>> view.bookinglist[5]['days'][3]
+    >>> okt.bookinglist[5]['days'][3]
     {'style': 'greyed', 'total': None, 'day_of_week': 'Thursday'}
 
 At the beginning of the year things can go wrong, so test that too.
