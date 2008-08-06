@@ -28,6 +28,9 @@ Dependencies
 
     - 3.0 or 3.1 with Zope 2.10
 
+  * xm.booking 0.5.x and xm.portlets 0.5.x (pulled in automatically
+    via setup.py)
+
   * Poi with its dependencies.  Get a bundle with products fit for the
     Plone version you are using: http://plone.org/products/poi
 
