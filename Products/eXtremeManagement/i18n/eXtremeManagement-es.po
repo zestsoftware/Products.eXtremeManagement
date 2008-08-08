@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement-es\n"
-"POT-Creation-Date: 2008-07-31 14:08+0000\n"
+"POT-Creation-Date: 2008-08-08 10:43+0000\n"
 "PO-Revision-Date: 2007-12-09 14:30-0300\n"
 "Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
 "Language-Team: Spanish\n"
@@ -97,7 +97,7 @@ msgid "current-month"
 msgstr "mes actual"
 
 #. Default: "days"
-#: ./skins/eXtremeManagement/story_view.pt:74
+#: ./skins/eXtremeManagement/offer_view.pt:119
 msgid "days"
 msgstr "días"
 
@@ -775,6 +775,11 @@ msgstr ""
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:110
 msgid "no_tasks_defined"
 msgstr "Aún no hay tareas definidas."
+
+#. Default: "The offer contains the following items"
+#: ./skins/eXtremeManagement/offer_view.pt:65
+msgid "offer-description"
+msgstr ""
 
 #. Default: "Billable"
 #: ./skins/eXtremeManagement/booking_month.pt:78

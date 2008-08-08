@@ -62,8 +62,10 @@
                 i18n:translate="listingheader_initial_estimate">
               Initial estimate (days)
             </h2>
-            <h2 i18n:translate="heading-stories"
-                class="offer-story-header">Stories</h2>
+            <h2 i18n:translate="offer-description"
+                class="offer-story-header">
+                The offer contains the following items
+            </h2>
             <div class="visualClear" />
           </div>
 
@@ -109,16 +111,14 @@
                       tal:content="structure story/main_text" />
                 </tr>
               </tal:repeat>
-            </tbody>
-
-            <tfoot id="totalTasks">
-              <tr>
+              <tr id="totalTasks">
                 <td class="offer-story-title-footer"
-                    i18n:translate="total">Total</td>
-                <td class="offer-story-estimate-footer"
-                    tal:content="iteration/size_estimate" />
+                   i18n:translate="total">Total</td>
+                <td class="offer-story-estimate-footer">
+                   <span tal:replace="iteration/size_estimate" />
+                   <span i18n:translate="days" tal:omit-tag="" />
               </tr>
-            </tfoot>
+            </tbody>
           </table>
         </tal:subitems>
 

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-07-31 14:08+0000\n"
+"POT-Creation-Date: 2008-08-08 10:43+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -96,7 +96,7 @@ msgid "current-month"
 msgstr "tento měsíc"
 
 #. Default: "days"
-#: ./skins/eXtremeManagement/story_view.pt:74
+#: ./skins/eXtremeManagement/offer_view.pt:119
 msgid "days"
 msgstr ""
 
@@ -835,6 +835,11 @@ msgstr ""
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:110
 msgid "no_tasks_defined"
 msgstr "Zatím nebyly zadány žádné úkoly."
+
+#. Default: "The offer contains the following items"
+#: ./skins/eXtremeManagement/offer_view.pt:65
+msgid "offer-description"
+msgstr ""
 
 #. Default: "Billable"
 #: ./skins/eXtremeManagement/booking_month.pt:78

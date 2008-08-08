@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-07-31 14:08+0000\n"
+"POT-Creation-Date: 2008-08-08 10:43+0000\n"
 "PO-Revision-Date: 2008-07-31 09:54+0100\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
@@ -95,7 +95,7 @@ msgid "current-month"
 msgstr "huidige maand"
 
 #. Default: "days"
-#: ./skins/eXtremeManagement/story_view.pt:74
+#: ./skins/eXtremeManagement/offer_view.pt:119
 msgid "days"
 msgstr "dagen"
 
@@ -833,6 +833,11 @@ msgstr "Er zijn geen taken aan je toegekend!"
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:110
 msgid "no_tasks_defined"
 msgstr "Nog geen taken gedefinieerd."
+
+#. Default: "The offer contains the following items"
+#: ./skins/eXtremeManagement/offer_view.pt:65
+msgid "offer-description"
+msgstr "De offerte bestaat uit de volgende onderdelen:"
 
 #. Default: "Billable"
 #: ./skins/eXtremeManagement/booking_month.pt:78

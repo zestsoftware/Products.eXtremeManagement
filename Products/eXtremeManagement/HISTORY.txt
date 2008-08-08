@@ -1,6 +1,8 @@
 2.0 alpha (unreleased)
 ---------------------
-
+  - made the print view for offer look nicer. Added new dutch translation. 
+    [mirella]
+  
   - Show attachments (Image, File, most importantly Story) in the
     project view, but only when xm.theme is not available, as that has
     a portlet and another view for this info.  (Merged from
@@ -14,7 +16,7 @@
 
   - fixed name typo in css [mirella]
 
-  - minor css changes to booking_month.pt, added translatations and
+  - minor css changes to booking_month.pt, added translations and
     description for employees overview. Added odd color ad padding to
     employees overview, generated i18ndude and added the missing dutch
     translations and update_hours_form placed bookingsdate next to title.

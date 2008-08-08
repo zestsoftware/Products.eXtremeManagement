@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-07-31 14:08+0000\n"
+"POT-Creation-Date: 2008-08-08 10:43+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -98,7 +98,7 @@ msgid "current-month"
 msgstr "Mois courant"
 
 #. Default: "days"
-#: ./skins/eXtremeManagement/story_view.pt:74
+#: ./skins/eXtremeManagement/offer_view.pt:119
 msgid "days"
 msgstr ""
 
@@ -839,6 +839,11 @@ msgstr ""
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:110
 msgid "no_tasks_defined"
 msgstr "Aucune tâche n'a été définie."
+
+#. Default: "The offer contains the following items"
+#: ./skins/eXtremeManagement/offer_view.pt:65
+msgid "offer-description"
+msgstr ""
 
 #. Default: "Billable"
 #: ./skins/eXtremeManagement/booking_month.pt:78
