@@ -4,4 +4,6 @@
     enabled="1" expression="" id="++resource++extrememanagement.kss"/>
  <kineticstylesheet cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="++resource++bookings.kss"/>
+ <kineticstylesheet cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression="" id="++resource++tracker.kss"/>
 </object>
