@@ -4,6 +4,9 @@ Change log
 1.6.2 (unreleased)
 ------------------
 
+- Added Products.Poi to the install_requires in setup.py as Poi now
+  has eggs for both branch 1.1 and trunk.  [maurits]
+
 - Show attachments (Image, File, most importantly Story) in the
   project view, but only when xm.theme is not available, as that has a
   portlet and another view for this info.  [maurits]
