@@ -1,5 +1,9 @@
 2.0 alpha (unreleased)
 ---------------------
+
+  - Added Products.Poi to the install_requires in setup.py as Poi now
+    has eggs for both branch 1.1 and trunk.  [maurits]
+
   - made the print view for offer look nicer. Added new dutch translation. 
     [mirella]
   
@@ -25,6 +29,7 @@
   - Now loading the zcml from kss.plugin.yuidnd automatically, so that
     package does not need to be included in [instance]zcml of buildout.cfg
     anymore. [maurits]
+
 
 1.6.1 (2008-07-31)
 ---------------------

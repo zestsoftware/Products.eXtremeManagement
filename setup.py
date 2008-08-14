@@ -47,6 +47,7 @@ setup(name='Products.eXtremeManagement',
           'xm.portlets',
 	  'kss.plugin.yuidnd',
           'Products.contentmigration == 1.0b4',
+          'Products.Poi',
       ],
       entry_points="""
       # -*- Entry points: -*-
