@@ -9,10 +9,7 @@ class testProject(eXtremeManagementTestCase):
         """
         """
         self.setRoles(['Manager'])
-        self.portal.invokeFactory('Folder', id='projects')
-        self.projects = self.folder.projects
-        self.projects.invokeFactory('Project', id='project')
-        self.project = self.projects.project
+        self.project = self.portal.project
 
     def test_getProject(self):
         """ Test that you can add and a Project item.
@@ -20,26 +17,26 @@ class testProject(eXtremeManagementTestCase):
         Well, we added it already; we just need to test if a proper
         object is there.
         """
-        self.failUnless(self.portal.projects.project.portal_type == 'Project')
+        self.failUnless(self.project.portal_type == 'Project')
 
     def test_getMembers(self):
         """
         """
-        self.assertEqual(self.project.getMembers(), [])
-        self.membership = self.portal.portal_membership
-        self.membership.addMember('employee1', 'secret', ['Employee'], [])
-        self.membership.addMember('employee2', 'secret', [], [])
-        self.project.manage_addLocalRoles('employee2', ['Employee'])
+        # We already have some Employees, twoglobal and one local.
+        self.assertEqual(self.project.getMembers(),
+                         ['test_user_1_', 'developer', 'employee'])
 
         roleman = self.portal.acl_users.portal_role_manager
-        self.assertEqual(len(roleman.listAssignedPrincipals('Employee')), 1)
+        self.assertEqual(len(roleman.listAssignedPrincipals('Employee')), 2)
 
         # Local roles are mentioned before global roles.
         # By default global and local roles are included.
-        self.assertEqual(self.project.getMembers(), ['employee2', 'employee1'])
+        self.assertEqual(
+            self.project.getMembers(),
+            ['test_user_1_', 'developer', 'employee'])
 
         self.project.update(includeGlobalMembers=False)
-        self.assertEqual(self.project.getMembers(), ['employee2'])
+        self.assertEqual(self.project.getMembers(), ['test_user_1_'])
 
     def test_budgetHours(self):
         """Test the setter and  getter of the budget hours.
@@ -50,39 +47,32 @@ class testProject(eXtremeManagementTestCase):
     def test_budgetHoursPermissions(self):
         """Test the 'Edit budgetHours' permission for several roles.
         """
-        # Set up some users first
-        self.membership = self.portal.portal_membership
-        self.membership.addMember('manager', 'secret', ['Manager'], [])
-        self.membership.addMember('projectmanager', 'secret',
-                                  ['Projectmanager'], [])
-        self.membership.addMember('employee', 'secret', ['Employee'], [])
-        self.membership.addMember('customer', 'secret', ['Customer'], [])
-        self.membership.addMember('member', 'secret', ['Member'], [])
-
+        # We have already added some users with global roles.
+        membership = self.portal.portal_membership
 
         # We should be able to set the budget hours as Manager
         self.login('manager')
-        self.failUnless(self.membership.checkPermission(
+        self.failUnless(membership.checkPermission(
             'eXtremeManagement: Edit budgetHours', self.project))
 
         # We should be able to set the budget hours as Projectmanager
         self.login('projectmanager')
-        self.failUnless(self.membership.checkPermission(
+        self.failUnless(membership.checkPermission(
             'eXtremeManagement: Edit budgetHours', self.project))
 
         # We should NOT be able to set the budget hours as Employee
         self.login('employee')
-        self.failIf(self.membership.checkPermission(
+        self.failIf(membership.checkPermission(
             'eXtremeManagement: Edit budgetHours', self.project))
 
         # We should NOT be able to set the budget hours as Customer
         self.login('customer')
-        self.failIf(self.membership.checkPermission(
+        self.failIf(membership.checkPermission(
             'eXtremeManagement: Edit budgetHours', self.project))
 
         # We should NOT be able to set the budget hours as Member
         self.login('member')
-        self.failIf(self.membership.checkPermission(
+        self.failIf(membership.checkPermission(
             'eXtremeManagement: Edit budgetHours', self.project))
 
 

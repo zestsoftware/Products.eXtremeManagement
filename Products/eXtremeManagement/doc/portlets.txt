@@ -14,30 +14,35 @@ and do not bother with filtering.
     ...     return map(unquote, path)
     >>> from zope.publisher.browser import TestRequest
     >>> TestRequest.physicalPathFromURL = physicalPathFromURL
-    >>> len(self.catalog(portal_type='Project'))
+    >>> catalog = self.portal.portal_catalog
+    >>> len(catalog(portal_type='Project'))
     1
-    >>> len(self.catalog(portal_type='Task'))
+    >>> len(catalog(portal_type='Task'))
     1
     >>> from Products.eXtremeManagement.browser.projects import MyProjects
     >>> myprojects = MyProjects(self.portal, TestRequest())
     >>> myprojects.projectlist
     [<Products.ZCatalog.Catalog.mybrains object at ...>]
 
-We add another Project so we have to do some filtering.
+We add another Project so we have to do some filtering.  But we are
+still assigned to a task in that project, so the project still shows.
 
     >>> self.setRoles(['Manager'])
     >>> dummy = self.portal.invokeFactory('Project', 'my-project')
     >>> self.setRoles(['Employee'])
     >>> myprojects = MyProjects(self.portal, TestRequest())
     >>> myprojects.projectlist
-    []
+    [<Products.ZCatalog.Catalog.mybrains object at ...>]
 
-Now we add ourselves and another employee to the assignees of a task
-in one of the projects.  Now the portlet should return a result.
 
-    >>> self.task.setAssignees(('employee', self.default_user,))
-    >>> self.task.reindexObject()
+Now we remove ourselves from the assignees of that task which means we
+no longer see a project.
+
+    >>> from Products.PloneTestCase.setup import default_user
+    >>> task = self.portal.project.iteration.story.task
+    >>> task.setAssignees(('employee', ))
+    >>> task.reindexObject()
     >>> myprojects = MyProjects(self.portal, TestRequest())
     >>> myprojects.projectlist
-    [<Products.ZCatalog.Catalog.mybrains object at ...>]
+    []
 

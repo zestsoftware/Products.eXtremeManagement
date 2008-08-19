@@ -2,6 +2,7 @@ from zope.component import getUtilitiesFor
 from plone.app.workflow.interfaces import ISharingPageRole
 from Products.CMFCore.utils import getToolByName
 from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
+from Products.PloneTestCase.setup import default_user
 from DateTime import DateTime
 
 
@@ -101,38 +102,10 @@ class testSetup(eXtremeManagementTestCase):
             # Small helper function.
             return len(catalog.searchResults(**kwargs))
 
+        # Something should be in the catalog already.
         oneday = DateTime(2000, 1, 1)
         self.assertEquals(results(portal_type='Task',
-                                  getAssignees='employee'), 0)
-        self.assertEquals(results(getBookingDate=oneday), 0)
-
-        # We add some content that should show up in those indexes.
-        self.setRoles(['Manager'])
-        membership = self.portal.portal_membership
-        membership.addMember('employee', 'secret', ['Employee'], [])
-        self.portal.invokeFactory('Folder', id='projects')
-        projects = self.portal.projects
-        projects.invokeFactory('Project', id='project')
-        project = projects.project
-        project.invokeFactory('Offer', id='offer')
-        offer = project.offer
-        offer.invokeFactory('Story', id='story')
-        project.invokeFactory('Iteration', id='iteration')
-        iteration = project.iteration
-        iteration.invokeFactory('Story', id='story')
-        story = iteration.story
-        story.update(roughEstimate=1.5)
-        self.portal.portal_workflow.doActionFor(story, 'estimate')
-        story.invokeFactory('Task', id='task')
-        task = story.task
-        task.update(assignees='employee')
-        task.invokeFactory('Booking', id='booking', hours=3, minutes=15,
-                           bookingDate=oneday)
-        booking = task.booking
-
-        # Now something should be in the catalog.
-        self.assertEquals(results(portal_type='Task',
-                                  getAssignees='employee'), 1)
+                                  getAssignees=default_user), 1)
         self.assertEquals(results(getBookingDate=oneday), 1)
 
         # Now we reinstall.
@@ -141,7 +114,7 @@ class testSetup(eXtremeManagementTestCase):
 
         # Now we should still have a match.
         self.assertEquals(results(portal_type='Task',
-                                  getAssignees='employee'), 1)
+                                  getAssignees=default_user), 1)
         self.assertEquals(results(getBookingDate=oneday), 1)
 
 

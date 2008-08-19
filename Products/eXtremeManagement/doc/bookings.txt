@@ -7,25 +7,22 @@ requests.
     >>> from zope.publisher.browser import TestRequest
     >>> request = TestRequest()
 
-At first there is only one Booking (as that is added by the
-test/utils.py setup method).
+At first there is one Booking but it is not in this month so we do not
+see it.
 
-    >>> len(self.catalog(portal_type='Booking'))
-    1
+    >>> self.login('test_user_1_')
+    >>> catalog = self.portal.portal_catalog
     >>> from Products.eXtremeManagement.browser.bookings import BookingsDetailedView
     >>> bookview = BookingsDetailedView(self.portal, request)
     >>> len(bookview.bookinglist)
-    1
-    >>> bookview.bookinglist[0]['booking_hours']
-    '3:15'
-    >>> bookview.total
-    '3:15'
+    0
 
 Let's add a Booking as someone else.  That person should by default
 only see his own Bookings.
 
     >>> self.login('employee')
-    >>> self.task.invokeFactory('Booking', id='booking-emp', hours=2)
+    >>> task = self.portal.project.iteration.story.task
+    >>> task.invokeFactory('Booking', id='booking-emp', hours=2)
     'booking-emp'
     >>> bookview = BookingsDetailedView(self.portal, request)
     >>> len(bookview.bookinglist)
@@ -34,12 +31,12 @@ only see his own Bookings.
     '2:00'
     >>> bookview.total
     '2:00'
-    >>> len(self.catalog(portal_type='Booking'))
+    >>> len(catalog(portal_type='Booking'))
     2
 
 Adding another one should update the total actual hours
 
-    >>> self.task.invokeFactory('Booking', id='booking-emp-2', hours=3, minutes=30)
+    >>> task.invokeFactory('Booking', id='booking-emp-2', hours=3, minutes=30)
     'booking-emp-2'
     >>> bookview = BookingsDetailedView(self.portal, request)
     >>> len(bookview.bookinglist)
@@ -60,7 +57,7 @@ Let us add one in that month.
 
     >>> from DateTime import DateTime
     >>> jan1 = DateTime('2007-01-01')
-    >>> self.task.invokeFactory('Booking', id='emp-jan1', hours=1, bookingDate=jan1)
+    >>> task.invokeFactory('Booking', id='emp-jan1', hours=1, bookingDate=jan1)
     'emp-jan1'
 
 Since I have learned a few things about requests lately, let us check
@@ -113,7 +110,7 @@ Daylight Savings Time can be annoying.  Bookings at Monday March 27
     >>> len(bookview.bookinglist)
     0
     >>> monday_after_dst = DateTime('2006-03-27')
-    >>> self.task.invokeFactory('Booking', id='emp-mad06', hours=2, bookingDate=monday_after_dst)
+    >>> task.invokeFactory('Booking', id='emp-mad06', hours=2, bookingDate=monday_after_dst)
     'emp-mad06'
     >>> request = TestRequest(form={'year': 2006, 'month': 3})
     >>> bookview = BookingsDetailedView(self.portal, request)
@@ -127,27 +124,27 @@ that time too.
 In 2006 DST kicked in during the night of Saturday 28 October and
 Sunday 29 October, at least in The Netherlands.
 
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt1', hours=1,
+    >>> dummy = task.invokeFactory('Booking', id='emp-okt1', hours=1,
     ...                                 bookingDate=DateTime('2006-10-01'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt28', hours=2,
+    >>> dummy = task.invokeFactory('Booking', id='emp-okt28', hours=2,
     ...                                 bookingDate=DateTime('2006-10-28'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt29', hours=3,
+    >>> dummy = task.invokeFactory('Booking', id='emp-okt29', hours=3,
     ...                                 bookingDate=DateTime('2006-10-29'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt30', hours=4,
+    >>> dummy = task.invokeFactory('Booking', id='emp-okt30', hours=4,
     ...                                 bookingDate=DateTime('2006-10-30'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-okt31', hours=5,
+    >>> dummy = task.invokeFactory('Booking', id='emp-okt31', hours=5,
     ...                                 bookingDate=DateTime('2006-10-31'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-nov1', hours=6,
+    >>> dummy = task.invokeFactory('Booking', id='emp-nov1', hours=6,
     ...                                bookingDate=DateTime('2006-11-01'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-nov6', hours=8,
+    >>> dummy = task.invokeFactory('Booking', id='emp-nov6', hours=8,
     ...                                 bookingDate=DateTime('2006-11-06'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-nov7', hours=8,
+    >>> dummy = task.invokeFactory('Booking', id='emp-nov7', hours=8,
     ...                                 bookingDate=DateTime('2006-11-07'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-nov8', hours=8,
+    >>> dummy = task.invokeFactory('Booking', id='emp-nov8', hours=8,
     ...                                 bookingDate=DateTime('2006-11-08'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-nov9', hours=8,
+    >>> dummy = task.invokeFactory('Booking', id='emp-nov9', hours=8,
     ...                                 bookingDate=DateTime('2006-11-09'))
-    >>> dummy = self.task.invokeFactory('Booking', id='emp-nov10', hours=8,
+    >>> dummy = task.invokeFactory('Booking', id='emp-nov10', hours=8,
     ...                                 bookingDate=DateTime('2006-11-10'))
     >>> len(BookingsDetailedView(self.portal, TestRequest(form={'year': 2006,
     ...                                           'month': 10})).bookinglist)
@@ -236,7 +233,7 @@ Let's also look at week 5.
 At the beginning of the year things can go wrong, so test that too.
 
     >>> jan1 = DateTime('2002-01-01')
-    >>> self.task.invokeFactory('Booking', id='jan102', hours=1, bookingDate=jan1)
+    >>> task.invokeFactory('Booking', id='jan102', hours=1, bookingDate=jan1)
     'jan102'
     >>> view = WeekBookingOverview(self.portal, TestRequest(form={'year': 2002, 'month': 1}))
     >>> [week['week_total'] for week in view.bookinglist]
