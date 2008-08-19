@@ -1,8 +1,13 @@
+import transaction
+from AccessControl import SecurityManagement
 from Products.Five import zcml
 from Products.Five import fiveconfigure
 from Testing import ZopeTestCase as ztc
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
+from Products.PloneTestCase.layer import PloneSite
+from Products.PloneTestCase.setup import default_user
+from Products.CMFPlone.utils import _createObjectByType
 from xm.booking.timing.interfaces import IActualHours
 from xm.booking.timing.interfaces import IEstimate
 
@@ -26,8 +31,76 @@ xm_setup()
 ptc.setupPloneSite(products=['eXtremeManagement'])
 
 
+def login_as_portal_owner(app):
+    uf = app.acl_users
+    owner = uf.getUserById(ptc.portal_owner)
+    if not hasattr(owner, 'aq_base'):
+        owner = owner.__of__(uf)
+    SecurityManagement.newSecurityManager(None, owner)
+    return owner
+
+
+def setup_xm_content_and_roles():
+    app = ztc.app()
+    owner = login_as_portal_owner(app)
+    portal = getattr(app, ptc.portal_name)
+
+    membership = portal.portal_membership
+    # Setup global roles.
+    membership.addMember('manager', 'secret', ['Manager'], [])
+    membership.addMember('employee', 'secret', ['Employee'], [])
+    membership.addMember('developer', 'secret', ['Employee'], [])
+    membership.addMember('projectmanager', 'secret', ['Projectmanager'],
+                         [])
+
+    # Create Project directly in the Plone Site root.  We use a helper
+    # method for this that does not bother us with authentication.
+    _createObjectByType('Project', portal, 'project')
+    project = portal.project
+
+    # Give the local role Employee on this project to the default user.
+    membership.setLocalRoles(project, [default_user], 'Employee')
+
+    # Create Offer plus Story.
+    _createObjectByType('Offer', project, 'offer')
+    offer = project.offer
+    _createObjectByType('Story', offer, 'story')
+    offerstory = offer.story
+    offerstory.update(roughEstimate=1.5)
+
+    # Create Iteration etc.
+    _createObjectByType('Iteration', project, 'iteration')
+    iteration = project.iteration
+    _createObjectByType('Story', iteration, 'story')
+    story = iteration.story
+    story.update(roughEstimate=1.5)
+    workflow = portal.portal_workflow
+    workflow.doActionFor(story, 'estimate')
+    _createObjectByType('Task', story, 'task')
+    task = story.task
+    task.update(hours=5)
+    task.update(minutes=30)
+
+    _createObjectByType('Booking', task, 'booking', hours=3, minutes=15)
+    booking = task.booking
+    booking.setCreators(default_user)
+
+
+class XMLayer(PloneSite):
+    """Test layer that sets up some content and roles for xm.
+    """
+
+    @classmethod
+    def setUp(cls):
+        ptc.setupPloneSite(products=['eXtremeManagement'])
+        PloneSite.setUp()
+        setup_xm_content_and_roles()
+        transaction.commit()
+
+
 class eXtremeManagementTestCase(ptc.PloneTestCase):
     """Base TestCase for eXtremeManagement."""
+    #layer = XMLayer
 
     def assertObjectBrainEquality(self, attribute, value, obj, portal_type):
         """Test equality of object and its brain from the catalog.
