@@ -99,6 +99,9 @@
       <role name="Manager"/>
       <role name="Projectmanager"/>
       <role name="Employee"/>
+      <!-- Allow Member to view the tracker - needed because someone
+           may only have the local Employee role. -->
+      <role name="Member"/>
     </permission>
 
     <!-- BBB can be removed in release 2.1 -->
