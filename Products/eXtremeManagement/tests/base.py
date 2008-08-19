@@ -82,7 +82,7 @@ def setup_xm_content_and_roles():
     workflow = portal.portal_workflow
     workflow.doActionFor(story, 'estimate')
     story.invokeFactory('Task', id='task', hours=5, minutes=30,
-                        assignees=(default_user,))
+                        title='Make coffee', assignees=(default_user,))
     task = story.task
     task.invokeFactory('Booking', id='booking', hours=3, minutes=15,
                        bookingDate=DateTime(2000, 1, 1))
