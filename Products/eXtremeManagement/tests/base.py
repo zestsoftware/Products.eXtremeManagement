@@ -7,7 +7,6 @@ from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
 from Products.PloneTestCase.layer import PloneSite
 from Products.PloneTestCase.setup import default_user
-from Products.CMFPlone.utils import _createObjectByType
 from xm.booking.timing.interfaces import IActualHours
 from xm.booking.timing.interfaces import IEstimate
 
@@ -53,35 +52,34 @@ def setup_xm_content_and_roles():
     membership.addMember('projectmanager', 'secret', ['Projectmanager'],
                          [])
 
-    # Create Project directly in the Plone Site root.  We use a helper
-    # method for this that does not bother us with authentication.
-    _createObjectByType('Project', portal, 'project')
+    # Create Project directly in the Plone Site root.
+    portal.invokeFactory('Project', id='project')
     project = portal.project
 
     # Give the local role Employee on this project to the default user.
     membership.setLocalRoles(project, [default_user], 'Employee')
 
     # Create Offer plus Story.
-    _createObjectByType('Offer', project, 'offer')
+    project.invokeFactory('Offer', id='offer')
     offer = project.offer
-    _createObjectByType('Story', offer, 'story')
+    offer.invokeFactory('Story', id='story')
     offerstory = offer.story
     offerstory.update(roughEstimate=1.5)
 
     # Create Iteration etc.
-    _createObjectByType('Iteration', project, 'iteration')
+    project.invokeFactory('Iteration', id='iteration')
     iteration = project.iteration
-    _createObjectByType('Story', iteration, 'story')
+    iteration.invokeFactory('Story', id='story')
     story = iteration.story
     story.update(roughEstimate=1.5)
     workflow = portal.portal_workflow
     workflow.doActionFor(story, 'estimate')
-    _createObjectByType('Task', story, 'task')
+    story.invokeFactory('Task', id='task')
     task = story.task
     task.update(hours=5)
     task.update(minutes=30)
 
-    _createObjectByType('Booking', task, 'booking', hours=3, minutes=15)
+    task.invokeFactory('Booking', id='booking', hours=3, minutes=15)
     booking = task.booking
     booking.setCreators(default_user)
 
