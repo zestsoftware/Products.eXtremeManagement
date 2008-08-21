@@ -49,7 +49,7 @@ class testCase(eXtremeManagementTestCase):
 
         self.failUnless(IXMTask.implementedBy(Task))
         self.failUnless(IXMTask.providedBy(Task('blah')))
-        
+
         # BBB can be removed in release 2.1
         self.failUnless(IXMCustomer.implementedBy(Customer))
         self.failUnless(IXMCustomer.providedBy(Customer('blah')))
@@ -62,7 +62,6 @@ class testCase(eXtremeManagementTestCase):
 
         self.failUnless(IXMProjectMember.implementedBy(ProjectMember))
         self.failUnless(IXMProjectMember.providedBy(ProjectMember('blah')))
-
 
 
 def test_suite():

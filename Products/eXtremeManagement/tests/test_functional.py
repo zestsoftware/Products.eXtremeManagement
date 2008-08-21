@@ -16,7 +16,6 @@ from Products.eXtremeManagement.config import xm_globals
 from Testing.ZopeTestCase import FunctionalDocFileSuite as Suite
 from Products.eXtremeManagement.tests.base import \
     eXtremeManagementFunctionalTestCase
-from Products.eXtremeManagement.tests.utils import afterSetUp
 
 OPTIONFLAGS = (doctest.ELLIPSIS |
                doctest.NORMALIZE_WHITESPACE)
@@ -38,7 +37,6 @@ def setUp(test):
 
 def test_suite():
     filenames = list_doctests()
-    eXtremeManagementFunctionalTestCase.afterSetUp = afterSetUp
     suites = [Suite(os.path.basename(filename),
                optionflags=OPTIONFLAGS,
                package='Products.eXtremeManagement.doc',

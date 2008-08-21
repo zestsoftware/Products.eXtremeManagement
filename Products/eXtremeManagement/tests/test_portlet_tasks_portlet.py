@@ -1,5 +1,4 @@
 from zope.component import getUtility, getMultiAdapter, queryMultiAdapter
-from zope.app.component.hooks import setHooks, setSite
 
 from plone.portlets.interfaces import IPortletType
 from plone.portlets.interfaces import IPortletManager
@@ -18,8 +17,6 @@ from plone.app.portlets.tests.base import PortletsTestCase
 class TestPortlet(PortletsTestCase, eXtremeManagementTestCase):
 
     def afterSetUp(self):
-        setHooks()
-        setSite(self.portal)
         self.setRoles(('Manager', ))
 
     def testPortletTypeRegistered(self):
@@ -75,10 +72,6 @@ class TestPortlet(PortletsTestCase, eXtremeManagementTestCase):
 
 
 class TestRenderer(PortletsTestCase):
-
-    def afterSetUp(self):
-        setHooks()
-        setSite(self.portal)
 
     def renderer(self, context=None, request=None, view=None, manager=None,
                  assignment=None):

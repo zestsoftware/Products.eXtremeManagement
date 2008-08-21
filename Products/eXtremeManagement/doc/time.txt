@@ -29,39 +29,42 @@ Log in to the portal as the test user.
     ...     browser.getControl(name='__ac_password').value = 'secret'
     ...     browser.getControl(name='submit').click()
     ...     return 'Login failed' not in browser.contents
-    >>> login(self.default_user)
+    >>> from Products.PloneTestCase.setup import default_user
+    >>> login(default_user)
     True
 
 We already have a story with rough estimate 1.5 days, which would be
 roughly 12 hours.  we can use the edit form to check for some values.
 
-    >>> browser.open(self.story.absolute_url() + '/base_edit')
+    >>> story = self.portal.project.iteration.story
+    >>> browser.open(story.absolute_url() + '/base_edit')
     >>> browser.getControl(name='roughEstimate').value
     '1.5'
-    >>> self.story.getRoughEstimate()
+    >>> story.getRoughEstimate()
     1.5
 
 We also have a task with an estimate of 5 and one half hours.
 
-    >>> browser.open(self.task.absolute_url() + '/base_edit')
+    >>> task = self.portal.project.iteration.story.task
+    >>> browser.open(task.absolute_url() + '/base_edit')
     >>> browser.getControl(name='hours').value
     '5'
     >>> browser.getControl(name='minutes').value
     ['30']
     >>> from xm.booking.timing.interfaces import IEstimate
-    >>> estimate = IEstimate(self.task)
+    >>> estimate = IEstimate(task)
     >>> estimate.estimate
     5.5
 
 We also want to make sure that the correct rawEstimate value is stored
 in the catalog.  We have made a test function for that.
 
-    >>> self.assertAnnotationTaskBrainEstimateEquality(self.task, 5.5)
+    >>> self.assertAnnotationTaskBrainEstimateEquality(task, 5.5)
 
 Once a story has a task with an estimate in it, its rough estimate
 mostly gets ignored in favour of the combined estimates of its tasks.
 
-    >>> estimate = IEstimate(self.story)
+    >>> estimate = IEstimate(story)
     >>> estimate.estimate
     5.5
 

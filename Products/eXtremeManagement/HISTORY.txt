@@ -1,6 +1,9 @@
 2.0 alpha (unreleased)
 ---------------------
 
+  - Merged the testing changes from the zest-timetracker branch.
+    [maurits]
+
   - Added Products.Poi to the install_requires in setup.py as Poi now
     has eggs for both branch 1.1 and trunk.  [maurits]
 

@@ -1,8 +1,15 @@
+import transaction
+from DateTime import DateTime
+from AccessControl import SecurityManagement
+from zope.event import notify
+from zope.lifecycleevent import ObjectModifiedEvent
 from Products.Five import zcml
 from Products.Five import fiveconfigure
 from Testing import ZopeTestCase as ztc
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
+from Products.PloneTestCase.layer import PloneSite
+from Products.PloneTestCase.setup import default_user
 from xm.booking.timing.interfaces import IActualHours
 from xm.booking.timing.interfaces import IEstimate
 
@@ -26,14 +33,86 @@ xm_setup()
 ptc.setupPloneSite(products=['eXtremeManagement'])
 
 
+def login_as_portal_owner(app):
+    uf = app.acl_users
+    owner = uf.getUserById(ptc.portal_owner)
+    if not hasattr(owner, 'aq_base'):
+        owner = owner.__of__(uf)
+    SecurityManagement.newSecurityManager(None, owner)
+    return owner
+
+
+def setup_xm_content_and_roles():
+    app = ztc.app()
+    owner = login_as_portal_owner(app)
+    portal = getattr(app, ptc.portal_name)
+
+    membership = portal.portal_membership
+    # Setup global roles.
+    membership.addMember('manager', 'secret', ['Manager'], [])
+    membership.addMember('reviewer', 'secret', ['Reviewer'], [])
+    membership.addMember('employee', 'secret', ['Employee'], [])
+    membership.addMember('developer', 'secret', ['Employee'], [])
+    membership.addMember('projectmanager', 'secret', ['Projectmanager'],
+                         [])
+    membership.addMember('customer', 'secret', ['Member'], [])
+    membership.addMember('member', 'secret', ['Member'], [])
+
+    # Create Project directly in the Plone Site root.
+    portal.invokeFactory('Project', id='project')
+    project = portal.project
+
+    # Give the local role Employee on this project to the default user.
+    membership.setLocalRoles(project, [default_user], 'Employee')
+    membership.setLocalRoles(project, ['customer'], 'Customer')
+
+    # Create Offer plus Story.
+    project.invokeFactory('Offer', id='offer')
+    offer = project.offer
+    offer.invokeFactory('Story', id='story')
+    offerstory = offer.story
+    offerstory.update(roughEstimate=1.5)
+
+    # Create Iteration etc.
+    project.invokeFactory('Iteration', id='iteration')
+    iteration = project.iteration
+    iteration.invokeFactory('Story', id='story')
+    story = iteration.story
+    story.update(roughEstimate=1.5)
+    workflow = portal.portal_workflow
+    workflow.doActionFor(story, 'estimate')
+    story.invokeFactory('Task', id='task', hours=5, minutes=30,
+                        title='Make coffee', assignees=(default_user,))
+    task = story.task
+    task.invokeFactory('Booking', id='booking', hours=3, minutes=15,
+                       bookingDate=DateTime(2000, 1, 1))
+    booking = task.booking
+    booking.setCreators(default_user)
+    notify(ObjectModifiedEvent(booking))
+
+
+class XMLayer(PloneSite):
+    """Test layer that sets up some content and roles for xm.
+    """
+
+    @classmethod
+    def setUp(cls):
+        ptc.setupPloneSite(products=['eXtremeManagement'])
+        PloneSite.setUp()
+        setup_xm_content_and_roles()
+        transaction.commit()
+
+
 class eXtremeManagementTestCase(ptc.PloneTestCase):
     """Base TestCase for eXtremeManagement."""
+    layer = XMLayer
 
     def assertObjectBrainEquality(self, attribute, value, obj, portal_type):
         """Test equality of object and its brain from the catalog.
         """
-        brains = self.catalog(portal_type=portal_type,
-                              path='/'.join(obj.getPhysicalPath()))
+        catalog = self.portal.portal_catalog
+        brains = catalog(portal_type=portal_type,
+                         path='/'.join(obj.getPhysicalPath()))
         # Get the first brain
         brain = brains[0]
         # Assert that attribute of object has the correct value
@@ -52,8 +131,9 @@ class eXtremeManagementTestCase(ptc.PloneTestCase):
                                                   portal_type):
         ann = IActualHours(obj)
         self.assertEqual(ann.actual_time, value)
-        brains = self.catalog(portal_type=portal_type,
-                              path='/'.join(obj.getPhysicalPath()))
+        catalog = self.portal.portal_catalog
+        brains = catalog(portal_type=portal_type,
+                         path='/'.join(obj.getPhysicalPath()))
         self.assertEqual(brains[0]['actual_time'], value)
 
     def assertAnnotationTaskBrainHoursEquality(self, obj, value):
@@ -66,8 +146,9 @@ class eXtremeManagementTestCase(ptc.PloneTestCase):
                                                      portal_type):
         ann = IEstimate(obj)
         self.assertEqual(ann.estimate, value)
-        brains = self.catalog(portal_type=portal_type,
-                              path='/'.join(obj.getPhysicalPath()))
+        catalog = self.portal.portal_catalog
+        brains = catalog(portal_type=portal_type,
+                         path='/'.join(obj.getPhysicalPath()))
         self.assertEqual(brains[0]['estimate'], value)
 
     def assertAnnotationStoryBrainEstimateEquality(self, obj, value):
@@ -80,3 +161,4 @@ class eXtremeManagementTestCase(ptc.PloneTestCase):
 class eXtremeManagementFunctionalTestCase(ptc.FunctionalTestCase,
                                           eXtremeManagementTestCase):
     """Base TestCase for eXtremeManagement."""
+    layer = XMLayer
