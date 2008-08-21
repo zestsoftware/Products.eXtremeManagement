@@ -1,7 +1,7 @@
-from Products.CMFCore.utils import getToolByName
+from zope.cachedescriptors.property import Lazy
 from DateTime import DateTime
-from Products.Five.browser import BrowserView
 from Acquisition import aq_inner
+from Products.CMFCore.utils import getToolByName
 
 from xm.booking.timing.interfaces import IActualHours
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
@@ -111,7 +111,7 @@ def getEndOfMonth(year, month):
     return DateTime.latestTime(DateTime(year, month, day))
 
 
-class BookingsDetailedView(BrowserView):
+class BookingsDetailedView(XMBaseView):
     """Return a list of Bookings.
     """
     request = None
@@ -119,9 +119,7 @@ class BookingsDetailedView(BrowserView):
     bookinglist = []
 
     def __init__(self, context, request, year=None, month=None, memberid=None):
-        self.context = context
-        self.request = request
-        self.catalog = getToolByName(context, 'portal_catalog')
+        super(BookingsDetailedView, self).__init__(context, request)
         self.year = year or self.request.form.get('year', DateTime().year())
         self.month = month or self.request.form.get('month',
                                                     DateTime().month())
@@ -133,7 +131,8 @@ class BookingsDetailedView(BrowserView):
         self.next = self.request.form.get('next')
         self.memberid = memberid or self.request.form.get('memberid')
         if self.memberid is None:
-            member = context.portal_membership.getAuthenticatedMember()
+            membership = getToolByName(context, 'portal_membership')
+            member = membership.getAuthenticatedMember()
             self.memberid = member.id
 
         if self.previous:
@@ -186,12 +185,15 @@ class BookingsDetailedView(BrowserView):
             )
         return month_info
 
+    @Lazy
+    def toLocalizedTime(self):
+        """Get the toLocalizedTime method from the plone view."""
+        context = aq_inner(self.context)
+        return context.restrictedTraverse('@@plone').toLocalizedTime
+
     def bookingbrain2extended_dict(self, bookingbrain):
         """Get a dict with extended info from this booking brain.
-        """
-        context = aq_inner(self.context)
 
-        """
         booking = bookingbrain.getObject()
         project = booking.getProject()
         # This would wake up all objects between the Booking and the Project...
@@ -223,9 +225,8 @@ class BookingsDetailedView(BrowserView):
         search_filter = dict(portal_type=['Task', 'PoiTask'], path=path)
         taskbrain = self.catalog(**search_filter)[0]
 
-        toLocalizedTime = context.restrictedTraverse('@@plone').toLocalizedTime
         returnvalue = dict(
-            booking_date = toLocalizedTime(bookingbrain.getBookingDate),
+            booking_date = self.toLocalizedTime(bookingbrain.getBookingDate),
             day_of_week = bookingbrain.getBookingDate.Day(),
             project_title = project_title,
             task_url = taskbrain.getURL(),
@@ -316,8 +317,8 @@ class WeekBookingOverview(BookingsDetailedView):
             day_of_week = 0
             daylist = []
             raw_total = 0.0
-            days_bookings = DayBookingOverview(context, request,
-            memberid=self.memberid)
+            days_bookings = DayBookingOverview(
+                context, request, memberid=self.memberid)
             week_billable = 0.0
             worked_days = 0
             while day_of_week < 7:
@@ -383,15 +384,13 @@ class WeekBookingOverview(BookingsDetailedView):
             self.perc_billable = self.perc_billable / num_weeks
 
 
-class YearBookingOverview(BrowserView):
+class YearBookingOverview(XMBaseView):
     request = None
     context = None
     months_list = []
 
     def __init__(self, context, request):
         super(YearBookingOverview, self).__init__(context, request)
-        self.catalog = getToolByName(context, 'portal_catalog')
-
         self.base_year = int(self.request.form.get('base_year',
                                                    DateTime().year()))
         self.base_month = DateTime().month()
@@ -443,7 +442,6 @@ class BookingView(XMBaseView):
         """Get a dict with info from this Booking.
         """
         context = aq_inner(self.context)
-        workflow = getToolByName(context, 'portal_workflow')
         anno = IActualHours(context, None)
         if anno is not None:
             actual = anno.actual_time
@@ -465,18 +463,17 @@ class BookingView(XMBaseView):
         return returnvalue
 
 
-class DayBookingOverview(BrowserView):
+class DayBookingOverview(XMBaseView):
     request = None
     context = None
 
     def __init__(self, context, request, memberid=None):
         super(DayBookingOverview, self).__init__(context, request)
-        self.catalog = getToolByName(context, 'portal_catalog')
-
         self.memberid = memberid or self.request.form.get('memberid')
         memberid = memberid or self.request.form.get('memberid')
         if self.memberid is None:
-            member = context.portal_membership.getAuthenticatedMember()
+            membership = getToolByName(context, 'portal_membership')
+            member = membership.getAuthenticatedMember()
             self.memberid = member.id
         self.searchpath = '/'.join(context.getPhysicalPath())
 

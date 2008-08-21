@@ -1,6 +1,5 @@
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
-from Products.Five.browser import BrowserView
 from zope.cachedescriptors.property import Lazy
 from plone.memoize.view import memoize
 from zope.component import getMultiAdapter
@@ -16,7 +15,7 @@ from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
 
 
-class MyProjects(BrowserView):
+class MyProjects(XMBaseView):
     """Return the projects that I have tasks in.
     """
     request = None
@@ -29,8 +28,7 @@ class MyProjects(BrowserView):
     def projectlist(self):
         context = aq_inner(self.context)
         # Get a list of all projects
-        catalog = getToolByName(context, 'portal_catalog')
-        projectbrains = catalog.searchResults(portal_type='Project')
+        projectbrains = self.catalog.searchResults(portal_type='Project')
 
         if len(projectbrains) <= 1:
             # If there is maximal 1 project: return it...
@@ -56,7 +54,7 @@ class MyProjects(BrowserView):
             plist = []
             for projectbrain in projectbrains:
                 searchpath = projectbrain.getPath()
-                taskbrains = catalog.searchResults(portal_type=['Task',
+                taskbrains = self.catalog.searchResults(portal_type=['Task',
                                                                 'PoiTask'],
                                                    getAssignees=memberid,
                                                    review_state=self.states,
@@ -75,17 +73,16 @@ class ProjectAdminView(XMBaseView):
         context = aq_inner(self.context)
         searchpath = '/'.join(context.getPhysicalPath())
         # Get a list of all projects
-        catalog = getToolByName(context, 'portal_catalog')
-        projectbrains = catalog.searchResults(portal_type='Project',
+        projectbrains = self.catalog.searchResults(portal_type='Project',
                                               path=searchpath)
 
         plist = []
         for projectbrain in projectbrains:
             searchpath = projectbrain.getPath()
             # Search for Iterations that are ready to get invoiced
-            iterationbrains = catalog.searchResults(portal_type='Iteration',
-                                                    review_state='completed',
-                                                    path=searchpath)
+            iterationbrains = self.catalog.searchResults(
+                portal_type='Iteration', review_state='completed',
+                path=searchpath)
             if len(iterationbrains) > 0:
                 iteration_list = []
                 for iterationbrain in iterationbrains:
@@ -99,9 +96,7 @@ class ProjectAdminView(XMBaseView):
     def iterationbrain2dict(self, brain):
         """Get a dict with info from this iteration brain.
         """
-        context = aq_inner(self.context)
         review_state_id = brain.review_state
-        workflow = getToolByName(context, 'portal_workflow')
         estimate = brain.estimate
         actual = brain.actual_time
         returnvalue = dict(
@@ -114,7 +109,7 @@ class ProjectAdminView(XMBaseView):
             actual = formatTime(actual),
             difference = formatTime(estimate - actual),
             review_state = review_state_id,
-            review_state_title = workflow.getTitleForStateOnType(
+            review_state_title = self.workflow.getTitleForStateOnType(
                                  review_state_id, 'Iteration'),
             brain= brain,
         )
@@ -123,7 +118,6 @@ class ProjectAdminView(XMBaseView):
     def projectbrain2dict(self, brain):
         """Get a dict with info from this project brain.
         """
-        context = aq_inner(self.context)
         returnvalue = dict(
             url = brain.getURL(),
             title = brain.Title,
@@ -140,7 +134,6 @@ class ProjectView(ProjectAdminView):
         """Get a dict with info from this context.
         """
         context = aq_inner(self.context)
-        workflow = getToolByName(context, 'portal_workflow')
         returnvalue = dict(
             title = context.Title(),
             description = context.Description(),

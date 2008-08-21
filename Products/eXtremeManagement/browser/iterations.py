@@ -19,7 +19,6 @@ class IterationView(XMBaseView):
         """Get a dict with info from this Context.
         """
         context = aq_inner(self.context)
-        workflow = getToolByName(context, 'portal_workflow')
         anno = IActualHours(context, None)
         if anno is not None:
             actual = anno.actual_time
@@ -39,7 +38,7 @@ class IterationView(XMBaseView):
         size_estimate = sum([item.size_estimate for item in items
                              if item.size_estimate is not None])
 
-        review_state = workflow.getInfoFor(context, 'review_state')
+        review_state = self.workflow.getInfoFor(context, 'review_state')
         if review_state in ['completed', 'invoiced']:
             budget_left = None
         else:
@@ -86,10 +85,6 @@ class IterationView(XMBaseView):
         """
         context = aq_inner(self.context)
         review_state_id = brain.review_state
-        # TODO: the following two lines are executed for every story: better
-        # just grab them once with an @Lazy. [reinout]
-        workflow = getToolByName(context, 'portal_workflow')
-        catalog = getToolByName(context, 'portal_catalog')
 
         # compute progress percentage
         is_completed = (review_state_id == 'completed')
@@ -106,12 +101,12 @@ class IterationView(XMBaseView):
                       path=searchpath)
         unfinished_states = ('open', 'to-do', )
         filter['review_state'] = unfinished_states
-        open_tasks = len(catalog.searchResults(**filter))
+        open_tasks = len(self.catalog.searchResults(**filter))
 
         # compute completed task count
         finished_states = ('completed', )
         filter['review_state'] = finished_states
-        completed_tasks = len(catalog.searchResults(**filter))
+        completed_tasks = len(self.catalog.searchResults(**filter))
 
         estimate = brain.estimate
         actual = brain.actual_time
@@ -128,7 +123,7 @@ class IterationView(XMBaseView):
             difference = formatTime(estimate - actual),
             progress = progress,
             review_state = review_state_id,
-            review_state_title = workflow.getTitleForStateOnType(
+            review_state_title = self.workflow.getTitleForStateOnType(
                                  review_state_id, 'Story'),
             is_completed = is_completed,
             open_tasks = open_tasks,

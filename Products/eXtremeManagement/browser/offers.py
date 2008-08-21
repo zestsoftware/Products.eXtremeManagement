@@ -27,7 +27,6 @@ class OfferView(IterationView):
 
         story_list = []
 
-        workflow = getToolByName(context, 'portal_workflow')
         membership = getToolByName(context, 'portal_membership')
 
         for storybrain in storybrains:
@@ -49,7 +48,7 @@ class OfferView(IterationView):
                 main_text = story_obj.getMainText(),
                 size_estimate = storybrain.size_estimate,
                 review_state = review_state,
-                review_state_title = workflow.getTitleForStateOnType(
+                review_state_title = self.workflow.getTitleForStateOnType(
                     review_state, 'Story'),
                 show_draft_story = show_draft and is_draft,
                 draft_class = draft_class,

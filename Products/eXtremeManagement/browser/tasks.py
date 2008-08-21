@@ -22,7 +22,6 @@ class TaskView(XMBaseView):
 
     def __init__(self, context, request):
         super(TaskView, self).__init__(context, request)
-
         propstool = getToolByName(context, 'portal_properties')
         self.friendlyDateFormat = propstool.site_properties.getProperty(
             'friendlyDateFormat', None)
@@ -31,7 +30,6 @@ class TaskView(XMBaseView):
         """Get a dict with info from this Task.
         """
         context = aq_inner(self.context)
-        workflow = getToolByName(self.context, 'portal_workflow')
         anno = IActualHours(context, None)
         if anno is not None:
             actual = anno.actual_time
@@ -51,7 +49,7 @@ class TaskView(XMBaseView):
             estimate = formatTime(estimate),
             actual = formatTime(actual),
             difference = formatTime(estimate - actual),
-            review_state = workflow.getInfoFor(context, 'review_state'),
+            review_state = self.workflow.getInfoFor(context, 'review_state'),
             assignees = [{'niceName': context.poi_niceName(username=x),
                           'username': x,
                           'active': True}
@@ -62,10 +60,9 @@ class TaskView(XMBaseView):
     def bookings(self):
         context = aq_inner(self.context)
         current_path = '/'.join(context.getPhysicalPath())
-        catalog = getToolByName(context, 'portal_catalog')
-        bookingbrains = catalog.searchResults(portal_type='Booking',
-                                              sort_on='getBookingDate',
-                                              path=current_path)
+        bookingbrains = self.catalog.searchResults(portal_type='Booking',
+                                                   sort_on='getBookingDate',
+                                                   path=current_path)
         booking_list = []
 
         for bookingbrain in bookingbrains:
@@ -78,9 +75,7 @@ class TaskView(XMBaseView):
         """Get a dict with info from this booking brain.
         """
         context = aq_inner(self.context)
-
         realDate = brain.getBookingDate
-
         ploneview = context.restrictedTraverse('@@plone')
         date = ploneview.toLocalizedTime(realDate, self.friendlyDateFormat)
 
@@ -106,7 +101,7 @@ class TaskView(XMBaseView):
         return returnvalue
 
 
-class TasksDetailedView(BrowserView):
+class TasksDetailedView(XMBaseView):
     """Return a list of Tasks for everyone with all states.
     """
     request = None
@@ -114,7 +109,6 @@ class TasksDetailedView(BrowserView):
 
     def __init__(self, context, request):
         super(TasksDetailedView, self).__init__(context, request)
-        self.catalog = getToolByName(context, 'portal_catalog')
         self.filter = dict(portal_type=['Task', 'PoiTask'],
                            sort_on='getObjPositionInParent')
 
@@ -175,9 +169,7 @@ class TasksDetailedView(BrowserView):
     def taskbrain2dict(self, brain):
         """Get a dict with info from this task brain.
         """
-        context = aq_inner(self.context)
         review_state_id = brain.review_state
-        workflow = getToolByName(context, 'portal_workflow')
 
         # Get info about parent Story
         parentPath = '/'.join(brain.getPath().split('/')[:-1])
@@ -197,7 +189,7 @@ class TasksDetailedView(BrowserView):
             actual = formatTime(actual),
             difference = formatTime(estimate - actual),
             review_state = review_state_id,
-            review_state_title = workflow.getTitleForStateOnType(
+            review_state_title = self.workflow.getTitleForStateOnType(
                                  review_state_id, 'Task'),
             assignees = brain.getAssignees,
         )
@@ -262,7 +254,6 @@ class EmployeeTotalsView(TasksDetailedView):
 
     def __init__(self, context, request):
         super(EmployeeTotalsView, self).__init__(context, request)
-        self.catalog = getToolByName(context, 'portal_catalog')
 
     def totals(self):
         context = aq_inner(self.context)

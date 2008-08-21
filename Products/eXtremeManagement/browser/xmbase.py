@@ -1,4 +1,7 @@
+from Acquisition import aq_inner
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from zope.cachedescriptors.property import Lazy
 
 
 class XMBaseView(BrowserView):
@@ -15,3 +18,13 @@ class XMBaseView(BrowserView):
         """Get a dict with info from this object.
         """
         return {}
+
+    @Lazy
+    def workflow(self):
+        context = aq_inner(self.context)
+        return getToolByName(context, 'portal_workflow')
+
+    @Lazy
+    def catalog(self):
+        context = aq_inner(self.context)
+        return getToolByName(context, 'portal_catalog')

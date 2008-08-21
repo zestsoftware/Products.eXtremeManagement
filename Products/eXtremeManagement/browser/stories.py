@@ -18,7 +18,6 @@ class StoryView(XMBaseView):
         """Get a dict with info from this Story.
         """
         context = aq_inner(self.context)
-        workflow = getToolByName(context, 'portal_workflow')
 
         # get info for previous and next links
         iteration = aq_parent(context)
@@ -33,7 +32,7 @@ class StoryView(XMBaseView):
             description = context.Description(),
             cooked_body = context.CookedBody(),
             rough_estimate = context.getRoughEstimate(),
-            review_state = workflow.getInfoFor(context, 'review_state'),
+            review_state = self.workflow.getInfoFor(context, 'review_state'),
             prev = prev,
             next = next,
             )

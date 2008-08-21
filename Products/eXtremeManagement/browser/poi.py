@@ -3,12 +3,12 @@ import textwrap
 from Acquisition import aq_inner, aq_parent
 from zope import interface
 from zope.component import getMultiAdapter
-from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.interfaces import IReferenceable
 from Products.statusmessages.interfaces import IStatusMessage
 
 from Products.eXtremeManagement.interfaces.xmissuegetter import IXMIssueGetter
+from Products.eXtremeManagement.browser.xmbase import XMBaseView
 
 
 def abbreviate(text, width=15, ellipsis='...'):
@@ -58,7 +58,7 @@ class IPoiView(interface.Interface):
         """
 
 
-class PoiView(BrowserView):
+class PoiView(XMBaseView):
     request = None
     context = None
 
@@ -87,7 +87,8 @@ class PoiView(BrowserView):
         return ([i for i in issues if i not in ignore], ignore)
 
     def get_open_issues_in_project(self, **kwargs):
-        return getMultiAdapter((self.context, self.request),
+        context = aq_inner(self.context)
+        return getMultiAdapter((context, self.request),
                                IXMIssueGetter).get_issues(**kwargs)
 
     def get_open_stories_in_project(self, **kwargs):
@@ -147,7 +148,6 @@ class PoiView(BrowserView):
             return []
 
         value = []
-        workflow = getToolByName(self.context, 'portal_workflow')
 
         tasks = self.context.getBRefs('task_issues')
         tasks = sorted(tasks,
@@ -158,7 +158,7 @@ class PoiView(BrowserView):
                 dict(iterationid=task.getPhysicalPath()[-3],
                      title=abbreviate(task.Title() or task.getId(), width=25),
                      url=task.absolute_url(),
-                     state=workflow.getInfoFor(task, 'review_state')))
+                     state=self.workflow.getInfoFor(task, 'review_state')))
         return value
 
     def stories_to_add_to(self):
