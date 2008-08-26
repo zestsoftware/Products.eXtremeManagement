@@ -18,31 +18,59 @@ class GanttView(BrowserView):
     iteration_crit = dict(portal_type='Iteration',
                           review_state=('in-progress', 'new'),
                           sort_on='getObjPositionInParent')
+    task_crit = dict(portal_type='Task')
 
-    def __call__(self):
-        portal_state = component.getMultiAdapter((self.context, self.request),
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+        portal_state = component.getMultiAdapter((context, request),
                                                  name=u'plone_portal_state')
         portal = portal_state.portal()
-        search = portal.portal_catalog
+        self._search = portal.portal_catalog
 
+    def _get_work_hours(self, itbrain):
+        hours = {}
+        for taskbrain in self._search(path=itbrain.getPath(),
+                                      **self.task_crit):
+            h = float(taskbrain.estimate) / float(len(taskbrain.getAssignees))
+            for x in taskbrain.getAssignees:
+                cur = hours.get(x, 0.0) + h
+                hours[x] = cur
+        return hours
+
+    def _get_durations(self, prjbrain):
+        durations = []
+        for itbrain in self._search(path=prjbrain.getPath(),
+                                    **self.iteration_crit):
+
+            # getting object here due to end/start not being in indexes
+            it = itbrain.getObject()
+            d = chmodel.Duration(itbrain.Title,
+                                 pydate(it.getStartDate()),
+                                 pydate(it.getEndDate()))
+            d.work_hours = self._get_work_hours(itbrain)
+            durations.append(d)
+
+        return durations
+
+    def _get_projects(self):
         projects = []
-        for prjbrain in search(**self.project_crit):
+        # TODO: investigate *just* using indexes
+        for prjbrain in self._search(**self.project_crit):
+            durations = self._get_durations(prjbrain)
+            if len(durations) == 0:
+                continue
+
+            # getting object here due to having to get list of project
+            # members
+            project = prjbrain.getObject()
+
             dg = chmodel.DurationGroup(prjbrain.Title)
-            itcount = 0
-            for itbrain in search(path=prjbrain.getPath(),
-                                  **self.iteration_crit):
+            dg._iterations += durations
+            projects.append(dg)
 
-                # TODO: investigate using indexes
-                # getting object here due to end/start not being in indexes
-                it = itbrain.getObject()
-                dg._iterations.append(
-                    chmodel.Duration(itbrain.Title,
-                                     pydate(it.getStartDate()),
-                                     pydate(it.getEndDate())),
-                    )
-                itcount += 1
+        return projects
 
-            if itcount > 0:
-                projects.append(dg)
-
-        return gantt.generate_chart(projects)
+    def __call__(self):
+        return gantt.generate_chart(self._get_projects())
