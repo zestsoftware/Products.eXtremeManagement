@@ -13,6 +13,12 @@ def pydate(dt):
 
 class GanttView(BrowserView):
 
+    project_crit = dict(portal_type='Project',
+                        sort_on='getObjPositionInParent')
+    iteration_crit = dict(portal_type='Iteration',
+                          review_state=('in-progress', 'new'),
+                          sort_on='getObjPositionInParent')
+
     def __call__(self):
         portal_state = component.getMultiAdapter((self.context, self.request),
                                                  name=u'plone_portal_state')
@@ -20,12 +26,11 @@ class GanttView(BrowserView):
         search = portal.portal_catalog
 
         projects = []
-        for prjbrain in search(portal_type='Project'):
+        for prjbrain in search(**self.project_crit):
             dg = chmodel.DurationGroup(prjbrain.Title)
             projects.append(dg)
             for itbrain in search(path=prjbrain.getPath(),
-                                  portal_type='Iteration',
-                                  sort_on='getObjPositionInParent'):
+                                  **self.iteration_crit):
 
                 # TODO: investigate using indexes
                 # getting object here due to end/start not being in indexes
