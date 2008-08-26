@@ -28,7 +28,7 @@ class GanttView(BrowserView):
         projects = []
         for prjbrain in search(**self.project_crit):
             dg = chmodel.DurationGroup(prjbrain.Title)
-            projects.append(dg)
+            itcount = 0
             for itbrain in search(path=prjbrain.getPath(),
                                   **self.iteration_crit):
 
@@ -40,5 +40,9 @@ class GanttView(BrowserView):
                                      pydate(it.getStartDate()),
                                      pydate(it.getEndDate())),
                     )
+                itcount += 1
+
+            if itcount > 0:
+                projects.append(dg)
 
         return gantt.generate_chart(projects)
