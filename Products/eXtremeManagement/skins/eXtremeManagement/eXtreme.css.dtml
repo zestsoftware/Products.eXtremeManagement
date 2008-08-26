@@ -425,4 +425,11 @@ UL.xm-assignees LI {
     border-bottom: 1px black solid;
 }
 
+.gantt-chart th .timeline div.week {
+    font-size: 0.8em;
+    font-weight: normal;
+    text-align: left;
+    background-color: #eee;
+}
+
 /* </dtml-with> */
