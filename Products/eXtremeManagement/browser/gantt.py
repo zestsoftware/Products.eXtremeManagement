@@ -6,7 +6,9 @@ from xm.charting import model as chmodel
 
 
 def pydate(dt):
-    return date(dt.year(), dt.month(), dt.day())
+    if dt is not None:
+        return date(dt.year(), dt.month(), dt.day())
+    return None
 
 
 class GanttView(BrowserView):

@@ -421,6 +421,10 @@ UL.xm-assignees LI {
     font-size: 0.8em;
 }
 
+.gantt-chart .bar.invalid-date {
+    background-color: red;
+}
+
 .gantt-chart .last td {
     border-bottom: 1px black solid;
 }
@@ -433,5 +437,6 @@ UL.xm-assignees LI {
     border-left: 1px dashed black;
     padding-left: 4px;
 }
+
 
 /* </dtml-with> */
