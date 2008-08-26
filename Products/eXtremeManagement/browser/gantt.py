@@ -49,7 +49,10 @@ class GanttView(BrowserView):
             d = chmodel.Duration(itbrain.Title,
                                  pydate(it.getStartDate()),
                                  pydate(it.getEndDate()))
-            d.work_hours = self._get_work_hours(itbrain)
+
+            # finish getting the work hours bottom half of the chart
+            # working
+            #d.work_hours = self._get_work_hours(itbrain)
             durations.append(d)
 
         return durations
