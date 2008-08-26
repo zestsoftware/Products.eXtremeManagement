@@ -392,4 +392,37 @@ UL.xm-assignees LI {
   display:none;
 }
 
+
+.gantt-chart .leading,
+.gantt-chart .bar,
+.gantt-chart .following {
+    height: 20px;
+    color: transparent;
+    over-flow: hide;
+}
+
+.gantt-chart .time-row th {
+    border-bottom: 1px solid black;
+}
+
+.gantt-chart td.left-col {
+    border-right: 1px solid black;
+    padding: 0.2em;
+}
+
+.gantt-chart td {
+    border-bottom: 1px solid #ccc;
+}
+
+.gantt-chart .bar {
+    background-color: blue;
+    color: white;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.gantt-chart .last td {
+    border-bottom: 1px black solid;
+}
+
 /* </dtml-with> */

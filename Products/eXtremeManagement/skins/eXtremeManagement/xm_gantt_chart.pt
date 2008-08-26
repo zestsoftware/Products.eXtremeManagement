@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      i18n:domain="eXtremeManagement"
+      metal:use-macro="here/main_template/macros/master">
+
+  <head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border', 1)" />
+  </head>
+
+  <body>
+
+    <tal:main metal:fill-slot="main"
+              tal:define="gantt nocall:context/@@xm_gantt;">
+
+      <div tal:replace="structure gantt">
+      </div>
+
+    </tal:main>
+  </body>
+</html>
