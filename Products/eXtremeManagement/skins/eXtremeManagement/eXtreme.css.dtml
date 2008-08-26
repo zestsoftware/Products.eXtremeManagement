@@ -430,6 +430,8 @@ UL.xm-assignees LI {
     font-weight: normal;
     text-align: left;
     background-color: #eee;
+    border-left: 1px dashed black;
+    padding-left: 4px;
 }
 
 /* </dtml-with> */
