@@ -257,8 +257,9 @@ class MyTasksDetailedView(TasksDetailedView):
             result = 1.0 / len(task.getAssignees)
             return result
         except ZeroDivisionError:
-            message = u"Task %r is active, but doesn't have assignees" % task
-            raise RuntimeError(message)
+            # Task %r is active, but doesn't have assignees. We're abusing
+            # this view in xm.tracker. Returning 1.0. [reinout]
+            return 1.0
 
 
 class EmployeeTotalsView(TasksDetailedView):
