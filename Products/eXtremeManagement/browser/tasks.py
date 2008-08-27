@@ -253,7 +253,12 @@ class MyTasksDetailedView(TasksDetailedView):
         Specifically: should we adjust for the number of assignees?
         In this view: yes.
         """
-        return 1.0 / len(task.getAssignees)
+        try:
+            result = 1.0 / len(task.getAssignees)
+            return result
+        except ZeroDivisionError:
+            message = u"Task %r is active, but doesn't have assignees" % task
+            raise RuntimeError(message)
 
 
 class EmployeeTotalsView(TasksDetailedView):
