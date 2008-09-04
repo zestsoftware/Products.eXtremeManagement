@@ -1,6 +1,8 @@
 2.0 alpha (unreleased)
 ---------------------
 
+  - Cleaned up redundancy in task_review template (issue #75).  [simon]
+
   - Merged fix from the time tracker branch (issue #75): Changed
     task_overview template and tasks.py to display localised workflow
     state labels.  [simon]
