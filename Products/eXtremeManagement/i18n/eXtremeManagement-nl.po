@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-08-08 10:43+0000\n"
-"PO-Revision-Date: 2008-07-31 09:54+0100\n"
+"POT-Creation-Date: 2008-09-04 16:20+0000\n"
+"PO-Revision-Date: 2008-09-04 18:21+0100\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -47,15 +47,15 @@ msgid "Send"
 msgstr "Verzenden"
 
 #. Default: "Send a mail to this user"
-#: ./skins/eXtremeManagement/customer_view.pt:123
+#: ./skins/eXtremeManagement/projectmember_view.pt:49
 msgid "Send a mail to this user"
 msgstr "Stuur een mail naar deze gebruiker"
 
-#: ./browser/tasks.py:354
+#: ./browser/tasks.py:360
 msgid "Task added"
 msgstr "Taak toegevoegd"
 
-#: ./browser/tasks.py:331
+#: ./browser/tasks.py:337
 msgid "Title is required"
 msgstr "Titel is verplicht"
 
@@ -65,7 +65,7 @@ msgid "add-task-in"
 msgstr "Voeg taak toe in"
 
 #. Default: "Back to"
-#: ./skins/eXtremeManagement/booking_details.pt:27
+#: ./skins/eXtremeManagement/booking_month.pt:41
 msgid "back_to"
 msgstr "Terug naar"
 
@@ -85,22 +85,22 @@ msgid "box_stories"
 msgstr "In te schatten verhalen"
 
 #. Default: "Cannot Activate"
-#: ./skins/eXtremeManagement/iteration_view.pt:18
+#: ./skins/eXtremeManagement/story_view.pt:57
 msgid "cannot_activate"
 msgstr "Kan niet activeren"
 
 #. Default: "current month"
-#: ./skins/eXtremeManagement/booking_details.pt:30
+#: ./skins/eXtremeManagement/booking_month.pt:44
 msgid "current-month"
 msgstr "huidige maand"
 
 #. Default: "days"
-#: ./skins/eXtremeManagement/offer_view.pt:119
+#: ./skins/eXtremeManagement/story_view.pt:74
 msgid "days"
 msgstr "dagen"
 
 #. Default: "Overview of tasks that belong to me.  The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
-#: ./skins/eXtremeManagement/iteration_view.pt:138
+#: ./skins/eXtremeManagement/task_overview.pt:33
 msgid "description-overview-my-tasks"
 msgstr "Overzicht van de taken die aan mij zijn toegewezen. De genoemde totalen zijn totaaltijden voor mijzelf. Ze zullen normaal gesproken afwijken van de uitkomst van het optellen van de kolom erboven."
 
@@ -412,7 +412,7 @@ msgid "estimated_start_project"
 msgstr "Geschatte start project"
 
 #. Default: "Go to"
-#: ./skins/eXtremeManagement/booking_details.pt:16
+#: ./skins/eXtremeManagement/booking_month.pt:30
 msgid "go_to"
 msgstr "Ga naar"
 
@@ -448,7 +448,7 @@ msgid "header_project_members"
 msgstr "Projectleden"
 
 #. Default: "Time registration"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:59
+#: ./skins/eXtremeManagement/update_hours_form.cpt:32
 msgid "header_time_registration"
 msgstr "Urenregistratie"
 
@@ -492,10 +492,10 @@ msgstr "Uren per medewerker"
 msgid "heading-in-progress-tasks"
 msgstr "Mijn te-doen taken"
 
-#. Default: "My ${state} task overview"
-#: ./skins/eXtremeManagement/task_overview.pt:32
+#. Default: "My task overview:"
+#: ./skins/eXtremeManagement/task_overview.pt:29
 msgid "heading-my-task-overview"
-msgstr "Mijn ${state} taakoverzicht"
+msgstr "Mijn taakoverzicht"
 
 #. Default: "My open tasks"
 #: ./skins/eXtremeManagement/iteration_view.pt:155
@@ -544,7 +544,7 @@ msgid "help_needs_estimate"
 msgstr "Kan niet beginnen met werken aan deze Story totdat het is geschat (vul een schatting in en selecteer 'markeer als geschat' van de status dropdown"
 
 #. Default: "The Initial estimate of the story is a rough estimate in days.  The Tasks estimate is the total estimate in hours for all tasks.  If there is a big difference there could be a logical explanation.  You should investigate that to be sure."
-#: ./skins/eXtremeManagement/iteration_view.pt:89
+#: ./skins/eXtremeManagement/project_view.pt:73
 msgid "help_stories_table"
 msgstr "De initiële inschatting van de story is een grove inschatting in dagen. De taak inschatting is de som van de inschatting van alle taken in uren."
 
@@ -634,7 +634,7 @@ msgid "listingheader-time"
 msgstr "Tijd"
 
 #. Default: "Total"
-#: ./skins/eXtremeManagement/booking_details.pt:85
+#: ./skins/eXtremeManagement/booking_month.pt:77
 msgid "listingheader-total"
 msgstr "Totaal"
 
@@ -644,12 +644,12 @@ msgid "listingheader-week-number"
 msgstr "Week"
 
 #. Default: "Fullname"
-#: ./skins/eXtremeManagement/customer_view.pt:28
+#: ./skins/eXtremeManagement/projectmember_view.pt:29
 msgid "listingheader_Fullname"
 msgstr "Volledige naam"
 
 #. Default: "Phone"
-#: ./skins/eXtremeManagement/customer_view.pt:53
+#: ./skins/eXtremeManagement/projectmember_view.pt:37
 msgid "listingheader_Phone"
 msgstr "Telefoon"
 
@@ -694,7 +694,7 @@ msgid "listingheader_diff_hours"
 msgstr "Verschil (uren)"
 
 #. Default: "Email"
-#: ./skins/eXtremeManagement/customer_view.pt:109
+#: ./skins/eXtremeManagement/projectmember_view.pt:44
 msgid "listingheader_email"
 msgstr "E-mail"
 
@@ -850,7 +850,7 @@ msgid "previous"
 msgstr "vorige"
 
 #. Default: "previous month"
-#: ./skins/eXtremeManagement/booking_details.pt:19
+#: ./skins/eXtremeManagement/booking_month.pt:33
 msgid "previous-month"
 msgstr "vorige maand"
 
