@@ -245,7 +245,13 @@ class MyTasksDetailedView(TasksDetailedView):
         Specifically: should we adjust for the number of assignees?
         In this view: yes.
         """
-        return 1.0 / len(task.getAssignees)
+        try:
+            result = 1.0 / len(task.getAssignees)
+            return result
+        except ZeroDivisionError:
+            # Task %r is active, but doesn't have assignees. We're abusing
+            # this view in xm.tracker. Returning 1.0. [reinout]
+            return 1.0
 
 
 class EmployeeTotalsView(TasksDetailedView):

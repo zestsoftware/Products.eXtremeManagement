@@ -1,6 +1,9 @@
 2.0 alpha (unreleased)
 ---------------------
 
+  - Merged fix from the time tracker branch: catch a divide by zero
+    error.  [reinout]
+
   - Merged the testing changes from the zest-timetracker branch.
     [maurits]
 
