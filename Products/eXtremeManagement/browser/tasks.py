@@ -201,7 +201,8 @@ class MyTasksDetailedView(TasksDetailedView):
     """
 
     state = 'to-do'
-    possible_states = []
+    stateTitle = None
+    possible_states = {}
 
     def __init__(self, context, request, state=None, memberid=None):
         super(MyTasksDetailedView, self).__init__(context, request)
@@ -209,8 +210,13 @@ class MyTasksDetailedView(TasksDetailedView):
         if self.memberid is None:
             member = context.portal_membership.getAuthenticatedMember()
             self.memberid = member.id
+        
+        workflow = getToolByName(context, 'portal_workflow')
         self.state = state or self.request.form.get('state', self.state)
-        self.possible_states = ['open', 'to-do', 'completed']
+        self.stateTitle = workflow.getTitleForStateOnType(self.state, 'Task')
+        states = ['open', 'to-do', 'completed']
+        self.possible_states = [{'id': id, 'title': 
+            workflow.getTitleForStateOnType(id, 'Task')} for id in states]
         try:
             self.possible_states.remove(self.state)
         except ValueError:

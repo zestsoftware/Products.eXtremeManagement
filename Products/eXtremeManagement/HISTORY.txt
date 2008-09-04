@@ -1,6 +1,10 @@
 2.0 alpha (unreleased)
 ---------------------
 
+  - Merged fix from the time tracker branch (issue #75): Changed
+    task_overview template and tasks.py to display localised workflow
+    state labels.  [simon]
+
   - Merged fix from the time tracker branch: catch a divide by zero
     error.  [reinout]
 
