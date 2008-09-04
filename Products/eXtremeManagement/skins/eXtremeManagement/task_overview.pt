@@ -18,11 +18,7 @@
         <tal:show i18n:translate="show_tasks_with_state">
         Show Tasks with state:</tal:show>
         <tal:options tal:repeat="state view/possible_states">
-          <a tal:condition="not: request/memberid|nothing"
-             tal:attributes="href string:${template/absolute_url}?state=${state/id}"
-             tal:content="state/title"  i18n:translate="" i18n:domain="plone" />
-          <a tal:condition="request/memberid|nothing"
-             tal:attributes="href string:${template/absolute_url}?state=${state/id}&memberid=${request/memberid}"
+          <a tal:attributes="href string:${template/absolute_url}?state=${state/id}&amp;memberid=${view/memberid}"
              tal:content="state/title" i18n:translate="" i18n:domain="plone"/>
           <tal:separator tal:condition="not:repeat/state/end">,</tal:separator>
         </tal:options>

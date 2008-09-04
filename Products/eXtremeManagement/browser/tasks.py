@@ -209,19 +209,22 @@ class MyTasksDetailedView(TasksDetailedView):
     """
 
     state = 'to-do'
+    memberid = None
     stateTitle = None
     possible_states = {}
 
     def __init__(self, context, request, state=None, memberid=None):
         super(MyTasksDetailedView, self).__init__(context, request)
         self.memberid = memberid or self.request.form.get('memberid')
-        if self.memberid is None:
+        if self.memberid is None or self.memberid == '':
             member = context.portal_membership.getAuthenticatedMember()
             self.memberid = member.id
         
         workflow = getToolByName(context, 'portal_workflow')
         self.state = state or self.request.form.get('state', self.state)
         self.stateTitle = workflow.getTitleForStateOnType(self.state, 'Task')
+        # TODO These workflow states shouldn't be hardcoded like this, they 
+        # should be extracted from the workflow tool...
         states = ['open', 'to-do', 'completed']
         self.possible_states = [{'id': id, 'title': 
             workflow.getTitleForStateOnType(id, 'Task')} for id in states]
