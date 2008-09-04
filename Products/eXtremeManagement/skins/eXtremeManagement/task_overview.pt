@@ -19,17 +19,20 @@
         Show Tasks with state:</tal:show>
         <tal:options tal:repeat="state view/possible_states">
           <a tal:condition="not: request/memberid|nothing"
-             tal:attributes="href string:${template/absolute_url}?state=${state}"
-             tal:content="state" />
+             tal:attributes="href string:${template/absolute_url}?state=${state/id}"
+             tal:content="state/title"  i18n:translate="" i18n:domain="plone" />
           <a tal:condition="request/memberid|nothing"
-             tal:attributes="href string:${template/absolute_url}?state=${state}&memberid=${request/memberid}"
-             tal:content="state" />
+             tal:attributes="href string:${template/absolute_url}?state=${state/id}&memberid=${request/memberid}"
+             tal:content="state/title" i18n:translate="" i18n:domain="plone"/>
           <tal:separator tal:condition="not:repeat/state/end">,</tal:separator>
         </tal:options>
       </p>
 
 
-      <h1 i18n:translate="heading-my-task-overview">My <tal:state i18n:name="state" tal:replace="view/state" /> task overview</h1>
+      <h1>
+        <span i18n:translate="heading-my-task-overview">My task overview: </span>
+        <span i18n:translate="" i18n:domain="plone" tal:replace="view/stateTitle" /> 
+      </h1>
 
       <p i18n:translate="description-overview-my-tasks">
         Overview of tasks that belong to me.  The totals mentioned are
