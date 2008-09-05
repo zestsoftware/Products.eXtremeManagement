@@ -52,7 +52,7 @@ class GanttView(BrowserView):
 
             # finish getting the work hours bottom half of the chart
             # working
-            #d.work_hours = self._get_work_hours(itbrain)
+            d.work_hours = self._get_work_hours(itbrain)
             durations.append(d)
 
         return durations
