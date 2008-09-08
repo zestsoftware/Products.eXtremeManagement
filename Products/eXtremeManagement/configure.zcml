@@ -1,11 +1,15 @@
 <configure xmlns="http://namespaces.zope.org/zope"
-           xmlns:cmf="http://namespaces.zope.org/cmf">
+           xmlns:cmf="http://namespaces.zope.org/cmf"
+           xmlns:zcml="http://namespaces.zope.org/zcml">
 
   <include file="permissions.zcml" />
 
   <!-- include dependent packages -->
   <include package="xm.booking" />
   <include package="xm.portlets" />
+  <include
+      zcml:condition="installed xm.tracker"
+      package="xm.tracker" />
   <include package="kss.plugin.yuidnd" />
 
   <include file="deprecation.zcml" />

@@ -229,4 +229,13 @@
       allowed_interface=".chart.IChartView"
       />
 
+  <!-- Global information about xm. -->
+  <page
+      name="xm_global_state"
+      class=".state.XMGlobalState"
+      for="*"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IXMGlobalState"
+      />
+
 </configure>

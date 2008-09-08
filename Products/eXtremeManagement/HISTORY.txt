@@ -1,6 +1,15 @@
 2.0 alpha (unreleased)
 ---------------------
 
+  - Show link to xm time tracker in site actions when the xm.tracker
+    package is available.  [maurits]
+
+  - Include zcml of xm.tracker when the package is there.  [maurits]
+
+  - Created @@xm_global_state view, with currently one method
+    has_tracker which is True when the xm.tracker package is
+    available.  [maurits]
+
   - Treating booking's description as webintelligenttext. [reinout]
 
   - Cleaned up redundancy in task_review template (issue #75).  [simon]

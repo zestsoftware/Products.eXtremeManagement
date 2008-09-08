@@ -245,3 +245,13 @@ class IProjectView(IXMBaseView):
     def offers():
         """ Return a list of dicts with title and url of offers
         """
+
+
+class IXMGlobalState(IBrowserView):
+    """Global information about eXtremeManagement.
+
+    Global here means: it is the same for all contexts.
+    """
+    
+    def has_tracker():
+        """Is the xm time tracker package available?"""
