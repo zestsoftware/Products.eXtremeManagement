@@ -1,6 +1,10 @@
 2.0 alpha (unreleased)
 ---------------------
 
+  - Made the review state of tasks in the simple task list overview be
+    a dropdown list with workflow transitioning via KSS, just like the
+    default Plone review state.  [maurits+simon]
+
   - @Lazy optimizations in browser/tasks.py. [reinout]
 
   - Show link to xm time tracker in site actions when the xm.tracker

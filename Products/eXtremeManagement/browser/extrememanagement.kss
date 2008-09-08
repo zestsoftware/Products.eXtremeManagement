@@ -32,3 +32,14 @@
     drop-index: pass(dropIndex);
     }
 */
+
+/* Workflow changes of tasks inside the story view (or anywhere else they are shown) */
+
+#task-list-for-story dd.actionMenuContent a:click {
+    evt-click-preventdefault: True;
+    evt-click-allowbubbling: True; 
+    action-server: xmChangeWorkflowState;
+    xmChangeWorkflowState-uid: kssAttr('uid');
+    xmChangeWorkflowState-url: nodeAttr(href);
+}
+

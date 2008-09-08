@@ -201,6 +201,15 @@
   <zope:subscriber handler=".xm_kss.story_workflow_changed"/>
   <zope:subscriber handler=".xm_kss.task_workflow_changed"/>
 
+  <page
+      for="*"
+      class=".xm_kss.WorkflowGadget"
+      attribute="xmChangeWorkflowState"
+      name="xmChangeWorkflowState"
+      permission="zope2.View"
+      />
+
+
   <!-- configlets -->
 
   <page

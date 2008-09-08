@@ -1,6 +1,16 @@
-from zope.component import adapter
-from kss.core.interfaces import IKSSView
+from urlparse import urlsplit
+
+from Acquisition import aq_inner
+from Products.CMFCore.utils import getToolByName
 from Products.DCWorkflow.interfaces import IAfterTransitionEvent
+from kss.core import kssaction, KSSExplicitError
+from kss.core.interfaces import IKSSView
+from plone.app.kss.interfaces import IPloneKSSView
+from plone.app.kss.plonekssview import PloneKSSView
+from plone.app.layout.globals.interfaces import IViewView
+from plone.locking.interfaces import ILockable
+from zope.component import adapter
+from zope.interface import implements
 
 from Products.eXtremeManagement.interfaces import IXMStory
 from Products.eXtremeManagement.interfaces import IXMTask
@@ -48,3 +58,40 @@ class ViewletReloader(object):
             zope = self.view.getCommandSet('zope')
             zope.refreshViewlet('#add-booking', 'plone.belowcontentbody',
                                 'xm.add_booking_form')
+
+
+class WorkflowGadget(PloneKSSView):
+
+    implements(IPloneKSSView, IViewView)
+
+    @kssaction
+    def xmChangeWorkflowState(self, uid, url):
+        context = aq_inner(self.context)
+        ksscore = self.getCommandSet('core')
+        zopecommands = self.getCommandSet('zope')
+        plonecommands = self.getCommandSet('plone')
+
+        locking = ILockable(context, None)
+        if locking is not None and not locking.can_safely_unlock():
+            selector = ksscore.getHtmlIdSelector('plone-lock-status')
+            zopecommands.refreshViewlet(selector, 'plone.abovecontent',
+                                        'plone.lockinfo')
+            plonecommands.refreshContentMenu()
+            return self.render()
+
+        (proto, host, path, query, anchor) = urlsplit(url)
+        if not path.endswith('content_status_modify'):
+            raise KSSExplicitError('only content_status_modify is handled')
+        action = query.split("workflow_action=")[-1].split('&')[0]
+        uid_catalog = getToolByName(context, 'uid_catalog')
+        brain = uid_catalog(UID=uid)[0]
+        obj = brain.getObject()
+        obj.content_status_modify(action)
+        selector = ksscore.getCssSelector('.contentViews')
+        zopecommands.refreshViewlet(selector, 'plone.contentviews',
+                                    'plone.contentviews')
+        zopecommands.refreshProvider('#task-list-for-story',
+                                     'xm.tasklist.simple')
+        plonecommands.refreshContentMenu()
+        self.issueAllPortalMessages()
+        self.cancelRedirect()
