@@ -184,9 +184,8 @@ class TasksDetailedView(XMBaseView):
         """Get a dict with info from this task brain.
         """
         # Get info about parent Story
-        parentPath = '/'.join(brain.getPath().split('/')[:-1])
-        filter = dict(portal_type='Story', path=parentPath)
-        storybrain = self.catalog(**filter)[0]
+        obj = brain.getObject()
+        story = obj.aq_parent
 
         estimate = brain.estimate
         actual = brain.actual_time
@@ -195,8 +194,8 @@ class TasksDetailedView(XMBaseView):
             brain = brain,
             UID = brain.UID,
             title = brain.Title,
-            story_url = storybrain.getURL(),
-            story_title = storybrain.Title,
+            story_url = story.absolute_url(),
+            story_title = story.Title(),
             description = brain.Description,
             estimate = formatTime(estimate),
             actual = formatTime(actual),
