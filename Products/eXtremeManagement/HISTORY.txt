@@ -1,6 +1,8 @@
 2.0 alpha (unreleased)
 ---------------------
 
+  - @Lazy optimizations in browser/tasks.py. [reinout]
+
   - Show link to xm time tracker in site actions when the xm.tracker
     package is available.  [maurits]
 

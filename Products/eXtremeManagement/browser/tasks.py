@@ -7,6 +7,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from kss.core import kssaction
 from plone.app.kss.plonekssview import PloneKSSView
 from plone.app.layout.viewlets import ViewletBase
+from zope.cachedescriptors.property import Lazy
 
 from xm.booking.timing.interfaces import IActualHours
 from xm.booking.timing.interfaces import IEstimate
@@ -71,14 +72,22 @@ class TaskView(XMBaseView):
 
         return booking_list
 
+    @Lazy
+    def plone_view(self):
+        context = aq_inner(self.context)
+        return context.restrictedTraverse('@@plone')
+
+    @Lazy
+    def portal_transforms(self):
+        context = aq_inner(self.context)
+        return getToolByName(context, 'portal_transforms')
+
     def bookingbrain2dict(self, brain):
         """Get a dict with info from this booking brain.
         """
-        context = aq_inner(self.context)
         realDate = brain.getBookingDate
-        ploneview = context.restrictedTraverse('@@plone')
-        # ^^^ TODO: isn't a getmultiadapter quicker? [reinout]
-        date = ploneview.toLocalizedTime(realDate, self.friendlyDateFormat)
+        date = self.plone_view.toLocalizedTime(realDate,
+                                               self.friendlyDateFormat)
 
         today = datetime.date.today()
         pyDate = datetime.date(realDate.year(), realDate.month(),
@@ -89,9 +98,8 @@ class TaskView(XMBaseView):
             date = 'Yesterday (%s)' % date
 
         # Webintelligenttext for the description
-        desc = brain.Description
-        pt = getToolByName(context, 'portal_transforms')
-        desc = pt('web_intelligent_plain_text_to_html', desc)
+        desc = self.portal_transforms('web_intelligent_plain_text_to_html',
+                                      brain.Description)
 
         returnvalue = dict(
             date = date,
