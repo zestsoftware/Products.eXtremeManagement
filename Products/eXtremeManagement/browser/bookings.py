@@ -225,6 +225,11 @@ class BookingsDetailedView(XMBaseView):
         search_filter = dict(portal_type=['Task', 'PoiTask'], path=path)
         taskbrain = self.catalog(**search_filter)[0]
 
+        # Webintelligenttext for the description
+        desc = bookingbrain.Description
+        pt = getToolByName(self.context, 'portal_transforms')
+        desc = pt('web_intelligent_plain_text_to_html', desc)
+
         returnvalue = dict(
             booking_date = self.toLocalizedTime(bookingbrain.getBookingDate),
             day_of_week = bookingbrain.getBookingDate.Day(),
@@ -235,7 +240,7 @@ class BookingsDetailedView(XMBaseView):
             # which we do not want here.
             booking_url = bookingbrain.getURL() + '/base_edit',
             booking_title = bookingbrain.Title,
-            booking_description = bookingbrain.Description,
+            booking_description = desc,
             booking_hours = formatTime(bookingbrain.actual_time),
             creator = bookingbrain.Creator,
         )
@@ -449,9 +454,15 @@ class BookingView(XMBaseView):
             # What the???
             actual = -99.0
         ploneview = context.restrictedTraverse('@@plone')
+
+        # Webintelligenttext for the description
+        desc = context.Description()
+        pt = getToolByName(context, 'portal_transforms')
+        desc = pt('web_intelligent_plain_text_to_html', desc)
+
         returnvalue = dict(
             title = context.title_or_id(),
-            description = context.Description(),
+            description = desc,
             actual = formatTime(actual),
             booking_date = ploneview.toLocalizedTime(context.getBookingDate()),
             billable = context.getBillable(),

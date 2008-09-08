@@ -20,7 +20,8 @@
       <h1 tal:content="booking/title" class="documentFirstHeading" />
       <div class="documentDescription"
            tal:condition="booking/description"
-           tal:content="booking/description">description
+           tal:content="structure booking/description">
+        description
       </div>
       <link REL="stylesheet" TYPE="text/css" href="eXtreme.css" />
     </metal:block>

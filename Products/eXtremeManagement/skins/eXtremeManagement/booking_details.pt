@@ -77,7 +77,7 @@
                  class="booking_title"
                  tal:content="booking/booking_title" />
               <div class="booking_description"
-                   tal:content="booking/booking_description" />
+                   tal:content="structure booking/booking_description" />
             </td>
             <td tal:content="booking/booking_hours" />
           </tr>

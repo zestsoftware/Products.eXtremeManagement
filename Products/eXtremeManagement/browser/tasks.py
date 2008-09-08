@@ -77,6 +77,7 @@ class TaskView(XMBaseView):
         context = aq_inner(self.context)
         realDate = brain.getBookingDate
         ploneview = context.restrictedTraverse('@@plone')
+        # ^^^ TODO: isn't a getmultiadapter quicker? [reinout]
         date = ploneview.toLocalizedTime(realDate, self.friendlyDateFormat)
 
         today = datetime.date.today()
@@ -87,13 +88,18 @@ class TaskView(XMBaseView):
         elif (pyDate - today).days == -1:
             date = 'Yesterday (%s)' % date
 
+        # Webintelligenttext for the description
+        desc = brain.Description
+        pt = getToolByName(context, 'portal_transforms')
+        desc = pt('web_intelligent_plain_text_to_html', desc)
+
         returnvalue = dict(
             date = date,
             # base_view of a booking gets redirected to the task view,
             # which we do not want here.
             url = brain.getURL() + '/base_edit',
             title = brain.Title,
-            description = brain.Description,
+            description = desc,
             actual = formatTime(brain.actual_time),
             creator = brain.Creator,
             billable = brain.getBillable,
@@ -211,14 +217,14 @@ class MyTasksDetailedView(TasksDetailedView):
         if self.memberid is None or self.memberid == '':
             member = context.portal_membership.getAuthenticatedMember()
             self.memberid = member.id
-        
+
         workflow = getToolByName(context, 'portal_workflow')
         self.state = state or self.request.form.get('state', self.state)
         self.stateTitle = workflow.getTitleForStateOnType(self.state, 'Task')
-        # TODO These workflow states shouldn't be hardcoded like this, they 
+        # TODO These workflow states shouldn't be hardcoded like this, they
         # should be extracted from the workflow tool...
         states = ['open', 'to-do', 'completed']
-        self.possible_states = [{'id': id, 'title': 
+        self.possible_states = [{'id': id, 'title':
             workflow.getTitleForStateOnType(id, 'Task')} for id in states]
         try:
             self.possible_states.remove(self.state)

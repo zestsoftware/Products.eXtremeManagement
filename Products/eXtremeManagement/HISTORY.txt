@@ -1,6 +1,8 @@
 2.0 alpha (unreleased)
 ---------------------
 
+  - Treating booking's description as webintelligenttext. [reinout]
+
   - Cleaned up redundancy in task_review template (issue #75).  [simon]
 
   - Merged fix from the time tracker branch (issue #75): Changed
@@ -16,14 +18,14 @@
   - Added Products.Poi to the install_requires in setup.py as Poi now
     has eggs for both branch 1.1 and trunk.  [maurits]
 
-  - made the print view for offer look nicer. Added new dutch translation. 
+  - made the print view for offer look nicer. Added new dutch translation.
     [mirella]
-  
+
   - Show attachments (Image, File, most importantly Story) in the
     project view, but only when xm.theme is not available, as that has
     a portlet and another view for this info.  (Merged from
     branches/1.6, r69421 and r69426.)
-    
+
   - Added tests for style conditions, which lead me to a bug in the logic. In
     the booking_month view, in case someone worked less than 40 hours in a week
     that total will be highligted. [jladage]
@@ -47,15 +49,15 @@
 ---------------------
 
 2008-07-30 - mirella
- 
-  - removed hours/minutes from iteration view of start and enddate 
+
+  - removed hours/minutes from iteration view of start and enddate
     of an iteration.
 
 2008-07-30 - jladage
 
   - bookings per month now doesn't highlight days with less than 8 hours.
     Instead it highlight if the hours per week is below 40 hours and if the
-    billable percentage for a week is below 50%.    
+    billable percentage for a week is below 50%.
 
 2008-07-23 - markvl
 
