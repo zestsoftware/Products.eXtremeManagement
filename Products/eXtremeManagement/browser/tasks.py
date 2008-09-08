@@ -183,8 +183,6 @@ class TasksDetailedView(XMBaseView):
     def taskbrain2dict(self, brain):
         """Get a dict with info from this task brain.
         """
-        review_state_id = brain.review_state
-
         # Get info about parent Story
         parentPath = '/'.join(brain.getPath().split('/')[:-1])
         filter = dict(portal_type='Story', path=parentPath)
@@ -203,9 +201,6 @@ class TasksDetailedView(XMBaseView):
             estimate = formatTime(estimate),
             actual = formatTime(actual),
             difference = formatTime(estimate - actual),
-            review_state = review_state_id,
-            review_state_title = self.workflow.getTitleForStateOnType(
-                                 review_state_id, 'Task'),
             assignees = brain.getAssignees,
         )
         return returnvalue
