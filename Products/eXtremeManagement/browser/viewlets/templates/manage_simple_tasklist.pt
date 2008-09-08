@@ -47,33 +47,9 @@
       <td tal:content="task/estimate" />
       <td tal:content="task/actual" />
       <td tal:content="task/difference" />
-      <td>
-        <dl class="actionMenu"
-            i18n:domain="plone"
-            tal:attributes="id string:id-${task/UID}">
-          <dt class="actionMenuHeader">
-            <a class=""
-               tal:attributes="class python:'td-center state-'+task['review_state'];
-                               href string:${task/url}/content_status_history;">
-              <span
-                  i18n:translate=""
-                  tal:content="task/review_state_title" />
-              <span class="arrowDownAlternative">▼</span>
-            </a>
-          </dt>
-          <dd class="actionMenuContent">
-            <ul>
-              <li tal:repeat="trans task/transitions">
-                <a i18n:translate=""
-                   tal:content="trans/name"
-                   tal:attributes="href string:${task/url}/content_status_modify?workflow_action=${trans/id};
-                                   class string:kssattr-uid-${task/UID}" />
-              </li>
-            </ul>
-          </dd>
-        </dl>
-        
-      </td>
+      <td tal:define="obj task/brain/getObject;
+                      wf_change nocall:obj/@@xm_workflow_change;"
+          tal:content="structure python:wf_change()" />
       <td class="td-center">
         <tal:assignees tal:repeat="employee task/assignees">
           <img tal:replace="structure context/user.gif" />

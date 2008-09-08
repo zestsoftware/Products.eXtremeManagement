@@ -1,0 +1,24 @@
+<dl class="actionMenu"
+    i18n:domain="plone"
+    tal:attributes="id string:id-${context/UID}">
+  <dt class="actionMenuHeader">
+    <a class=""
+       tal:attributes="class python:'td-center state-' + view.review_state_id;
+                       href string:${context/absolute_url}/content_status_history;">
+      <span
+          i18n:translate=""
+          tal:content="view/review_state_title" />
+      <span class="arrowDownAlternative">▼</span>
+    </a>
+  </dt>
+  <dd class="actionMenuContent">
+    <ul>
+      <li tal:repeat="trans view/transitions">
+        <a i18n:translate=""
+           tal:content="trans/name"
+           tal:attributes="href string:${context/absolute_url}/content_status_modify?workflow_action=${trans/id};
+                           class string:kssattr-uid-${context/UID}" />
+      </li>
+    </ul>
+  </dd>
+</dl>

@@ -66,6 +66,7 @@ class WorkflowGadget(PloneKSSView):
 
     @kssaction
     def xmChangeWorkflowState(self, uid, url):
+        """Change the workflow state, currently only of a Task."""
         context = aq_inner(self.context)
         ksscore = self.getCommandSet('core')
         zopecommands = self.getCommandSet('zope')
@@ -87,11 +88,21 @@ class WorkflowGadget(PloneKSSView):
         brain = uid_catalog(UID=uid)[0]
         obj = brain.getObject()
         obj.content_status_modify(action)
-        selector = ksscore.getCssSelector('.contentViews')
-        zopecommands.refreshViewlet(selector, 'plone.contentviews',
-                                    'plone.contentviews')
-        zopecommands.refreshProvider('#task-list-for-story',
-                                     'xm.tasklist.simple')
-        plonecommands.refreshContentMenu()
+        if IXMStory.providedBy(self.context):
+            # Only refresh content if the context is a Story,
+            # otherwise you get too much tasks listed.
+            selector = ksscore.getCssSelector('.contentViews')
+            zopecommands.refreshViewlet(selector, 'plone.contentviews',
+                                        'plone.contentviews')
+            zopecommands.refreshProvider('#task-list-for-story',
+                                         'xm.tasklist.simple')
+            plonecommands.refreshContentMenu()
+        else:
+            # In all other cases, we can at least refresh the part
+            # that shows the workflow info for this item.
+            wf_change = obj.restrictedTraverse('xm_workflow_change')
+            html = wf_change()
+            selector = ksscore.getHtmlIdSelector('id-%s' % uid)
+            ksscore.replaceHTML(selector, html)
         self.issueAllPortalMessages()
         self.cancelRedirect()

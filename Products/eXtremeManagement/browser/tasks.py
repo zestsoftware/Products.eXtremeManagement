@@ -192,11 +192,9 @@ class TasksDetailedView(XMBaseView):
 
         estimate = brain.estimate
         actual = brain.actual_time
-        obj = brain.getObject()
-        transitions = self.workflow.getTransitionsFor(obj)
         returnvalue = dict(
             url = brain.getURL(),
-            transitions = transitions,
+            brain = brain,
             UID = brain.UID,
             title = brain.Title,
             story_url = storybrain.getURL(),

@@ -247,4 +247,13 @@
       allowed_interface=".interfaces.IXMGlobalState"
       />
 
+  <page
+      name="xm_workflow_change"
+      class=".state.WorkflowChangeView"
+      for="*"
+      permission="zope2.View"
+      template="viewlets/templates/workflow_change.pt"
+      allowed_interface=".interfaces.IMyProjects"
+      />
+
 </configure>
