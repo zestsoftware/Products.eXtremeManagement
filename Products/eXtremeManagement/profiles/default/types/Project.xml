@@ -34,6 +34,6 @@
  </action>
  <action title="Reorder stories" action_id="reorder_stories" category="object" condition_expr=""
     url_expr="string:${object_url}/reorder_stories" visible="True">
-  <permission value="View"/>
+  <permission value="Manage portal"/>
  </action>
 </object>
