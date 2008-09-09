@@ -22,6 +22,7 @@ class XMGlobalState(BrowserView):
 
 class WorkflowChangeView(XMBaseView):
 
+    @Lazy
     def transitions(self):
         return self.workflow.getTransitionsFor(self.context)
 
@@ -29,6 +30,7 @@ class WorkflowChangeView(XMBaseView):
     def review_state_id(self):
         return self.workflow.getInfoFor(self.context, 'review_state')
 
+    @Lazy
     def review_state_title(self):
         return self.workflow.getTitleForStateOnType(
             self.review_state_id, self.context.portal_type)

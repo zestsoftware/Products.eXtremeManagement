@@ -8,7 +8,8 @@
       <span
           i18n:translate=""
           tal:content="view/review_state_title" />
-      <span class="arrowDownAlternative">▼</span>
+      <span tal:condition="view/transitions"
+            class="arrowDownAlternative">▼</span>
     </a>
   </dt>
   <dd class="actionMenuContent">
