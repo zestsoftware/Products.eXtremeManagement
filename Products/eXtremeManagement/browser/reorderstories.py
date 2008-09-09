@@ -1,9 +1,14 @@
+import logging
+
 #from zope.cachedescriptors.property import Lazy
 from zope.component import getMultiAdapter
+from kss.core import kssaction
+from plone.app.kss.plonekssview import PloneKSSView
 
 from Products.eXtremeManagement.browser.projects import ProjectView
 #from Products.eXtremeManagement.utils import formatTime
-from Products.eXtremeManagement.browser.interfaces import IIterationView
+
+logger = logging.getLogger('movestory')
 
 
 class ReorderStoriesView(ProjectView):
@@ -35,6 +40,7 @@ class ReorderStoriesView(ProjectView):
       ...         return 'list of stories'
       >>> import zope.component
       >>> from zope.interface import Interface
+      >>> from Products.eXtremeManagement.browser.interfaces import IIterationView
       >>> zope.component.provideAdapter(factory=MockIterationView,
       ...                               adapts=(None, None),
       ...                               provides=IIterationView,
@@ -42,14 +48,15 @@ class ReorderStoriesView(ProjectView):
 
 
       >>> brain = MockBrain(Title='title', Description='desc',
-      ...                   getObject=lambda: None)
+      ...                   getObject=lambda: None, UID='1234')
       >>> from pprint import pprint
       >>> result = view.iterationbrain2dict(brain)
       >>> pprint(result)
       {'brain': <Products.eXtremeManagement.browser.reorderstories.MockBrain ...>,
        'description': 'desc',
        'stories': 'list of stories',
-       'title': 'title'}
+       'title': 'title',
+       'uid': '1234'}
 
     """
 
@@ -77,5 +84,14 @@ class ReorderStoriesView(ProjectView):
             #difference = formatTime(estimate - actual),
             brain = brain,
             stories = stories,
+            uid = brain.UID,
         )
         return returnvalue
+
+
+class MoveStory(PloneKSSView):
+
+    @kssaction
+    def move_story(self, iteration_id, index):
+        logger.info('Iteration id: %s', iteration_id)
+        logger.info('index: %s', index)

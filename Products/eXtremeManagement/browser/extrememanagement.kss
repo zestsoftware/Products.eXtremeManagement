@@ -21,7 +21,7 @@
 /* yuidnd needs work, uncomment this to see the result
 .list-in-iteration:yuidnd-dragstart {
     }
-    
+
 #story-listing:yuidnd-drop {
     evt-yuidnd-drop-action: 'order';
     }
@@ -37,9 +37,25 @@
 
 #task-list-for-story dd.actionMenuContent a:click {
     evt-click-preventdefault: True;
-    evt-click-allowbubbling: True; 
+    evt-click-allowbubbling: True;
     action-server: xmChangeWorkflowState;
     xmChangeWorkflowState-uid: kssAttr('uid');
     xmChangeWorkflowState-url: nodeAttr(href);
 }
 
+
+/* reorder_stories.pt */
+
+.story-draggable:yuidnd-dragstart {
+    evt-yuidnd-dragstart-action: delete;
+}
+
+.iteration-droptarget:yuidnd-drop {
+    evt-yuidnd-drop-action: order;
+    }
+
+.story-draggable:yuidnd-dragsuccess {
+    action-server: move_story;
+    move_story-iteration_id: pass(dropContainerId);
+    move_story-index: pass(dropIndex);
+    }

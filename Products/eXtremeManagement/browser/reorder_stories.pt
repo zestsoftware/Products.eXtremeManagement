@@ -11,8 +11,11 @@
       <tal:iterations tal:repeat="iteration view/iterations">
         <h2 tal:content="iteration/title"
             tal:attributes="title iteration/description"/>
-        <ul>
-          <li tal:repeat="story iteration/stories">
+        <ul class="iteration-droptarget"
+            tal:attributes="id iteration/uid">
+          <li tal:repeat="story iteration/stories"
+              class="story-draggable"
+              tal:attributes="id story/uid">
             <span tal:content="story/title"/>
             <span>Just a minute</span>
           </li>

@@ -85,3 +85,7 @@ The page should contain the titles of our iterations:
     True
     >>> 'Iteration3' in browser.contents
     True
+
+The dnd kss should be callable.
+
+    >>> browser.open(self.iteration1.absolute_url() + '/move_story')
