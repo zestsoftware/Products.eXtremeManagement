@@ -6,6 +6,19 @@
   <body>
     <div metal:fill-slot="main">
       <h1 i18n:translate="heading_reorder_stories">Reorder stories</h1>
+      <p>Probably some explanation or so.</p>
+
+      <tal:iterations tal:repeat="iteration view/iterations">
+        <h2 tal:content="iteration/title"
+            tal:attributes="title iteration/description"/>
+        <ul>
+          <li tal:repeat="story iteration/stories">
+            <span tal:content="story/title"/>
+            <span>Just a minute</span>
+          </li>
+        </ul>
+      </tal:iterations>
+
     </div>
   </body>
 </html>

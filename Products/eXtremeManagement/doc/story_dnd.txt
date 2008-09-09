@@ -76,3 +76,12 @@ There's a tab on the main project view that links to the reordering view.
     >>> browser.getLink("Reorder stories").click()
     >>> "Reorder stories" in browser.contents
     True
+
+The page should contain the titles of our iterations:
+
+    >>> 'Iteration1' in browser.contents
+    True
+    >>> 'Iteration2' in browser.contents
+    True
+    >>> 'Iteration3' in browser.contents
+    True
