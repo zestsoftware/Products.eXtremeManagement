@@ -182,7 +182,7 @@ table.hour-registration th {
   padding-left: 10px !important;
   padding-right: 10px !important;
   white-space: nowrap;
-  
+
 }
 
 .label-bookingdate {
@@ -437,6 +437,20 @@ UL.xm-assignees LI {
     border-left: 1px dashed black;
     padding-left: 4px;
 }
+
+
+/* story drag/drop start */
+
+.kss-dragdrop-ghost {
+    font-weight: bold;
+    background-color: white;
+}
+
+.droppablee {
+    background-color: #eee;
+}
+
+/* story drag/drop end*/
 
 
 /* </dtml-with> */

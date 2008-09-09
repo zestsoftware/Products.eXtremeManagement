@@ -47,12 +47,35 @@
 /* reorder_stories.pt */
 
 .story-draggable:yuidnd-dragstart {
-    evt-yuidnd-dragstart-action: delete;
+    evt-yuidnd-dragstart-action: 'ghost';
 }
+/*
+    action-client: addClass css(.iteration-droptarget);
+    addClass-value: droppable;
+*/
 
 .iteration-droptarget:yuidnd-drop {
-    evt-yuidnd-drop-action: order;
-    }
+    evt-yuidnd-drop-action: 'order';
+}
+/*
+    action-client: removeClass css(.iteration-droptarget);
+    removeClass-value: droppable;
+*/
+
+
+/*
+
+.iteration-droptarget:yuidnd-dragenter {
+    action-client: addClass samenode();
+    addClass-value: active-dragtarget;
+}
+
+.iteration-droptarget:yuidnd-dragout {
+    action-client: removeClass samenode();
+    removeClass-value: active-dragtarget;
+}
+
+*/
 
 .story-draggable:yuidnd-dragsuccess {
     action-server: move_story;
