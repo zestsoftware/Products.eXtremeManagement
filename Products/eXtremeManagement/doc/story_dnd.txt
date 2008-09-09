@@ -1,0 +1,66 @@
+Test the story drag/drop view
+=============================
+
+We'll test the story drag/drop view to make sure the classes and ids are OK
+and that the view is renderable. No actual kss testing, though.
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    >>> browser.handleErrors = False
+    >>> browser.addHeader('Accept-Language', 'en-US')
+    >>> from Products.eXtremeManagement.tests import browserutils
+
+Let us log all exceptions, which is useful for debugging.
+
+    >>> self.portal.error_log._ignored_exceptions = ()
+
+Log in to the portal as the manager.
+
+    >>> browserutils.login(browser, self.portal, 'manager')
+
+
+Add a Project there.
+
+    >>> browserutils.addProject(browser, self.portal, 'NewProject')
+    >>> self.newproject = self.portal.newproject
+
+Add 3 Iterations there.
+
+    >>> browserutils.addIteration(browser, self.newproject, 'Iteration1')
+    >>> browserutils.addIteration(browser, self.newproject, 'Iteration2')
+    >>> browserutils.addIteration(browser, self.newproject, 'Iteration3')
+    >>> self.iteration1 = self.newproject.iteration1
+    >>> self.iteration2 = self.newproject.iteration2
+    >>> self.iteration3 = self.newproject.iteration3
+
+Add 3 stories to every iteration.
+
+    >>> browserutils.addStory(browser, self.iteration1, 'Story11', 'Story11', 1.0)
+    >>> browserutils.addStory(browser, self.iteration1, 'Story12', 'Story12', 1.0)
+    >>> browserutils.addStory(browser, self.iteration1, 'Story13', 'Story13', 1.0)
+    >>> browserutils.addStory(browser, self.iteration2, 'Story21', 'Story21', 1.0)
+    >>> browserutils.addStory(browser, self.iteration2, 'Story22', 'Story22', 1.0)
+    >>> browserutils.addStory(browser, self.iteration2, 'Story23', 'Story23', 1.0)
+    >>> browserutils.addStory(browser, self.iteration3, 'Story31', 'Story31', 1.0)
+    >>> browserutils.addStory(browser, self.iteration3, 'Story32', 'Story32', 1.0)
+    >>> browserutils.addStory(browser, self.iteration3, 'Story33', 'Story33', 1.0)
+
+The first story in the first iteration should be completed so that we can test
+un-draggable stories. To close it, we first need to add a task so we can
+activate it.
+
+    >>> self.undraggable = self.iteration1.story11
+    >>> browserutils.transition(browser, self.undraggable, 'Mark as estimated')
+    >>> browserutils.addTask(browser, self.undraggable, 'task')
+    >>> task = self.undraggable['1']
+    >>> task.hours = 1
+    >>> task.setAssignees(('employee', ))
+
+Activating the story also activates the task. Marking the task as completed
+also closes the story as it is the one and only task.
+
+    >>> browserutils.transition(browser, self.undraggable, 'Activate')
+    >>> browserutils.transition(browser, task, 'Mark as completed')
+
+
+    >>> browser.open(self.newproject.absolute_url())
