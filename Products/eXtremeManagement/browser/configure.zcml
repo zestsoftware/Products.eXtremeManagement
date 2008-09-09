@@ -158,6 +158,15 @@
       />
 
   <page
+      name="reorder_stories"
+      class=".reorderstories.ReorderStoriesView"
+      for="Products.eXtremeManagement.interfaces.IXMProject"
+      permission="cmf.ManagePortal"
+      allowed_interface=".interfaces.IProjectView"
+      template="reorder_stories.pt"
+      />
+
+  <page
       name="xm-poi"
       class=".poi.PoiView"
       for="*"

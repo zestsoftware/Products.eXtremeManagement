@@ -1,6 +1,8 @@
 2.0 alpha (unreleased)
 ---------------------
 
+  - Started the view for reordering stories. [reinout+simon]
+
   - Made the review state of tasks in the simple task list overview be
     a dropdown list with workflow transitioning via KSS, just like the
     default Plone review state.  [maurits+simon]

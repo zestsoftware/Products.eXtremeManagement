@@ -1,6 +1,10 @@
 Test the story drag/drop view
 =============================
 
+
+Setup
+-----
+
 We'll test the story drag/drop view to make sure the classes and ids are OK
 and that the view is renderable. No actual kss testing, though.
 
@@ -63,4 +67,12 @@ also closes the story as it is the one and only task.
     >>> browserutils.transition(browser, task, 'Mark as completed')
 
 
+Showing the "Reordering stories" view
+-------------------------------------
+
+There's a tab on the main project view that links to the reordering view.
+
     >>> browser.open(self.newproject.absolute_url())
+    >>> browser.getLink("Reorder stories").click()
+    >>> "Reorder stories" in browser.contents
+    True
