@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement-es\n"
-"POT-Creation-Date: 2008-09-10 13:32+0000\n"
+"POT-Creation-Date: 2008-09-10 15:18+0000\n"
 "PO-Revision-Date: 2007-12-09 14:30-0300\n"
 "Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
 "Language-Team: Spanish\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Add Tasks"
 msgstr ""
 
-#: ./browser/reorder_stories.py:171
+#: ./browser/reorder_stories.py:166
 msgid "Drag/drop uids incorrect"
 msgstr ""
 
@@ -56,10 +56,6 @@ msgstr ""
 #: ./skins/eXtremeManagement/customer_view.pt:123
 msgid "Send a mail to this user"
 msgstr "Enviar un mail a este usuario"
-
-#: ./browser/reorder_stories.py:163
-msgid "Source and target iteration are the same."
-msgstr ""
 
 #: ./browser/tasks.py:369
 msgid "Task added"
@@ -543,8 +539,13 @@ msgid "label_minutes"
 msgstr ""
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/reorder_stories.py:177
+#: ./browser/reorder_stories.py:174
 msgid "label_moved_succesfully"
+msgstr ""
+
+#. Default: "The position of story '${story}' in the iteration has been changed."
+#: ./browser/reorder_stories.py:191
+msgid "label_order_updated_succesfully"
 msgstr ""
 
 #. Default: "Recalculate actual hours"

@@ -1,0 +1,170 @@
+
+
+msgid ""
+msgstr ""
+"Project-Id-Version: eXtremeManagement\n"
+"POT-Creation-Date: 2005-05-19 21:13+0000\n"
+"PO-Revision-Date: 2007-06-06 10:30 +GMT+1\n"
+"Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
+"Language-Team: Nederlands <service@zestsoftware.nl>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"Domain: plone\n"
+
+msgid "completed"
+msgstr ""
+
+msgid "open"
+msgstr ""
+
+msgid "In progress"
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "Deactivate"
+msgstr ""
+
+msgid "Complete"
+msgstr ""
+
+msgid "estimated"
+msgstr ""
+
+msgid "draft"
+msgstr ""
+
+msgid "assigned"
+msgstr ""
+
+msgid "activated"
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "Assign"
+msgstr ""
+
+msgid "Invoice"
+msgstr ""
+
+msgid "invoiced"
+msgstr ""
+
+msgid "Estimate"
+msgstr ""
+
+msgid "CustomerFolder"
+msgstr ""
+
+msgid "Project Folder"
+msgstr ""
+
+msgid "Customer"
+msgstr ""
+
+msgid "Employee"
+msgstr ""
+
+msgid "ProjectMember"
+msgstr ""
+
+msgid "Project"
+msgstr ""
+
+msgid "Iteration"
+msgstr ""
+
+msgid "Story"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Customer Folder"
+msgstr ""
+
+msgid "Project Member"
+msgstr ""
+
+msgid "Time registration"
+msgstr ""
+
+msgid "activate"
+msgstr ""
+
+msgid "booking"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "complete"
+msgstr ""
+
+msgid "Completed"
+msgstr ""
+
+msgid "deactivate"
+msgstr ""
+
+msgid "Draft"
+msgstr ""
+
+msgid "Estimated"
+msgstr ""
+
+msgid "Finish"
+msgstr ""
+
+msgid "Improve"
+msgstr ""
+
+msgid "In-progress"
+msgstr ""
+
+msgid "Invoiced"
+msgstr ""
+
+msgid "Mark as completed"
+msgstr ""
+
+msgid "Mark as estimated"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "Pending estimate"
+msgstr ""
+
+msgid "Private"
+msgstr ""
+
+msgid "Reactivate"
+msgstr ""
+
+msgid "Reactivate this task"
+msgstr ""
+
+msgid "Retract"
+msgstr ""
+
+msgid "Start working"
+msgstr ""
+
+msgid "Submit for estimate"
+msgstr ""
+
+msgid "To-do"
+msgstr ""
+
+msgid "Active"
+msgstr ""
