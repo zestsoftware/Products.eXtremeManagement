@@ -51,7 +51,7 @@
 }
 /*
     action-client: addClass css(.iteration-droptarget);
-    addClass-value: droppable;
+    addClass-value: droppable-area;
 */
 
 .iteration-droptarget:yuidnd-drop {
@@ -59,7 +59,7 @@
 }
 /*
     action-client: removeClass css(.iteration-droptarget);
-    removeClass-value: droppable;
+    removeClass-value: droppable-area;
 */
 
 
@@ -81,4 +81,5 @@
     action-server: move_story;
     move_story-iteration_id: pass(dropContainerId);
     move_story-index: pass(dropIndex);
+    move_story-story_id: kssAttr(story_id, true);
     }

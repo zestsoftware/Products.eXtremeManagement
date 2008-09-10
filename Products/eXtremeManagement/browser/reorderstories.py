@@ -2,6 +2,7 @@ import logging
 
 #from zope.cachedescriptors.property import Lazy
 from zope.component import getMultiAdapter
+from Products.CMFCore.utils import getToolByName
 from kss.core import kssaction
 from plone.app.kss.plonekssview import PloneKSSView
 
@@ -92,6 +93,21 @@ class ReorderStoriesView(ProjectView):
 class MoveStory(PloneKSSView):
 
     @kssaction
-    def move_story(self, iteration_id, index):
+    def move_story(self, iteration_id, index, story_id):
+        plone = self.getCommandSet('plone')
         logger.info('Iteration id: %s', iteration_id)
         logger.info('index: %s', index)
+        logger.info('Story id: %s', story_id)
+        uid_catalog = getToolByName(self.context, 'uid_catalog')
+        try:
+            brain = uid_catalog(UID=iteration_id)[0]
+            iteration = brain.getObject()
+            brain = uid_catalog(UID=story_id)[0]
+            story = brain.getObject()
+        except AttributeError:
+            plone.issuePortalMessage(_(u'Drag/drop ids incorrect'),
+                                     msgtype='error')
+        logger.info('%s dragged to %s', story, iteration)
+        # [ ] Split into testable methods.
+        # Check if it is a different iteration.
+        # Cut/paste.

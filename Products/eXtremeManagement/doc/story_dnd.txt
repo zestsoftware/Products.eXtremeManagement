@@ -88,4 +88,6 @@ The page should contain the titles of our iterations:
 
 The dnd kss should be callable.
 
-    >>> #browser.open(self.iteration1.absolute_url() + '/move_story')
+    >>> #browser.open(self.newproject.absolute_url() + '/move_story' +
+    >>> #'?iteration_id=1&index=1&story_id=2')
+    >>> #print browser.contents

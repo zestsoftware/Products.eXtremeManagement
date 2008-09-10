@@ -446,7 +446,7 @@ UL.xm-assignees LI {
     background-color: white;
 }
 
-.droppablee {
+.droppable-area {
     background-color: #eee;
 }
 
