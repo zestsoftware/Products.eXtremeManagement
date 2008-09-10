@@ -375,12 +375,12 @@ UL.xm-assignees LI {
 /* booking_month  */
 
 .greyed {
-    color:Grey;
+    color: Grey;
     background-color: #EEF3F5;
 }
 
 .good {
-    color:Back;
+    color: Black;
 }
 
 .not-enough {
@@ -389,7 +389,7 @@ UL.xm-assignees LI {
 }
 
 .story-details-empty {
-  display:none;
+  display: none;
 }
 
 
