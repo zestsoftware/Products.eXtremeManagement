@@ -110,6 +110,8 @@ class MoveStory(PloneKSSView):
       ...         self.dict = kw
       ...     def getObject(self):
       ...         return self
+      ...     def getId(self):
+      ...         return self.dict['id']
       ...     def __repr__(self):
       ...         return '<brain/object %s>' % self.dict.get('title')
       >>> context = MockContext()
@@ -127,11 +129,40 @@ class MoveStory(PloneKSSView):
       >>> view.extract_objects('1', '2', 'non-existing')
       (None, None, None)
 
+    The story is moved using standard zope cut/paste.
+
+      >>> class MockDir(object):
+      ...     objects = {}
+      ...     def manage_cutObjects(self, ids):
+      ...         to_return = {}
+      ...         for id in ids:
+      ...             to_return[id] = self.objects.pop(id)
+      ...         return to_return
+      ...     def manage_pasteObjects(self, cutdata):
+      ...         self.objects.update(cutdata)
+      ...     def objectIds(self):
+      ...         return self.objects.keys()
+      >>> source = MockDir()
+      >>> target = MockDir()
+      >>> source.objects = {'1': 1, '2': 2}
+      >>> target.objects = {'3': 3}
+      >>> story = MockBrainObject(id='1')
+      >>> view.move(source, target, story)
+      >>> source.objectIds()
+      ['2']
+      >>> target.objectIds()
+      ['1', '3']
+
     """
 
     @kssaction
     def move_story(self, source_id, target_id, story_id, index):
         plone = self.getCommandSet('plone')
+        if source_id == target_id:
+            plone.issuePortalMessage(_(u'Source and target iteration are the same.'),
+                                     msgtype='error')
+            return
+
         source, target, story = self.extract_objects(source_id,
                                                      target_id,
                                                      story_id)
@@ -139,11 +170,13 @@ class MoveStory(PloneKSSView):
             plone.issuePortalMessage(_(u'Drag/drop uids incorrect'),
                                      msgtype='error')
             return
+
         logger.info('%s dragged from %s to %s', story, source, target)
-        # Check if it is a different iteration.
+        self.move(source, target, story)
         # Cut/paste.
 
     def extract_objects(self, source_id, target_id, story_id):
+        """Return tuple of source/target/story objects"""
         uid_catalog = getToolByName(self.context, 'uid_catalog')
         try:
             brain = uid_catalog(UID=source_id)[0]
@@ -155,3 +188,8 @@ class MoveStory(PloneKSSView):
             return (source, target, story)
         except IndexError:
             return (None, None, None)
+
+    def move(self, source, target, story):
+        """Actually cut/paste the story from source to target iteration"""
+        cutdata = source.manage_cutObjects(ids=[story.getId()])
+        target.manage_pasteObjects(cutdata)

@@ -100,6 +100,15 @@ iterations and of the story being dragged.
     <?xml version="1.0" encoding="utf-8" ?>
     <kukit xmlns="http://www.kukit.org/commands/1.1">
     <commands>
+    ...
     </commands>
     </kukit>
     <BLANKLINE>
+
+After the kss drag/drop, the story should be gone from iteration1 and present
+in iteration2.
+
+    >>> 'story11' in self.iteration1.objectIds()
+    False
+    >>> 'story11' in self.iteration2.objectIds()
+    True

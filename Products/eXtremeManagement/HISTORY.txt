@@ -1,6 +1,8 @@
 2.0 alpha (unreleased)
 ---------------------
 
+  - Got the actual drag/drop to work. Needs more work though. [reinout]
+
   - Started the view for reordering stories. [reinout+simon]
 
   - Made the review state of tasks in the simple task list overview be
