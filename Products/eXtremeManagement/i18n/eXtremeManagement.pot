@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-09-10 13:09+0000\n"
+"POT-Creation-Date: 2008-09-10 13:32+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Add Tasks"
 msgstr ""
 
-#: ./browser/reorder_stories.py:170
+#: ./browser/reorder_stories.py:171
 msgid "Drag/drop uids incorrect"
 msgstr ""
 
@@ -54,7 +54,7 @@ msgstr ""
 msgid "Send a mail to this user"
 msgstr ""
 
-#: ./browser/reorder_stories.py:162
+#: ./browser/reorder_stories.py:163
 msgid "Source and target iteration are the same."
 msgstr ""
 
@@ -535,7 +535,7 @@ msgid "label_minutes"
 msgstr ""
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/reorder_stories.py:176
+#: ./browser/reorder_stories.py:177
 msgid "label_moved_succesfully"
 msgstr ""
 

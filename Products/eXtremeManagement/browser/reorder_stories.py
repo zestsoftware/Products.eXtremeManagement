@@ -2,6 +2,7 @@ import logging
 
 #from zope.cachedescriptors.property import Lazy
 from zope.component import getMultiAdapter
+from zope.i18nmessageid import Message
 from Products.CMFCore.utils import getToolByName
 from kss.core import kssaction
 from plone.app.kss.plonekssview import PloneKSSView
