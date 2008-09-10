@@ -64,7 +64,7 @@
             </h2>
             <h2 i18n:translate="offer-description"
                 class="offer-story-header">
-                The offer contains the following items
+              The offer contains the following items
             </h2>
             <div class="visualClear" />
           </div>
@@ -113,10 +113,11 @@
               </tal:repeat>
               <tr id="totalTasks">
                 <td class="offer-story-title-footer"
-                   i18n:translate="total">Total</td>
+                    i18n:translate="total">Total</td>
                 <td class="offer-story-estimate-footer">
-                   <span tal:replace="iteration/size_estimate" />
-                   <span i18n:translate="days" tal:omit-tag="" />
+                  <span tal:replace="iteration/size_estimate" />
+                  <span i18n:translate="days" tal:omit-tag="" />
+                </td>
               </tr>
             </tbody>
           </table>
@@ -128,7 +129,6 @@
           No stories published yet!
         </p>
       </div>
-
       <metal:block metal:define-macro="folderlisting" />
     </div>
   </body>
