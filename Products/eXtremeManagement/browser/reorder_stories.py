@@ -53,7 +53,7 @@ class ReorderStoriesView(ProjectView):
       >>> from pprint import pprint
       >>> result = view.iterationbrain2dict(brain)
       >>> pprint(result)
-      {'brain': <Products.eXtremeManagement.browser.reorderstories.MockBrain ...>,
+      {'brain': <Products.eXtremeManagement.browser.reorder_stories.MockBrain ...>,
        'description': 'desc',
        'stories': 'list of stories',
        'title': 'title',

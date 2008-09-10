@@ -159,7 +159,7 @@
 
   <page
       name="reorder_stories"
-      class=".reorderstories.ReorderStoriesView"
+      class=".reorder_stories.ReorderStoriesView"
       for="Products.eXtremeManagement.interfaces.IXMProject"
       permission="cmf.ManagePortal"
       allowed_interface=".interfaces.IProjectView"
@@ -169,7 +169,7 @@
   <page
       name="move_story"
       for="Products.eXtremeManagement.interfaces.IXMProject"
-      class=".reorderstories.MoveStory"
+      class=".reorder_stories.MoveStory"
       attribute="move_story"
       permission="cmf.ManagePortal"
       />

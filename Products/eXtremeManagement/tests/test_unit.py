@@ -8,7 +8,7 @@ modules = (
     'browser.iterations',
     'browser.poi',
     'browser.tasks',
-    'browser.reorderstories',
+    'browser.reorder_stories',
     'utils',
     )
 
