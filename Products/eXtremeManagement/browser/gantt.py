@@ -1,4 +1,5 @@
 from Products.Five.browser import BrowserView
+from zope.cachedescriptors.property import Lazy
 from zope import component
 from datetime import date
 from xm.charting import gantt
@@ -12,6 +13,20 @@ def pydate(dt):
 
 
 class GanttView(BrowserView):
+    """A view for displaying a gantt chart.
+
+      >>> class Mock(object):
+      ...     def __init__(self, **kw): self.__dict__.update(kw)
+      >>> gantt = GanttView(None, None)
+      >>> def search(**kw):
+      ...     return [Mock(estimate=0, getAssignees=[]),
+      ...             Mock(estimate=4, getAssignees=['someperson'])]
+      >>> gantt._search = search
+      >>> gantt._get_work_hours(Mock(getPath=lambda: 'foo'))
+      {'someperson': 4.0}
+       
+    """
+
 
     project_crit = dict(portal_type='Project',
                         sort_on='getObjPositionInParent')
@@ -24,15 +39,21 @@ class GanttView(BrowserView):
         self.context = context
         self.request = request
 
-        portal_state = component.getMultiAdapter((context, request),
+    @Lazy
+    def _search(self):
+        portal_state = component.getMultiAdapter((self.context, self.request),
                                                  name=u'plone_portal_state')
         portal = portal_state.portal()
-        self._search = portal.portal_catalog
+        return portal.portal_catalog
 
     def _get_work_hours(self, itbrain):
         hours = {}
         for taskbrain in self._search(path=itbrain.getPath(),
                                       **self.task_crit):
+            if not taskbrain.estimate or taskbrain.estimate <= 0 or \
+                   len(taskbrain.getAssignees) == 0:
+                continue
+
             h = float(taskbrain.estimate) / float(len(taskbrain.getAssignees))
             for x in taskbrain.getAssignees:
                 cur = hours.get(x, 0.0) + h
