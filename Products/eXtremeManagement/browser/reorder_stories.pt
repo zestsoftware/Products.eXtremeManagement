@@ -12,7 +12,8 @@
         <h2 tal:content="iteration/title"
             tal:attributes="title iteration/description"/>
         <ul class="iteration-droptarget"
-            tal:attributes="id iteration/uid">
+            tal:attributes="id iteration/uid;
+                            style python:not iteration['stories'] and 'border: 1px dotted black' or '';">
           <li tal:repeat="story iteration/stories"
               class="story-draggable"
               tal:attributes="id story/uid;

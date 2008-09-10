@@ -441,13 +441,30 @@ UL.xm-assignees LI {
 
 /* story drag/drop start */
 
-.kss-dragdrop-ghost {
-    font-weight: bold;
-    background-color: white;
+ul.iteration-droptarget {
+    min-height: 2em;
 }
 
-.droppable-area {
+ul.iteration-droptarget li {
+    margin-bottom: 0;
+    padding-bottom: 0.25em;
+    padding-top: 0.25em;
+}
+
+ul.iteration-droptarget li.story-draggable {
+    cursor: pointer;
+}
+
+.kss-dragdrop-ghost {
+    /* The original location of the currently-dragged item. */
+    color: #eee;
+}
+
+.kss-dragdrop-clone-border {
+    /* The dragged item shown where it will turn up. */
+    border: 1px dotted black;
     background-color: #eee;
+    font-weight: bold;
 }
 
 /* story drag/drop end*/

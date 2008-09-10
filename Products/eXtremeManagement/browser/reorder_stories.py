@@ -1,3 +1,10 @@
+"""View for listing iterations and stories and KSS for reordering them.
+
+Unittests are in this file, functional and browser tests are in
+../doc/reorder_stories.txt.
+
+"""
+
 import logging
 
 #from zope.cachedescriptors.property import Lazy
@@ -158,6 +165,7 @@ class MoveStory(PloneKSSView):
 
     @kssaction
     def move_story(self, source_id, target_id, story_id, index):
+        core = self.getCommandSet('core')
         plone = self.getCommandSet('plone')
         source, target, story = self.extract_objects(source_id,
                                                      target_id,
@@ -176,6 +184,14 @@ class MoveStory(PloneKSSView):
                     mapping={'story': story.Title(),
                              'target': target.Title()})
             plone.issuePortalMessage(msg, msgtype='info')
+            # We have to set the right kssattr again now that our parent has
+            # changed.
+            format = 'kssattr-source_id-%s'
+            old = format % source_id
+            new = format % target_id
+            node = core.getHtmlIdSelector(story_id)
+            core.removeClass(node, old)
+            core.addClass(node, new)
 
         # Give the dragged object the right position.
         target.moveObjectToPosition(story.getId(), int(index))

@@ -93,7 +93,7 @@ iterations and of the story being dragged.
     >>> query = ['source_id=%s' % self.iteration1.UID(),
     ...          'target_id=%s' % self.iteration2.UID(),
     ...          'story_id=%s' % self.iteration1.story11.UID(),
-    ...          'index=%s' % 1]
+    ...          'index=%s' % 2]
     >>> query = '&'.join(query)
     >>> browser.open(self.newproject.absolute_url() + '/move_story?' + query)
     >>> print browser.contents
@@ -106,9 +106,11 @@ iterations and of the story being dragged.
     <BLANKLINE>
 
 After the kss drag/drop, the story should be gone from iteration1 and present
-in iteration2.
+in iteration2. The story's position should be 2.
 
     >>> 'story11' in self.iteration1.objectIds()
     False
     >>> 'story11' in self.iteration2.objectIds()
     True
+    >>> self.iteration2.getObjectPosition('story11')
+    2

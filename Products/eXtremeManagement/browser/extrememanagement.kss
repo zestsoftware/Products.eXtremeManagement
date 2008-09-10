@@ -83,4 +83,4 @@
     move_story-target_id: pass(dropContainerId);
     move_story-story_id: kssAttr(story_id, true);
     move_story-index: pass(dropIndex);
-    }
+}
