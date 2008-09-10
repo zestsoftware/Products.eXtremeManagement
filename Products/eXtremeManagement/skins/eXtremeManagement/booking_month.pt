@@ -91,11 +91,11 @@
               </tal:days>
               <td tal:content="week/week_total"
                   tal:attributes="class string:${week/perc_style} TotalperWeek">
-                  2007-06-10
+                2007-06-10
               </td>
               <td tal:content="week/perc_billable"
                   tal:attributes="class string:${week/perc_style} TotalperWeek">
-                  80 %
+                80 %
               </td>
             </tr>
             <tr class="bookingTotal">
