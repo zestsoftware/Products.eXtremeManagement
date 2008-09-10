@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <object name="Project" meta_type="Factory-based Type Information"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+   i18n:domain="plone">
  <property name="title">Project</property>
  <property name="description">
       </property>
@@ -33,6 +34,7 @@
   <permission value="Modify portal content"/>
  </action>
  <action title="Reorder stories" action_id="reorder_stories" category="object" condition_expr=""
+         i18n:attributes="title"
     url_expr="string:${object_url}/reorder_stories" visible="True">
   <permission value="Manage portal"/>
  </action>

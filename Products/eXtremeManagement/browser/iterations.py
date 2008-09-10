@@ -65,12 +65,13 @@ class IterationView(XMBaseView):
             )
         return returnvalue
 
-    def stories(self):
+    def stories(self, sort_by_state=True):
         context = aq_inner(self.context)
         filter = dict(portal_type='Story',
                       sort_on='getObjPositionInParent')
-        items = context.getFolderContents(filter)
-        storybrains = getStateSortedContents(items)
+        storybrains = context.getFolderContents(filter)
+        if sort_by_state:
+            storybrains = getStateSortedContents(storybrains)
 
         story_list = []
 

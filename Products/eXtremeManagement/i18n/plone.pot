@@ -168,3 +168,6 @@ msgstr ""
 
 msgid "Active"
 msgstr ""
+
+msgid "Reorder stories"
+msgstr ""

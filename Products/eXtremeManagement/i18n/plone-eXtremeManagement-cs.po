@@ -16,110 +16,47 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin2\n"
 "Domain: plone\n"
 
-msgid "completed"
-msgstr "dokončeno"
-
-msgid "open"
-msgstr "otevřeno"
-
-msgid "in-progress"
-msgstr "v řešení"
+msgid "Accept"
+msgstr "Přijmout"
 
 msgid "Activate"
 msgstr "Aktivovat"
 
-msgid "Complete"
-msgstr "Dokončit"
-
-msgid "estimated"
-msgstr "odnadnuto"
-
-msgid "draft"
-msgstr "návrh"
-
-msgid "assigned"
-msgstr "přiděleno"
-
-msgid "activated"
-msgstr "aktivováno"
-
-msgid "Accept"
-msgstr "Přijmout"
+msgid "Active"
+msgstr "Aktivní"
 
 msgid "Assign"
 msgstr "Přidělit"
 
-msgid "Invoice"
-msgstr "Fakturovat"
-
-msgid "invoiced"
-msgstr "vyfakturováno"
-
-msgid "Estimate"
-msgstr "Odhadnout"
-
-msgid "CustomerFolder"
-msgstr "Složka Zákazníků"
-
-msgid "ProjectFolder"
-msgstr "Složka Projektů"
-
-msgid "Customer"
-msgstr "Zákazník"
-
-msgid "Employee"
-msgstr "Zaměstnanec"
-
-msgid "ProjectMember"
-msgstr "Člen Projektu"
-
-msgid "Project"
-msgstr "Projekt"
-
-msgid "Iteration"
-msgstr "Iterace"
-
-msgid "Story"
-msgstr "Požadavek"
-
-msgid "Task"
-msgstr "Úkol"
-
-msgid "Customer Folder"
-msgstr "Složka Zákazníků"
-
-msgid "Project Folder"
-msgstr "Složka projektů"
-
-msgid "Time registration"
-msgstr "Časový záznam"
-
-msgid "activate"
-msgstr "aktivovat"
-
-msgid "Active"
-msgstr "Aktivní"
-
-msgid "booking"
-msgstr "záznam"
-
 msgid "Close"
 msgstr "Uzavřít"
 
-msgid "complete"
-msgstr "dokončit"
+msgid "Complete"
+msgstr "Dokončit"
 
 msgid "Completed"
 msgstr "Hotovo"
 
-msgid "deactivate"
-msgstr "deaktivovat"
+msgid "Customer"
+msgstr "Zákazník"
+
+msgid "Customer Folder"
+msgstr "Složka Zákazníků"
+
+msgid "CustomerFolder"
+msgstr "Složka Zákazníků"
 
 msgid "Deactivate"
 msgstr "Deaktivovat"
 
 msgid "Draft"
 msgstr "Koncept"
+
+msgid "Employee"
+msgstr "Zaměstnanec"
+
+msgid "Estimate"
+msgstr "Odhadnout"
 
 msgid "Estimated"
 msgstr "Odhadnuto"
@@ -136,8 +73,14 @@ msgstr "V řešení"
 msgid "In-progress"
 msgstr "V řešení"
 
+msgid "Invoice"
+msgstr "Fakturovat"
+
 msgid "Invoiced"
 msgstr "Vyfakturováno"
+
+msgid "Iteration"
+msgstr "Iterace"
 
 msgid "Mark as completed"
 msgstr "Označit za hotové"
@@ -154,11 +97,26 @@ msgstr "Nevyřízený odhad"
 msgid "Private"
 msgstr "Nepřostupné"
 
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Project Folder"
+msgstr "Složka projektů"
+
+msgid "Project Member"
+msgstr ""
+
+msgid "ProjectMember"
+msgstr "Člen Projektu"
+
 msgid "Reactivate"
 msgstr "Reaktivovat"
 
 msgid "Reactivate this task"
 msgstr "Reaktivovat tento úkol"
+
+msgid "Reorder stories"
+msgstr ""
 
 msgid "Retract"
 msgstr "Stáhnout"
@@ -166,8 +124,51 @@ msgstr "Stáhnout"
 msgid "Start working"
 msgstr "Začít pracovat"
 
+msgid "Story"
+msgstr "Požadavek"
+
 msgid "Submit for estimate"
 msgstr "Postoupit k odhadnutí"
 
+msgid "Task"
+msgstr "Úkol"
+
+msgid "Time registration"
+msgstr "Časový záznam"
+
 msgid "To-do"
 msgstr "To-do"
+
+msgid "activate"
+msgstr "aktivovat"
+
+msgid "activated"
+msgstr "aktivováno"
+
+msgid "assigned"
+msgstr "přiděleno"
+
+msgid "booking"
+msgstr "záznam"
+
+msgid "complete"
+msgstr "dokončit"
+
+msgid "completed"
+msgstr "dokončeno"
+
+msgid "deactivate"
+msgstr "deaktivovat"
+
+msgid "draft"
+msgstr "návrh"
+
+msgid "estimated"
+msgstr "odnadnuto"
+
+msgid "invoiced"
+msgstr "vyfakturováno"
+
+msgid "open"
+msgstr "otevřeno"
+

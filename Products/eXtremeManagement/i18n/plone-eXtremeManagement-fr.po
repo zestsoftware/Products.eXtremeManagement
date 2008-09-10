@@ -18,110 +18,47 @@ msgstr ""
 "X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 "X-Poedit-Language: French\n"
 
-msgid "completed"
-msgstr "complété"
-
-msgid "open"
-msgstr "ouvert"
-
-msgid "in-progress"
-msgstr "en traitement"
+msgid "Accept"
+msgstr "Accepter"
 
 msgid "Activate"
 msgstr "Activer"
 
-msgid "Complete"
-msgstr "Terminé"
-
-msgid "estimated"
-msgstr "estimé"
-
-msgid "draft"
-msgstr "brouillon"
-
-msgid "assigned"
-msgstr "assigné"
-
-msgid "activated"
-msgstr "activé"
-
-msgid "Accept"
-msgstr "Accepter"
+msgid "Active"
+msgstr "Actif"
 
 msgid "Assign"
 msgstr "Assigner"
 
-msgid "Invoice"
-msgstr "Facture"
-
-msgid "invoiced"
-msgstr "facturé"
-
-msgid "Estimate"
-msgstr "Estimé"
-
-msgid "CustomerFolder"
-msgstr "DossierClient"
-
-msgid "ProjectFolder"
-msgstr "DossierProjet"
-
-msgid "Customer"
-msgstr "Client"
-
-msgid "Employee"
-msgstr "Employé"
-
-msgid "ProjectMember"
-msgstr "Membre de projet"
-
-msgid "Project"
-msgstr "Projet"
-
-msgid "Iteration"
-msgstr "Itération"
-
-msgid "Story"
-msgstr "Histoire-usager"
-
-msgid "Task"
-msgstr "Tâche"
-
-msgid "Customer Folder"
-msgstr "Dossier client"
-
-msgid "Project Folder"
-msgstr "Dossier de projet"
-
-msgid "Time registration"
-msgstr "Entrée du temps"
-
-msgid "activate"
-msgstr "activer"
-
-msgid "Active"
-msgstr "Actif"
-
-msgid "booking"
-msgstr "\"booking\""
-
 msgid "Close"
 msgstr "Fermer"
 
-msgid "complete"
-msgstr "compléter"
+msgid "Complete"
+msgstr "Terminé"
 
 msgid "Completed"
 msgstr "Complété"
 
-msgid "deactivate"
-msgstr "désactiver"
+msgid "Customer"
+msgstr "Client"
+
+msgid "Customer Folder"
+msgstr "Dossier client"
+
+msgid "CustomerFolder"
+msgstr "DossierClient"
 
 msgid "Deactivate"
 msgstr "Désactiver"
 
 msgid "Draft"
 msgstr "Brouillon"
+
+msgid "Employee"
+msgstr "Employé"
+
+msgid "Estimate"
+msgstr "Estimé"
 
 msgid "Estimated"
 msgstr "Estimé"
@@ -138,8 +75,14 @@ msgstr "En traitement"
 msgid "In-progress"
 msgstr "En traitement"
 
+msgid "Invoice"
+msgstr "Facture"
+
 msgid "Invoiced"
 msgstr "Facturé"
+
+msgid "Iteration"
+msgstr "Itération"
 
 msgid "Mark as completed"
 msgstr "Identifier 'complété'"
@@ -156,11 +99,26 @@ msgstr "Estimé en attente (pending estimate)"
 msgid "Private"
 msgstr "Privé"
 
+msgid "Project"
+msgstr "Projet"
+
+msgid "Project Folder"
+msgstr "Dossier de projet"
+
+msgid "Project Member"
+msgstr ""
+
+msgid "ProjectMember"
+msgstr "Membre de projet"
+
 msgid "Reactivate"
 msgstr "Réactiver"
 
 msgid "Reactivate this task"
 msgstr "Réactiver cette tâche"
+
+msgid "Reorder stories"
+msgstr ""
 
 msgid "Retract"
 msgstr "Retirer"
@@ -168,8 +126,51 @@ msgstr "Retirer"
 msgid "Start working"
 msgstr "Commencer le travail"
 
+msgid "Story"
+msgstr "Histoire-usager"
+
 msgid "Submit for estimate"
 msgstr "Soumettre pour obtenir un estimé"
 
+msgid "Task"
+msgstr "Tâche"
+
+msgid "Time registration"
+msgstr "Entrée du temps"
+
 msgid "To-do"
 msgstr "À faire"
+
+msgid "activate"
+msgstr "activer"
+
+msgid "activated"
+msgstr "activé"
+
+msgid "assigned"
+msgstr "assigné"
+
+msgid "booking"
+msgstr "\"booking\""
+
+msgid "complete"
+msgstr "compléter"
+
+msgid "completed"
+msgstr "complété"
+
+msgid "deactivate"
+msgstr "désactiver"
+
+msgid "draft"
+msgstr "brouillon"
+
+msgid "estimated"
+msgstr "estimé"
+
+msgid "invoiced"
+msgstr "facturé"
+
+msgid "open"
+msgstr "ouvert"
+

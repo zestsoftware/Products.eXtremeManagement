@@ -39,7 +39,7 @@ class ReorderStoriesView(ProjectView):
       >>> class MockIterationView(object):
       ...     def __init__(self, context, request):
       ...         pass
-      ...     def stories(self):
+      ...     def stories(self, sort_by_state=True):
       ...         return 'list of stories'
       >>> import zope.component
       >>> from zope.interface import Interface
@@ -76,7 +76,7 @@ class ReorderStoriesView(ProjectView):
         iteration = brain.getObject()
         iteration_view = getMultiAdapter((iteration, self.request),
                                          name='iteration')
-        stories = iteration_view.stories()
+        stories = iteration_view.stories(sort_by_state=False)
         returnvalue = dict(
             #url = brain.getURL(),
             title = brain.Title,
@@ -159,11 +159,6 @@ class MoveStory(PloneKSSView):
     @kssaction
     def move_story(self, source_id, target_id, story_id, index):
         plone = self.getCommandSet('plone')
-        if source_id == target_id:
-            plone.issuePortalMessage(_(u'Source and target iteration are the same.'),
-                                     msgtype='error')
-            return
-
         source, target, story = self.extract_objects(source_id,
                                                      target_id,
                                                      story_id)
@@ -173,13 +168,31 @@ class MoveStory(PloneKSSView):
             return
 
         logger.info('%s dragged from %s to %s', story, source, target)
-        self.move(source, target, story)
-        msg = _(u'label_moved_succesfully',
-                default=u"Moved story '${story}' to iteration '${target}'.",
-                mapping={'story': story.Title(),
-                         'target': target.Title()})
-        plone.issuePortalMessage(msg, msgtype='info')
+        if source != target:
+            # Source and target are different: move the story.
+            self.move(source, target, story)
+            msg = _(u'label_moved_succesfully',
+                    default=u"Moved story '${story}' to iteration '${target}'.",
+                    mapping={'story': story.Title(),
+                             'target': target.Title()})
+            plone.issuePortalMessage(msg, msgtype='info')
 
+        # Give the dragged object the right position.
+        target.moveObjectToPosition(story.getId(), int(index))
+        putils = getToolByName(self.context, 'plone_utils')
+        putils.reindexOnReorder(target)
+        logger.info('Story %s now has position %s in the target folder.',
+                    story, index)
+
+        if source == target:
+            # We haven't moved the object to another iteration, so that didn't
+            # give us a status message. To provide feedback that something
+            # happened we'll say that the object's position has been modified.
+            msg = _(u'label_order_updated_succesfully',
+                    default=(u"The position of story '${story}' in the "
+                             u"iteration has been changed."),
+                    mapping={'story': story.Title()})
+            plone.issuePortalMessage(msg, msgtype='info')
 
     def extract_objects(self, source_id, target_id, story_id):
         """Return tuple of source/target/story objects"""

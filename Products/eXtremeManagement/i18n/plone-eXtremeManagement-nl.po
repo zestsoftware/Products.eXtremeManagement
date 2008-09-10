@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
 "POT-Creation-Date: 2005-05-19 21:13+0000\n"
-"PO-Revision-Date: 2007-06-06 10:30 +GMT+1\n"
+"PO-Revision-Date: 2008-09-10 17:25+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -18,108 +18,47 @@ msgstr ""
 "Domain: plone\n"
 "X-Is-Fallback-For: nl-be\n"
 
-msgid "completed"
-msgstr "Afgerond"
-
-msgid "open"
-msgstr "Open"
-
-msgid "In progress"
-msgstr "Lopend"
+msgid "Accept"
+msgstr "Accepteer"
 
 msgid "Activate"
 msgstr "Activeren"
 
-msgid "Deactivate"
-msgstr "Deactiveren"
-
-msgid "Complete"
-msgstr "Afronden"
-
-msgid "estimated"
-msgstr "Geschat"
-
-msgid "draft"
-msgstr "Concept"
-
-msgid "assigned"
-msgstr "Toegekend"
-
-msgid "activated"
-msgstr "Geactiveerd"
-
-msgid "Accept"
-msgstr "Accepteer"
+msgid "Active"
+msgstr "Actief"
 
 msgid "Assign"
 msgstr "Toekennen"
 
-msgid "Invoice"
-msgstr "Factureer"
-
-msgid "invoiced"
-msgstr "Gefactureerd"
-
-msgid "Estimate"
-msgstr "Schatten"
-
-msgid "CustomerFolder"
-msgstr "Klantenmap"
-
-msgid "Project Folder"
-msgstr "Projectenmap"
-
-msgid "Customer"
-msgstr "Klant"
-
-msgid "Employee"
-msgstr "Medewerker"
-
-msgid "ProjectMember"
-msgstr "Projectlid"
-
-msgid "Project"
-msgstr "Project"
-
-msgid "Iteration"
-msgstr "Iteratie"
-
-msgid "Story"
-msgstr "Story"
-
-msgid "Task"
-msgstr "Taak"
-
-msgid "Customer Folder"
-msgstr "Klantenmap"
-
-msgid "Project Member"
-msgstr "Projectlid"
-
-msgid "Time registration"
-msgstr "Uren registratie"
-
-
-msgid "activate"
-msgstr "activeren"
-
-msgid "booking"
-msgstr "boeking"
-
 msgid "Close"
 msgstr "sluit"
 
-msgid "complete"
-msgstr "afronden"
+msgid "Complete"
+msgstr "Afronden"
 
 msgid "Completed"
 msgstr "Afgerond"
 
-msgid "deactivate"
-msgstr "deactiveren"
+msgid "Customer"
+msgstr "Klant"
+
+msgid "Customer Folder"
+msgstr "Klantenmap"
+
+msgid "CustomerFolder"
+msgstr "Klantenmap"
+
+msgid "Deactivate"
+msgstr "Deactiveren"
 
 msgid "Draft"
 msgstr "Concept"
+
+msgid "Employee"
+msgstr "Medewerker"
+
+msgid "Estimate"
+msgstr "Schatten"
 
 msgid "Estimated"
 msgstr "Geschat"
@@ -130,11 +69,20 @@ msgstr "Rond af"
 msgid "Improve"
 msgstr "Verbeter"
 
+msgid "In progress"
+msgstr "Lopend"
+
 msgid "In-progress"
 msgstr "Lopend"
 
+msgid "Invoice"
+msgstr "Factureer"
+
 msgid "Invoiced"
 msgstr "Gefactureerd"
+
+msgid "Iteration"
+msgstr "Iteratie"
 
 msgid "Mark as completed"
 msgstr "Markeer als afgerond"
@@ -151,11 +99,26 @@ msgstr "Wachtend op schatting"
 msgid "Private"
 msgstr "Privé"
 
+msgid "Project"
+msgstr "Project"
+
+msgid "Project Folder"
+msgstr "Projectenmap"
+
+msgid "Project Member"
+msgstr "Projectlid"
+
+msgid "ProjectMember"
+msgstr "Projectlid"
+
 msgid "Reactivate"
 msgstr "Heractiveer"
 
 msgid "Reactivate this task"
 msgstr "Heractiveer deze taak"
+
+msgid "Reorder stories"
+msgstr "Herorden de stories"
 
 msgid "Retract"
 msgstr "Trek in"
@@ -163,11 +126,50 @@ msgstr "Trek in"
 msgid "Start working"
 msgstr "Begin met werken"
 
+msgid "Story"
+msgstr "Story"
+
 msgid "Submit for estimate"
 msgstr "Dien in voor schatting"
+
+msgid "Task"
+msgstr "Taak"
+
+msgid "Time registration"
+msgstr "Uren registratie"
 
 msgid "To-do"
 msgstr "Te doen"
 
-msgid "Active"
-msgstr "Actief"
+msgid "activate"
+msgstr "activeren"
+
+msgid "activated"
+msgstr "Geactiveerd"
+
+msgid "assigned"
+msgstr "Toegekend"
+
+msgid "booking"
+msgstr "boeking"
+
+msgid "complete"
+msgstr "afronden"
+
+msgid "completed"
+msgstr "Afgerond"
+
+msgid "deactivate"
+msgstr "deactiveren"
+
+msgid "draft"
+msgstr "Concept"
+
+msgid "estimated"
+msgstr "Geschat"
+
+msgid "invoiced"
+msgstr "Gefactureerd"
+
+msgid "open"
+msgstr "Open"

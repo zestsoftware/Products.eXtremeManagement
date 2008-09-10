@@ -18,7 +18,6 @@
               tal:attributes="id story/uid;
                               class string:story-draggable kssattr-story_id-${story/uid} kssattr-source_id-${iteration/uid};">
             <span tal:content="story/title"/>
-            <span>Just a minute</span>
           </li>
         </ul>
       </tal:iterations>
