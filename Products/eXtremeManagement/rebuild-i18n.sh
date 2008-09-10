@@ -21,6 +21,9 @@ i18ndude rebuild-pot --pot i18n/$PROJECT.pot --create $PROJECT --merge $SELF_MAD
 
 i18ndude sync --pot i18n/$PROJECT.pot i18n/$PROJECT-*.po
 
+i18ndude sync --pot i18n/plone.pot i18n/plone-$PROJECT-*.po
+
+
 echo "Reporting some statistics..."
 # Find places that are missing an "i18n:translate" or
 # "i18n:attributes" tag.
