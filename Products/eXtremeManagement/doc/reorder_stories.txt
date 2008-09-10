@@ -86,8 +86,20 @@ The page should contain the titles of our iterations:
     >>> 'Iteration3' in browser.contents
     True
 
-The dnd kss should be callable.
 
-    >>> #browser.open(self.newproject.absolute_url() + '/move_story' +
-    >>> #'?iteration_id=1&index=1&story_id=2')
-    >>> #print browser.contents
+The dnd kss should be callable. It needs the UID of the source and target
+iterations and of the story being dragged.
+
+    >>> query = ['source_id=%s' % self.iteration1.UID(),
+    ...          'target_id=%s' % self.iteration2.UID(),
+    ...          'story_id=%s' % self.iteration1.story11.UID(),
+    ...          'index=%s' % 1]
+    >>> query = '&'.join(query)
+    >>> browser.open(self.newproject.absolute_url() + '/move_story?' + query)
+    >>> print browser.contents
+    <?xml version="1.0" encoding="utf-8" ?>
+    <kukit xmlns="http://www.kukit.org/commands/1.1">
+    <commands>
+    </commands>
+    </kukit>
+    <BLANKLINE>

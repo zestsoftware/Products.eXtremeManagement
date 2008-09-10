@@ -79,7 +79,8 @@
 
 .story-draggable:yuidnd-dragsuccess {
     action-server: move_story;
-    move_story-iteration_id: pass(dropContainerId);
-    move_story-index: pass(dropIndex);
+    move_story-source_id: kssAttr(source_id, true);
+    move_story-target_id: pass(dropContainerId);
     move_story-story_id: kssAttr(story_id, true);
+    move_story-index: pass(dropIndex);
     }

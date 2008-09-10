@@ -7,6 +7,7 @@ from kss.core import kssaction
 from plone.app.kss.plonekssview import PloneKSSView
 
 from Products.eXtremeManagement.browser.projects import ProjectView
+from Products.eXtremeManagement import XMMessageFactory as _
 #from Products.eXtremeManagement.utils import formatTime
 
 logger = logging.getLogger('movestory')
@@ -91,23 +92,66 @@ class ReorderStoriesView(ProjectView):
 
 
 class MoveStory(PloneKSSView):
+    """React on kss drag/drop of story to another iteration.
+
+    Some setup
+
+      >>> class MockContext(object):
+      ...     pass
+      >>> class MockUidCatalog(object):
+      ...     uids = {}
+      ...     def __call__(self, UID=None):
+      ...         if UID in self.uids:
+      ...             return [self.uids[UID]]
+      ...         else:
+      ...             return []
+      >>> class MockBrainObject(object):
+      ...     def __init__(self, **kw):
+      ...         self.dict = kw
+      ...     def getObject(self):
+      ...         return self
+      ...     def __repr__(self):
+      ...         return '<brain/object %s>' % self.dict.get('title')
+      >>> context = MockContext()
+      >>> context.uid_catalog = MockUidCatalog()
+      >>> view = MoveStory(context, None)
+
+    The UIDs passed to kss get converted into their respective objects. A
+    wrong UID is caught.
+
+      >>> context.uid_catalog.uids = {'1': MockBrainObject(title='1'),
+      ...                             '2': MockBrainObject(title='2'),
+      ...                             '3': MockBrainObject(title='3')}
+      >>> view.extract_objects('1', '2', '3')
+      (<brain/object 1>, <brain/object 2>, <brain/object 3>)
+      >>> view.extract_objects('1', '2', 'non-existing')
+      (None, None, None)
+
+    """
 
     @kssaction
-    def move_story(self, iteration_id, index, story_id):
+    def move_story(self, source_id, target_id, story_id, index):
         plone = self.getCommandSet('plone')
-        logger.info('Iteration id: %s', iteration_id)
-        logger.info('index: %s', index)
-        logger.info('Story id: %s', story_id)
-        uid_catalog = getToolByName(self.context, 'uid_catalog')
-        try:
-            brain = uid_catalog(UID=iteration_id)[0]
-            iteration = brain.getObject()
-            brain = uid_catalog(UID=story_id)[0]
-            story = brain.getObject()
-        except AttributeError:
-            plone.issuePortalMessage(_(u'Drag/drop ids incorrect'),
+        source, target, story = self.extract_objects(source_id,
+                                                     target_id,
+                                                     story_id)
+        if source == None: # The rest is also None.
+            plone.issuePortalMessage(_(u'Drag/drop uids incorrect'),
                                      msgtype='error')
-        logger.info('%s dragged to %s', story, iteration)
-        # [ ] Split into testable methods.
+            return
+        logger.info('%s dragged from %s to %s', story, source, target)
         # Check if it is a different iteration.
         # Cut/paste.
+
+    def extract_objects(self, source_id, target_id, story_id):
+        uid_catalog = getToolByName(self.context, 'uid_catalog')
+        try:
+            brain = uid_catalog(UID=source_id)[0]
+            source = brain.getObject()
+            brain = uid_catalog(UID=target_id)[0]
+            target = brain.getObject()
+            brain = uid_catalog(UID=story_id)[0]
+            story = brain.getObject()
+            return (source, target, story)
+        except IndexError:
+            return (None, None, None)
