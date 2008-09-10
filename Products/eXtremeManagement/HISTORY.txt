@@ -1,6 +1,10 @@
 2.0 alpha (unreleased)
 ---------------------
 
+  - Made the eXtremeManagement PTSTranslationDomain available as
+    zope.i18n domain.  This makes portal status messages from kss
+    translatable again.  [maurits]
+
   - Got the actual drag/drop to work. Needs more work though. [reinout]
 
   - Started the view for reordering stories. [reinout+simon]

@@ -10,6 +10,8 @@ from Products.eXtremeManagement import config
 logger = logging.getLogger("eXtremeManagement")
 logger.debug('Start initialization of product.')
 XMMessageFactory = MessageFactory('eXtremeManagement')
+from Products.PlacelessTranslationService.utility import PTSTranslationDomain
+xmdomain = PTSTranslationDomain('eXtremeManagement')
 
 
 def initialize(context):
