@@ -47,7 +47,7 @@ class ReorderStoriesView(ProjectView):
       ...     def __init__(self, context, request):
       ...         pass
       ...     def stories(self, sort_by_state=True):
-      ...         return 'list of stories'
+      ...         return []
       >>> import zope.component
       >>> from zope.interface import Interface
       >>> from Products.eXtremeManagement.browser.interfaces import IIterationView
@@ -56,7 +56,6 @@ class ReorderStoriesView(ProjectView):
       ...                               provides=IIterationView,
       ...                               name=u'iteration')
 
-
       >>> brain = MockBrain(Title='title', Description='desc',
       ...                   getObject=lambda: None, UID='1234')
       >>> from pprint import pprint
@@ -64,9 +63,24 @@ class ReorderStoriesView(ProjectView):
       >>> pprint(result)
       {'brain': <Products.eXtremeManagement.browser.reorder_stories.MockBrain ...>,
        'description': 'desc',
-       'stories': 'list of stories',
+       'stories': [],
        'title': 'title',
        'uid': '1234'}
+
+    We want to expand the list of story dicts with a 'class' item as that's
+    too much calculating for the page template.
+
+      >>> mock = [{'review_state': 'state', 'uid': 'myuid'}]
+      >>> new_mock = view.update_stories(mock)
+      >>> new_mock[0]['class']
+      'story-draggable kssattr-story_id-myuid'
+
+    If the story is completed, it should not be draggable.
+
+      >>> mock = [{'review_state': 'completed', 'uid': 'myuid'}]
+      >>> new_mock = view.update_stories(mock)
+      >>> new_mock[0]['class']
+      'state-completed'
 
     """
 
@@ -84,6 +98,7 @@ class ReorderStoriesView(ProjectView):
         iteration_view = getMultiAdapter((iteration, self.request),
                                          name='iteration')
         stories = iteration_view.stories(sort_by_state=False)
+        stories = self.update_stories(stories)
         returnvalue = dict(
             #url = brain.getURL(),
             title = brain.Title,
@@ -97,6 +112,18 @@ class ReorderStoriesView(ProjectView):
             uid = brain.UID,
         )
         return returnvalue
+
+    def update_stories(self, stories):
+        """Add a class to the stories' dicts"""
+        format = 'story-draggable kssattr-story_id-%s'
+        for story in stories:
+            uid = story['uid']
+            state = story['review_state']
+            story['class'] = format % uid
+            if state == 'completed':
+               # Don't make me draggable
+               story['class'] = 'state-%s' % state
+        return stories
 
 
 class MoveStory(PloneKSSView):

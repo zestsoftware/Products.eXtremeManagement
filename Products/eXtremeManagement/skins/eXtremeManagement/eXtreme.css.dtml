@@ -449,10 +449,15 @@ ul.iteration-droptarget li {
     margin-bottom: 0;
     padding-bottom: 0.25em;
     padding-top: 0.25em;
+    border: 1px solid white;
 }
 
 ul.iteration-droptarget li.story-draggable {
     cursor: pointer;
+}
+
+ul.iteration-droptarget li.story-draggable:hover {
+    border: 1px dotted black;
 }
 
 .kss-dragdrop-ghost {

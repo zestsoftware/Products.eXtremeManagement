@@ -17,7 +17,7 @@
           <li tal:repeat="story iteration/stories"
               class="story-draggable"
               tal:attributes="id story/uid;
-                              class string:story-draggable kssattr-story_id-${story/uid} kssattr-source_id-${iteration/uid};">
+                              class string:${story/class} kssattr-source_id-${iteration/uid};">
             <span tal:content="story/title"/>
           </li>
         </ul>
