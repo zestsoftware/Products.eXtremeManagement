@@ -34,7 +34,7 @@
              tal:attributes="href string:${contextlink}?previous=1"
              i18n:translate="previous-month">previous month</a>
           <a tal:condition="request/memberid|nothing"
-             tal:attributes="href string:${contextlink}?previous=1&memberid=${request/memberid}"
+             tal:attributes="href string:${contextlink}?previous=1&amp;memberid=${request/memberid}"
              i18n:translate="previous-month">previous month</a>.
         </p>
         <p tal:condition="request/previous|nothing">

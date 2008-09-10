@@ -173,7 +173,12 @@ class MoveStory(PloneKSSView):
 
         logger.info('%s dragged from %s to %s', story, source, target)
         self.move(source, target, story)
-        # Cut/paste.
+        msg = _(u'label_moved_succesfully',
+                default=u"Moved story '${story}' to iteration '${target}'.",
+                mapping={'story': story.Title(),
+                         'target': target.Title()})
+        plone.issuePortalMessage(msg, msgtype='info')
+
 
     def extract_objects(self, source_id, target_id, story_id):
         """Return tuple of source/target/story objects"""

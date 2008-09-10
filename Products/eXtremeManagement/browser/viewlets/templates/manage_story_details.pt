@@ -4,9 +4,7 @@
             realtasks storyview/tasklist;">
 
   <p class="documentDescription"
-     tal:content="story_object/Description">
-    Description
-  </p>
+     tal:content="story_object/Description"/>
 
   <div tal:replace="structure story_object/mainText">
     Body text
