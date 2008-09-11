@@ -46,7 +46,7 @@ class GanttView(BrowserView):
 
 
     project_crit = dict(portal_type='Project',
-                        sort_on='getObjPositionInParent')
+                        sort_on='sortable_title')
     iteration_crit = dict(portal_type='Iteration',
                           review_state=('in-progress', 'new'),
                           sort_on='getObjPositionInParent')
