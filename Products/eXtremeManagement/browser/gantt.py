@@ -18,13 +18,30 @@ class GanttView(BrowserView):
       >>> class Mock(object):
       ...     def __init__(self, **kw): self.__dict__.update(kw)
       >>> gantt = GanttView(None, None)
+
+    Getting the work hours is mostly about checking task estimates against
+    assignees.
+
       >>> def search(**kw):
       ...     return [Mock(estimate=0, getAssignees=[]),
       ...             Mock(estimate=4, getAssignees=['someperson'])]
       >>> gantt._search = search
       >>> gantt._get_work_hours(Mock(getPath=lambda: 'foo'))
       {'someperson': 4.0}
-       
+
+    Durations are analogous to iterations.
+
+      >>> from DateTime import DateTime
+      >>> def search(**kw):
+      ...     return [Mock(getObject=lambda: Mock(getStartDate=DateTime, getEndDate=DateTime),
+      ...                  Title='Foo',
+      ...                  getPath=lambda: 'somepath',
+      ...                  estimate=1.0,
+      ...                  getAssignees=[])]
+      >>> gantt._search = search
+      >>> gantt._get_durations(Mock(getPath=lambda: 'foo'))
+      [<xm.charting.model.Duration object ...>]
+
     """
 
 
