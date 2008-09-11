@@ -393,6 +393,8 @@ UL.xm-assignees LI {
 }
 
 
+/* gantt chart look and feel */
+
 .gantt-chart .leading,
 .gantt-chart .bar,
 .gantt-chart .following {
@@ -415,10 +417,18 @@ UL.xm-assignees LI {
 }
 
 .gantt-chart .bar {
-    background-color: blue;
+    background-color: #ccc;
     color: white;
     text-align: center;
     font-size: 0.8em;
+}
+
+.gantt-chart .bar.start {
+    background-color: #cff;
+}
+
+.gantt-chart .bar.in-progress {
+    background-color: #cfc;
 }
 
 .gantt-chart .bar.invalid-date {

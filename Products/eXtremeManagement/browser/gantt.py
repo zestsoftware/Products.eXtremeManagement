@@ -67,7 +67,8 @@ class GanttView(BrowserView):
         hours = {}
         for taskbrain in self._search(path=itbrain.getPath(),
                                       **self.task_crit):
-            if not taskbrain.estimate or taskbrain.estimate <= 0 or \
+            estimate = getattr(taskbrain, 'estimate', 0.0)
+            if not estimate or estimate <= 0 or \
                    len(taskbrain.getAssignees) == 0:
                 continue
 
@@ -86,7 +87,9 @@ class GanttView(BrowserView):
             it = itbrain.getObject()
             d = chmodel.Duration(itbrain.Title,
                                  pydate(it.getStartDate()),
-                                 pydate(it.getEndDate()))
+                                 pydate(it.getEndDate()),
+                                 itbrain.review_state,
+                                 itbrain.getURL())
 
             # finish getting the work hours bottom half of the chart
             # working
