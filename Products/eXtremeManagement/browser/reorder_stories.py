@@ -17,6 +17,8 @@ from plone.app.kss.plonekssview import PloneKSSView
 from Products.eXtremeManagement.browser.projects import ProjectView
 from Products.eXtremeManagement import XMMessageFactory as _
 #from Products.eXtremeManagement.utils import formatTime
+from Products.statusmessages.interfaces import IStatusMessage
+from webdav.Lockable import ResourceLockedError
 
 logger = logging.getLogger('movestory')
 
@@ -194,6 +196,7 @@ class MoveStory(PloneKSSView):
     def move_story(self, source_id, target_id, story_id, index):
         core = self.getCommandSet('core')
         plone = self.getCommandSet('plone')
+        cns = self.getCommandSet('cns')
         source, target, story = self.extract_objects(source_id,
                                                      target_id,
                                                      story_id)
@@ -205,7 +208,17 @@ class MoveStory(PloneKSSView):
         logger.info('%s dragged from %s to %s', story, source, target)
         if source != target:
             # Source and target are different: move the story.
-            self.move(source, target, story)
+            # Apparently it's possible for this story to be 'locked' - we'd 
+            # better be ready for that...
+            try:
+                self.move(source, target, story)
+            except ResourceLockedError:
+                logger.info('Resource locked')
+                IStatusMessage(self.request).addStatusMessage(
+                    _(u'Move failed: resource locked'), type='error')
+                cns.redirectRequest(story.absolute_url())
+                return
+
             msg = _(u'label_moved_succesfully',
                     default=u"Moved story '${story}' to iteration '${target}'.",
                     mapping={'story': story.Title(),
@@ -236,7 +249,7 @@ class MoveStory(PloneKSSView):
                              u"iteration has been changed."),
                     mapping={'story': story.Title()})
             plone.issuePortalMessage(msg, msgtype='info')
-
+            
     def extract_objects(self, source_id, target_id, story_id):
         """Return tuple of source/target/story objects"""
         uid_catalog = getToolByName(self.context, 'uid_catalog')

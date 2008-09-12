@@ -1,6 +1,10 @@
 2.0 alpha (unreleased)
 ---------------------
 
+  - Added CSS and exception-hardening to our previous work on reorderable
+    stories - on failing to move a story we redirect to the story so it can be
+    fixed. [reinout+simon]
+
   - Made the eXtremeManagement PTSTranslationDomain available as
     zope.i18n domain.  This makes portal status messages from kss
     translatable again.  [maurits]

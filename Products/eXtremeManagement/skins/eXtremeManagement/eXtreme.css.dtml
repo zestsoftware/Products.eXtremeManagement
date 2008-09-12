@@ -451,15 +451,30 @@ UL.xm-assignees LI {
 
 /* story drag/drop start */
 
+/* 
+    TODO Do we want a min-height (which is ignored by IE) or a default value like 
+    'no stories' (which explains the gap in the interface) ?
+*/
 ul.iteration-droptarget {
     min-height: 2em;
+    padding: 0;
+    margin: 0;
+}
+
+ul.iteration-droptarget li, .kss-dragdrop-dragging {
+    list-style: none;
+    margin: 0;
+    padding: 0 0.3em 0 0.3em;
+    background-color: white;
 }
 
 ul.iteration-droptarget li {
-    margin-bottom: 0;
-    padding-bottom: 0.25em;
-    padding-top: 0.25em;
-    border: 1px solid white;
+    border: 2px solid white;
+}
+
+.kss-dragdrop-dragging {
+    border: 2px dashed #ccc;
+    font-size: 110%;
 }
 
 ul.iteration-droptarget li.story-draggable {
@@ -467,18 +482,16 @@ ul.iteration-droptarget li.story-draggable {
 }
 
 ul.iteration-droptarget li.story-draggable:hover {
-    border: 1px dotted black;
+    border: 2px dotted black;
 }
 
 .kss-dragdrop-ghost {
     /* The original location of the currently-dragged item. */
-    color: #eee;
+    color: #ccc;
 }
 
 .kss-dragdrop-clone-border {
     /* The dragged item shown where it will turn up. */
-    border: 1px dotted black;
-    background-color: #eee;
     font-weight: bold;
 }
 
