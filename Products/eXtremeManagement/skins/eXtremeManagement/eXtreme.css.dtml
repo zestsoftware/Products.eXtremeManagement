@@ -432,7 +432,7 @@ UL.xm-assignees LI {
 }
 
 .gantt-chart .bar.invalid-date {
-    background-color: red;
+    background-color: #ffcc66;
 }
 
 .gantt-chart .last td {
