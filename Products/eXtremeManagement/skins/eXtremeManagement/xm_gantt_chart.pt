@@ -11,7 +11,7 @@
   <body>
 
     <tal:main metal:fill-slot="main"
-              tal:define="gantt nocall:context/@@xm_gantt;">
+              tal:define="gantt nocall:context/@@xm_embed_gantt;">
 
       <div tal:replace="structure gantt">
       </div>

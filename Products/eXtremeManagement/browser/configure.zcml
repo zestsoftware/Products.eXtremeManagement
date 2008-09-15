@@ -22,7 +22,7 @@
       />
 
   <page
-      name="xm_gantt"
+      name="xm_embed_gantt"
       class=".gantt.GanttView"
       for="*"
       permission="zope2.View"

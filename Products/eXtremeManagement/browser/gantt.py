@@ -107,11 +107,7 @@ class GanttView(BrowserView):
             if len(durations) == 0:
                 continue
 
-            # getting object here due to having to get list of project
-            # members
-            project = prjbrain.getObject()
-
-            dg = chmodel.DurationGroup(prjbrain.Title)
+            dg = chmodel.DurationGroup(prjbrain.Title, prjbrain.getURL())
             dg._iterations += durations
             projects.append(dg)
 
