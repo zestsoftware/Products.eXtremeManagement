@@ -297,7 +297,8 @@ class EmployeeTotalsView(TasksDetailedView):
                 portal_type='Booking',
                 Creator=memberid,
                 path=searchpath)
-            rawActualHours = sum([booking.actual_time for booking in bookings])
+            rawActualHours = sum([booking.actual_time or 0.0
+                                  for booking in bookings])
             if rawEstimate > 0 or rawActualHours > 0:
                 rawDifference = rawEstimate - rawActualHours
                 info = dict(
