@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-09-10 15:25+0000\n"
+"POT-Creation-Date: 2008-09-16 09:48+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -26,8 +26,17 @@ msgstr ""
 msgid "Add Tasks"
 msgstr ""
 
-#: ./browser/reorder_stories.py:166
+#. Default: "Drag stories around inside and between iterations."
+#: ./browser/reorder_stories.pt:9
+msgid "Drag stories around inside and between iterations."
+msgstr ""
+
+#: ./browser/reorder_stories.py:204
 msgid "Drag/drop uids incorrect"
+msgstr ""
+
+#: ./browser/reorder_stories.py:218
+msgid "Move failed: resource locked"
 msgstr ""
 
 #. Default: "Note that only issues that aren't already mapped into this iteration will be added."
@@ -601,12 +610,12 @@ msgid "label_minutes"
 msgstr ""
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/reorder_stories.py:174
+#: ./browser/reorder_stories.py:222
 msgid "label_moved_succesfully"
 msgstr ""
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/reorder_stories.py:191
+#: ./browser/reorder_stories.py:247
 msgid "label_order_updated_succesfully"
 msgstr ""
 

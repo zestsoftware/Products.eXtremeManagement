@@ -173,3 +173,4 @@ msgstr "Gefactureerd"
 
 msgid "open"
 msgstr "Open"
+

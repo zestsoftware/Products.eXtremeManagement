@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-09-10 15:25+0000\n"
-"PO-Revision-Date: 2008-09-10 16:01+0200\n"
+"POT-Creation-Date: 2008-09-16 09:48+0000\n"
+"PO-Revision-Date: 2008-09-16 11:47+0200\n"
 "Last-Translator: Reinout van Rees <reinout@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -27,9 +27,18 @@ msgstr "Gewerkte uren"
 msgid "Add Tasks"
 msgstr "Voeg taken toe"
 
-#: ./browser/reorder_stories.py:166
+#. Default: "Drag stories around inside and between iterations."
+#: ./browser/reorder_stories.pt:9
+msgid "Drag stories around inside and between iterations."
+msgstr "Stories kunnen versleept worden: binnen iteraties om de volgorde te veranderen, maar ook naar een andere iteratie."
+
+#: ./browser/reorder_stories.py:204
 msgid "Drag/drop uids incorrect"
 msgstr "Drag/drop UIDs zijn incorrect"
+
+#: ./browser/reorder_stories.py:218
+msgid "Move failed: resource locked"
+msgstr "Het verplaatsen is mislukt: de story of de iteratie is gelockt."
 
 #. Default: "Note that only issues that aren't already mapped into this iteration will be added."
 #: ./skins/eXtremeManagement/portlet_poi.pt:54
@@ -598,14 +607,14 @@ msgid "label_minutes"
 msgstr "Minuten"
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/reorder_stories.py:174
+#: ./browser/reorder_stories.py:222
 msgid "label_moved_succesfully"
 msgstr "Story '${story}' is verplaatst naar iteratie '${target}'."
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/reorder_stories.py:191
+#: ./browser/reorder_stories.py:247
 msgid "label_order_updated_succesfully"
-msgstr ""
+msgstr "Het veranderen van de volgorde is gelukt"
 
 #. Default: "Recalculate actual hours"
 #: ./browser/maintenance.py:24
