@@ -37,6 +37,8 @@ class GanttView(BrowserView):
       ...                  Title='Foo',
       ...                  getPath=lambda: 'somepath',
       ...                  estimate=1.0,
+      ...                  review_state='private',
+      ...                  getURL=lambda: 'http://somewhere',
       ...                  getAssignees=[])]
       >>> gantt._search = search
       >>> gantt._get_durations(Mock(getPath=lambda: 'foo'))
