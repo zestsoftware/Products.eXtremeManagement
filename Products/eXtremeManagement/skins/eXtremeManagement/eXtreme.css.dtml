@@ -395,9 +395,8 @@ UL.xm-assignees LI {
 
 /* gantt chart look and feel */
 
-.gantt-chart .leading,
 .gantt-chart .bar,
-.gantt-chart .following {
+.gantt-chart .space {
     height: 20px;
     color: transparent;
     over-flow: hide;
@@ -421,8 +420,11 @@ UL.xm-assignees LI {
     color: white;
     text-align: center;
     font-size: 0.8em;
+    border-right: 1px #999 dotted;
+    border-left: 1px #999 dotted;
 }
 
+.gantt-chart .bar.new,
 .gantt-chart .bar.start {
     background-color: #cff;
 }
