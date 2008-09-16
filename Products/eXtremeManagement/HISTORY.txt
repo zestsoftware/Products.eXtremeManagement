@@ -1,82 +1,83 @@
-2.0 alpha (unreleased)
----------------------
-  - Added 'locked status' logic so the release planning view can display it.
-    Cleaned up release planning view logic, icluding class generation.
-    Corrected relevant tests.
+2.0 alpha (2008-09-16)
+----------------------
 
-  - Added CSS and exception-hardening to our previous work on reorderable
-    stories - on failing to move a story we redirect to the story so it can be
-    fixed. [reinout+simon]
+- Added 'locked status' logic so the release planning view can display it.
+  Cleaned up release planning view logic, icluding class generation.
+  Corrected relevant tests.
 
-  - Made the eXtremeManagement PTSTranslationDomain available as
-    zope.i18n domain.  This makes portal status messages from kss
-    translatable again.  [maurits]
+- Added CSS and exception-hardening to our previous work on reorderable
+  stories - on failing to move a story we redirect to the story so it can be
+  fixed. [reinout+simon]
 
-  - Got the actual drag/drop to work. Needs more work though. [reinout]
+- Made the eXtremeManagement PTSTranslationDomain available as
+  zope.i18n domain.  This makes portal status messages from kss
+  translatable again.  [maurits]
 
-  - Started the view for reordering stories. [reinout+simon]
+- Got the actual drag/drop to work. Needs more work though. [reinout]
 
-  - Made the review state of tasks in the simple task list overview be
-    a dropdown list with workflow transitioning via KSS, just like the
-    default Plone review state.  [maurits+simon]
+- Started the view for reordering stories. [reinout+simon]
 
-  - @Lazy optimizations in browser/tasks.py. [reinout]
+- Made the review state of tasks in the simple task list overview be
+  a dropdown list with workflow transitioning via KSS, just like the
+  default Plone review state.  [maurits+simon]
 
-  - Show link to xm time tracker in site actions when the xm.tracker
-    package is available.  [maurits]
+- @Lazy optimizations in browser/tasks.py. [reinout]
 
-  - Include zcml of xm.tracker when the package is there.  [maurits]
+- Show link to xm time tracker in site actions when the xm.tracker
+  package is available.  [maurits]
 
-  - Created @@xm_global_state view, with currently one method
-    has_tracker which is True when the xm.tracker package is
-    available.  [maurits]
+- Include zcml of xm.tracker when the package is there.  [maurits]
 
-  - Treating booking's description as webintelligenttext. [reinout]
+- Created @@xm_global_state view, with currently one method
+  has_tracker which is True when the xm.tracker package is
+  available.  [maurits]
 
-  - Cleaned up redundancy in task_review template (issue #75).  [simon]
+- Treating booking's description as webintelligenttext. [reinout]
 
-  - Merged fix from the time tracker branch (issue #75): Changed
-    task_overview template and tasks.py to display localised workflow
-    state labels.  [simon]
+- Cleaned up redundancy in task_review template (issue #75).  [simon]
 
-  - Merged fix from the time tracker branch: catch a divide by zero
-    error.  [reinout]
+- Merged fix from the time tracker branch (issue #75): Changed
+  task_overview template and tasks.py to display localised workflow
+  state labels.  [simon]
 
-  - Merged the testing changes from the zest-timetracker branch.
-    [maurits]
+- Merged fix from the time tracker branch: catch a divide by zero
+  error.  [reinout]
 
-  - Added Products.Poi to the install_requires in setup.py as Poi now
-    has eggs for both branch 1.1 and trunk.  [maurits]
+- Merged the testing changes from the zest-timetracker branch.
+  [maurits]
 
-  - made the print view for offer look nicer. Added new dutch translation.
-    [mirella]
+- Added Products.Poi to the install_requires in setup.py as Poi now
+  has eggs for both branch 1.1 and trunk.  [maurits]
 
-  - Show attachments (Image, File, most importantly Story) in the
-    project view, but only when xm.theme is not available, as that has
-    a portlet and another view for this info.  (Merged from
-    branches/1.6, r69421 and r69426.)
+- made the print view for offer look nicer. Added new dutch translation.
+  [mirella]
 
-  - Added tests for style conditions, which lead me to a bug in the logic. In
-    the booking_month view, in case someone worked less than 40 hours in a week
-    that total will be highligted. [jladage]
+- Show attachments (Image, File, most importantly Story) in the
+  project view, but only when xm.theme is not available, as that has
+  a portlet and another view for this info.  (Merged from
+  branches/1.6, r69421 and r69426.)
 
-  - Fix a Plone 3.0 support issue in the javascript registry.[jladage]
+- Added tests for style conditions, which lead me to a bug in the logic. In
+  the booking_month view, in case someone worked less than 40 hours in a week
+  that total will be highligted. [jladage]
 
-  - fixed name typo in css [mirella]
+- Fix a Plone 3.0 support issue in the javascript registry.[jladage]
 
-  - minor css changes to booking_month.pt, added translations and
-    description for employees overview. Added odd color ad padding to
-    employees overview, generated i18ndude and added the missing dutch
-    translations and update_hours_form placed bookingsdate next to title.
-    <th> has nowrap and left/right padding.[mirella]
+- fixed name typo in css [mirella]
 
-  - Now loading the zcml from kss.plugin.yuidnd automatically, so that
-    package does not need to be included in [instance]zcml of buildout.cfg
-    anymore. [maurits]
+- minor css changes to booking_month.pt, added translations and
+  description for employees overview. Added odd color ad padding to
+  employees overview, generated i18ndude and added the missing dutch
+  translations and update_hours_form placed bookingsdate next to title.
+  <th> has nowrap and left/right padding.[mirella]
+
+- Now loading the zcml from kss.plugin.yuidnd automatically, so that
+  package does not need to be included in [instance]zcml of buildout.cfg
+  anymore. [maurits]
 
 
 1.6.1 (2008-07-31)
----------------------
+------------------
 
 2008-07-30 - mirella
 
@@ -113,7 +114,7 @@
     cleanup in the next release.
 
 1.6 final (2008-07-16)
----------------------
+----------------------
 
 - Official Release, no changes since rc10
 
