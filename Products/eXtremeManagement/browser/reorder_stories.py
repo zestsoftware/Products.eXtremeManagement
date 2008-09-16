@@ -18,7 +18,7 @@ from Products.eXtremeManagement.browser.projects import ProjectView
 from Products.eXtremeManagement import XMMessageFactory as _
 #from Products.eXtremeManagement.utils import formatTime
 from Products.statusmessages.interfaces import IStatusMessage
-from webdav.Lockable import ResourceLockedError
+from webdav.Lockable import wl_isLocked, ResourceLockedError
 
 logger = logging.getLogger('movestory')
 
@@ -48,7 +48,7 @@ class ReorderStoriesView(ProjectView):
       >>> class MockIterationView(object):
       ...     def __init__(self, context, request):
       ...         pass
-      ...     def stories(self, sort_by_state=True):
+      ...     def stories(self, sort_by_state=True, locked_status=False):
       ...         return []
       >>> import zope.component
       >>> from zope.interface import Interface
@@ -65,6 +65,7 @@ class ReorderStoriesView(ProjectView):
       >>> pprint(result)
       {'brain': <Products.eXtremeManagement.browser.reorder_stories.MockBrain ...>,
        'description': 'desc',
+       'locked': 0,
        'stories': [],
        'title': 'title',
        'uid': '1234'}
@@ -72,17 +73,24 @@ class ReorderStoriesView(ProjectView):
     We want to expand the list of story dicts with a 'class' item as that's
     too much calculating for the page template.
 
-      >>> mock = [{'review_state': 'state', 'uid': 'myuid'}]
+      >>> mock = [{'review_state': 'in-progress', 'uid': 'myuid', 'locked': False}]
       >>> new_mock = view.update_stories(mock)
       >>> new_mock[0]['class']
-      'story-draggable kssattr-story_id-myuid'
+      'story-draggable state-in-progress kssattr-story_id-myuid'
 
     If the story is completed, it should not be draggable.
 
-      >>> mock = [{'review_state': 'completed', 'uid': 'myuid'}]
+      >>> mock = [{'review_state': 'completed', 'uid': 'myuid', 'locked': False}]
       >>> new_mock = view.update_stories(mock)
       >>> new_mock[0]['class']
-      'state-completed'
+      'state-completed kssattr-story_id-myuid'
+
+    It also should not be draggable if it's locked.
+
+      >>> mock = [{'review_state': 'in-progress', 'uid': 'myuid', 'locked': True}]
+      >>> new_mock = view.update_stories(mock)
+      >>> new_mock[0]['class']
+      'state-in-progress kssattr-story_id-myuid'
 
     """
 
@@ -99,7 +107,8 @@ class ReorderStoriesView(ProjectView):
         iteration = brain.getObject()
         iteration_view = getMultiAdapter((iteration, self.request),
                                          name='iteration')
-        stories = iteration_view.stories(sort_by_state=False)
+        stories = iteration_view.stories(sort_by_state=False, 
+                                         locked_status=True)
         stories = self.update_stories(stories)
         returnvalue = dict(
             #url = brain.getURL(),
@@ -112,19 +121,21 @@ class ReorderStoriesView(ProjectView):
             brain = brain,
             stories = stories,
             uid = brain.UID,
+            locked = wl_isLocked(iteration),
         )
         return returnvalue
 
     def update_stories(self, stories):
         """Add a class to the stories' dicts"""
-        format = 'story-draggable kssattr-story_id-%s'
+        format = '%(edit)sstate-%(review_state)s kssattr-story_id-%(uid)s'
         for story in stories:
-            uid = story['uid']
-            state = story['review_state']
-            story['class'] = format % uid
-            if state == 'completed':
+            options = {'edit': 'story-draggable '}
+            options.update(story)
+            if story['review_state'] == 'completed' or story['locked']:
                # Don't make me draggable
-               story['class'] = 'state-%s' % state
+               options['edit'] = ''
+            story['class'] = format % options
+             
         return stories
 
 
@@ -215,7 +226,9 @@ class MoveStory(PloneKSSView):
             except ResourceLockedError:
                 logger.info('Resource locked')
                 IStatusMessage(self.request).addStatusMessage(
-                    _(u'Move failed: resource locked'), type='error')
+                    _(u"Move failed: story locked. "
+                      u"Unlock the story to move it."), 
+                    type='error')
                 cns.redirectRequest(story.absolute_url())
                 return
 

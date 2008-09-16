@@ -9,6 +9,7 @@ from Products.eXtremeManagement.content.Iteration import \
     UNACCEPTABLE_STATUSES as UNACCEPTABLE_STORY_STATUSES
 from Products.eXtremeManagement.utils import formatTime
 from Products.eXtremeManagement.utils import getStateSortedContents
+from webdav.Lockable import wl_isLocked
 
 
 class IterationView(XMBaseView):
@@ -65,7 +66,7 @@ class IterationView(XMBaseView):
             )
         return returnvalue
 
-    def stories(self, sort_by_state=True):
+    def stories(self, sort_by_state=True, locked_status=False):
         context = aq_inner(self.context)
         filter = dict(portal_type='Story',
                       sort_on='getObjPositionInParent')
@@ -76,12 +77,12 @@ class IterationView(XMBaseView):
         story_list = []
 
         for storybrain in storybrains:
-            info = self.storybrain2dict(storybrain)
+            info = self.storybrain2dict(storybrain, locked_status)
             story_list.append(info)
 
         return story_list
 
-    def storybrain2dict(self, brain):
+    def storybrain2dict(self, brain, locked_status=False):
         """Get a dict with info from this story brain.
         """
         context = aq_inner(self.context)
@@ -95,6 +96,11 @@ class IterationView(XMBaseView):
             estimated = brain.estimate
             actual = brain.actual_time
             progress = self.get_progress_perc(actual, estimated)
+
+        # Extract locked status if requested
+        locked = False
+        if locked_status:
+            locked = wl_isLocked(brain.getObject())
 
         # compute open task count
         searchpath = brain.getPath()
@@ -129,6 +135,7 @@ class IterationView(XMBaseView):
             is_completed = is_completed,
             open_tasks = open_tasks,
             completed_tasks = completed_tasks,
+            locked = locked,
         )
         return returnvalue
 

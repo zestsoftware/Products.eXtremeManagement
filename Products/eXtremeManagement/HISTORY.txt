@@ -1,5 +1,8 @@
 2.0 alpha (unreleased)
 ---------------------
+  - Added 'locked status' logic so the release planning view can display it.
+    Cleaned up release planning view logic, icluding class generation.
+    Corrected relevant tests.
 
   - Added CSS and exception-hardening to our previous work on reorderable
     stories - on failing to move a story we redirect to the story so it can be
