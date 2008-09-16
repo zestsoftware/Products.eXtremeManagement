@@ -8,7 +8,7 @@ Mirella van Teulingen <m.van.teulingen@zestsoftware.nl>
 
 Jodok Batlogg <jodok.batlogg@lovelysystems.com>
 
-Harald Frießnegger <harald.friessnegger@lovelysystems.com>
+Harald Friessnegger <harald.friessnegger@lovelysystems.com>
 
 Daniel Nouri <daniel.nouri@gmail.com>
 
@@ -19,5 +19,3 @@ Mark van Lent <m.vanlent@zestsoftware.nl>
 Hans-Peter Locher <hans-peter.locher@inquant.de>
 
 Stefan Eletzhofer <stefan.eletzhofer@inquant.de>
-
-
