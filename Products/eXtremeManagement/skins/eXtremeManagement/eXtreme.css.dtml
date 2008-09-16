@@ -422,6 +422,7 @@ UL.xm-assignees LI {
     font-size: 0.8em;
     border-right: 1px #999 dotted;
     border-left: 1px #999 dotted;
+    overflow: hidden;
 }
 
 .gantt-chart .bar.new,
