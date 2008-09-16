@@ -500,5 +500,56 @@ ul.iteration-droptarget li.story-draggable:hover {
 
 /* story drag/drop end*/
 
+/* actionMenu clone START */
+
+.actionMenu .actionMenuContentXM {
+    display: none;
+    z-index: 5;
+    position: absolute;
+    top: 1.6em;
+    right: -1px;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+.actionMenu.activated .actionMenuContentXM {
+    display: block !important;
+}
+.actionMenu.activated .actionMenuContentXM {
+    /* this one will be ignored by IE, it is here to fix the cut-off error in
+       Firefox */
+    display: table !important;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.actionMenu.deactivated .actionMenuContentXM {
+    display: none !important;
+}
+.actionMenu .actionMenuContentXM ul {
+    display: block;
+    background-color: &dtml-backgroundColor;;
+    border: &dtml-borderWidth; &dtml-contentViewBorderColor;;
+    border-style: &dtml-borderStyle; &dtml-borderStyle; &dtml-borderStyle; &dtml-borderStyle;;
+    margin: -2px 0 0 0;
+    padding: 0;
+}
+.actionMenu .actionMenuContentXM li {
+    float: none;
+    background-color: transparent;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+.actionMenu .actionMenuContentXM li a {
+    display: block;
+    white-space: nowrap;
+    margin: 0.2em;
+    border: 0;
+}
+.actionMenu .actionMenuContentXM li a:hover {
+    background-color: &dtml-contentViewBorderColor;;
+}
+/* actionMenu clone END */
 
 /* </dtml-with> */

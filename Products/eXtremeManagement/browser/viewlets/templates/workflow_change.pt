@@ -12,7 +12,7 @@
             class="arrowDownAlternative">▼</span>
     </a>
   </dt>
-  <dd class="actionMenuContent">
+  <dd class="actionMenuContentXM">
     <ul>
       <li tal:repeat="trans view/transitions">
         <a i18n:translate=""

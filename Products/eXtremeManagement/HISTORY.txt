@@ -1,7 +1,7 @@
 2.0 beta 1 (unreleased)
 -----------------------
 
-- Nothing yet.
+- Cloned and tweaked the CSS for our clone of the Plone authoring actionMenu.
 
 
 2.0 alpha (2008-09-16)
