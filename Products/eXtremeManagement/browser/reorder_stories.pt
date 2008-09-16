@@ -18,7 +18,14 @@
               id=""
               tal:attributes="id story/uid;
                               class string:${story/class} kssattr-source_id-${iteration/uid};">
-            <img tal:condition="story/locked" src="lock_icon.gif"/>
+            <tal:lock tal:condition="story/locked">
+              <a href=""
+                 tal:attributes="href story/url">
+              <img alt="Click on the lock icon to edit the story"
+                   i18n:attributes="alt"
+                   src="lock_icon.gif"/>
+              </a>
+            </tal:lock>
             <span tal:content="story/title"/>
           </li>
         </ul>
