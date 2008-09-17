@@ -1,7 +1,10 @@
-2.0 beta 1 (unreleased)
------------------------
+2.0 alpha 2 (unreleased)
+------------------------
 
-- Cloned and tweaked the CSS for our clone of the Plone authoring actionMenu.
+- Fixed UnicodeDecodeError in the state change viewlet.  [maurits]
+
+- Cloned and tweaked the CSS for our clone of the Plone authoring
+  actionMenu.  [simon]
 
 
 2.0 alpha (2008-09-16)
