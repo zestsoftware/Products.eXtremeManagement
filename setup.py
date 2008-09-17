@@ -5,7 +5,7 @@ import os
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = read('Products', 'eXtremeManagement', 'version.txt')
+version = read('Products', 'eXtremeManagement', 'version.txt').strip()
 readme = read('Products', 'eXtremeManagement', 'README.txt')
 authors = read('Products', 'eXtremeManagement', 'AUTHORS.txt')
 history = read('Products', 'eXtremeManagement', 'HISTORY.txt')
