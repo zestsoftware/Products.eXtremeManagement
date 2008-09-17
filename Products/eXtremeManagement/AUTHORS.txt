@@ -1,3 +1,6 @@
+Authors
+=======
+
 Ahmad Hadi <a.hadi@zestsoftware.nl>
 
 Jean-Paul Ladage <j.ladage@zestsoftware.nl>
@@ -19,3 +22,5 @@ Mark van Lent <m.vanlent@zestsoftware.nl>
 Hans-Peter Locher <hans-peter.locher@inquant.de>
 
 Stefan Eletzhofer <stefan.eletzhofer@inquant.de>
+
+Reinout van Rees <r.van.rees@zestsoftware.nl>

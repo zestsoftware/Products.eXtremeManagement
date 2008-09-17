@@ -1,29 +1,22 @@
 from setuptools import setup, find_packages
 import os
 
-versionfile = open(os.path.join('Products', 'eXtremeManagement', 'version.txt'))
-version = versionfile.read().strip()
-versionfile.close()
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
+version = read('Products', 'eXtremeManagement', 'version.txt')
+readme = read('Products', 'eXtremeManagement', 'README.txt')
+authors = read('Products', 'eXtremeManagement', 'AUTHORS.txt')
+history = read('Products', 'eXtremeManagement', 'HISTORY.txt')
+
+long_description = readme + '\n\n' + authors + '\n\n' + history
+
+
 setup(name='Products.eXtremeManagement',
       version=version,
-      description="Project administration which supports the eXtreme Programming Methodology.",
-      long_description=(
-      read('Products', 'eXtremeManagement', 'README.txt')
-      + '\n' +
-      'AUTHORS\n'
-      '=======\n'
-      + '\n' + read('Products', 'eXtremeManagement', 'AUTHORS.txt')
-      + '\n' +
-      'HISTORY\n'
-      '=======\n'
-      + '\n' +
-      read('Products', 'eXtremeManagement', 'HISTORY.txt')
-      ),
-      # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
+      description="Project administration which supports the eXtreme Programming methodology.",
+      long_description=long_description,
       classifiers=[
         "Framework :: Plone",
         "Framework :: Zope2",
