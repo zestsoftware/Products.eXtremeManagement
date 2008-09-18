@@ -83,4 +83,6 @@
     move_story-target_id: pass(dropContainerId);
     move_story-story_id: kssAttr(story_id, true);
     move_story-index: pass(dropIndex);
+    move_story-error: alert;
+    alert-message: 'Error trying to move story. Please reload page and try again.';
 }
