@@ -48,6 +48,7 @@
               id="assignees"
               tal:define="assignees story_view/get_possible_assignees"
               tal:condition="assignees">
+        <option value=""></option>
         <tal:assignees repeat="assignee assignees">
           <option value=""
                   selected=""
