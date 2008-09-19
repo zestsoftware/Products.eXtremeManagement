@@ -22,7 +22,31 @@ ADD_CONTENT_PERMISSIONS = {
 }
 
 # For kupu:
-OUR_LINKABLE_TYPES = ['Iteration', 'Story']
-OUR_COLLECTION_TYPES = ['ProjectFolder', 'Project', 'Iteration', 'Offer']
+OUR_LINKABLE_TYPES = [
+    'Iteration',
+    'Offer',
+    'PoiTask',
+    'Project',
+    'Story',
+    'Task',
+    # BBB types below can be removed in release 2.1
+    'CustomerFolder',
+    'Customer',
+    'ProjectFolder',
+    'ProjectMember',
+    ]
+
+OUR_COLLECTION_TYPES = [
+    'Iteration',
+    'Offer',
+    'PoiTask',
+    'Project',
+    'Story',
+    # BBB types below can be removed in release 2.1
+    'CustomerFolder',
+    'Customer',
+    'ProjectFolder',
+    'ProjectMember',
+    ]
 
 NEW_ROLES = ['Employee', 'Customer', 'Projectmanager']

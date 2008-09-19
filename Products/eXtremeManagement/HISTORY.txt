@@ -4,6 +4,12 @@ Change log
 1.6.2 (unreleased)
 ------------------
 
+- Added more of our content types to the kupu collections and
+  linkables.  Fixes
+  http://plone.org/products/extreme-management-tool/issues/72
+  (merged from trunk r72223)
+  [maurits]
+
 - Added Products.Poi to the install_requires in setup.py as Poi now
   has eggs for both branch 1.1 and trunk.  [maurits]
 
