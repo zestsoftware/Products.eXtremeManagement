@@ -35,7 +35,7 @@
 
 /* Workflow changes of tasks inside the story view (or anywhere else they are shown) */
 
-#task-list-for-story dd.actionMenuContent a:click {
+#task-list-for-story dd.actionMenuContentXM a:click {
     evt-click-preventdefault: True;
     evt-click-allowbubbling: True;
     action-server: xmChangeWorkflowState;

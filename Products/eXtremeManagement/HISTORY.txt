@@ -5,6 +5,9 @@ History
 2.0 beta 1 (unreleased)
 -----------------------
 
+- Corrected my CSS/KSS bug in the story workflow state changer, re: 
+  http://plone.org/products/extreme-management-tool/issues/78 [simon]
+
 - Added more of our content types to the kupu collections and
   linkables.  Fixes
   http://plone.org/products/extreme-management-tool/issues/72
