@@ -13,6 +13,9 @@
   <include
       zcml:condition="installed xm.tracker"
       package="xm.tracker" />
+  <include
+      zcml:condition="installed xm.theme"
+      package="xm.theme" />
   <include package="kss.plugin.yuidnd" />
 
   <include file="deprecation.zcml" />
