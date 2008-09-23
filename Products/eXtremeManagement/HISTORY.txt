@@ -5,6 +5,11 @@ History
 2.0 beta 1 (unreleased)
 -----------------------
 
+- Removed almost all descriptions for Customer as they're useless ("enter
+  address" description for an "address" field). Some of the descriptions were
+  wrong anyway. Fixes
+  http://plone.org/products/extreme-management-tool/issues/71 [reinout]
+
 - Added checks whether start/endDate are set as toLocalizedTime(None) returns
   today as value. So unset start/end dates looked like today. Fixes
   http://plone.org/products/extreme-management-tool/issues/81 [reinout]

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-09-16 09:48+0000\n"
+"POT-Creation-Date: 2008-09-23 13:15+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -28,17 +28,22 @@ msgstr ""
 msgid "Add Tasks"
 msgstr ""
 
+#. Default: "Click on the lock icon to edit the story"
+#: ./browser/reorder_stories.pt:24
+msgid "Click on the lock icon to edit the story"
+msgstr ""
+
 #. Default: "Drag stories around inside and between iterations."
 #: ./browser/reorder_stories.pt:9
 msgid "Drag stories around inside and between iterations."
 msgstr ""
 
-#: ./browser/reorder_stories.py:204
+#: ./browser/reorder_stories.py:215
 msgid "Drag/drop uids incorrect"
 msgstr ""
 
-#: ./browser/reorder_stories.py:218
-msgid "Move failed: resource locked"
+#: ./browser/reorder_stories.py:229
+msgid "Move failed: story locked. Unlock the story to move it."
 msgstr ""
 
 #. Default: "Note that only issues that aren't already mapped into this iteration will be added."
@@ -65,11 +70,11 @@ msgstr ""
 msgid "Send a mail to this user"
 msgstr "Envoyer un courriel à cet usager"
 
-#: ./browser/tasks.py:369
+#: ./browser/tasks.py:370
 msgid "Task added"
 msgstr ""
 
-#: ./browser/tasks.py:346
+#: ./browser/tasks.py:347
 msgid "Title is required"
 msgstr ""
 
@@ -116,7 +121,7 @@ msgid "days"
 msgstr ""
 
 #. Default: "Overview of tasks that belong to me.  The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
-#: ./skins/eXtremeManagement/iteration_view.pt:138
+#: ./skins/eXtremeManagement/iteration_view.pt:147
 #, fuzzy
 msgid "description-overview-my-tasks"
 msgstr "Tâches qui m'incombent.  Les totaux mentionnés s'appliquent à moi seul et en conséquence ils différent généralement d'une addition des valeurs de la colonne au-dessus."
@@ -502,12 +507,12 @@ msgid "heading-bookings-per-month"
 msgstr ""
 
 #. Default: "Hours per employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:101
+#: ./skins/eXtremeManagement/iteration_view.pt:110
 msgid "heading-hours-per-employee"
 msgstr "Heures par employé"
 
 #. Default: "My to-do tasks"
-#: ./skins/eXtremeManagement/iteration_view.pt:136
+#: ./skins/eXtremeManagement/iteration_view.pt:145
 msgid "heading-in-progress-tasks"
 msgstr "Mes tâches"
 
@@ -518,7 +523,7 @@ msgid "heading-my-task-overview"
 msgstr "Vue générale de mes tâches"
 
 #. Default: "My open tasks"
-#: ./skins/eXtremeManagement/iteration_view.pt:155
+#: ./skins/eXtremeManagement/iteration_view.pt:164
 msgid "heading-open-tasks"
 msgstr "Mes tâches ouvertes"
 
@@ -528,7 +533,7 @@ msgid "heading-related-xm-tasks"
 msgstr ""
 
 #. Default: "Stories"
-#: ./skins/eXtremeManagement/iteration_view.pt:68
+#: ./skins/eXtremeManagement/iteration_view.pt:77
 msgid "heading-stories"
 msgstr "Histoires-usager"
 
@@ -542,7 +547,7 @@ msgstr ""
 msgid "heading_current_iterations"
 msgstr "Itérations courantes"
 
-#. Default: "Reorder stories"
+#. Default: "Release planning"
 #: ./browser/reorder_stories.pt:8
 msgid "heading_reorder_stories"
 msgstr ""
@@ -568,7 +573,7 @@ msgid "help_needs_estimate"
 msgstr ""
 
 #. Default: "The Initial estimate of the story is a rough estimate in days.  The Tasks estimate is the total estimate in hours for all tasks.  If there is a big difference there could be a logical explanation.  You should investigate that to be sure."
-#: ./skins/eXtremeManagement/iteration_view.pt:89
+#: ./skins/eXtremeManagement/iteration_view.pt:98
 msgid "help_stories_table"
 msgstr ""
 
@@ -583,7 +588,7 @@ msgid "iteration"
 msgstr ""
 
 #. Default: "Add task"
-#: ./browser/add_task.pt:60
+#: ./browser/add_task.pt:61
 msgid "label_add_task"
 msgstr ""
 
@@ -613,12 +618,12 @@ msgid "label_minutes"
 msgstr ""
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/reorder_stories.py:222
+#: ./browser/reorder_stories.py:235
 msgid "label_moved_succesfully"
 msgstr ""
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/reorder_stories.py:247
+#: ./browser/reorder_stories.py:260
 msgid "label_order_updated_succesfully"
 msgstr ""
 
@@ -633,7 +638,7 @@ msgid "label_recalculate_estimated_time"
 msgstr ""
 
 #. Default: "Remaining budget (hours)"
-#: ./skins/eXtremeManagement/iteration_view.pt:83
+#: ./skins/eXtremeManagement/iteration_view.pt:92
 msgid "label_remaining_budget"
 msgstr ""
 
@@ -733,12 +738,12 @@ msgid "listingheader_email"
 msgstr "Courriel"
 
 #. Default: "Employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:109
+#: ./skins/eXtremeManagement/iteration_view.pt:118
 msgid "listingheader_employee"
 msgstr "Employé"
 
 #. Default: "End date"
-#: ./skins/eXtremeManagement/iteration_view.pt:45
+#: ./skins/eXtremeManagement/iteration_view.pt:50
 msgid "listingheader_enddate"
 msgstr "Date de fin"
 
@@ -808,17 +813,17 @@ msgid "listingheader_title"
 msgstr "Titre"
 
 #. Default: "Total Actual"
-#: ./skins/eXtremeManagement/iteration_view.pt:112
+#: ./skins/eXtremeManagement/iteration_view.pt:121
 msgid "listingheader_total_actual"
 msgstr "Total réel"
 
 #. Default: "Total Difference"
-#: ./skins/eXtremeManagement/iteration_view.pt:114
+#: ./skins/eXtremeManagement/iteration_view.pt:123
 msgid "listingheader_total_difference"
 msgstr "Différence entre les totaux"
 
 #. Default: "Total Estimate"
-#: ./skins/eXtremeManagement/iteration_view.pt:110
+#: ./skins/eXtremeManagement/iteration_view.pt:119
 msgid "listingheader_total_estimate"
 msgstr "Total estimé"
 
@@ -848,13 +853,23 @@ msgstr ""
 msgid "next"
 msgstr "Suivant:"
 
+#. Default: "No end date set yet."
+#: ./skins/eXtremeManagement/iteration_view.pt:54
+msgid "no_end_date"
+msgstr ""
+
 #. Default: "No projects are published yet!"
 #: ./skins/eXtremeManagement/project_administration.pt:87
 msgid "no_projects_found"
 msgstr "Aucun projet n'a été publié!"
 
+#. Default: "Warning: no start date set."
+#: ./skins/eXtremeManagement/iteration_view.pt:44
+msgid "no_start_date"
+msgstr ""
+
 #. Default: "No stories published yet!"
-#: ./skins/eXtremeManagement/iteration_view.pt:164
+#: ./skins/eXtremeManagement/iteration_view.pt:173
 msgid "no_stories_published"
 msgstr "Aucune histoire-usager n'a été publiée!"
 
