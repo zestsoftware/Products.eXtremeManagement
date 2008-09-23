@@ -40,7 +40,7 @@ setup(name='Products.eXtremeManagement',
           'xm.portlets',
           'xm.charting',
           'kss.plugin.yuidnd',
-          'Products.contentmigration == 1.0b4',
+          'Products.contentmigration >= 1.0b4',
           'Products.Poi',
       ],
       entry_points="""
