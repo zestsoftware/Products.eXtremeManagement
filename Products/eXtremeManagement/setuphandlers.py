@@ -1,6 +1,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.contentmigration.basemigrator.walker import CatalogWalker
-from Products.contentmigration.archetypes import ATFolderMigrator 
+from Products.contentmigration.archetypes import ATFolderMigrator
+from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 
 from Products.eXtremeManagement import config
 
@@ -67,10 +68,15 @@ def add_roles_that_should_be_handled_by_rolemap_xml(site, logger):
 def upgrade_from_16_to_20(context):
     site = getToolByName(context, 'portal_url').getPortalObject()
     types = dict(ProjectFolder='Folder', CustomerFolder='Folder')
-    
+
     class ProjectFolderMigrator(ATFolderMigrator):
         src_portal_type = src_meta_type = 'ProjectFolder'
         dst_portal_type = dst_meta_type = 'Folder'
+
+        def migrate_typerestriction(self):
+            constraints = ISelectableConstrainTypes(self.new)
+            constraints.setConstrainTypesMode(1)
+            constraints.setLocallyAllowedTypes(('Project',))
 
     projectfolders = CatalogWalker(site, ProjectFolderMigrator)
     projectfolders.go()
@@ -78,6 +84,11 @@ def upgrade_from_16_to_20(context):
     class CustomerFolderMigrator(ATFolderMigrator):
         src_portal_type = src_meta_type = 'CustomerFolder'
         dst_portal_type = dst_meta_type = 'Folder'
+
+        def migrate_typerestriction(self):
+            constraints = ISelectableConstrainTypes(self.new)
+            constraints.setConstrainTypesMode(1)
+            constraints.setLocallyAllowedTypes(('Customer',))
 
     customerfolders = CatalogWalker(site, CustomerFolderMigrator)
     customerfolders.go()
