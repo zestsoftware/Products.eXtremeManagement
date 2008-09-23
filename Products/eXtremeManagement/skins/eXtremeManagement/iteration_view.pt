@@ -39,16 +39,25 @@
             <tr>
               <th class="customer_info_header"
                   i18n:translate="listingheader_startdate">Start date</th>
-              <td tal:content="python:here.toLocalizedTime(here.startDate,long_format=0)" />
+              <td tal:content="python:here.toLocalizedTime(here.startDate, long_format=0)"
+                  tal:condition="here/startDate|nothing"/>
+              <td tal:condition="not: here/startDate|nothing"
+                  i18n:translate="no_start_date">
+                Warning: no start date set.
+              </td>
             </tr>
             <tr>
               <th class="customer_info_header"
                   i18n:translate="listingheader_enddate">End date</th>
-              <td tal:content="python:here.toLocalizedTime(here.endDate,long_format=0)" />
+              <td tal:content="python:here.toLocalizedTime(here.endDate, long_format=0)"
+                  tal:condition="here/endDate|nothing" />
+              <td tal:condition="not: here/endDate|nothing"
+                  i18n:translate="no_end_date">
+                No end date set yet.
+              </td>
             </tr>
 
           </table>
-
           <div class="visualClear"><!-- --></div>
         </div>
 
@@ -66,7 +75,7 @@
                                   show_progress python:False;
                                   show_totals python:True">
           <h1 i18n:translate="heading-stories">Stories</h1>
-          
+
           <table class="listing"
                  id="story-listing"
                  width="97%"
