@@ -95,7 +95,7 @@ msgid "Pending estimate"
 msgstr "Nevyřízený odhad"
 
 msgid "Private"
-msgstr "Nepřostupné"
+msgstr "Nepřístupné"
 
 msgid "Project"
 msgstr "Projekt"
