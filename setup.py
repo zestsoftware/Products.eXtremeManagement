@@ -45,7 +45,7 @@ setup(name='Products.eXtremeManagement',
           'xm.booking >= 0.5, <= 0.6dev',
           'xm.portlets >= 0.5, <= 0.6dev',
 	  'kss.plugin.yuidnd',
-          'Products.contentmigration == 1.0b4',
+          'Products.contentmigration >= 1.0b4',
           'Products.Poi'
       ],
       entry_points="""
