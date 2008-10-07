@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-10-07 15:13+0000\n"
-"PO-Revision-Date: 2008-10-07 17:14+0200\n"
+"POT-Creation-Date: 2008-10-07 15:46+0000\n"
+"PO-Revision-Date: 2008-10-07 17:47+0200\n"
 "Last-Translator: Reinout van Rees <reinout@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -602,7 +602,7 @@ msgid "label_date_completed"
 msgstr "Afrondingsdatum"
 
 #. Default: "Date due"
-#: ./browser/inprogress.pt:28
+#: ./browser/inprogress.pt:20
 msgid "label_date_due"
 msgstr "Deadline"
 
@@ -656,8 +656,13 @@ msgstr "Herbereken geschatte tijd"
 msgid "label_remaining_budget"
 msgstr "Resterend budget (uren)"
 
+#. Default: "Total estimate in hours"
+#: ./browser/inprogress.pt:23
+msgid "label_total_hours"
+msgstr "Totaal aantal verwachte uren"
+
 #. Default: "Unknown date"
-#: ./browser/inprogress.pt:31
+#: ./browser/inprogress.pt:44
 msgid "label_unknown_date"
 msgstr "Onbekende datum"
 

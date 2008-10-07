@@ -454,8 +454,8 @@ UL.xm-assignees LI {
 
 /* story drag/drop start */
 
-/* 
-    TODO Do we want a min-height (which is ignored by IE) or a default value like 
+/*
+    TODO Do we want a min-height (which is ignored by IE) or a default value like
     'no stories' (which explains the gap in the interface) ?
 */
 ul.iteration-droptarget {
@@ -551,5 +551,28 @@ ul.iteration-droptarget li.story-draggable:hover {
     background-color: &dtml-contentViewBorderColor;;
 }
 /* actionMenu clone END */
+
+
+/* Management project listings START */
+
+table.projectlist tr.projectname {
+    font-size: 120%;
+    font-weight: bold;
+    background-color: &dtml-globalBackgroundColor;;
+    line-height: 2em;
+}
+
+table.projectlist a {
+    text-decoration: none;
+    color: black;
+}
+
+table.projectlist td.right {
+    text-align: right;
+}
+
+
+/* Management project listings END */
+
 
 /* </dtml-with> */

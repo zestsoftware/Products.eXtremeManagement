@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-10-07 15:13+0000\n"
+"POT-Creation-Date: 2008-10-07 15:46+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -608,7 +608,7 @@ msgid "label_date_completed"
 msgstr ""
 
 #. Default: "Date due"
-#: ./browser/inprogress.pt:28
+#: ./browser/inprogress.pt:20
 msgid "label_date_due"
 msgstr ""
 
@@ -662,8 +662,13 @@ msgstr ""
 msgid "label_remaining_budget"
 msgstr ""
 
+#. Default: "Total estimate in hours"
+#: ./browser/inprogress.pt:23
+msgid "label_total_hours"
+msgstr ""
+
 #. Default: "Unknown date"
-#: ./browser/inprogress.pt:31
+#: ./browser/inprogress.pt:44
 msgid "label_unknown_date"
 msgstr ""
 
