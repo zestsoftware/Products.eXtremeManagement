@@ -5,7 +5,10 @@ History
 2.0 beta 1 (unreleased)
 -----------------------
 
-- Adding /invoicing view for managers that lists all invoicable
+- Added /inprogress view for managers that lists all in-progress iterations.
+  [reinout]
+
+- Added /invoicing view for managers that lists all invoicable
   iterations. [reinout]
 
 - Removed almost all descriptions for Customer as they're useless ("enter
