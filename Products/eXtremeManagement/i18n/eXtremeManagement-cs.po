@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-09-23 13:15+0000\n"
+"POT-Creation-Date: 2008-10-07 13:35+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -609,6 +609,11 @@ msgstr ""
 msgid "label_include_global_members"
 msgstr "Zahrnout globální zaměstnance"
 
+#. Default: "Invoicing overview"
+#: ./browser/invoicing.pt:10
+msgid "label_invoicing_overview"
+msgstr ""
+
 #. Default: "Minutes"
 #: ./skins/eXtremeManagement/update_hours_form.cpt:115
 msgid "label_minutes"
@@ -637,6 +642,11 @@ msgstr ""
 #. Default: "Remaining budget (hours)"
 #: ./skins/eXtremeManagement/iteration_view.pt:92
 msgid "label_remaining_budget"
+msgstr ""
+
+#. Default: "Unknown date"
+#: ./browser/invoicing.pt:31
+msgid "label_unknown_date"
 msgstr ""
 
 #. Default: "last 12 months"
