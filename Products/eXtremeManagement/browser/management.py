@@ -55,6 +55,7 @@ class InvoicingView(XMBaseView):
         for item in history:
             if item['action'] == 'complete':
                 completion_date = item['time']
+        end_date = obj.getEndDate()
         returnvalue = dict(
             url = brain.getURL(),
             title = brain.Title,
@@ -68,6 +69,7 @@ class InvoicingView(XMBaseView):
             review_state_title = self.workflow.getTitleForStateOnType(
                                  review_state_id, 'Iteration'),
             completion_date = completion_date,
+            end_date = end_date,
             brain= brain,
         )
         return returnvalue

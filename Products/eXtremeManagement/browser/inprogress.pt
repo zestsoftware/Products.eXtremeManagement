@@ -7,8 +7,8 @@
 
     <div metal:fill-slot="main"
          id="invoicing-overview">
-      <h1 i18n:translate="label_invoicing_overview">
-        Invoicing overview
+      <h1 i18n:translate="label_inprogress_overview">
+        In-progress overview
       </h1>
 
       <tal:projects tal:repeat="project view/projectlist">
@@ -25,20 +25,20 @@
                                href iteration/url;"/>
           </h3>
           <dl>
-            <dt>
-              Date completed
+            <dt i18n:translate="label_date_due">
+              Date due
             </dt>
-            <dd tal:condition="not: iteration/completion_date"
+            <dd tal:condition="not: iteration/end_date"
                 i18n:translate="label_unknown_date">
               Unknown date
             </dd>
-            <dd tal:condition="iteration/completion_date"
-                tal:content="python:context.toLocalizedTime(iteration['completion_date'],
+            <dd tal:condition="iteration/end_date"
+                tal:content="python:context.toLocalizedTime(iteration['end_date'],
                              long_format=0)"/>
             <dt>
-              Hours worked
+              Total estimate in hours
             </dt>
-            <dd tal:content="iteration/actual"/>
+            <dd tal:content="iteration/estimate"/>
           </dl>
 
         </tal:iterations>

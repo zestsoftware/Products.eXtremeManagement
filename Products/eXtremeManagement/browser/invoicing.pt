@@ -25,7 +25,7 @@
                                href iteration/url;"/>
           </h3>
           <dl>
-            <dt>
+            <dt i18n:translate="label_date_completed">
               Date completed
             </dt>
             <dd tal:condition="not: iteration/completion_date"
