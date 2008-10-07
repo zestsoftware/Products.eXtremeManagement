@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="eXtremeManagement">
+
+  <body>
+
+    <div metal:fill-slot="main"
+         id="invoicing-overview">
+      <h1 i18n:translate="label_invoicing_overview">
+        Invoicing overview
+      </h1>
+
+      <tal:projects tal:repeat="project view/projectlist">
+        <h2>
+          <a tal:content="project/title"
+             tal:attributes="title project/description;
+                             href project/url;"/>
+        </h2>
+        <tal:iterations tal:repeat="iteration project/iterations">
+
+          <h3>
+            <a tal:content="iteration/title"
+               tal:attributes="title iteration/description;
+                               href iteration/url;"/>
+          </h3>
+          <dl>
+            <dt>
+              Date completed
+            </dt>
+            <dd tal:condition="not: iteration/completion_date"
+                i18n:translate="label_unknown_date">
+              Unknown date
+            </dd>
+            <dd tal:condition="iteration/completion_date"
+                tal:content="python:context.toLocalizedTime(iteration['completion_date'],
+                             long_format=0)"/>
+            <dt>
+              Hours worked
+            </dt>
+            <dd tal:content="iteration/actual"/>
+          </dl>
+
+        </tal:iterations>
+      </tal:projects>
+
+    </div>
+  </body>
+</html>
