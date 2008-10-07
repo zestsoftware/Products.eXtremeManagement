@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-10-07 13:35+0000\n"
+"POT-Creation-Date: 2008-10-07 15:13+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -529,6 +529,16 @@ msgstr ""
 msgid "label_budgetHours"
 msgstr ""
 
+#. Default: "Date completed"
+#: ./browser/invoicing.pt:28
+msgid "label_date_completed"
+msgstr ""
+
+#. Default: "Date due"
+#: ./browser/inprogress.pt:28
+msgid "label_date_due"
+msgstr ""
+
 #. Default: "Hours"
 #: ./skins/eXtremeManagement/update_hours_form.cpt:93
 msgid "label_hours"
@@ -537,6 +547,11 @@ msgstr ""
 #. Default: "Include global Employees"
 #: content/Project.py
 msgid "label_include_global_members"
+msgstr ""
+
+#. Default: "In-progress overview"
+#: ./browser/inprogress.pt:10
+msgid "label_inprogress_overview"
 msgstr ""
 
 #. Default: "Invoicing overview"
@@ -575,7 +590,7 @@ msgid "label_remaining_budget"
 msgstr ""
 
 #. Default: "Unknown date"
-#: ./browser/invoicing.pt:31
+#: ./browser/inprogress.pt:31
 msgid "label_unknown_date"
 msgstr ""
 

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-10-07 13:35+0000\n"
+"POT-Creation-Date: 2008-10-07 15:13+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -599,6 +599,16 @@ msgstr ""
 msgid "label_budgetHours"
 msgstr ""
 
+#. Default: "Date completed"
+#: ./browser/invoicing.pt:28
+msgid "label_date_completed"
+msgstr ""
+
+#. Default: "Date due"
+#: ./browser/inprogress.pt:28
+msgid "label_date_due"
+msgstr ""
+
 #. Default: "Hours"
 #: ./skins/eXtremeManagement/update_hours_form.cpt:93
 msgid "label_hours"
@@ -608,6 +618,11 @@ msgstr ""
 #: content/Project.py
 msgid "label_include_global_members"
 msgstr "Zahrnout globální zaměstnance"
+
+#. Default: "In-progress overview"
+#: ./browser/inprogress.pt:10
+msgid "label_inprogress_overview"
+msgstr ""
 
 #. Default: "Invoicing overview"
 #: ./browser/invoicing.pt:10
@@ -645,7 +660,7 @@ msgid "label_remaining_budget"
 msgstr ""
 
 #. Default: "Unknown date"
-#: ./browser/invoicing.pt:31
+#: ./browser/inprogress.pt:31
 msgid "label_unknown_date"
 msgstr ""
 
