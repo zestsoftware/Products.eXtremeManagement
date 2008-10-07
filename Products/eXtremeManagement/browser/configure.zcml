@@ -150,6 +150,14 @@
       />
 
   <page
+      name="inprogress"
+      class=".management.InProgressView"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="cmf.ManagePortal"
+      template="inprogress.pt"
+      />
+
+  <page
       name="offer"
       class=".offers.OfferView"
       for="Products.eXtremeManagement.interfaces.IXMOffer"

@@ -17,6 +17,8 @@ from Products.eXtremeManagement.utils import formatTime
 
 class InvoicingView(XMBaseView):
 
+    iteration_review_state = 'completed'
+
     def projectlist(self):
         context = aq_inner(self.context)
         searchpath = '/'.join(context.getPhysicalPath())
@@ -28,7 +30,8 @@ class InvoicingView(XMBaseView):
             searchpath = projectbrain.getPath()
             # Search for Iterations that are ready to get invoiced
             iterationbrains = self.catalog.searchResults(
-                portal_type='Iteration', review_state='completed',
+                portal_type='Iteration',
+                review_state=self.iteration_review_state,
                 path=searchpath)
             if len(iterationbrains) > 0:
                 iteration_list = []
@@ -78,3 +81,8 @@ class InvoicingView(XMBaseView):
             description = brain.Description,
         )
         return returnvalue
+
+
+class InProgressView(InvoicingView):
+
+    iteration_review_state = 'in-progress'
