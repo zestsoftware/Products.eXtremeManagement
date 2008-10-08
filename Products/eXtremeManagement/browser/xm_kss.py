@@ -45,7 +45,7 @@ class ViewletReloader(object):
         if IXMStory.providedBy(self.context):
             # only do this if the context is actually a Story.
             zope = self.view.getCommandSet('zope')
-            zope.refreshProvider('#task-list-for-story',
+            zope.refreshProvider('.tasklist_table',
                                  'xm.tasklist.simple')
             zope.refreshViewlet('#add-task', 'plone.belowcontentbody',
                                 'xm.add_task_form')
@@ -94,7 +94,7 @@ class WorkflowGadget(PloneKSSView):
             selector = ksscore.getCssSelector('.contentViews')
             zopecommands.refreshViewlet(selector, 'plone.contentviews',
                                         'plone.contentviews')
-            zopecommands.refreshProvider('#task-list-for-story',
+            zopecommands.refreshProvider('.tasklist_table',
                                          'xm.tasklist.simple')
             plonecommands.refreshContentMenu()
         else:

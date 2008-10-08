@@ -5,6 +5,10 @@ History
 2.0 beta 1 (unreleased)
 -----------------------
 
+- Refactored KSS, CSS, JS and Python for workflow gadgets. Removed duplicated 
+  ids (#task-list-for-story) in favour of existing class (.tasklist_table), 
+  added KSS rebinding of workflow menus and stripped redundant CSS. [simon]
+
 - Added /inprogress view for managers that lists all in-progress iterations.
   [reinout]
 

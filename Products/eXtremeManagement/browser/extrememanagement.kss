@@ -35,7 +35,7 @@
 
 /* Workflow changes of tasks inside the story view (or anywhere else they are shown) */
 
-#task-list-for-story dd.actionMenuContentXM a:click {
+table.tasklist_table dd.actionMenuContent a:click {
     evt-click-preventdefault: True;
     evt-click-allowbubbling: True;
     action-server: xmChangeWorkflowState;
@@ -43,6 +43,13 @@
     xmChangeWorkflowState-url: nodeAttr(href);
 }
 
+/* Rebind the menus after a tasklist_table is loaded */
+dl.actionMenu:load {
+    action-client: bindActionMenus;
+}
+/*table.tasklist_table:load {
+    action-client: bindActionMenus;
+}*/
 
 /* reorder_stories.pt */
 

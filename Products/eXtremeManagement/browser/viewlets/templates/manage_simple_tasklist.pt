@@ -6,7 +6,6 @@
             show_story view/show_story;">
 
   <table class="listing nosort tasklist_table"
-         id="task-list-for-story"
          border="1"
          width="100%"
          cellpadding="0"
@@ -72,7 +71,6 @@
     </tr>
   </table>
   <p class="discreet tasklist_table"
-     id="task-list-for-story"
      tal:condition="not:items"
      i18n:translate="no_tasks_defined">
     No tasks defined yet.

@@ -12,7 +12,7 @@
             class="arrowDownAlternative">&#9660;</span>
     </a>
   </dt>
-  <dd class="actionMenuContentXM">
+  <dd class="actionMenuContent">
     <ul>
       <li tal:repeat="trans view/transitions">
         <a i18n:translate=""
