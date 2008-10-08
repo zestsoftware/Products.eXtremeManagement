@@ -43,7 +43,7 @@ table.tasklist_table dd.actionMenuContent a:click {
     xmChangeWorkflowState-url: nodeAttr(href);
 }
 
-/* Rebind the menus after a tasklist_table is loaded */
+/* Rebind all menus after an actionMenu is loaded */
 dl.actionMenu:load {
     action-client: bindActionMenus;
 }
