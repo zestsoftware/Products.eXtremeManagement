@@ -42,6 +42,7 @@ setup(name='Products.eXtremeManagement',
           'kss.plugin.yuidnd',
           'Products.contentmigration >= 1.0b4',
           'Products.Poi',
+          'pygooglechart',
       ],
       entry_points="""
       # -*- Entry points: -*-

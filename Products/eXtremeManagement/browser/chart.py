@@ -5,6 +5,7 @@ from Products.Five import BrowserView
 from xm.booking.timing.interfaces import IActualHours
 from chart_api import Chart, LINE, nice_axis_step
 
+from pygooglechart import GroupedVerticalBarChart, SimpleLineChart, Axis, ExtendedData
 
 class IChartView(interface.Interface):
     """Interface for charts"""
@@ -46,6 +47,41 @@ class ChartView(BrowserView):
         return total
 
     def velocity_chart(self):
+        
+        graph_width = 750
+        graph_height = 300
+
+        estimate_data = []
+        work_data = []
+        labels = []
+        estimate_max = 0
+        work_max = 0
+        
+        iterations = self.get_iterations()
+
+        for it in iterations:
+            # XXX self.get_total_estimate_iteration(iter) should be doable
+            #      in a neater way, just like IActualHours(iter).actual_time
+            iter_total = int(self.get_total_estimate_iteration(it)+0.5)
+            work_total = int((IActualHours(it).actual_time / 8.0) + 0.5)
+            estimate_data.append(iter_total)
+            work_data.append(work_total)
+            estimate_max = max([iter_total, estimate_max])
+            work_max = max([work_total, work_max])
+            labels.append(it.title_or_id())
+            
+        chart = SimpleLineChart(graph_width, graph_height, x_range=(1,len(iterations)))
+        chart.add_data(estimate_data)
+        chart.add_data(work_data)
+        chart.set_colours(['FF0000', '0000FF'])
+        chart.set_legend(['estimated','worked hours'])
+        chart.set_legend_position('b')
+        chart.set_axis_labels(Axis.BOTTOM, range(1,len(iterations)+1))
+        chart.set_axis_range(Axis.LEFT, 0, max(estimate_max, work_max))
+
+        return chart.get_url(data_class=ExtendedData)
+
+    def old_velocity_chart(self):
         iterations = self.get_iterations()
         estimate_data = []
         work_data = []
