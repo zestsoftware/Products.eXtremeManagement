@@ -12,11 +12,6 @@
                        current_iterations view/current_iterations;
                        open_iterations view/open_iterations;">
 
-        <div tal:condition="context/@@chart/has_data">
-          <img tal:attributes="src context/@@chart/velocity_chart"
-               alt="velocity chart"
-               i18n:attributes="alt" />
-        </div>
 
         <p class="documentDescription">
           <metal:field use-macro="python:here.widget('description', mode='view')">

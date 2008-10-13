@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="eXtremeManagement">
+
+  <body>
+    <div metal:fill-slot="main">
+      <h1 i18n:translate="heading_project_chart_overview">Project Overview Chart</h1>
+      <p i18n:translate="">Information on this chart...</p>
+
+      <div tal:condition="view/has_data">
+        <img tal:attributes="src view/velocity_chart"
+             alt="velocity chart"
+             i18n:attributes="alt" />
+      </div>
+
+    </div>
+  </body>
+</html>

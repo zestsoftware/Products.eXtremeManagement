@@ -256,6 +256,16 @@
       allowed_interface=".chart.IChartView"
       />
 
+  <page
+      name="chart_view"
+      class=".chart.ChartView"
+      for="*"
+      permission="zope2.View"
+      template="project_chart.pt"
+      allowed_interface=".chart.IChartView"
+      />
+
+
   <!-- Global information about xm. -->
   <page
       name="xm_global_state"

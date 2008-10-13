@@ -5,7 +5,8 @@ from Products.Five import BrowserView
 from xm.booking.timing.interfaces import IActualHours
 from chart_api import Chart, LINE, nice_axis_step
 
-from pygooglechart import GroupedVerticalBarChart, SimpleLineChart, Axis, ExtendedData
+from pygooglechart import SimpleLineChart, Axis, ExtendedData
+
 
 class IChartView(interface.Interface):
     """Interface for charts"""
@@ -20,7 +21,9 @@ class IChartView(interface.Interface):
 
 
 class ChartView(BrowserView):
-
+    """ Helper view for generating the chart url and if charts are
+        available """
+        
     def has_data(self):
         portal_properties = getToolByName(self.context, 'portal_properties')
         xm_props = portal_properties.xm_properties
