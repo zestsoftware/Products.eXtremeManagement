@@ -15,7 +15,21 @@
       </div>
 
 
-      <table tal:condition="view/has_data">
+      <table tal:condition="view/has_data" width="50%">
+          <tr>
+              <th>#iteration</th>
+              <th>iteration name</th>
+              <th>estimate (days)</th>
+              <th>worked (days)</th>
+          </tr>
+          <tr tal:repeat="iteration view/velocity_table">
+             <td tal:define="myindex repeat/iteration/index;
+                             number python:myindex+1;"
+                 tal:content="number"></td>
+             <td tal:content="python:iteration[0]()"></td>
+             <td tal:content="python:iteration[1]"></td>
+             <td tal:content="python:iteration[2]"></td>
+          </tr>
       </table>
     </div>
   </body>

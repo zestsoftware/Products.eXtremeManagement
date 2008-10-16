@@ -65,7 +65,11 @@ class Story(OrderedBaseFolder):
 
     @property
     def size_estimate(self):
-        return self.getRoughEstimate()
+        "return the size estimate on a story in days"
+        if self.getRoughEstimate():
+            return self.getRoughEstimate()
+        else:
+            return 0.0
 
     security.declarePublic('recalc')
 

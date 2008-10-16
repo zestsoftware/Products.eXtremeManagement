@@ -84,7 +84,7 @@ class ChartView(BrowserView):
         total = 0.0
         for story in (i for i in iteration.contentValues()
                               if i.portal_type=='Story'):
-            if ISizeEstimate(story):
+            if ISizeEstimate.providedBy(story):
                 total += ISizeEstimate(story).size_estimate
         return total
         
