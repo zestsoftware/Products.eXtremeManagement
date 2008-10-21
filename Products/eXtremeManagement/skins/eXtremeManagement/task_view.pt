@@ -33,6 +33,14 @@
           </metal:field>
         </p>
 
+        <dl tal:define="carried_over task/getCarriedOverFrom/title_or_id|nothing">
+          <dt class="carried_over"
+            tal:condition="carried_over">Carried Over From</dt>
+          <dd class="carried_over" 
+              tal:condition="carried_over"
+              tal:content="carried_over"></dd>
+        </dl>
+
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
         <div class="xm-details">

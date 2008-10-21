@@ -14,6 +14,7 @@ from Products.Archetypes.atapi import registerType
 from Products.Archetypes.atapi import Schema
 
 from Products.eXtremeManagement.interfaces import IXMIteration
+from Products.eXtremeManagement.content import unitshared
 
 schema = Schema((
     DateTimeField(
@@ -48,12 +49,12 @@ schema = Schema((
 FolderSchema = OrderedBaseFolderSchema.copy()
 FolderSchema['description'].isMetadata = False
 FolderSchema['description'].schemata = 'default'
-Iteration_schema = FolderSchema + schema
+Iteration_schema = FolderSchema + schema + unitshared.unit_shared_schema
 
 UNACCEPTABLE_STATUSES = ['draft', 'pending']
 
 
-class Iteration(OrderedBaseFolder):
+class Iteration(OrderedBaseFolder, unitshared.UnitSharedMixin):
     """
     """
     security = ClassSecurityInfo()

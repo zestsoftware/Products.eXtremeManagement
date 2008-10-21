@@ -284,4 +284,26 @@
       allowed_interface=".interfaces.IMyProjects"
       />
 
+  <configure package="Products.eXtremeManagement">
+    <zope:class class=".content.Iteration.Iteration">
+      <zope:implements interface=".interfaces.ICarryOverable" />
+    </zope:class>
+
+    <zope:class class=".content.Story.Story">
+      <zope:implements interface=".interfaces.ICarryOverable" />
+    </zope:class>
+
+    <zope:class class=".content.Task.Task">
+      <zope:implements interface=".interfaces.ICarryOverable" />
+    </zope:class>
+
+    <page
+        name="xm-carry-over"
+        class=".browser.carryover.CarryOver"
+        for=".interfaces.ICarryOverable"
+        permission="zope2.View"
+        allowed_interface=".browser.carryover.ICarryOver"
+        />
+  </configure>
+
 </configure>

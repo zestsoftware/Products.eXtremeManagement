@@ -45,9 +45,39 @@
                   acquired="False">
   </permission-map>
  </state>
+ <state state_id="carried-over" title="Carried Over">
+  <exit-transition transition_id="reactivate"/>
+  <exit-transition transition_id="invoice"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="List folder contents"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="eXtremeManagement: Add Story"
+                  acquired="False">
+  </permission-map>
+ </state>
  <state state_id="in-progress" title="In-progress">
   <exit-transition transition_id="retract"/>
   <exit-transition transition_id="complete"/>
+  <exit-transition transition_id="carry-over"/>
   <permission-map name="Access contents information"
                   acquired="False">
    <permission-role>Customer</permission-role>
@@ -191,6 +221,17 @@
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
    <guard-role>Projectmanager</guard-role>
+   <guard-expression>here/completable</guard-expression>
+  </guard>
+ </transition>
+ <transition transition_id="carry-over" title="Carry Over"
+             new_state="carried-over" trigger="WORKFLOWMETHOD"
+             before_script="" after_script="">
+  <description>Carry over into another iteration.</description>
+  <action url="" category="workflow">Carry Over</action>
+  <guard>
+   <guard-role>Employee</guard-role>
+   <guard-role>Manager</guard-role>
    <guard-expression>here/completable</guard-expression>
   </guard>
  </transition>

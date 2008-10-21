@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      i18n:domain="eXtremeManagement"
+      metal:use-macro="here/main_template/macros/master">
+
+<body>
+<metal:block metal:fill-slot="main"
+                 tal:define="view nocall:context/@@xm-carry-over;
+                             possible_iterations view/possible_iterations;
+                             target_it view/targetted_iteration">
+
+  <form tal:attributes="action string:${here/absolute_url}/${template/id};"
+        method="POST">
+    <fieldset>
+      <legend>Carrying over content</legend>
+
+      <dl>
+        <dt>Target Iteration</dt>
+        <dd tal:content="target_it/title_or_id"></dd>
+      </dl>
+
+      <table class="listing">
+        <tr>
+          <th i18n:translate="listingheader-story-name">
+            Story Name
+          </th>
+          <th i18n:translate="listingheader-action">
+            Action
+          </th>
+        </tr>
+        <tal:block repeat="story view/story_actions">
+          <tr>
+            <td tal:content="story/title"></td>
+            <td tal:content="story/action_label"></td>
+          </tr>
+          <tr>
+            <th i18n:translate="listingheader-task-name">
+              Task Name
+            </th>
+            <th i18n:translate="listingheader-action">
+              Action
+            </th>
+          </tr>
+          <tal:block repeat="task story/task_actions">
+            <tr>
+              <td tal:content="task/title" style="text-align: right"></td>
+              <td tal:content="task/action_label"></td>
+            </tr>
+          </tal:block>
+        </tal:block>
+      </table>
+
+      <tal:block repeat="val view/safe_action_state">
+        <input type="hidden"
+               tal:attributes="name val/key;
+                               value val/value;" />
+      </tal:block>
+
+      <input type="hidden" name="iteration" value="iteration0000001"
+             tal:attributes="value target_it/UID" />
+
+      <input type="submit" name="form_complete" 
+             value="Complete" class="context"
+             tal:condition="possible_iterations" />
+      <input type="submit" name="form.button.cancel" 
+             value="Cancel" class="standalone" />
+
+      <input type="hidden" name="form.submitted" value="1" />
+
+    </fieldset>
+  </form>
+
+</metal:block>
+</body>
+</html>

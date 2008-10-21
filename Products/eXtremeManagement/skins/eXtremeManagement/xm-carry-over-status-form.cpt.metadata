@@ -1,0 +1,10 @@
+[default]
+title=Proceed With Carry Over to Iteration
+
+[security]
+View=0:Authenticated
+
+[actions]
+action.success=traverse_to:string:xm-carry-over-action
+action.success..cancel=redirect_to:string:${object/absolute_url}
+action.failure=traverse_to:string:xm-carry-over-status-form

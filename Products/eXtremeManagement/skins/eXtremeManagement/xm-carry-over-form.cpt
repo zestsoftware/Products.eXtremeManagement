@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      i18n:domain="eXtremeManagement"
+      metal:use-macro="here/main_template/macros/master">
+
+<body>
+<metal:block metal:fill-slot="main"
+                 tal:define="view nocall:context/@@xm-carry-over;
+                             possible_iterations view/possible_iterations">
+
+  <form tal:attributes="action string:${here/absolute_url}/${template/id};">
+
+    <p class="documentDescription" tal:condition="not:possible_iterations">
+      There are no iterations for the current project that are able to
+      be carried into.  Please check your alternate iterations and ensure
+      one of them is in either the 'In-progress' or 'New' states.
+    </p>
+
+    <div class="field" tal:condition="possible_iterations">
+      <label for="iteration">Choose an Iteration</label>
+      <div class="formHelp"></div>
+      <select name="iteration">
+        <option tal:repeat="iteration view/possible_iterations"
+                tal:attributes="value iteration/UID"
+                tal:content="iteration/title">
+        </option>
+      </select>
+    </div>
+
+    <input type="submit" name="form_continue" 
+           value="Continue" class="context"
+           tal:condition="possible_iterations" />
+    <input type="submit" name="form.button.cancel" 
+           value="Cancel" class="standalone" />
+
+    <input type="hidden" name="form.submitted" value="1" />
+  </form>
+
+</metal:block>
+</body>
+</html>

@@ -13,6 +13,7 @@ from Products.Archetypes.atapi import Schema
 from Products.Archetypes.atapi import TextField
 
 from Products.eXtremeManagement.interfaces import IXMStory
+from Products.eXtremeManagement.content import unitshared
 
 log = logging.getLogger("eXtremeManagement Story")
 
@@ -45,10 +46,10 @@ schema = Schema((
 
 FolderSchema = OrderedBaseFolderSchema.copy()
 FolderSchema['id'].widget.visible = dict(edit=0, view=0)
-Story_schema = FolderSchema + schema
+Story_schema = FolderSchema + schema + unitshared.unit_shared_schema
 
 
-class Story(OrderedBaseFolder):
+class Story(OrderedBaseFolder, unitshared.UnitSharedMixin):
     """
     """
     security = ClassSecurityInfo()

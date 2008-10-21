@@ -1,0 +1,200 @@
+.. -*-doctest-*-
+
+=====================
+Story/Task Carry Over
+=====================
+
+Basic Setup
+===========
+
+Need to configure some mock classes first.
+
+    >>> from zope.interface import interfaces, alsoProvides
+    >>> import Acquisition
+    >>> class Mock(Acquisition.Explicit):
+    ...     def __init__(self, id='', ifaces=[], comment=''):
+    ...         self.id = id
+    ...         self.comment = comment
+    ...         self.wfactions = []
+    ...         for x in ifaces:
+    ...             alsoProvides(self, x)
+    ...     def __str__(self):
+    ...         data = 'id=%s; ' % self.id
+    ...         if self.comment:
+    ...             data += 'comment=%s; ' % self.comment
+    ...         if self.wfactions:
+    ...             data += 'actions=%s; ' % ', '.join(self.wfactions)
+    ...         return '<%s %s>' % (self.__class__.__name__, data)
+    ...     __repr__ = __str__
+    ...     def getId(self):
+    ...         return self.id
+    ...     def reindexObject(self): pass
+
+    >>> mock3 = Mock('mock3')
+    >>> mock2 = Mock('mock2').__of__(mock3)
+    >>> mock1 = Mock('mock1').__of__(mock2)
+
+And import the module to test.
+
+    >>> from Products.eXtremeManagement.browser import carryover
+
+Finding Objects that Provide Interfaces
+=======================================
+
+Used to determine what the possible target locations may be, the
+``find_provides`` function will help find objects that provide interfaces.
+
+When no object provides the interface, None will be returned.
+
+    >>> carryover.find_provides(mock1, interfaces.IElement) is None
+    True
+
+The default limit of 10 will mean that the 3rd item in the chain
+will get picked up properly when it provides the requested interface.
+
+    >>> alsoProvides(mock1.aq_parent.aq_parent, interfaces.IElement)
+    >>> carryover.find_provides(mock1, interfaces.IElement)
+    <Mock id=mock3; >
+
+Of course specifying a limit that will stop short of checking the
+object that implements the interface will yield None.
+
+    >>> carryover.find_provides(mock1, interfaces.IElement, 2) is None
+    True
+
+Serializing Actions for Form Carry Through
+==========================================
+
+In some cases it's required to take the given story actions and seralize
+to a state that can be converted to a string for easy transporation via
+form requests.
+
+    >>> carryover.serialize_action_state([])
+    []
+
+    >>> task_actions = [{'source_uid': 'task001', 'action': 'taskfoo',
+    ...                  'target_uid': ''}]
+
+    >>> actions = [{'source_uid': 'story001', 'action': 'foo',
+    ...             'target_uid': '',
+    ...             'task_actions': task_actions}]
+    >>> plain = [x['key']+'='+x['value']
+    ...          for x in carryover.serialize_action_state(actions)]
+    >>> print '\n'.join(plain)
+    stories:list=story001
+    source_story_story001=foo
+    source_story_tasks_story001:list=task001
+    source_task_task001=taskfoo
+
+Extracting Story Actions from Requests
+======================================
+
+Get a semantic view of what actions need to be performed.
+
+    >>> args = {'source_task_task001': 'copy',
+    ...         'source_story_tasks_story001': ['task001'],
+    ...         'source_story_story001': 'copy',
+    ...         'stories': ['story001']}
+
+    >>> carryover.extract_story_actions(args)
+    [{'action': 'copy', 'target_uid': '', 'task_actions': [{'action': 'copy', 'target_uid': '', 'source_uid': 'task001'}], 'source_uid': 'story001'}]
+
+
+Setting a Set of Actions in Motion
+==================================
+
+Given a target iteration and a set of actions (as defined by
+``extract_story_actions``) the actions should be possible to be performed
+to make new required content (or changes to existing content).
+
+First we setup more mock classes.
+
+    >>> class MockRefCatalog(Mock):
+    ...     def lookupObject(self, uid):
+    ...         return Acquisition.aq_inner(getattr(self, uid))
+
+    >>> class MockWorkflowTool(Mock):
+    ...     def doActionFor(self, obj, transition):
+    ...         obj.wfactions.append(transition)
+
+    >>> class MockFolder(Mock):
+    ...     def manage_copyObjects(self, ids):
+    ...         return [getattr(self, x) for x in ids]
+    ...     def manage_pasteObjects(self, data):
+    ...         for obj in data:
+    ...             newobj = obj.__class__(obj.id)
+    ...             newobj.comment = 'clone'
+    ...             newobj.manage_pasteObjects(obj.manage_copyObjects(obj.objectIds()))
+    ...             setattr(self, obj.id, newobj)
+    ...     def manage_delObjects(self, ids):
+    ...         for x in ids:
+    ...             delattr(self, x)
+    ...     def objectIds(self):
+    ...         return [x for x in dir(self)
+    ...                 if isinstance(getattr(self, x), MockFolder) \
+    ...                    and not x.startswith('_')]
+    ...     def objectValues(self):
+    ...         return [getattr(self, x) for x in self.objectIds()]
+    ...     def __getitem__(self, key):
+    ...         return getattr(self, key)
+    ...     def setCarriedOverFrom(self, v):
+    ...         self._carriedOverFrom = v
+
+Next we setup some source sample content.
+
+    >>> task001 = MockFolder('task001')
+    >>> story001 = MockFolder('story001')
+    >>> story001.task001 = task001
+    >>> iteration001 = MockFolder('iteration001')
+    >>> iteration001.story001 = story001
+
+    >>> iteration002 = MockFolder('iteration002')
+
+And get the tools setup that we need including the reference catalog and
+workflow tools.
+
+    >>> refcat = MockRefCatalog('Reference Catalog')
+    >>> refcat.task001 = task001.__of__(story001.__of__(iteration001))
+    >>> refcat.story001 = story001.__of__(iteration001)
+    >>> refcat.iteration001 = iteration001
+    >>> refcat.iteration002 = iteration002
+    >>> iteration002.reference_catalog = refcat
+
+    >>> wf = MockWorkflowTool('Workflow Tool')
+    >>> iteration002.portal_workflow = wf
+
+Initially ``iteration001`` should have all the content set setup but
+``iteration002`` should be empty.
+
+    >>> iteration001.objectIds()
+    ['story001']
+    >>> iteration002.objectIds()
+    []
+
+Setup sample actions.
+
+    >>> actions = [{'action': 'copy',
+    ...             'target_uid': '',
+    ...             'source_uid': 'story001',
+    ...             'task_actions': [{'target_uid': '',
+    ...                               'action': 'close_copy',
+    ...                               'source_uid': 'task001'}]}]
+
+Carry out the actions.
+
+    >>> carryover.perform_story_actions(iteration002, actions)
+
+And now ``iteration002`` should have at least some content from
+``iteration001``.
+
+    >>> iteration001.objectValues()
+    [<MockFolder id=story001; >]
+
+    >>> iteration001.story001.objectValues()
+    [<MockFolder id=task001; actions=carry-over; >]
+
+    >>> iteration002.objectValues()
+    [<MockFolder id=story001; comment=clone; >]
+
+    >>> iteration002.story001.objectValues()
+    [<MockFolder id=task001; comment=clone; >]

@@ -103,6 +103,14 @@
             </metal:field>
           </p>
 
+          <dl tal:define="carried_over story/getCarriedOverFrom/title_or_id|nothing">
+            <dt class="carried_over"
+              tal:condition="carried_over">Carried Over From</dt>
+            <dd class="carried_over" 
+              tal:condition="carried_over"
+              tal:content="carried_over"></dd>
+          </dl>
+
           <div tal:attributes="class string:kssattr-atuid-${context/UID}">
             <metal:field use-macro="python:context.widget('mainText', mode='view')">
               Body text

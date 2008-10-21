@@ -25,7 +25,13 @@ our_interfaces = (
     )
 
 from zope.interface import alsoProvides
+from zope.interface import Interface
 from zope.app.content.interfaces import IContentType
 
 for iface in our_interfaces:
     alsoProvides(iface, IContentType)
+
+
+class ICarryOverable(Interface):
+    """Indicates a piece of content might be able to be carried over.
+    """

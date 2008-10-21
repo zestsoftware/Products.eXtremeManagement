@@ -41,6 +41,35 @@
                   acquired="False">
   </permission-map>
  </state>
+ <state state_id="carried-over" title="Carried Over">
+  <exit-transition transition_id="reactivate"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Change portal events"
+                  acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="eXtremeManagement: Add Booking"
+                  acquired="False">
+  </permission-map>
+ </state>
  <state state_id="open" title="New">
   <exit-transition transition_id="activate"/>
   <permission-map name="Access contents information"
@@ -81,6 +110,7 @@
  </state>
  <state state_id="to-do" title="To-do">
   <exit-transition transition_id="complete"/>
+  <exit-transition transition_id="carry-over"/>
   <exit-transition transition_id="deactivate"/>
   <permission-map name="Access contents information"
                   acquired="False">
@@ -137,6 +167,16 @@
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
    <guard-role>Projectmanager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="carry-over"
+             title="Mark as Carried Over" new_state="carried-over"
+             trigger="USER" before_script="notify_completed"
+             after_script="tryToCompleteStory">
+  <action url="" category="workflow">Mark as Carried Over</action>
+  <guard>
+   <guard-role>Employee</guard-role>
+   <guard-role>Manager</guard-role>
   </guard>
  </transition>
  <transition transition_id="deactivate" title="deactivate"

@@ -24,4 +24,10 @@ def test_suite():
                              optionflags=OPTIONFLAGS)
         suites.addTest(suite)
 
+    suites.addTest(
+        DocFileSuite('carryover.txt',
+                     optionflags=OPTIONFLAGS,
+                     package='Products.eXtremeManagement')
+        )
+
     return suites

@@ -21,7 +21,7 @@ from Products.Archetypes.atapi import TextField
 from Products.eXtremeManagement.interfaces import IXMTask
 from Products.eXtremeManagement.Extensions.workflow_scripts import mailMessage
 from Products.eXtremeManagement.content.schemata import quarter_vocabulary
-
+from Products.eXtremeManagement.content import unitshared
 
 schema = Schema((
     TextField(
@@ -76,10 +76,10 @@ schema = Schema((
 FolderSchema = BaseFolderSchema.copy()
 FolderSchema['description'].isMetadata = False
 FolderSchema['description'].schemata = 'default'
-Task_schema = FolderSchema + schema
+Task_schema = FolderSchema + schema + unitshared.unit_shared_schema
 
 
-class Task(BaseFolder):
+class Task(BaseFolder, unitshared.UnitSharedMixin):
     """
     """
     security = ClassSecurityInfo()

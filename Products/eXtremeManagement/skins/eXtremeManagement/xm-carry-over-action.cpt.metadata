@@ -1,0 +1,8 @@
+[default]
+title=Item(s) Carried Over
+
+[security]
+View=0:Authenticated
+
+[actions]
+action.success=redirect_to:string:${object/absolute_url}
