@@ -2,7 +2,7 @@ History
 =======
 
 
-2.0 beta 1 (unreleased)
+2.0 alpha 3 (unreleased)
 -----------------------
 
 - Refactored KSS, CSS, JS and Python for workflow gadgets. Removed duplicated 
