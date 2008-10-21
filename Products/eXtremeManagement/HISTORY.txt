@@ -5,6 +5,12 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- In the migration from ProjectFolders/CustomerFolders to normal
+  Folders, set the immediately addable types too.  Note that Customer
+  content type is not addable by default anymore, so in the migrated
+  CustomerFolder you can only add a Customer when you allow Customers
+  to be added globally.  [maurits]
+
 - Refactored KSS, CSS, JS and Python for workflow gadgets. Removed duplicated 
   ids (#task-list-for-story) in favour of existing class (.tasklist_table), 
   added KSS rebinding of workflow menus and stripped redundant CSS. [simon]

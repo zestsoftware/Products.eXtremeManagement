@@ -2,6 +2,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.contentmigration.basemigrator.walker import CatalogWalker
 from Products.contentmigration.archetypes import ATFolderMigrator
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
+from Products.ATContentTypes.lib.constraintypes import ENABLED
 
 from Products.eXtremeManagement import config
 
@@ -72,27 +73,24 @@ def upgrade_from_16_to_20(context):
     class ProjectFolderMigrator(ATFolderMigrator):
         src_portal_type = src_meta_type = 'ProjectFolder'
         dst_portal_type = dst_meta_type = 'Folder'
+        new_allowed = ('Project', )
 
         def migrate_typerestriction(self):
             constraints = ISelectableConstrainTypes(self.new)
-            constraints.setConstrainTypesMode(1)
-            constraints.setLocallyAllowedTypes(('Project',))
+            constraints.setConstrainTypesMode(ENABLED)
+            constraints.setImmediatelyAddableTypes(self.new_allowed)
+            constraints.setLocallyAllowedTypes(self.new_allowed)
 
     projectfolders = CatalogWalker(site, ProjectFolderMigrator)
     projectfolders.go()
 
-    class CustomerFolderMigrator(ATFolderMigrator):
+    class CustomerFolderMigrator(ProjectFolderMigrator):
         src_portal_type = src_meta_type = 'CustomerFolder'
         dst_portal_type = dst_meta_type = 'Folder'
-
-        def migrate_typerestriction(self):
-            constraints = ISelectableConstrainTypes(self.new)
-            constraints.setConstrainTypesMode(1)
-            constraints.setLocallyAllowedTypes(('Customer',))
+        new_allowed = ('Customer', )
 
     customerfolders = CatalogWalker(site, CustomerFolderMigrator)
     customerfolders.go()
-
 
 
 def importVarious(context):
