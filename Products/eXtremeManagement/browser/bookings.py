@@ -238,13 +238,19 @@ class WeekBookingOverview(BookingsDetailedView):
                 if day_total > 0:
                     # Update week stats
                     week_total += day_total
-                    if day_billable != 0:
+                    if day_total != 0:
+                        # Only add the billable hours to the week when
+                        # some work (billable or not) has been done
+                        # today.
                         week_billable += day_billable
                         week_worked_days += 1
                     if date.month() == self.startDate.month():
                         # Update month stats
                         self.raw_total += day_total
-                        if day_billable != 0:
+                        if day_total != 0:
+                            # Only add the billable hours to the month
+                            # when some work (billable or not) has
+                            # been done today.
                             month_billable += day_billable
                             month_worked_days += 1
                         ui_class = 'good'
