@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="xm.theme">
+
+  <head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border', 1)" />
+  </head>
+  <body>
+    <div metal:fill-slot="main">
+      <div metal:define-macro="body">
+        <h1 i18n:translate="title_employees_overview">
+          Employees overview
+        </h1>
+        <span tal:omit-tag=""
+            i18n:translate="description_employees_overview">
+            In the overview, you'll find for each employee how much billable 
+               he/she worked per month in %.
+         </span>
+        <table class="listing employees-overview">
+          <tr>
+            <th i18n:translate="head_name">Name</th>
+            <th tal:repeat="month view/month_names"
+                tal:content="month">April</th>
+          </tr>
+          <tal:employees repeat="employee view/items">
+          <tr tal:define="oddrow repeat/employee/odd"
+            tal:attributes="class python:oddrow and 'odd' or 'even'">
+            <td tal:content="employee/name"
+               class="name-employee">
+              Jean-Paul Ladage
+            </td>
+            <td tal:repeat="month employee/monthly_percentages">
+              <a tal:attributes="href python:month['url']"
+                 tal:content="python:month['percentage']">
+                60 %
+              </a>
+            </td>
+          </tr>
+         </tal:employees> 
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
