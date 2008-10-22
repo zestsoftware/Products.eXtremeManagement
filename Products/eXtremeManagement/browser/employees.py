@@ -9,17 +9,9 @@ from plone.memoize.view import memoize
 from zope.interface import implements
 
 from Products.eXtremeManagement.browser.bookings import WeekBookingOverview
-try:
-    from Products.eXtremeManagement.utils import getNextYearMonth
-    from Products.eXtremeManagement.utils import getPrevYearMonth
-    from Products.eXtremeManagement.utils import getEndOfMonth
-except ImportError:
-    # BBB for Products.eXtremeManagement before 2.0 alpha 3
-    from Products.eXtremeManagement.browser.bookings import getNextYearMonth
-    from Products.eXtremeManagement.browser.bookings import getPrevYearMonth
-    from Products.eXtremeManagement.browser.bookings import getEndOfMonth
+from Products.eXtremeManagement.utils import getEndOfMonth
 
-from xm.theme import xmMessageFactory as _
+from Products.CMFPlone import PloneMessageFactory as PMF
 from interfaces import IEmployeesView
 
 
@@ -121,43 +113,13 @@ class EmployeesView(BrowserView):
         return data
 
     @memoize
-    def olditems(self):
-        context = aq_inner(self.context)
-        data = []
-        employees = self.get_employees()
-        for userid in employees:
-            empldict = {}
-            memberinfo = self.mtool.getMemberInfo(userid)
-            if memberinfo and memberinfo is not None:
-                empldict['name'] = memberinfo['fullname']
-                # For each month create a list employees in a dict with
-                # percentages and a url to the month view.
-                results = []
-                for m in self.months:
-                    opts = dict(year=m.year, month=m.month, memberid=userid)
-                    view = WeekBookingOverview(context, self.request,
-                                               **opts)
-                    val = view.main()
-                    url = "%s/booking_month?memberid=%s&month=%r&year=%r" % \
-                                                (self.site_url, userid,
-                                                m.month, m.year)
-                    perc_dict = dict(percentage = val['perc_billable'],
-                                   url = url)
-                    results.append(perc_dict)
-                results.reverse()
-                empldict['monthly_percentages'] = results
-            data.append(empldict)
-
-        return data
-
-    @memoize
     def month_names(self):
         """ Return a list of translated month names used for the header of the
         table.
         """
         results = []
         for m in self.months:
-            month = _(safe_unicode(m.strftime('%B')))
+            month = PMF(safe_unicode(m.strftime('%B')))
             year = safe_unicode(str(m.year))
             results.append(' '.join([month, year]))
         results.reverse()
