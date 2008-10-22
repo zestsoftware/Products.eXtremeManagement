@@ -89,14 +89,13 @@ class EmployeesView(BrowserView):
                             day_total += bb.actual_time
                             if bb.getBillable:
                                 day_billable += bb.actual_time
-                        # XXX Turn this into 1 hour.
                         if day_total > 0:
-                            # If the employee worked 1 hour or less we
-                            # assume it is just an hour on Saturday or
-                            # something and we ignore this day to
-                            # avoid unnecessarily influencing the
-                            # billable percentage negatively.  If he
-                            # worked more, we assume it is a full day.
+                            # XXX If the employee worked 1 hour or
+                            # less we might want to assume it is just
+                            # an hour on Saturday or something and
+                            # ignore this day to avoid unnecessarily
+                            # influencing the billable percentage
+                            # negatively.
                             billable.append(day_billable)
                     days_worked = len(billable)
                     if days_worked > 0:
