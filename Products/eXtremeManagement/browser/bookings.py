@@ -178,6 +178,8 @@ class BookingOverview(BookingsDetailedView):
 
 class WeekBookingOverview(BookingsDetailedView):
     """View an overview of Bookings.
+
+    The period is actually a month, but the data is grouped by week.
     """
 
     def update(self):
