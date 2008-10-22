@@ -212,7 +212,6 @@ class WeekBookingOverview(BookingsDetailedView):
         daynumber = date.day()
         # Assemble info for at most one month:
         ploneview = context.restrictedTraverse('@@plone')
-        num_weeks = 0
         month_billable = 0.0
         month_worked_days = 0
 
@@ -227,10 +226,15 @@ class WeekBookingOverview(BookingsDetailedView):
             day_of_week = 0
             daylist = []
             week_total = 0.0
+            week_strict_total = 0.0
             days_bookings = DayBookingOverview(
                 context, request, memberid=self.memberid)
             week_billable = 0.0
             week_worked_days = 0
+            # Strict billable means: only count days of this week that
+            # are really in this month.
+            week_strict_billable = 0.0
+            week_strict_worked_days = 0
             while day_of_week < 7:
                 day_total = days_bookings.raw_total(date=date)
                 day_billable = days_bookings.raw_billable(date=date)
@@ -245,6 +249,10 @@ class WeekBookingOverview(BookingsDetailedView):
                         week_billable += day_billable
                         week_worked_days += 1
                     if date.month() == self.startDate.month():
+                        # Update strict stats
+                        week_strict_total += day_total
+                        week_strict_billable += day_billable
+                        week_strict_worked_days += 1
                         # Update month stats
                         self.raw_total += day_total
                         if day_total != 0:
@@ -282,13 +290,21 @@ class WeekBookingOverview(BookingsDetailedView):
             # Add the info to the dict for this week
             weekinfo['days'] = daylist
             weekinfo['week_total'] = formatTime(week_total)
-            if week_worked_days > 0:
+            weekinfo['week_strict_total'] = formatTime(week_strict_total)
+            # Normal week stats
+            if week_worked_days:
                 norm = week_worked_days * hours_per_day
                 week_perc_billable = 100.0 * week_billable / norm
-                num_weeks += 1
             else:
                 week_perc_billable = 0.0
-            fmt_perc_billable = "%0.1f" % week_perc_billable + ' %'
+            fmt_perc_billable = "%0.1f %%" % week_perc_billable
+            # Strict week stats
+            if week_strict_worked_days:
+                norm = week_strict_worked_days * hours_per_day
+                week_strict_perc_billable = 100.0 * week_strict_billable / norm
+            else:
+                week_strict_perc_billable = 0.0
+            fmt_strict_perc_billable = "%0.1f %%" % week_strict_perc_billable
             weekinfo['total_style'] = weekinfo['perc_style'] = 'greyed'
             if date < DateTime():
                 weekinfo['total_style'] = weekinfo['perc_style'] = 'good'
@@ -297,6 +313,7 @@ class WeekBookingOverview(BookingsDetailedView):
                 if week_perc_billable < 50:
                     weekinfo['perc_style'] = 'not-enough'
             weekinfo['perc_billable'] = fmt_perc_billable
+            weekinfo['strict_perc_billable'] = fmt_strict_perc_billable
             self.bookinglist.append(weekinfo)
 
         if month_worked_days > 0:

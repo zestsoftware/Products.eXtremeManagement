@@ -5,6 +5,12 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- Employees overview: show the strict percentages and totals for the
+  week, meaning: count only the days in this month.  The totals and
+  percentages that really count the whole week are now available as a
+  tooltip.  This is pending refactoring into two views as Managers and
+  Employees have a different wish list here.  [maurits]
+
 - Moved employees_overview page here from xm.theme.  [maurits]
 
 - Fix: Only add the billable hours of a day to the week/month when
