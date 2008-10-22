@@ -252,7 +252,7 @@ class IXMGlobalState(IBrowserView):
 
     Global here means: it is the same for all contexts.
     """
-    
+
     def has_tracker():
         """Is the xm time tracker package available?"""
 
@@ -276,3 +276,4 @@ class IEmployeesView(IBrowserView):
                'percentage': '70 %'},
                       ],
         ]
+        """
