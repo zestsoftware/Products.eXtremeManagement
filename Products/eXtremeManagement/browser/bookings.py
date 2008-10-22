@@ -211,7 +211,8 @@ class WeekBookingOverview(BookingsDetailedView):
         # Assemble info for at most one month:
         ploneview = context.restrictedTraverse('@@plone')
         num_weeks = 0
-        in_this_month = True
+        month_billable = 0.0
+        month_worked_days = 0
 
         # When comparing dates, make sure December of previous year is
         # less than January of this year.
@@ -223,21 +224,27 @@ class WeekBookingOverview(BookingsDetailedView):
             # Start the week cleanly
             day_of_week = 0
             daylist = []
-            raw_total = 0.0
+            week_total = 0.0
             days_bookings = DayBookingOverview(
                 context, request, memberid=self.memberid)
             week_billable = 0.0
-            worked_days = 0
+            week_worked_days = 0
             while day_of_week < 7:
                 day_total = days_bookings.raw_total(date=date)
                 day_billable = days_bookings.billable(date=date)
                 ui_class = 'greyed'
                 if day_total > 0:
+                    # Update week stats
+                    week_total += day_total
+                    if day_billable != 0:
+                        week_billable += day_billable
+                        week_worked_days += 1
                     if date.month() == self.startDate.month():
-                        raw_total += day_total
+                        # Update month stats
+                        self.raw_total += day_total
                         if day_billable != 0:
-                            week_billable += day_billable
-                            worked_days += 1
+                            month_billable += day_billable
+                            month_worked_days += 1
                         ui_class = 'good'
                     else:
                         ui_class = 'greyed'
@@ -266,9 +273,9 @@ class WeekBookingOverview(BookingsDetailedView):
 
             # Add the info to the dict for this week
             weekinfo['days'] = daylist
-            weekinfo['week_total'] = formatTime(raw_total)
-            if worked_days > 0:
-                week_perc_billable = week_billable / worked_days
+            weekinfo['week_total'] = formatTime(week_total)
+            if week_worked_days > 0:
+                week_perc_billable = week_billable / week_worked_days
                 num_weeks += 1
             else:
                 week_perc_billable = 0.0
@@ -276,19 +283,15 @@ class WeekBookingOverview(BookingsDetailedView):
             weekinfo['total_style'] = weekinfo['perc_style'] = 'greyed'
             if date < DateTime():
                 weekinfo['total_style'] = weekinfo['perc_style'] = 'good'
-                if raw_total < 40.0:
+                if week_total < 40.0:
                     weekinfo['total_style'] = 'not-enough'
                 if week_perc_billable < 0.5:
                     weekinfo['perc_style'] = 'not-enough'
             weekinfo['perc_billable'] = fmt_perc_billable
             self.bookinglist.append(weekinfo)
-            # update month total
-            self.raw_total += raw_total
-            # add weekly total
-            self.perc_billable += week_perc_billable
-        # divide by the number of weeks
-        if num_weeks > 0:
-            self.perc_billable = self.perc_billable / num_weeks
+
+        if month_worked_days > 0:
+            self.perc_billable = month_billable / month_worked_days
 
 
 class YearBookingOverview(XMBaseView):
@@ -390,8 +393,8 @@ class DayBookingOverview(XMBaseView):
             self.memberid = member.id
         self.searchpath = '/'.join(context.getPhysicalPath())
 
-    def billable(self, date=None):
-        """return a percentage for billable hours"""
+    def raw_billable(self, date=None):
+        """return the total amount of billable hours"""
         date = date or self.request.form.get('date', DateTime().earliestTime())
         bookingbrains = self.catalog.searchResults(
             portal_type='Booking',
@@ -403,10 +406,14 @@ class DayBookingOverview(XMBaseView):
         for bb in bookingbrains:
             if bb.getBillable:
                 billable += bb.actual_time
-        if billable == 0:
-            return 0.0
-        else:
-            return billable/8*100
+        return billable
+
+    def billable(self, date=None):
+        """return a percentage for billable hours"""
+        context = aq_inner(self.context)
+        propstool = getToolByName(context, 'portal_properties')
+        hours_per_day = propstool.xm_properties.getProperty('hours_per_day')
+        return (self.raw_billable(date) / hours_per_day) * 100
 
     def raw_total(self, date=None):
         """Raw total booked hours for a member for this date.

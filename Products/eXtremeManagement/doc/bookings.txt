@@ -179,15 +179,44 @@ Now we test the week view for oktober and november.
     ...                                                     'month': 11}))
 
 Does it give the right totals for each week (and the correct amount of
-weeks)?
+weeks)?  Note that the week totals show the totals for that week
+regardless of whether each day falls in the month that you are looking
+at: it is helpful for an employee to know how many hours he has worked
+in this week.
 
     >>> [week['week_total'] for week in okt.bookinglist]
-    ['1:00', '0:00', '0:00', '0:00', '5:00', '9:00']
+    ['1:00', '0:00', '0:00', '0:00', '5:00', '15:00']
     >>> [week['week_number'] for week in okt.bookinglist]
     [39, 40, 41, 42, 43, 44]
     >>> [week['week_total'] for week in nov.bookinglist]
-    ['6:00', '40:00', '0:00', '0:00', '0:00']
-    
+    ['15:00', '40:00', '0:00', '0:00', '0:00']
+
+How about the billable percentge?  Note that billable percentage for
+one day is the billable time for that day time in a percentage of the
+norm of 8 hours.  So it does not matter how much you worked that day,
+as we just assume that any time you did not book was unbillable.
+
+    >>> [week['perc_billable'] for week in okt.bookinglist]
+    ['12.5 %', '0.0 %', '0.0 %', '0.0 %', '31.2 %', '62.5 %']
+    >>> [week['perc_billable'] for week in nov.bookinglist]
+    ['62.5 %', '100.0 %', '0.0 %', '0.0 %', '0.0 %']
+
+Does it give the totals (and other info) per month correctly?  
+
+    >>> from pprint import pprint
+    >>> pprint(okt.main())
+    {'month': 10,
+     'perc_billable': '37.5 %',
+     'raw_total': 15.0,
+     'total': '15:00',
+     'year': 2006}
+    >>> pprint(nov.main())
+    {'month': 11,
+     'perc_billable': '95.8 %',
+     'raw_total': 46.0,
+     'total': '46:00',
+     'year': 2006}
+
 When the week total is below 40 hours the entry should be highligted. In
 November we added exactly 40 hours in week 45.
    >>> week45 = nov.bookinglist[1]
@@ -197,7 +226,6 @@ November we added exactly 40 hours in week 45.
    '40:00'
    >>> week45['total_style']
    'good'
-
 
 Let's look at week 43 in oktober, at the end of which the DST kicks in.
 
