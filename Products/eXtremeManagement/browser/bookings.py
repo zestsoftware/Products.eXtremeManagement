@@ -184,6 +184,8 @@ class WeekBookingOverview(BookingsDetailedView):
 
     def update(self):
         context = aq_inner(self.context)
+        propstool = getToolByName(context, 'portal_properties')
+        hours_per_day = propstool.xm_properties.getProperty('hours_per_day')
         request = self.request
         weeklist = []
         # Start at first day of the week.  Note: with the
@@ -231,7 +233,7 @@ class WeekBookingOverview(BookingsDetailedView):
             week_worked_days = 0
             while day_of_week < 7:
                 day_total = days_bookings.raw_total(date=date)
-                day_billable = days_bookings.billable(date=date)
+                day_billable = days_bookings.raw_billable(date=date)
                 ui_class = 'greyed'
                 if day_total > 0:
                     # Update week stats
@@ -275,7 +277,8 @@ class WeekBookingOverview(BookingsDetailedView):
             weekinfo['days'] = daylist
             weekinfo['week_total'] = formatTime(week_total)
             if week_worked_days > 0:
-                week_perc_billable = week_billable / week_worked_days
+                norm = week_worked_days * hours_per_day
+                week_perc_billable = 100.0 * week_billable / norm
                 num_weeks += 1
             else:
                 week_perc_billable = 0.0
@@ -285,13 +288,14 @@ class WeekBookingOverview(BookingsDetailedView):
                 weekinfo['total_style'] = weekinfo['perc_style'] = 'good'
                 if week_total < 40.0:
                     weekinfo['total_style'] = 'not-enough'
-                if week_perc_billable < 0.5:
+                if week_perc_billable < 50:
                     weekinfo['perc_style'] = 'not-enough'
             weekinfo['perc_billable'] = fmt_perc_billable
             self.bookinglist.append(weekinfo)
 
         if month_worked_days > 0:
-            self.perc_billable = month_billable / month_worked_days
+            norm = month_worked_days * hours_per_day
+            self.perc_billable = 100.0 * month_billable / norm
 
 
 class YearBookingOverview(XMBaseView):
