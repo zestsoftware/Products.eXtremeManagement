@@ -36,7 +36,10 @@ class EmployeesView(BrowserView):
         self.catalog = getToolByName(context, 'portal_catalog')
         self.mtool = getToolByName(context, 'portal_membership')
         self.searchpath = '/'.join(context.getPhysicalPath())
-        today = date.today()
+        if year:
+            today = date(year, 12, 1)
+        else:
+            today = date.today()
         self.months = []
         # months is a list of date objects of the past 12 months
         # counting backwards from now.
@@ -60,7 +63,7 @@ class EmployeesView(BrowserView):
             empldict = {}
             memberinfo = self.mtool.getMemberInfo(userid)
             if memberinfo and memberinfo is not None:
-                empldict['name'] = memberinfo['fullname']
+                empldict['name'] = memberinfo['fullname'] or userid
                 # For each month create a list employees in a dict with
                 # percentages and a url to the month view.
                 results = []

@@ -266,3 +266,26 @@ At the beginning of the year things can go wrong, so test that too.
     >>> view = WeekBookingOverview(self.portal, TestRequest(form={'year': 2002, 'month': 1}))
     >>> [week['week_total'] for week in view.bookinglist]
     ['1:00', '0:00', '0:00', '0:00', '0:00']
+
+
+There is a big overview that shows a table for the past year with for
+every month for every employee the billable percentage.  These
+percentages should be the same as what we got in the month overviews.
+
+    >>> from Products.eXtremeManagement.browser.employees import EmployeesView
+    >>> empview = EmployeesView(self.portal, TestRequest(), year=2006)
+    >>> items = empview.items()
+    >>> percentages = [item['monthly_percentages'] for item in items if \
+    ...                item['name'] == 'employee'][0]
+    >>> len(percentages)
+    12
+    >>> october = percentages[9]
+    >>> october['url']
+    'http://nohost/plone/booking_month?memberid=employee&month=10&year=2006'
+    >>> okt.main()['perc_billable'] == october['percentage']
+    True
+    >>> november = percentages[10]
+    >>> november['url']
+    'http://nohost/plone/booking_month?memberid=employee&month=11&year=2006'
+    >>> nov.main()['perc_billable'] == november['percentage']
+    True
