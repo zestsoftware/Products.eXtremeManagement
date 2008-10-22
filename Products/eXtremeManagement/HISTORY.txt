@@ -5,6 +5,8 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- Moved employees_overview page here from xm.theme.  [maurits]
+
 - Fix: Only add the billable hours of a day to the week/month when
   some work (billable or not) has been done on that day.  [maurits]
 

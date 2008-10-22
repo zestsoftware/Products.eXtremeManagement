@@ -300,4 +300,13 @@
       allowed_interface=".interfaces.IMyProjects"
       />
 
+  <!-- Employees billable percentage overview for last year -->
+  <page
+      name="employees_overview"
+      for="*"
+      class=".employees.EmployeesView"
+      template="employees_overview.pt"
+      permission="cmf.ManagePortal"
+      />
+
 </configure>
