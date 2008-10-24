@@ -12,8 +12,8 @@
 
       <dl class="portlet" id="portlet-stories">
         <dt class="portletHeader">
-          <span class="portletTopLeft"></span>
           <span i18n:translate="box_stories">Pending Stories</span>
+          <span class="portletTopLeft"></span>
           <span class="portletTopRight"></span>
         </dt>
         <tal:block tal:repeat="obj results">

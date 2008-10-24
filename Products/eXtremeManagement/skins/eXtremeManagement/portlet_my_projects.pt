@@ -11,8 +11,8 @@
          tal:condition="python:results">
       <dl class="portlet" id="portlet-my-projects">
         <dt class="portletHeader">
-          <span class="portletTopLeft"></span>
           <span i18n:translate="box_my_projects">My Projects</span>
+          <span class="portletTopLeft"></span>
           <span class="portletTopRight"></span>
         </dt>
         <tal:block tal:repeat="item results">
