@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement-es\n"
-"POT-Creation-Date: 2008-10-07 15:46+0000\n"
+"POT-Creation-Date: 2008-10-24 14:37+0000\n"
 "PO-Revision-Date: 2007-12-09 14:30-0300\n"
 "Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
 "Language-Team: Spanish\n"
@@ -41,6 +41,11 @@ msgstr ""
 
 #: ./browser/reorder_stories.py:215
 msgid "Drag/drop uids incorrect"
+msgstr ""
+
+#. Default: "Information on this chart..."
+#: ./browser/project_chart.pt:9
+msgid "Information on this chart..."
 msgstr ""
 
 #: ./browser/reorder_stories.py:229
@@ -95,12 +100,12 @@ msgid "booking_month"
 msgstr "Bookings por mes"
 
 #. Default: "My Projects"
-#: ./skins/eXtremeManagement/portlet_my_projects.pt:15
+#: ./skins/eXtremeManagement/portlet_my_projects.pt:14
 msgid "box_my_projects"
 msgstr "Mis Proyectos"
 
 #. Default: "Pending Stories"
-#: ./skins/eXtremeManagement/portlet_stories.pt:16
+#: ./skins/eXtremeManagement/portlet_stories.pt:15
 msgid "box_stories"
 msgstr "User Stories Pendientes"
 
@@ -478,9 +483,14 @@ msgid "heading_attachements"
 msgstr ""
 
 #. Default: "Current Iterations"
-#: ./skins/eXtremeManagement/project_view.pt:45
+#: ./skins/eXtremeManagement/project_view.pt:40
 msgid "heading_current_iterations"
 msgstr "Iteraciones actuales"
+
+#. Default: "Project Overview Chart"
+#: ./browser/project_chart.pt:8
+msgid "heading_project_chart_overview"
+msgstr ""
 
 #. Default: "Release planning"
 #: ./browser/reorder_stories.pt:8
@@ -533,23 +543,28 @@ msgid "label_bookingdate"
 msgstr ""
 
 #. Default: "Budget (hours)"
-#: ./skins/eXtremeManagement/project_view.pt:29
+#: ./skins/eXtremeManagement/project_view.pt:24
 msgid "label_budgetHours"
 msgstr ""
 
 #. Default: "Date completed"
-#: ./browser/invoicing.pt:28
+#: ./browser/invoicing.pt:22
 msgid "label_date_completed"
 msgstr ""
 
 #. Default: "Date due"
-#: ./browser/inprogress.pt:20
+#: ./browser/inprogress.pt:22
 msgid "label_date_due"
 msgstr ""
 
 #. Default: "Hours"
 #: ./skins/eXtremeManagement/update_hours_form.cpt:93
 msgid "label_hours"
+msgstr ""
+
+#. Default: "Hours worked"
+#: ./browser/invoicing.pt:25
+msgid "label_hours_worked"
 msgstr ""
 
 #. Default: "Include global Employees"
@@ -598,12 +613,12 @@ msgid "label_remaining_budget"
 msgstr ""
 
 #. Default: "Total estimate in hours"
-#: ./browser/inprogress.pt:23
+#: ./browser/inprogress.pt:25
 msgid "label_total_hours"
 msgstr ""
 
 #. Default: "Unknown date"
-#: ./browser/inprogress.pt:44
+#: ./browser/inprogress.pt:43
 msgid "label_unknown_date"
 msgstr ""
 
@@ -659,7 +674,7 @@ msgid "listingheader_Phone"
 msgstr "Teléfono"
 
 #. Default: "Actual (hours)"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:21
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:20
 msgid "listingheader_actual_hours"
 msgstr "Real (horas)"
 
@@ -674,7 +689,7 @@ msgid "listingheader_address"
 msgstr "Dirección"
 
 #. Default: "Assignee(s)"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:24
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:23
 msgid "listingheader_assignees"
 msgstr "Asignado(s)"
 
@@ -694,7 +709,7 @@ msgid "listingheader_country"
 msgstr "País"
 
 #. Default: "Difference (hours)"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:22
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:21
 msgid "listingheader_diff_hours"
 msgstr "Diferencia (horas)"
 
@@ -714,7 +729,7 @@ msgid "listingheader_enddate"
 msgstr "Fecha de fin"
 
 #. Default: "Estimate (hours)"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:20
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:19
 msgid "listingheader_estimate_hours"
 msgstr "Estimación (horas)"
 
@@ -730,7 +745,7 @@ msgid "listingheader_initial_estimate"
 msgstr "Estimación Inicial (días)"
 
 #. Default: "Iteration"
-#: ./skins/eXtremeManagement/project_administration.pt:61
+#: ./browser/inprogress.pt:19
 msgid "listingheader_iteration"
 msgstr "Iteración"
 
@@ -750,7 +765,7 @@ msgid "listingheader_phone"
 msgstr "Teléfono"
 
 #. Default: "Project"
-#: ./skins/eXtremeManagement/project_administration.pt:41
+#: ./browser/inprogress.pt:16
 msgid "listingheader_projects"
 msgstr "Proyecto"
 
@@ -776,7 +791,7 @@ msgid "listingheader_tasks_estimate"
 msgstr "Estimación de tareas (horas)"
 
 #. Default: "Title"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:19
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:18
 msgid "listingheader_title"
 msgstr "Título"
 
@@ -876,7 +891,7 @@ msgid "progress_bar"
 msgstr ""
 
 #. Default: "Project administration"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:19
+#: ./skins/eXtremeManagement/portlet_tasks.pt:18
 msgid "project_administration"
 msgstr "Administración del proyecto"
 
@@ -901,7 +916,7 @@ msgid "total"
 msgstr "Total"
 
 #. Default: "velocity chart"
-#: ./skins/eXtremeManagement/project_view.pt:16
+#: ./browser/project_chart.pt:12
 msgid "velocity chart"
 msgstr ""
 
