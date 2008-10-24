@@ -11,10 +11,13 @@
         In-progress overview
       </h1>
 
-      <table class="projectlist">
+      <table class="listing">
         <tr>
-          <th >
-            Project/iteration name
+          <th i18n:translate="listingheader_projects">
+            Project
+          </th>
+          <th i18n:translate="listingheader_iteration">
+            Iteration
           </th>
           <th i18n:translate="label_date_due">
             Date due
@@ -25,16 +28,13 @@
         </tr>
 
         <tal:projects tal:repeat="project view/projectlist">
-          <tr class="projectname">
-            <td colspan="3">
-              <a tal:content="project/title"
-                 tal:attributes="title project/description;
-                                 href project/url;"/>
-            </td>
-          </tr>
-
           <tal:iterations tal:repeat="iteration project/iterations">
             <tr>
+              <td>
+                <a tal:content="project/title"
+                   tal:attributes="title project/description;
+                                   href project/url;"/>
+              </td>
               <td>
                 <a tal:content="iteration/title"
                    tal:attributes="title iteration/description;

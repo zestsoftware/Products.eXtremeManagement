@@ -523,19 +523,7 @@ ul.iteration-droptarget li.story-draggable:hover {
 
 /* Management project listings START */
 
-table.projectlist tr.projectname {
-    font-size: 120%;
-    font-weight: bold;
-    background-color: &dtml-globalBackgroundColor;;
-    line-height: 2em;
-}
-
-table.projectlist a {
-    text-decoration: none;
-    color: black;
-}
-
-table.projectlist td.right {
+td.right {
     text-align: right;
 }
 
