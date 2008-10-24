@@ -48,7 +48,7 @@
           </a>
         </dd>
 
-        <dd class="portletItem even"
+        <dd class="portletItem even hoursBooked"
             tal:define="view portal/@@daytotal"
             i18n:translate="hours_booked_today">
           Hours booked for today:
