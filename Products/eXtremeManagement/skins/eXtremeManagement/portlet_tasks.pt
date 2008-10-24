@@ -11,7 +11,6 @@
           tal:condition="not:isAnon">
 
         <dt class="portletHeader" >
-          <span class="portletTopLeft"></span>
           <!-- Make the header a link for Managers. -->
           <a tal:condition="python: mtool.checkPermission('Manage Portal', here)"
              tal:attributes="href
@@ -24,6 +23,7 @@
               i18n:translate="project_administration">
             Project administration
           </tal:admin-no-manager>
+          <span class="portletTopLeft"></span>
           <span class="portletTopRight"></span>
         </dt>
 

@@ -1,6 +1,5 @@
 <dl class="portlet" id="portlet-project-administration">
   <dt class="portletHeader" >
-    <span class="portletTopLeft"></span>
     <a tal:condition="view/hasManagePermission"
        tal:attributes="href
                        string:${view/portal_url}/project_administration">
@@ -12,6 +11,7 @@
         i18n:translate="project_administration">
       Project administration [plone3]
     </tal:admin-no-manager>
+    <span class="portletTopLeft"></span>
     <span class="portletTopRight"></span>
   </dt>
 
