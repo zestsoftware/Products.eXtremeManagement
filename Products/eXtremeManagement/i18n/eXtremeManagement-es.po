@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement-es\n"
-"POT-Creation-Date: 2008-10-24 14:37+0000\n"
+"POT-Creation-Date: 2008-10-27 13:55+0000\n"
 "PO-Revision-Date: 2007-12-09 14:30-0300\n"
 "Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
 "Language-Team: Spanish\n"
@@ -72,7 +72,7 @@ msgid "Send"
 msgstr ""
 
 #. Default: "Send a mail to this user"
-#: ./skins/eXtremeManagement/customer_view.pt:123
+#: ./skins/eXtremeManagement/projectmember_view.pt:49
 msgid "Send a mail to this user"
 msgstr "Enviar un mail a este usuario"
 
@@ -90,7 +90,7 @@ msgid "add-task-in"
 msgstr ""
 
 #. Default: "Back to"
-#: ./skins/eXtremeManagement/booking_details.pt:27
+#: ./skins/eXtremeManagement/booking_month.pt:41
 msgid "back_to"
 msgstr "Volver a"
 
@@ -110,22 +110,22 @@ msgid "box_stories"
 msgstr "User Stories Pendientes"
 
 #. Default: "Cannot Activate"
-#: ./skins/eXtremeManagement/iteration_view.pt:18
+#: ./skins/eXtremeManagement/story_view.pt:57
 msgid "cannot_activate"
 msgstr "No se puede activar"
 
 #. Default: "current month"
-#: ./skins/eXtremeManagement/booking_details.pt:30
+#: ./skins/eXtremeManagement/booking_month.pt:44
 msgid "current-month"
 msgstr "mes actual"
 
 #. Default: "days"
-#: ./skins/eXtremeManagement/offer_view.pt:119
+#: ./skins/eXtremeManagement/story_view.pt:74
 msgid "days"
 msgstr "días"
 
 #. Default: "Overview of tasks that belong to me.  The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
-#: ./skins/eXtremeManagement/iteration_view.pt:147
+#: ./skins/eXtremeManagement/task_overview.pt:33
 #, fuzzy
 msgid "description-overview-my-tasks"
 msgstr "Visión general de las tareas que me pertenecen. Los totales mencionados son mi tiempo total, por lo que usualmente diferirán de agregarles los números de la columna arriba de ellos."
@@ -376,7 +376,7 @@ msgid "estimated_start_project"
 msgstr ""
 
 #. Default: "Go to"
-#: ./skins/eXtremeManagement/booking_details.pt:16
+#: ./skins/eXtremeManagement/booking_month.pt:30
 msgid "go_to"
 msgstr "Ir a"
 
@@ -411,7 +411,7 @@ msgid "header_project_members"
 msgstr "Miembros del proyecto"
 
 #. Default: "Time registration"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:59
+#: ./skins/eXtremeManagement/update_hours_form.cpt:32
 msgid "header_time_registration"
 msgstr "Registro de tiempo"
 
@@ -518,7 +518,7 @@ msgid "help_needs_estimate"
 msgstr "No se puede comenzar a trabajar en este user story hasta que haya sido estimado (colocar un valor de estimación y seleccionar 'estimar' en la lista desplegable de estado)."
 
 #. Default: "The Initial estimate of the story is a rough estimate in days.  The Tasks estimate is the total estimate in hours for all tasks.  If there is a big difference there could be a logical explanation.  You should investigate that to be sure."
-#: ./skins/eXtremeManagement/iteration_view.pt:98
+#: ./skins/eXtremeManagement/project_view.pt:68
 msgid "help_stories_table"
 msgstr ""
 
@@ -618,7 +618,7 @@ msgid "label_total_hours"
 msgstr ""
 
 #. Default: "Unknown date"
-#: ./browser/inprogress.pt:43
+#: ./browser/invoicing.pt:43
 msgid "label_unknown_date"
 msgstr ""
 
@@ -653,7 +653,7 @@ msgid "listingheader-time"
 msgstr "Tiempo"
 
 #. Default: "Total"
-#: ./skins/eXtremeManagement/booking_details.pt:85
+#: ./skins/eXtremeManagement/booking_month.pt:77
 msgid "listingheader-total"
 msgstr "Total"
 
@@ -664,12 +664,12 @@ msgid "listingheader-week-number"
 msgstr "Número de semana"
 
 #. Default: "Fullname"
-#: ./skins/eXtremeManagement/customer_view.pt:28
+#: ./skins/eXtremeManagement/projectmember_view.pt:29
 msgid "listingheader_Fullname"
 msgstr "Nombre completo"
 
 #. Default: "Phone"
-#: ./skins/eXtremeManagement/customer_view.pt:53
+#: ./skins/eXtremeManagement/projectmember_view.pt:37
 msgid "listingheader_Phone"
 msgstr "Teléfono"
 
@@ -714,7 +714,7 @@ msgid "listingheader_diff_hours"
 msgstr "Diferencia (horas)"
 
 #. Default: "Email"
-#: ./skins/eXtremeManagement/customer_view.pt:109
+#: ./skins/eXtremeManagement/projectmember_view.pt:44
 msgid "listingheader_email"
 msgstr "Email"
 
@@ -745,7 +745,7 @@ msgid "listingheader_initial_estimate"
 msgstr "Estimación Inicial (días)"
 
 #. Default: "Iteration"
-#: ./browser/inprogress.pt:19
+#: ./browser/invoicing.pt:19
 msgid "listingheader_iteration"
 msgstr "Iteración"
 
@@ -765,7 +765,7 @@ msgid "listingheader_phone"
 msgstr "Teléfono"
 
 #. Default: "Project"
-#: ./browser/inprogress.pt:16
+#: ./browser/invoicing.pt:16
 msgid "listingheader_projects"
 msgstr "Proyecto"
 
@@ -825,6 +825,11 @@ msgstr "Código postal"
 msgid "man_hours_empty"
 msgstr "N/D"
 
+#. Default: "${count} comment(s) in this story."
+#: ./browser/viewlets/templates/manage_story_details.pt:18
+msgid "msg_number_of_comments_in_story"
+msgstr ""
+
 #. Default: "Needs Estimate"
 #: ./skins/eXtremeManagement/story_view.pt:51
 msgid "needs_estimate"
@@ -881,7 +886,7 @@ msgid "previous"
 msgstr "Anterior"
 
 #. Default: "previous month"
-#: ./skins/eXtremeManagement/booking_details.pt:19
+#: ./skins/eXtremeManagement/booking_month.pt:33
 msgid "previous-month"
 msgstr "mes anterior"
 
