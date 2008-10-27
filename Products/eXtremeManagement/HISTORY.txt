@@ -5,6 +5,11 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- Show the number of comments of a Story in the story details viewlet
+  (when expanding the story in the iteration view).  Fixes
+  http://plone.org/products/extreme-management-tool/issues/87
+  [maurits]
+
 - Employees overview: show the strict percentages and totals for the
   week, meaning: count only the days in this month.  The totals and
   percentages that really count the whole week are now available as a

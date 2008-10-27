@@ -36,5 +36,7 @@ class IStoryDetails(IViewletManager):
         title=u'Alternative for tasks that might be in the view.')
     story_object = zope.schema.Bool(
         title=u'Story object whose details should be rendered.')
+    number_of_comments = zope.schema.Int(
+        title=u'Number of comments added to this Story.')
 
 directlyProvides(IStoryDetails, ITALNamespaceData)

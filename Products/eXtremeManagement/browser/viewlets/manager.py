@@ -62,6 +62,7 @@ class StoryDetailsProvider(Explicit):
     template = ViewPageTemplateFile('templates/manage_story_details.pt')
     render = template
     story_object = None
+    number_of_comments = 0
 
     def __init__(self, context, request, view):
         self.context = context
@@ -70,6 +71,9 @@ class StoryDetailsProvider(Explicit):
         if uid is not None:
             brains = getToolByName(context, 'uid_catalog')(UID=uid)
             self.story_object = brains[0].getObject()
+            pd = getToolByName(context, 'portal_discussion')
+            replies = pd.getDiscussionFor(self.story_object).getReplies()
+            self.number_of_comments = len(replies)
         self.__parent__ = view
 
     def update(self):

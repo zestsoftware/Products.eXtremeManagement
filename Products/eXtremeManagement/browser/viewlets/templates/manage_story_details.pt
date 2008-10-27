@@ -1,7 +1,8 @@
 <tal:block
     define="story_object nocall:view/story_object;
             storyview nocall:story_object/@@story;
-            realtasks storyview/tasklist;">
+            realtasks storyview/tasklist;"
+    i18n:domain="eXtremeManagement">
 
   <p class="documentDescription"
      tal:content="story_object/Description"/>
@@ -11,5 +12,11 @@
   </div>
 
   <div tal:replace="structure provider:xm.tasklist.simple" />
+
+  <div tal:condition="view/number_of_comments"
+       i18n:translate="msg_number_of_comments_in_story">
+    <tal:count i18n:name="count" tal:content="view/number_of_comments" />
+    comment(s) in this story.
+  </div>
 
 </tal:block>
