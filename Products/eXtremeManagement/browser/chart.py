@@ -1,9 +1,12 @@
+from Acquisition import aq_inner
 from zope import interface
+
+import string
+
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 
-from xm.booking.timing.interfaces import IActualHours,ISizeEstimate
-from chart_api import Chart, LINE, nice_axis_step
+from xm.booking.timing.interfaces import IActualHours,ISizeEstimate,IEstimate
 
 from pygooglechart import SimpleLineChart, Axis, ExtendedData
 
@@ -26,6 +29,32 @@ class ChartView(BrowserView):
         available 
         Also used for the main chart page on a project """
 
+    def __init__(self,context,request):
+        super(ChartView, self).__init__(context,request)
+        self.table = []
+        self.total_iterations = 0
+        self.project = aq_inner(self.context).getProject()
+        for it in self.get_iterations_generator():
+            self.total_iterations +=1
+            estim_total = int(self.get_total_estimate_iteration(it)+0.5)
+            estim_total_adapt = int((IEstimate(it).estimate / 8.0) + 0.5 )
+            # task_estim_total = int(self.get_task_total_estimate_iteration(it)+0.5)
+            work_total = int((IActualHours(it).actual_time / 8.0) + 0.5)
+            self.table.append({'label':it.title_or_id(),
+                               'estimate':estim_total,
+                               'estimate_adapt':estim_total_adapt,
+                               'worked':work_total })
+
+
+    @memoize
+    def total_budget(self):
+        """ return total budget hours"""
+        budgetString = self.project.getBudgetHours()
+        if len(string.strip(budgetString))>0:
+            return int(float(budgetString)+0.5)
+        else:
+            return None
+            
     @memoize    
     def has_data(self):
         portal_properties = getToolByName(self.context, 'portal_properties')
@@ -34,22 +63,14 @@ class ChartView(BrowserView):
             if (not hasattr(xm_props, 'project_chart')
                 or not xm_props.project_chart):
                 return False
-            return self.get_iterations() > 1
+            print self.total_iterations
+            return self.total_iterations > 1
         return False
 
-    @memoize
-    def get_iterations(self):
-        #XXX FIX ME, I AM TOO TIME EXPENSIVE
-        return [i for i in self.context.contentValues()
-                              if i.portal_type=='Iteration']
-
-    @memoize
-    def total_iterations(self):
-        return len(self.get_iterations())
-
     def get_iterations_generator(self):
+        """ return a generator for all iterations having iter in their name"""
         return (i for i in self.context.contentValues()
-                              if i.portal_type=='Iteration')
+                              if i.portal_type=='Iteration' and 'iter' in i.title_or_id().lower())
 
     @memoize
     def labels(self):
@@ -57,90 +78,87 @@ class ChartView(BrowserView):
         
     @memoize
     def estimate_data(self):
-        
-        estimate_data = []
+        """ estimates for all iterations in a project"""
+        return [i['estimate'] for i in self.table]
 
-        for it in self.get_iterations_generator():
-            # XXX self.get_total_estimate_iteration(iter) should be doable
-            #      in a neater way, just like IActualHours(iter).actual_time
-            estim_total = int(self.get_total_estimate_iteration(it)+0.5)
-            estimate_data.append(estim_total)
-
-        return estimate_data
-         
     @memoize
-    def work_data(self):
+    def cumulative_estimate_data(self):
+        """ cumulative estimates for all iterations in a project"""
+        cumul = []
+        done = 0
+        for work in self.estimate_data():
+            cumul.append(work+done)
+            done += work
+        return cumul
+            
 
-        work_data = []
-
-        for it in self.get_iterations_generator():
-            work_total = int((IActualHours(it).actual_time / 8.0) + 0.5)
-            work_data.append(work_total)
-        
-        return work_data
-        
     def get_total_estimate_iteration(self, iteration):
+        """ sum of rough story estimates in an iteration """
         #XXX FIX ME, I AM TOO TIME EXPENSIVE
         total = 0.0
+
         for story in (i for i in iteration.contentValues()
                               if i.portal_type=='Story'):
             if ISizeEstimate.providedBy(story):
                 total += ISizeEstimate(story).size_estimate
+        return total_iterations
+
+    @memoize
+    def adapt_estimate_data(self):
+        """ estimates for all iterations in a project"""
+        return [i['estimate_adapt'] for i in self.table]
+
+
+    def get_task_total_estimate_iteration(self, iteration):
+        """ sum of task estimates from all stories in an iteration """
+        #XXX FIX ME, I AM TOO TIME EXPENSIVE
+        total = 0.0
+
+        for story in (i for i in iteration.contentValues()
+                              if i.portal_type=='Story'):
+            if IEstimate.providedBy(story):
+                total += IEstimate(story).size_estimate
         return total
-        
+
+    @memoize
+    def work_data(self):
+        """ actual hours work in an iteration """
+        return [i['worked'] for i in self.table]
+    
+    @memoize
+    def cumulative_work_data(self):
+        """ estimates for all iterations in a project"""
+        cumul = []
+        done = 0
+        for work in self.work_data():
+            cumul.append(work+done)
+            done += work
+        return cumul
+
     def velocity_table(self):
-        return zip(self.labels(),self.estimate_data(),self.work_data())
+        return zip(self.labels(),self.estimate_data(),self.adapt_estimate_data(),self.work_data(),)
 
     def velocity_chart(self):
         
         graph_width = 750
         graph_height = 300
 
+        x_max = self.total_iterations
+        y_max = max(max(self.estimate_data()),max(self.adapt_estimate_data()),max(self.work_data()))
 
-        chart = SimpleLineChart(graph_width, graph_height, x_range=(1,self.total_iterations()))
+        chart = SimpleLineChart(graph_width, graph_height, x_range=(1,x_max+1), y_range=(0,y_max+1))
+        
         chart.add_data(self.estimate_data())
+        chart.add_data(self.adapt_estimate_data())
         chart.add_data(self.work_data())
-        chart.set_colours(['FF0000', '0000FF'])
-        chart.set_legend(['estimated','worked hours'])
+        chart.set_grid(0, 100.0/y_max+1, 5, 5)
+        chart.set_colours(['FF0000','00FF00','0000FF'])
+        chart.set_legend(['estimated','estimated_adapt','worked'])
         chart.set_legend_position('b')
-        chart.set_axis_labels(Axis.BOTTOM, range(1,self.total_iterations()+1))
-
-        y_max = max(max(self.estimate_data()),max(self.work_data()))
-        chart.set_axis_range(Axis.LEFT, 0, y_max)
+        chart.set_axis_labels(Axis.LEFT, ['','','days'])
+        chart.set_axis_labels(Axis.BOTTOM, range(1,x_max+1))
+        chart.set_axis_range(Axis.LEFT, 0, y_max+1)
 
         return chart.get_url(data_class=ExtendedData)
 
-    def old_velocity_chart(self):
-        iterations = self.get_iterations()
-        estimate_data = []
-        work_data = []
-        estimate_max = 0
-        work_max = 0
-        for iter in iterations:
-            # XXX self.get_total_estimate_iteration(iter) should be doable
-            #      in a neater way, just like IActualHours(iter).actual_time
-            iter_total = int(self.get_total_estimate_iteration(iter)+0.5)
-            work_total = int((IActualHours(iter).actual_time / 8.0) + 0.5)
-            estimate_data.append(iter_total)
-            work_data.append(work_total)
-            estimate_max = max([iter_total, estimate_max])
-            work_max = max([work_total, work_max])
-        estimate_max = max([estimate_max, 1])
-        work_max = max([work_max, 1])
-        total_max = max([estimate_max, work_max])
 
-        chart = Chart(type = LINE,
-                      data = [estimate_data, work_data],
-                      size = (max([40*len(iterations), 250]), 250))
-        chart.setDataColors(['8cacbb', '008000'])
-        chart.setLegend(['estimated', 'worked'])
-        iter_num = '|'.join([str(i) for i in range(len(iterations))])
-        step = nice_axis_step(total_max)
-        y_max = total_max + step
-        day_num = '|'.join([str(i) for i in range(0, y_max, step)])
-        xtra = '&chxt=x,y,x,y&chxl='
-        xtra += '0:|%s|' % iter_num
-        xtra += '1:|%s|' % day_num
-        xtra += '2:||iteration||3:||days|'
-        chart.setCustom(xtra)
-        return chart.getUrl()

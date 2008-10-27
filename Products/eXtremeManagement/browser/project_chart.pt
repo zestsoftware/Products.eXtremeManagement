@@ -20,6 +20,7 @@
               <th>#iteration</th>
               <th>iteration name</th>
               <th>estimate (days)</th>
+              <th>estimate (days) using adapter</th>
               <th>worked (days)</th>
           </tr>
           <tr tal:repeat="iteration view/velocity_table">
@@ -29,6 +30,7 @@
              <td tal:content="python:iteration[0]()"></td>
              <td tal:content="python:iteration[1]"></td>
              <td tal:content="python:iteration[2]"></td>
+             <td tal:content="python:iteration[3]"></td>
           </tr>
       </table>
     </div>
