@@ -23,10 +23,10 @@ task for this issue in an open story.
       <div tal:condition="view/can_add_tasks">
         <dl class="portlet" id="portlet-xmpoi">
           <dt class="portletHeader">
-            <span class="portletTopLeft"></span>
             <span tal:omit-tag=""
                   i18n:domain="eXtremeManagement"
                   i18n:translate="header-create-tasks-from-issues">Create tasks from issues</span>
+            <span class="portletTopLeft"></span>
             <span class="portletTopRight"></span>
           </dt>
 
@@ -72,10 +72,10 @@ task for this issue in an open story.
           <dl class="portlet" id="portlet-xmpoi">
             <dt class="portletHeader">
               <span class="portletTopLeft"></span>
+              <span class="portletTopRight"></span>
               <span tal:omit-tag=""
                     i18n:domain="eXtremeManagement"
                     i18n:translate="heading-related-xm-tasks">Related XM Tasks</span>
-              <span class="portletTopRight"></span>
             </dt>
 
             <dd tal:condition="links"
