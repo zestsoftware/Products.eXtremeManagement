@@ -363,7 +363,7 @@ UL.xm-assignees LI {
 
 #totalTasks th {
   text-transform: none;
-  background-color: transparent;
+  background-color: #eefcff;
   font-weight: bold;
 }
 
