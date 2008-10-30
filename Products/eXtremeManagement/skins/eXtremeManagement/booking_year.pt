@@ -13,7 +13,7 @@
                         base_year main/base_year;
                         base_month main/base_month;
                         total main/total;">
-
+    <div id="content">
         <p tal:define="contextlink string:${here/absolute_url}/${template/id}">
           <span>Go to
           <a tal:condition="not: request/memberid|nothing"
@@ -40,6 +40,7 @@
           </tal:one_month>
         </tal:months>
         <p>Total for the entire period: <span tal:replace="total" /> hours.</p>
+        </div>
       </tal:year>
     </tal:main>
   </body>

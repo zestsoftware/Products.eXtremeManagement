@@ -82,7 +82,7 @@
 }
 
 .list-in-iteration {
-    text-align: right;
+    text-align: left;
 }
 
 .list_iterations div {
@@ -179,10 +179,7 @@
 }
 
 table.hour-registration th {
-  padding-left: 10px !important;
-  padding-right: 10px !important;
   white-space: nowrap;
-
 }
 
 .label-bookingdate {
