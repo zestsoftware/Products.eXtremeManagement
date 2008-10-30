@@ -109,7 +109,7 @@
 
 .project_title, .booking_title,
 .header_projectmember_listing th,
-.hours-comments {
+{
   font-weight: bold !important;
 }
 
@@ -168,6 +168,23 @@
     padding-top: 15px;
 }
 
+.hours-comments-hours, .hours-comments-minutes {
+    color: &dtml-discreetColor; !important;
+    float: left;
+    padding-bottom: 5px;   
+}
+
+.hours-comments-hours {
+    padding-left: 1px;
+}
+
+.hours-comments-minutes {
+    padding-left: 28px;
+}
+.hours-comments-select{
+    display: block;
+    clear: left
+}
 /* ---- end hours view ---- */
 
 /* *** Start update_hours_form *** */
@@ -183,9 +200,9 @@ table.hour-registration th {
 }
 
 .label-bookingdate {
-  font-weight: bold;
+  font-size: 85%;
   float: left;
-  padding-right: 5px;
+  padding-right: 10px;
 }
 
 /* *** End update_hours_form *** */
@@ -373,7 +390,7 @@ UL.xm-assignees LI {
 
 .greyed {
     color: Grey;
-    background-color: #EEF3F5;
+    background-color: #f9f9f9;
 }
 
 .good {

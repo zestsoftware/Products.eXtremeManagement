@@ -89,11 +89,17 @@
               <tr>
                 <td
                     class="hours-comments">
-                  <br />
+                  <div class="hours-comments-hours">
                   <tal:hours i18n:translate="label_hours">Hours
                   </tal:hours>
-
-                  <select name="hours"
+                  </div>
+                  <div class="hours-comments-minutes">
+                  <tal:minutes i18n:translate="label_minutes">
+                  Minutes</tal:minutes>
+                  </div>
+                  <div class="hours-comments-select">
+                  <select class= "hours"
+                          name="hours"
                           tal:define="hours python:('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10');"
                           tal:attributes="name string:${task/UID}_hours;
                                           tabindex tabindex/next;">
@@ -103,7 +109,8 @@
                     </tal:block>
                   </select>
                   :
-                  <select name="minutes"
+                  <select class="minutes"
+                          name="minutes"
                           tal:define="minutes python:('0', '15', '30', '45');"
                           tal:attributes="name string:${task/UID}_minutes;
                                           tabindex tabindex/next;">
@@ -112,8 +119,7 @@
                               tal:attributes="value minute" />
                     </tal:block>
                   </select>
-                  <tal:minutes i18n:translate="label_minutes">
-                  Minutes</tal:minutes>
+                  </div>
                 </td>
                 <td colspan="3">
                   <textarea name="description"
