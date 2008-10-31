@@ -11,8 +11,8 @@
          tal:condition="python:results">
       <dl class="portlet" id="portlet-my-projects">
         <dt class="portletHeader">
-          <span i18n:translate="box_my_projects">My Projects</span>
           <span class="portletTopLeft"></span>
+          <span i18n:translate="box_my_projects">My Projects</span>
           <span class="portletTopRight"></span>
         </dt>
         <tal:block tal:repeat="item results">
@@ -30,8 +30,8 @@
             </div>
           </dd>
         </tal:block>
-        <dd class="portletFooter">
           <span class="portletBottomLeft"></span>
+        <dd class="portletFooter">
           <span class="portletBottomRight"></span>
         </dd>
       </dl>

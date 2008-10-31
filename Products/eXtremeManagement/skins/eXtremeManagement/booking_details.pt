@@ -11,7 +11,7 @@
   <body>
 
     <tal:main metal:fill-slot="main">
-    <div id="content">
+
       <p tal:condition="not:request/previous|nothing">
         <tal:goto i18n:translate="go_to">
           Go to
@@ -90,7 +90,7 @@
           </tr>
         </table>
       </tal:block>
-    </div>
+
     </tal:main>
   </body>
 </html>

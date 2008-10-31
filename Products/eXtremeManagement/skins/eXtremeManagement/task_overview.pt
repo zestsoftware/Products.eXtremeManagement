@@ -13,7 +13,7 @@
     <tal:main metal:fill-slot="main"
               tal:define="view context/@@mytask_details;
                           projects view/projects;">
-    <div id="content">
+
       <p>
         <tal:show i18n:translate="show_tasks_with_state">
         Show Tasks with state:</tal:show>
@@ -43,7 +43,7 @@
                     show_story python:True;"
             replace="structure provider:xm.tasklist.simple" />
       </tal:loop>
-    </div>
+
     </tal:main>
   </body>
 </html>

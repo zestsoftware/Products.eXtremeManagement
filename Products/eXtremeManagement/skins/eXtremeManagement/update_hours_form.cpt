@@ -24,7 +24,7 @@
 
   <body>
 
-    <div id="content" metal:fill-slot="main"
+    <div metal:fill-slot="main"
          tal:define="view portal/@@mytask_details;
                      tasklist view/tasklist;
                      tasks tasklist/tasks;">

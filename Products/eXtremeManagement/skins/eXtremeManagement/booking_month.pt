@@ -11,7 +11,7 @@
   <body>
 
     <tal:main metal:fill-slot="main">
-    <div id="content">
+
       <h1 i18n:translate="heading-bookings-per-day">Bookings per day</h1>
       <p>
         <span i18n:translate="go_to_overview">
@@ -110,7 +110,7 @@
           </table>
         </metal:month>
       </tal:block>
-    </div>
+
     </tal:main>
   </body>
 </html>
