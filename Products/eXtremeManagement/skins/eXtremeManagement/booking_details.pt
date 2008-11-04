@@ -8,7 +8,7 @@
                  tal:define="dummy python:request.set('disable_border', 1)" />
   </head>
 
-  <body>
+  <body>F
 
     <tal:main metal:fill-slot="main">
 
@@ -41,20 +41,19 @@
                  tal:condition="bookings">
         <h1 i18n:translate="heading-bookings">Bookings</h1>
 
-        <table border="1"
-               class="listing"
+        <      class="listing"
                with="100%">
           <tr>
-            <th i18n:translate="listingheader-date">
+            <th class="nosort" i18n:translate="listingheader-date">
               Date
             </th>
-            <th i18n:translate="listingheader-task">
+            <th class="nosort" i18n:translate="listingheader-task">
               Task
             </th>
-            <th i18n:translate="listingheader-booking">
+            <th class="nosort" i18n:translate="listingheader-booking">
               Booking
             </th>
-            <th i18n:translate="listingheader-time">
+            <th class="nosort" i18n:translate="listingheader-time">
               Time
             </th>
           </tr>

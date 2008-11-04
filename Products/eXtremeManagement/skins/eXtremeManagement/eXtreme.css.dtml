@@ -77,10 +77,6 @@
     border-bottom: 1px solid #FFFFFF;
 }
 
-.list-in-iteration {
-    text-align: left;
-}
-
 .list_iterations div {
     line-height: 1.5em;
     margin: 0.5em 0 0 1.5em;
@@ -371,9 +367,9 @@ UL.xm-assignees LI {
   font-size: 110%;
 }
 
-#totalTasks th {
+#totalTasks th, #bookingTotal th {
   text-transform: none;
-  background-color: #eefcff;
+  background: #ebebe9 url(++resource++xm.theme.images/background_tableFooter.gif) repeat-x scroll 0 0;
   font-weight: bold;
 }
 
@@ -386,7 +382,7 @@ UL.xm-assignees LI {
 
 .greyed {
     color: Grey;
-    background-color: #f9f9f9;
+    background: #f9f9f9  url(++resource++xm.theme.images/background_tableFix.gif) 0 0 repeat-x;;
 }
 
 .good {
@@ -516,17 +512,14 @@ ul.iteration-droptarget li.story-draggable:hover {
     text-decoration: none;
 }
 .tasklist_table .actionMenu .actionMenuContent ul {
-    background-color: &dtml-backgroundColor;;
-    border: &dtml-borderWidth; &dtml-contentViewBorderColor;;
-    border-style: &dtml-borderStyle; &dtml-borderStyle; &dtml-borderStyle; &dtml-borderStyle;;
+    padding: 0 !important;
 }
 .tasklist_table .actionMenu .actionMenuContent li a {
-    margin: 0.2em;
-    border: 0;
+    padding: 0 5px;
+    text-decoration: none;
 }
 .tasklist_table .actionMenu .actionMenuContent li a:hover {
-    background-color: &dtml-contentViewBorderColor;;
-    color: black;
+    text-decoration: none;
 }
 
 table.listing .actionMenu .actionMenuHeader a{

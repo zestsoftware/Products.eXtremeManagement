@@ -6,21 +6,20 @@
             show_story view/show_story;">
 
   <table class="listing nosort tasklist_table"
-         border="1"
          width="100%"
          cellpadding="0"
          cellspacing="0"
          tal:condition="items">
     <thead>
       <tr>
-        <th i18n:translate="listingheader_story"
+        <th class="nosort" i18n:translate="listingheader_story"
             tal:condition="show_story">Story</th>
-        <th i18n:translate="listingheader_title">Title</th>
-        <th i18n:translate="listingheader_estimate_hours">Estimate (hours)</th>
-        <th i18n:translate="listingheader_actual_hours">Actual (hours)</th>
-        <th i18n:translate="listingheader_diff_hours">Difference (hours)</th>
-        <th i18n:translate="listingheader_state">Status</th>
-        <th i18n:translate="listingheader_assignees">Assignee(s)</th>
+        <th class="nosort" i18n:translate="listingheader_title">Title</th>
+        <th class="nosort" i18n:translate="listingheader_estimate_hours">Estimate (hours)</th>
+        <th class="nosort" i18n:translate="listingheader_actual_hours">Actual (hours)</th>
+        <th class="nosort" i18n:translate="listingheader_diff_hours">Difference (hours)</th>
+        <th class="nosort" i18n:translate="listingheader_state">Status</th>
+        <th class="nosort" i18n:translate="listingheader_assignees">Assignee(s)</th>
       </tr>
     </thead>
 

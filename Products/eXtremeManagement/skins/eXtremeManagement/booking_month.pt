@@ -61,21 +61,21 @@
             <tal:month i18n:name="month" tal:replace="main/month" /> / <tal:year i18n:name="year" tal:replace="main/year" />
           </h2>
 
-          <table border="1"
+          <table border="0"
                  class="listing booking-per-month"
                  with="100%">
             <tr >
-              <th i18n:translate="listingheader-week-number">Week</th>
-              <th i18n:translate="listingheader-start-of-week">Start</th>
-              <th i18n:translate="weekday_mon">Monday</th>
-              <th i18n:translate="weekday_tue">Tuesday</th>
-              <th i18n:translate="weekday_wed">Wednesday</th>
-              <th i18n:translate="weekday_thu">Thursday</th>
-              <th i18n:translate="weekday_fri">Friday</th>
-              <th i18n:translate="weekday_sat">Saturday</th>
-              <th i18n:translate="weekday_sun">Sunday</th>
-              <th i18n:translate="listingheader-total">Total</th>
-              <th i18n:translate="perc_billable">Billable</th>
+              <th class="nosort" i18n:translate="listingheader-week-number">Week</th>
+              <th class="nosort" i18n:translate="listingheader-start-of-week">Start</th>
+              <th class="nosort" i18n:translate="weekday_mon">Monday</th>
+              <th class="nosort" i18n:translate="weekday_tue">Tuesday</th>
+              <th class="nosort" i18n:translate="weekday_wed">Wednesday</th>
+              <th class="nosort" i18n:translate="weekday_thu">Thursday</th>
+              <th class="nosort" i18n:translate="weekday_fri">Friday</th>
+              <th class="nosort" i18n:translate="weekday_sat">Saturday</th>
+              <th class="nosort" i18n:translate="weekday_sun">Sunday</th>
+              <th class="nosort" i18n:translate="listingheader-total">Total</th>
+              <th class="nosort" i18n:translate="perc_billable">Billable</th>
             </tr>
 
             <tr tal:repeat="week bookings">
@@ -100,7 +100,7 @@
                 80 %
               </td>
             </tr>
-            <tr class="bookingTotal">
+            <tr id="bookingTotal">
               <th i18n:translate="listingheader-total"
                   colspan="9">Total</th>
               <th tal:content="main/total">245:45</th>
