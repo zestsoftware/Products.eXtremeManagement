@@ -30,7 +30,7 @@
         <span i18n:translate="" i18n:domain="plone" tal:replace="view/stateTitle" /> 
       </h1>
 
-      <p i18n:translate="description-overview-my-tasks">
+      <p class="discreet" i18n:translate="description-overview-my-tasks">
         Overview of tasks that belong to me.  The totals mentioned are
         the total time for myself, so they will usually differ from
         adding the numbers of the column above it.

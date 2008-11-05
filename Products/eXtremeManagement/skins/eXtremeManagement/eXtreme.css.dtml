@@ -146,10 +146,13 @@
 }
 
 .booking_description {
-    margin-left: 20px;
+    margin-top: 4px;
 }
 
 /* ---- hours view ---- */
+.hours-comments-description {
+    margin: 4px 0 8px 0;
+}
 
 .hours-comments textarea {
     margin-right: 15px;
@@ -362,27 +365,23 @@ UL.xm-assignees LI {
   text-align: right;
 }
 
-#totalTasks {
+#totalTasks, #bookingTotal, #booking-details-total {
   font-weight: bold;
   font-size: 110%;
 }
 
-#totalTasks th, #bookingTotal th {
+#totalTasks th, #bookingTotal th, #booking-details-total th {
   text-transform: none;
   background: #ebebe9 url(++resource++xm.theme.images/background_tableFooter.gif) repeat-x scroll 0 0;
   font-weight: bold;
-}
-
-#totalTasks td {
-  padding: 5px 2px;
-  border-top: 1px dotted #8CACBB;
+  white-space:nowrap;
 }
 
 /* booking_month  */
 
 .greyed {
     color: Grey;
-    background: #f9f9f9  url(++resource++xm.theme.images/background_tableFix.gif) 0 0 repeat-x;;
+    background: #f9f9f9 url(++resource++xm.theme.images/background_tableFix.gif) 0 0 repeat-x;
 }
 
 .good {

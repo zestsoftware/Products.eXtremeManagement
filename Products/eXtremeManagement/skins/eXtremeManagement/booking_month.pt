@@ -22,7 +22,7 @@
            i18n:translate="last_12_months">last 12 months</a>
         <a tal:condition="request/memberid|nothing"
            tal:attributes="href string:booking_year?memberid=${request/memberid}"
-           i18n:translate="last_12_months">last 12 months</a>.
+           i18n:translate="last_12_months">last 12 months</a>
       </p>
       <tal:othermonths
           tal:define="contextlink string:${here/absolute_url}/${template/id}">
@@ -35,7 +35,7 @@
              i18n:translate="previous-month">previous month</a>
           <a tal:condition="request/memberid|nothing"
              tal:attributes="href string:${contextlink}?previous=1&amp;memberid=${request/memberid}"
-             i18n:translate="previous-month">previous month</a>.
+             i18n:translate="previous-month">previous month</a>
         </p>
         <p tal:condition="request/previous|nothing">
           <tal:back i18n:translate="back_to">
@@ -46,7 +46,7 @@
              i18n:translate="current-month">current month</a>
           <a tal:condition="request/memberid|nothing"
              tal:attributes="href string:${contextlink}?memberid=${request/memberid}"
-             i18n:translate="current-month">current month</a>.
+             i18n:translate="current-month">current month</a>
         </p>
       </tal:othermonths>
 

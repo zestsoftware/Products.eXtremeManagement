@@ -21,7 +21,7 @@
            i18n:translate="previous-month">previous month</a>
         <a tal:condition="request/memberid|nothing"
            tal:attributes="href string:${template/absolute_url}?previous=1&amp;memberid=${request/memberid}"
-           i18n:translate="previous-month">previous month</a>.
+           i18n:translate="previous-month">previous month</a>
       </p>
       <p tal:condition="request/previous|nothing">
         <tal:back i18n:translate="back_to">
@@ -32,7 +32,7 @@
            i18n:translate="current-month">current month</a>
         <a tal:condition="request/memberid|nothing"
            tal:attributes="href string:${template/absolute_url}?memberid=${request/memberid}"
-           i18n:translate="current-month">current month</a>.
+           i18n:translate="current-month">current month</a>
       </p>
       <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
                              view context/@@monthbooking_details;
@@ -41,7 +41,8 @@
                  tal:condition="bookings">
         <h1 i18n:translate="heading-bookings">Bookings</h1>
 
-        <      class="listing"
+        <table border="0"
+               class="listing"
                with="100%">
           <tr>
             <th class="nosort" i18n:translate="listingheader-date">
@@ -80,7 +81,7 @@
             </td>
             <td tal:content="booking/booking_hours" />
           </tr>
-          <tr>
+          <tr id="booking-details-total" >
             <th i18n:translate="listingheader-total"
                 colspan="3">
               Total
