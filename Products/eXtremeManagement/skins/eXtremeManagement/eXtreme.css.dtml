@@ -520,7 +520,7 @@ ul.iteration-droptarget li.story-draggable:hover {
 
 table.listing .actionMenu .actionMenuHeader a{
     /*LS-  display fix image ie7*/
-    background:transparent url(++resource++xm.theme.images/active_content-menu-display.gif) no-repeat scroll 0 0;
+    background-position: 0 0;
     white-space: nowrap;
     display: inline-block;
     position: relative;
