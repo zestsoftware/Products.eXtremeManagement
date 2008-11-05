@@ -253,7 +253,7 @@ table.hour-registration th {
   width: 40%;
   border: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
   background-color: &dtml-globalBackgroundColor;;
-  margin-left: 0.5em;
+  margin-bottom: 10px;
 }
 
 .xm-details dl {
