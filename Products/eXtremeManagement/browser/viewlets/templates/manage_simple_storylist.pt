@@ -12,10 +12,8 @@
     condition="stories">
 
     <tal:extraheader condition="show_iteration">
-      <tr class="IterationTitle">
-        <th height="30"
-            align="left"
-            class="header_iteration">
+      <tr class="IterationTitle nosort">
+        <th class="header_iteration nosort">
           <a class="header_iteration_project_overview"
              tal:attributes="href string:${iteration_object/absolute_url}">
             <img tal:attributes="src string:${here/portal_url}/${iteration_icon};
@@ -25,7 +23,7 @@
         </th>
         <th colspan="1"
             tal:attributes="colspan python: show_task_count and 4 or 1"
-            class="iteration-state">
+            class="iteration-state nosort">
           <span i18n:translate="status">status</span>:
           <span tal:content="structure iteration_dict/review_state"/>
           <img tal:attributes="src string:${iteration_dict/review_state}.gif;
@@ -42,14 +40,14 @@
     <tr class="StatusOfStories"
         i18n:domain="eXtremeManagement">
       <th i18n:translate="listingheader_story"
-          class="storyHeader">Story</th>
+          class="storyHeader nosort">Story</th>
       <th i18n:translate="listingheader_state"
-          class="statusHeader">Status</th>
+          class="statusHeader nosort">Status</th>
       <th i18n:translate="listingheader_initial_estimate"
-          class="initEstimateHeader">Initial estimate (days)</th>
+          class="initEstimateHeader nosort">Initial estimate (days)</th>
       <th i18n:translate="listingheader_tasks_estimate"
-          class="tasksEstimateHeader">Tasks estimate (hours)</th>
-      <th class="actualHoursHeader"
+          class="tasksEstimateHeader nosort">Tasks estimate (hours)</th>
+      <th class="actualHoursHeader nosort"
           i18n:translate="Actual_hours">Actual hours</th>
     </tr>
 

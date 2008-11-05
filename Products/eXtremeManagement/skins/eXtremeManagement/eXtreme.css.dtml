@@ -20,8 +20,7 @@
 }
 
 .header_iteration_project_overview {
-    font-weight: bold;
-    font-size: 15px;
+    font-size: 120%;
 }
 
 .header_iteration {
@@ -47,7 +46,7 @@
   height: 10px;
   text-align: left;
   margin-top: 2px;
-  background-color: #edebeb;
+  background-color: #ccc;
 }
 
 .listStories {
@@ -71,6 +70,10 @@
 .td-story-title, .td-memberid {
   text-align: left !important;
   cursor: pointer;
+}
+
+.td-story-title {
+    padding: 0;
 }
 
 .clear-bottom {
@@ -246,7 +249,7 @@ table.hour-registration th {
 
 
 .xm-details {
-  float: right;
+  float: left;
   width: 40%;
   border: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
   background-color: &dtml-globalBackgroundColor;;
@@ -280,17 +283,11 @@ table.hour-registration th {
 }
 
 .xm-details table td {
-    background-color: &dtml-backgroundColor;;
     border: 0;
-    border-top: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
-    border-right: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
 }
 
 .xm-details table th {
   border: 0;
-  border-right: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
-  border-top: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
-  background-color: #EDEBEB;
 }
 
 .xm-bookings {
