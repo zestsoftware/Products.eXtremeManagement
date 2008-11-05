@@ -13,16 +13,16 @@
 
       <table class="listing">
         <tr>
-          <th i18n:translate="listingheader_projects">
+          <th class="nosort" i18n:translate="listingheader_projects">
             Project
           </th>
-          <th i18n:translate="listingheader_iteration">
+          <th class="nosort" i18n:translate="listingheader_iteration">
             Iteration
           </th>
-          <th i18n:translate="label_date_completed">
+          <th class="nosort" i18n:translate="label_date_completed">
               Date completed
           </th>
-          <th i18n:translate="label_hours_worked">
+          <th class="nosort" i18n:translate="label_hours_worked">
             Hours worked
           </th>
         </tr>

@@ -60,7 +60,7 @@
             <tal:calendar metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox" />
           </div>
 
-          <table class="listing hour-registration" border="1">
+          <table class="listing hour-registration" border="0">
             <tal:loop tal:repeat="task tasks">
               <tr>
                   <th>Naam project, taak:</th>

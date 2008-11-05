@@ -20,8 +20,8 @@
          </span>
         <table class="listing employees-overview">
           <tr>
-            <th i18n:translate="head_name">Name</th>
-            <th tal:repeat="month view/month_names"
+            <th class="nosort" i18n:translate="head_name">Name</th>
+            <th class="nosort" tal:repeat="month view/month_names"
                 tal:content="month">April</th>
           </tr>
           <tal:employees repeat="employee view/items">
