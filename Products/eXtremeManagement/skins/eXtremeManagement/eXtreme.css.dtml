@@ -503,7 +503,6 @@ ul.iteration-droptarget li.story-draggable:hover {
 /* story drag/drop end*/
 
 /* actionMenu clone START */
-
 .tasklist_table .actionMenu a:hover {
     text-decoration: none;
 }
@@ -525,7 +524,10 @@ table.listing .actionMenu .actionMenuHeader a{
     display: inline-block;
     position: relative;
 }
-    
+
+table.listing .actionMenu .actionMenuHeader a:hover {
+    background-position: 0 -18px;
+}
 /* actionMenu clone END */
 
 
