@@ -72,8 +72,12 @@
   cursor: pointer;
 }
 
-.td-story-title {
-    padding: 0;
+.td-story-title .story-title {
+    background: transparent url(++resource++xm.theme.images/active_content-menu-display.gif) no-repeat scroll 2px -36px;
+}
+
+.clear-bottom .story-title {
+    background-position: 2px -54px;
 }
 
 .clear-bottom {

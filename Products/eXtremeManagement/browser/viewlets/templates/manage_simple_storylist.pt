@@ -58,8 +58,10 @@
                           id string:kssattr-uid-${story/uid};">
         <td class="td-story-title"
             tal:attributes="id string:story-title-${story/uid}">
-          <div>
-            [ &darr; ]&nbsp;
+          <div class="story-title">
+            <span id="default_arrow">
+            [&darr;]
+            </span>
             <a class="storyTitle_iteration_overview"
                tal:attributes="href string:${story/url}"
                tal:content="story/title" />
