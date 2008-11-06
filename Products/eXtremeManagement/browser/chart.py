@@ -101,7 +101,7 @@ class ChartView(BrowserView):
                               if i.portal_type=='Story'):
             if ISizeEstimate.providedBy(story):
                 total += ISizeEstimate(story).size_estimate
-        return total_iterations
+        return total
 
     @memoize
     def adapt_estimate_data(self):
