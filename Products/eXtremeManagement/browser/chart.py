@@ -6,11 +6,12 @@ import string
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 
-from xm.booking.timing.interfaces import IActualHours,ISizeEstimate,IEstimate
+from xm.booking.timing.interfaces import IActualHours, ISizeEstimate, IEstimate
 
 from pygooglechart import SimpleLineChart, Axis, ExtendedData
 
 from plone.memoize.view import memoize
+
 
 class IChartView(interface.Interface):
     """Interface for charts"""
@@ -26,25 +27,25 @@ class IChartView(interface.Interface):
 
 class ChartView(BrowserView):
     """ Helper view for generating the chart url and if charts are
-        available 
+        available
         Also used for the main chart page on a project """
 
-    def __init__(self,context,request):
-        super(ChartView, self).__init__(context,request)
+    def __init__(self, context, request):
+        super(ChartView, self).__init__(context, request)
         self.table = []
         self.total_iterations = 0
         self.project = aq_inner(self.context).getProject()
         for it in self.get_iterations_generator():
             self.total_iterations +=1
             estim_total = int(self.get_total_estimate_iteration(it)+0.5)
-            estim_total_adapt = int((IEstimate(it).estimate / 8.0) + 0.5 )
-            # task_estim_total = int(self.get_task_total_estimate_iteration(it)+0.5)
+            estim_total_adapt = int((IEstimate(it).estimate / 8.0) + 0.5)
+            #task_estim_total = int(self.get_task_total_estimate_iteration(it)
+            #                       +0.5)
             work_total = int((IActualHours(it).actual_time / 8.0) + 0.5)
-            self.table.append({'label':it.title_or_id(),
-                               'estimate':estim_total,
-                               'estimate_adapt':estim_total_adapt,
-                               'worked':work_total })
-
+            self.table.append({'label': it.title_or_id(),
+                               'estimate': estim_total,
+                               'estimate_adapt': estim_total_adapt,
+                               'worked': work_total})
 
     @memoize
     def total_budget(self):
@@ -54,8 +55,8 @@ class ChartView(BrowserView):
             return int(float(budgetString)+0.5)
         else:
             return None
-            
-    @memoize    
+
+    @memoize
     def has_data(self):
         portal_properties = getToolByName(self.context, 'portal_properties')
         xm_props = portal_properties.xm_properties
@@ -70,12 +71,13 @@ class ChartView(BrowserView):
     def get_iterations_generator(self):
         """ return a generator for all iterations having iter in their name"""
         return (i for i in self.context.contentValues()
-                              if i.portal_type=='Iteration' and 'iter' in i.title_or_id().lower())
+                if i.portal_type=='Iteration' and
+                'iter' in i.title_or_id().lower())
 
     @memoize
     def labels(self):
         return [it.title_or_id for it in self.get_iterations_generator()]
-        
+
     @memoize
     def estimate_data(self):
         """ estimates for all iterations in a project"""
@@ -90,7 +92,6 @@ class ChartView(BrowserView):
             cumul.append(work+done)
             done += work
         return cumul
-            
 
     def get_total_estimate_iteration(self, iteration):
         """ sum of rough story estimates in an iteration """
@@ -108,7 +109,6 @@ class ChartView(BrowserView):
         """ estimates for all iterations in a project"""
         return [i['estimate_adapt'] for i in self.table]
 
-
     def get_task_total_estimate_iteration(self, iteration):
         """ sum of task estimates from all stories in an iteration """
         #XXX FIX ME, I AM TOO TIME EXPENSIVE
@@ -124,7 +124,7 @@ class ChartView(BrowserView):
     def work_data(self):
         """ actual hours work in an iteration """
         return [i['worked'] for i in self.table]
-    
+
     @memoize
     def cumulative_work_data(self):
         """ estimates for all iterations in a project"""
@@ -136,29 +136,31 @@ class ChartView(BrowserView):
         return cumul
 
     def velocity_table(self):
-        return zip(self.labels(),self.estimate_data(),self.adapt_estimate_data(),self.work_data(),)
+        return zip(self.labels(), self.estimate_data(),
+                   self.adapt_estimate_data(), self.work_data())
 
     def velocity_chart(self):
-        
+
         graph_width = 750
         graph_height = 300
 
         x_max = self.total_iterations
-        y_max = max(max(self.estimate_data()),max(self.adapt_estimate_data()),max(self.work_data()))
+        y_max = max(max(self.estimate_data()),
+                    max(self.adapt_estimate_data()),
+                    max(self.work_data()))
 
-        chart = SimpleLineChart(graph_width, graph_height, x_range=(1,x_max+1), y_range=(0,y_max+1))
-        
+        chart = SimpleLineChart(graph_width, graph_height,
+                                x_range=(1, x_max+1), y_range=(0, y_max+1))
+
         chart.add_data(self.estimate_data())
         chart.add_data(self.adapt_estimate_data())
         chart.add_data(self.work_data())
         chart.set_grid(0, 100.0/y_max+1, 5, 5)
-        chart.set_colours(['FF0000','00FF00','0000FF'])
-        chart.set_legend(['estimated','estimated_adapt','worked'])
+        chart.set_colours(['FF0000', '00FF00', '0000FF'])
+        chart.set_legend(['estimated', 'estimated_adapt', 'worked'])
         chart.set_legend_position('b')
-        chart.set_axis_labels(Axis.LEFT, ['','','days'])
-        chart.set_axis_labels(Axis.BOTTOM, range(1,x_max+1))
+        chart.set_axis_labels(Axis.LEFT, ['', '', 'days'])
+        chart.set_axis_labels(Axis.BOTTOM, range(1, x_max+1))
         chart.set_axis_range(Axis.LEFT, 0, y_max+1)
 
         return chart.get_url(data_class=ExtendedData)
-
-
