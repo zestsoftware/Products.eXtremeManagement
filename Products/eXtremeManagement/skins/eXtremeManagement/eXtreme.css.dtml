@@ -14,11 +14,6 @@
 /* <dtml-with base_properties> (do not remove this :) */
 /* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
 
-
-#portal-column-one{
-   width: 200px;
-}
-
 .header_iteration_project_overview {
     font-size: 120%;
 }
