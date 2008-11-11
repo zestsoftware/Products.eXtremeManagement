@@ -68,7 +68,6 @@
 }
 
 .td-story-title {
-    text-indent: 20px;
 }
 
 .td-story-title .story-title {
