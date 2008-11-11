@@ -30,7 +30,7 @@
         <tal:projects tal:repeat="project view/projectlist">
           <tal:iterations tal:repeat="iteration project/iterations">
             <tr>
-              <td>
+              <td class="progressfirstcolumn">
                 <a tal:content="project/title"
                    tal:attributes="title project/description;
                                    href project/url;"/>
