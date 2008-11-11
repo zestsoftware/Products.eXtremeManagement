@@ -87,13 +87,14 @@
                           iteration_object nocall:context;
                           realstories stories;"
               tal:replace="structure provider:xm.storylist.simple" />
-             <tr class="totalOfProject"
-                 tal:condition="iteration/budget_left">
-                 <th colspan="4"
-                    i18n:translate="label_remaining_budget">Remaining budget (hours)</th>
-                 <th tal:content="iteration/budget_left" />
-              </tr>
           </table>
+          <div class="totalOfProject"
+               tal:condition="iteration/budget_left">
+               <span i18n:translate="label_remaining_budget">
+                  Remaining budget (hours)
+               </span>
+               <span tal:content="iteration/budget_left" />
+          </div>
 
           <p class="discreet" i18n:translate="help_stories_table">
             The Initial estimate of the story is a rough estimate in
