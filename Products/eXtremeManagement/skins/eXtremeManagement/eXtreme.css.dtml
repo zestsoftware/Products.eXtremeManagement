@@ -72,10 +72,31 @@
 
 .td-story-title .story-title {
     background: transparent url(++resource++xm.theme.images/arrow_blue_inactive.gif) no-repeat scroll 2px 0;
+    padding: 0 0 0 20px;
 }
 
 .clear-bottom .story-title {
     background: transparent url(++resource++xm.theme.images/arrow_blue_active.gif) no-repeat scroll 2px 0;
+}
+
+.totalOfProject {
+    font-size: 90%;
+    font-weight: bold;
+    color: #5f861e;
+    background: transparent url(++resource++xm.theme.images/background_budgetLeft.gif) no-repeat scroll 0 0;
+    display: block;
+    clear: both;
+    float: right;
+    height: 18px;
+    padding: 0 0 0 13px;
+    margin: -10px 21px 0 0;
+}
+
+.totalOfProject span {
+    background: #cef48b url(++resource++xm.theme.images/background_budgetRepeat.gif) repeat-x scroll 0 0;
+    float: left;
+    height: 14px;
+    padding: 2px 32px 2px 18px;
 }
 
 .clear-bottom {
@@ -315,10 +336,14 @@ UL.xm-assignees LI {
 /* Offer view */
 
 #offerView {
-  border: 1px solid #8CACBB;
+  border: 1px solid #EEF3F5;
   border-top: none;
   margin-bottom: 10px;
   margin-top: 15px;
+}
+
+#offerView td {
+    padding: 10px 20px;
 }
 
 #offerViewHeader {
@@ -326,21 +351,19 @@ UL.xm-assignees LI {
 }
 
 #offerViewHeader h2 {
-  font-size: 130%;
+  font-size: 100%;
   font-weight: bold;
-  border-bottom: 1px solid #8CACBB;
+  float: left;
+  padding: 10px 0 0 0;
 }
 
 .offer-story-estimate-header {
   position: absolute;
   right: 2px;
-  top: -12px;
 }
 
 .storyTitle-storyEstimate td {
   background-color: #EEF3F5;
-  border-top: 1px solid #8CACBB;
-  border-bottom: 1px solid #8CACBB;
 }
 
 #offerView h2 {
@@ -380,7 +403,7 @@ UL.xm-assignees LI {
 
 .greyed {
     color: Grey;
-    background: #f9f9f9 url(++resource++xm.theme.images/background_tableFix.gif) 0 0 repeat-x;
+    background: #f3f3f1 url(++resource++xm.theme.images/background_tableFix.gif) 0 0 repeat-x;
 }
 
 .good {
@@ -525,6 +548,10 @@ table.listing .actionMenu .actionMenuHeader a{
     white-space: nowrap;
     display: inline-block;
     position: relative;
+}
+
+.booking-per-month tr {
+    background-color: #fff;
 }
 
 /* actionMenu clone END */
