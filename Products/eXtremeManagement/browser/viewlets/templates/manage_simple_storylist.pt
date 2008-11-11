@@ -60,7 +60,6 @@
             tal:attributes="id string:story-title-${story/uid}">
           <div class="story-title">
             <span id="default_arrow">
-            [&darr;]
             </span>
             <a class="storyTitle_iteration_overview"
                tal:attributes="href string:${story/url}"

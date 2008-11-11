@@ -67,12 +67,16 @@
   cursor: pointer;
 }
 
+.td-story-title {
+    text-indent: 20px;
+}
+
 .td-story-title .story-title {
-    background: transparent url(++resource++xm.theme.images/active_content-menu-display.gif) no-repeat scroll 2px -36px;
+    background: transparent url(++resource++xm.theme.images/arrow_blue_inactive.gif) no-repeat scroll 2px 0;
 }
 
 .clear-bottom .story-title {
-    background-position: 2px -54px;
+    background: transparent url(++resource++xm.theme.images/arrow_blue_active.gif) no-repeat scroll 2px 0;
 }
 
 .clear-bottom {
@@ -524,9 +528,6 @@ table.listing .actionMenu .actionMenuHeader a{
     position: relative;
 }
 
-table.listing .actionMenu .actionMenuHeader a:hover {
-    background-position: 0 -18px;
-}
 /* actionMenu clone END */
 
 
