@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="xm.theme">
+
+  <head>
+  </head>
+  <body>
+    <div metal:fill-slot="main">
+      <div metal:define-macro="body">
+        <h1 i18n:translate="title_close_iteration">
+          Close Iteration
+        </h1>
+        <p i18n:translate="description_close_iteration" class="description">
+          Close an iteration by moving all unfinished stories and tasks
+          to an open iteration.
+         </p>
+
+        <h2 i18n:translate="header_pending_stories">
+          Pending Stories
+        </h2>
+        <ul>
+          <li tal:repeat="story view/pending_stories">
+            <h3><a href=""
+                tal:attributes="href string:${story/url}/view"
+                tal:content="story/title"></a></h3>
+          </li>
+        </ul>
+
+        <form action="close-iteration">
+          <div class="field">
+            <label i18n:translate="label_target_iteration">
+              Target Iteration
+            </label>
+            <div>
+              <input type="radio" name="target_iteration_type" checked="checked" />
+              Existing Iteration
+                
+            <select>
+              <tal:block repeat="iteration view/target_iterations">
+                <option value=""
+                  tal:attributes="value iteration/uid"
+                  tal:content="iteration/title"></option>
+              </tal:block>
+            </select>
+            </div>
+            <div>
+              <input type="radio" name="target_iteration_type" />
+              New Iteration
+                <fieldset>
+                  <div>
+                    <label>Title</label>
+                    <div></div>
+                    <input type="text" name="title" />
+                  </div>
+                </fieldset>
+            </div>
+          </div>
+
+          <input class="context" name="submit" value="Close Iteration">
+          <input class="context" name="submit" value="Cancel">
+        </form>
+          
+      </div>
+    </div>
+  </body>
+</html>

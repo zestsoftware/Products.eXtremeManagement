@@ -309,4 +309,12 @@
       permission="cmf.ManagePortal"
       />
 
+  <page
+      name="close-iteration"
+      for="Products.eXtremeManagement.interfaces.IXMIteration"
+      class=".closing.IterationClosingView"
+      permission="cmf.ManagePortal"
+      template="close-iteration.pt"
+      />
+
 </configure>
