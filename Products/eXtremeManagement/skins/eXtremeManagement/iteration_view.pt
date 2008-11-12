@@ -70,7 +70,6 @@
           </metal:field>
         </p>
 
-
         <div id="break-before-stories" class="visualClear"><!-- --></div>
 
         <tal:subitems tal:condition="stories"

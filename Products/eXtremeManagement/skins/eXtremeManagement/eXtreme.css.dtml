@@ -95,13 +95,13 @@
 
 .totalOfProject span {
     background: #cef48b url(++resource++xm.theme.images/background_budgetRepeat.gif) repeat-x scroll 0 0;
-    height: 18px;
-    padding: 0 20px 0 18px;
+    height: 16px;
+    padding: 2px 20px 0 18px;
     float: left;
 }   
 
 .totalOfProject .remaining_budget {
-    padding: 0 32px 0 18px !important;
+    padding: 2px 32px 0 18px !important;
 }
 
 /* LS- remaining budget - end */    
