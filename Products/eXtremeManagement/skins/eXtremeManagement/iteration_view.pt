@@ -12,12 +12,13 @@
                        stories view/stories;">
 
         <div class="xm-details">
-          <dl class="not-startable"
+  
+        <dl class="not-startable"
               tal:condition="not:context/startable"
               tal:define="stories_not_startable view/story_titles_not_startable">
             <dt i18n:translate="cannot_activate">Cannot Activate</dt>
             <dd tal:condition="stories_not_startable">There are stories which cannot be activated, please see: <span tal:replace="stories_not_startable"></span>.</dd>
-          </dl>
+        </dl>
 
           <table class="listing"
                  width="100%"
@@ -58,7 +59,9 @@
             </tr>
 
           </table>
-          <div class="visualClear"><!-- --></div>
+
+      <div class="visualClear"><!-- --></div>
+
         </div>
 
         <p class="documentDescription">
@@ -79,7 +82,6 @@
           <table class="listing"
                  id="story-listing"
                  width="97%"
-                 border="0"
                  cellpadding="0"
                  cellspacing="0">
              <tal:block
@@ -88,14 +90,21 @@
                           realstories stories;"
               tal:replace="structure provider:xm.storylist.simple" />
           </table>
-          <div class="totalOfProject"
-               tal:condition="iteration/budget_left">
-               <span i18n:translate="label_remaining_budget">
-                  Remaining budget (hours)
-               </span>
-               <span tal:content="iteration/budget_left" />
-          </div>
 
+          <table class="remaining_budget_table" width="97%" cellspacing="0" cellpadding="0"
+                 tal:condition="iteration/budget_left">
+            <tr>
+                <td> 
+                <span class="totalOfProject">
+                  <span i18n:translate="label_remaining_budget">
+                      Remaining budget (hours)
+                  </span><span tal:content="iteration/budget_left"
+                            class="remaining_budget" />
+               </span>
+               </td>
+            </tr>
+          </table>
+             
           <p class="discreet" i18n:translate="help_stories_table">
             The Initial estimate of the story is a rough estimate in
             days.  The Tasks estimate is the total estimate in hours
@@ -103,7 +112,6 @@
             be a logical explanation.  You should investigate that to
             be sure.
           </p>
-
 
           <tal:membertasks
               tal:define="membertasks context/@@employee_totals/totals;"
@@ -169,6 +177,7 @@
               </tal:items>
             </tal:open>
           </tal:tasks>
+
         </tal:subitems>
 
         <p class="discreet"
@@ -176,8 +185,8 @@
            i18n:translate="no_stories_published">
           No stories published yet!
         </p>
-      </div>
 
+</div>
       <metal:block metal:define-macro="folderlisting" />
     </div>
   </body>

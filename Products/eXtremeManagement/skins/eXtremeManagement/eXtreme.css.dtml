@@ -79,25 +79,32 @@
     background: transparent url(++resource++xm.theme.images/arrow_blue_active.gif) no-repeat scroll 2px 0;
 }
 
+/* LS- css for the remaining budget - start */
+
 .totalOfProject {
     font-size: 90%;
     font-weight: bold;
     color: #5f861e;
     background: transparent url(++resource++xm.theme.images/background_budgetLeft.gif) no-repeat scroll 0 0;
-    display: block;
-    clear: both;
-    float: right;
+    border-right: 1px solid #ccc;
     height: 18px;
+    margin: 0 0 5px;
     padding: 0 0 0 13px;
-    margin: -10px 21px 0 0;
+    float: right;
 }
 
 .totalOfProject span {
     background: #cef48b url(++resource++xm.theme.images/background_budgetRepeat.gif) repeat-x scroll 0 0;
+    height: 18px;
+    padding: 0 20px 0 18px;
     float: left;
-    height: 14px;
-    padding: 2px 32px 2px 18px;
+}   
+
+.totalOfProject .remaining_budget {
+    padding: 0 32px 0 18px !important;
 }
+
+/* LS- remaining budget - end */    
 
 .clear-bottom {
     border-bottom: 1px solid #FFFFFF;
@@ -548,6 +555,10 @@ table.listing .actionMenu .actionMenuHeader a{
     white-space: nowrap;
     display: inline-block;
     position: relative;
+}
+
+.td-center a:hover {
+    text-decoration: none;
 }
 
 .booking-per-month tr {
