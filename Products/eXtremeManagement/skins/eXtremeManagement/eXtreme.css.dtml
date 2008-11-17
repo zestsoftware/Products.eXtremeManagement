@@ -440,8 +440,8 @@ UL.xm-assignees LI {
 .gantt-chart .bar,
 .gantt-chart .space {
     height: 20px;
-    color: transparent;
-    over-flow: hide;
+    color: #fff;
+    overflow: hide;
 }
 
 .gantt-chart .time-row th {
