@@ -6,7 +6,7 @@
   <body>
     <div metal:fill-slot="main">
       <h1 i18n:translate="heading_project_chart_overview">Project Overview Chart</h1>
-      <p i18n:translate="">Information on this chart...</p>
+      <p i18n:translate="subtitle_project_chart_overview">Estimates and worked hours per iteration</p>
 
       <div tal:condition="view/has_data">
         <img tal:attributes="src view/velocity_chart"
@@ -14,14 +14,14 @@
              i18n:attributes="alt" />
       </div>
 
-
-      <table tal:condition="view/has_data" width="50%">
+      <h2 i18n:translate="heading_project_chart_table">Estimates and worked (in days)</h2>
+      <table tal:condition="view/has_data" width="80%">
           <tr>
-              <th>#iteration</th>
-              <th>iteration name</th>
-              <th>estimate (days)</th>
-              <th>estimate (days) using adapter</th>
-              <th>worked (days)</th>
+              <th i18n:translate="">iteration</th>
+              <th i18n:translate="">name</th>
+              <th i18n:translate="">rough story estimates</th>
+              <th i18n:translate="">task estimates</th>
+              <th i18n:translate="">worked</th>
           </tr>
           <tr tal:repeat="iteration view/velocity_table">
              <td tal:define="myindex repeat/iteration/index;
