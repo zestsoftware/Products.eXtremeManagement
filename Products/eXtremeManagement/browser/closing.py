@@ -1,4 +1,6 @@
 from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.CMFCore import utils as cmfutils
 from zope.cachedescriptors.property import Lazy
 from zope import component
 from zope import interface
@@ -56,6 +58,19 @@ class IterationClosingView(BrowserView):
     target_iteration_crit = dict(portal_type='Iteration',
                                  review_state=('in-progress', 'new'))
 
+    iteration_close_state = ViewPageTemplateFile('iteration-close-state.pt')
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+        state = component.getMultiAdapter(
+            (self.context, self.request),
+            interface.Interface,
+            u'xm_global_state')
+        self.project = state.project
+
+
+
     @Lazy
     def pending_stories(self):
         stories = self.context.getFolderContents(self.story_crit)
@@ -65,27 +80,43 @@ class IterationClosingView(BrowserView):
 
     @Lazy
     def target_iterations(self):
-        state = component.getMultiAdapter(
-            (self.context, self.request),
-            interface.Interface,
-            u'xm_global_state')
-        project = state.project
         thisUID = self.context.UID()
-        iterations = project.getFolderContents(self.target_iteration_crit)
+        iterations = self.project.getFolderContents(self.target_iteration_crit)
         return [{'title': x.Title,
                  'url': x.getURL(),
                  'uid': x.UID}
                 for x in iterations if x.UID != thisUID]
 
+    def close_iteration(self, sourceit, targetit):
+        pass
+
+    def ensure_targetit(self):
+        form = self.request.form
+        type_ = form.get('target_iteration_type', 'new')
+        if type_ == 'new':
+            newtitle = form['title']
+            self.project.invokeFactory(title=newtitle)
+            iteration = None
+        else:
+            uid = form['targetit']
+            refcat = cmfutils.getToolByName(self.context, 'reference_catalog')
+            iteration = refcat.lookupObject(uid)
+
+        return iteration
+
     def handle_close(self):
-        return ''
+        targetit = self.ensure_targetit()
+        sourceit = self.context
+        self.close_iteration(sourceit, targetit)
+        return self.iteration_close_state()
 
     def __call__(self):
         submit = self.request.form.get('submit', None)
-        if submit == 'Cancel':
+        form = self.request.form
+        if form.get('cancel', None):
             self.request.response.redirect(self.context.absolute_url()+'/view')
             return ''
-        elif submit == 'Close Iteration':
+        elif form.get('close', None):
             return self.handle_close()
 
         return self.index()

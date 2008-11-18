@@ -34,10 +34,10 @@
               Target Iteration
             </label>
             <div>
-              <input type="radio" name="target_iteration_type" checked="checked" />
+              <input type="radio" name="target_iteration_type" checked="checked" value="existing" />
               Existing Iteration
                 
-            <select>
+            <select name="targetit">
               <tal:block repeat="iteration view/target_iterations">
                 <option value=""
                   tal:attributes="value iteration/uid"
@@ -46,7 +46,7 @@
             </select>
             </div>
             <div>
-              <input type="radio" name="target_iteration_type" />
+              <input type="radio" name="target_iteration_type" value="new" />
               New Iteration
                 <fieldset>
                   <div>
@@ -58,8 +58,8 @@
             </div>
           </div>
 
-          <input type="submit" class="context" name="submit" value="Close Iteration">
-          <input type="submit" class="context" name="submit" value="Cancel">
+          <input type="submit" class="context" name="close" value="Close Iteration">
+          <input type="submit" class="context" name="cancel" value="Cancel">
         </form>
           
       </div>
