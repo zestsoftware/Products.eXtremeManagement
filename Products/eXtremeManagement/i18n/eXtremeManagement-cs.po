@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-10-27 13:55+0000\n"
+"POT-Creation-Date: 2008-11-17 17:16+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Domain: eXtremeManagement\n"
 
 #. Default: "Actual hours"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:52
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:50
 msgid "Actual_hours"
 msgstr ""
 
@@ -40,11 +40,6 @@ msgstr ""
 msgid "Drag/drop uids incorrect"
 msgstr ""
 
-#. Default: "Information on this chart..."
-#: ./browser/project_chart.pt:9
-msgid "Information on this chart..."
-msgstr ""
-
 #: ./browser/reorder_stories.py:229
 msgid "Move failed: story locked. Unlock the story to move it."
 msgstr ""
@@ -64,12 +59,12 @@ msgid "Perform various maintenance tasks. If you know the totals are wrong, you 
 msgstr ""
 
 #. Default: "Send"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:128
+#: ./skins/eXtremeManagement/update_hours_form.cpt:135
 msgid "Send"
 msgstr ""
 
 #. Default: "Send a mail to this user"
-#: ./skins/eXtremeManagement/projectmember_view.pt:49
+#: ./skins/eXtremeManagement/customer_view.pt:123
 msgid "Send a mail to this user"
 msgstr "Odeslat email tomuto uživateli"
 
@@ -87,7 +82,7 @@ msgid "add-task-in"
 msgstr ""
 
 #. Default: "Back to"
-#: ./skins/eXtremeManagement/booking_month.pt:41
+#: ./skins/eXtremeManagement/booking_details.pt:27
 msgid "back_to"
 msgstr "Zpět na"
 
@@ -97,34 +92,34 @@ msgid "booking_month"
 msgstr "Odpracováno za měsíc"
 
 #. Default: "My Projects"
-#: ./skins/eXtremeManagement/portlet_my_projects.pt:14
+#: ./skins/eXtremeManagement/portlet_my_projects.pt:15
 #, fuzzy
 msgid "box_my_projects"
 msgstr "Mé projekty"
 
 #. Default: "Pending Stories"
-#: ./skins/eXtremeManagement/portlet_stories.pt:15
+#: ./skins/eXtremeManagement/portlet_stories.pt:16
 #, fuzzy
 msgid "box_stories"
 msgstr "Nevyřešené požadavky"
 
 #. Default: "Cannot Activate"
-#: ./skins/eXtremeManagement/story_view.pt:57
+#: ./skins/eXtremeManagement/iteration_view.pt:19
 msgid "cannot_activate"
 msgstr ""
 
 #. Default: "current month"
-#: ./skins/eXtremeManagement/booking_month.pt:44
+#: ./skins/eXtremeManagement/booking_details.pt:30
 msgid "current-month"
 msgstr "tento měsíc"
 
 #. Default: "days"
-#: ./skins/eXtremeManagement/story_view.pt:74
+#: ./skins/eXtremeManagement/offer_view.pt:119
 msgid "days"
 msgstr ""
 
 #. Default: "Overview of tasks that belong to me.  The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
-#: ./skins/eXtremeManagement/task_overview.pt:33
+#: ./skins/eXtremeManagement/iteration_view.pt:155
 msgid "description-overview-my-tasks"
 msgstr ""
 
@@ -437,7 +432,7 @@ msgid "estimated_start_project"
 msgstr ""
 
 #. Default: "Go to"
-#: ./skins/eXtremeManagement/booking_month.pt:30
+#: ./skins/eXtremeManagement/booking_details.pt:16
 msgid "go_to"
 msgstr "Přejít na"
 
@@ -472,7 +467,7 @@ msgid "header_project_members"
 msgstr "Členové projektu"
 
 #. Default: "Time registration"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:32
+#: ./skins/eXtremeManagement/portlet_tasks.pt:59
 msgid "header_time_registration"
 msgstr "Časový záznam"
 
@@ -509,12 +504,12 @@ msgid "heading-bookings-per-month"
 msgstr ""
 
 #. Default: "Hours per employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:110
+#: ./skins/eXtremeManagement/iteration_view.pt:118
 msgid "heading-hours-per-employee"
 msgstr "Hodiny podle zaměstnanců"
 
 #. Default: "My to-do tasks"
-#: ./skins/eXtremeManagement/iteration_view.pt:145
+#: ./skins/eXtremeManagement/iteration_view.pt:153
 msgid "heading-in-progress-tasks"
 msgstr "Můj to-do list"
 
@@ -525,17 +520,17 @@ msgid "heading-my-task-overview"
 msgstr "Přehled mých úkolů"
 
 #. Default: "My open tasks"
-#: ./skins/eXtremeManagement/iteration_view.pt:164
+#: ./skins/eXtremeManagement/iteration_view.pt:172
 msgid "heading-open-tasks"
 msgstr "Mé nevyřešené úkoly"
 
 #. Default: "Related XM Tasks"
-#: ./skins/eXtremeManagement/portlet_poi.pt:75
+#: ./skins/eXtremeManagement/portlet_poi.pt:76
 msgid "heading-related-xm-tasks"
 msgstr ""
 
 #. Default: "Stories"
-#: ./skins/eXtremeManagement/iteration_view.pt:77
+#: ./skins/eXtremeManagement/iteration_view.pt:79
 msgid "heading-stories"
 msgstr "Požadavky"
 
@@ -552,6 +547,11 @@ msgstr "Aktuální iterace"
 #. Default: "Project Overview Chart"
 #: ./browser/project_chart.pt:8
 msgid "heading_project_chart_overview"
+msgstr ""
+
+#. Default: "Estimates and worked (in days)"
+#: ./browser/project_chart.pt:17
+msgid "heading_project_chart_table"
 msgstr ""
 
 #. Default: "Release planning"
@@ -580,7 +580,7 @@ msgid "help_needs_estimate"
 msgstr ""
 
 #. Default: "The Initial estimate of the story is a rough estimate in days.  The Tasks estimate is the total estimate in hours for all tasks.  If there is a big difference there could be a logical explanation.  You should investigate that to be sure."
-#: ./skins/eXtremeManagement/project_view.pt:68
+#: ./skins/eXtremeManagement/iteration_view.pt:107
 msgid "help_stories_table"
 msgstr ""
 
@@ -590,7 +590,7 @@ msgid "hours_booked_today"
 msgstr "Hodiny zaznamenané během dnešního dne: ${total_booked}"
 
 #. Default: "iteration"
-#: ./skins/eXtremeManagement/project_administration.pt:72
+#: ./browser/project_chart.pt:20
 msgid "iteration"
 msgstr ""
 
@@ -645,7 +645,7 @@ msgid "label_invoicing_overview"
 msgstr ""
 
 #. Default: "Minutes"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:115
+#: ./skins/eXtremeManagement/update_hours_form.cpt:97
 msgid "label_minutes"
 msgstr ""
 
@@ -670,7 +670,7 @@ msgid "label_recalculate_estimated_time"
 msgstr ""
 
 #. Default: "Remaining budget (hours)"
-#: ./skins/eXtremeManagement/iteration_view.pt:92
+#: ./skins/eXtremeManagement/iteration_view.pt:98
 msgid "label_remaining_budget"
 msgstr ""
 
@@ -680,7 +680,7 @@ msgid "label_total_hours"
 msgstr ""
 
 #. Default: "Unknown date"
-#: ./browser/invoicing.pt:43
+#: ./browser/inprogress.pt:43
 msgid "label_unknown_date"
 msgstr ""
 
@@ -715,7 +715,7 @@ msgid "listingheader-time"
 msgstr "Čas"
 
 #. Default: "Total"
-#: ./skins/eXtremeManagement/booking_month.pt:77
+#: ./skins/eXtremeManagement/booking_details.pt:85
 msgid "listingheader-total"
 msgstr ""
 
@@ -725,17 +725,17 @@ msgid "listingheader-week-number"
 msgstr ""
 
 #. Default: "Fullname"
-#: ./skins/eXtremeManagement/projectmember_view.pt:29
+#: ./skins/eXtremeManagement/customer_view.pt:28
 msgid "listingheader_Fullname"
 msgstr "Celé jméno"
 
 #. Default: "Phone"
-#: ./skins/eXtremeManagement/projectmember_view.pt:37
+#: ./skins/eXtremeManagement/customer_view.pt:53
 msgid "listingheader_Phone"
 msgstr "Telefon"
 
 #. Default: "Actual (hours)"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:20
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:19
 msgid "listingheader_actual_hours"
 msgstr ""
 
@@ -750,7 +750,7 @@ msgid "listingheader_address"
 msgstr "Adresa"
 
 #. Default: "Assignee(s)"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:23
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:22
 msgid "listingheader_assignees"
 msgstr "Přidělený(í)"
 
@@ -770,27 +770,27 @@ msgid "listingheader_country"
 msgstr "Země"
 
 #. Default: "Difference (hours)"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:21
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:20
 msgid "listingheader_diff_hours"
 msgstr ""
 
 #. Default: "Email"
-#: ./skins/eXtremeManagement/projectmember_view.pt:44
+#: ./skins/eXtremeManagement/customer_view.pt:109
 msgid "listingheader_email"
 msgstr "Email"
 
 #. Default: "Employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:118
+#: ./skins/eXtremeManagement/iteration_view.pt:126
 msgid "listingheader_employee"
 msgstr "Zaměstnanec"
 
 #. Default: "End date"
-#: ./skins/eXtremeManagement/iteration_view.pt:50
+#: ./skins/eXtremeManagement/iteration_view.pt:51
 msgid "listingheader_enddate"
 msgstr "Datum ukončení"
 
 #. Default: "Estimate (hours)"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:19
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:18
 msgid "listingheader_estimate_hours"
 msgstr ""
 
@@ -800,17 +800,17 @@ msgid "listingheader_fax"
 msgstr "Fax"
 
 #. Default: "Initial estimate (days)"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:48
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:46
 msgid "listingheader_initial_estimate"
 msgstr ""
 
 #. Default: "Iteration"
-#: ./browser/invoicing.pt:19
+#: ./browser/inprogress.pt:19
 msgid "listingheader_iteration"
 msgstr "Iterace"
 
 #. Default: "Man hours"
-#: ./skins/eXtremeManagement/iteration_view.pt:27
+#: ./skins/eXtremeManagement/iteration_view.pt:28
 msgid "listingheader_man_uren"
 msgstr "Člověkohodiny"
 
@@ -825,47 +825,47 @@ msgid "listingheader_phone"
 msgstr "Telefon"
 
 #. Default: "Project"
-#: ./browser/invoicing.pt:16
+#: ./browser/inprogress.pt:16
 msgid "listingheader_projects"
 msgstr "Projekt"
 
 #. Default: "Start date"
-#: ./skins/eXtremeManagement/iteration_view.pt:40
+#: ./skins/eXtremeManagement/iteration_view.pt:41
 msgid "listingheader_startdate"
 msgstr "Datum začátku"
 
 #. Default: "Status"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:46
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:44
 msgid "listingheader_state"
 msgstr "Stav"
 
 #. Default: "Story"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:44
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:42
 msgid "listingheader_story"
 msgstr "Požadavek"
 
 #. Default: "Tasks estimate (hours)"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:50
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:48
 msgid "listingheader_tasks_estimate"
 msgstr ""
 
 #. Default: "Title"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:18
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:17
 msgid "listingheader_title"
 msgstr "Název"
 
 #. Default: "Total Actual"
-#: ./skins/eXtremeManagement/iteration_view.pt:121
+#: ./skins/eXtremeManagement/iteration_view.pt:129
 msgid "listingheader_total_actual"
 msgstr "Aktuální součet"
 
 #. Default: "Total Difference"
-#: ./skins/eXtremeManagement/iteration_view.pt:123
+#: ./skins/eXtremeManagement/iteration_view.pt:131
 msgid "listingheader_total_difference"
 msgstr "Celkový rozdíl"
 
 #. Default: "Total Estimate"
-#: ./skins/eXtremeManagement/iteration_view.pt:119
+#: ./skins/eXtremeManagement/iteration_view.pt:127
 msgid "listingheader_total_estimate"
 msgstr "Celkový odhad"
 
@@ -880,13 +880,18 @@ msgid "listingheader_zipCode"
 msgstr "PSČ"
 
 #. Default: "N/A"
-#: ./skins/eXtremeManagement/iteration_view.pt:35
+#: ./skins/eXtremeManagement/iteration_view.pt:36
 msgid "man_hours_empty"
 msgstr ""
 
 #. Default: "${count} comment(s) in this story."
 #: ./browser/viewlets/templates/manage_story_details.pt:18
 msgid "msg_number_of_comments_in_story"
+msgstr ""
+
+#. Default: "name"
+#: ./browser/project_chart.pt:21
+msgid "name"
 msgstr ""
 
 #. Default: "Needs Estimate"
@@ -900,7 +905,7 @@ msgid "next"
 msgstr ""
 
 #. Default: "No end date set yet."
-#: ./skins/eXtremeManagement/iteration_view.pt:54
+#: ./skins/eXtremeManagement/iteration_view.pt:55
 msgid "no_end_date"
 msgstr ""
 
@@ -910,22 +915,22 @@ msgid "no_projects_found"
 msgstr "Zatím nebyly zveřejněny žádné projekty!"
 
 #. Default: "Warning: no start date set."
-#: ./skins/eXtremeManagement/iteration_view.pt:44
+#: ./skins/eXtremeManagement/iteration_view.pt:45
 msgid "no_start_date"
 msgstr ""
 
 #. Default: "No stories published yet!"
-#: ./skins/eXtremeManagement/iteration_view.pt:173
+#: ./skins/eXtremeManagement/iteration_view.pt:182
 msgid "no_stories_published"
 msgstr "Zatím nebyly zveřejněny žádné požadavky!"
 
 #. Default: "No tasks are assigned to you!"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:139
+#: ./skins/eXtremeManagement/update_hours_form.cpt:146
 msgid "no_tasks_assigned"
 msgstr ""
 
 #. Default: "No tasks defined yet."
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:110
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:109
 msgid "no_tasks_defined"
 msgstr "Zatím nebyly zadány žádné úkoly."
 
@@ -945,23 +950,38 @@ msgid "previous"
 msgstr ""
 
 #. Default: "previous month"
-#: ./skins/eXtremeManagement/booking_month.pt:33
+#: ./skins/eXtremeManagement/booking_details.pt:19
 msgid "previous-month"
 msgstr "předchozí měsíc"
 
 #. Default: "progress bar"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:92
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:91
 msgid "progress_bar"
 msgstr ""
 
 #. Default: "Project administration"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:18
+#: ./skins/eXtremeManagement/portlet_tasks.pt:19
 msgid "project_administration"
 msgstr "Správa projektu"
+
+#. Default: "rough story estimates"
+#: ./browser/project_chart.pt:22
+msgid "rough story estimates"
+msgstr ""
 
 #. Default: "Show Tasks with state:"
 #: ./skins/eXtremeManagement/task_overview.pt:18
 msgid "show_tasks_with_state"
+msgstr ""
+
+#. Default: "Estimates and worked hours per iteration"
+#: ./browser/project_chart.pt:9
+msgid "subtitle_project_chart_overview"
+msgstr ""
+
+#. Default: "task estimates"
+#: ./browser/project_chart.pt:23
+msgid "task estimates"
 msgstr ""
 
 #. Default: "task"
@@ -975,7 +995,7 @@ msgid "task_overview"
 msgstr "Přehled úkolů"
 
 #. Default: "Total"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:130
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:129
 msgid "total"
 msgstr "Celkem"
 
@@ -1022,5 +1042,10 @@ msgstr ""
 #. Default: "Wednesday"
 #: ./skins/eXtremeManagement/booking_month.pt:72
 msgid "weekday_wed"
+msgstr ""
+
+#. Default: "worked"
+#: ./browser/project_chart.pt:24
+msgid "worked"
 msgstr ""
 

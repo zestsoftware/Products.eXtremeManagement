@@ -121,7 +121,7 @@ class EmployeesView(BrowserView):
         """
         results = []
         for m in self.months:
-            month = PMF(safe_unicode(m.strftime('%B')))
+            month = PMF(safe_unicode(m.strftime('%b')))
             year = safe_unicode(str(m.year))
             results.append(' '.join([month, year]))
         results.reverse()

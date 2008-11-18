@@ -13,7 +13,6 @@
 /* <dtml-var "enableHTTPCompression(request=REQUEST, debug=1, css=1)"> (this is for http compression) */
 /* <dtml-with base_properties> (do not remove this :) */
 /* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
-
 .header_iteration_project_overview {
     font-size: 120%;
 }
@@ -80,6 +79,11 @@
 }
 
 /* LS- css for the remaining budget - start */
+
+.remaining_budget_table {
+    /* LS - table margin-bottom fix */
+    margin: -5px 0 0 0;
+}
 
 .totalOfProject {
     font-size: 90%;
@@ -426,14 +430,18 @@ UL.xm-assignees LI {
   display: none;
 }
 
+/* LS - ugly little fix.. to overlap the tablerow backgroundimage*/
+#story-details-td {
+    background: #FDFDFC;
+}
 
 /* gantt chart look and feel */
 
 .gantt-chart .bar,
 .gantt-chart .space {
     height: 20px;
-    color: transparent;
-    over-flow: hide;
+    color: #fff;
+    overflow: hide;
 }
 
 .gantt-chart .time-row th {
