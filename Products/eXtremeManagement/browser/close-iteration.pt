@@ -27,7 +27,8 @@
           </li>
         </ul>
 
-        <form action="close-iteration">
+        <form action="close-iteration" method="POST"
+          tal:attributes="action string:${context/absolute_url}/@@close-iteration">
           <div class="field">
             <label i18n:translate="label_target_iteration">
               Target Iteration
@@ -57,8 +58,8 @@
             </div>
           </div>
 
-          <input class="context" name="submit" value="Close Iteration">
-          <input class="context" name="submit" value="Cancel">
+          <input type="submit" class="context" name="submit" value="Close Iteration">
+          <input type="submit" class="context" name="submit" value="Cancel">
         </form>
           
       </div>
