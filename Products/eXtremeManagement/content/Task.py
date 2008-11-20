@@ -1,5 +1,4 @@
 import logging
-from sets import Set
 
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
@@ -19,7 +18,6 @@ from Products.Archetypes.atapi import SelectionWidget
 from Products.Archetypes.atapi import TextField
 
 from Products.eXtremeManagement.interfaces import IXMTask
-from Products.eXtremeManagement.Extensions.workflow_scripts import mailMessage
 from Products.eXtremeManagement.content.schemata import quarter_vocabulary
 
 
@@ -133,55 +131,6 @@ class Task(BaseFolder):
             assignables.append((memberId, name))
 
         return DisplayList(assignables)
-
-    security.declarePublic('setAssignees')
-
-    def setAssignees(self, value, **kw):
-        """Overwrite the default setter.  Send an email should on assignment.
-
-        But not when the Task is edited and the assignees don't
-        change.  And if they _do_ change, then don't mail the people
-        that were already assigned.
-
-        Now why does setAssignees get called *three* times when a new
-        Task is made???
-
-        And why is the value a list which contains an empty item ''???
-
-        Anyway, we need to do some serious checking.
-        """
-        if isinstance(value, basestring) and value:
-            value = [value]
-        elif not value:
-            value = []
-        else:
-            value = list(Set([x for x in value if x]))
-            value.sort()
-        self.log.debug('New assignees value=%s.', value)
-        old_assignees = list(Set([x for x in self.getAssignees()]))
-        old_assignees.sort()
-        self.schema['assignees'].set(self, value)
-
-        # TODO: this should definitely be moved out into a event handler
-        # as a content class should be pretty dumb, it should not know it
-        # needs to send out emails ... separation of concerns - Rocky
-        if self.REQUEST.get('SCHEMA_UPDATE', '0') == '1':
-            # Schema update in progress!  We definitely do not want to
-            # send emails now as that would be spamming.
-            return
-
-        portal_properties = getToolByName(self, 'portal_properties')
-        xm_props = portal_properties.xm_properties
-        if not xm_props.send_task_mails:
-            return
-        if old_assignees != value:
-            self.log.debug('old_assignees=%s.', old_assignees)
-            portal = getToolByName(self, 'portal_url').getPortalObject()
-            new_employees = [x for x in value if x not in old_assignees]
-            for employee in new_employees:
-                self.log.debug('Sending email to %s for task %s.',
-                               employee, self.id)
-                mailMessage(portal, self, 'New Task assigned', employee)
 
     security.declarePublic('CookedBody')
 

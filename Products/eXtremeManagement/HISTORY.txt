@@ -5,6 +5,15 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- Instead of sending an email to new assignees of a Task whenever that
+  Task is edited, only send an email when the Task gets transitioned
+  to the to-do state.  Also made the email sending more robust in the
+  face of special characters, like Czech.  This refs:
+  http://plone.org/products/extreme-management-tool/issues/92
+  http://plone.org/products/extreme-management-tool/issues/118
+  http://plone.org/products/extreme-management-tool/issues/124
+  [maurits]
+
 - Enable optional experimental.catalogqueryplan usage. This needed a fix in
   some of the tests as experimental.catalogqueryplan caches daterange results
   in REQUEST. Add the egg to buildout's egg list to get a speed increase.

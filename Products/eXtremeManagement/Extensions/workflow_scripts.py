@@ -1,8 +1,6 @@
-from Products.CMFCore.utils import getToolByName
-from types import StringTypes
 import logging
 
-from xm.booking.timing.interfaces import IEstimate
+from Products.CMFCore.utils import getToolByName
 
 log = logging.getLogger("eXtremeManagement workflow scripts")
 
@@ -10,104 +8,6 @@ log = logging.getLogger("eXtremeManagement workflow scripts")
 ##########################
 # Task Workflow scripts #
 #########################
-
-
-def emailContact(portal, memberid, allowPortalContact=False):
-    membership = getToolByName(portal, 'portal_membership')
-    member = membership.getMemberById(memberid)
-    if member is None:
-        # Maybe a test user?
-        return ''
-
-    email = member.getProperty('email', None)
-    if email == '' or email is None:
-        if allowPortalContact:
-            email = portal.getProperty('email_from_address',
-                                       'postmaster@localhost')
-        else:
-            return ''
-
-    fullname = member.getProperty('fullname', None)
-    if fullname == '' or fullname is None:
-        if allowPortalContact:
-            fullname = portal.getProperty('email_from_name', None)
-        else:
-            fullname = 'Fullname unknown'
-
-    emailContact = '%s <%s>' % (fullname, email)
-    return emailContact
-
-
-def mailMessage(portal, obj, subject, destination=None):
-    """
-    Mail a message in reaction to a transition.
-    Thanks to Alan Runyan.  Adapted from:
-    http://plone.org/documentation/how-to/send-mail-on-workflow-transition
-
-    If destination is not None, then only mail to destination, which
-    should be just 1 person.
-    """
-    if destination is not None and not isinstance(destination, StringTypes):
-        log.warn('destination should be a string, but is %s.', destination)
-        return
-    else:
-        log.info('Will mail to destination=%s.', destination)
-
-    membership = getToolByName(portal, 'portal_membership')
-    wf_tool = getToolByName(portal, 'portal_workflow')
-    mailhost = getToolByName(portal, 'MailHost')
-    # This is the original creator of the task:
-    creatorid = obj.Creator()
-
-    mMsg = """
-The url is:
-%s
-
-The original creator of this task is:
-%s
-
-%s
-
-This estimate for this task is currently: %s hours.
-
-This task is assigned to:
-%s
-
-You can do it!
-"""
-    mTitle = obj.Title()
-    mSubj = '%s: %s' % (subject, mTitle)
-    obj_url = obj.absolute_url() #use portal_url + relative_url
-    mCreator = emailContact(portal, creatorid, allowPortalContact=True)
-    mFrom = mCreator
-
-    # These are the persons that this task is now assigned to:
-    assignees = obj.getAssignees()
-    listofAssignees = ''
-    for assignee in assignees:
-        listofAssignees += emailContact(portal, assignee)
-        listofAssignees += '\n'
-
-    description = obj.Description()
-    if description != '':
-        description = 'The description of the task is:' + description
-
-    estimate = IEstimate(obj, None)
-    if estimate is not None:
-        estimate = estimate.hours
-    message = mMsg % (obj_url, mCreator, description,
-                      estimate, listofAssignees)
-    if destination:
-        assignees = [destination]
-    for assignee in assignees:
-        mTo = emailContact(portal, assignee)
-        # If email address is known:
-        if mTo and mTo != '' and mTo != mCreator:
-            try:
-                mailhost.simple_send(mTo, mFrom, mSubj, message)
-            except Exception, exc:
-                log.warn('Mailing to %s failed with exception: %s.', mTo, exc)
-    return True
 
 
 def notify_completed(self, state_change, **kw):

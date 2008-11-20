@@ -68,6 +68,11 @@
       factory=".adapters.XMIssueGetter"
       />
 
-
+  <!-- Sending emails -->
+  <subscriber
+      for="Products.eXtremeManagement.interfaces.IXMTask
+           Products.DCWorkflow.interfaces.IBeforeTransitionEvent"
+      handler="Products.eXtremeManagement.emails.email_task_assignees"
+      />
 
 </configure>
