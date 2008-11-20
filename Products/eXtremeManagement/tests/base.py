@@ -1,5 +1,6 @@
-import transaction
 from DateTime import DateTime
+
+import transaction
 from AccessControl import SecurityManagement
 from zope.event import notify
 from zope.lifecycleevent import ObjectModifiedEvent
@@ -10,6 +11,8 @@ from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
 from Products.PloneTestCase.layer import PloneSite
 from Products.PloneTestCase.setup import default_user
+from zope.publisher.browser import TestRequest
+
 from xm.booking.timing.interfaces import IActualHours
 from xm.booking.timing.interfaces import IEstimate
 
@@ -162,3 +165,21 @@ class eXtremeManagementFunctionalTestCase(ptc.FunctionalTestCase,
                                           eXtremeManagementTestCase):
     """Base TestCase for eXtremeManagement."""
     layer = XMLayer
+
+
+def reset_request(obj):
+    """Clean out experimental.catalogqueryplan's daterange cache.
+
+    experimental.catalogqueryplan.daterangeindex caches daterangeindex data in
+    the REQUEST. This doesn't play nicely with plonetestcase tests, so it
+    needs to be cleaned out from time to time.
+
+    ``obj`` must be the plone site or an object inside it.
+
+    """
+    REQUEST = getattr(obj, 'REQUEST', None)
+    if REQUEST is not None:
+        keys = [key for key in REQUEST.keys()
+                if key.startswith('_daterangeindex_')]
+        for key in keys:
+            REQUEST.set(key, None)

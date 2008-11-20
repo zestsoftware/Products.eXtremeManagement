@@ -5,6 +5,7 @@ We want to test some browser views for Bookings.  We need some test
 requests.
 
     >>> from zope.publisher.browser import TestRequest
+    >>> from Products.eXtremeManagement.tests.base import reset_request
     >>> request = TestRequest()
 
 At first there is one Booking but it is not in this month so we do not
@@ -24,6 +25,7 @@ only see his own Bookings.
     >>> task = self.portal.project.iteration.story.task
     >>> task.invokeFactory('Booking', id='booking-emp', hours=2)
     'booking-emp'
+    >>> reset_request(task)
     >>> bookview = BookingsDetailedView(self.portal, request)
     >>> len(bookview.bookinglist)
     1
@@ -38,6 +40,7 @@ Adding another one should update the total actual hours
 
     >>> task.invokeFactory('Booking', id='booking-emp-2', hours=3, minutes=30)
     'booking-emp-2'
+    >>> reset_request(task)
     >>> bookview = BookingsDetailedView(self.portal, request)
     >>> len(bookview.bookinglist)
     2
@@ -59,6 +62,7 @@ Let us add one in that month.
     >>> jan1 = DateTime('2007-01-01')
     >>> task.invokeFactory('Booking', id='emp-jan1', hours=1, bookingDate=jan1)
     'emp-jan1'
+    >>> reset_request(task)
 
 Since I have learned a few things about requests lately, let us check
 it in three ways.
@@ -112,6 +116,7 @@ Daylight Savings Time can be annoying.  Bookings at Monday March 27
     >>> monday_after_dst = DateTime('2006-03-27')
     >>> task.invokeFactory('Booking', id='emp-mad06', hours=2, bookingDate=monday_after_dst)
     'emp-mad06'
+    >>> reset_request(task)
     >>> request = TestRequest(form={'year': 2006, 'month': 3})
     >>> bookview = BookingsDetailedView(self.portal, request)
     >>> len(bookview.bookinglist)
@@ -146,6 +151,7 @@ Sunday 29 October, at least in The Netherlands.
     ...                                 bookingDate=DateTime('2006-11-09'))
     >>> dummy = task.invokeFactory('Booking', id='emp-nov10', hours=8,
     ...                                 bookingDate=DateTime('2006-11-10'))
+    >>> reset_request(task)
     >>> len(BookingsDetailedView(self.portal, TestRequest(form={'year': 2006,
     ...                                           'month': 10})).bookinglist)
     5
@@ -201,7 +207,7 @@ as we just assume that any time you did not book was unbillable.
     >>> [week['perc_billable'] for week in nov.bookinglist]
     ['62.5 %', '100.0 %', '0.0 %', '0.0 %', '0.0 %']
 
-Does it give the totals (and other info) per month correctly?  
+Does it give the totals (and other info) per month correctly?
 
     >>> from pprint import pprint
     >>> pprint(okt.main())
@@ -263,6 +269,7 @@ At the beginning of the year things can go wrong, so test that too.
     >>> jan1 = DateTime('2002-01-01')
     >>> task.invokeFactory('Booking', id='jan102', hours=1, bookingDate=jan1)
     'jan102'
+    >>> reset_request(task)
     >>> view = WeekBookingOverview(self.portal, TestRequest(form={'year': 2002, 'month': 1}))
     >>> [week['week_total'] for week in view.bookinglist]
     ['1:00', '0:00', '0:00', '0:00', '0:00']

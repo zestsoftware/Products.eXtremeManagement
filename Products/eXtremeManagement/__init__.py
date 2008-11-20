@@ -13,6 +13,13 @@ XMMessageFactory = MessageFactory('eXtremeManagement')
 from Products.PlacelessTranslationService.utility import PTSTranslationDomain
 xmdomain = PTSTranslationDomain('eXtremeManagement')
 
+# Enable experimental.catalogqueryplan by importing it.
+try:
+    import experimental.catalogqueryplan
+    print "experimental.catalogqueryplan enabled"
+except ImportError:
+    print "experimental.catalogqueryplan not enabled"
+
 
 def initialize(context):
     # imports packages and types for registration

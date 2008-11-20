@@ -5,6 +5,7 @@ Currently there is one Project, but we do not have any tasks assigned
 to us there.  Since there is only one project, we simply show that one
 and do not bother with filtering.
 
+    >>> from Products.eXtremeManagement.tests.base import reset_request
     >>> from urllib import unquote
     >>> def physicalPathFromURL(self, URL):
     ...     # Simplified version of ZPublisher.HTTPRequest.py
@@ -42,7 +43,7 @@ no longer see a project.
     >>> task = self.portal.project.iteration.story.task
     >>> task.setAssignees(('employee', ))
     >>> task.reindexObject()
+    >>> reset_request(task)
     >>> myprojects = MyProjects(self.portal, TestRequest())
     >>> myprojects.projectlist
     []
-

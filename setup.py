@@ -43,6 +43,8 @@ setup(name='Products.eXtremeManagement',
           'Products.contentmigration >= 1.0b4',
           'Products.Poi',
           'pygooglechart',
+#          'collective.indexing',
+#          'experimental.catalogqueryplan',
       ],
       entry_points="""
       # -*- Entry points: -*-

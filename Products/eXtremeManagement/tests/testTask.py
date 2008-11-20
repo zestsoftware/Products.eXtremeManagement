@@ -4,6 +4,7 @@ from zope.lifecycleevent import ObjectModifiedEvent
 from Products.PloneTestCase.setup import default_user
 
 from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
+from Products.eXtremeManagement.tests.base import reset_request
 from Products.eXtremeManagement.tests.utils import createBooking
 
 
@@ -65,6 +66,7 @@ class testTask(eXtremeManagementTestCase):
         self.assertAnnotationTaskBrainHoursEquality(self.task, 0)
 
         # Make sure the copy retained it's info
+        reset_request(copy)
         self.assertAnnotationTaskBrainHoursEquality(copy, 3.5)
 
         # Test cutting Bookings.
@@ -73,6 +75,7 @@ class testTask(eXtremeManagementTestCase):
         task3 = self.story.task3
         task3.manage_pasteObjects(cutdata)
         self.assertAnnotationTaskBrainHoursEquality(copy, 0)
+        reset_request(copy)
         self.assertAnnotationTaskBrainHoursEquality(task3, 3.5)
 
     def test_startable(self):

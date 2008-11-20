@@ -5,6 +5,11 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- Enable optional experimental.catalogqueryplan usage. This needed a fix in
+  some of the tests as experimental.catalogqueryplan caches daterange results
+  in REQUEST. Add the egg to buildout's egg list to get a speed increase.
+  [reinout]
+
 - Show the number of comments of a Story in the story details viewlet
   (when expanding the story in the iteration view).  Fixes
   http://plone.org/products/extreme-management-tool/issues/87
@@ -27,8 +32,8 @@ History
   CustomerFolder you can only add a Customer when you allow Customers
   to be added globally.  [maurits]
 
-- Refactored KSS, CSS, JS and Python for workflow gadgets. Removed duplicated 
-  ids (#task-list-for-story) in favour of existing class (.tasklist_table), 
+- Refactored KSS, CSS, JS and Python for workflow gadgets. Removed duplicated
+  ids (#task-list-for-story) in favour of existing class (.tasklist_table),
   added KSS rebinding of workflow menus and stripped redundant CSS. [simon]
 
 - Added /inprogress view for managers that lists all in-progress iterations.

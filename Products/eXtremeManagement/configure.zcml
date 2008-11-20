@@ -17,6 +17,9 @@
       zcml:condition="installed xm.theme"
       package="xm.theme" />
   <include package="kss.plugin.yuidnd" />
+  <!--
+  <include package="collective.indexing" />
+  -->
 
   <include file="deprecation.zcml" />
 
