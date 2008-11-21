@@ -23,7 +23,11 @@ def email_address_for_memberid(portal, memberid):
     email = member.getProperty('email', '')
     fullname = member.getProperty('fullname', '')
 
-    return formataddr((fullname, email))
+    formatted = formataddr((fullname, email))
+    if parseaddr(formatted)[1] != email:
+        # formataddr probably got confused by special characters.
+        return email
+    return formatted
 
 
 def send(portal, message, subject, recipients=[]):
