@@ -4,6 +4,11 @@ Change log
 1.6.2 (unreleased)
 ------------------
 
+- Added patch from Radim Novotny to fix UnicodeDecodeError when
+  sending mail from workflow script.  Fixes
+  http://plone.org/products/extreme-management-tool/issues/92
+  [maurits]
+
 - No longer depend on an explicit version of Products.contentmigration
   in setup.py, only a mininum (1.0b4).  [maurits]
 
@@ -24,7 +29,7 @@ Change log
   the booking_month view, in case someone worked less than 40 hours in a week
   that total will be highligted. [jladage]
 
-- Fix a Plone 3.0 support issue in the javascript registry.[jladage]
+- Fix a Plone 3.0 support issue in the javascript registry. [jladage]
 
 - Now loading the zcml from kss.plugin.yuidnd automatically, so that
   package does not need to be included in [instance]zcml of

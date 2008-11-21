@@ -1,4 +1,5 @@
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode, getSiteEncoding
 from types import StringTypes
 import logging
 
@@ -56,10 +57,11 @@ def mailMessage(portal, obj, subject, destination=None):
     membership = getToolByName(portal, 'portal_membership')
     wf_tool = getToolByName(portal, 'portal_workflow')
     mailhost = getToolByName(portal, 'MailHost')
+    encoding = getSiteEncoding(portal)
     # This is the original creator of the task:
     creatorid = obj.Creator()
 
-    mMsg = """
+    mMsg = u"""
 The url is:
 %s
 
@@ -78,19 +80,19 @@ You can do it!
     mTitle = obj.Title()
     mSubj = '%s: %s' % (subject, mTitle)
     obj_url = obj.absolute_url() #use portal_url + relative_url
-    mCreator = emailContact(portal, creatorid, allowPortalContact=True)
-    mFrom = mCreator
+    mCreator = safe_unicode(emailContact(portal, creatorid, allowPortalContact=True))
+    mFrom = mCreator.encode(encoding)
 
     # These are the persons that this task is now assigned to:
     assignees = obj.getAssignees()
     listofAssignees = ''
     for assignee in assignees:
-        listofAssignees += emailContact(portal, assignee)
-        listofAssignees += '\n'
+        listofAssignees += safe_unicode(emailContact(portal, assignee))
+        listofAssignees += u'\n'
 
-    description = obj.Description()
-    if description != '':
-        description = 'The description of the task is:' + description
+    description = safe_unicode(obj.Description())
+    if description != u'':
+        description = u'The description of the task is:' + description
 
     estimate = IEstimate(obj, None)
     if estimate is not None:
@@ -102,9 +104,9 @@ You can do it!
     for assignee in assignees:
         mTo = emailContact(portal, assignee)
         # If email address is known:
-        if mTo and mTo != '' and mTo != mCreator:
+        if mTo and mTo != '' and safe_unicode(mTo) != mCreator:
             try:
-                mailhost.simple_send(mTo, mFrom, mSubj, message)
+                mailhost.simple_send(mTo, mFrom, mSubj, message.encode(encoding))
             except Exception, exc:
                 log.warn('Mailing to %s failed with exception: %s.', mTo, exc)
     return True
