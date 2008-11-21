@@ -24,6 +24,7 @@ class InvoicingView(XMBaseView):
         searchpath = '/'.join(context.getPhysicalPath())
         # Get a list of all projects
         projectbrains = self.catalog.searchResults(portal_type='Project',
+                                                   getBillableProject=True,
                                                    path=searchpath)
 
         for projectbrain in projectbrains:

@@ -5,6 +5,9 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- The invoicing view now only shows projects that are billable. This change
+  requires that the getBillableProject index has to be reindexed manually [jladage]
+
 - Instead of sending an email to new assignees of a Task whenever that
   Task is edited, only send an email when the Task gets transitioned
   to the to-do state.  Also made the email sending more robust in the

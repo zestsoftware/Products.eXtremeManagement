@@ -16,7 +16,9 @@ def addCatalogIndexes(site, logger):
     catalog = getToolByName(site, 'portal_catalog')
     indexes = catalog.indexes()
     wanted = (("getAssignees", "KeywordIndex"),
-              ("getBookingDate", "DateIndex"))
+              ("getBookingDate", "DateIndex"),
+              ("getBillableProject", "FieldIndex"),
+             )
 
     for name, meta_type in wanted:
         if name not in indexes:
