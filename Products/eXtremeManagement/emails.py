@@ -4,7 +4,6 @@ from email.Header import Header
 from email.Utils import parseaddr, formataddr
 from socket import gaierror
 
-from zope.i18n import translate
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 
