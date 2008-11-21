@@ -13,11 +13,52 @@ logger = logging.getLogger("xm emails")
 
 
 def email_address_for_member(member):
+    """Return a formatted fullname plus email address for this member.
+
+    We create a fake Member class for testing:
+
+    >>> class Member(object):
+    ...     def __init__(self, fullname='', email=''):
+    ...         self.fullname = fullname
+    ...         self.email = email
+    ...     def getProperty(self, propname, default=None):
+    ...         if propname == 'fullname':
+    ...             return self.fullname
+    ...         if propname == 'email':
+    ...             return self.email
+    ...         return default
+
+    We define an alias for this function to make the line shorter:
+
+    >>> efm = email_address_for_member
+
+    Now we do some tests:
+
+    >>> efm(None)
+    ''
+    >>> efm(Member())
+    ''
+    >>> efm(Member(fullname='Maurits van Rees'))
+    ''
+    >>> efm(Member(email='a@b.c'))
+    'a@b.c'
+    >>> efm(Member('Maurits van Rees', 'a@b.c'))
+    'Maurits van Rees <a@b.c>'
+
+    The parseaddr function can get confused in the face of special
+    characters, which leads to misinterpreting the email address.  I
+    saw that in the browser, but could not find a way to create a test
+    for that.  Anyway, in case of confusion we just return the email
+    address and not the fullname.
+
+    """
     if not member:
         # Maybe a test user?
         return ''
 
     email = member.getProperty('email', '')
+    if not email:
+        return ''
     fullname = member.getProperty('fullname', '')
 
     formatted = formataddr((fullname, email))

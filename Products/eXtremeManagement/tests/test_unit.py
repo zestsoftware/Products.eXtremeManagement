@@ -9,6 +9,7 @@ modules = (
     'browser.poi',
     'browser.tasks',
     'browser.reorder_stories',
+    'emails',
     'utils',
     )
 
