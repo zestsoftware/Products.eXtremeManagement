@@ -13,9 +13,7 @@ from xm.booking.timing.interfaces import IEstimate
 logger = logging.getLogger("xm emails")
 
 
-def email_address_for_memberid(portal, memberid):
-    membership = getToolByName(portal, 'portal_membership')
-    member = membership.getMemberById(memberid)
+def email_address_for_member(member):
     if not member:
         # Maybe a test user?
         return ''
@@ -130,7 +128,9 @@ def email_task_assignees(object, event, *args, **kwargs):
     if not xm_props.send_task_mails:
         return
 
-    creator = email_address_for_memberid(portal, object.Creator())
+    membership = getToolByName(portal, 'portal_membership')
+    creator = membership.getMemberById(object.Creator())
+    creator_address = email_address_for_member(creator)
     title = object.Title()
     subject = u'New Task assigned: %s' % safe_unicode(title)
     obj_url = object.absolute_url()
@@ -143,13 +143,13 @@ def email_task_assignees(object, event, *args, **kwargs):
     estimate = IEstimate(object, None)
     if estimate is not None:
         estimate = estimate.hours
-    recipients = [email_address_for_memberid(portal, a)
+    recipients = [email_address_for_member(membership.getMemberById(a))
                   for a in object.getAssignees()]
 
     # Let's make sure all strings are unicode.
     values = dict(
         task_url = safe_unicode(obj_url),
-        creator = safe_unicode(creator),
+        creator = safe_unicode(creator_address),
         description = safe_unicode(description),
         estimate = estimate)
 
