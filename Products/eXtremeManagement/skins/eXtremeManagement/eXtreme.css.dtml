@@ -322,6 +322,7 @@ table.hour-registration th {
 
 .xm-details table th {
   border: 0;
+  white-space:nowrap;
 }
 
 .xm-bookings {

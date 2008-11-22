@@ -23,12 +23,13 @@ from webdav.Lockable import wl_isLocked, ResourceLockedError
 logger = logging.getLogger('movestory')
 
 
-class ReorderStoriesView(ProjectView):
-    """Browser view for reordering stories.
+class ReleaseplanView(ProjectView):
+    """Browser view that provides an overall plan for a given project.
+       It allows the customer to prioritize upcoming features.
 
     We set up the view:
 
-      >>> view = ReorderStoriesView(context=None, request=None)
+      >>> view = ReleaseplanView(context=None, request=None)
 
     view.iterations() gives us the current and the open iterations.
 
@@ -102,8 +103,6 @@ class ReorderStoriesView(ProjectView):
 
         This one gets used by current_iterations() and open_iterations().
         """
-        #estimate = brain.estimate
-        #actual = brain.actual_time
         iteration = brain.getObject()
         iteration_view = getMultiAdapter((iteration, self.request),
                                          name='iteration')
@@ -111,13 +110,8 @@ class ReorderStoriesView(ProjectView):
                                          locked_status=True)
         stories = self.update_stories(stories)
         returnvalue = dict(
-            #url = brain.getURL(),
             title = brain.Title,
             description = brain.Description,
-            #man_hours = brain.getManHours,
-            #estimate = formatTime(estimate),
-            #actual = formatTime(actual),
-            #difference = formatTime(estimate - actual),
             brain = brain,
             stories = stories,
             uid = brain.UID,

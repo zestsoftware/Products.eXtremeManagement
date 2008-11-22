@@ -5,6 +5,12 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- Renamed reorder_stories to releaseplan [jladage].
+
+- The time tracker is now guarded by a special permission. As a result only
+  users with the Projectmanager or Employee assigned globally will be able to
+  use the timetracker. [jladage]
+
 - The invoicing view now only shows projects that are billable. This change
   requires that the getBillableProject index has to be reindexed manually [jladage]
 

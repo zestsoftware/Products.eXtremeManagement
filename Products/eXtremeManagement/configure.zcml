@@ -10,16 +10,15 @@
   <!-- include dependent packages -->
   <include package="xm.booking" />
   <include package="xm.portlets" />
+  <include package="kss.plugin.cns" />
+  <include package="kss.plugin.yuidnd" />
+  
   <include
       zcml:condition="installed xm.tracker"
       package="xm.tracker" />
   <include
       zcml:condition="installed xm.theme"
       package="xm.theme" />
-  <include package="kss.plugin.yuidnd" />
-  <!--
-  <include package="collective.indexing" />
-  -->
 
   <include file="deprecation.zcml" />
 
