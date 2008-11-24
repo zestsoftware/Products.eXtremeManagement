@@ -5,6 +5,29 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- Renamed reorder_stories to releaseplan [jladage].
+
+- The time tracker is now guarded by a special permission. As a result only
+  users with the Projectmanager or Employee assigned globally will be able to
+  use the timetracker. [jladage]
+
+- The invoicing view now only shows projects that are billable. This change
+  requires that the getBillableProject index has to be reindexed manually [jladage]
+
+- Instead of sending an email to new assignees of a Task whenever that
+  Task is edited, only send an email when the Task gets transitioned
+  to the to-do state.  Also made the email sending more robust in the
+  face of special characters, like Czech.  This refs:
+  http://plone.org/products/extreme-management-tool/issues/92
+  http://plone.org/products/extreme-management-tool/issues/118
+  http://plone.org/products/extreme-management-tool/issues/124
+  [maurits]
+
+- Enable optional experimental.catalogqueryplan usage. This needed a fix in
+  some of the tests as experimental.catalogqueryplan caches daterange results
+  in REQUEST. Add the egg to buildout's egg list to get a speed increase.
+  [reinout]
+
 - Show the number of comments of a Story in the story details viewlet
   (when expanding the story in the iteration view).  Fixes
   http://plone.org/products/extreme-management-tool/issues/87
@@ -27,8 +50,8 @@ History
   CustomerFolder you can only add a Customer when you allow Customers
   to be added globally.  [maurits]
 
-- Refactored KSS, CSS, JS and Python for workflow gadgets. Removed duplicated 
-  ids (#task-list-for-story) in favour of existing class (.tasklist_table), 
+- Refactored KSS, CSS, JS and Python for workflow gadgets. Removed duplicated
+  ids (#task-list-for-story) in favour of existing class (.tasklist_table),
   added KSS rebinding of workflow menus and stripped redundant CSS. [simon]
 
 - Added /inprogress view for managers that lists all in-progress iterations.

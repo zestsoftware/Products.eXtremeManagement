@@ -1,7 +1,7 @@
 """View for listing iterations and stories and KSS for reordering them.
 
 Unittests are in this file, functional and browser tests are in
-../doc/reorder_stories.txt.
+../doc/releaseplan.txt.
 
 """
 
@@ -23,12 +23,13 @@ from webdav.Lockable import wl_isLocked, ResourceLockedError
 logger = logging.getLogger('movestory')
 
 
-class ReorderStoriesView(ProjectView):
-    """Browser view for reordering stories.
+class ReleaseplanView(ProjectView):
+    """Browser view that provides an overall plan for a given project.
+       It allows the customer to prioritize upcoming features.
 
     We set up the view:
 
-      >>> view = ReorderStoriesView(context=None, request=None)
+      >>> view = ReleaseplanView(context=None, request=None)
 
     view.iterations() gives us the current and the open iterations.
 
@@ -63,7 +64,7 @@ class ReorderStoriesView(ProjectView):
       >>> from pprint import pprint
       >>> result = view.iterationbrain2dict(brain)
       >>> pprint(result)
-      {'brain': <Products.eXtremeManagement.browser.reorder_stories.MockBrain ...>,
+      {'brain': <Products.eXtremeManagement.browser.releaseplan.MockBrain ...>,
        'description': 'desc',
        'locked': 0,
        'stories': [],
@@ -102,8 +103,6 @@ class ReorderStoriesView(ProjectView):
 
         This one gets used by current_iterations() and open_iterations().
         """
-        #estimate = brain.estimate
-        #actual = brain.actual_time
         iteration = brain.getObject()
         iteration_view = getMultiAdapter((iteration, self.request),
                                          name='iteration')
@@ -111,13 +110,8 @@ class ReorderStoriesView(ProjectView):
                                          locked_status=True)
         stories = self.update_stories(stories)
         returnvalue = dict(
-            #url = brain.getURL(),
             title = brain.Title,
             description = brain.Description,
-            #man_hours = brain.getManHours,
-            #estimate = formatTime(estimate),
-            #actual = formatTime(actual),
-            #difference = formatTime(estimate - actual),
             brain = brain,
             stories = stories,
             uid = brain.UID,

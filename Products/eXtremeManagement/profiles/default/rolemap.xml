@@ -94,7 +94,12 @@
       <role name="Manager"/>
       <role name="Projectmanager"/>
     </permission>
-
+    <permission name="eXtremeManagement: View Tracker"
+                acquire="False">
+      <role name="Manager"/>
+      <role name="Projectmanager"/>
+      <role name="Employee"/>
+    </permission>
     <!-- BBB can be removed in release 2.1 -->
     <permission name="eXtremeManagement: Add ProjectMember"
                 acquire="True">

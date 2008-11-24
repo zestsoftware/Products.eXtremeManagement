@@ -79,7 +79,7 @@ So we grab the page ourselves
 
     >>> #browser.getLink("Reorder stories").click()
     >>> #"Reorder stories" in browser.contents  # Expects True
-    >>> browser.open(self.newproject.absolute_url() + '/reorder_stories')
+    >>> browser.open(self.newproject.absolute_url() + '/releaseplan')
 
 The page should contain the titles of our iterations:
 

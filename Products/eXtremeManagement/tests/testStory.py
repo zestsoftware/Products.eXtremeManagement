@@ -3,6 +3,7 @@ from zope.lifecycleevent import ObjectModifiedEvent
 import transaction
 
 from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
+from Products.eXtremeManagement.tests.base import reset_request
 from utils import createBooking
 
 
@@ -65,6 +66,7 @@ class testStory(eXtremeManagementTestCase):
         self.assertAnnotationStoryBrainHoursEquality(story, 1)
 
         # Make sure the copy retained it's info
+        reset_request(copy)
         self.assertAnnotationStoryBrainEstimateEquality(copy, 6)
         self.assertAnnotationStoryBrainHoursEquality(copy, 2)
 
@@ -74,6 +76,7 @@ class testStory(eXtremeManagementTestCase):
         # First make a second story for pasting into.
         iteration.invokeFactory('Story', id='story2')
         story2 = iteration.story2
+        reset_request(story2)
         self.assertAnnotationStoryBrainEstimateEquality(story2, 0)
         self.assertAnnotationStoryBrainHoursEquality(story2, 0)
 
@@ -140,7 +143,7 @@ class testStory(eXtremeManagementTestCase):
         self.failUnless(story.startable())
         self.failIf(story.completable())
         self.failIf(story.isCompleted())
-        
+
         # Complete the task.  That transitions the story also automatically.
         workflow.doActionFor(task, 'complete')
         self.failUnless(story.startable())

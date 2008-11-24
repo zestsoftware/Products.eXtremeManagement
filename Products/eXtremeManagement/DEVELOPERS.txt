@@ -1,12 +1,16 @@
 Release Management
 ==================
 
-Products.eXtremeManagement currently requires two additional package and
-might increase over time:
+Products.eXtremeManagement currently requires a number of additional packages:
 
- - xm.booking
-
- - xm.portlet
+- xm.booking
+- xm.portlets
+- xm.charting
+- kss.plugin.yuidnd
+- kss.plugin.cns
+- Products.contentmigration
+- Products.Poi
+- pygooglechart
 
 We manage these packages with the install_requires option in the setup.py.
 As a result users of xm only have to place Products.eXtremeManagement in
@@ -23,6 +27,12 @@ Example of trunk::
           # -*- Extra requirements: -*-
           'xm.booking',
           'xm.portlets',
+          'xm.charting',
+          'kss.plugin.yuidnd',
+          'kss.plugin.cns',
+          'Products.contentmigration >= 1.0b4',
+          'Products.Poi',
+          'pygooglechart',
       ], 
 
 On the trunk we always work with the latest version of both package, so we
@@ -35,6 +45,7 @@ Example of the 1.6 tag::
           # -*- Extra requirements: -*-
           'xm.booking >= 0.5, <= 0.6dev',
           'xm.portlets >= 0.5, <= 0.6dev',
+          ...
       ], 
 
 On this tag we set the minimum version to 0.5 and the maximum to 0.6dev.

@@ -174,18 +174,18 @@
       />
 
   <page
-      name="reorder_stories"
-      class=".reorder_stories.ReorderStoriesView"
+      name="releaseplan"
+      class=".releaseplan.ReleaseplanView"
       for="Products.eXtremeManagement.interfaces.IXMProject"
       permission="cmf.ManagePortal"
       allowed_interface=".interfaces.IProjectView"
-      template="reorder_stories.pt"
+      template="releaseplan.pt"
       />
 
   <page
       name="move_story"
       for="Products.eXtremeManagement.interfaces.IXMProject"
-      class=".reorder_stories.MoveStory"
+      class=".releaseplan.MoveStory"
       attribute="move_story"
       permission="cmf.ManagePortal"
       />

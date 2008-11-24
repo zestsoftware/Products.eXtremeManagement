@@ -5,8 +5,10 @@
 
   <body>
     <div metal:fill-slot="main">
-      <h1 i18n:translate="heading_reorder_stories">Release planning</h1>
-      <p i18n:translate="">Drag stories around inside and between iterations.</p>
+      <h1 i18n:translate="heading_releaseplan">Release plan</h1>
+      <p i18n:translate="description_releaseplan">This view provides an
+         overall plan for this project. You can prioritize stories by
+         dragging them inside and between iterations.</p>
 
       <tal:iterations tal:repeat="iteration view/iterations">
         <h2 tal:content="iteration/title"

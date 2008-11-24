@@ -10,13 +10,15 @@
   <!-- include dependent packages -->
   <include package="xm.booking" />
   <include package="xm.portlets" />
+  <include package="kss.plugin.cns" />
+  <include package="kss.plugin.yuidnd" />
+  
   <include
       zcml:condition="installed xm.tracker"
       package="xm.tracker" />
   <include
       zcml:condition="installed xm.theme"
       package="xm.theme" />
-  <include package="kss.plugin.yuidnd" />
 
   <include file="deprecation.zcml" />
 
@@ -65,6 +67,11 @@
       factory=".adapters.XMIssueGetter"
       />
 
-
+  <!-- Sending emails -->
+  <subscriber
+      for="Products.eXtremeManagement.interfaces.IXMTask
+           Products.DCWorkflow.interfaces.IBeforeTransitionEvent"
+      handler="Products.eXtremeManagement.emails.email_task_assignees"
+      />
 
 </configure>
