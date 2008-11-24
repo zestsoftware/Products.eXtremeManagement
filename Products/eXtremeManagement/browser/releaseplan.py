@@ -1,7 +1,7 @@
 """View for listing iterations and stories and KSS for reordering them.
 
 Unittests are in this file, functional and browser tests are in
-../doc/reorder_stories.txt.
+../doc/releaseplan.txt.
 
 """
 
@@ -64,7 +64,7 @@ class ReleaseplanView(ProjectView):
       >>> from pprint import pprint
       >>> result = view.iterationbrain2dict(brain)
       >>> pprint(result)
-      {'brain': <Products.eXtremeManagement.browser.reorder_stories.MockBrain ...>,
+      {'brain': <Products.eXtremeManagement.browser.releaseplan.MockBrain ...>,
        'description': 'desc',
        'locked': 0,
        'stories': [],
