@@ -1,9 +1,12 @@
+import logging
+from zope import component
+from zope import interface
+from zope.cachedescriptors.property import Lazy
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore import utils as cmfutils
-from zope.cachedescriptors.property import Lazy
-from zope import component
-from zope import interface
+
+logger = logging.getLogger('xm')
 
 
 class IterationClosingView(BrowserView):
@@ -53,23 +56,28 @@ class IterationClosingView(BrowserView):
 
     """
 
+    non_complete = ('in-progress', 'new', 'estimated')
     story_crit = dict(portal_type='Story',
-                      review_state=('in-progress', 'new'))
+                      review_state=non_complete)
     target_iteration_crit = dict(portal_type='Iteration',
-                                 review_state=('in-progress', 'new'))
+                                 review_state=non_complete)
 
     iteration_close_state = ViewPageTemplateFile('iteration-close-state.pt')
 
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        state = component.getMultiAdapter(
-            (self.context, self.request),
-            interface.Interface,
-            u'xm_global_state')
+        state = component.getMultiAdapter((self.context, self.request),
+                                          interface.Interface,
+                                          u'xm_global_state')
         self.project = state.project
 
+        pview = component.getMultiAdapter((self.context, self.request),
+                                          interface.Interface,
+                                          u'plone_portal_state')
 
+        self.portal = portal = pview.portal()
+        self.catalog = portal.portal_catalog
 
     @Lazy
     def pending_stories(self):
@@ -87,16 +95,51 @@ class IterationClosingView(BrowserView):
                  'uid': x.UID}
                 for x in iterations if x.UID != thisUID]
 
-    def close_iteration(self, sourceit, targetit):
-        pass
+    def migrate_stories(self, targetit):
+        pendingids = [x.getId
+                      for x in self.context.getFolderContents(self.story_crit)]
+        copy = self.context.manage_copyObjects(ids=pendingids)
+        targetit.manage_pasteObjects(copy)
+
+        catalog = self.portal
+        for x in self.context.getFolderContents(self.story_crit):
+            # delete all tasks that were completed from the target story
+            xobj = x.getObject()
+            for y in xobj.getFolderContents({'portal_type': 'Task'}):
+                if y.review_state not in self.non_complete:
+                    targetit[x.getId].manage_delObjects([y.getId])
+
+            self.remove_bookings(xobj)
+
+    def remove_bookings(self, obj):
+        path = '/'.join(obj.getPhysicalPath())
+        all = {}
+        for x in self.catalog(portal_type='Booking', path='/'.join(path)):
+            parent = x.getPath()[:-1]
+            ids = all.get(parent, None)
+            if ids is None:
+                ids = all[parent] = set()
+            ids.add(x.getId)
+
+        for parentpath, ids in all.items():
+            logger.info('Deleting from %r: %r' % (parentpath, ids))
+            parent = self.portal.restrictedTraverse(parentpath)
+            parent.manage_delObjects(ids)
+
+        logger.info('Bookings cleaned up')
 
     def ensure_targetit(self):
         form = self.request.form
         type_ = form.get('target_iteration_type', 'new')
         if type_ == 'new':
             newtitle = form['title']
-            self.project.invokeFactory(title=newtitle)
-            iteration = None
+            newid = self.project.generateUniqueId(type_name='Iteration')
+            self.project.invokeFactory(id=newid, type_name='Iteration')
+            iteration = self.project[newid]
+            iteration.update(title=newtitle)
+            iteration._renameAfterCreation(check_auto_id=True)
+            iteration.unmarkCreationFlag()
+            iteration = self.project[iteration.getId()]
         else:
             uid = form['targetit']
             refcat = cmfutils.getToolByName(self.context, 'reference_catalog')
@@ -106,8 +149,7 @@ class IterationClosingView(BrowserView):
 
     def handle_close(self):
         targetit = self.ensure_targetit()
-        sourceit = self.context
-        self.close_iteration(sourceit, targetit)
+        self.migrate_stories(targetit)
         return self.iteration_close_state()
 
     def __call__(self):
