@@ -13,6 +13,7 @@
 /* <dtml-var "enableHTTPCompression(request=REQUEST, debug=1, css=1)"> (this is for http compression) */
 /* <dtml-with base_properties> (do not remove this :) */
 /* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
 .header_iteration_project_overview {
     font-size: 120%;
 }
@@ -348,64 +349,41 @@ UL.xm-assignees LI {
 /* Offer view */
 
 #offerView {
-  border: 1px solid #EEF3F5;
-  border-top: none;
+  border: 1px solid #8CACBB;
   margin-bottom: 10px;
   margin-top: 15px;
 }
 
-#offerView td {
-    padding: 10px 20px;
+#offerView td, #offerView th {
+    padding: 10px 10px;
 }
 
-#offerViewHeader {
-  position: relative;
+#offerView th {
+    text-align: left;
+    font-size: 150%;
+    font-weight: normal;
 }
 
-#offerViewHeader h2 {
-  font-size: 100%;
-  font-weight: bold;
-  float: left;
-  padding: 10px 0 0 0;
+#offerView th.alignRight {
+    text-align: right;
 }
 
-.offer-story-estimate-header {
-  position: absolute;
-  right: 2px;
-}
-
-.storyTitle-storyEstimate td {
+.storyTitle-storyEstimate th {
   background-color: #EEF3F5;
+  border-top: 1px solid #8CACBB;
+  border-bottom: 1px solid #8CACBB;
 }
 
-#offerView h2 {
-  padding: 2px;
-  font-size: 120%;
-  font-weight: bold;
-  margin: 0;
-  border-bottom: none;
+.totalTasks th {
+  border-top: 1px solid #8CACBB;
 }
 
-#offerView h3 {
-  font-size: 110%;
-}
-
-.offer-story-text {
-  padding: 2px 2px 25px 2px;
-}
-
-.offer-story-estimate,
-#totalTasks .offer-story-estimate-footer {
-  text-align: right;
-}
-
-#totalTasks, #bookingTotal, #booking-details-total {
+#bookingTotal, #booking-details-total {
   font-weight: bold;
   font-size: 110%;
 }
 
-#totalTasks th, #bookingTotal th, #booking-details-total th {
-  text-transform: none;
+#bookingTotal th, #booking-details-total th {
   background: #ebebe9 url(++resource++xm.theme.images/background_tableFooter.gif) repeat-x scroll 0 0;
   font-weight: bold;
   white-space:nowrap;
