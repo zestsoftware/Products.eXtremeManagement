@@ -4,6 +4,11 @@ Change log
 1.6.2 (unreleased)
 ------------------
 
+- Fixed issue #127 - "Add task" widget breaks if there aren't Employees 
+  http://plone.org/products/extreme-management-tool/issues/127
+  (fix ported from trunk)
+  [maurits]
+
 - Added patch from Radim Novotny to fix UnicodeDecodeError when
   sending mail from workflow script.  Fixes
   http://plone.org/products/extreme-management-tool/issues/92
