@@ -54,10 +54,6 @@
     text-align: right;
 }
 
-.customer_info_header {
-   width: 30%;
-}
-
 #task_header {
     width: 40%;
 }
@@ -284,8 +280,7 @@ table.hour-registration th {
 
 
 .xm-details {
-  float: left;
-  width: 40%;
+  float: right;
   border: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
   background-color: &dtml-globalBackgroundColor;;
   margin-bottom: 10px;
@@ -319,6 +314,14 @@ table.hour-registration th {
 
 .xm-details table td {
     border: 0;
+}
+
+.xm-details .inlineEditable {
+    white-space: nowrap;
+}
+
+.formControls {
+    padding-top: 2px;
 }
 
 .xm-details table th {
