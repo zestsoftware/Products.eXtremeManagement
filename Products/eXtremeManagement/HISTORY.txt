@@ -5,6 +5,10 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- Fixed issue #127 - "Add task" widget breaks if there aren't Employees 
+  http://plone.org/products/extreme-management-tool/issues/127
+  [maurits]
+
 - Renamed reorder_stories to releaseplan [jladage].
 
 - The time tracker is now guarded by a special permission. As a result only
