@@ -11,6 +11,9 @@
    <element value="Task"/>
   </property>
  </object>
+ <object name="navtree_properties" meta_type="Plone Property Sheet">
+   <property name="enable_inline_editing" type="boolean">False</property>
+ </object>
  <object name="xm_properties" meta_type="Plone Property Sheet">
   <property name="title">eXtremeManagement properties</property>
   <property name="hours_per_day" type="float">8.0</property>
@@ -18,10 +21,8 @@
   <!-- (for the progress bar) of more than this figure.  This way we don't -->
   <!-- get progress percentages of over 100 %.  And we don't give a false -->
   <!-- sense of being almost finished. -->
-  <property name="maximum_not_completed_percentage"
-     type="int">90</property>
-  <property name="send_task_mails"
-     type="boolean">True</property>
+  <property name="maximum_not_completed_percentage" type="int">90</property>
+  <property name="send_task_mails" type="boolean">True</property>
   <property name="project_chart" type="boolean">False</property>
  </object>
 </object>
