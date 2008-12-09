@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement-es\n"
-"POT-Creation-Date: 2008-11-17 17:16+0000\n"
+"POT-Creation-Date: 2008-12-08 19:46+0000\n"
 "PO-Revision-Date: 2007-12-09 14:30-0300\n"
 "Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
 "Language-Team: Spanish\n"
@@ -30,20 +30,15 @@ msgid "Add Tasks"
 msgstr ""
 
 #. Default: "Click on the lock icon to edit the story"
-#: ./browser/reorder_stories.pt:24
+#: ./browser/releaseplan.pt:26
 msgid "Click on the lock icon to edit the story"
 msgstr ""
 
-#. Default: "Drag stories around inside and between iterations."
-#: ./browser/reorder_stories.pt:9
-msgid "Drag stories around inside and between iterations."
-msgstr ""
-
-#: ./browser/reorder_stories.py:215
+#: ./browser/releaseplan.py:209
 msgid "Drag/drop uids incorrect"
 msgstr ""
 
-#: ./browser/reorder_stories.py:229
+#: ./browser/releaseplan.py:223
 msgid "Move failed: story locked. Unlock the story to move it."
 msgstr ""
 
@@ -115,7 +110,7 @@ msgid "current-month"
 msgstr "mes actual"
 
 #. Default: "days"
-#: ./skins/eXtremeManagement/offer_view.pt:119
+#: ./skins/eXtremeManagement/offer_view.pt:115
 msgid "days"
 msgstr "días"
 
@@ -130,6 +125,11 @@ msgstr "Visión general de las tareas que me pertenecen. Los totales mencionados
 #, fuzzy
 msgid "description_project_administration"
 msgstr "Esta es una lista de todos los proyectos. También las iteraciones que se han completado con estado, estimado y tiempo efectivo. Una vez que una iteración es completada y facturada, el estado puede ser cambiado a invoiced. De esta forma el administrador tiene una vista general de todas las iteraciones que se facturaron."
+
+#. Default: "This view provides an overall plan for this project. You can prioritize stories by dragging them inside and between iterations."
+#: ./browser/releaseplan.pt:9
+msgid "description_releaseplan"
+msgstr ""
 
 #. Default: "To register your time (hours), use the form below and press 'Send'."
 #: ./skins/eXtremeManagement/update_hours_form.cpt:39
@@ -492,9 +492,9 @@ msgstr ""
 msgid "heading_project_chart_table"
 msgstr ""
 
-#. Default: "Release planning"
-#: ./browser/reorder_stories.pt:8
-msgid "heading_reorder_stories"
+#. Default: "Release plan"
+#: ./browser/releaseplan.pt:8
+msgid "heading_releaseplan"
 msgstr ""
 
 #. Default: "Tasks"
@@ -588,12 +588,12 @@ msgid "label_minutes"
 msgstr ""
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/reorder_stories.py:235
+#: ./browser/releaseplan.py:229
 msgid "label_moved_succesfully"
 msgstr ""
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/reorder_stories.py:260
+#: ./browser/releaseplan.py:254
 msgid "label_order_updated_succesfully"
 msgstr ""
 
@@ -875,8 +875,8 @@ msgstr ""
 msgid "no_tasks_defined"
 msgstr "Aún no hay tareas definidas."
 
-#. Default: "The offer contains the following items"
-#: ./skins/eXtremeManagement/offer_view.pt:65
+#. Default: "Offer stories"
+#: ./skins/eXtremeManagement/offer_view.pt:66
 msgid "offer-description"
 msgstr ""
 

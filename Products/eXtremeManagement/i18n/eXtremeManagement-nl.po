@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-11-17 17:16+0000\n"
+"POT-Creation-Date: 2008-12-08 19:46+0000\n"
 "PO-Revision-Date: 2008-10-27 14:57+0200\n"
 "Last-Translator: Maurits van Rees <maurits@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
@@ -28,20 +28,15 @@ msgid "Add Tasks"
 msgstr "Voeg taken toe"
 
 #. Default: "Click on the lock icon to edit the story"
-#: ./browser/reorder_stories.pt:24
+#: ./browser/releaseplan.pt:26
 msgid "Click on the lock icon to edit the story"
 msgstr "Klik op het slotje om de story te bewerken"
 
-#. Default: "Drag stories around inside and between iterations."
-#: ./browser/reorder_stories.pt:9
-msgid "Drag stories around inside and between iterations."
-msgstr "Stories kunnen versleept worden: binnen iteraties om de volgorde te veranderen, maar ook naar een andere iteratie."
-
-#: ./browser/reorder_stories.py:215
+#: ./browser/releaseplan.py:209
 msgid "Drag/drop uids incorrect"
 msgstr "Drag/drop UIDs zijn incorrect"
 
-#: ./browser/reorder_stories.py:229
+#: ./browser/releaseplan.py:223
 msgid "Move failed: story locked. Unlock the story to move it."
 msgstr "Het verplaatsen is mislukt: de story is gelockt. Verhelp dit en verplaats de story daarna nogmaals."
 
@@ -113,7 +108,7 @@ msgid "current-month"
 msgstr "huidige maand"
 
 #. Default: "days"
-#: ./skins/eXtremeManagement/offer_view.pt:119
+#: ./skins/eXtremeManagement/offer_view.pt:115
 msgid "days"
 msgstr "dagen"
 
@@ -126,6 +121,11 @@ msgstr "Overzicht van de taken die aan mij zijn toegewezen. De genoemde totalen 
 #: ./skins/eXtremeManagement/project_administration.pt:24
 msgid "description_project_administration"
 msgstr "Dit is een lijst met alle projecten. Ook de afgeronde iteraties met de geschatte en daadwerkelijk gewerkte uren. Zodra een iteratie gefactureerd wordt, kan de status veranderd worden naar <strong>Gefactureerd</strong>. Zo heeft de administratie op deze pagina een overzicht van iteraties die nog niet gefactureerd zijn."
+
+#. Default: "This view provides an overall plan for this project. You can prioritize stories by dragging them inside and between iterations."
+#: ./browser/releaseplan.pt:9
+msgid "description_releaseplan"
+msgstr ""
 
 #. Default: "To register your time (hours), use the form below and press 'Send'."
 #: ./skins/eXtremeManagement/update_hours_form.cpt:39
@@ -551,10 +551,10 @@ msgstr "Overzichtsgrafiek"
 msgid "heading_project_chart_table"
 msgstr "Ingeschatte en gewerkte dagen"
 
-#. Default: "Release planning"
-#: ./browser/reorder_stories.pt:8
-msgid "heading_reorder_stories"
-msgstr "Herorden de stories"
+#. Default: "Release plan"
+#: ./browser/releaseplan.pt:8
+msgid "heading_releaseplan"
+msgstr ""
 
 ### story_view template ###
 #. Default: "Tasks"
@@ -648,12 +648,12 @@ msgid "label_minutes"
 msgstr "Minuten"
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/reorder_stories.py:235
+#: ./browser/releaseplan.py:229
 msgid "label_moved_succesfully"
 msgstr "Story '${story}' is verplaatst naar iteratie '${target}'."
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/reorder_stories.py:260
+#: ./browser/releaseplan.py:254
 msgid "label_order_updated_succesfully"
 msgstr "Het veranderen van de volgorde is gelukt"
 
@@ -933,10 +933,10 @@ msgstr "Er zijn geen taken aan je toegekend!"
 msgid "no_tasks_defined"
 msgstr "Nog geen taken gedefinieerd."
 
-#. Default: "The offer contains the following items"
-#: ./skins/eXtremeManagement/offer_view.pt:65
+#. Default: "Offer stories"
+#: ./skins/eXtremeManagement/offer_view.pt:66
 msgid "offer-description"
-msgstr "De offerte bestaat uit de volgende onderdelen:"
+msgstr "Deze offerte bestaat uit de volgende onderdelen:"
 
 #. Default: "Billable"
 #: ./skins/eXtremeManagement/booking_month.pt:78
