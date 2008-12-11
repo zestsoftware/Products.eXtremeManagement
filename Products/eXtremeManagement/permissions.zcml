@@ -25,6 +25,10 @@
       id="xm.Add"
       title="eXtremeManagement: Add Offer" />
 
+  <permission
+      id="xm.ViewTracker"
+      title="eXtremeManagement: View Tracker" />
+
   <!-- BBB can be removed in release 2.1 -->
   <permission
       id="xm.AddProjectMember"
