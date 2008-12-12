@@ -67,12 +67,12 @@
 }
 
 .td-story-title .story-title {
-    background: transparent url(++resource++xm.theme.images/arrow_blue_inactive.gif) no-repeat scroll 2px 0;
+    background: transparent url(&dtml-portal_url;/arrow_blue_inactive.gif) no-repeat scroll 2px 0;
     padding: 0 0 0 20px;
 }
 
 .clear-bottom .story-title {
-    background: transparent url(++resource++xm.theme.images/arrow_blue_active.gif) no-repeat scroll 2px 0;
+    background: transparent url(&dtml-portal_url;/arrow_blue_active.gif) no-repeat scroll 2px 0;
 }
 
 /* LS- css for the remaining budget - start */
@@ -86,7 +86,7 @@
     font-size: 90%;
     font-weight: bold;
     color: #5f861e;
-    background: transparent url(++resource++xm.theme.images/background_budgetLeft.gif) no-repeat scroll 0 0;
+    background: transparent url(&dtml-portal_url;/background_budgetLeft.gif) no-repeat scroll 0 0;
     border-right: 1px solid #ccc;
     height: 18px;
     margin: 0 0 5px;
@@ -95,7 +95,7 @@
 }
 
 .totalOfProject span {
-    background: #cef48b url(++resource++xm.theme.images/background_budgetRepeat.gif) repeat-x scroll 0 0;
+    background: #cef48b url(&dtml-portal_url;/background_budgetRepeat.gif) repeat-x scroll 0 0;
     height: 16px;
     padding: 2px 20px 0 18px;
     float: left;
@@ -387,7 +387,7 @@ UL.xm-assignees LI {
 }
 
 #bookingTotal th, #booking-details-total th {
-  background: #ebebe9 url(++resource++xm.theme.images/background_tableFooter.gif) repeat-x scroll 0 0;
+  background: #ebebe9 url(&dtml-portal_url;/background_tableFooter.gif) repeat-x scroll 0 0;
   font-weight: bold;
   white-space:nowrap;
 }
@@ -396,7 +396,7 @@ UL.xm-assignees LI {
 
 .greyed {
     color: Grey;
-    background: #f3f3f1 url(++resource++xm.theme.images/background_tableFix.gif) 0 0 repeat-x;
+    background: #f3f3f1 url(&dtml-portal_url;/background_tableFix.gif) 0 0 repeat-x;
 }
 
 .good {
