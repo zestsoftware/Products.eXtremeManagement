@@ -46,7 +46,8 @@
                     estimated context/isEstimated;
                     startable context/startable">
 
-          <div class="xm-details" tal:condition="python:not estimated or not startable">
+          <div class="xm-details">
+            <tal:errors tal:condition="python:not estimated or not startable">
             <dl tal:condition="not:estimated" class="needs-estimate">
               <dt i18n:translate="needs_estimate">Needs Estimate</dt>
               <dd i18n:translate="help_needs_estimate">Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown).</dd>
@@ -59,6 +60,7 @@
               <dd tal:condition="not:items">No tasks added yet.  Please add one.</dd>
               <dd tal:condition="tasks_not_startable">There are tasks which cannot be activated, please see: <span tal:replace="tasks_not_startable"></span>.</dd>
             </dl>
+            </tal:errors>
 
             <table class="listing"
                    width="100%"
