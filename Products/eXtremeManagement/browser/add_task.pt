@@ -9,60 +9,83 @@
   <tal:addtask
       condition="story_view/show_add_task_form">
 
-    <form name="add_task"
+   <div class="start-button">
+      <div class="add-task">
+         <span i18n:translate="label_add_task" tal:omit-tag="">Add task</span>
+      </div>
+      <span />
+   </div>
+   <div class="visualClear"></div>
+
+   <form name="add_task"
           method="post"
           id="addtaskform"
           action=""
           tal:attributes="action string:${context/absolute_url}/@@xm_create_task">
-      <input name="title"
+
+       <fieldset>
+          <legend i18n:translate="label_add_task">Add task</legend>
+          
+          <input name="title"
              value=""
              type="text"
-             size="30"
+             size="45"
              id="new-task" />
-      <!-- This should not be hardcoded -->
-      <select name="hours" id="hours">
-        <option selected="selected"
-                value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-      </select>
-      <span>:</span>
+         
+              <!-- This should not be hardcoded -->
+                <select name="hours" id="hours">
+                <option selected="selected"
+                       value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                </select>
+                <span>:</span>
 
-      <select name="minutes" id="minutes">
-        <option selected="selected"
-                value="0">0</option>
-        <option value="15">15</option>
-        <option value="30">30</option>
-        <option value="45">45</option>
-      </select>
-
-      <select name="assignees"
-              id="assignees"
-              tal:define="assignees story_view/get_possible_assignees"
-              tal:condition="assignees">
-        <option value=""></option>
-        <tal:assignees repeat="assignee assignees">
-          <option value=""
-                  selected=""
-                  tal:attributes="value python:assignee[0];
-                                  selected python:assignee[2]"
-                  tal:content="python:assignee[1]" />
-        </tal:assignees>
-      </select>
-
-      <input value="Add task"
-             id="submit-task"
-             i18n:attributes="value label_add_task;"
-             type="submit"
-             class="standalone"/>
-    </form>
-  </tal:addtask>
+                <select name="minutes" id="minutes">
+                  <option selected="selected"
+                          value="0">0</option>
+                  <option value="15">15</option>
+                  <option value="30">30</option>
+                  <option value="45">45</option>
+                </select>
+         
+             
+         <div class="visualClear"></div>
+         <div class="position-quick-task">
+            <textarea name="description"
+               rows="5"
+               id="new-task-description"></textarea> 
+         
+            <select name="assignees"
+                    id="assignees"
+                    tal:define="assignees story_view/get_possible_assignees"
+                    tal:condition="assignees"
+                    multiple="multiple" size="6">
+              <option value=""></option>
+              <tal:assignees repeat="assignee assignees">
+                <option value=""
+                        selected=""
+                        tal:attributes="value python:assignee[0];
+                                        selected python:assignee[2]"
+                        tal:content="python:assignee[1]" />
+              </tal:assignees>
+            </select>
+         </div>   
+            
+            <input value="Add task"
+                   id="submit-task"
+                   i18n:attributes="value label_add_task;"
+                   type="submit"
+                   class="standalone"/>
+      </fieldset>
+   </form>
+   </tal:addtask>
 </div>

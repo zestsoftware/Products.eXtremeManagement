@@ -58,6 +58,14 @@
     width: 40%;
 }
 
+#new-task-description {
+  width: 40%;
+}
+
+.position-quick-task {
+  margin-top: 10px;
+}
+
 .td-story-title, .td-memberid {
   text-align: left !important;
   cursor: pointer;
@@ -564,9 +572,32 @@ table.listing .actionMenu .actionMenuHeader a{
 td.right {
     text-align: right;
 }
-
-
 /* Management project listings END */
 
+/* Add task button */
+.start-button {
+    float: left;
+    background: transparent url(++resource++xm.tracker.images/side-left-green.gif) no-repeat ;
+    padding: 0 0 0 4px;
+    border: 0;
+}
+
+.add-task{
+    float: left;
+    margin: 0;
+    padding: 4px;
+    height: 18px;
+    color: #255c04;
+    background: #bafc51 url(++resource++xm.tracker.images/gradient-green.gif) repeat-x;
+    border: 0;
+    cursor: pointer;
+}
+
+.start-button span{
+    background: transparent url(++resource++xm.tracker.images/side-right-green.gif) no-repeat;
+    float: left;
+    width: 4px;
+    height: 25px;
+}
 
 /* </dtml-with> */
