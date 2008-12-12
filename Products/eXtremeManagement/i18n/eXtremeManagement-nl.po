@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-12-08 19:46+0000\n"
+"POT-Creation-Date: 2008-12-12 12:38+0000\n"
 "PO-Revision-Date: 2008-10-27 14:57+0200\n"
 "Last-Translator: Maurits van Rees <maurits@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
@@ -27,6 +27,10 @@ msgstr "Gewerkte uren"
 msgid "Add Tasks"
 msgstr "Voeg taken toe"
 
+#: ./portlets/project.py:100
+msgid "Attachments"
+msgstr "Bijlagen"
+
 #. Default: "Click on the lock icon to edit the story"
 #: ./browser/releaseplan.pt:26
 msgid "Click on the lock icon to edit the story"
@@ -35,6 +39,14 @@ msgstr "Klik op het slotje om de story te bewerken"
 #: ./browser/releaseplan.py:209
 msgid "Drag/drop uids incorrect"
 msgstr "Drag/drop UIDs zijn incorrect"
+
+#: ./portlets/project.py:98
+msgid "Issues"
+msgstr "Issues"
+
+#: ./portlets/iterations.py:41
+msgid "Iteration links"
+msgstr "Iteraties"
 
 #: ./browser/releaseplan.py:223
 msgid "Move failed: story locked. Unlock the story to move it."
@@ -46,13 +58,25 @@ msgid "Note that only issues that aren't already mapped into this iteration will
 msgstr "Merk op dat alleen issues die nog niet binnen de iteratie zijn gekoppeld, zullen worden toegevoegd."
 
 #. Default: "Offer"
-#: content/Offer.py
+#: ./portlets/project.py:102
 msgid "Offer"
 msgstr "Offerte"
+
+#: ./portlets/project.py:104
+msgid "Overview Chart"
+msgstr "Grafieken"
 
 #: ./browser/maintenance.py:16
 msgid "Perform various maintenance tasks. If you know the totals are wrong, you can recalculate them here. This should normally not be needed, so do not touch this unless you know what you are doing.  Then again, it does not hurt, except that it takes a long time."
 msgstr "Voer diverse onderhoudstaken uit. Wanneer u weet dat de totalen verkeerd zijn, kunt u ze hier herberekenen. Dit zou normaal gesproken niet nodig hoeven zijn, dus voer dit alleen uit wanneer u weet waar u mee bezig bent. Aan de andere kant, het kan ook niet echt kwaad, behalve dat het lang duurt."
+
+#: ./portlets/managers.py:38
+msgid "Project Managers"
+msgstr "Projectmanagers"
+
+#: ./portlets/project.py:40
+msgid "Project links"
+msgstr "Project links"
 
 #. Default: "Send"
 #: ./skins/eXtremeManagement/update_hours_form.cpt:135
@@ -83,7 +107,7 @@ msgid "back_to"
 msgstr "Terug naar"
 
 #. Default: "Bookings per month"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:45
+#: ./portlets/portlet_tasks.pt:34
 msgid "booking_month"
 msgstr "Boekingen per maand"
 
@@ -133,7 +157,7 @@ msgid "description_time_registration"
 msgstr "Om je uren te registreren, gebruik het onderstaande formulier en klik op 'Verzenden'."
 
 #. Default: "Detailed bookings"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:38
+#: ./portlets/portlet_tasks.pt:27
 msgid "detailed_bookings"
 msgstr "Boekingdetails"
 
@@ -419,6 +443,11 @@ msgstr "Postcode"
 msgid "email"
 msgstr "email"
 
+#. Default: "Employees"
+#: ./portlets/managers.pt:10
+msgid "employees"
+msgstr "Medewerkers"
+
 #. Default: "Estimated release date"
 #: ./skins/eXtremeManagement/offer_view.pt:35
 msgid "estimated_release_date"
@@ -438,6 +467,11 @@ msgstr "Ga naar"
 #: ./skins/eXtremeManagement/booking_month.pt:17
 msgid "go_to_overview"
 msgstr "Ga naar overzicht van"
+
+#. Default: "Iterations"
+#: ./portlets/iterations.pt:5
+msgid "head_iterations"
+msgstr "Iteraties"
 
 #. Default: "Create tasks from issues"
 #: ./skins/eXtremeManagement/portlet_poi.pt:27
@@ -466,7 +500,7 @@ msgid "header_project_members"
 msgstr "Projectleden"
 
 #. Default: "Time registration"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:59
+#: ./portlets/portlet_tasks.pt:48
 msgid "header_time_registration"
 msgstr "Urenregistratie"
 
@@ -583,7 +617,7 @@ msgid "help_stories_table"
 msgstr "De initiële inschatting van de story is een grove inschatting in dagen. De taak inschatting is de som van de inschatting van alle taken in uren."
 
 #. Default: "Hours booked for today: ${total_booked}"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:55
+#: ./portlets/portlet_tasks.pt:44
 msgid "hours_booked_today"
 msgstr "Uren geboekt voor deze dag: ${total_booked}"
 
@@ -606,6 +640,11 @@ msgstr "Boekingsdatum"
 #: ./skins/eXtremeManagement/project_view.pt:24
 msgid "label_budgetHours"
 msgstr "Budget (uren)"
+
+#. Default: "Current"
+#: ./portlets/iterations.pt:10
+msgid "label_current_iteration"
+msgstr "Huidige iteratie"
 
 #. Default: "Date completed"
 #: ./browser/invoicing.pt:22
@@ -933,6 +972,11 @@ msgstr "Er zijn geen taken aan je toegekend!"
 msgid "no_tasks_defined"
 msgstr "Nog geen taken gedefinieerd."
 
+#. Default: "Currently no links are available or no project is selected."
+#: ./portlets/project.pt:18
+msgid "not_in_project_or_no_links"
+msgstr "Er is geen project geselecteerd of er zijn geen links beschikbaar."
+
 #. Default: "Offer stories"
 #: ./skins/eXtremeManagement/offer_view.pt:66
 msgid "offer-description"
@@ -958,10 +1002,21 @@ msgstr "vorige maand"
 msgid "progress_bar"
 msgstr "Voortgangsbalk"
 
-#. Default: "Project administration"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:19
+#. Default: "Project administration [plone3]"
+#: ./portlets/portlet_tasks.pt:8
+#, fuzzy
 msgid "project_administration"
 msgstr "Projectadministratie"
+
+#. Default: "Project links"
+#: ./portlets/project.pt:5
+msgid "project_links"
+msgstr "Project links"
+
+#. Default: "Project Management"
+#: ./portlets/managers.pt:5
+msgid "project_management"
+msgstr "Project management"
 
 #. Default: "rough story estimates"
 #: ./browser/project_chart.pt:22
@@ -989,7 +1044,7 @@ msgid "task_icon"
 msgstr "Taak"
 
 #. Default: "Task overview"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:31
+#: ./portlets/portlet_tasks.pt:20
 msgid "task_overview"
 msgstr "Takenoverzicht"
 

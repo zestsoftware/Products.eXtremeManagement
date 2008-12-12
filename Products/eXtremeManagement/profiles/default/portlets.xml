@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <portlets>
   <portlet
-      addview="xm.portlets.iterations"
+      addview="eXtremeManagement.iterations"
       title="Iterations"
       description="Portlet that provides navigation through iterations"
       />
@@ -11,7 +11,7 @@
       description="Portlet that shows date and/or time"
       />
   <portlet
-      addview="xm.portlets.project"
+      addview="eXtremeManagement.project"
       title="Project links"
       description="Portlets for xm"
       />

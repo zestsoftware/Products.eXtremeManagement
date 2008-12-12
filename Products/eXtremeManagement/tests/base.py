@@ -27,8 +27,6 @@ def xm_setup():
     fiveconfigure.debug_mode = True
     import xm.booking
     zcml.load_config('configure.zcml', xm.booking)
-    import xm.portlets
-    zcml.load_config('configure.zcml', xm.portlets)
     fiveconfigure.debug_mode = False
 
 

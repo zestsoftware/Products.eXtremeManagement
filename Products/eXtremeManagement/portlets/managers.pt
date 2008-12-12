@@ -1,5 +1,5 @@
 <dl class="portlet portletProjectPortlet"
-    i18n:domain="xm.portlets">
+    i18n:domain="eXtremeManagement">
   <dt class="portletHeader">
     <span class="portletTopLeft"></span>
     <span class="management_portletHeader" i18n:translate="project_management">Project Management</span>

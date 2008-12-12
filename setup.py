@@ -38,7 +38,6 @@ setup(name='Products.eXtremeManagement',
           # -*- Extra requirements: -*-
           'xm.booking',
           #'xm.tracker',
-          'xm.portlets',
           'xm.charting',
           'kss.plugin.yuidnd',
           'kss.plugin.cns',

@@ -102,7 +102,7 @@ task for this issue in an open story.
                     <option tal:repeat="story stories"
                             tal:attributes="value story/uid"
                             tal:content="string:${story/iterationid}: ${story/title}">
-                      Some story
+                      <!-- Some story -->
                     </option>
                   </select>
                 </div>

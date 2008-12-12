@@ -7,7 +7,7 @@ from plone.app.portlets.portlets import base
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 
-from xm.portlets import PortletsMessageFactory as _
+from Products.eXtremeManagement import XMMessageFactory as _
 
 
 class IManagersPortlet(IPortletDataProvider):

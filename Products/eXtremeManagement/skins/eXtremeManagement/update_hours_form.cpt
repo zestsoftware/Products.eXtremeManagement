@@ -63,7 +63,7 @@
           <table class="listing hour-registration" border="0">
             <tal:loop tal:repeat="task tasks">
               <tr>
-                  <th class="nosort" >Naam project, taak:</th>
+                  <th class="nosort" i18n:translate="listingheader_title">Naam project, taak:</th>
                 <!--<th class="nosort" i18n:translate="listingheader_title">Title</th>-->
                 <th class="nosort" i18n:translate="listingheader_story">Story</th>
                 <th class="nosort" i18n:translate="listingheader_estimate_hours">Estimate (hours)</th>

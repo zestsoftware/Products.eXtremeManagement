@@ -6,7 +6,7 @@ from plone.portlets.interfaces import IPortletAssignment
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.portlets.interfaces import IPortletRenderer
 
-from xm.portlets import project
+from Products.eXtremeManagement.portlets import project
 
 from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
 
@@ -17,8 +17,8 @@ class TestPortlet(eXtremeManagementTestCase):
         self.setRoles(('Manager', ))
 
     def test_portlet_type_registered(self):
-        portlet = getUtility(IPortletType, name='xm.portlets.project')
-        self.assertEquals(portlet.addview, 'xm.portlets.project')
+        portlet = getUtility(IPortletType, name='eXtremeManagement.project')
+        self.assertEquals(portlet.addview, 'eXtremeManagement.project')
 
     def test_interfaces(self):
         # TODO: Pass any keyword arguments to the Assignment constructor
@@ -27,7 +27,7 @@ class TestPortlet(eXtremeManagementTestCase):
         self.failUnless(IPortletDataProvider.providedBy(portlet.data))
 
     def test_invoke_add_view(self):
-        portlet = getUtility(IPortletType, name='xm.portlets.project')
+        portlet = getUtility(IPortletType, name='eXtremeManagement.project')
         mapping = self.portal.restrictedTraverse(
             '++contextportlets++plone.leftcolumn')
         for m in mapping.keys():

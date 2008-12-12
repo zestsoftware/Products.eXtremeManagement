@@ -8,7 +8,7 @@
                  tal:define="dummy python:request.set('disable_border', 1)" />
   </head>
 
-  <body>F
+  <body>
 
     <tal:main metal:fill-slot="main">
 
