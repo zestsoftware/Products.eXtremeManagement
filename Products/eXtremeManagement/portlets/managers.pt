@@ -1,0 +1,32 @@
+<dl class="portlet portletProjectPortlet"
+    i18n:domain="xm.portlets">
+  <dt class="portletHeader">
+    <span class="portletTopLeft"></span>
+    <span class="management_portletHeader" i18n:translate="project_management">Project Management</span>
+    <span class="portletTopRight"></span>
+  </dt>
+
+  <dd class="portletItem odd">
+    <a tal:attributes="href string:${view/site_url}/employees_overview"
+       i18n:translate="employees">
+      Employees
+    </a>
+  </dd>
+  <dd class="portletItem even">
+    <a tal:attributes="href string:${view/site_url}/invoicing"
+       i18n:translate="label_invoicing_overview">
+      Invoicing overview
+    </a>
+  </dd>
+  <dd class="portletItem odd">
+    <a tal:attributes="href string:${view/site_url}/inprogress"
+       i18n:translate="label_inprogress_overview">
+      In-progress overview
+    </a>
+  </dd>
+
+  <dd class="portletFooter">
+    <span class="portletBottomLeft"></span>
+    <span class="portletBottomRight"></span>
+  </dd>
+</dl>
