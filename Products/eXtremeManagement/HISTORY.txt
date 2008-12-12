@@ -5,6 +5,19 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- Changed story details box into a provider (viewlet manager without
+  viewlets) so we can refresh that provider with KSS.  [maurits]
+
+- Moved "eXtremeManagement: View Tracker" permission from xm.tracker
+  to Products.eXtremeManagement as we do not actually use that
+  permission in the xm.tracker package but only in actions.xml of
+  Products.eXtremeManagement.  This also means we do not have to have
+  a dependency on xm.tracker (at least currently). [maurits]
+
+- Fixed issue #127 - "Add task" widget breaks if there aren't Employees 
+  http://plone.org/products/extreme-management-tool/issues/127
+  [maurits]
+
 - Renamed reorder_stories to releaseplan [jladage].
 
 - The time tracker is now guarded by a special permission. As a result only

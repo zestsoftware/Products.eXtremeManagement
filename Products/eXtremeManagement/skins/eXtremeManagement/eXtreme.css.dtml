@@ -13,6 +13,7 @@
 /* <dtml-var "enableHTTPCompression(request=REQUEST, debug=1, css=1)"> (this is for http compression) */
 /* <dtml-with base_properties> (do not remove this :) */
 /* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
 .header_iteration_project_overview {
     font-size: 120%;
 }
@@ -53,10 +54,6 @@
     text-align: right;
 }
 
-.customer_info_header {
-   width: 30%;
-}
-
 #task_header {
     width: 40%;
 }
@@ -70,12 +67,12 @@
 }
 
 .td-story-title .story-title {
-    background: transparent url(++resource++xm.theme.images/arrow_blue_inactive.gif) no-repeat scroll 2px 0;
+    background: transparent url(&dtml-portal_url;/arrow_blue_inactive.gif) no-repeat scroll 2px 0;
     padding: 0 0 0 20px;
 }
 
 .clear-bottom .story-title {
-    background: transparent url(++resource++xm.theme.images/arrow_blue_active.gif) no-repeat scroll 2px 0;
+    background: transparent url(&dtml-portal_url;/arrow_blue_active.gif) no-repeat scroll 2px 0;
 }
 
 /* LS- css for the remaining budget - start */
@@ -89,7 +86,7 @@
     font-size: 90%;
     font-weight: bold;
     color: #5f861e;
-    background: transparent url(++resource++xm.theme.images/background_budgetLeft.gif) no-repeat scroll 0 0;
+    background: transparent url(&dtml-portal_url;/background_budgetLeft.gif) no-repeat scroll 0 0;
     border-right: 1px solid #ccc;
     height: 18px;
     margin: 0 0 5px;
@@ -98,7 +95,7 @@
 }
 
 .totalOfProject span {
-    background: #cef48b url(++resource++xm.theme.images/background_budgetRepeat.gif) repeat-x scroll 0 0;
+    background: #cef48b url(&dtml-portal_url;/background_budgetRepeat.gif) repeat-x scroll 0 0;
     height: 16px;
     padding: 2px 20px 0 18px;
     float: left;
@@ -283,8 +280,7 @@ table.hour-registration th {
 
 
 .xm-details {
-  float: left;
-  width: 40%;
+  float: right;
   border: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
   background-color: &dtml-globalBackgroundColor;;
   margin-bottom: 10px;
@@ -320,9 +316,18 @@ table.hour-registration th {
     border: 0;
 }
 
+.xm-details .inlineEditable {
+    white-space: nowrap;
+}
+
+.formControls {
+    padding-top: 2px;
+}
+
 .xm-details table th {
   border: 0;
-  white-space:nowrap;
+  white-space: nowrap;
+  background: transparent;
 }
 
 .xm-bookings {
@@ -348,65 +353,42 @@ UL.xm-assignees LI {
 /* Offer view */
 
 #offerView {
-  border: 1px solid #EEF3F5;
-  border-top: none;
+  border: 1px solid #8CACBB;
   margin-bottom: 10px;
   margin-top: 15px;
 }
 
-#offerView td {
-    padding: 10px 20px;
+#offerView td, #offerView th {
+    padding: 10px 10px;
 }
 
-#offerViewHeader {
-  position: relative;
+#offerView th {
+    text-align: left;
+    font-size: 150%;
+    font-weight: normal;
 }
 
-#offerViewHeader h2 {
-  font-size: 100%;
-  font-weight: bold;
-  float: left;
-  padding: 10px 0 0 0;
+#offerView th.alignRight {
+    text-align: right;
 }
 
-.offer-story-estimate-header {
-  position: absolute;
-  right: 2px;
-}
-
-.storyTitle-storyEstimate td {
+.storyTitle-storyEstimate th {
   background-color: #EEF3F5;
+  border-top: 1px solid #8CACBB;
+  border-bottom: 1px solid #8CACBB;
 }
 
-#offerView h2 {
-  padding: 2px;
-  font-size: 120%;
-  font-weight: bold;
-  margin: 0;
-  border-bottom: none;
+.totalTasks th {
+  border-top: 1px solid #8CACBB;
 }
 
-#offerView h3 {
-  font-size: 110%;
-}
-
-.offer-story-text {
-  padding: 2px 2px 25px 2px;
-}
-
-.offer-story-estimate,
-#totalTasks .offer-story-estimate-footer {
-  text-align: right;
-}
-
-#totalTasks, #bookingTotal, #booking-details-total {
+#bookingTotal, #booking-details-total {
   font-weight: bold;
   font-size: 110%;
 }
 
-#totalTasks th, #bookingTotal th, #booking-details-total th {
-  text-transform: none;
-  background: #ebebe9 url(++resource++xm.theme.images/background_tableFooter.gif) repeat-x scroll 0 0;
+#bookingTotal th, #booking-details-total th {
+  background: #ebebe9 url(&dtml-portal_url;/background_tableFooter.gif) repeat-x scroll 0 0;
   font-weight: bold;
   white-space:nowrap;
 }
@@ -415,7 +397,7 @@ UL.xm-assignees LI {
 
 .greyed {
     color: Grey;
-    background: #f3f3f1 url(++resource++xm.theme.images/background_tableFix.gif) 0 0 repeat-x;
+    background: #f3f3f1 url(&dtml-portal_url;/background_tableFix.gif) 0 0 repeat-x;
 }
 
 .good {

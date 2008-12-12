@@ -18,4 +18,35 @@
 
       />
 
+  <plone:portlet
+      name="eXtremeManagement.iterations"
+      interface=".iterations.IIterationsPortlet"
+      assignment=".iterations.Assignment"
+      view_permission="zope2.View"
+      edit_permission="cmf.ManagePortal"
+      renderer=".iterations.Renderer"
+      addview=".iterations.AddForm"
+      />
+
+
+  <plone:portlet
+      name="eXtremeManagement.project"
+      interface=".project.IProjectPortlet"
+      assignment=".project.Assignment"
+      view_permission="zope2.View"
+      edit_permission="cmf.ManagePortal"
+      renderer=".project.Renderer"
+      addview=".project.AddForm"
+      />
+
+  <plone:portlet
+      name="eXtremeManagement.managers"
+      interface=".managers.IManagersPortlet"
+      assignment=".managers.Assignment"
+      view_permission="zope2.View"
+      edit_permission="cmf.ManagePortal"
+      renderer=".managers.Renderer"
+      addview=".managers.AddForm"
+      />
+
 </configure>

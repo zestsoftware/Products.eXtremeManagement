@@ -1,0 +1,65 @@
+<tal:block
+    define="story_object python:view.story_object;
+            storyview nocall:story_object/@@story;
+            main storyview/main;
+            tasklist storyview/tasklist;
+            items tasklist/tasks;
+            totals tasklist/totals;
+            estimated story_object/isEstimated;
+            startable story_object/startable"
+    i18n:domain="eXtremeManagement">
+
+  <div class="xm-details">
+    <tal:errors tal:condition="python:not estimated or not startable">
+      <dl tal:condition="not:estimated" class="needs-estimate">
+        <dt i18n:translate="needs_estimate">Needs Estimate</dt>
+        <dd i18n:translate="help_needs_estimate">Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown).</dd>
+      </dl>
+
+      <dl tal:condition="not:startable" class="not-startable"
+          tal:define="tasks_not_startable storyview/task_titles_not_startable">
+        <dt i18n:translate="cannot_activate">Cannot Activate</dt>
+        <dd tal:condition="python:main['review_state'] != 'estimated'">Need to finish estimating this story by selecting 'estimate' from the state dropdown.</dd>
+        <dd tal:condition="not:items">No tasks added yet.  Please add one.</dd>
+        <dd tal:condition="tasks_not_startable">There are tasks which cannot be activated, please see: <span tal:replace="tasks_not_startable"></span>.</dd>
+      </dl>
+    </tal:errors>
+
+    <table class="listing"
+           width="100%"
+           cellpadding="0"
+           cellspacing="0">
+      <tr>
+        <th class="customer_info_header"
+            i18n:translate="listingheader_initial_estimate">
+          Initial Estimate (days)
+        </th>
+        <td>
+          <span tal:replace="structure main/rough_estimate" />
+          <span i18n:translate="days">days</span>
+        </td>
+      </tr>
+      <tr>
+        <th class="customer_info_header"
+            i18n:translate="listingheader_tasks_estimate">
+          Tasks Estimate (hours)
+        </th>
+        <td>
+          <span tal:replace="totals/estimate" />
+        </td>
+      </tr>
+      <tr>
+        <th class="customer_info_header"
+            i18n:translate="listingheader_actualtimebooked">
+          Time Booked
+        </th>
+        <td>
+          <span tal:replace="totals/actual" />
+        </td>
+      </tr>
+    </table>
+
+    <div class="visualClear"><!-- --></div>
+  </div>
+
+</tal:block>

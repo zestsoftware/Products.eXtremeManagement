@@ -1,4 +1,5 @@
-<dl class="portlet" id="portlet-project-administration">
+<dl class="portlet" id="portlet-project-administration"
+    i18n:domain="eXtremeManagement">
   <dt class="portletHeader" >
     <span class="portletTopLeft"></span>
     <a tal:condition="view/hasManagePermission"
@@ -34,13 +35,6 @@
        tal:attributes="href
                        string:${view/portal_url}/booking_month">Bookings per month
     </a>
-  </dd>
-
-  <dd class="portletItem even"
-      tal:define="aview view/portal/@@daytotal"
-      i18n:translate="hours_booked_today">
-    Hours booked for today:
-    <span i18n:name="total_booked" tal:replace="aview/total" />
   </dd>
 
   <dd class="portletItem odd">

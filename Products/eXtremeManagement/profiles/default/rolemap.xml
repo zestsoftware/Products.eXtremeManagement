@@ -99,6 +99,11 @@
       <role name="Manager"/>
       <role name="Projectmanager"/>
       <role name="Employee"/>
+      <!-- XXX Don't we want Member here?  When Member is not here,
+           someone with the *local* role Employee on a project cannot
+           access the tracker.  Then again, putting Member here would
+           also make it available for e.g. Customers which is not what
+           you want. -->
     </permission>
     <!-- BBB can be removed in release 2.1 -->
     <permission name="eXtremeManagement: Add ProjectMember"

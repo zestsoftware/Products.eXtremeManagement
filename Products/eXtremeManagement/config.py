@@ -6,6 +6,10 @@ xm_globals = globals()
 # Permissions
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
 setDefaultRoles(DEFAULT_ADD_CONTENT_PERMISSION, ('Manager', 'Owner'))
+# For xm.tracker
+setDefaultRoles("eXtremeManagement: View Tracker",
+                ('Projectmanager', 'Employee', 'Manager'))
+
 ADD_CONTENT_PERMISSIONS = {
     'Project': 'eXtremeManagement: Add Project',
     'Iteration': 'eXtremeManagement: Add Iteration',

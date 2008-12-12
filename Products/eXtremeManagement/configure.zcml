@@ -9,7 +9,6 @@
 
   <!-- include dependent packages -->
   <include package="xm.booking" />
-  <include package="xm.portlets" />
   <include package="kss.plugin.cns" />
   <include package="kss.plugin.yuidnd" />
   

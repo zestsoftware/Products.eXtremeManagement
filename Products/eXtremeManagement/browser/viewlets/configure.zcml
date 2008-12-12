@@ -23,4 +23,11 @@
       class=".manager.StoryDetailsProvider"
       />
 
+  <browser:viewletManager
+      name="xm.story.detailsbox"
+      provides=".interfaces.IStoryDetailsBox"
+      permission="zope2.View"
+      class=".manager.StoryDetailsBox"
+      />
+
 </configure>

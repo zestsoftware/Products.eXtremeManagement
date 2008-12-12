@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-11-17 17:16+0000\n"
+"POT-Creation-Date: 2008-12-12 12:46+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -26,21 +26,28 @@ msgstr ""
 msgid "Add Tasks"
 msgstr ""
 
+#: ./portlets/project.py:100
+msgid "Attachments"
+msgstr ""
+
 #. Default: "Click on the lock icon to edit the story"
-#: ./browser/reorder_stories.pt:24
+#: ./browser/releaseplan.pt:26
 msgid "Click on the lock icon to edit the story"
 msgstr ""
 
-#. Default: "Drag stories around inside and between iterations."
-#: ./browser/reorder_stories.pt:9
-msgid "Drag stories around inside and between iterations."
-msgstr ""
-
-#: ./browser/reorder_stories.py:215
+#: ./browser/releaseplan.py:209
 msgid "Drag/drop uids incorrect"
 msgstr ""
 
-#: ./browser/reorder_stories.py:229
+#: ./portlets/project.py:98
+msgid "Issues"
+msgstr ""
+
+#: ./portlets/iterations.py:41
+msgid "Iteration links"
+msgstr ""
+
+#: ./browser/releaseplan.py:223
 msgid "Move failed: story locked. Unlock the story to move it."
 msgstr ""
 
@@ -49,13 +56,24 @@ msgstr ""
 msgid "Note that only issues that aren't already mapped into this iteration will be added."
 msgstr ""
 
-#. Default: "Offer"
-#: content/Offer.py
+#: ./portlets/project.py:102
 msgid "Offer"
+msgstr ""
+
+#: ./portlets/project.py:104
+msgid "Overview Chart"
 msgstr ""
 
 #: ./browser/maintenance.py:16
 msgid "Perform various maintenance tasks. If you know the totals are wrong, you can recalculate them here. This should normally not be needed, so do not touch this unless you know what you are doing.  Then again, it does not hurt, except that it takes a long time."
+msgstr ""
+
+#: ./portlets/managers.py:38
+msgid "Project Managers"
+msgstr ""
+
+#: ./portlets/project.py:40
+msgid "Project links"
 msgstr ""
 
 #. Default: "Send"
@@ -87,7 +105,7 @@ msgid "back_to"
 msgstr ""
 
 #. Default: "Bookings per month"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:45
+#: ./portlets/portlet_tasks.pt:34
 msgid "booking_month"
 msgstr ""
 
@@ -111,7 +129,7 @@ msgstr ""
 msgid "current-month"
 msgstr ""
 
-#: ./skins/eXtremeManagement/offer_view.pt:119
+#: ./skins/eXtremeManagement/offer_view.pt:115
 msgid "days"
 msgstr ""
 
@@ -125,13 +143,18 @@ msgstr ""
 msgid "description_project_administration"
 msgstr ""
 
+#. Default: "This view provides an overall plan for this project. You can prioritize stories by dragging them inside and between iterations."
+#: ./browser/releaseplan.pt:9
+msgid "description_releaseplan"
+msgstr ""
+
 #. Default: "To register your time (hours), use the form below and press 'Send'."
 #: ./skins/eXtremeManagement/update_hours_form.cpt:39
 msgid "description_time_registration"
 msgstr ""
 
 #. Default: "Detailed bookings"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:38
+#: ./portlets/portlet_tasks.pt:27
 msgid "detailed_bookings"
 msgstr ""
 
@@ -354,6 +377,11 @@ msgstr ""
 msgid "email"
 msgstr ""
 
+#. Default: "Employees"
+#: ./portlets/managers.pt:10
+msgid "employees"
+msgstr ""
+
 #. Default: "Estimated release date"
 #: ./skins/eXtremeManagement/offer_view.pt:35
 msgid "estimated_release_date"
@@ -372,6 +400,11 @@ msgstr ""
 #. Default: "Go to overview of"
 #: ./skins/eXtremeManagement/booking_month.pt:17
 msgid "go_to_overview"
+msgstr ""
+
+#. Default: "Iterations"
+#: ./portlets/iterations.pt:5
+msgid "head_iterations"
 msgstr ""
 
 #. Default: "Create tasks from issues"
@@ -400,7 +433,7 @@ msgid "header_project_members"
 msgstr ""
 
 #. Default: "Time registration"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:59
+#: ./portlets/portlet_tasks.pt:48
 msgid "header_time_registration"
 msgstr ""
 
@@ -484,9 +517,9 @@ msgstr ""
 msgid "heading_project_chart_table"
 msgstr ""
 
-#. Default: "Release planning"
-#: ./browser/reorder_stories.pt:8
-msgid "heading_reorder_stories"
+#. Default: "Release plan"
+#: ./browser/releaseplan.pt:8
+msgid "heading_releaseplan"
 msgstr ""
 
 #. Default: "Tasks"
@@ -515,7 +548,7 @@ msgid "help_stories_table"
 msgstr ""
 
 #. Default: "Hours booked for today: ${total_booked}"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:55
+#: ./portlets/portlet_tasks.pt:44
 msgid "hours_booked_today"
 msgstr ""
 
@@ -537,6 +570,11 @@ msgstr ""
 #. Default: "Budget (hours)"
 #: ./skins/eXtremeManagement/project_view.pt:24
 msgid "label_budgetHours"
+msgstr ""
+
+#. Default: "Current"
+#: ./portlets/iterations.pt:10
+msgid "label_current_iteration"
 msgstr ""
 
 #. Default: "Date completed"
@@ -580,12 +618,12 @@ msgid "label_minutes"
 msgstr ""
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/reorder_stories.py:235
+#: ./browser/releaseplan.py:229
 msgid "label_moved_succesfully"
 msgstr ""
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/reorder_stories.py:260
+#: ./browser/releaseplan.py:254
 msgid "label_order_updated_succesfully"
 msgstr ""
 
@@ -864,8 +902,13 @@ msgstr ""
 msgid "no_tasks_defined"
 msgstr ""
 
-#. Default: "The offer contains the following items"
-#: ./skins/eXtremeManagement/offer_view.pt:65
+#. Default: "Currently no links are available or no project is selected."
+#: ./portlets/project.pt:18
+msgid "not_in_project_or_no_links"
+msgstr ""
+
+#. Default: "Offer stories"
+#: ./skins/eXtremeManagement/offer_view.pt:66
 msgid "offer-description"
 msgstr ""
 
@@ -889,9 +932,19 @@ msgstr ""
 msgid "progress_bar"
 msgstr ""
 
-#. Default: "Project administration"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:19
+#. Default: "Project administration [plone3]"
+#: ./portlets/portlet_tasks.pt:8
 msgid "project_administration"
+msgstr ""
+
+#. Default: "Project links"
+#: ./portlets/project.pt:5
+msgid "project_links"
+msgstr ""
+
+#. Default: "Project Management"
+#: ./portlets/managers.pt:5
+msgid "project_management"
 msgstr ""
 
 #. Default: "rough story estimates"
@@ -920,7 +973,7 @@ msgid "task_icon"
 msgstr ""
 
 #. Default: "Task overview"
-#: ./skins/eXtremeManagement/portlet_tasks.pt:31
+#: ./portlets/portlet_tasks.pt:20
 msgid "task_overview"
 msgstr ""
 

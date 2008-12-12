@@ -19,15 +19,15 @@ SELF_MADE=i18n/generated.pot
 i18ndude rebuild-pot --pot i18n/$PROJECT.pot --create $PROJECT --merge $SELF_MADE $SEARCH_DIR
 # Instead of $TEMPLATE_FILES you could use $SEARCH_DIR.
 
-i18ndude sync --pot i18n/$PROJECT.pot i18n/$PROJECT-*.po
+i18ndude -v sync --pot i18n/$PROJECT.pot i18n/$PROJECT-*.po
 
-i18ndude sync --pot i18n/plone.pot i18n/plone-$PROJECT-*.po
+i18ndude -v sync --pot i18n/plone.pot i18n/plone-$PROJECT-*.po
 
 
 echo "Reporting some statistics..."
 # Find places that are missing an "i18n:translate" or
 # "i18n:attributes" tag.
-i18ndude find-untranslated -s $TEMPLATE_FILES
+i18ndude find-untranslated  $TEMPLATE_FILES
 
 echo "Percentage done per language:"
 i18ndude chart -o /dev/null --pot i18n/$PROJECT.pot i18n/$PROJECT-*.po

@@ -325,7 +325,7 @@ class Create(BrowserView):
         title = form.get('title', '')
         hours = form.get('hours', 0)
         minutes = form.get('minutes', 0)
-        assignees = form.get('assignees', 0)
+        assignees = form.get('assignees', [])
         context = aq_inner(self.context)
         create_task(context, title=title, hours=hours, minutes=minutes,
                     assignees=assignees)
@@ -347,7 +347,7 @@ class Add(PloneKSSView):
             plone_commands.issuePortalMessage(_(u'Title is required'),
                                               msgtype='error')
             return None
-        assignees = self.request.form.get('assignees')
+        assignees = self.request.form.get('assignees', [])
         create_task(context, title=title,
                     hours=self.request.form.get('hours'),
                     minutes=self.request.form.get('minutes'),
@@ -378,7 +378,7 @@ class Add(PloneKSSView):
 
 
 def create_task(context, title='Task', hours=0, minutes=0,
-                assignees=None):
+                assignees=[]):
     """Create a task.
 
     We introduce a Mock Task class for testing.

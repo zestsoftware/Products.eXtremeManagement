@@ -40,3 +40,11 @@ class IStoryDetails(IViewletManager):
         title=u'Number of comments added to this Story.')
 
 directlyProvides(IStoryDetails, ITALNamespaceData)
+
+
+class IStoryDetailsBox(IViewletManager):
+    story_object = zope.schema.Bool(
+        title=u'Story object whose details should be rendered.')
+
+
+directlyProvides(IStoryDetailsBox, ITALNamespaceData)
