@@ -2,17 +2,9 @@
     i18n:domain="eXtremeManagement">
   <dt class="portletHeader" >
     <span class="portletTopLeft"></span>
-    <a tal:condition="view/hasManagePermission"
-       tal:attributes="href
-                       string:${view/portal_url}/project_administration">
-      <tal:admin-manager i18n:translate="project_administration">
-      Project administration [plone3]</tal:admin-manager>
-    </a>
-    <tal:admin-no-manager
-        tal:condition="python: not view.hasManagePermission()"
-        i18n:translate="project_administration">
-      Project administration [plone3]
-    </tal:admin-no-manager>
+    <span i18n:translate="personal_administration">
+      Personal administration
+    </span>
     <span class="portletTopRight"></span>
   </dt>
 

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-12-12 12:38+0000\n"
+"POT-Creation-Date: 2008-12-12 14:48+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -71,8 +71,9 @@ msgstr ""
 msgid "Perform various maintenance tasks. If you know the totals are wrong, you can recalculate them here. This should normally not be needed, so do not touch this unless you know what you are doing.  Then again, it does not hurt, except that it takes a long time."
 msgstr ""
 
-#: ./portlets/managers.py:38
-msgid "Project Managers"
+#. Default: "Project Management"
+#: ./portlets/managers.pt:5
+msgid "Project Management"
 msgstr ""
 
 #: ./portlets/project.py:40
@@ -108,7 +109,7 @@ msgid "back_to"
 msgstr "Retour"
 
 #. Default: "Bookings per month"
-#: ./portlets/portlet_tasks.pt:34
+#: ./portlets/portlet_tasks.pt:26
 msgid "booking_month"
 msgstr "Entrées (bookings) par mois"
 
@@ -162,7 +163,7 @@ msgid "description_time_registration"
 msgstr ""
 
 #. Default: "Detailed bookings"
-#: ./portlets/portlet_tasks.pt:27
+#: ./portlets/portlet_tasks.pt:19
 msgid "detailed_bookings"
 msgstr ""
 
@@ -504,7 +505,7 @@ msgid "header_project_members"
 msgstr "Membres du projet"
 
 #. Default: "Time registration"
-#: ./portlets/portlet_tasks.pt:48
+#: ./portlets/portlet_tasks.pt:40
 msgid "header_time_registration"
 msgstr "Saisie du temps"
 
@@ -572,7 +573,7 @@ msgid "heading-stories"
 msgstr "Histoires-usager"
 
 #. Default: "Attached files and images"
-#: ./skins/eXtremeManagement/story_view.pt:127
+#: ./skins/eXtremeManagement/story_view.pt:129
 msgid "heading_attachements"
 msgstr ""
 
@@ -597,7 +598,7 @@ msgid "heading_releaseplan"
 msgstr ""
 
 #. Default: "Tasks"
-#: ./skins/eXtremeManagement/story_view.pt:115
+#: ./skins/eXtremeManagement/story_view.pt:117
 msgid "heading_tasks"
 msgstr "Tâches"
 
@@ -612,7 +613,7 @@ msgid "help_include_global_members"
 msgstr "Si sélectionné, les membres ayant le rôle global \"Employé\" apparaîtront dans la liste des personnes assignées à une tâche"
 
 #. Default: "Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown)."
-#: ./skins/eXtremeManagement/story_view.pt:52
+#: ./skins/eXtremeManagement/story_view.pt:53
 msgid "help_needs_estimate"
 msgstr ""
 
@@ -622,7 +623,7 @@ msgid "help_stories_table"
 msgstr ""
 
 #. Default: "Hours booked for today: ${total_booked}"
-#: ./portlets/portlet_tasks.pt:44
+#: ./portlets/portlet_tasks.pt:36
 msgid "hours_booked_today"
 msgstr "Heures entrées pour la journée : ${total_booked}"
 
@@ -782,7 +783,7 @@ msgid "listingheader_actual_hours"
 msgstr ""
 
 #. Default: "Time Booked"
-#: ./skins/eXtremeManagement/story_view.pt:87
+#: ./skins/eXtremeManagement/story_view.pt:89
 msgid "listingheader_actualtimebooked"
 msgstr ""
 
@@ -937,7 +938,7 @@ msgid "name"
 msgstr ""
 
 #. Default: "Needs Estimate"
-#: ./skins/eXtremeManagement/story_view.pt:51
+#: ./skins/eXtremeManagement/story_view.pt:52
 msgid "needs_estimate"
 msgstr ""
 
@@ -992,6 +993,11 @@ msgstr ""
 msgid "perc_billable"
 msgstr ""
 
+#. Default: "Personal administration"
+#: ./portlets/portlet_tasks.pt:5
+msgid "personal_administration"
+msgstr ""
+
 #. Default: "Previous"
 #: ./skins/eXtremeManagement/story_view.pt:34
 #, fuzzy
@@ -1008,8 +1014,8 @@ msgstr "mois précédent"
 msgid "progress_bar"
 msgstr ""
 
-#. Default: "Project administration [plone3]"
-#: ./portlets/portlet_tasks.pt:8
+#. Default: "Project administration"
+#: ./portlets/managers.pt:28
 #, fuzzy
 msgid "project_administration"
 msgstr "Administration du projet"
@@ -1017,11 +1023,6 @@ msgstr "Administration du projet"
 #. Default: "Project links"
 #: ./portlets/project.pt:5
 msgid "project_links"
-msgstr ""
-
-#. Default: "Project Management"
-#: ./portlets/managers.pt:5
-msgid "project_management"
 msgstr ""
 
 #. Default: "rough story estimates"
@@ -1050,7 +1051,7 @@ msgid "task_icon"
 msgstr ""
 
 #. Default: "Task overview"
-#: ./portlets/portlet_tasks.pt:20
+#: ./portlets/portlet_tasks.pt:12
 msgid "task_overview"
 msgstr "Vue générale de la tâche"
 

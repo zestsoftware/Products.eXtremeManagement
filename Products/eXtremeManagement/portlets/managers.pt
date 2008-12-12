@@ -2,7 +2,7 @@
     i18n:domain="eXtremeManagement">
   <dt class="portletHeader">
     <span class="portletTopLeft"></span>
-    <span class="management_portletHeader" i18n:translate="project_management">Project Management</span>
+    <span class="management_portletHeader" i18n:translate="">Project Management</span>
     <span class="portletTopRight"></span>
   </dt>
 
@@ -24,7 +24,12 @@
       In-progress overview
     </a>
   </dd>
-
+  <dd class="portletItem even">
+    <a tal:attributes="href string:${view/site_url}/project_administration"
+      i18n:translate="project_administration">
+      Project administration
+    </a>
+  </dd>
   <dd class="portletFooter">
     <span class="portletBottomLeft"></span>
     <span class="portletBottomRight"></span>

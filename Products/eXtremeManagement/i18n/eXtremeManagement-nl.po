@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2008-12-12 12:38+0000\n"
+"POT-Creation-Date: 2008-12-12 14:48+0000\n"
 "PO-Revision-Date: 2008-10-27 14:57+0200\n"
 "Last-Translator: Maurits van Rees <maurits@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
@@ -70,9 +70,10 @@ msgstr "Grafieken"
 msgid "Perform various maintenance tasks. If you know the totals are wrong, you can recalculate them here. This should normally not be needed, so do not touch this unless you know what you are doing.  Then again, it does not hurt, except that it takes a long time."
 msgstr "Voer diverse onderhoudstaken uit. Wanneer u weet dat de totalen verkeerd zijn, kunt u ze hier herberekenen. Dit zou normaal gesproken niet nodig hoeven zijn, dus voer dit alleen uit wanneer u weet waar u mee bezig bent. Aan de andere kant, het kan ook niet echt kwaad, behalve dat het lang duurt."
 
-#: ./portlets/managers.py:38
-msgid "Project Managers"
-msgstr "Projectmanagers"
+#. Default: "Project Management"
+#: ./portlets/managers.pt:5
+msgid "Project Management"
+msgstr "Projectmanagement"
 
 #: ./portlets/project.py:40
 msgid "Project links"
@@ -107,7 +108,7 @@ msgid "back_to"
 msgstr "Terug naar"
 
 #. Default: "Bookings per month"
-#: ./portlets/portlet_tasks.pt:34
+#: ./portlets/portlet_tasks.pt:26
 msgid "booking_month"
 msgstr "Boekingen per maand"
 
@@ -157,7 +158,7 @@ msgid "description_time_registration"
 msgstr "Om je uren te registreren, gebruik het onderstaande formulier en klik op 'Verzenden'."
 
 #. Default: "Detailed bookings"
-#: ./portlets/portlet_tasks.pt:27
+#: ./portlets/portlet_tasks.pt:19
 msgid "detailed_bookings"
 msgstr "Boekingdetails"
 
@@ -500,7 +501,7 @@ msgid "header_project_members"
 msgstr "Projectleden"
 
 #. Default: "Time registration"
-#: ./portlets/portlet_tasks.pt:48
+#: ./portlets/portlet_tasks.pt:40
 msgid "header_time_registration"
 msgstr "Urenregistratie"
 
@@ -565,7 +566,7 @@ msgid "heading-stories"
 msgstr "Verhalen"
 
 #. Default: "Attached files and images"
-#: ./skins/eXtremeManagement/story_view.pt:127
+#: ./skins/eXtremeManagement/story_view.pt:129
 msgid "heading_attachements"
 msgstr "Toegevoegde bestanden en afbeeldingen"
 
@@ -592,7 +593,7 @@ msgstr ""
 
 ### story_view template ###
 #. Default: "Tasks"
-#: ./skins/eXtremeManagement/story_view.pt:115
+#: ./skins/eXtremeManagement/story_view.pt:117
 msgid "heading_tasks"
 msgstr "Taken"
 
@@ -607,7 +608,7 @@ msgid "help_include_global_members"
 msgstr "Indien geselecteerd, zullen Leden met de globale rol 'Employee' ('Medewerker') verschijnen in de lijst met personen aan wie een Taak toegewezen kan worden."
 
 #. Default: "Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown)."
-#: ./skins/eXtremeManagement/story_view.pt:52
+#: ./skins/eXtremeManagement/story_view.pt:53
 msgid "help_needs_estimate"
 msgstr "Kan niet beginnen met werken aan deze Story totdat het is geschat (vul een schatting in en selecteer 'markeer als geschat' van de status dropdown"
 
@@ -617,7 +618,7 @@ msgid "help_stories_table"
 msgstr "De initiële inschatting van de story is een grove inschatting in dagen. De taak inschatting is de som van de inschatting van alle taken in uren."
 
 #. Default: "Hours booked for today: ${total_booked}"
-#: ./portlets/portlet_tasks.pt:44
+#: ./portlets/portlet_tasks.pt:36
 msgid "hours_booked_today"
 msgstr "Uren geboekt voor deze dag: ${total_booked}"
 
@@ -777,7 +778,7 @@ msgid "listingheader_actual_hours"
 msgstr "Daadwerkelijk (uren)"
 
 #. Default: "Time Booked"
-#: ./skins/eXtremeManagement/story_view.pt:87
+#: ./skins/eXtremeManagement/story_view.pt:89
 msgid "listingheader_actualtimebooked"
 msgstr "Tijd geboekt"
 
@@ -933,7 +934,7 @@ msgid "name"
 msgstr "Naam"
 
 #. Default: "Needs Estimate"
-#: ./skins/eXtremeManagement/story_view.pt:51
+#: ./skins/eXtremeManagement/story_view.pt:52
 msgid "needs_estimate"
 msgstr "Heeft schatting nodig"
 
@@ -987,6 +988,11 @@ msgstr "Deze offerte bestaat uit de volgende onderdelen:"
 msgid "perc_billable"
 msgstr "Billable"
 
+#. Default: "Personal administration"
+#: ./portlets/portlet_tasks.pt:5
+msgid "personal_administration"
+msgstr "Persoonlijke administratie"
+
 #. Default: "Previous"
 #: ./skins/eXtremeManagement/story_view.pt:34
 msgid "previous"
@@ -1002,8 +1008,8 @@ msgstr "vorige maand"
 msgid "progress_bar"
 msgstr "Voortgangsbalk"
 
-#. Default: "Project administration [plone3]"
-#: ./portlets/portlet_tasks.pt:8
+#. Default: "Project administration"
+#: ./portlets/managers.pt:28
 #, fuzzy
 msgid "project_administration"
 msgstr "Projectadministratie"
@@ -1012,11 +1018,6 @@ msgstr "Projectadministratie"
 #: ./portlets/project.pt:5
 msgid "project_links"
 msgstr "Project links"
-
-#. Default: "Project Management"
-#: ./portlets/managers.pt:5
-msgid "project_management"
-msgstr "Project management"
 
 #. Default: "rough story estimates"
 #: ./browser/project_chart.pt:22
@@ -1044,7 +1045,7 @@ msgid "task_icon"
 msgstr "Taak"
 
 #. Default: "Task overview"
-#: ./portlets/portlet_tasks.pt:20
+#: ./portlets/portlet_tasks.pt:12
 msgid "task_overview"
 msgstr "Takenoverzicht"
 
