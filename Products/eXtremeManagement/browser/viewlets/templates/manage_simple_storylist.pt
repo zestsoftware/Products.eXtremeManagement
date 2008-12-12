@@ -59,7 +59,8 @@
         <td class="td-story-title"
             tal:attributes="id string:story-title-${story/uid}">
           <div class="story-title">
-            <span id="default_arrow">
+            <span class="default_arrow">
+				[ &darr; ]&nbsp;
             </span>
             <a class="storyTitle_iteration_overview"
                tal:attributes="href string:${story/url}"
