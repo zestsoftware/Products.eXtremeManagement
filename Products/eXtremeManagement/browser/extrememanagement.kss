@@ -1,5 +1,4 @@
 /* Add a Task. */
-
 #submit-task:click {
     evt-click-preventdefault: true;
     evt-click-allowbubbling: true;
@@ -7,9 +6,7 @@
     xm_add_task-kssSubmitForm: currentForm();
     }
 
-
 /* Expand/shrink the details of a story. */
-
 .toggle-story:click {
     evt-click-preventdefault: false;
     evt-click-allowbubbling: true;
@@ -17,24 +14,7 @@
     xm_toggle_story-uid: kssAttr('uid');
     }
 
-/* Allow drag-and-drop of stories within the iteration */
-/* yuidnd needs work, uncomment this to see the result
-.list-in-iteration:yuidnd-dragstart {
-    }
-
-#story-listing:yuidnd-drop {
-    evt-yuidnd-drop-action: 'order';
-    }
-
-.list-in-iteration:yuidnd-dragsuccess {
-    action-server: drop;
-    drop-container: pass(dropContainerId);
-    drop-index: pass(dropIndex);
-    }
-*/
-
 /* Workflow changes of tasks inside the story view (or anywhere else they are shown) */
-
 table.tasklist_table dd.actionMenuContent a:click {
     evt-click-preventdefault: True;
     evt-click-allowbubbling: True;
@@ -47,42 +27,15 @@ table.tasklist_table dd.actionMenuContent a:click {
 dl.actionMenu:load {
     action-client: bindActionMenus;
 }
-/*table.tasklist_table:load {
-    action-client: bindActionMenus;
-}*/
 
-/* reorder_stories.pt */
-
+/* releasplan.pt */
 .story-draggable:yuidnd-dragstart {
     evt-yuidnd-dragstart-action: 'ghost';
 }
-/*
-    action-client: addClass css(.iteration-droptarget);
-    addClass-value: droppable-area;
-*/
 
 .iteration-droptarget:yuidnd-drop {
     evt-yuidnd-drop-action: 'order';
 }
-/*
-    action-client: removeClass css(.iteration-droptarget);
-    removeClass-value: droppable-area;
-*/
-
-
-/*
-
-.iteration-droptarget:yuidnd-dragenter {
-    action-client: addClass samenode();
-    addClass-value: active-dragtarget;
-}
-
-.iteration-droptarget:yuidnd-dragout {
-    action-client: removeClass samenode();
-    removeClass-value: active-dragtarget;
-}
-
-*/
 
 .story-draggable:yuidnd-dragsuccess {
     action-server: move_story;
@@ -97,6 +50,6 @@ dl.actionMenu:load {
 .add-task:click {
     action-client: setStyle;
     setStyle-kssSelector: css(#addtaskform);  
-    setStyle-name:                 display;
-    setStyle-value:                block;
+    setStyle-name: display;
+    setStyle-value: block;
 }
