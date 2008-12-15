@@ -48,8 +48,7 @@ class ViewletReloader(object):
             zope = self.view.getCommandSet('zope')
             zope.refreshProvider('.tasklist_table',
                                  'xm.tasklist.simple')
-            zope.refreshViewlet('#add-task', 'plone.belowcontentbody',
-                                'xm.add_task_form')
+            zope.refreshProvider('#add-task', 'xm.task_form')
 
             # Refresh the details box provider
             zope.refreshProvider('.xm-details',
@@ -63,6 +62,17 @@ class ViewletReloader(object):
             zope = self.view.getCommandSet('zope')
             zope.refreshViewlet('#add-booking', 'plone.belowcontentbody',
                                 'xm.add_booking_form')
+
+
+class KSSTaskForm(PloneKSSView):
+    
+    @kssaction
+    def kss_task_form(self):
+        """Return the add task form"""
+        core = self.getCommandSet('core')
+        zope = self.getCommandSet('zope')
+        selector = core.getHtmlIdSelector('add-task')
+        zope.refreshProvider(selector, 'xm.task_form')
 
 
 class WorkflowGadget(PloneKSSView):

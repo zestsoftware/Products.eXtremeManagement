@@ -110,6 +110,15 @@
       />
 
   <!-- kss action for adding a task -->
+  
+  <!-- this content provider is called by a kss server-action to display the
+       form inline-->
+  <zope:adapter
+      name="xm.task_form"
+      provides="zope.contentprovider.interfaces.IContentProvider"
+      factory=".tasks.TaskForm"
+      />
+
   <page
       name="xm_add_task"
       for="Products.eXtremeManagement.interfaces.xmstory.IXMStory"
@@ -210,14 +219,6 @@
       permission="zope2.View"
       />
 
-  <viewlet
-      name="xm.add_task_form"
-      for="Products.eXtremeManagement.interfaces.xmstory.IXMStory"
-      manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
-      class=".tasks.TaskForm"
-      permission="zope2.View"
-      />
-
   <!-- kss -->
   <resource
       file="extrememanagement.kss"
@@ -243,6 +244,13 @@
       permission="zope2.View"
       />
 
+  <page
+      for="Products.eXtremeManagement.interfaces.xmstory.IXMStory"
+      class=".xm_kss.KSSTaskForm"
+      attribute="kss_task_form"
+      name="xm.kss_task_form"
+      permission="zope2.View"
+      />
 
   <!-- configlets -->
 

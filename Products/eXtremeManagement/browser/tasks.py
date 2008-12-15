@@ -1,13 +1,20 @@
 import datetime
 
 from Acquisition import aq_inner
+from Acquisition import Explicit
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from kss.core import kssaction
 from plone.app.kss.plonekssview import PloneKSSView
 from plone.app.layout.viewlets import ViewletBase
+from zope.component import adapts
+from zope.interface import Interface
 from zope.cachedescriptors.property import Lazy
+from zope.contentprovider.interfaces import IContentProvider
+from zope.publisher.interfaces.browser import IBrowserView
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+
 
 from xm.booking.timing.interfaces import IActualHours
 from xm.booking.timing.interfaces import IEstimate
@@ -313,7 +320,11 @@ class EmployeeTotalsView(TasksDetailedView):
         return memberlist
 
 
-class TaskForm(ViewletBase):
+class TaskForm(Explicit):
+    adapts(Interface, IDefaultBrowserLayer, IBrowserView)
+
+    def update(self):
+        pass
 
     render = ViewPageTemplateFile("add_task.pt")
 
@@ -363,9 +374,7 @@ class Add(PloneKSSView):
 
         # Refresh the add task form
         selector = core.getHtmlIdSelector('add-task')
-        zopecommands.refreshViewlet(selector,
-                                    manager = 'plone.belowcontentbody',
-                                    name = 'xm.add_task_form')
+        zopecommands.refreshProvider(selector, name = 'xm.task_form')
 
         # Refresh the story details box provider
         zopecommands.refreshProvider('.xm-details',

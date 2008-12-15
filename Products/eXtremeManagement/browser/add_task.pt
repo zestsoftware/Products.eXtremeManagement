@@ -8,16 +8,10 @@
   </span>
   <tal:addtask
       condition="story_view/show_add_task_form">
+  
+    <div class="visualClear"></div>
 
-   <div class="start-button">
-      <div class="add-task">
-         <span i18n:translate="label_add_task" tal:omit-tag="">Add task</span>
-      </div>
-      <span />
-   </div>
-   <div class="visualClear"></div>
-
-   <form name="add_task"
+    <form name="add_task"
           method="post"
           id="addtaskform"
           action=""

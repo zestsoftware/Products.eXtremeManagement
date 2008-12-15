@@ -61,7 +61,6 @@ schema = Schema((
         name='assignees',
         multiValued=1,
         vocabulary='_get_assignees',
-        default_method='getDefaultAssignee',
         widget=InAndOutWidget(
             description="Select the member(s) to assign this task to.",
             label='Assignees',
