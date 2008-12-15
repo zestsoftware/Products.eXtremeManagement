@@ -116,7 +116,8 @@ class testTask(eXtremeManagementTestCase):
         self.assertEqual(task3.startable(), False)
 
     def test_getAssignees(self):
-        self.assertTaskBrainEquality('getAssignees', (default_user, ))
+        #initially No assignee is selected
+        self.assertTaskBrainEquality('getAssignees', ())
 
         self.task.update(assignees='developer')
         self.assertTaskBrainEquality('getAssignees', ('developer', ))
@@ -127,19 +128,6 @@ class testTask(eXtremeManagementTestCase):
 
         self.task.update(assignees='')
         self.assertTaskBrainEquality('getAssignees', ())
-
-    def test_getDefaultAssignee(self):
-        self.assertEqual(self.task.getDefaultAssignee(), default_user)
-        self.story.invokeFactory('Task', id='task1')
-        self.assertEqual(self.story.task1.getAssignees(), (default_user, ))
-
-        self.login('employee')
-        self.assertEqual(self.task.getDefaultAssignee(), 'employee')
-        self.story.invokeFactory('Task', id='task2')
-        self.assertEqual(self.story.task2.getAssignees(), ('employee', ))
-
-        self.login('customer')
-        self.assertEqual(self.task.getDefaultAssignee(), '')
 
 
 def test_suite():
