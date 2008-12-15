@@ -1,5 +1,6 @@
 from Acquisition import Explicit
 from Products.CMFCore.utils import getToolByName
+from Products.CMFDefault.exceptions import DiscussionNotAllowed
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import implements
 
@@ -73,7 +74,10 @@ class StoryDetailsProvider(Explicit):
             brains = getToolByName(context, 'uid_catalog')(UID=uid)
             self.story_object = brains[0].getObject()
             pd = getToolByName(context, 'portal_discussion')
-            replies = pd.getDiscussionFor(self.story_object).getReplies()
+            try:
+                replies = pd.getDiscussionFor(self.story_object).getReplies()
+            except DiscussionNotAllowed:
+                replies = []
             self.number_of_comments = len(replies)
         self.__parent__ = view
 

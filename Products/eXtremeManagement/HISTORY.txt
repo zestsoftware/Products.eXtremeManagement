@@ -5,6 +5,9 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- Fixed possible DiscussionNotAllowed error when expanding a Story.
+  [maurits]
+
 - Now refreshing story details box provider when quick-adding a Task.
   [maurits]
 
