@@ -368,10 +368,8 @@ class Add(PloneKSSView):
                                     name = 'xm.add_task_form')
 
         # Refresh the story details box provider
-        self.request['uid'] = context.UID()
-        box = StoryDetailsBox(context, self.request, self)
-        html = box.render()
-        core.replaceHTML('.xm-details', html)
+        zopecommands.refreshProvider('.xm-details',
+                                     'xm.story.detailsbox')
 
         # Set a portal message to inform the user of the change.
         plone_commands.issuePortalMessage(_(u'Task added'),
