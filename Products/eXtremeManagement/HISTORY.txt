@@ -5,6 +5,9 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- Now refreshing story details box provider when quick-adding a Task.
+  [maurits]
+
 - Changed story details box into a provider (viewlet manager without
   viewlets) so we can refresh that provider with KSS.  [maurits]
 

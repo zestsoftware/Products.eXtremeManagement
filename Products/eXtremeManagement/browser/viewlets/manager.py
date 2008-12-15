@@ -97,6 +97,8 @@ class StoryDetailsBox(Explicit):
         if uid is not None:
             brains = getToolByName(context, 'uid_catalog')(UID=uid)
             self.story_object = brains[0].getObject()
+        if self.story_object is None:
+            self.story_object = context
         self.__parent__ = view
 
     def update(self):

@@ -15,6 +15,7 @@ from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
 from Products.eXtremeManagement.utils import getStateSortedContents
 from Products.eXtremeManagement import XMMessageFactory as _
+from Products.eXtremeManagement.browser.viewlets.manager import StoryDetailsBox
 
 
 class TaskView(XMBaseView):
@@ -365,6 +366,12 @@ class Add(PloneKSSView):
         zopecommands.refreshViewlet(selector,
                                     manager = 'plone.belowcontentbody',
                                     name = 'xm.add_task_form')
+
+        # Refresh the story details box provider
+        self.request['uid'] = context.UID()
+        box = StoryDetailsBox(context, self.request, self)
+        html = box.render()
+        core.replaceHTML('.xm-details', html)
 
         # Set a portal message to inform the user of the change.
         plone_commands.issuePortalMessage(_(u'Task added'),
