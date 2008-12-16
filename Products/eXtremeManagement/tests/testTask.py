@@ -117,7 +117,7 @@ class testTask(eXtremeManagementTestCase):
 
     def test_getAssignees(self):
         #initially No assignee is selected
-        self.assertTaskBrainEquality('getAssignees', ())
+        self.assertTaskBrainEquality('getAssignees', ('test_user_1_',))
 
         self.task.update(assignees='developer')
         self.assertTaskBrainEquality('getAssignees', ('developer', ))
