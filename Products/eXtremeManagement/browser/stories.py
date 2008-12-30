@@ -84,19 +84,15 @@ class StoryView(XMBaseView):
         employees = self.context.getProject().getMembers(role='Employee')
         assignables = []
         # build result
-        for memberId in employees:
-            if memberId == currentUser:
-                default = 'selected'
-            else:
-                default = ''
-            member = mtool.getMemberById(memberId)
+        for mId in employees:
+            member = mtool.getMemberById(mId)
             if member is not None:
                 fullname = member.getProperty('fullname', None)
                 # if fullname is '' or None, return the id
-                name = fullname and fullname.strip() or member.getId()
+                name = fullname and fullname.strip() or mId
             else:
-                name = memberId
-            assignables.append((memberId, name, default))
+                name = mId
+            assignables.append(dict(id = mId, name = name))
         return assignables
 
 

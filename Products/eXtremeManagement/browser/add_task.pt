@@ -62,14 +62,11 @@
                     id="assignees"
                     tal:define="assignees story_view/get_possible_assignees"
                     tal:condition="assignees"
-                    multiple="multiple" size="6">
-              <option value=""></option>
+                    multiple="multiple" size="7">
               <tal:assignees repeat="assignee assignees">
                 <option value=""
-                        selected=""
-                        tal:attributes="value python:assignee[0];
-                                        selected python:assignee[2]"
-                        tal:content="python:assignee[1]" />
+                        tal:attributes="value assignee/id"
+                        tal:content="assignee/name" />
               </tal:assignees>
             </select>
          </div>   

@@ -59,7 +59,7 @@
 }
 
 #new-task-description {
-  width: 40%;
+  width: 47,5%;
 }
 
 .position-quick-task {

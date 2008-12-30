@@ -47,8 +47,11 @@ dl.actionMenu:load {
     alert-message: 'Error trying to move story. Please reload page and try again.';
 }
 
-#add-task:click {
+.collapsed:click {
     evt-click-preventdefault: true;
     evt-click-allowbubbling: true;
     action-server: xm.kss_task_form;
+    action-client: setAttribute;
+    setAttribute-name: class;
+    setAttribute-value: expanded;
 }
