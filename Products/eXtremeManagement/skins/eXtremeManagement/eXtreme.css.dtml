@@ -59,7 +59,7 @@
 }
 
 #new-task-description {
-  width: 47,5%;
+    width: 47.5%;
 }
 
 .position-quick-task {
@@ -582,6 +582,7 @@ td.right {
     padding: 4px;
     border: 0;
     cursor: pointer;
+    font-size: 90%;
 }
 
 /* </dtml-with> */
