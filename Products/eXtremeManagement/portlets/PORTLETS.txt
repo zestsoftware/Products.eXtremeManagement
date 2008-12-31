@@ -15,3 +15,19 @@ obvious or helpful. So here's a full list.
 
 - **Project management**. File ``managers.py``. Links to employee, invoicing
     and in-progress overviews and to the project administration.
+
+
+Existing old-style portlets
+---------------------------
+
+There are still old-style portlets in skins/eXtremeManagement. They'll be
+moved to new-style portlets.
+
+- **portlet_my_projects.pt**. List of my projects. Looks to be a
+    semi-duplicate of "project links".
+
+- **portlet_poi.pt**. A form for mass-creating poi tasks out of poi issues and
+    a provider of a link back to the poi task when looking at the related
+    issue and a way to create a task for this issue in an open story.
+
+- **portlet_stories.pt**. List of to-be-estimated stories.
