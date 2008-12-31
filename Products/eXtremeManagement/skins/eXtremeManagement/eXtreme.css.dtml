@@ -549,11 +549,9 @@ ul.iteration-droptarget li.story-draggable:hover {
 }
 
 table.listing .actionMenu .actionMenuHeader a{
-    /*LS-  display fix image ie7*/
-    background-position: 0 0;
+    background-position: 0 0; /*LS-  display fix image ie7*/
     white-space: nowrap;
-    display: inline-block;
-    position: relative;
+	z-index: 0;
 }
 
 .td-center a:hover {

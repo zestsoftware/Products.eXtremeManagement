@@ -70,7 +70,7 @@
                 define="realtasks tasklist"
                 replace="structure provider:xm.tasklist.simple" />
           </tal:block>
-          
+		  
           <div id="add-task" class="collapsed">
             <div class="add-task">
               <span i18n:translate="label_add_task" tal:omit-tag="">Add task</span>
