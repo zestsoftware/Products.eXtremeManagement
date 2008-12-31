@@ -1,0 +1,17 @@
+======================
+ Overview of portlets
+======================
+
+
+There are quite some portlets and, historically, their names aren't always
+obvious or helpful. So here's a full list.
+
+- **Personal administration**. File ``portlet_tasks.py``. Links to task
+    overview, detailed bookins, bookings per month, time registration and so.
+
+- **Iterations**. File ``iterations.py``. List of iterations per state.
+
+- **Project links**. File ``project.py``. List of your own projects.
+
+- **Project management**. File ``managers.py``. Links to employee, invoicing
+    and in-progress overviews and to the project administration.

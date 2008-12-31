@@ -38,7 +38,7 @@ class Assignment(base.Assignment):
         """This property is used to give the title of the portlet in the
         "manage portlets" screen.
         """
-        return _(u'Iteration links')
+        return _(u'Iterations')
 
 
 class Renderer(base.Renderer):
@@ -110,7 +110,7 @@ class Renderer(base.Renderer):
             iterations = states[state]
             results.append({'title': state,
                             'iterations': iterations})
-        return results        
+        return results
 
 
 class AddForm(base.NullAddForm):

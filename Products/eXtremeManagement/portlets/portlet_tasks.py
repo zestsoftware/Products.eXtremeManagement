@@ -36,7 +36,7 @@ class Assignment(base.Assignment):
 
     @property
     def title(self):
-        return u"Tasks"
+        return u"Personal administration"
 
 # The renderer is like a view (in fact, like a content provider/viewlet). The
 # item self.data will typically be the assignment (although it is possible

@@ -15,7 +15,6 @@
       renderer=".portlet_tasks.Renderer"
       addview=".portlet_tasks.AddForm"
       editview=".portlet_tasks.EditForm"
-
       />
 
   <plone:portlet
@@ -27,7 +26,6 @@
       renderer=".iterations.Renderer"
       addview=".iterations.AddForm"
       />
-
 
   <plone:portlet
       name="eXtremeManagement.project"
