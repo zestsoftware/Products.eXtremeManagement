@@ -3,6 +3,7 @@ import textwrap
 from Acquisition import aq_inner, aq_parent
 from zope import interface
 from zope.component import getMultiAdapter
+from zope.component import queryMultiAdapter
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.interfaces import IReferenceable
 from Products.statusmessages.interfaces import IStatusMessage
@@ -88,8 +89,12 @@ class PoiView(XMBaseView):
 
     def get_open_issues_in_project(self, **kwargs):
         context = aq_inner(self.context)
-        return getMultiAdapter((context, self.request),
-                               IXMIssueGetter).get_issues(**kwargs)
+        issue_getter = queryMultiAdapter((context, self.request),
+                                         IXMIssueGetter)
+        if issue_getter is None:
+            # We're being called from something for which there's no adapter.
+            return []
+        return issue_getter.get_issues(**kwargs)
 
     def get_open_stories_in_project(self, **kwargs):
         return self.get_open_issues_in_project(

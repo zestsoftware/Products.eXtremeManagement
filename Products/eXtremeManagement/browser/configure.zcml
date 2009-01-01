@@ -167,6 +167,14 @@
       />
 
   <page
+      name="finished"
+      class=".customer.FinishedIterationsView"
+      for="Products.eXtremeManagement.interfaces.IXMProject"
+      permission="cmf.ManagePortal"
+      template="finished.pt"
+      />
+
+  <page
       name="offer"
       class=".offers.OfferView"
       for="Products.eXtremeManagement.interfaces.IXMOffer"

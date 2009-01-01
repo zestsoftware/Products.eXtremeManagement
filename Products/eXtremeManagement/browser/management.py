@@ -15,9 +15,9 @@ from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
 
 
-class InvoicingView(XMBaseView):
+class IterationListBaseView(XMBaseView):
 
-    iteration_review_state = 'completed'
+    iteration_review_state = 'change_in_subclasses'
 
     def projectlist(self):
         context = aq_inner(self.context)
@@ -86,6 +86,11 @@ class InvoicingView(XMBaseView):
         return returnvalue
 
 
-class InProgressView(InvoicingView):
+class InvoicingView(IterationListBaseView):
+
+    iteration_review_state = 'completed'
+
+
+class InProgressView(IterationListBaseView):
 
     iteration_review_state = 'in-progress'
