@@ -5,6 +5,15 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- Added better documentation to portlets.xml, unified names/titles of portlets
+  in various places. [reinout]
+
+- Added new-style link-to-poi-issue portlet as replacement for part of the
+  old-style poi portlet. [reinout]
+
+- Added new-style poi_creation portlet as replacement for part of the
+  old-style poi portlet. [reinout]
+
 - Fixed possible DiscussionNotAllowed error when expanding a Story.
   [maurits]
 
@@ -20,7 +29,7 @@ History
   Products.eXtremeManagement.  This also means we do not have to have
   a dependency on xm.tracker (at least currently). [maurits]
 
-- Fixed issue #127 - "Add task" widget breaks if there aren't Employees 
+- Fixed issue #127 - "Add task" widget breaks if there aren't Employees
   http://plone.org/products/extreme-management-tool/issues/127
   [maurits]
 

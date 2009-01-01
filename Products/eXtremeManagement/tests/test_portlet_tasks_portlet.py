@@ -42,7 +42,8 @@ class TestPortlet(PortletsTestCase, eXtremeManagementTestCase):
         # TasksPortal has a configurator that's currently empty
         # so give it empty data.  If it had no configurator just
         # call 'addview'
-        addview.createAndAdd(data={})
+        #addview.createAndAdd(data={})
+        addview()
 
         self.assertEquals(len(mapping), 1)
         self.failUnless(isinstance(mapping.values()[0],

@@ -1,0 +1,54 @@
+<dl class="portlet portletProjectPortlet"
+    i18n:domain="eXtremeManagement"
+    tal:define="links view/links;
+                stories view/stories">
+  <dt class="portletHeader">
+    <span class="portletTopLeft"></span>
+    <span class="management_portletHeader"
+          i18n:translate="heading-related-xm-tasks">
+      Related XM Tasks
+    </span>
+    </span>
+    <span class="portletTopRight"></span>
+  </dt>
+
+
+  <dd tal:condition="links"
+      class="portletItem odd">
+    <ul>
+      <li tal:repeat="link links">
+        <a tal:attributes="href link/url;
+                           class string:task-link state-${link/state}"
+           tal:content="string:${link/iterationid}: ${link/title}">
+          Task Title
+        </a>
+      </li>
+    </ul>
+  </dd>
+
+  <dd class="portletItem even"
+      tal:condition="stories">
+    <form action="./@@xm-poi">
+      <div class="field">
+        <label for="story"
+               i18n:domain="eXtremeManagement"
+               i18n:translate="add-task-in">Add a task in</label>
+        <select id="story" name="story">
+          <option tal:repeat="story stories"
+                  tal:attributes="value story/uid"
+                  tal:content="string:${story/iterationid}: ${story/title}">
+            <!-- Some story -->
+          </option>
+        </select>
+      </div>
+      <input type="submit"
+             value="Add"
+             i18n:attributes="value"/>
+    </form>
+  </dd>
+
+  <dd class="portletFooter">
+    <span class="portletBottomLeft"></span>
+    <span class="portletBottomRight"></span>
+  </dd>
+</dl>

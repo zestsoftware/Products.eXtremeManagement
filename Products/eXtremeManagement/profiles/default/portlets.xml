@@ -1,18 +1,44 @@
 <?xml version="1.0"?>
 <portlets>
+  <!-- portlet_tasks.py -->
+  <portlet
+      addview="eXtremeManagement.TasksPortlet"
+      title="Personal administration"
+      description="Links to task overview, detailed bookins, bookings per
+                   month, time registration and so."
+      />
+  <!-- iterations.py -->
   <portlet
       addview="eXtremeManagement.iterations"
       title="Iterations"
-      description="Portlet that provides navigation through iterations"
+      description="List of iterations per state"
       />
-  <portlet
-      addview="eXtremeManagement.TasksPortlet"
-      title="Tasks portlet"
-      description="Portlet that shows date and/or time"
-      />
+  <!-- project.py -->
   <portlet
       addview="eXtremeManagement.project"
       title="Project links"
-      description="Portlets for xm"
+      description="List of your own projects."
       />
+  <!-- managers.py -->
+  <portlet
+      addview="eXtremeManagement.managers"
+      title="Project management"
+      description="Links to employee, invoicing and in-progress overviews and
+                   to the project administration."
+      />
+  <!-- poi.py -->
+  <portlet
+      addview="eXtremeManagement.poi"
+      title="Related XM tasks"
+      description="When viewing a poi issue, it provides a link back to the
+                   poi task when looking at the related issue and a way to
+                   create a task for this issue in an open story."
+      />
+  <!-- poi_creation.py -->
+  <portlet
+      addview="eXtremeManagement.poi_creation"
+      title="Create tasks from issues"
+      description="A form for mass-creating poi tasks out of poi issues."
+      />
+
 </portlets>

@@ -1,0 +1,44 @@
+<dl class="portlet portletProjectPortlet"
+    i18n:domain="eXtremeManagement">
+  <dt class="portletHeader">
+    <span class="portletTopLeft"></span>
+    <span i18n:translate="header-create-tasks-from-issues">
+      Create tasks from issues
+    </span>
+    <span class="portletTopRight"></span>
+  </dt>
+
+  <dd class="portletItem odd">
+    <form action="./@@xm-poi">
+      <tal:repeat repeat="tag view/available_tags">
+        <div class="field">
+          <input tal:attributes="value tag;
+                                 id string:tag-${tag}"
+                 type="checkbox" name="tags:list" />
+          <label tal:attributes="for string:tag-${tag}"
+                 tal:content="tag">
+            Your tag
+          </label>
+        </div>
+      </tal:repeat>
+
+      <input type="submit"
+             value="Add Tasks"
+             i18n:domain="eXtremeManagement"
+             i18n:attributes="value" />
+
+    </form>
+  </dd>
+
+  <dd class="portletItem even"
+      i18n:domain="eXtremeManagement"
+      i18n:translate="">
+    Note that only issues that aren't already mapped into this
+    iteration will be added.
+  </dd>
+
+  <dd class="portletFooter">
+    <span class="portletBottomLeft"></span>
+    <span class="portletBottomRight"></span>
+  </dd>
+</dl>

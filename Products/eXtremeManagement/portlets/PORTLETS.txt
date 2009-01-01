@@ -4,17 +4,8 @@
 
 
 There are quite some portlets and, historically, their names aren't always
-obvious or helpful. So here's a full list.
-
-- **Personal administration**. File ``portlet_tasks.py``. Links to task
-    overview, detailed bookins, bookings per month, time registration and so.
-
-- **Iterations**. File ``iterations.py``. List of iterations per state.
-
-- **Project links**. File ``project.py``. List of your own projects.
-
-- **Project management**. File ``managers.py``. Links to employee, invoicing
-    and in-progress overviews and to the project administration.
+obvious or helpful. The best list, with comments indicating the related
+filename in this directory, is in ``profiles/default/portlets.xml``.
 
 
 Existing old-style portlets
@@ -25,9 +16,5 @@ moved to new-style portlets.
 
 - **portlet_my_projects.pt**. List of my projects. Looks to be a
     semi-duplicate of "project links".
-
-- **portlet_poi.pt**. A form for mass-creating poi tasks out of poi issues and
-    a provider of a link back to the poi task when looking at the related
-    issue and a way to create a task for this issue in an open story.
 
 - **portlet_stories.pt**. List of to-be-estimated stories.

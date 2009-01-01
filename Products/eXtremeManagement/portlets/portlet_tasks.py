@@ -74,19 +74,16 @@ class Renderer(base.Renderer):
 # the interface to determine which fields to render.
 
 
-class AddForm(base.AddForm):
-    form_fields = form.Fields(ITasksPortlet)
-    label = (u"Add Tasks portlet")
-    description = (u"This portlet displays tasks.")
+class AddForm(base.NullAddForm):
+    """Portlet add form.
 
-    # This method must be implemented to actually construct the object.
-    # The 'data' parameter is a dictionary, containing the values entered
-    # by the user.
+    This is registered in configure.zcml. The form_fields variable tells
+    zope.formlib which fields to display. The create() method actually
+    constructs the assignment that is being added.
+    """
 
-    def create(self, data):
-        assignment = Assignment()
-        form.applyChanges(assignment, self.form_fields, data)
-        return assignment
+    def create(self):
+        return Assignment()
 
 
 class EditForm(base.EditForm):

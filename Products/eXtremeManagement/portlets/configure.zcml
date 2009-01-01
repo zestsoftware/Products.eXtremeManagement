@@ -47,4 +47,24 @@
       addview=".managers.AddForm"
       />
 
+  <plone:portlet
+      name="eXtremeManagement.poi"
+      interface=".poi.IPoiPortlet"
+      assignment=".poi.Assignment"
+      view_permission="zope2.View"
+      edit_permission="cmf.ManagePortal"
+      renderer=".poi.Renderer"
+      addview=".poi.AddForm"
+      />
+
+  <plone:portlet
+      name="eXtremeManagement.poi_creation"
+      interface=".poi_creation.IPoiCreationPortlet"
+      assignment=".poi_creation.Assignment"
+      view_permission="zope2.View"
+      edit_permission="cmf.ManagePortal"
+      renderer=".poi_creation.Renderer"
+      addview=".poi_creation.AddForm"
+      />
+
 </configure>
