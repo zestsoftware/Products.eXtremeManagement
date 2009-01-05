@@ -64,7 +64,7 @@
                class="listing">
           <thead>
             <tr>
-              <th i18n:translate="offer-description" class="nosort">
+              <th i18n:translate="listingheader_story" class="nosort">
                 Story
               </th>
               <th class="alignRight nosort"

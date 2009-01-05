@@ -6,7 +6,7 @@
   <body>
 
     <div metal:fill-slot="main">
-      <div metal:define-macro="body" 
+      <div metal:define-macro="body"
            tal:define="iteration view/main; dummy view/update; stories view/stories">
 
         <p class="documentDescription">
@@ -32,12 +32,12 @@
                     i18n:domain="eXtremeManagement">
                   <th i18n:translate="listingheader_story"
                       class="storyHeader nosort">Story</th>
-                  <th i18n:translate="listingheader_state"
+                  <th i18n:translate="listingheader_estimate"
                       class="initEstimateHeader nosort">Initial estimate (days)</th>
                 </tr>
               </thead>
               <tbody>
-            
+
                 <tal:repeat repeat="story stories">
                 <tr class="list-in-iteration"
                     tal:attributes="class string:list-in-iteration kssattr-uid-${story/uid};
@@ -52,7 +52,7 @@
                     <td><input type="text" tal:attributes="name story/uid; value story/size_estimate | nothing" /></td>
                 </tr>
                 </tal:repeat>
-<!--    
+<!--
     <tr id="totalTasks"
        tal:condition="show_totals">
           <th class="td-story-title"
