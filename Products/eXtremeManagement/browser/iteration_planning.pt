@@ -7,7 +7,7 @@
 
     <div metal:fill-slot="main">
       <div metal:define-macro="body" 
-           tal:define="iteration view/main; stories view/stories; dummy view/update">
+           tal:define="iteration view/main; dummy view/update; stories view/stories">
 
         <p class="documentDescription">
           <metal:field use-macro="python:here.widget('description', mode='view')">
