@@ -232,9 +232,7 @@ class MyTasksDetailedView(TasksDetailedView):
         workflow = getToolByName(context, 'portal_workflow')
         self.state = state or self.request.form.get('state', self.state)
         self.stateTitle = workflow.getTitleForStateOnType(self.state, 'Task')
-        # TODO These workflow states shouldn't be hardcoded like this, they
-        # should be extracted from the workflow tool...
-        states = ['open', 'to-do', 'completed']
+        states = ['open', 'to-do']
         self.possible_states = [{'id': id, 'title':
             workflow.getTitleForStateOnType(id, 'Task')} for id in states]
         try:
@@ -251,11 +249,12 @@ class MyTasksDetailedView(TasksDetailedView):
             )
 
     def projects(self):
+        # this one is quite expensive 
         context = aq_inner(self.context)
         searchpath = '/'.join(context.getPhysicalPath())
-
         projects = self.catalog.searchResults(portal_type='Project',
-                                              path=searchpath)
+                                              path=searchpath,
+                                              review_state=['active'])
         projectlist = []
 
         for project in projects:
