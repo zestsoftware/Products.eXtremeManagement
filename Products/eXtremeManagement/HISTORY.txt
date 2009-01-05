@@ -5,6 +5,8 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- Setuphandlers.py now zaps several known old-style portlets.  [reinout]
+
 - Replaced story estimation portlet by a new-style one.  [reinout]
 
 - Removed obsolete portlet_my_projects portlet.  [reinout]

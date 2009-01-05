@@ -1,8 +1,12 @@
-from Products.CMFCore.utils import getToolByName
-from Products.contentmigration.basemigrator.walker import CatalogWalker
-from Products.contentmigration.archetypes import ATFolderMigrator
-from Products.CMFPlone.interfaces import ISelectableConstrainTypes
 from Products.ATContentTypes.lib.constraintypes import ENABLED
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces import ISelectableConstrainTypes
+from Products.contentmigration.archetypes import ATFolderMigrator
+from Products.contentmigration.basemigrator.walker import CatalogWalker
+from plone.app.portlets import portlets as plone_portlets
+from plone.portlets.interfaces import IPortletAssignmentMapping
+from plone.portlets.interfaces import IPortletManager
+from zope.component import getUtility, getMultiAdapter
 
 from Products.eXtremeManagement import config
 
@@ -95,6 +99,23 @@ def upgrade_from_16_to_20(context):
     customerfolders.go()
 
 
+def zap_old_xm_portlets(site, logger):
+    """Zap several known old-style xm portlets."""
+    to_zap = ('portlet_poi',
+              'portlet_stories',
+              'portlet_my_projects',
+              )
+    column = getUtility(IPortletManager, name="plone.leftcolumn", context=site)
+    manager = getMultiAdapter((site, column), IPortletAssignmentMapping)
+    old_style = [key for key in manager.keys() if
+                 isinstance(manager[key], plone_portlets.classic.Assignment)]
+    to_delete = [key for key in old_style
+                 if manager[key].template in to_zap]
+    for key in to_delete:
+        del manager[key]
+        logger.info("Removed old-style %s portlet", key)
+
+
 def importVarious(context):
     # Only run step if a flag file is present
     if context.readDataFile('extrememanagement_various.txt') is None:
@@ -105,4 +126,5 @@ def importVarious(context):
     configureKupu(site, logger)
     add_roles_that_should_be_handled_by_rolemap_xml(site, logger)
     addCatalogIndexes(site, logger)
+    zap_old_xm_portlets(site, logger)
     logger.info('eXtremeManagement_various step imported')
