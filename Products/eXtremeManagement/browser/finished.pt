@@ -27,20 +27,15 @@
         <tal:projects tal:repeat="project view/projectlist">
           <tal:iterations tal:repeat="iteration project/iterations">
             <tr>
-              <td tal:condition="not: iteration/completion_date"
-                  i18n:translate="label_unknown_date"
-                  class="right">
-                Unknown date
-              </td>
+              <td tal:condition="iteration/completion_date"
+                  tal:content="python:context.toLocalizedTime(iteration['completion_date'],
+                               long_format=0)"
+                  class="right" />
               <td>
                 <a tal:content="iteration/title"
                    tal:attributes="title iteration/description;
                                    href iteration/url;"/>
               </td>
-              <td tal:condition="iteration/completion_date"
-                  tal:content="python:context.toLocalizedTime(iteration['completion_date'],
-                             long_format=0)"
-                  class="right" />
               <td tal:content="iteration/actual"
                   class="right" />
             </tr>

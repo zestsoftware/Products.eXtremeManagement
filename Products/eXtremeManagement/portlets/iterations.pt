@@ -6,22 +6,25 @@
     <span class="portletTopRight"></span>
   </dt>
 
-  <dd class="portletItem Even">
+  <dd class="portletItem even">
     <a tal:attributes="href view/project_url"
        i18n:translate="label_current_iteration">Current</a>
   </dd>
 
-  <dd class="portletItem Odd">
+  <dd class="portletItem odd">
     <a tal:attributes="href view/project_url"
        i18n:translate="label_new_iteration">New</a>
   </dd>
 
-  <dd class="portletItem Even">
-    <a tal:attributes="href view/project_url"
-       i18n:translate="label_closed_iteration">Closed</a>
+  <dd class="portletItem even"
+      tal:condition="view/have_finished_iterations">
+    <a tal:attributes="href string:${view/project_url}/finished"
+       i18n:translate="label_finished_overview">
+      Finished iterations overview
+    </a>
   </dd>
 
-  <dd class="portletItem Odd">
+  <dd class="portletItem odd">
     <a tal:attributes="href string:${view/project_url}/@@releaseplan"
        i18n:translate="label_release_plan">Release Plan</a>
   </dd>

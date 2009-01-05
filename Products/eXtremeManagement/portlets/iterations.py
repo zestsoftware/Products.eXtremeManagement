@@ -1,7 +1,6 @@
-import string
 from Acquisition import aq_inner
 
-from zope.component import getMultiAdapter, ComponentLookupError
+from zope.component import getMultiAdapter
 from zope.interface import implements
 
 from plone.portlets.interfaces import IPortletDataProvider
@@ -60,7 +59,6 @@ class Renderer(base.Renderer):
         self.project = self._get_project()
         self.project_url = self.project and self.project.absolute_url() or None
 
-
     @property
     def available(self):
         """Determine if the portlet is available at all."""
@@ -111,6 +109,15 @@ class Renderer(base.Renderer):
             results.append({'title': state,
                             'iterations': iterations})
         return results
+
+    def have_finished_iterations(self):
+        """Do we have finished iterations?"""
+        states = [item['title'] for item in self.iterations()]
+        if 'invoiced' in states:
+            return True
+        if 'completed' in states:
+            return True
+        return False
 
 
 class AddForm(base.NullAddForm):

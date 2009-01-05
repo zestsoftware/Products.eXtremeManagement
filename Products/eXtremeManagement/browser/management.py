@@ -1,15 +1,4 @@
 from Acquisition import aq_inner
-from Products.CMFCore.utils import getToolByName
-from zope.cachedescriptors.property import Lazy
-from plone.memoize.view import memoize
-from zope.component import getMultiAdapter
-try:
-    import xm.theme
-except ImportError:
-    HAS_XM_THEME = False
-else:
-    HAS_XM_THEME = True
-
 
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
@@ -19,13 +8,18 @@ class IterationListBaseView(XMBaseView):
 
     iteration_review_state = 'change_in_subclasses'
 
+    def sort_results(self, results):
+        # allow sorting in subclasses
+        return results
+
     def projectlist(self):
         context = aq_inner(self.context)
         searchpath = '/'.join(context.getPhysicalPath())
         # Get a list of all projects
-        projectbrains = self.catalog.searchResults(portal_type='Project',
-                                                   getBillableProject=True,
-                                                   path=searchpath)
+        projectbrains = self.catalog.searchResults(
+            portal_type='Project',
+            getBillableProject=True,
+            path=searchpath)
 
         for projectbrain in projectbrains:
             searchpath = projectbrain.getPath()
@@ -40,7 +34,7 @@ class IterationListBaseView(XMBaseView):
                     info = self.iterationbrain2dict(iterationbrain)
                     iteration_list.append(info)
                 info = self.projectbrain2dict(projectbrain)
-                info['iterations'] = iteration_list
+                info['iterations'] = self.sort_results(iteration_list)
                 yield info
 
     def iterationbrain2dict(self, brain):
