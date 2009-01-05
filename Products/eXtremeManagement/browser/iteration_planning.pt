@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="eXtremeManagement">
+
+  <body>
+
+    <div metal:fill-slot="main">
+      <div metal:define-macro="body" 
+           tal:define="iteration view/main; stories view/stories; dummy view/update">
+
+        <p class="documentDescription">
+          <metal:field use-macro="python:here.widget('description', mode='view')">
+            Description
+          </metal:field>
+        </p>
+
+        <div id="break-before-stories" class="visualClear"><!-- --></div>
+
+        <tal:subitems tal:condition="stories"
+                      tal:define="show_task_count python:False;
+                                  show_progress python:False;
+                                  show_totals python:True">
+          <h1 i18n:translate="heading-stories">Stories</h1>
+
+          <form method="post">
+            <table class="listing" id="story-listing"
+                   width="97%" cellpadding="0" cellspacing="0"
+                   i18n:domain="eXtremeManagement">
+              <thead>
+                <tr class="StatusOfStories"
+                    i18n:domain="eXtremeManagement">
+                  <th i18n:translate="listingheader_story"
+                      class="storyHeader nosort">Story</th>
+                  <th i18n:translate="listingheader_state"
+                      class="initEstimateHeader nosort">Initial estimate (days)</th>
+                </tr>
+              </thead>
+              <tbody>
+            
+                <tal:repeat repeat="story stories">
+                <tr class="list-in-iteration"
+                    tal:attributes="class string:list-in-iteration kssattr-uid-${story/uid};
+                                    id string:kssattr-uid-${story/uid};">
+                    <td>
+                    <div class="story-title">
+                        <a class="storyTitle_iteration_overview"
+                        tal:attributes="href string:${story/url}"
+                        tal:content="story/title" />
+                    </div>
+                    </td>
+                    <td><input type="text" tal:attributes="name story/uid; value story/size_estimate | nothing" /></td>
+                </tr>
+                </tal:repeat>
+<!--    
+    <tr id="totalTasks"
+       tal:condition="show_totals">
+          <th class="td-story-title"
+             colspan="2"
+             tal:attributes="colspan python:show_task_count and 4 or 2"
+             i18n:translate="total"
+             i18n:domain="eXtremeManagement">Total</th>
+          <th tal:content="context/size_estimate" />
+          <th tal:content="context/estimate" />
+          <th tal:content="context/actual" />
+    </tr>
+-->
+              </tbody>
+            </table>
+            <input type="hidden" name="form.submitted" value="1" />
+            <input type="submit" value="Submit estimates"/>
+          </form>
+        </tal:subitems>
+      </div>
+    </div>
+  </body>
+</html>
