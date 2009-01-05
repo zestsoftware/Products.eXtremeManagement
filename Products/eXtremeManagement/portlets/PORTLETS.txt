@@ -14,7 +14,4 @@ Existing old-style portlets
 There are still old-style portlets in skins/eXtremeManagement. They'll be
 moved to new-style portlets.
 
-- **portlet_my_projects.pt**. List of my projects. Looks to be a
-    semi-duplicate of "project links".
-
 - **portlet_stories.pt**. List of to-be-estimated stories.

@@ -67,4 +67,14 @@
       addview=".poi_creation.AddForm"
       />
 
+  <plone:portlet
+      name="eXtremeManagement.storyestimation"
+      interface=".storyestimation.IStoryEstimationPortlet"
+      assignment=".storyestimation.Assignment"
+      view_permission="zope2.View"
+      edit_permission="cmf.ManagePortal"
+      renderer=".storyestimation.Renderer"
+      addview=".storyestimation.AddForm"
+      />
+
 </configure>

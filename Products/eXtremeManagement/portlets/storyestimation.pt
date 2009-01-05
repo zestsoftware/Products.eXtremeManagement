@@ -1,0 +1,39 @@
+<dl class="portlet portletProjectPortlet"
+    i18n:domain="eXtremeManagement"
+    tal:define="links view/links;
+                stories view/stories">
+  <dt class="portletHeader">
+    <span class="portletTopLeft"></span>
+    <span i18n:translate="box_stories">
+      Pending Stories
+    </span>
+    <span class="portletTopRight"></span>
+  </dt>
+
+  <tal:block tal:repeat="obj view/stories">
+    <dd tal:define="oddrow repeat/obj/odd;
+                    end repeat/obj/end;
+                    oddeven python:test(oddrow, ' even', ' odd');
+                    class python:'portletItem' + oddeven;"
+        tal:attributes="class class">
+
+      <a tal:attributes="href obj/getURL">
+        <img alt=""
+             height="16"
+             width="16"
+             tal:attributes="src string:${here/portal_url}/${obj/getIcon};" />
+        <span tal:replace="python:test(obj.Title, obj.Title, obj.getId)">
+          ECP
+        </span>
+      </a>
+
+      <div class="portletItemDetails"
+           tal:content="python:context.restrictedTraverse('@@plone').toLocalizedTime(obj.Date)" />
+    </dd>
+  </tal:block>
+
+  <dd class="portletFooter">
+    <span class="portletBottomLeft"></span>
+    <span class="portletBottomRight"></span>
+  </dd>
+</dl>

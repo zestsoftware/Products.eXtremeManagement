@@ -40,5 +40,11 @@
       title="Create tasks from issues"
       description="A form for mass-creating poi tasks out of poi issues."
       />
+  <!-- reviewstories.py -->
+  <portlet
+      addview="eXtremeManagement.reviewstories"
+      title="Pending stories"
+      description="Shows stories in need of estimation."
+      />
 
 </portlets>

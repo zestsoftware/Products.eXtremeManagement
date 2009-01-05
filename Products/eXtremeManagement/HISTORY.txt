@@ -5,6 +5,10 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- Replaced story estimation portlet by a new-style one.  [reinout]
+
+- Removed obsolete portlet_my_projects portlet.  [reinout]
+
 - Added better documentation to portlets.xml, unified names/titles of portlets
   in various places. [reinout]
 
