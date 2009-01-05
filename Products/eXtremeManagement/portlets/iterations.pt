@@ -2,8 +2,7 @@
     i18n:domain="eXtremeManagement">
   <dt class="portletHeader">
     <span class="portletTopLeft"></span>
-    <span class="management_portletHeader"
-          i18n:translate="head_iterations">Iterations</span>
+    <span class="management_portletHeader" i18n:translate="head_iterations">Iterations</span>
     <span class="portletTopRight"></span>
   </dt>
 
@@ -13,27 +12,18 @@
   </dd>
 
   <dd class="portletItem Odd">
-    <dl id="iterations-menu" class="actionMenu deactivated"
-        tal:condition="view/iterations"
-        tal:repeat="link view/iterations">
-      <dt class="actionMenuHeader label-iterations">
-        <a id="" href="#">
-          <span i18n:domain="xm.theme"
-                i18n:translate=""
-                tal:content="link/title"> State </span>
-          <span class="arrowDownAlternative">&#9660;</span>
-        </a>
-      </dt>
-      <dd class="actionMenuContent iterations-submenu">
-        <ul>
-          <li tal:repeat="iteration link/iterations">
-            <a href=""
-               tal:attributes="href iteration/url"
-               tal:content="iteration/title">Title</a>
-          </li>
-        </ul>
-      </dd>
-    </dl>
+    <a tal:attributes="href view/project_url"
+       i18n:translate="label_new_iteration">New</a>
+  </dd>
+
+  <dd class="portletItem Even">
+    <a tal:attributes="href view/project_url"
+       i18n:translate="label_closed_iteration">Closed</a>
+  </dd>
+
+  <dd class="portletItem Odd">
+    <a tal:attributes="href view/project_url"
+       i18n:translate="label_release_plan">Release Plan</a>
   </dd>
 
   <dd class="portletFooter">
