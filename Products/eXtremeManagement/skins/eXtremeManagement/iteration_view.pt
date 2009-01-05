@@ -17,7 +17,9 @@
               tal:condition="not:context/startable"
               tal:define="stories_not_startable view/story_titles_not_startable">
             <dt i18n:translate="cannot_activate">Cannot Activate</dt>
-            <dd tal:condition="stories_not_startable">There are stories which cannot be activated, please see: <span tal:replace="stories_not_startable"></span>.</dd>
+            <dd tal:condition="stories_not_startable">There are stories which cannot be activated: 
+              <a tal:attributes="title stories_not_startable">?</a>
+            </dd>
         </dl>
 
           <table class="listing"
