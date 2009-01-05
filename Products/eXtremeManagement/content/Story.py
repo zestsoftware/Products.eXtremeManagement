@@ -73,6 +73,11 @@ class Story(OrderedBaseFolder):
 
     security.declarePublic('recalc')
 
+    def set_size_estimate(self, val):
+        """Set the rough estimate and update the catalog"""
+        self.setRoughEstimate(val)
+        self.recalc()
+        
     def recalc(self):
         """See the ISizeEstimate interface.
         With our implementation we only need a reindex here actually.

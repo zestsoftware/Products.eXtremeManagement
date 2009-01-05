@@ -48,8 +48,7 @@
     padding-bottom: 5px;
 }
 
-#totalTasks, .customer_info_header,
-#task_header {
+#totalTasks, #task_header {
     font-weight: bold !important;
     text-align: right;
 }
@@ -177,9 +176,10 @@
 
 /* ----end project administration view ---- */
 
-.offers_listing {
+ul.offers_listing {
     list-style-image: none !important;
     list-style-type: none !important;
+    margin: 0;
 }
 
 .listing th {
@@ -291,6 +291,7 @@ table.hour-registration th {
   float: right;
   border: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
   background-color: &dtml-globalBackgroundColor;;
+  margin-left: 10px;
   margin-bottom: 10px;
 }
 
@@ -361,9 +362,7 @@ UL.xm-assignees LI {
 /* Offer view */
 
 #offerView {
-  border: 1px solid #8CACBB;
   margin-bottom: 10px;
-  margin-top: 15px;
 }
 
 #offerView td, #offerView th {
@@ -372,8 +371,7 @@ UL.xm-assignees LI {
 
 #offerView th {
     text-align: left;
-    font-size: 150%;
-    font-weight: normal;
+    font-size: 120%;
 }
 
 #offerView th.alignRight {
@@ -382,12 +380,9 @@ UL.xm-assignees LI {
 
 .storyTitle-storyEstimate th {
   background-color: #EEF3F5;
-  border-top: 1px solid #8CACBB;
-  border-bottom: 1px solid #8CACBB;
 }
 
 .totalTasks th {
-  border-top: 1px solid #8CACBB;
 }
 
 #bookingTotal, #booking-details-total {

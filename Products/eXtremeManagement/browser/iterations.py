@@ -243,3 +243,23 @@ class IterationView(XMBaseView):
             iteration = brain.getObject()
             hours_left -= IActualHours(brain.getObject()).actual_time
         return hours_left
+
+
+class PlanningView(IterationView):
+    """
+    An alternate view for iterations that allows quick estimation of stories
+    """
+    
+    def update(self):
+        form = self.request.form
+        submitted = form.get('form.submitted', False)
+        if submitted:
+            for story in self.stories():
+                new_val = self.request.get(str(story['uid']))
+                if new_val:
+                    story_obj = self.context.get(story['story_id'])
+                    story_obj.set_size_estimate(float(new_val))
+                    
+        
+        
+        

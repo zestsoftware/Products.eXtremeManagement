@@ -151,6 +151,15 @@
       />
 
   <page
+      name="iteration_planning"
+      class=".iterations.PlanningView"
+      for="Products.eXtremeManagement.interfaces.IXMIteration"
+      permission="zope2.View"
+      allowed_interface=".interfaces.IIterationView"
+      template="iteration_planning.pt"
+      />
+
+  <page
       name="invoicing"
       class=".management.InvoicingView"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
