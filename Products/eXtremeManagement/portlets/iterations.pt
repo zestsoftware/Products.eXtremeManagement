@@ -22,7 +22,7 @@
   </dd>
 
   <dd class="portletItem Odd">
-    <a tal:attributes="href view/project_url"
+    <a tal:attributes="href string:${view/project_url}/@@releaseplan"
        i18n:translate="label_release_plan">Release Plan</a>
   </dd>
 
