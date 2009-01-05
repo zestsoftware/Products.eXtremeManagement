@@ -42,7 +42,7 @@
       />
   <!-- reviewstories.py -->
   <portlet
-      addview="eXtremeManagement.reviewstories"
+      addview="eXtremeManagement.storyestimation"
       title="Pending stories"
       description="Shows stories in need of estimation."
       />
