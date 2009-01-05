@@ -84,9 +84,3 @@ class AddForm(base.NullAddForm):
 
     def create(self):
         return Assignment()
-
-
-class EditForm(base.EditForm):
-    form_fields = form.Fields(ITasksPortlet)
-    label = (u"Edit tasks portlet")
-    description = (u"This portlet displays tasks")

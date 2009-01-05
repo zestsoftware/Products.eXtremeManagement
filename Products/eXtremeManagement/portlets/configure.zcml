@@ -14,7 +14,6 @@
       interface=".portlet_tasks.ITasksPortlet"
       renderer=".portlet_tasks.Renderer"
       addview=".portlet_tasks.AddForm"
-      editview=".portlet_tasks.EditForm"
       />
 
   <plone:portlet
