@@ -6,7 +6,8 @@
     <span class="portletTopRight"></span>
   </dt>
 
-  <dd class="portletItem even">
+  <dd class="portletItem even"
+      tal:condition="view/current">
     <a tal:attributes="href view/current"
        i18n:translate="label_current_iteration">Current</a>
   </dd>

@@ -88,7 +88,10 @@ class Renderer(base.Renderer):
         # By default return a link to the first iteration found.
         # Other iteration will return a link to the second one and is shown as
         # a status message
-        return brains[0].getURL()
+        if brains:
+            return brains[0].getURL()
+        else:
+            return False
 
     @memoize
     def iterations(self):
