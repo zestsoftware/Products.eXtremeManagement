@@ -288,11 +288,9 @@ table.hour-registration th {
 
 
 .xm-details {
+  margin: 0;
+  padding: 0;
   float: right;
-  border: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
-  background-color: &dtml-globalBackgroundColor;;
-  margin-left: 10px;
-  margin-bottom: 10px;
 }
 
 .xm-details dl {
@@ -316,8 +314,11 @@ table.hour-registration th {
 
 .xm-details table {
   margin: 0;
-  border: 0;
-  border-top: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
+  border: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
+}
+
+.xm-details, .xm-details table {
+    width: 300px; /*fixed with for xm-details div and table*/
 }
 
 .xm-details table td {
@@ -335,7 +336,6 @@ table.hour-registration th {
 .xm-details table th {
   border: 0;
   white-space: nowrap;
-  background: transparent;
 }
 
 .xm-bookings {
