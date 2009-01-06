@@ -27,7 +27,7 @@ class IterationListBaseView(XMBaseView):
             iterationbrains = self.catalog.searchResults(
                 portal_type='Iteration',
                 review_state=self.iteration_review_state,
-                path=searchpath)
+                path={'query': searchpath, 'navtree': True})
             if len(iterationbrains) > 0:
                 iteration_list = []
                 for iterationbrain in iterationbrains:
