@@ -19,7 +19,7 @@ class IterationListBaseView(XMBaseView):
         projectbrains = self.catalog.searchResults(
             portal_type='Project',
             getBillableProject=True,
-            path=searchpath)
+            path={'query': searchpath, 'navtree': True})
 
         for projectbrain in projectbrains:
             searchpath = projectbrain.getPath()
