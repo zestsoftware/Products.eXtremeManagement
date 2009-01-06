@@ -7,7 +7,7 @@
   </dt>
 
   <dd class="portletItem even">
-    <a tal:attributes="href view/project_url"
+    <a tal:attributes="href view/current"
        i18n:translate="label_current_iteration">Current</a>
   </dd>
 

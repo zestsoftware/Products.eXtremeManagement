@@ -10,6 +10,18 @@
            tal:define="view context/@@iteration;
                        iteration view/main;
                        stories view/stories;">
+        <dl class="portalMessage info" tal:condition="view/second_current_iteration">
+          <dt i18n:translate="">
+              Info
+          </dt>
+          <dd i18n:translate="help_multiple_current_iterations">
+              Currently multiple iterations are 'in-progress' at this moment.
+              If you forgot to close the previous iteration, you can find it
+            <a i18n:name="go_here"
+               i18n:translate="help_multiple_current_iterations_go_here"
+               tal:attributes="href view/second_current_iteration">here</a>.
+          </dd>
+        </dl>
 
         <div class="xm-details">
   

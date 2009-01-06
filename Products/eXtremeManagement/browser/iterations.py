@@ -244,12 +244,27 @@ class IterationView(XMBaseView):
             hours_left -= IActualHours(brain.getObject()).actual_time
         return hours_left
 
+    def second_current_iteration(self):
+        """Link to the other iteration that is in state in-progress"""
+        project = aq_parent(aq_inner(self.context))
+        contentfilter = dict(portal_type = 'Iteration',
+                             review_state = 'in-progress')
+        brains = project.getFolderContents(contentfilter)
+        # If we have multiple iterations in progress this return a link to it
+        # In the template we will display a statusmessage.
+        if len(brains) >= 2:
+            if self.context.getId() == brains[0].getId:
+                return brains[1].getURL()
+            elif self.context.getId() == brains[1].getId:
+                return brains[0].getURL()
+        return False
+
 
 class PlanningView(IterationView):
     """
     An alternate view for iterations that allows quick estimation of stories
     """
-    
+
     def update(self):
         form = self.request.form
         submitted = form.get('form.submitted', False)
@@ -259,7 +274,3 @@ class PlanningView(IterationView):
                 if new_val:
                     story_obj = self.context.get(story['story_id'])
                     story_obj.set_size_estimate(float(new_val))
-                    
-        
-        
-        

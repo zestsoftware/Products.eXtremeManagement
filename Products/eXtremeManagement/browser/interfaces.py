@@ -191,6 +191,10 @@ class IIterationView(IXMBaseView):
         """Return the hours left in the project.
         """
 
+    def second_current_iteration():
+        """ Return the url of a second iteration with status in-progress
+        """
+
 
 class IOfferView(IIterationView):
     """Info about an offer.

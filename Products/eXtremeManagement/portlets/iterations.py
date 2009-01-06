@@ -8,6 +8,7 @@ from plone.app.portlets.portlets import base
 from plone.memoize.view import memoize
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.CMFCore.utils import getToolByName
 
 from Products.eXtremeManagement import XMMessageFactory as _
 
@@ -57,16 +58,18 @@ class Renderer(base.Renderer):
         self.site_url = portal_state.portal_url()
         self.portal = portal_state.portal()
         self.project = self._get_project()
+        self.catalog = getToolByName(self.context, 'portal_catalog')
         self.project_url = self.project and self.project.absolute_url() or None
 
     @property
     def available(self):
         """Determine if the portlet is available at all."""
-        return self.project
+        if self.project:
+            return True
 
     def _get_project(self):
         """This property return the url of the current project, if not within
-        a project it return site_url
+        a project it returns None
         """
         try:
             #If we are inside a project aqcuisition will find it
@@ -75,6 +78,17 @@ class Renderer(base.Renderer):
             # Or raise an error, in which case we return None
             project = None
         return project
+
+    @memoize
+    def current(self):
+        path = self.project.getPhysicalPath()
+        brains = self.catalog.searchResults(portal_type='Iteration',
+                                       review_state='in-progress',
+                                       path=path)
+        # By default return a link to the first iteration found.
+        # Other iteration will return a link to the second one and is shown as
+        # a status message
+        return brains[0].getURL()
 
     @memoize
     def iterations(self):
