@@ -179,7 +179,7 @@
       name="finished"
       class=".customer.FinishedIterationsView"
       for="Products.eXtremeManagement.interfaces.IXMProject"
-      permission="cmf.ManagePortal"
+      permission="zope2.View"
       template="finished.pt"
       />
 
