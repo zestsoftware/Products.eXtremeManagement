@@ -81,7 +81,7 @@ class Renderer(base.Renderer):
 
     @memoize
     def current(self):
-        path = self.project.getPhysicalPath()
+        path = '/'.join(self.project.getPhysicalPath())
         brains = self.catalog.searchResults(portal_type='Iteration',
                                        review_state='in-progress',
                                        path=path)
