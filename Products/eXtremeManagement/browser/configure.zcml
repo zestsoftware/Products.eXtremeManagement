@@ -184,6 +184,14 @@
       />
 
   <page
+      name="planned-iterations"
+      class=".customer.PlannedIterationsView"
+      for="Products.eXtremeManagement.interfaces.IXMProject"
+      permission="zope2.View"
+      template="planned_iterations.pt"
+      />
+
+  <page
       name="offer"
       class=".offers.OfferView"
       for="Products.eXtremeManagement.interfaces.IXMOffer"

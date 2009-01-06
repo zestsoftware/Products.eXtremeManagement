@@ -63,6 +63,7 @@ class IterationListBaseView(XMBaseView):
             review_state = review_state_id,
             review_state_title = self.workflow.getTitleForStateOnType(
                                  review_state_id, 'Iteration'),
+            start_date = obj.getStartDate(),
             completion_date = completion_date,
             end_date = end_date,
             brain= brain,

@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="eXtremeManagement">
+
+  <head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border', 0)" />
+  </head>
+
+  <body>
+
+
+    <div metal:fill-slot="main"
+         id="planned-iterations">
+      <h1 i18n:translate="label_new_iterations_overview">
+        Planned iterations
+      </h1>
+
+      <table class="listing">
+        <tr>
+          <th class="nosort" i18n:translate="listingheader_iteration">
+            Iteration
+          </th>
+          <th class="nosort" i18n:translate="label_date_start">
+              Planned Start Date 
+          </th>
+          <th class="nosort" i18n:translate="label_date_completed">
+              Date completed
+          </th>
+        </tr>
+
+        <tal:projects tal:repeat="project view/projectlist">
+          <tal:iterations tal:repeat="iteration project/iterations">
+            <tr>
+              <td>
+                <a tal:content="iteration/title"
+                   tal:attributes="title iteration/description;
+                                   href iteration/url;"/>
+              </td>
+              <td tal:condition="iteration/start_date"
+                  tal:content="python:context.toLocalizedTime(iteration['start_date'],
+                             long_format=0)"
+                  class="right" />
+              <td tal:condition="iteration/completion_date"
+                  tal:content="python:context.toLocalizedTime(iteration['completion_date'],
+                             long_format=0)"
+                  class="right" />
+            </tr>
+          </tal:iterations>
+        </tal:projects>
+      </table>
+
+    </div>
+  </body>
+</html>
