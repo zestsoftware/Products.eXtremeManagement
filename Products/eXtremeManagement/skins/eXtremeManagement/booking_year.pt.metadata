@@ -1,5 +1,5 @@
 [default]
-title=Project administration
+title=Booking year
 
 [security]
 View=0:Authenticated
