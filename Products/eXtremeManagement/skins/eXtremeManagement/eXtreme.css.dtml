@@ -315,7 +315,6 @@ table.hour-registration th {
 }
 
 .xm-details table {
-  width: 100%;
   margin: 0;
   border: 0;
   border-top: &dtml-borderWidth; &dtml-borderStyle; #c0bfbf;
