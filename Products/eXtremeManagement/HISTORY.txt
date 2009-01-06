@@ -5,6 +5,21 @@ History
 2.0 alpha 3 (unreleased)
 -----------------------
 
+- The Add task form at the story view is now loaded using kss. By default no
+  assignee is selected.[jladage]
+
+- Updated the dutch translations.[jladage]
+
+- Added a link to a list of 'Planned iterations' to the iterations portlet.
+  [jladage]
+
+- Cleaned up a number of templates that are not used anymore,
+  project_administration, customer_view, etc. [jladage]
+
+- Current iteration link in the Iterations portlet now provides a correct URL.
+  In addition if two iterations are in the state 'in-progress' a status message
+  will guide you to the other iteration. [jladage]
+
 - Added view that lists finished (=invoiced or completed) iterations.
   [reinout]
 
