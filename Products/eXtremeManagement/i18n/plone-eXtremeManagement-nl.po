@@ -64,10 +64,10 @@ msgid "Estimated"
 msgstr "Geschat"
 
 msgid "Finish"
-msgstr "Rond af"
+msgstr "Afronden"
 
 msgid "Improve"
-msgstr "Verbeter"
+msgstr "Verbeteren"
 
 msgid "In progress"
 msgstr "Lopend"
@@ -76,7 +76,7 @@ msgid "In-progress"
 msgstr "Lopend"
 
 msgid "Invoice"
-msgstr "Factureer"
+msgstr "Factureren"
 
 msgid "Invoiced"
 msgstr "Gefactureerd"
@@ -85,7 +85,7 @@ msgid "Iteration"
 msgstr "Iteratie"
 
 msgid "Mark as completed"
-msgstr "Markeer als afgerond"
+msgstr "Afronden"
 
 msgid "Mark as estimated"
 msgstr "Markeer als geschat"
@@ -118,37 +118,37 @@ msgid "Reactivate this task"
 msgstr "Heractiveer deze taak"
 
 msgid "Reorder stories"
-msgstr "Herorden de stories"
+msgstr "Verhalen prioriteren"
 
 msgid "Retract"
-msgstr "Trek in"
+msgstr "Intrekken"
 
 msgid "Start working"
-msgstr "Begin met werken"
+msgstr "Starten"
 
 msgid "Story"
 msgstr "Story"
 
 msgid "Submit for estimate"
-msgstr "Dien in voor schatting"
+msgstr "Inschattingsverzoek indienen"
 
 msgid "Task"
 msgstr "Taak"
 
 msgid "Time registration"
-msgstr "Uren registratie"
+msgstr "Tijdregistratie"
 
 msgid "To-do"
-msgstr "Te doen"
+msgstr "te doen"
 
 msgid "activate"
 msgstr "activeren"
 
 msgid "activated"
-msgstr "Geactiveerd"
+msgstr "geactiveerd"
 
 msgid "assigned"
-msgstr "Toegekend"
+msgstr "toegekend"
 
 msgid "booking"
 msgstr "boeking"
@@ -157,7 +157,7 @@ msgid "complete"
 msgstr "afronden"
 
 msgid "completed"
-msgstr "Afgerond"
+msgstr "afgerond"
 
 msgid "deactivate"
 msgstr "deactiveren"
@@ -166,11 +166,11 @@ msgid "draft"
 msgstr "Concept"
 
 msgid "estimated"
-msgstr "Geschat"
+msgstr "geschat"
 
 msgid "invoiced"
-msgstr "Gefactureerd"
+msgstr "gefactureerd"
 
 msgid "open"
-msgstr "Open"
+msgstr "open"
 
