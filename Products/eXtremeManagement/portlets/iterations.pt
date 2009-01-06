@@ -12,8 +12,8 @@
   </dd>
 
   <dd class="portletItem odd">
-    <a tal:attributes="href view/project_url"
-       i18n:translate="label_new_iteration">New</a>
+    <a tal:attributes="href string:${view/project_url}/planned-iterations"
+       i18n:translate="label_planned_iteration">Planned</a>
   </dd>
 
   <dd class="portletItem even"

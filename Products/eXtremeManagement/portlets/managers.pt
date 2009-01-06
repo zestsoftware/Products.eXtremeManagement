@@ -25,12 +25,6 @@
       In-progress overview
     </a>
   </dd>
-  <dd class="portletItem even">
-    <a tal:attributes="href string:${view/site_url}/project_administration"
-      i18n:translate="project_administration">
-      Project administration
-    </a>
-  </dd>
   <dd class="portletFooter">
     <span class="portletBottomLeft"></span>
     <span class="portletBottomRight"></span>
