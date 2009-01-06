@@ -543,11 +543,15 @@ ul.iteration-droptarget li.story-draggable:hover {
     text-decoration: none;
 }
 
-table.listing .actionMenu .actionMenuHeader a{
+table.listing .actionMenu .actionMenuHeader a {
     background-position: 0 0; /*LS-  display fix image ie7*/
-    white-space: nowrap;
 	z-index: 0;
 }
+
+table.listing .actionMenu {
+    width: 77px; /* LS this width ensures that the actionMenu is wide enough. The previous method caused displacement problems in IE7 */
+}
+
 
 .td-center a:hover {
     text-decoration: none;
