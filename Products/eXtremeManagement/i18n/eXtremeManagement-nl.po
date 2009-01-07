@@ -732,7 +732,7 @@ msgstr "Herbereken geschatte tijd"
 #. Default: "Release Plan"
 #: ./portlets/iterations.pt:29
 msgid "label_release_plan"
-msgstr "Release planning"
+msgstr "Release Plan"
 
 #. Default: "Remaining budget (hours)"
 #: ./skins/eXtremeManagement/iteration_view.pt:118

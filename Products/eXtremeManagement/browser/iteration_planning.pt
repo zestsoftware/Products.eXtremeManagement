@@ -71,7 +71,7 @@
               </tbody>
             </table>
             <input type="hidden" name="form.submitted" value="1" />
-            <input type="submit" value="Submit estimates"/>
+            <input i18n:domain="plone" i18n:attributes="value label_save" type="submit" value="Save"/>
           </form>
         </tal:subitems>
       </div>
