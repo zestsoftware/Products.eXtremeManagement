@@ -3,6 +3,9 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="eXtremeManagement">
 
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border', 0)" />
+
   <body>
 
     <div metal:fill-slot="main">
