@@ -2,8 +2,8 @@ History
 =======
 
 
-2.0 alpha 3 (unreleased)
------------------------
+2.0alpha3 (2009-01-07)
+----------------------
 
 - The Add task form at the story view is now loaded using kss. By default no
   assignee is selected.[jladage]
