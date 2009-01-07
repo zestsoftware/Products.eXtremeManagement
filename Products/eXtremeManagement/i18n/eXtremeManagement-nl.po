@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-01-07 13:33+0000\n"
+"POT-Creation-Date: 2009-01-07 15:58+0000\n"
 "PO-Revision-Date: 2009-01-05 21:26+0100\n"
 "Last-Translator: Maurits van Rees <maurits@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
@@ -543,7 +543,7 @@ msgid "heading-stories"
 msgstr "User stories"
 
 #. Default: "Attached files and images"
-#: ./skins/eXtremeManagement/story_view.pt:136
+#: ./skins/eXtremeManagement/story_view.pt:137
 msgid "heading_attachements"
 msgstr "Toegevoegde bestanden en afbeeldingen"
 
@@ -625,7 +625,7 @@ msgid "iteration"
 msgstr "iteratie"
 
 #. Default: "Add task"
-#: ./skins/eXtremeManagement/story_view.pt:127
+#: ./skins/eXtremeManagement/story_view.pt:128
 msgid "label_add_task"
 msgstr "Taak toevoegen"
 
@@ -831,7 +831,6 @@ msgstr "Schatting (uren)"
 
 #. Default: "Initial Estimate (days)"
 #: ./skins/eXtremeManagement/story_view.pt:54
-#, fuzzy
 msgid "listingheader_initial_estimate"
 msgstr "Ruwe schatting (dagen)"
 
@@ -867,7 +866,6 @@ msgstr "User Story"
 
 #. Default: "Tasks Estimate (hours)"
 #: ./skins/eXtremeManagement/story_view.pt:64
-#, fuzzy
 msgid "listingheader_tasks_estimate"
 msgstr "Geschatte uren"
 

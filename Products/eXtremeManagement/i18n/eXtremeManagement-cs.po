@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-01-07 13:33+0000\n"
+"POT-Creation-Date: 2009-01-07 15:58+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -546,7 +546,7 @@ msgid "heading-stories"
 msgstr "Požadavky"
 
 #. Default: "Attached files and images"
-#: ./skins/eXtremeManagement/story_view.pt:136
+#: ./skins/eXtremeManagement/story_view.pt:137
 msgid "heading_attachements"
 msgstr ""
 
@@ -626,7 +626,7 @@ msgid "iteration"
 msgstr ""
 
 #. Default: "Add task"
-#: ./skins/eXtremeManagement/story_view.pt:127
+#: ./skins/eXtremeManagement/story_view.pt:128
 msgid "label_add_task"
 msgstr ""
 

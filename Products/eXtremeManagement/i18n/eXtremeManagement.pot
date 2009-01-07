@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-01-07 13:33+0000\n"
+"POT-Creation-Date: 2009-01-07 15:58+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -478,7 +478,7 @@ msgid "heading-stories"
 msgstr ""
 
 #. Default: "Attached files and images"
-#: ./skins/eXtremeManagement/story_view.pt:136
+#: ./skins/eXtremeManagement/story_view.pt:137
 msgid "heading_attachements"
 msgstr ""
 
@@ -558,7 +558,7 @@ msgid "iteration"
 msgstr ""
 
 #. Default: "Add task"
-#: ./skins/eXtremeManagement/story_view.pt:127
+#: ./skins/eXtremeManagement/story_view.pt:128
 msgid "label_add_task"
 msgstr ""
 
