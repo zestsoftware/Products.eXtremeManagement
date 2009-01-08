@@ -211,7 +211,7 @@
       name="releaseplan"
       class=".releaseplan.ReleaseplanView"
       for="Products.eXtremeManagement.interfaces.IXMProject"
-      permission="cmf.ManagePortal"
+      permission="zope2.View"
       allowed_interface=".interfaces.IProjectView"
       template="releaseplan.pt"
       />
@@ -221,7 +221,7 @@
       for="Products.eXtremeManagement.interfaces.IXMProject"
       class=".releaseplan.MoveStory"
       attribute="move_story"
-      permission="cmf.ManagePortal"
+      permission="cmf.ModifyPortalContent"
       />
 
 
