@@ -14,30 +14,16 @@
               tal:define="view context/@@mytask_details;
                           projects view/projects;">
 
-      <p>
-        <tal:show i18n:translate="show_tasks_with_state">
-        Show Tasks with state:</tal:show>
-        <tal:options tal:repeat="state view/possible_states">
-          <a tal:attributes="href string:${template/absolute_url}?state=${state/id}&amp;memberid=${view/memberid}"
-             tal:content="state/title" i18n:translate="" i18n:domain="plone"/>
-          <tal:separator tal:condition="not:repeat/state/end">,</tal:separator>
-        </tal:options>
-      </p>
-
-
-      <h1>
-        <span i18n:translate="heading-my-task-overview">My task overview: </span>
-        <span i18n:translate="" i18n:domain="plone" tal:replace="view/stateTitle" /> 
-      </h1>
+      <h1 i18n:translate="heading-my-task-overview">My task list </h1>
 
       <p class="discreet" i18n:translate="description-overview-my-tasks">
-        Overview of tasks that belong to me.  The totals mentioned are
+        Overview of tasks that are assigned to you. The totals mentioned are
         the total time for myself, so they will usually differ from
         adding the numbers of the column above it.
       </p>
 
       <tal:loop tal:repeat="project_info projects">
-        <h2 tal:content="project_info/project/Title" />
+        <h4 tal:content="project_info/project/Title" />
         <tal:block
             define="realtasks project_info;
                     show_story python:True;"

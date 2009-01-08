@@ -46,6 +46,9 @@ class Assignment(base.Assignment):
 
 class Renderer(base.Renderer):
 
+    # render() will be called to render the portlet
+    render = ViewPageTemplateFile('portlet_tasks.pt')
+
     def __init__(self, context, request, view, manager, data):
         base.Renderer.__init__(self, context, request, view, manager, data)
         self.membership = getToolByName(self.context, 'portal_membership')
@@ -57,12 +60,13 @@ class Renderer(base.Renderer):
                                             name=u'plone_portal_state')
         self.pas_info = getMultiAdapter((context, request), name=u'pas_info')
 
-    # render() will be called to render the portlet
-    render = ViewPageTemplateFile('portlet_tasks.pt')
-
+    @property
     def available(self):
-        return not self.portal_state.anonymous()
-
+        """Determine if the portlet is available at all.
+           We only want to show this portlet to employees"""
+        mtool = getToolByName(self.context, 'portal_membership')
+        return not self.portal_state.anonymous() and mtool.checkPermission("eXtremeManagement: Add Booking", self.context)
+                                                            
     def portal_url(self):
         return self.portal_state.portal_url()
 
