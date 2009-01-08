@@ -2,12 +2,36 @@ History
 =======
 
 
-2.0 (unreleased)
+2.0beta1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fixed translations
+
+- The my project dropdown now displays all active projects for ProjectManagers.
+  [jladage]
+
+- Removed personalized My todo list from iteration view. [jladage]
+
+- When no start or end date is provided, simply a dash is displayed. [jladage]
+
+- The release plan was guarded with Manage Portal permission, this is now
+  set to the View permission. [jladage]
+
+- The 'add task' link is now only displayed when the user has the correct
+  permission. [simon]
+
+- Removed the Project Administration templates and view. [jladage]
+
+- Removed the old update_hours_form, we now have the time tracker. [jladage]
+
+- Corrected the available method for the tasks portlet, so anonymous
+  doesn't see it. [jladage]
+
+- Added site action 'Projects' to link to the project website, this way
+  we are consistent with the time tracker site actions. [jladage]
 
 
+ 
 2.0alpha3 (2009-01-07)
 ----------------------
 
