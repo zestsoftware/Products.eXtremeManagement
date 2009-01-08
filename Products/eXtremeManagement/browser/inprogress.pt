@@ -44,10 +44,7 @@
                                    href iteration/url;"/>
               </td>
               <td tal:condition="not: iteration/end_date"
-                  i18n:translate="label_unknown_date"
-                  class="right">
-                Unknown date
-              </td>
+                  class="right"> - </td>
               <td tal:condition="iteration/end_date"
                   tal:content="python:context.toLocalizedTime(iteration['end_date'],
                                long_format=0)"
