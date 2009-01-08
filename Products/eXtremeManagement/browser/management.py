@@ -1,4 +1,5 @@
 from Acquisition import aq_inner
+from zope import component
 
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
@@ -15,11 +16,19 @@ class IterationListBaseView(XMBaseView):
     def projectlist(self):
         context = aq_inner(self.context)
         searchpath = '/'.join(context.getPhysicalPath())
-        # Get a list of all projects
-        projectbrains = self.catalog.searchResults(
-            portal_type='Project',
-            getBillableProject=True,
-            path={'query': searchpath, 'navtree': False})
+        # By default search for all projects from the given path
+        # if the context is a project it will return itself
+        cfilter = dict(portal_type='Project',
+                       getBillableProject=True,
+                       path={'query': searchpath, 'navtree': False})
+        # Get a list of all 'active' projects in case the context is the portal
+        # This will narrow down de number of results and improve performance.
+        portal_state = component.getMultiAdapter((self.context, self.request),
+                                                 name=u'plone_portal_state')
+        portal = portal_state.portal()
+        if context == portal:
+            cfilter['review_state'] = 'active'
+        projectbrains = self.catalog.searchResults(cfilter)
 
         for projectbrain in projectbrains:
             searchpath = projectbrain.getPath()
