@@ -56,8 +56,8 @@
             </tr>
             <tr>
               <th class="customer_info_header"
-                  i18n:translate="listingheader_actual_hours">
-                Actual (hours)
+                  i18n:translate="listingheader_workedhours">
+                Worked hours
               </th>
               <td tal:content="task/actual">
                 0:00

@@ -56,9 +56,8 @@
                              bookings view/bookinglist;"
                  tal:condition="bookings">
         <metal:month metal:define-macro="month_booking_summary">
-          <h2 i18n:translate="heading-bookings-per-month">
-            Bookings for the month
-            <tal:month i18n:name="month" tal:replace="main/month" /> / <tal:year i18n:name="year" tal:replace="main/year" />
+          <h2 tal:replace="string:${main/month} - ${main/year}">
+              Januari 2009
           </h2>
 
           <table border="0"

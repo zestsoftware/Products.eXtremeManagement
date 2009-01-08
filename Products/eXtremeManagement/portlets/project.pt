@@ -22,6 +22,12 @@
     </span>
   </dd>
 
+  <dd class="portletItem odd"
+      tal:condition="view/links|nothing">
+    <a tal:attributes="href string:${view/project_url}/@@releaseplan"
+       i18n:translate="label_release_plan">Release Plan</a>
+  </dd>
+
   <dd class="portletFooter">
     <span class="myProject"><tal:single condition="view/has_single_project">
       <a href=""

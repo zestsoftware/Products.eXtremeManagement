@@ -14,14 +14,6 @@
       />
 
   <page
-      name="projectadmin"
-      class=".projects.ProjectAdminView"
-      for="*"
-      permission="cmf.ManagePortal"
-      allowed_interface=".interfaces.IProjectAdminView"
-      />
-
-  <page
       name="xm_embed_gantt"
       class=".gantt.GanttView"
       for="*"

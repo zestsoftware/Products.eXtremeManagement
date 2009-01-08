@@ -224,26 +224,6 @@ ul.offers_listing {
 }
 /* ---- end hours view ---- */
 
-/* *** Start update_hours_form *** */
-
-.hour-registration {
-  width: 100%;
-  border-collapse: 0;
-  border-spacign: 0;
-}
-
-table.hour-registration th {
-  white-space: nowrap;
-}
-
-.label-bookingdate {
-  font-size: 85%;
-  float: left;
-  padding-right: 10px;
-}
-
-/* *** End update_hours_form *** */
-
 /* ---- dashboard ---- */
 
 .portletHalfWidth, .portletThirdWidth {

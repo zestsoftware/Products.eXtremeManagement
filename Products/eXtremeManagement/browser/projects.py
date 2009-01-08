@@ -28,7 +28,8 @@ class MyProjects(XMBaseView):
     def projectlist(self):
         context = aq_inner(self.context)
         # Get a list of all projects
-        projectbrains = self.catalog.searchResults(portal_type='Project')
+        projectbrains = self.catalog.searchResults(portal_type='Project',
+                                                   review_state='active')
 
         if len(projectbrains) <= 1:
             # If there is maximal 1 project: return it...
@@ -44,9 +45,13 @@ class MyProjects(XMBaseView):
             # Quick'n'Dirty check: pick the first project and check
             # whether the user has the customer role, but is not an
             # employee.
+            # ProjectManagers and Manager also get the entire list of active
+            # projects
             projectbrain = projectbrains[0]
             roles = member.getRolesInContext(projectbrain.getObject())
-            if 'Customer' in roles and 'Employee' not in roles:
+            if 'ProjectManager' in roles or \
+                'Manager' in roles or \
+                'Customer' in roles and 'Employee' not in roles:
                 return projectbrains
 
             # Otherwise only show the projects with open tasks assigned to
@@ -64,9 +69,8 @@ class MyProjects(XMBaseView):
             return plist
 
 
-class ProjectAdminView(XMBaseView):
-    """Return management info about all projects.
-    Specifically: which iterations can be invoiced.
+class ProjectView(XMBaseView):
+    """Simply return info about a Project.
     """
 
     def projectlist(self):
@@ -125,10 +129,6 @@ class ProjectAdminView(XMBaseView):
         )
         return returnvalue
 
-
-class ProjectView(ProjectAdminView):
-    """Simply return info about a Project.
-    """
 
     def main(self):
         """Get a dict with info from this context.

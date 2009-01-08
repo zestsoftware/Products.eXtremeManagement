@@ -31,8 +31,8 @@
            cellspacing="0">
       <tr>
         <th class="customer_info_header"
-            i18n:translate="listingheader_initial_estimate">
-          Initial Estimate (days)
+            i18n:translate="listingheader_estimate">
+          Initial estimated days
         </th>
         <td>
           <span tal:replace="structure main/rough_estimate" />
@@ -42,7 +42,7 @@
       <tr>
         <th class="customer_info_header"
             i18n:translate="listingheader_tasks_estimate">
-          Tasks Estimate (hours)
+          Task estimated hours
         </th>
         <td>
           <span tal:replace="totals/estimate" />
@@ -50,8 +50,8 @@
       </tr>
       <tr>
         <th class="customer_info_header"
-            i18n:translate="listingheader_actualtimebooked">
-          Time Booked
+            i18n:translate="listingheader_workedhours">
+          Worked hours
         </th>
         <td>
           <span tal:replace="totals/actual" />

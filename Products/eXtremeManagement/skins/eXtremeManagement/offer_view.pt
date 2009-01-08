@@ -68,7 +68,7 @@
                 Story
               </th>
               <th class="alignRight nosort"
-                  i18n:translate="listingheader_initial_estimate">
+                  i18n:translate="listingheader_estimate">
                 Initial estimate (days)
               </th>
             </tr>

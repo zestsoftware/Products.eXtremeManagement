@@ -52,7 +52,7 @@
                    cellspacing="0">
               <tr>
                 <th class="customer_info_header"
-                    i18n:translate="listingheader_initial_estimate">
+                    i18n:translate="listingheader_estimate">
                   Initial Estimate (days)
                 </th>
                 <td>
@@ -71,8 +71,8 @@
               </tr>
               <tr>
                 <th class="customer_info_header"
-                    i18n:translate="listingheader_actualtimebooked">
-                  Time Booked
+                    i18n:translate="listingheader_workedhours">
+                  Worked hours
                 </th>
                 <td>
                   <span tal:replace="totals/actual" />

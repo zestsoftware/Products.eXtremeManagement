@@ -20,14 +20,7 @@
   <dd class="portletItem even"
       tal:condition="view/have_finished_iterations">
     <a tal:attributes="href string:${view/project_url}/finished"
-       i18n:translate="label_finished_overview">
-      Finished iterations overview
-    </a>
-  </dd>
-
-  <dd class="portletItem odd">
-    <a tal:attributes="href string:${view/project_url}/@@releaseplan"
-       i18n:translate="label_release_plan">Release Plan</a>
+       i18n:translate="label_finished_overview">Finished</a>
   </dd>
 
   <dd class="portletFooter">

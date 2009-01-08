@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-01-07 15:58+0000\n"
+"POT-Creation-Date: 2009-01-08 13:53+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -98,11 +98,6 @@ msgstr ""
 msgid "Related XM Tasks"
 msgstr ""
 
-#. Default: "Send"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:135
-msgid "Send"
-msgstr ""
-
 #: ./browser/tasks.py:383
 msgid "Task added"
 msgstr ""
@@ -117,7 +112,7 @@ msgid "add-task-in"
 msgstr ""
 
 #. Default: "Back to"
-#: ./skins/eXtremeManagement/booking_month.pt:41
+#: ./skins/eXtremeManagement/booking_details.pt:27
 msgid "back_to"
 msgstr "Retour"
 
@@ -133,22 +128,32 @@ msgid "box_stories"
 msgstr "Histoires-usager (stories) en attente"
 
 #. Default: "Cannot Activate"
-#: ./skins/eXtremeManagement/task_view.pt:40
+#: ./browser/viewlets/templates/story_details_box.pt:21
 msgid "cannot_activate"
 msgstr ""
 
+#. Default: "Need to finish estimating this story by selecting 'estimate' from the state dropdown."
+#: ./skins/eXtremeManagement/story_view.pt:95
+msgid "cannot_activate_msg"
+msgstr ""
+
+#. Default: "There are tasks which cannot be activated, please see: ${DYNAMIC_CONTENT}."
+#: ./skins/eXtremeManagement/story_view.pt:97
+msgid "cannot_activate_tasks_msg"
+msgstr ""
+
 #. Default: "current month"
-#: ./skins/eXtremeManagement/booking_month.pt:44
+#: ./skins/eXtremeManagement/booking_details.pt:30
 msgid "current-month"
 msgstr "Mois courant"
 
 #. Default: "days"
-#: ./skins/eXtremeManagement/story_view.pt:60
+#: ./browser/viewlets/templates/story_details_box.pt:39
 msgid "days"
 msgstr ""
 
 #. Default: "Overview of tasks that belong to me.  The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
-#: ./skins/eXtremeManagement/task_overview.pt:33
+#: ./skins/eXtremeManagement/iteration_view.pt:169
 #, fuzzy
 msgid "description-overview-my-tasks"
 msgstr "Tâches qui m'incombent.  Les totaux mentionnés s'appliquent à moi seul et en conséquence ils différent généralement d'une addition des valeurs de la colonne au-dessus."
@@ -156,11 +161,6 @@ msgstr "Tâches qui m'incombent.  Les totaux mentionnés s'appliquent à moi seu
 #. Default: "This view provides an overall plan for this project. You can prioritize stories by dragging them inside and between iterations."
 #: ./browser/releaseplan.pt:14
 msgid "description_releaseplan"
-msgstr ""
-
-#. Default: "To register your time (hours), use the form below and press 'Send'."
-#: ./skins/eXtremeManagement/update_hours_form.cpt:39
-msgid "description_time_registration"
 msgstr ""
 
 #. Default: "Detailed bookings"
@@ -371,9 +371,10 @@ msgstr "Heures"
 msgid "eXtremeManagement_label_mainText"
 msgstr "Texte principal"
 
-#. Default: "Manhours"
 #. Manhours
-#: content/Iteration.py
+#. Default: "Man hours"
+#: ./skins/eXtremeManagement/iteration_view.pt:33
+#, fuzzy
 msgid "eXtremeManagement_label_manHours"
 msgstr "Heures-personnes"
 
@@ -461,7 +462,7 @@ msgid "estimated_start_project"
 msgstr ""
 
 #. Default: "Go to"
-#: ./skins/eXtremeManagement/booking_month.pt:30
+#: ./skins/eXtremeManagement/booking_details.pt:16
 msgid "go_to"
 msgstr "Aller à"
 
@@ -479,11 +480,6 @@ msgstr ""
 #: ./portlets/poi_creation.pt:5
 msgid "header-create-tasks-from-issues"
 msgstr ""
-
-#. Default: "Time registration"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:32
-msgid "header_time_registration"
-msgstr "Saisie du temps"
 
 #. Default: "Billable"
 #: ./skins/eXtremeManagement/booking_view.pt:43
@@ -512,29 +508,24 @@ msgstr "\"Bookings\""
 msgid "heading-bookings-per-day"
 msgstr "\"Bookings\" par jour pour ce mois"
 
-#. Default: "Bookings for the month ${month} / ${year}"
-#: ./skins/eXtremeManagement/booking_month.pt:61
-msgid "heading-bookings-per-month"
-msgstr ""
-
 #. Default: "Hours per employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:138
+#: ./skins/eXtremeManagement/iteration_view.pt:132
 msgid "heading-hours-per-employee"
 msgstr "Heures par employé"
 
 #. Default: "My to-do tasks"
-#: ./skins/eXtremeManagement/iteration_view.pt:173
+#: ./skins/eXtremeManagement/iteration_view.pt:167
 msgid "heading-in-progress-tasks"
 msgstr "Mes tâches"
 
-#. Default: "My task overview:"
-#: ./skins/eXtremeManagement/task_overview.pt:29
+#. Default: "My task list"
+#: ./skins/eXtremeManagement/task_overview.pt:17
 #, fuzzy
 msgid "heading-my-task-overview"
 msgstr "Vue générale de mes tâches"
 
 #. Default: "My open tasks"
-#: ./skins/eXtremeManagement/iteration_view.pt:192
+#: ./skins/eXtremeManagement/iteration_view.pt:186
 msgid "heading-open-tasks"
 msgstr "Mes tâches ouvertes"
 
@@ -544,7 +535,7 @@ msgid "heading-related-xm-tasks"
 msgstr ""
 
 #. Default: "Stories"
-#: ./skins/eXtremeManagement/iteration_view.pt:99
+#: ./browser/iteration_planning.pt:27
 msgid "heading-stories"
 msgstr "Histoires-usager"
 
@@ -584,7 +575,7 @@ msgid "help_budgetHours"
 msgstr ""
 
 #. Default: "There are stories which cannot be activated:"
-#: ./skins/eXtremeManagement/iteration_view.pt:77
+#: ./skins/eXtremeManagement/iteration_view.pt:71
 msgid "help_estimate_stories"
 msgstr ""
 
@@ -594,12 +585,12 @@ msgid "help_include_global_members"
 msgstr "Si sélectionné, les membres ayant le rôle global \"Employé\" apparaîtront dans la liste des personnes assignées à une tâche"
 
 #. Default: "To quickly estimate all the stories in this iteration, use the"
-#: ./skins/eXtremeManagement/iteration_view.pt:79
+#: ./skins/eXtremeManagement/iteration_view.pt:73
 msgid "help_iteration_planning"
 msgstr ""
 
 #. Default: "Iteration planning view"
-#: ./skins/eXtremeManagement/iteration_view.pt:81
+#: ./skins/eXtremeManagement/iteration_view.pt:75
 msgid "help_iteration_planning_link"
 msgstr ""
 
@@ -614,12 +605,12 @@ msgid "help_multiple_current_iterations_go_here"
 msgstr ""
 
 #. Default: "Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown)."
-#: ./skins/eXtremeManagement/story_view.pt:89
+#: ./browser/viewlets/templates/story_details_box.pt:16
 msgid "help_needs_estimate"
 msgstr ""
 
 #. Default: "The Initial estimate of the story is a rough estimate in days.  The Tasks estimate is the total estimate in hours for all tasks.  If there is a big difference there could be a logical explanation.  You should investigate that to be sure."
-#: ./skins/eXtremeManagement/iteration_view.pt:127
+#: ./skins/eXtremeManagement/iteration_view.pt:121
 msgid "help_stories_table"
 msgstr ""
 
@@ -629,13 +620,8 @@ msgid "iteration"
 msgstr ""
 
 #. Default: "Add task"
-#: ./skins/eXtremeManagement/story_view.pt:128
+#: ./browser/add_task.pt:21
 msgid "label_add_task"
-msgstr ""
-
-#. Default: "Date to book for"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:47
-msgid "label_bookingdate"
 msgstr ""
 
 #. Default: "Budget (hours)"
@@ -649,7 +635,7 @@ msgid "label_current_iteration"
 msgstr ""
 
 #. Default: "Date completed"
-#: ./browser/planned_iterations.pt:28
+#: ./browser/finished.pt:20
 msgid "label_date_completed"
 msgstr ""
 
@@ -664,13 +650,8 @@ msgid "label_date_start"
 msgstr ""
 
 #. Default: "Finished iterations overview"
-#: ./portlets/iterations.pt:22
+#: ./browser/finished.pt:14
 msgid "label_finished_overview"
-msgstr ""
-
-#. Default: "Hours"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:93
-msgid "label_hours"
 msgstr ""
 
 #. Default: "Hours worked"
@@ -684,18 +665,13 @@ msgid "label_include_global_members"
 msgstr "Inclure les employés globaux (global employees)"
 
 #. Default: "In-progress overview"
-#: ./portlets/managers.pt:23
+#: ./browser/inprogress.pt:13
 msgid "label_inprogress_overview"
 msgstr ""
 
 #. Default: "Invoicing overview"
-#: ./portlets/managers.pt:17
+#: ./browser/invoicing.pt:13
 msgid "label_invoicing_overview"
-msgstr ""
-
-#. Default: "Minutes"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:97
-msgid "label_minutes"
 msgstr ""
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
@@ -734,12 +710,12 @@ msgid "label_recalculate_estimated_time"
 msgstr ""
 
 #. Default: "Release Plan"
-#: ./portlets/iterations.pt:29
+#: ./portlets/project.pt:27
 msgid "label_release_plan"
 msgstr ""
 
 #. Default: "Remaining budget (hours)"
-#: ./skins/eXtremeManagement/iteration_view.pt:118
+#: ./skins/eXtremeManagement/iteration_view.pt:112
 msgid "label_remaining_budget"
 msgstr ""
 
@@ -769,7 +745,7 @@ msgid "listingheader-date"
 msgstr "Date"
 
 #. Default: "Start"
-#: ./skins/eXtremeManagement/booking_month.pt:69
+#: ./skins/eXtremeManagement/booking_month.pt:68
 msgid "listingheader-start-of-week"
 msgstr ""
 
@@ -784,42 +760,32 @@ msgid "listingheader-time"
 msgstr "Temps"
 
 #. Default: "Total"
-#: ./skins/eXtremeManagement/booking_month.pt:77
+#: ./skins/eXtremeManagement/booking_details.pt:85
 msgid "listingheader-total"
 msgstr ""
 
 #. Default: "Week"
-#: ./skins/eXtremeManagement/booking_month.pt:68
+#: ./skins/eXtremeManagement/booking_month.pt:67
 msgid "listingheader-week-number"
 msgstr ""
 
-#. Default: "Actual (hours)"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:70
-msgid "listingheader_actual_hours"
-msgstr ""
-
-#. Default: "Time Booked"
-#: ./skins/eXtremeManagement/story_view.pt:73
-msgid "listingheader_actualtimebooked"
-msgstr ""
-
 #. Default: "Assignee(s)"
-#: ./skins/eXtremeManagement/task_view.pt:74
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:22
 msgid "listingheader_assignees"
 msgstr "Personnes assignées"
 
-#. Default: "Difference (hours)"
+#. Default: "Difference hours"
 #: ./browser/viewlets/templates/manage_simple_tasklist.pt:20
 msgid "listingheader_diff_hours"
 msgstr ""
 
 #. Default: "Employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:146
+#: ./skins/eXtremeManagement/iteration_view.pt:140
 msgid "listingheader_employee"
 msgstr "Employé"
 
 #. Default: "End date"
-#: ./skins/eXtremeManagement/iteration_view.pt:56
+#: ./skins/eXtremeManagement/iteration_view.pt:53
 msgid "listingheader_enddate"
 msgstr "Date de fin"
 
@@ -828,25 +794,15 @@ msgstr "Date de fin"
 msgid "listingheader_estimate"
 msgstr ""
 
-#. Default: "Estimate (hours)"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:69
+#. Default: "Estimated hours"
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:18
 msgid "listingheader_estimate_hours"
 msgstr ""
 
-#. Default: "Initial Estimate (days)"
-#: ./skins/eXtremeManagement/story_view.pt:54
-msgid "listingheader_initial_estimate"
-msgstr ""
-
 #. Default: "Iteration"
-#: ./browser/planned_iterations.pt:22
+#: ./browser/finished.pt:23
 msgid "listingheader_iteration"
 msgstr "Itération"
-
-#. Default: "Man hours"
-#: ./skins/eXtremeManagement/iteration_view.pt:33
-msgid "listingheader_man_uren"
-msgstr "Heures-personnes"
 
 #. Default: "Project"
 #: ./browser/inprogress.pt:19
@@ -859,45 +815,45 @@ msgid "listingheader_startdate"
 msgstr "Date de début"
 
 #. Default: "Status"
-#: ./skins/eXtremeManagement/task_view.pt:67
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:44
 #, fuzzy
 msgid "listingheader_state"
 msgstr "état"
 
 #. Default: "Story"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:68
+#: ./browser/iteration_planning.pt:36
 msgid "listingheader_story"
 msgstr "Histoire-usager"
 
-#. Default: "Tasks Estimate (hours)"
-#: ./skins/eXtremeManagement/story_view.pt:64
+#. Default: "Tasks estimate (hours)"
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:48
 msgid "listingheader_tasks_estimate"
 msgstr ""
 
-#. Default: "Naam project, taak:"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:66
+#. Default: "Title"
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:17
 #, fuzzy
 msgid "listingheader_title"
 msgstr "Titre"
 
 #. Default: "Total Actual"
-#: ./skins/eXtremeManagement/iteration_view.pt:149
+#: ./skins/eXtremeManagement/iteration_view.pt:143
 msgid "listingheader_total_actual"
 msgstr "Total réel"
 
 #. Default: "Total Difference"
-#: ./skins/eXtremeManagement/iteration_view.pt:151
+#: ./skins/eXtremeManagement/iteration_view.pt:145
 msgid "listingheader_total_difference"
 msgstr "Différence entre les totaux"
 
 #. Default: "Total Estimate"
-#: ./skins/eXtremeManagement/iteration_view.pt:147
+#: ./skins/eXtremeManagement/iteration_view.pt:141
 msgid "listingheader_total_estimate"
 msgstr "Total estimé"
 
-#. Default: "N/A"
-#: ./skins/eXtremeManagement/iteration_view.pt:41
-msgid "man_hours_empty"
+#. Default: "Worked hours"
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:19
+msgid "listingheader_workedhours"
 msgstr ""
 
 #. Default: "${count} comment(s) in this story."
@@ -911,7 +867,7 @@ msgid "name"
 msgstr ""
 
 #. Default: "Needs Estimate"
-#: ./skins/eXtremeManagement/story_view.pt:88
+#: ./browser/viewlets/templates/story_details_box.pt:15
 msgid "needs_estimate"
 msgstr ""
 
@@ -921,30 +877,20 @@ msgstr ""
 msgid "next"
 msgstr "Suivant:"
 
-#. Default: "No end date set yet."
-#: ./skins/eXtremeManagement/iteration_view.pt:60
-msgid "no_end_date"
-msgstr ""
-
-#. Default: "Warning: no start date set."
-#: ./skins/eXtremeManagement/iteration_view.pt:50
-msgid "no_start_date"
-msgstr ""
-
 #. Default: "No stories published yet!"
-#: ./skins/eXtremeManagement/iteration_view.pt:202
+#: ./skins/eXtremeManagement/iteration_view.pt:196
 msgid "no_stories_published"
 msgstr "Aucune histoire-usager n'a été publiée!"
-
-#. Default: "No tasks are assigned to you!"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:146
-msgid "no_tasks_assigned"
-msgstr ""
 
 #. Default: "No tasks defined yet."
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:110
 msgid "no_tasks_defined"
 msgstr "Aucune tâche n'a été définie."
+
+#. Default: "No tasks added yet. Please add one."
+#: ./skins/eXtremeManagement/story_view.pt:96
+msgid "no_tasks_msg"
+msgstr ""
 
 #. Default: "Currently no links are available or no project is selected."
 #: ./portlets/project.pt:19
@@ -952,7 +898,7 @@ msgid "not_in_project_or_no_links"
 msgstr ""
 
 #. Default: "Billable"
-#: ./skins/eXtremeManagement/booking_month.pt:78
+#: ./skins/eXtremeManagement/booking_month.pt:77
 msgid "perc_billable"
 msgstr ""
 
@@ -968,7 +914,7 @@ msgid "previous"
 msgstr "Précédent:"
 
 #. Default: "previous month"
-#: ./skins/eXtremeManagement/booking_month.pt:33
+#: ./skins/eXtremeManagement/booking_details.pt:19
 msgid "previous-month"
 msgstr "mois précédent"
 
@@ -987,11 +933,6 @@ msgstr ""
 msgid "rough story estimates"
 msgstr ""
 
-#. Default: "Show Tasks with state:"
-#: ./skins/eXtremeManagement/task_overview.pt:18
-msgid "show_tasks_with_state"
-msgstr ""
-
 #. Default: "Estimates and worked hours per iteration"
 #: ./browser/project_chart.pt:9
 msgid "subtitle_project_chart_overview"
@@ -1002,18 +943,13 @@ msgstr ""
 msgid "task estimates"
 msgstr ""
 
-#. Default: "task"
-#: ./skins/eXtremeManagement/update_hours_form.cpt:76
-msgid "task_icon"
-msgstr ""
-
 #. Default: "Task overview"
 #: ./portlets/portlet_tasks.pt:12
 msgid "task_overview"
 msgstr "Vue générale de la tâche"
 
 #. Default: "Total"
-#: ./skins/eXtremeManagement/offer_view.pt:113
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:130
 msgid "total"
 msgstr "Total"
 
@@ -1023,37 +959,37 @@ msgid "velocity chart"
 msgstr ""
 
 #. Default: "Friday"
-#: ./skins/eXtremeManagement/booking_month.pt:74
+#: ./skins/eXtremeManagement/booking_month.pt:73
 msgid "weekday_fri"
 msgstr ""
 
 #. Default: "Monday"
-#: ./skins/eXtremeManagement/booking_month.pt:70
+#: ./skins/eXtremeManagement/booking_month.pt:69
 msgid "weekday_mon"
 msgstr ""
 
 #. Default: "Saturday"
-#: ./skins/eXtremeManagement/booking_month.pt:75
+#: ./skins/eXtremeManagement/booking_month.pt:74
 msgid "weekday_sat"
 msgstr ""
 
 #. Default: "Sunday"
-#: ./skins/eXtremeManagement/booking_month.pt:76
+#: ./skins/eXtremeManagement/booking_month.pt:75
 msgid "weekday_sun"
 msgstr ""
 
 #. Default: "Thursday"
-#: ./skins/eXtremeManagement/booking_month.pt:73
+#: ./skins/eXtremeManagement/booking_month.pt:72
 msgid "weekday_thu"
 msgstr ""
 
 #. Default: "Tuesday"
-#: ./skins/eXtremeManagement/booking_month.pt:71
+#: ./skins/eXtremeManagement/booking_month.pt:70
 msgid "weekday_tue"
 msgstr ""
 
 #. Default: "Wednesday"
-#: ./skins/eXtremeManagement/booking_month.pt:72
+#: ./skins/eXtremeManagement/booking_month.pt:71
 msgid "weekday_wed"
 msgstr ""
 

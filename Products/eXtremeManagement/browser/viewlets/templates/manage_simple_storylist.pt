@@ -43,7 +43,7 @@
           class="storyHeader nosort">Story</th>
       <th i18n:translate="listingheader_state"
           class="statusHeader nosort">Status</th>
-      <th i18n:translate="listingheader_initial_estimate"
+      <th i18n:translate="listingheader_estimate"
           class="initEstimateHeader nosort">Initial estimate (days)</th>
       <th i18n:translate="listingheader_tasks_estimate"
           class="tasksEstimateHeader nosort">Tasks estimate (hours)</th>

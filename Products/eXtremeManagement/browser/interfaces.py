@@ -10,15 +10,6 @@ class IMyProjects(IBrowserView):
         pass
 
 
-class IProjectAdminView(IBrowserView):
-    """Return management info about all projects.
-    Specifically: which iterations can be invoiced.
-    """
-
-    def projectlist():
-        pass
-
-
 class IBookingsDetailedView(IBrowserView):
     """Return list of bookings
     """

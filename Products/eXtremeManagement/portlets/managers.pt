@@ -16,13 +16,13 @@
   <dd class="portletItem even">
     <a tal:attributes="href string:${view/site_url}/invoicing"
        i18n:translate="label_invoicing_overview">
-      Invoicing overview
+      To invoice
     </a>
   </dd>
   <dd class="portletItem odd">
     <a tal:attributes="href string:${view/site_url}/inprogress"
        i18n:translate="label_inprogress_overview">
-      In-progress overview
+      In-progress
     </a>
   </dd>
   <dd class="portletFooter">
