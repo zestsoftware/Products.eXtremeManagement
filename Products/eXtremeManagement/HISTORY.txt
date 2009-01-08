@@ -2,8 +2,8 @@ History
 =======
 
 
-2.0beta1 (unreleased)
-----------------
+2.0beta1 (2009-01-08)
+---------------------
 
 - Fixed translations
 
