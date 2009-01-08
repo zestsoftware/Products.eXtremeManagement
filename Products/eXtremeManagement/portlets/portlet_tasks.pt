@@ -29,13 +29,6 @@
     </a>
   </dd>
 
-  <dd class="portletItem odd">
-    <a i18n:translate="header_time_registration"
-       tal:attributes="href string:${view/portal_url}/update_hours_form">
-      Time registration
-    </a>
-  </dd>
-
   <dd class="portletFooter">
     <span class="portletBottomLeft"></span>
     <span class="portletBottomRight"></span>
