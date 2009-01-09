@@ -2,7 +2,7 @@ History
 =======
 
 
-2.0beta2 (unreleased)
+2.0beta2 (2009-01-09)
 ---------------------
 
 - Refactored the add_task KSS - it now collapses again. [simon]
