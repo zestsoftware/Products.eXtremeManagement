@@ -93,15 +93,15 @@ class Renderer(base.Renderer):
             tracker = self.tracker_url()
             attachments = self.attachments_url()
             offers = self.offers_url()
-            chart = self.chart_url()
+            # chart = self.chart_url()
             if tracker:
                 results.append(dict(url=tracker, title=_(u'Issues')))
             if attachments:
                 results.append(dict(url=attachments, title=_(u'Attachments')))
             if offers:
                 results.append(dict(url=offers, title=_(u'Offer')))
-            if chart:
-                results.append(dict(url=chart, title=_(u'Overview Chart')))
+            # if chart:
+            #    results.append(dict(url=chart, title=_(u'Overview Chart')))
         for res in results:
             row = (results.index(res)+1)%2 and 'odd' or 'even'
             res['class'] = 'portletItem ' + row
