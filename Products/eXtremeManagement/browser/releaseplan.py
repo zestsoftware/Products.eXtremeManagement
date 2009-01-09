@@ -9,7 +9,6 @@ import logging
 
 #from zope.cachedescriptors.property import Lazy
 from zope.component import getMultiAdapter
-from zope.i18nmessageid import Message
 from Products.CMFCore.utils import getToolByName
 from kss.core import kssaction
 from plone.app.kss.plonekssview import PloneKSSView
@@ -30,13 +29,6 @@ class ReleaseplanView(ProjectView):
     We set up the view:
 
       >>> view = ReleaseplanView(context=None, request=None)
-
-    view.iterations() gives us the current and the open iterations.
-
-      >>> view.current_iterations = lambda: [1, 2] # Mock
-      >>> view.open_iterations = lambda: [3, 4] # Mock
-      >>> view.iterations()
-      [1, 2, 3, 4]
 
     The iterations are returned (from a brain) as a dict, including a list of
     stories.
@@ -94,9 +86,6 @@ class ReleaseplanView(ProjectView):
       'state-in-progress kssattr-story_id-myuid'
 
     """
-
-    def iterations(self):
-        return self.current_iterations() + self.open_iterations()
 
     def iterationbrain2dict(self, brain):
         """Get a dict with info from this iteration brain.

@@ -11,7 +11,6 @@ from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
 from Products.PloneTestCase.layer import PloneSite
 from Products.PloneTestCase.setup import default_user
-from zope.publisher.browser import TestRequest
 
 from xm.booking.timing.interfaces import IActualHours
 from xm.booking.timing.interfaces import IEstimate

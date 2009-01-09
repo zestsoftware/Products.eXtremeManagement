@@ -2,7 +2,6 @@ import textwrap
 
 from Acquisition import aq_inner, aq_parent
 from zope import interface
-from zope.component import getMultiAdapter
 from zope.component import queryMultiAdapter
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.interfaces import IReferenceable

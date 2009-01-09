@@ -5,7 +5,6 @@ from plone.portlets.interfaces import IPortletDataProvider
 from plone.app.portlets.portlets import base
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFCore.utils import getToolByName
 
 from Products.eXtremeManagement import XMMessageFactory as _
 
@@ -50,6 +49,8 @@ class Renderer(base.Renderer):
 
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)
+        self.tools = getMultiAdapter((self.context, self.request),
+                                name=u'plone_tools')
         portal_state = getMultiAdapter((self.context, self.request),
                                         name=u'plone_portal_state')
         self.anonymous = portal_state.anonymous()
@@ -59,7 +60,7 @@ class Renderer(base.Renderer):
     @property
     def available(self):
         """Determine if the portlet is available at all."""
-        mtool = getToolByName(self.context, 'portal_membership')
+        mtool = self.tools.membership()
         return not self.anonymous and mtool.checkPermission("Manage portal",
                                                             self.context)
 

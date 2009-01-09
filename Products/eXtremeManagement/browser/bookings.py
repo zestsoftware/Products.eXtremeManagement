@@ -184,8 +184,8 @@ class WeekBookingOverview(BookingsDetailedView):
 
     def update(self):
         context = aq_inner(self.context)
-        propstool = getToolByName(context, 'portal_properties')
-        hours_per_day = propstool.xm_properties.getProperty('hours_per_day')
+        ptool = self.tools().properties()
+        hours_per_day = ptool.xm_properties.getProperty('hours_per_day')
         request = self.request
         weeklist = []
         # Start at first day of the week.  Note: with the
@@ -415,15 +415,15 @@ class DayBookingOverview(XMBaseView):
         self.memberid = memberid or self.request.form.get('memberid')
         memberid = memberid or self.request.form.get('memberid')
         if self.memberid is None:
-            membership = getToolByName(context, 'portal_membership')
-            member = membership.getAuthenticatedMember()
+            mtool = self.tools().membership()
+            member = mtool.getAuthenticatedMember()
             self.memberid = member.id
         self.searchpath = '/'.join(context.getPhysicalPath())
 
     def raw_billable(self, date=None):
         """return the total amount of billable hours"""
         date = date or self.request.form.get('date', DateTime().earliestTime())
-        bookingbrains = self.catalog.searchResults(
+        bookingbrains = self.tools().catalog().searchResults(
             portal_type='Booking',
             getBookingDate={"query": [date.earliestTime(), date.latestTime()],
                             "range": "minmax"},
@@ -438,15 +438,15 @@ class DayBookingOverview(XMBaseView):
     def billable(self, date=None):
         """return a percentage for billable hours"""
         context = aq_inner(self.context)
-        propstool = getToolByName(context, 'portal_properties')
-        hours_per_day = propstool.xm_properties.getProperty('hours_per_day')
+        ptool = self.tools().properties()
+        hours_per_day = ptool.xm_properties.getProperty('hours_per_day')
         return (self.raw_billable(date) / hours_per_day) * 100
 
     def raw_total(self, date=None):
         """Raw total booked hours for a member for this date.
         """
         date = date or self.request.form.get('date', DateTime().earliestTime())
-        bookingbrains = self.catalog.searchResults(
+        bookingbrains = self.tools().catalog().searchResults(
             portal_type='Booking',
             getBookingDate={"query": [date.earliestTime(),
                                       date.latestTime()],

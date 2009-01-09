@@ -6,12 +6,10 @@ the ZCML, and the test file.
 """
 
 from zope.component import getMultiAdapter
-from zope.formlib import form
 from zope.interface import implements
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFCore.utils import getToolByName
 
 
 class ITasksPortlet(IPortletDataProvider):
@@ -38,11 +36,6 @@ class Assignment(base.Assignment):
     def title(self):
         return u"Personal administration"
 
-# The renderer is like a view (in fact, like a content provider/viewlet). The
-# item self.data will typically be the assignment (although it is possible
-# that the assignment chooses to return a different object - see
-# base.Assignment).
-
 
 class Renderer(base.Renderer):
 
@@ -51,31 +44,21 @@ class Renderer(base.Renderer):
 
     def __init__(self, context, request, view, manager, data):
         base.Renderer.__init__(self, context, request, view, manager, data)
-        self.membership = getToolByName(self.context, 'portal_membership')
-        self.context_state = getMultiAdapter((context, request),
-                                             name=u'plone_context_state')
-        url_tool = getToolByName(self.context, 'portal_url')
-        self.portal = url_tool.getPortalObject()
-        self.portal_state = getMultiAdapter((context, request),
+        tools = getMultiAdapter((context, request),
+                                             name=u'plone_tools')
+        portal_state = getMultiAdapter((context, request),
                                             name=u'plone_portal_state')
-        self.pas_info = getMultiAdapter((context, request), name=u'pas_info')
+        self.anonymous = portal_state.anonymous()
+        self.mtool = tools.membership()
+        self.portal_url = portal_state.portal_url()
 
     @property
     def available(self):
         """Determine if the portlet is available at all.
            We only want to show this portlet to employees"""
-        mtool = getToolByName(self.context, 'portal_membership')
-        return not self.portal_state.anonymous() and mtool.checkPermission("eXtremeManagement: Add Booking", self.context)
-                                                            
-    def portal_url(self):
-        return self.portal_state.portal_url()
-
-    def hasManagePermission(self):
-        return self.membership.checkPermission('Manage Portal', self.context)
-
-
-# Define the add forms and edit forms, based on zope.formlib. These use
-# the interface to determine which fields to render.
+        return not self.anonymous and \
+            self.mtool.checkPermission("eXtremeManagement: Add Booking",
+                                       self.context)
 
 
 class AddForm(base.NullAddForm):

@@ -8,7 +8,6 @@ from plone.app.portlets.portlets import base
 from plone.memoize.view import memoize
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFCore.utils import getToolByName
 
 from Products.eXtremeManagement import XMMessageFactory as _
 
@@ -55,10 +54,12 @@ class Renderer(base.Renderer):
         base.Renderer.__init__(self, *args)
         portal_state = getMultiAdapter((self.context, self.request),
                                         name=u'plone_portal_state')
+        tools = getMultiAdapter((self.context, self.request),
+                                        name=u'plone_tools')
         self.site_url = portal_state.portal_url()
         self.portal = portal_state.portal()
         self.project = self._get_project()
-        self.catalog = getToolByName(self.context, 'portal_catalog')
+        self.catalog = tools.catalog()
         self.project_url = self.project and self.project.absolute_url() or None
 
     @property

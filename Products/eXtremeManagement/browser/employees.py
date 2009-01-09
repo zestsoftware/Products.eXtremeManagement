@@ -2,13 +2,12 @@ import itertools
 from datetime import date
 from DateTime import DateTime
 from Acquisition import aq_inner
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from plone.memoize.view import memoize
 from zope.interface import implements
+from zope.component import getMultiAdapter
 
-from Products.eXtremeManagement.browser.bookings import WeekBookingOverview
 from Products.eXtremeManagement.utils import getEndOfMonth
 
 from Products.CMFPlone import PloneMessageFactory as PMF
@@ -28,13 +27,15 @@ class EmployeesView(BrowserView):
     implements(IEmployeesView)
 
     def __init__(self, context, request, year=None):
+        self.context = aq_inner(context)
+        self.tools = getMultiAdapter((self.context, request),
+                                name=u'plone_tools')
+        portal_state = getMultiAdapter((self.context, request),
+                                name=u'plone_portal_state')
         self.context = context
         self.request = request
-        portal_url = getToolByName(context, 'portal_url')
-        self.portal = portal_url.getPortalObject()
-        self.site_url = portal_url()
-        self.catalog = getToolByName(context, 'portal_catalog')
-        self.mtool = getToolByName(context, 'portal_membership')
+        self.site_url = portal_state.portal_url()
+        self.portal = portal_state.portal()
         self.searchpath = '/'.join(context.getPhysicalPath())
         if year:
             today = date(year, 12, 1)
@@ -55,13 +56,13 @@ class EmployeesView(BrowserView):
     @memoize
     def items(self):
         context = aq_inner(self.context)
-        propstool = getToolByName(context, 'portal_properties')
-        hours_per_day = propstool.xm_properties.getProperty('hours_per_day')
+        ptool = self.tools.properties()
+        hours_per_day = ptool.xm_properties.getProperty('hours_per_day')
         data = []
         employees = self.get_employees()
         for userid in employees:
             empldict = {}
-            memberinfo = self.mtool.getMemberInfo(userid)
+            memberinfo = self.tools.membership().getMemberInfo(userid)
             if memberinfo and memberinfo is not None:
                 empldict['name'] = memberinfo['fullname'] or userid
                 # For each month create a list employees in a dict with
@@ -70,7 +71,7 @@ class EmployeesView(BrowserView):
                 for m in self.months:
                     begin = DateTime(m.year, m.month, 1)
                     end = getEndOfMonth(m.year, m.month)
-                    bookingbrains = self.catalog.searchResults(
+                    bookingbrains = self.tools.catalog().searchResults(
                         portal_type='Booking',
                         getBookingDate={"query": [begin, end],
                                         "range": "minmax",

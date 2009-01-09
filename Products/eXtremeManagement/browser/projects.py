@@ -28,8 +28,7 @@ class MyProjects(XMBaseView):
     def projectlist(self):
         context = aq_inner(self.context)
         # Get a list of all projects
-        projectbrains = self.catalog.searchResults(portal_type='Project',
-                                                   review_state='active')
+        projectbrains = self.catalog.searchResults(portal_type='Project')
 
         if len(projectbrains) <= 1:
             # If there is maximal 1 project: return it...
@@ -141,16 +140,8 @@ class ProjectView(XMBaseView):
             )
         return returnvalue
 
-    def finished_iterations(self):
-        states = ('completed', 'invoiced')
-        return self.getIterations(states)
-
     def current_iterations(self):
         states = ('in-progress', )
-        return self.getIterations(states)
-
-    def open_iterations(self):
-        states = ('new', )
         return self.getIterations(states)
 
     def getIterations(self, states=None):

@@ -1,5 +1,5 @@
 from Acquisition import aq_inner, aq_parent
-from Products.CMFCore.utils import getToolByName
+from zope.component import getMultiAdapter
 
 
 class XMIssueGetter(object):
@@ -20,7 +20,9 @@ class XMIssueGetter(object):
             return []
         assert project.portal_type == 'Project', (
             "Failed to get associated project.")
-        catalog = getToolByName(self.context, 'portal_catalog')
+        tools = getMultiAdapter((self.context, self.request),
+                                 name=u'plone_tools')
+        catalog = tools.catalog()
         query = dict(portal_type='PoiIssue',
                      review_state=['in-progress', 'open',
                                    'unconfirmed', 'new'],

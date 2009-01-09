@@ -7,14 +7,11 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from kss.core import kssaction
 from plone.app.kss.plonekssview import PloneKSSView
-from plone.app.layout.viewlets import ViewletBase
 from zope.component import adapts
 from zope.interface import Interface
 from zope.cachedescriptors.property import Lazy
-from zope.contentprovider.interfaces import IContentProvider
 from zope.publisher.interfaces.browser import IBrowserView
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
-
 
 from xm.booking.timing.interfaces import IActualHours
 from xm.booking.timing.interfaces import IEstimate
@@ -22,7 +19,6 @@ from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
 from Products.eXtremeManagement.utils import getStateSortedContents
 from Products.eXtremeManagement import XMMessageFactory as _
-from Products.eXtremeManagement.browser.viewlets.manager import StoryDetailsBox
 
 
 class TaskView(XMBaseView):
@@ -31,8 +27,8 @@ class TaskView(XMBaseView):
 
     def __init__(self, context, request):
         super(TaskView, self).__init__(context, request)
-        propstool = getToolByName(context, 'portal_properties')
-        self.friendlyDateFormat = propstool.site_properties.getProperty(
+        ptool = self.tools().properties()
+        self.friendlyDateFormat = ptool.site_properties.getProperty(
             'friendlyDateFormat', None)
 
     def main(self):
@@ -81,11 +77,6 @@ class TaskView(XMBaseView):
         return booking_list
 
     @Lazy
-    def plone_view(self):
-        context = aq_inner(self.context)
-        return context.restrictedTraverse('@@plone')
-
-    @Lazy
     def portal_transforms(self):
         context = aq_inner(self.context)
         return getToolByName(context, 'portal_transforms')
@@ -94,8 +85,9 @@ class TaskView(XMBaseView):
         """Get a dict with info from this booking brain.
         """
         realDate = brain.getBookingDate
-        date = self.plone_view.toLocalizedTime(realDate,
-                                               self.friendlyDateFormat)
+        context = aq_inner(self.context)
+        ploneview = context.restrictedTraverse('@@plone')
+        date = ploneview.toLocalizedTime(realDate, self.friendlyDateFormat)
 
         today = datetime.date.today()
         pyDate = datetime.date(realDate.year(), realDate.month(),

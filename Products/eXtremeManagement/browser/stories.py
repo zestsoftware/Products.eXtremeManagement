@@ -1,6 +1,5 @@
 from Acquisition import aq_inner
 from Acquisition import aq_parent
-from Products.CMFCore.utils import getToolByName
 from kss.core import kssaction
 from plone.app.kss.plonekssview import PloneKSSView
 
@@ -77,7 +76,7 @@ class StoryView(XMBaseView):
         return 'Task' in addable
 
     def get_possible_assignees(self):
-        mtool = getToolByName(self, 'portal_membership')
+        mtool = self.tools().membership()
         currentUser = mtool.getAuthenticatedMember().getId()
         # all the member that work on this project
         # XXX test if user folders somewhere else are recognized too

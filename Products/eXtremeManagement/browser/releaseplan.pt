@@ -15,7 +15,7 @@
          overall plan for this project. You can prioritize stories by
          dragging them inside and between iterations.</p>
 
-      <tal:iterations tal:repeat="iteration view/iterations">
+      <tal:iterations tal:repeat="iteration view/getIterations">
         <h2 tal:content="iteration/title"
             tal:attributes="title iteration/description"/>
         <ul class="iteration-droptarget"
