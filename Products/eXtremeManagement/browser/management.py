@@ -8,10 +8,19 @@ from Products.eXtremeManagement.utils import formatTime
 class IterationListBaseView(XMBaseView):
 
     iteration_review_state = 'change_in_subclasses'
+    _total = None
 
     def sort_results(self, results):
         # allow sorting in subclasses
         return results
+
+    def add_to_total(self, iteration_dict):
+        """Increase total with this iteration's value"""
+        pass
+
+    def extra_dict(self, obj, brain):
+        """Add additional information to the iterationdict."""
+        return {}
 
     def projectlist(self):
         context = aq_inner(self.context)
@@ -41,10 +50,18 @@ class IterationListBaseView(XMBaseView):
                 iteration_list = []
                 for iterationbrain in iterationbrains:
                     info = self.iterationbrain2dict(iterationbrain)
+                    self.add_to_total(info)
                     iteration_list.append(info)
                 info = self.projectbrain2dict(projectbrain)
                 info['iterations'] = self.sort_results(iteration_list)
                 yield info
+
+    def total(self):
+        if self._total is None:
+            # projectlist hasn't been called yet, so do it to
+            # update the total.
+            list(self.projectlist())
+        return self._total
 
     def iterationbrain2dict(self, brain):
         """Get a dict with info from this iteration brain.
@@ -77,6 +94,7 @@ class IterationListBaseView(XMBaseView):
             end_date = end_date,
             brain= brain,
         )
+        returnvalue.update(self.extra_dict(obj, brain))
         return returnvalue
 
     def projectbrain2dict(self, brain):

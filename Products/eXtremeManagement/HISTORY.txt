@@ -5,7 +5,8 @@ History
 2.0beta2 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Addd totals to the finished iterations view and (total) estimate to
+  the planned iterations view. [reinout + mark]
 
 
 2.0beta1 (2009-01-08)
@@ -37,7 +38,7 @@ History
   we are consistent with the time tracker site actions. [jladage]
 
 
- 
+
 2.0alpha3 (2009-01-07)
 ----------------------
 
