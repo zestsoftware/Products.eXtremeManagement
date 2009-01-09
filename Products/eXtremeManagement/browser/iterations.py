@@ -139,19 +139,6 @@ class IterationView(XMBaseView):
         )
         return returnvalue
 
-    def todo_tasks(self):
-        return self.state_tasks('to-do')
-
-    def open_tasks(self):
-        return self.state_tasks('open')
-
-    def state_tasks(self, state):
-        context = aq_inner(self.context)
-        context.REQUEST.form['state'] = state
-        view = context.restrictedTraverse('@@mytask_details')
-        result = view.tasklist()
-        return result
-
     def story_titles_not_startable(self):
         context = aq_inner(self.context)
 

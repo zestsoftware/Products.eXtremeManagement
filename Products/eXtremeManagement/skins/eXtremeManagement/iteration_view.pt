@@ -158,39 +158,6 @@
               </tr>
             </table>
           </tal:membertasks>
-
-          <tal:tasks define="show_story python:True;">
-            <tal:todo tal:define="info view/todo_tasks;">
-              <tal:items tal:condition="info/tasks"
-                         tal:define="items info/tasks;
-                                     totals info/totals;">
-                <h1 i18n:translate="heading-in-progress-tasks">My to-do
-                tasks</h1>
-                <p i18n:translate="description-overview-my-tasks">
-                  Overview of tasks that belong to me.  The totals
-                  mentioned are the total time for myself, so they will
-                  usually differ from adding the numbers of the column
-                  above it.
-                </p>
-                <tal:block
-                    define="realtasks info"
-                    replace="structure provider:xm.tasklist.simple" />
-              </tal:items>
-            </tal:todo>
-
-
-            <tal:open tal:define="info view/open_tasks;">
-              <tal:items tal:condition="info/tasks"
-                         tal:define="items info/tasks;
-                                     totals info/totals;">
-                <h1 i18n:translate="heading-open-tasks">My open tasks</h1>
-                <tal:block
-                    define="realtasks info"
-                    replace="structure provider:xm.tasklist.simple" />
-              </tal:items>
-            </tal:open>
-          </tal:tasks>
-
         </tal:subitems>
 
         <p class="discreet"
