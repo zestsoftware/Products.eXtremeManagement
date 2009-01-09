@@ -400,6 +400,10 @@ UL.xm-assignees LI {
     background: #FDFDFC;
 }
 
+#story-details-td  table.listing {
+	font-size: 90%;
+}
+
 /* gantt chart look and feel */
 
 .gantt-chart .bar,
