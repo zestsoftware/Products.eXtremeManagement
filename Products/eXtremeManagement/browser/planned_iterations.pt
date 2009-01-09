@@ -64,7 +64,7 @@
             </tal:iterations>
           </tal:projects>
         </tbody>
-        <tfoot>
+        <tfoot tal:condition="view/total">
           <tr>
             <th colspan="3"
                 i18n:translate="listingheader-total">

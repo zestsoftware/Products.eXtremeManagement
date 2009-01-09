@@ -16,6 +16,9 @@ class FinishedIterationsView(IterationListBaseView):
             # projectlist hasn't been called yet, so do it to
             # update the total.
             list(self.projectlist())
+        if self._total is None:
+            # total could still be none if there are no iterations.
+            return ''
         return formatTime(self._total)
 
     def sort_results(self, results):
@@ -41,6 +44,9 @@ class PlannedIterationsView(IterationListBaseView):
             # projectlist hasn't been called yet, so do it to
             # update the total.
             list(self.projectlist())
+        if self._total is None:
+            # total could still be none if there are no iterations.
+            return ''
         return '%.2f' % self._total
 
     def extra_dict(self, obj, brain):
