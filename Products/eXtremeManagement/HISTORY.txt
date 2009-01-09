@@ -10,6 +10,16 @@ History
 - Added totals to the finished iterations view and (total) estimate to
   the planned iterations view. [reinout + mark]
 
+- Removed My task listing from iteration view, to allow role based caching.
+  [jladage]
+
+- Commenting has been disabled. [jladage]
+
+- Add task KSS is now also collapseable. [simon, fred]
+
+- Use plone_tools where possible, getting rid of getToolByName. 
+
+
 
 2.0beta1 (2009-01-08)
 ---------------------
