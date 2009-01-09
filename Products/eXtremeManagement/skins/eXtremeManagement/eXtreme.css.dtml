@@ -401,7 +401,7 @@ UL.xm-assignees LI {
 }
 
 #story-details-td  table.listing {
-	font-size: 90%;
+	font-size: 95%;
 }
 
 /* gantt chart look and feel */
