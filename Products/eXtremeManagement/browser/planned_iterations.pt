@@ -70,7 +70,7 @@
                 i18n:translate="listingheader-total">
               Total
             </th>
-            <td class="right"
+            <td class="right total"
                 tal:content="view/total" />
           </tr>
         </tfoot>

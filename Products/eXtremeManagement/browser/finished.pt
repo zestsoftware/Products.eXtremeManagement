@@ -54,7 +54,7 @@
                 i18n:translate="listingheader_total_actual">
               Total Actual
             </th>
-            <td class="right"
+            <td class="right total"
                 tal:content="view/total" />
           </tr>
         </tfoot>
