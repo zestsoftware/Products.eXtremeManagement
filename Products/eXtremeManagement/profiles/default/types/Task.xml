@@ -14,7 +14,7 @@
  <property name="allowed_content_types">
   <element value="Booking"/>
  </property>
- <property name="allow_discussion">True</property>
+ <property name="allow_discussion">False</property>
  <alias from="(Default)" to="task_view"/>
  <alias from="edit" to="base_edit"/>
  <action title="View" action_id="view" category="object" condition_expr=""
