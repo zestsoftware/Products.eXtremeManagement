@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
 "POT-Creation-Date: 2009-01-08 13:53+0000\n"
-"PO-Revision-Date: 2009-01-05 21:26+0100\n"
+"PO-Revision-Date: 2009-01-09 12:45+0100\n"
 "Last-Translator: Maurits van Rees <maurits@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -677,7 +677,7 @@ msgstr "User story '${story}' is verplaatst naar iteratie '${target}'."
 #. Default: "Planned iterations"
 #: ./browser/planned_iterations.pt:16
 msgid "label_new_iterations_overview"
-msgstr "Geplande iteratie"
+msgstr "Geplande iteraties"
 
 #. Default: "Offer(s)"
 #: ./skins/eXtremeManagement/project_view.pt:27
@@ -989,4 +989,3 @@ msgstr "woensdag"
 #: ./browser/project_chart.pt:24
 msgid "worked"
 msgstr "gewerkt"
-
