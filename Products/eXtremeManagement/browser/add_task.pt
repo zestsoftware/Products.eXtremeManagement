@@ -1,4 +1,4 @@
-<div id="add-task"
+<div id="task-form-expanded"
      i18n:domain="eXtremeManagement"
      tal:define="story_view context/@@story">
   <span

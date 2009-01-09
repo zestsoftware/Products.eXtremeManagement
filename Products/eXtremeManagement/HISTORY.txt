@@ -5,6 +5,8 @@ History
 2.0beta2 (unreleased)
 ---------------------
 
+- Refactored the add_task KSS - it now collapses again. [simon]
+
 - Added totals to the finished iterations view and (total) estimate to
   the planned iterations view. [reinout + mark]
 

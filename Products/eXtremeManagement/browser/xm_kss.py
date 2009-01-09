@@ -71,7 +71,7 @@ class KSSTaskForm(PloneKSSView):
         """Return the add task form"""
         core = self.getCommandSet('core')
         zope = self.getCommandSet('zope')
-        selector = core.getHtmlIdSelector('add-task')
+        selector = core.getHtmlIdSelector('task-form')
         zope.refreshProvider(selector, 'xm.task_form')
 
 
