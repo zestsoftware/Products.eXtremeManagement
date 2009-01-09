@@ -5,7 +5,7 @@ History
 2.0beta2 (unreleased)
 ---------------------
 
-- Addd totals to the finished iterations view and (total) estimate to
+- Added totals to the finished iterations view and (total) estimate to
   the planned iterations view. [reinout + mark]
 
 
