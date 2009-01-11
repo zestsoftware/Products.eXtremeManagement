@@ -2,10 +2,10 @@ History
 =======
 
 
-2.0beta3 (unreleased)
+2.0beta3 (2009-01-11)
 ---------------------
 
-- Nothing changed yet.
+- Fixed bug in the 'my projects' listing in the project portlet. [jladage]
 
 
 2.0beta2 (2009-01-09)

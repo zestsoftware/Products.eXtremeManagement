@@ -15,11 +15,16 @@ and do not bother with filtering.
     ...     return map(unquote, path)
     >>> from zope.publisher.browser import TestRequest
     >>> TestRequest.physicalPathFromURL = physicalPathFromURL
+    >>> wf = self.portal.portal_workflow
     >>> catalog = self.portal.portal_catalog
     >>> len(catalog(portal_type='Project'))
     1
     >>> len(catalog(portal_type='Task'))
     1
+    >>> projectbrain = catalog(portal_type='Project')
+    >>> project = projectbrain[0].getObject()
+    >>> self.setRoles(['Manager'])
+    >>> wf.doActionFor(project, 'activate', wf_id='eXtreme_Project_Workflow')
     >>> from Products.eXtremeManagement.browser.projects import MyProjects
     >>> myprojects = MyProjects(self.portal, TestRequest())
     >>> myprojects.projectlist
@@ -28,8 +33,9 @@ and do not bother with filtering.
 We add another Project so we have to do some filtering.  But we are
 still assigned to a task in that project, so the project still shows.
 
-    >>> self.setRoles(['Manager'])
     >>> dummy = self.portal.invokeFactory('Project', 'my-project')
+    >>> myproject = self.portal['my-project']
+    >>> wf.doActionFor(myproject, 'activate')
     >>> self.setRoles(['Employee'])
     >>> myprojects = MyProjects(self.portal, TestRequest())
     >>> myprojects.projectlist

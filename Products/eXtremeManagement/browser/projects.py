@@ -28,7 +28,8 @@ class MyProjects(XMBaseView):
     def projectlist(self):
         context = aq_inner(self.context)
         # Get a list of all projects
-        projectbrains = self.catalog.searchResults(portal_type='Project')
+        projectbrains = self.catalog.searchResults(portal_type='Project',
+                                                   review_state='active')
 
         if len(projectbrains) <= 1:
             # If there is maximal 1 project: return it...
