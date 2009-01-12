@@ -141,8 +141,7 @@
 /* ----project administration view ---- */
 
 .project_title, .booking_title,
-.header_projectmember_listing th,
-{
+.header_projectmember_listing th{
   font-weight: bold !important;
 }
 
@@ -378,7 +377,7 @@ UL.xm-assignees LI {
 /* booking_month  */
 
 .greyed {
-    color: Grey;
+    color: #666;
     background: #f3f3f1 url(&dtml-portal_url;/background_tableFix.gif) 0 0 repeat-x;
 }
 
@@ -410,7 +409,7 @@ UL.xm-assignees LI {
 .gantt-chart .space {
     height: 20px;
     color: #fff;
-    overflow: hide;
+    overflow: hidden;
 }
 
 .gantt-chart .time-row th {
