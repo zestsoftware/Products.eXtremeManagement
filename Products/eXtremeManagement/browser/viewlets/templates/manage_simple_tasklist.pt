@@ -57,7 +57,7 @@
       </td>
     </tr>
 
-    <tr id="totalTasks">
+    <tr class="totalTasks">
       <th class="td-story-title"
           tal:attributes="colspan python:show_story and 2 or 1"
           i18n:translate="total">

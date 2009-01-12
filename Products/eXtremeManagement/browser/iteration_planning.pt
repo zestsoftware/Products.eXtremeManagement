@@ -55,19 +55,7 @@
                     <td><input type="text" tal:attributes="name story/uid; value story/size_estimate | nothing" /></td>
                 </tr>
                 </tal:repeat>
-<!--
-    <tr id="totalTasks"
-       tal:condition="show_totals">
-          <th class="td-story-title"
-             colspan="2"
-             tal:attributes="colspan python:show_task_count and 4 or 2"
-             i18n:translate="total"
-             i18n:domain="eXtremeManagement">Total</th>
-          <th tal:content="context/size_estimate" />
-          <th tal:content="context/estimate" />
-          <th tal:content="context/actual" />
-    </tr>
--->
+
               </tbody>
             </table>
             <input type="hidden" name="form.submitted" value="1" />

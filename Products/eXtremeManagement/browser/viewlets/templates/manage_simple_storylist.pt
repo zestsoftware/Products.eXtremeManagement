@@ -125,7 +125,7 @@
       </tr>
     </tal:repeat>
     
-    <tr id="totalTasks"
+    <tr class="totalTasks"
        tal:condition="show_totals">
           <th class="td-story-title"
              colspan="2"

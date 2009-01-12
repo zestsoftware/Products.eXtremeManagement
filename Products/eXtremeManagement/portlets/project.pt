@@ -28,8 +28,8 @@
        i18n:translate="label_release_plan">Release Plan</a>
   </dd>
 
-  <dd class="portletFooter">
-    <span class="myProject"><tal:single condition="view/has_single_project">
+  <dd class="myProject">
+    <tal:single condition="view/has_single_project">
       <a href=""
          tal:define="project python:view.my_projects()[0]"
          tal:attributes="href project/url;
@@ -42,7 +42,7 @@
     <tal:multiple condition="view/has_projects">
       <dl id="my-projects-menu" class="actionMenu deactivated">
         <dt class="actionMenuHeader label-my-projects">
-          <a id="" href="#">
+          <a href="#">
             <span i18n:domain="xm.theme"
                   i18n:translate="label_my_projects">My Projects</span>
             <span class="arrowDownAlternative">&#9660;</span>
@@ -62,7 +62,7 @@
           </ul>
         </dd>
       </dl>
-    </tal:multiple></span>
+    </tal:multiple>
     <span class="portletBottomLeft"></span>
     <span class="portletBottomRight"></span>
   </dd>
