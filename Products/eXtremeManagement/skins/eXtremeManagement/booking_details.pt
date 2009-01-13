@@ -43,7 +43,7 @@
 
         <table border="0"
                class="listing"
-               with="100%">
+               >
           <tr>
             <th class="nosort" i18n:translate="listingheader-date">
               Date
