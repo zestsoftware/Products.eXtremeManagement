@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-01-13 14:49+0000\n"
+"POT-Creation-Date: 2009-01-13 20:01+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -147,6 +147,16 @@ msgstr ""
 #. Default: "Overview of tasks that are assigned to you. The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
 #: ./skins/eXtremeManagement/task_overview.pt:19
 msgid "description-overview-my-tasks"
+msgstr ""
+
+#. Default: "Nothing invoiced yet"
+#: ./browser/invoicing.pt:106
+msgid "description_nothing_invoiced"
+msgstr ""
+
+#. Default: "Nothing to invoice"
+#: ./browser/invoicing.pt:59
+msgid "description_nothing_to_invoice"
 msgstr ""
 
 #. Default: "This view provides an overall plan for this project. You can prioritize stories by dragging them inside and between iterations."
@@ -404,7 +414,7 @@ msgid "head_iterations"
 msgstr ""
 
 #. Default: "Invoiced this month"
-#: ./browser/invoicing.pt:58
+#: ./browser/invoicing.pt:62
 msgid "head_this_month"
 msgstr ""
 
@@ -679,7 +689,7 @@ msgid "listingheader-time"
 msgstr ""
 
 #. Default: "Total"
-#: ./browser/planned_iterations.pt:69
+#: ./browser/planned_iterations.pt:39
 msgid "listingheader-total"
 msgstr ""
 
@@ -754,7 +764,7 @@ msgid "listingheader_title"
 msgstr ""
 
 #. Default: "Total Actual"
-#: ./browser/finished.pt:53
+#: ./browser/finished.pt:34
 msgid "listingheader_total_actual"
 msgstr ""
 

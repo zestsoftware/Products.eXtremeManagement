@@ -14,7 +14,7 @@
         Invoicing overview
       </h1>
 
-      <table class="listing">
+      <table class="listing" tal:condition="view/projectlist">
         <tr>
           <th class="nosort" i18n:translate="listingheader_projects">
             Project
@@ -55,8 +55,13 @@
           </tal:iterations>
         </tal:projects>
       </table>
+      
+      <p tal:condition="not: view/projectlist"
+         i18n:translate="description_nothing_to_invoice">Nothing to invoice</p>
+
       <h2 i18n:translate="head_this_month"> Invoiced this month </h2>
-      <table class="listing">
+
+      <table class="listing" tal:condition="view/invoicedlist">
         <tr>
           <th class="nosort" i18n:translate="listingheader_projects">
             Project
@@ -97,6 +102,9 @@
           </tal:iterations>
         </tal:projects>
       </table>
+
+      <p tal:condition="not: view/invoicedlist"
+         i18n:translate="description_nothing_invoiced">Nothing invoiced yet</p>
 
     </div>
   </body>

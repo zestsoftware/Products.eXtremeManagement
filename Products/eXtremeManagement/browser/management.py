@@ -42,6 +42,7 @@ class IterationListBaseView(XMBaseView):
             cfilter['review_state'] = 'active'
         projectbrains = self.catalog.searchResults(cfilter)
 
+        results = []
         for projectbrain in projectbrains:
             searchpath = projectbrain.getPath()
             # Search for Iterations that are ready to get invoiced
@@ -57,7 +58,8 @@ class IterationListBaseView(XMBaseView):
                     iteration_list.append(info)
                 info = self.projectbrain2dict(projectbrain)
                 info['iterations'] = self.sort_results(iteration_list)
-                yield info
+                results.append(info)
+        return results
 
     @memoize
     def total(self):
@@ -128,6 +130,7 @@ class InvoicingView(IterationListBaseView):
             portal_type='Iteration',
             review_state='invoiced',
             modified={'query': start_of_month, 'range': 'min'})
+        results = []
         for iterationbrain in iterationbrains:
             iteration_info = self.iterationbrain2dict(iterationbrain)
             self.add_to_total(iteration_info)
@@ -136,7 +139,8 @@ class InvoicingView(IterationListBaseView):
                                 title=project.Title(),
                                 description=project.Description())
             project_info['iterations'] = [iteration_info]
-            yield project_info
+            results.append(project_info)
+        return results
 
 
 class InProgressView(IterationListBaseView):
