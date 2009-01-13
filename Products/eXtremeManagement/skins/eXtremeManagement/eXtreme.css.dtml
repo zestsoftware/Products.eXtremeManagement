@@ -65,7 +65,8 @@
   margin-top: 10px;
 }
 
-.td-story-title, .td-memberid, .td-center  {
+.td-story-title, .td-memberid, .td-center,
+.StatusOfStories th {
   text-align: left !important;
   cursor: pointer;
 }
