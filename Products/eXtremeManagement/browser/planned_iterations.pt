@@ -17,7 +17,7 @@
         Planned iterations
       </h1>
 
-      <table class="listing">
+      <table class="listing" tal:condition="view/projectlist">
         <thead>
           <tr>
             <th class="nosort" i18n:translate="listingheader_iteration">
@@ -75,6 +75,12 @@
           </tal:projects>
         </tbody>
       </table>
+
+      <p tal:condition="not: view/projectlist"
+         i18n:translate="description_no_iterations_planned">
+         No iterations are planned at this moment.</p>
+      <a tal:attributes="href string: ${view/project_url}/createObject?type_name=Iteration"
+         i18n:translate="link_create_iteration">New Iteration</a>
 
     </div>
   </body>

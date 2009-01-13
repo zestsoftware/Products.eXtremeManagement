@@ -14,7 +14,7 @@
         In-progress overview
       </h1>
 
-      <table class="listing">
+      <table class="listing" tal:condition="view/projectlist">
         <tr>
           <th class="nosort" i18n:translate="listingheader_projects">
             Project
@@ -55,6 +55,10 @@
           </tal:iterations>
         </tal:projects>
       </table>
+      
+      <p tal:condition="not: view/projectlist"
+         i18n:translate="description_no_iterations_in_progress">
+         No iterations in progress at this moment.</p>
 
     </div>
   </body>

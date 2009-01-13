@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-01-13 20:01+0000\n"
+"POT-Creation-Date: 2009-01-13 20:25+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -149,6 +149,16 @@ msgstr ""
 #. Default: "Overview of tasks that are assigned to you. The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
 #: ./skins/eXtremeManagement/task_overview.pt:19
 msgid "description-overview-my-tasks"
+msgstr ""
+
+#. Default: "No iterations in progress at this moment."
+#: ./browser/inprogress.pt:59
+msgid "description_no_iterations_in_progress"
+msgstr ""
+
+#. Default: "No iterations are planned at this moment."
+#: ./browser/planned_iterations.pt:79
+msgid "description_no_iterations_planned"
 msgstr ""
 
 #. Default: "Nothing invoiced yet"
@@ -731,6 +741,11 @@ msgstr ""
 #: ./skins/eXtremeManagement/booking_month.pt:20
 msgid "last_12_months"
 msgstr "posledních 12 měsíců"
+
+#. Default: "New Iteration"
+#: ./browser/planned_iterations.pt:82
+msgid "link_create_iteration"
+msgstr ""
 
 #. Default: "Booking"
 #: ./skins/eXtremeManagement/booking_details.pt:54

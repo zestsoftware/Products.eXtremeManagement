@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-01-13 20:01+0000\n"
+"POT-Creation-Date: 2009-01-13 20:25+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -147,6 +147,16 @@ msgstr ""
 #. Default: "Overview of tasks that are assigned to you. The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
 #: ./skins/eXtremeManagement/task_overview.pt:19
 msgid "description-overview-my-tasks"
+msgstr ""
+
+#. Default: "No iterations in progress at this moment."
+#: ./browser/inprogress.pt:59
+msgid "description_no_iterations_in_progress"
+msgstr ""
+
+#. Default: "No iterations are planned at this moment."
+#: ./browser/planned_iterations.pt:79
+msgid "description_no_iterations_planned"
 msgstr ""
 
 #. Default: "Nothing invoiced yet"
@@ -661,6 +671,11 @@ msgstr ""
 #. Default: "last 12 months"
 #: ./skins/eXtremeManagement/booking_month.pt:20
 msgid "last_12_months"
+msgstr ""
+
+#. Default: "New Iteration"
+#: ./browser/planned_iterations.pt:82
+msgid "link_create_iteration"
 msgstr ""
 
 #. Default: "Booking"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement-es\n"
-"POT-Creation-Date: 2009-01-13 20:01+0000\n"
+"POT-Creation-Date: 2009-01-13 20:25+0000\n"
 "PO-Revision-Date: 2007-12-09 14:30-0300\n"
 "Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
 "Language-Team: Spanish\n"
@@ -153,6 +153,16 @@ msgstr "días"
 #, fuzzy
 msgid "description-overview-my-tasks"
 msgstr "Visión general de las tareas que me pertenecen. Los totales mencionados son mi tiempo total, por lo que usualmente diferirán de agregarles los números de la columna arriba de ellos."
+
+#. Default: "No iterations in progress at this moment."
+#: ./browser/inprogress.pt:59
+msgid "description_no_iterations_in_progress"
+msgstr ""
+
+#. Default: "No iterations are planned at this moment."
+#: ./browser/planned_iterations.pt:79
+msgid "description_no_iterations_planned"
+msgstr ""
 
 #. Default: "Nothing invoiced yet"
 #: ./browser/invoicing.pt:106
@@ -670,6 +680,11 @@ msgstr ""
 #: ./skins/eXtremeManagement/booking_month.pt:20
 msgid "last_12_months"
 msgstr "últimos 12 meses"
+
+#. Default: "New Iteration"
+#: ./browser/planned_iterations.pt:82
+msgid "link_create_iteration"
+msgstr ""
 
 #. Default: "Booking"
 #: ./skins/eXtremeManagement/booking_details.pt:54

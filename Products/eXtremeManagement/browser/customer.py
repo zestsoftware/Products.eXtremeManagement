@@ -64,3 +64,6 @@ class PlannedIterationsView(IterationListBaseView):
 
         results.sort(key=sort_key)
         return results
+        
+    def project_url(self):
+        return self.context.getProject().absolute_url()
