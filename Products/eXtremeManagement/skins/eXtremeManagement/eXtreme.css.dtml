@@ -65,12 +65,9 @@
   margin-top: 10px;
 }
 
-.td-story-title, .td-memberid {
+.td-story-title, .td-memberid, .td-center  {
   text-align: left !important;
   cursor: pointer;
-}
-
-.td-story-title {
 }
 
 .td-story-title .story-title {
@@ -109,8 +106,15 @@
 }   
 
 .totalOfProject .remaining_budget {
-    padding: 2px 32px 0 18px !important;
+    padding: 2px 6px 0 18px !important;
 }
+
+/* start story-listing css*/
+#story-listing td,
+#story-listing th {
+    text-align: right;
+}
+/* stop story-listing css*/
 
 /* LS- remaining budget - end */    
 
