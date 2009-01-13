@@ -34,6 +34,16 @@
             </th>
           </tr>
         </thead>
+        <tfoot tal:condition="view/total">
+          <tr>
+            <th colspan="3"
+                i18n:translate="listingheader-total">
+              Total
+            </th>
+            <td class="right total"
+                tal:content="view/total" />
+          </tr>
+        </tfoot>
         <tbody>
           <tal:projects tal:repeat="project view/projectlist">
             <tal:iterations tal:repeat="iteration project/iterations">
@@ -64,17 +74,6 @@
             </tal:iterations>
           </tal:projects>
         </tbody>
-        <tfoot tal:condition="view/total">
-          <tr>
-            <th colspan="3"
-                i18n:translate="listingheader-total">
-              Total
-            </th>
-            <td class="right total"
-                tal:content="view/total" />
-          </tr>
-        </tfoot>
-
       </table>
 
     </div>
