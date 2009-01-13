@@ -1,5 +1,7 @@
-from Acquisition import aq_inner
+from Acquisition import aq_inner, aq_parent
 from zope import component
+from DateTime import DateTime
+from plone.memoize.view import memoize
 
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
@@ -22,6 +24,7 @@ class IterationListBaseView(XMBaseView):
         """Add additional information to the iterationdict."""
         return {}
 
+    @memoize
     def projectlist(self):
         context = aq_inner(self.context)
         searchpath = '/'.join(context.getPhysicalPath())
@@ -56,6 +59,7 @@ class IterationListBaseView(XMBaseView):
                 info['iterations'] = self.sort_results(iteration_list)
                 yield info
 
+    @memoize
     def total(self):
         if self._total is None:
             # projectlist hasn't been called yet, so do it to
@@ -111,6 +115,28 @@ class IterationListBaseView(XMBaseView):
 class InvoicingView(IterationListBaseView):
 
     iteration_review_state = 'completed'
+
+    @memoize
+    def invoicedlist(self):
+        """ Return a list on invoiced iterations
+        """
+        # Search for Iterations that have been invoiced in the past month
+        year = DateTime().year()
+        month = DateTime().month()
+        start_of_month = DateTime(year, month, 1)
+        iterationbrains = self.catalog.searchResults(
+            portal_type='Iteration',
+            review_state='invoiced',
+            modified={'query': start_of_month, 'range': 'min'})
+        for iterationbrain in iterationbrains:
+            iteration_info = self.iterationbrain2dict(iterationbrain)
+            self.add_to_total(iteration_info)
+            project = aq_parent(aq_inner(iterationbrain.getObject()))
+            project_info = dict(url=project.absolute_url(),
+                                title=project.Title(),
+                                description=project.Description())
+            project_info['iterations'] = [iteration_info]
+            yield project_info
 
 
 class InProgressView(IterationListBaseView):

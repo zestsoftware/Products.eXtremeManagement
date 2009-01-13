@@ -15,7 +15,7 @@
   </dd>
   <dd class="portletItem even">
     <a tal:attributes="href string:${view/site_url}/invoicing"
-       i18n:translate="label_invoicing_overview">
+       i18n:translate="head_to_invoice">
       To invoice
     </a>
   </dd>

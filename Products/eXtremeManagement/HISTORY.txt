@@ -5,7 +5,7 @@ History
 2.0beta4 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Added listing of iterations that have been invoiced this month. [jladage]
 
 
 2.0beta3 (2009-01-11)

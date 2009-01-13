@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-01-08 13:53+0000\n"
+"POT-Creation-Date: 2009-01-13 14:49+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -40,11 +40,11 @@ msgstr ""
 msgid "Click on the lock icon to edit the story"
 msgstr ""
 
-#: ./portlets/poi_creation.py:38
+#: ./portlets/poi_creation.py:37
 msgid "Create tasks from issues"
 msgstr ""
 
-#: ./browser/releaseplan.py:209
+#: ./browser/releaseplan.py:198
 msgid "Drag/drop uids incorrect"
 msgstr ""
 
@@ -57,11 +57,11 @@ msgstr ""
 msgid "Issues"
 msgstr ""
 
-#: ./portlets/iterations.py:41
+#: ./portlets/iterations.py:40
 msgid "Iterations"
 msgstr ""
 
-#: ./browser/releaseplan.py:223
+#: ./browser/releaseplan.py:212
 msgid "Move failed: story locked. Unlock the story to move it."
 msgstr ""
 
@@ -72,10 +72,6 @@ msgstr ""
 
 #: ./portlets/project.py:102
 msgid "Offer"
-msgstr ""
-
-#: ./portlets/project.py:104
-msgid "Overview Chart"
 msgstr ""
 
 #: ./browser/maintenance.py:16
@@ -91,15 +87,15 @@ msgstr ""
 msgid "Project links"
 msgstr ""
 
-#: ./portlets/poi.py:38
+#: ./portlets/poi.py:37
 msgid "Related XM Tasks"
 msgstr ""
 
-#: ./browser/tasks.py:383
+#: ./browser/tasks.py:375
 msgid "Task added"
 msgstr ""
 
-#: ./browser/tasks.py:358
+#: ./browser/tasks.py:350
 msgid "Title is required"
 msgstr ""
 
@@ -148,8 +144,8 @@ msgstr ""
 msgid "days"
 msgstr ""
 
-#. Default: "Overview of tasks that belong to me.  The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
-#: ./skins/eXtremeManagement/iteration_view.pt:169
+#. Default: "Overview of tasks that are assigned to you. The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
+#: ./skins/eXtremeManagement/task_overview.pt:19
 msgid "description-overview-my-tasks"
 msgstr ""
 
@@ -407,6 +403,16 @@ msgstr ""
 msgid "head_iterations"
 msgstr ""
 
+#. Default: "Invoiced this month"
+#: ./browser/invoicing.pt:58
+msgid "head_this_month"
+msgstr ""
+
+#. Default: "To invoice"
+#: ./portlets/managers.pt:17
+msgid "head_to_invoice"
+msgstr ""
+
 #. Default: "Create tasks from issues"
 #: ./portlets/poi_creation.pt:5
 msgid "header-create-tasks-from-issues"
@@ -442,19 +448,9 @@ msgstr ""
 msgid "heading-hours-per-employee"
 msgstr ""
 
-#. Default: "My to-do tasks"
-#: ./skins/eXtremeManagement/iteration_view.pt:167
-msgid "heading-in-progress-tasks"
-msgstr ""
-
 #. Default: "My task list"
 #: ./skins/eXtremeManagement/task_overview.pt:17
 msgid "heading-my-task-overview"
-msgstr ""
-
-#. Default: "My open tasks"
-#: ./skins/eXtremeManagement/iteration_view.pt:186
-msgid "heading-open-tasks"
 msgstr ""
 
 #. Default: "Related XM Tasks"
@@ -468,12 +464,12 @@ msgid "heading-stories"
 msgstr ""
 
 #. Default: "Attached files and images"
-#: ./skins/eXtremeManagement/story_view.pt:137
+#: ./skins/eXtremeManagement/story_view.pt:135
 msgid "heading_attachements"
 msgstr ""
 
 #. Default: "Current Iterations"
-#: ./skins/eXtremeManagement/project_view.pt:49
+#: ./skins/eXtremeManagement/project_view.pt:47
 msgid "heading_current_iterations"
 msgstr ""
 
@@ -553,7 +549,7 @@ msgid "label_add_task"
 msgstr ""
 
 #. Default: "Budget (hours)"
-#: ./skins/eXtremeManagement/project_view.pt:19
+#: ./skins/eXtremeManagement/project_view.pt:17
 msgid "label_budgetHours"
 msgstr ""
 
@@ -563,7 +559,7 @@ msgid "label_current_iteration"
 msgstr ""
 
 #. Default: "Date completed"
-#: ./browser/finished.pt:20
+#: ./browser/finished.pt:21
 msgid "label_date_completed"
 msgstr ""
 
@@ -573,7 +569,7 @@ msgid "label_date_due"
 msgstr ""
 
 #. Default: "Planned Start Date"
-#: ./browser/planned_iterations.pt:25
+#: ./browser/planned_iterations.pt:26
 msgid "label_date_start"
 msgstr ""
 
@@ -583,7 +579,7 @@ msgid "label_finished_overview"
 msgstr ""
 
 #. Default: "Hours worked"
-#: ./browser/finished.pt:26
+#: ./browser/finished.pt:27
 msgid "label_hours_worked"
 msgstr ""
 
@@ -603,7 +599,7 @@ msgid "label_invoicing_overview"
 msgstr ""
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/releaseplan.py:229
+#: ./browser/releaseplan.py:218
 msgid "label_moved_succesfully"
 msgstr ""
 
@@ -613,12 +609,12 @@ msgid "label_new_iterations_overview"
 msgstr ""
 
 #. Default: "Offer(s)"
-#: ./skins/eXtremeManagement/project_view.pt:27
+#: ./skins/eXtremeManagement/project_view.pt:25
 msgid "label_offer"
 msgstr ""
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/releaseplan.py:254
+#: ./browser/releaseplan.py:243
 msgid "label_order_updated_succesfully"
 msgstr ""
 
@@ -652,11 +648,6 @@ msgstr ""
 msgid "label_total_hours"
 msgstr ""
 
-#. Default: "Unknown date"
-#: ./browser/inprogress.pt:46
-msgid "label_unknown_date"
-msgstr ""
-
 #. Default: "last 12 months"
 #: ./skins/eXtremeManagement/booking_month.pt:20
 msgid "last_12_months"
@@ -688,7 +679,7 @@ msgid "listingheader-time"
 msgstr ""
 
 #. Default: "Total"
-#: ./skins/eXtremeManagement/booking_details.pt:85
+#: ./browser/planned_iterations.pt:69
 msgid "listingheader-total"
 msgstr ""
 
@@ -728,7 +719,7 @@ msgid "listingheader_estimate_hours"
 msgstr ""
 
 #. Default: "Iteration"
-#: ./browser/finished.pt:23
+#: ./browser/finished.pt:24
 msgid "listingheader_iteration"
 msgstr ""
 
@@ -763,7 +754,7 @@ msgid "listingheader_title"
 msgstr ""
 
 #. Default: "Total Actual"
-#: ./skins/eXtremeManagement/iteration_view.pt:143
+#: ./browser/finished.pt:53
 msgid "listingheader_total_actual"
 msgstr ""
 
@@ -803,7 +794,7 @@ msgid "next"
 msgstr ""
 
 #. Default: "No stories published yet!"
-#: ./skins/eXtremeManagement/iteration_view.pt:196
+#: ./skins/eXtremeManagement/iteration_view.pt:163
 msgid "no_stories_published"
 msgstr ""
 

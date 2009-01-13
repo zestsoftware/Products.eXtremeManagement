@@ -55,6 +55,48 @@
           </tal:iterations>
         </tal:projects>
       </table>
+      <h2 i18n:translate="head_this_month"> Invoiced this month </h2>
+      <table class="listing">
+        <tr>
+          <th class="nosort" i18n:translate="listingheader_projects">
+            Project
+          </th>
+          <th class="nosort" i18n:translate="listingheader_iteration">
+            Iteration
+          </th>
+          <th class="nosort" i18n:translate="label_date_completed">
+              Date completed
+          </th>
+          <th class="nosort" i18n:translate="label_hours_worked">
+            Hours worked
+          </th>
+        </tr>
+
+        <tal:projects tal:repeat="project view/invoicedlist">
+          <tal:iterations tal:repeat="iteration project/iterations">
+            <tr>
+              <td>
+                <a tal:content="project/title"
+                   tal:attributes="title project/description;
+                                   href project/url;"/>
+              </td>
+              <td>
+                <a tal:content="iteration/title"
+                   tal:attributes="title iteration/description;
+                                   href iteration/url;"/>
+              </td>
+              <td tal:condition="not: iteration/completion_date"
+                  class="right"> - </td>
+              <td tal:condition="iteration/completion_date"
+                  tal:content="python:context.toLocalizedTime(iteration['completion_date'],
+                             long_format=0)"
+                  class="right" />
+              <td tal:content="iteration/actual"
+                  class="right" />
+            </tr>
+          </tal:iterations>
+        </tal:projects>
+      </table>
 
     </div>
   </body>

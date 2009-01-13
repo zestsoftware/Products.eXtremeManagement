@@ -145,8 +145,7 @@
 
 /* ----project administration view ---- */
 
-.project_title, .booking_title,
-.header_projectmember_listing th{
+.project_title, .booking_title {
   font-weight: bold !important;
 }
 
