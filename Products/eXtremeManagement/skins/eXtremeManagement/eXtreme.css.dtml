@@ -72,12 +72,12 @@
 }
 
 .td-story-title .story-title {
-    background: transparent url(&dtml-portal_url;/arrow_blue_inactive.gif) no-repeat scroll 2px 0;
+    background: url(&dtml-portal_url;/arrow_blue_inactive.gif) no-repeat scroll 2px 0;
     padding: 0 0 0 20px;
 }
 
 .clear-bottom .story-title {
-    background: transparent url(&dtml-portal_url;/arrow_blue_active.gif) no-repeat scroll 2px 0;
+    background: url(&dtml-portal_url;/arrow_blue_active.gif) no-repeat scroll 2px 0;
 }
 
 /* LS- css for the remaining budget - start */
@@ -91,7 +91,7 @@
     font-size: 90%;
     font-weight: bold;
     color: #5f861e;
-    background: transparent url(&dtml-portal_url;/background_budgetLeft.gif) no-repeat scroll 0 0;
+    background: url(&dtml-portal_url;/background_budgetLeft.gif) no-repeat scroll 0 0;
     border-right: 1px solid #ccc;
     height: 18px;
     margin: 0 0 5px;
@@ -293,7 +293,7 @@ ul.offers_listing {
     color: &dtml-discreetColor;;
     margin: 0;
     padding: 0 0 0 1em;
-    background: transparent url(&dtml-portal_url;/bullet.gif) no-repeat;
+    background: url(&dtml-portal_url;/bullet.gif) no-repeat;
 }
 
 .xm-details table {
@@ -335,7 +335,7 @@ UL.xm-assignees LI {
     list-style: none none inside;
     margin: 0;
     padding: 0 0 0 1.5em;
-    background: transparent url(&dtml-portal_url;/user.gif) no-repeat;
+    background: url(&dtml-portal_url;/user.gif) no-repeat;
 }
 
 .hours-per-employee {
@@ -562,7 +562,7 @@ td.right {
     cursor: pointer;
     margin: 0;
     padding: 4px 4px 4px 18px;
-    background: transparent url(&dtml-portal_url;/arrow_blue_inactive.gif) no-repeat scroll 0 5px;
+    background: url(&dtml-portal_url;/arrow_blue_inactive.gif) no-repeat scroll 0 5px;
     border: 0;
     float: left;
     color: #1C718E;
@@ -572,7 +572,7 @@ td.right {
 /* styling expanded add-task form*/ 
 #task-form-expanded legend {
     padding: 4px 4px 4px 22px;
-    background: transparent url(&dtml-portal_url;/arrow_blue_active.gif) no-repeat scroll 4px 7px;
+    background: url(&dtml-portal_url;/arrow_blue_active.gif) no-repeat scroll 4px 7px;
     color: #1C718E;
     text-transform: lowercase;
 }
