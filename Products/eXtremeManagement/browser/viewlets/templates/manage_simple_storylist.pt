@@ -115,7 +115,7 @@
       </tr>
       <tr class="story-details-empty"
           tal:attributes="id string:story-details-${story/uid};">
-        <td id="story-details-td" colspan="5"
+        <td class="story-details-td" colspan="5"
             tal:attributes="colspan python:view.show_task_count and 7 or 5;">
           <span
               tal:attributes="id string:story-details-target-${story/uid};">

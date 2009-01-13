@@ -392,11 +392,11 @@ UL.xm-assignees LI {
 }
 
 /* LS - ugly little fix.. to overlap the tablerow backgroundimage*/
-#story-details-td {
+.story-details-td {
     background: #FDFDFC;
 }
 
-#story-details-td  table.listing {
+.story-details-td  table.listing {
 	font-size: 95%;
 }
 
