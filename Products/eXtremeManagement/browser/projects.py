@@ -20,8 +20,6 @@ class MyProjects(XMBaseView):
     """
     request = None
     context = None
-    states = ('open', 'to-do')
-    # Use state = '' if you do not want to filter for states.
 
     @property
     @memoize
@@ -49,20 +47,20 @@ class MyProjects(XMBaseView):
             # projects
             projectbrain = projectbrains[0]
             roles = member.getRolesInContext(projectbrain.getObject())
-            if 'ProjectManager' in roles or \
-                'Manager' in roles or \
+            if 'ProjectManager' in roles or 'Manager' in roles or \
                 'Customer' in roles and 'Employee' not in roles:
                 return projectbrains
 
             # Otherwise only show the projects with open tasks assigned to
             # this user.
             plist = []
+            states = ('open', 'to-do')
             for projectbrain in projectbrains:
                 searchpath = projectbrain.getPath()
                 taskbrains = self.catalog.searchResults(portal_type=['Task',
                                                                 'PoiTask'],
                                                    getAssignees=memberid,
-                                                   review_state=self.states,
+                                                   review_state=states,
                                                    path=searchpath)
                 if len(taskbrains) > 0:
                     plist.append(projectbrain)

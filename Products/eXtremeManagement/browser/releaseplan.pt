@@ -14,29 +14,36 @@
       <p i18n:translate="description_releaseplan">This view provides an
          overall plan for this project. You can prioritize stories by
          dragging them inside and between iterations.</p>
-
-      <tal:iterations tal:repeat="iteration view/getIterations">
-        <h2 tal:content="iteration/title"
+         
+      <table class="listing">
+      <tbody id="droppable">
+      <tal:iterations tal:repeat="iteration view/plannable_iterations">
+        <tr>
+          <th>Locked</th>
+          <th tal:content="iteration/title"
             tal:attributes="title iteration/description"/>
-        <ul class="iteration-droptarget"
-            tal:attributes="id iteration/uid">
-          <li tal:repeat="story iteration/stories"
-              class=""
-              id=""
-              tal:attributes="id story/uid;
-                              class string:${story/class} kssattr-source_id-${iteration/uid};">
-            <tal:lock tal:condition="story/locked">
-              <a href=""
-                 tal:attributes="href story/url">
-              <img alt="Click on the lock icon to edit the story"
-                   i18n:attributes="alt"
-                   src="lock_icon.gif"/>
+          <th i18n:translate="eXtremeManagement_label_roughEstimate"/>
+        </tr>
+        <tal:stories repeat="story iteration/stories">
+        <tr tal:attributes="id story/uid;
+                            class string:${story/class} kssattr-source_id-${iteration/uid};">
+          <td>
+            <!-- nice to make this a form that directly unlock the item -->
+            <span tal:omit-tag=""
+                  tal:condition="story/locked">
+              <a tal:attributes="href story/url">
+                <img src="lock_icon.gif"
+                     alt="Click on the lock icon to edit the story"
+                     i18n:attributes="alt"/>
               </a>
-            </tal:lock>
-            <span tal:content="story/title"/>
-          </li>
-        </ul>
+            </span>
+          </td>
+          <td tal:content="story/title"/>
+          <td tal:content="story/estimate"/>
+        </tr>
+        </tal:stories>
       </tal:iterations>
+      </tbody>
 
     </div>
   </body>

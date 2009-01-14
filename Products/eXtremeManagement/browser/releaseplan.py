@@ -95,7 +95,7 @@ class ReleaseplanView(ProjectView):
         iteration = brain.getObject()
         iteration_view = getMultiAdapter((iteration, self.request),
                                          name='iteration')
-        stories = iteration_view.stories(sort_by_state=False, 
+        stories = iteration_view.stories(sort_by_state=False,
                                          locked_status=True)
         stories = self.update_stories(stories)
         returnvalue = dict(
@@ -115,11 +115,14 @@ class ReleaseplanView(ProjectView):
             options = {'edit': 'story-draggable '}
             options.update(story)
             if story['review_state'] == 'completed' or story['locked']:
-               # Don't make me draggable
-               options['edit'] = ''
+                # Don't make me draggable
+                options['edit'] = ''
             story['class'] = format % options
-             
+
         return stories
+
+    def plannable_iterations(self):
+        return self.getIterations(('in-progress', 'new'))
 
 
 class MoveStory(PloneKSSView):
@@ -202,7 +205,7 @@ class MoveStory(PloneKSSView):
         logger.info('%s dragged from %s to %s', story, source, target)
         if source != target:
             # Source and target are different: move the story.
-            # Apparently it's possible for this story to be 'locked' - we'd 
+            # Apparently it's possible for this story to be 'locked' - we'd
             # better be ready for that...
             try:
                 self.move(source, target, story)
@@ -210,13 +213,13 @@ class MoveStory(PloneKSSView):
                 logger.info('Resource locked')
                 IStatusMessage(self.request).addStatusMessage(
                     _(u"Move failed: story locked. "
-                      u"Unlock the story to move it."), 
+                      u"Unlock the story to move it."),
                     type='error')
                 cns.redirectRequest(story.absolute_url())
                 return
 
             msg = _(u'label_moved_succesfully',
-                    default=u"Moved story '${story}' to iteration '${target}'.",
+                default=u"Moved story '${story}' to iteration '${target}'.",
                     mapping={'story': story.Title(),
                              'target': target.Title()})
             plone.issuePortalMessage(msg, msgtype='info')
@@ -245,7 +248,7 @@ class MoveStory(PloneKSSView):
                              u"iteration has been changed."),
                     mapping={'story': story.Title()})
             plone.issuePortalMessage(msg, msgtype='info')
-            
+
     def extract_objects(self, source_id, target_id, story_id):
         """Return tuple of source/target/story objects"""
         uid_catalog = getToolByName(self.context, 'uid_catalog')
