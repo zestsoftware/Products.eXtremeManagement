@@ -110,7 +110,7 @@ class ReleaseplanView(ProjectView):
 
     def update_stories(self, stories):
         """Add a class to the stories' dicts"""
-        format = '%(edit)sstate-%(review_state)s kssattr-story_id-%(uid)s'
+        format = '%(edit)skssattr-story_id-%(uid)s'
         for story in stories:
             options = {'edit': 'story-draggable '}
             options.update(story)
