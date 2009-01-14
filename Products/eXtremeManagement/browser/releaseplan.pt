@@ -15,35 +15,36 @@
          overall plan for this project. You can prioritize stories by
          dragging them inside and between iterations.</p>
          
-      <table class="listing">
-      <tbody id="droppable">
-      <tal:iterations tal:repeat="iteration view/plannable_iterations">
-        <tr>
-          <th>Locked</th>
-          <th tal:content="iteration/title"
-            tal:attributes="title iteration/description"/>
-          <th i18n:translate="eXtremeManagement_label_roughEstimate"/>
-        </tr>
-        <tal:stories repeat="story iteration/stories">
-        <tr tal:attributes="id story/uid;
-                            class string:${story/class} kssattr-source_id-${iteration/uid};">
-          <td>
-            <!-- nice to make this a form that directly unlock the item -->
-            <span tal:omit-tag=""
-                  tal:condition="story/locked">
-              <a tal:attributes="href story/url">
-                <img src="lock_icon.gif"
-                     alt="Click on the lock icon to edit the story"
-                     i18n:attributes="alt"/>
-              </a>
-            </span>
-          </td>
-          <td tal:content="story/title"/>
-          <td tal:content="story/estimate"/>
-        </tr>
-        </tal:stories>
-      </tal:iterations>
-      </tbody>
+      <table class="listing"
+             tal:repeat="iteration view/plannable_iterations">
+        <thead>
+          <tr>
+            <th>Locked</th>
+            <th tal:content="iteration/title"/>
+            <th i18n:translate="eXtremeManagement_label_roughEstimate"/>
+          </tr>
+        </thead>
+        <tbody class="droppable" tal:attributes="id iteration/uid">
+          <tal:stories repeat="story iteration/stories">
+          <tr tal:attributes="id story/uid;
+                              class string:${story/class} kssattr-source_id-${iteration/uid};">
+            <td>
+              <!-- nice to make this a form that directly unlock the item -->
+              <span tal:omit-tag=""
+                    tal:condition="story/locked">
+                <a tal:attributes="href story/url">
+                  <img src="lock_icon.gif"
+                       alt="Click on the lock icon to edit the story"
+                       i18n:attributes="alt"/>
+                </a>
+              </span>
+            </td>
+            <td tal:content="story/title"/>
+            <td tal:content="story/estimate"/>
+          </tr>
+          </tal:stories>
+        </tbody>
+      </table>
 
     </div>
   </body>

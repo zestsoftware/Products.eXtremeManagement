@@ -33,7 +33,7 @@ dl.actionMenu:load {
     evt-yuidnd-dragstart-action: 'ghost';
 }
 
-#droppable:yuidnd-drop {
+.droppable:yuidnd-drop {
     evt-yuidnd-drop-action: 'order';
 }
 
