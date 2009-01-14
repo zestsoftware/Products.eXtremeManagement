@@ -15,7 +15,7 @@ class FinishedIterationsView(IterationListBaseView):
         if self._total is None:
             # projectlist hasn't been called yet, so do it to
             # update the total.
-            list(self.projectlist())
+            self.projectlist()
         if self._total is None:
             # total could still be none if there are no iterations.
             return ''

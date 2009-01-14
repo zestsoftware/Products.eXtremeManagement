@@ -62,21 +62,33 @@
       <h2 i18n:translate="head_this_month"> Invoiced this month </h2>
 
       <table class="listing" tal:condition="view/invoicedlist">
-        <tr>
-          <th class="nosort" i18n:translate="listingheader_projects">
-            Project
-          </th>
-          <th class="nosort" i18n:translate="listingheader_iteration">
-            Iteration
-          </th>
-          <th class="nosort" i18n:translate="label_date_completed">
-              Date completed
-          </th>
-          <th class="nosort" i18n:translate="label_hours_worked">
-            Hours worked
-          </th>
-        </tr>
-
+        <thead>
+          <tr>
+            <th class="nosort" i18n:translate="listingheader_projects">
+                Project
+            </th>
+            <th class="nosort" i18n:translate="listingheader_iteration">
+                Iteration
+            </th>
+            <th class="nosort" i18n:translate="label_date_completed">
+                Date completed
+            </th>
+            <th class="nosort" i18n:translate="label_hours_worked">
+                Hours worked
+            </th>
+          </tr>
+        </thead>
+        <tfoot tal:condition="view/invoiced_total">
+          <tr>
+            <th colspan="3"
+                i18n:translate="listingheader-total">
+                Total
+            </th>
+            <td class="right total"
+                tal:content="view/invoiced_total" />
+          </tr>
+        </tfoot>
+        <tbody>
         <tal:projects tal:repeat="project view/invoicedlist">
           <tal:iterations tal:repeat="iteration project/iterations">
             <tr>
@@ -101,6 +113,7 @@
             </tr>
           </tal:iterations>
         </tal:projects>
+        </tbody>
       </table>
 
       <p tal:condition="not: view/invoicedlist"

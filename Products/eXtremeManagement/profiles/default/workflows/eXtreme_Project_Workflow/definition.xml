@@ -78,6 +78,9 @@
                   acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
+   <permission-role>Employee"</permission-role>
+   <permission-role>Customer"</permission-role>
+
   </permission-map>
   <permission-map name="eXtremeManagement: Add Story"
                   acquired="False">
@@ -198,6 +201,7 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
+   <permission-role>Employee"</permission-role>
   </permission-map>
   <permission-map name="eXtremeManagement: Add Story"
                   acquired="False">

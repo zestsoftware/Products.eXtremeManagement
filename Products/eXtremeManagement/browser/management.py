@@ -2,10 +2,12 @@ from Acquisition import aq_inner, aq_parent
 from zope import component
 from DateTime import DateTime
 from plone.memoize.view import memoize
+import logging
 
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
 
+logger = logging.getLogger('xm.listing')
 
 class IterationListBaseView(XMBaseView):
 
@@ -39,8 +41,9 @@ class IterationListBaseView(XMBaseView):
                                                  name=u'plone_portal_state')
         portal = portal_state.portal()
         if context == portal:
-            cfilter['review_state'] = 'active'
+            cfilter['review_state'] = 'active'               
         projectbrains = self.catalog.searchResults(cfilter)
+        logger.info('%r projects found to iterate over' % len(projectbrains))
 
         results = []
         for projectbrain in projectbrains:
@@ -89,6 +92,7 @@ class IterationListBaseView(XMBaseView):
             description = brain.Description,
             icon = brain.getIcon,
             man_hours = brain.getManHours,
+            raw_estimate = estimate,
             estimate = formatTime(estimate),
             actual = formatTime(actual),
             difference = formatTime(estimate - actual),
@@ -118,6 +122,33 @@ class InvoicingView(IterationListBaseView):
 
     iteration_review_state = 'completed'
 
+    _invoiced_total = 0.0
+
+    def add_to_total(self, iteration_dict):
+        if self._total is None:
+            self._total = 0
+        self._total += iteration_dict['raw_estimate']
+
+    def total(self):
+        if self._total is None:
+            # projectlist hasn't been called yet, so do it to
+            # update the total.
+            self.projectlist()
+        if self._total is None:
+            # total could still be none if there are no iterations.
+            return ''
+        return '%.2f' % self._total
+
+    def invoiced_total(self):
+        if self._invoiced_total is None:
+            # projectlist hasn't been called yet, so do it to
+            # update the total.
+            self.invoicedlist()
+        if self._invoiced_total is None:
+            # total could still be none if there are no iterations.
+            return ''
+        return '%.2f' % self._invoiced_total
+
     @memoize
     def invoicedlist(self):
         """ Return a list on invoiced iterations
@@ -133,7 +164,7 @@ class InvoicingView(IterationListBaseView):
         results = []
         for iterationbrain in iterationbrains:
             iteration_info = self.iterationbrain2dict(iterationbrain)
-            self.add_to_total(iteration_info)
+            self._invoiced_total += float(iterationbrain.estimate)
             project = aq_parent(aq_inner(iterationbrain.getObject()))
             project_info = dict(url=project.absolute_url(),
                                 title=project.Title(),
@@ -145,4 +176,39 @@ class InvoicingView(IterationListBaseView):
 
 class InProgressView(IterationListBaseView):
 
-    iteration_review_state = 'in-progress'
+
+    def add_to_total(self, iteration_dict):
+        if self._total is None:
+            self._total = 0.0
+        self._total += float(iteration_dict['raw_estimate'])
+
+    def total(self):
+        if self._total is None:
+            # projectlist hasn't been called yet, so do it to
+            # update the total.
+            self.projectlist()
+        if self._total is None:
+            # total could still be none if there are no iterations.
+            return ''
+        return '%.2f' % self._total
+
+    @memoize
+    def projectlist(self):
+        """ Return a list on invoiced iterations
+        """
+        # Search for Iterations that have been invoiced in the past month
+        iterationbrains = self.catalog.searchResults(
+            portal_type='Iteration',
+            getBillableProject=True,
+            review_state='in-progress')
+        results = []
+        for iterationbrain in iterationbrains:
+            iteration_info = self.iterationbrain2dict(iterationbrain)
+            self.add_to_total(iteration_info)
+            project = aq_parent(aq_inner(iterationbrain.getObject()))
+            project_info = dict(url=project.absolute_url(),
+                                title=project.Title(),
+                                description=project.Description())
+            project_info['iterations'] = [iteration_info]
+            results.append(project_info)
+        return results
