@@ -140,6 +140,8 @@ class IterationClosingView(BrowserView):
             iteration._renameAfterCreation(check_auto_id=True)
             iteration.unmarkCreationFlag()
             iteration = self.project[iteration.getId()]
+            logger.info('Created new iteration: %s' %
+                        '/'.join(iteration.getPhysicalPath()))
         else:
             uid = form['targetit']
             refcat = cmfutils.getToolByName(self.context, 'reference_catalog')
@@ -149,6 +151,8 @@ class IterationClosingView(BrowserView):
 
     def handle_close(self):
         targetit = self.ensure_targetit()
+        self.targetit = {'title': targetit.Title(),
+                         'url': targetit.absolute_url()}
         self.migrate_stories(targetit)
         return self.iteration_close_state()
 
