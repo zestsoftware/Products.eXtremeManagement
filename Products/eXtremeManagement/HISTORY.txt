@@ -7,7 +7,8 @@ History
 
 - Added listing of iterations that have been invoiced this month. [jladage]
 
-- Refactored the releaseplan view to a table view. [jladage]
+- In the releaseplan you can now drag and drop stories to/from the unplanned
+  stories table. [jladage]
 
 
 2.0beta3 (2009-01-11)
