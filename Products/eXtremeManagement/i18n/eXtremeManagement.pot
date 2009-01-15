@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-01-15 11:44+0000\n"
+"POT-Creation-Date: 2009-01-15 15:58+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -623,6 +623,11 @@ msgstr ""
 msgid "label_moved_succesfully"
 msgstr ""
 
+#. Default: "Moved story '${story}' to the unplanned list."
+#: ./browser/releaseplan.py:249
+msgid "label_moved_to_unplanned_succesfully"
+msgstr ""
+
 #. Default: "Planned iterations"
 #: ./browser/planned_iterations.pt:16
 msgid "label_new_iterations_overview"
@@ -634,7 +639,7 @@ msgid "label_offer"
 msgstr ""
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/releaseplan.py:269
+#: ./browser/releaseplan.py:274
 msgid "label_order_updated_succesfully"
 msgstr ""
 

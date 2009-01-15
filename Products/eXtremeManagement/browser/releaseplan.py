@@ -128,7 +128,7 @@ class ReleaseplanView(ProjectView):
         return self.getIterations(('in-progress', 'new'))
     
     #@memoize
-    def unassigned_stories(self):
+    def unplanned_stories(self):
         context = aq_inner(self.context)
         filter = dict(portal_type='Story',
                       sort_on='getObjPositionInParent')
@@ -245,6 +245,11 @@ class MoveStory(PloneKSSView):
                 default=u"Moved story '${story}' to iteration '${target}'.",
                     mapping={'story': story.Title(),
                              'target': target.Title()})
+            if target_id == 'unplanned_stories':
+                 msg = _(u'label_moved_to_unplanned_succesfully',
+                     default=u"Moved story '${story}' to the unplanned list.",
+                         mapping={'story': story.Title()})                
+            
             plone.issuePortalMessage(msg, msgtype='info')
             # We have to set the right kssattr again now that our parent has
             # changed.
@@ -274,17 +279,25 @@ class MoveStory(PloneKSSView):
 
     def extract_objects(self, source_id, target_id, story_id):
         """Return tuple of source/target/story objects"""
+        context = aq_inner(self.context)
         uid_catalog = getToolByName(self.context, 'uid_catalog')
-        try:
-            brain = uid_catalog(UID=source_id)[0]
-            source = brain.getObject()
-            brain = uid_catalog(UID=target_id)[0]
-            target = brain.getObject()
-            brain = uid_catalog(UID=story_id)[0]
-            story = brain.getObject()
-            return (source, target, story)
-        except IndexError:
-            return (None, None, None)
+        source = target = None
+        if source_id == 'unplanned_stories':
+            source = context
+        if target_id == 'unplanned_stories':
+            target = context
+        if not source:
+            sourcebrain = uid_catalog(UID=source_id)
+            if sourcebrain:
+                source = sourcebrain[0].getObject()
+        if not target:
+            targetbrain = uid_catalog(UID=target_id)
+            if targetbrain:
+                target = targetbrain[0].getObject()
+        storybrain = uid_catalog(UID=story_id)
+        if storybrain:
+            story = storybrain[0].getObject()
+        return (source, target, story)
 
     def move(self, source, target, story):
         """Actually cut/paste the story from source to target iteration"""

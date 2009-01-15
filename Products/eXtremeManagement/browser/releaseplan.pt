@@ -72,10 +72,10 @@
             </th>
           </tr>
         </thead>
-        <tbody class="droppable" id="unassigned_stories">
-          <tal:stories repeat="story view/unassigned_stories">
+        <tbody class="droppable" id="unplanned_stories">
+          <tal:stories repeat="story view/unplanned_stories">
           <tr tal:attributes="id story/uid;
-                              class string:${story/class} kssattr-source_id-unassigned};">
+                              class string:${story/class} kssattr-source_id-unplanned_stories">
             <td class="lock-column">
               
               <form tal:condition="story/locked"
