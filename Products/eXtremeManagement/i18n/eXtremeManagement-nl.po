@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-01-13 20:25+0000\n"
+"POT-Creation-Date: 2009-01-15 11:44+0000\n"
 "PO-Revision-Date: 2009-01-09 12:45+0100\n"
 "Last-Translator: Jean-Paul Ladage <j.ladage@zestsoftware.nl>\n"
 "Language-Team: Nederlands <xm@lists.zestsoftware.nl>\n"
@@ -37,16 +37,11 @@ msgstr "Taak toevoegen"
 msgid "Attachments"
 msgstr "Bijlagen"
 
-#. Default: "Click on the lock icon to edit the story"
-#: ./browser/releaseplan.pt:31
-msgid "Click on the lock icon to edit the story"
-msgstr "Klik op het slot om de user story te bewerken"
-
 #: ./portlets/poi_creation.py:37
 msgid "Create tasks from issues"
 msgstr "Taken maken voor issues"
 
-#: ./browser/releaseplan.py:198
+#: ./browser/releaseplan.py:224
 msgid "Drag/drop uids incorrect"
 msgstr "Drag/drop UIDs zijn incorrect"
 
@@ -63,7 +58,7 @@ msgstr "Issues"
 msgid "Iterations"
 msgstr "Iteraties"
 
-#: ./browser/releaseplan.py:212
+#: ./browser/releaseplan.py:238
 msgid "Move failed: story locked. Unlock the story to move it."
 msgstr "Het verplaatsen is mislukt: de user story is gelockt. Verhelp dit en verplaats de story daarna nogmaals."
 
@@ -153,7 +148,7 @@ msgid "description-overview-my-tasks"
 msgstr "Overzicht van de taken die aan mij zijn toegewezen. De genoemde totalen zijn totaaltijden voor mijzelf. Ze zullen normaal gesproken afwijken van de uitkomst van het optellen van de kolom erboven."
 
 #. Default: "No iterations in progress at this moment."
-#: ./browser/inprogress.pt:59
+#: ./browser/inprogress.pt:72
 msgid "description_no_iterations_in_progress"
 msgstr "Er zijn op dit moment geen lopende iteraties."
 
@@ -163,7 +158,7 @@ msgid "description_no_iterations_planned"
 msgstr "Er zijn nog geen nieuwe iteraties geplant."
 
 #. Default: "Nothing invoiced yet"
-#: ./browser/invoicing.pt:106
+#: ./browser/invoicing.pt:119
 msgid "description_nothing_invoiced"
 msgstr "Er zijn nog geen iteraties gefactureerd."
 
@@ -424,8 +419,8 @@ msgstr "Gewerkte uren"
 msgid "eXtremeManagement_label_rawDifference"
 msgstr "Verschil"
 
-#. Default: "Rawestimate"
-#: content/Task.py
+#. Default: "Estimate"
+#: ./browser/releaseplan.pt:28
 msgid "eXtremeManagement_label_rawEstimate"
 msgstr "Schatting"
 
@@ -498,6 +493,11 @@ msgstr "Deze maand gefactureerd"
 #: ./portlets/managers.pt:17
 msgid "head_to_invoice"
 msgstr "Facturatie"
+
+#. Default: "Unplanned stories"
+#: ./browser/releaseplan.pt:66
+msgid "head_unplanned_stories"
+msgstr "Niet ingeplande stories"
 
 #. Default: "Create tasks from issues"
 #: ./portlets/poi_creation.pt:5
@@ -652,7 +652,7 @@ msgid "label_date_completed"
 msgstr "Einddatum"
 
 #. Default: "Date due"
-#: ./browser/inprogress.pt:25
+#: ./browser/inprogress.pt:26
 msgid "label_date_due"
 msgstr "Einddatum"
 
@@ -687,7 +687,7 @@ msgid "label_invoicing_overview"
 msgstr "Te factureren"
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/releaseplan.py:218
+#: ./browser/releaseplan.py:244
 msgid "label_moved_succesfully"
 msgstr "User story '${story}' is verplaatst naar iteratie '${target}'."
 
@@ -702,7 +702,7 @@ msgid "label_offer"
 msgstr "Offerte(s)"
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/releaseplan.py:243
+#: ./browser/releaseplan.py:269
 msgid "label_order_updated_succesfully"
 msgstr "Het veranderen van de volgorde is gelukt"
 
@@ -732,7 +732,7 @@ msgid "label_remaining_budget"
 msgstr "Resterende uren"
 
 #. Default: "Total estimate in hours"
-#: ./browser/inprogress.pt:28
+#: ./browser/inprogress.pt:29
 msgid "label_total_hours"
 msgstr "Geschatte uren"
 
@@ -772,7 +772,7 @@ msgid "listingheader-time"
 msgstr "Tijd"
 
 #. Default: "Total"
-#: ./browser/planned_iterations.pt:39
+#: ./browser/inprogress.pt:36
 msgid "listingheader-total"
 msgstr "Totaal"
 
@@ -817,7 +817,7 @@ msgid "listingheader_iteration"
 msgstr "Iteratie"
 
 #. Default: "Project"
-#: ./browser/inprogress.pt:19
+#: ./browser/inprogress.pt:20
 msgid "listingheader_projects"
 msgstr "Project"
 

@@ -19,20 +19,68 @@
              tal:repeat="iteration view/plannable_iterations">
         <thead>
           <tr>
-            <th class="lock-column"></th>
+            <th class="lock-column">
+              <img src="lock_icon.gif"
+                   alt="Unlock this item"
+                   title="You can unlock items by clicking  the lock icon.">
+            </th>
             <th tal:content="iteration/title"/>
-            <th i18n:translate="eXtremeManagement_label_roughEstimate"/>
+            <th class="estimate-column"
+                i18n:translate="eXtremeManagement_label_rawEstimate">
+                Estimate
+            </th>
           </tr>
         </thead>
         <tbody class="droppable" tal:attributes="id iteration/uid">
-          <tal:stories repeat="story iteration/stories">
+          <tal:stories condition="iteration/stories"
+                       repeat="story iteration/stories">
           <tr tal:attributes="id story/uid;
                               class string:${story/class} kssattr-source_id-${iteration/uid};">
             <td class="lock-column">
               
-              <form 
+              <form tal:condition="story/locked"
                     tal:attributes="action string: ${story/url}/@@plone_lock_operations/force_unlock">
-                  <button class="unlock" type="submit"/>
+                  <button class="unlock" type="submit" />
+              </form>
+            </td>
+            <td tal:content="story/title"/>
+            <td tal:content="story/estimate"/>
+          </tr>
+          </tal:stories>
+          <tal:nostories condition="not: iteration/stories">
+          <tr id="nostories">
+            <td colspan="2">&nbsp;<td>
+          </tr>
+          </tal:nostories>
+        </tbody>
+      </table>
+
+      <table class="listing nosort releaseplan">
+        <thead>
+          <tr>
+            <th class="lock-column">
+              <img src="lock_icon.gif"
+                   alt="Unlock this item"
+                   title="You can unlock items by clicking  the lock icon.">
+            </th>
+            <th i18n:translate="head_unplanned_stories">
+                Unplanned stories
+            </th>
+            <th class="estimate-column"
+                i18n:translate="eXtremeManagement_label_rawEstimate">
+                Estimate
+            </th>
+          </tr>
+        </thead>
+        <tbody class="droppable" id="unassigned_stories">
+          <tal:stories repeat="story view/unassigned_stories">
+          <tr tal:attributes="id story/uid;
+                              class string:${story/class} kssattr-source_id-unassigned};">
+            <td class="lock-column">
+              
+              <form tal:condition="story/locked"
+                    tal:attributes="action string: ${story/url}/@@plone_lock_operations/force_unlock">
+                  <button class="unlock" type="submit" />
               </form>
             </td>
             <td tal:content="story/title"/>

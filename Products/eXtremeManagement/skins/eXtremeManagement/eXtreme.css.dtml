@@ -201,6 +201,12 @@ table.releaseplan th.lock-column {
     padding-right: 0px;
 }
 
+table.releaseplan th.estimate-column {
+    width: 70px;
+    padding-left: 2px;
+    padding-right: 0px;
+}
+
 button.unlock {
     cursor: pointer;
     margin: 0;
@@ -281,6 +287,13 @@ button.unlock {
 }
 .state-invoiced {
     color: &dtml-discreetColor; !important;
+}
+
+.dnd-state-completed,
+.dnd-state-new,
+.dnd-state-in-progress,
+.dnd-state-draft {
+    color: #CCCCCC !important;
 }
 
 /* Inline togglable details */

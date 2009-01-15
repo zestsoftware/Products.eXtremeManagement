@@ -7,7 +7,7 @@ Unittests are in this file, functional and browser tests are in
 
 import logging
 
-#from zope.cachedescriptors.property import Lazy
+from Acquisition import aq_inner
 from zope.component import getMultiAdapter
 from Products.CMFCore.utils import getToolByName
 from kss.core import kssaction
@@ -15,9 +15,10 @@ from plone.app.kss.plonekssview import PloneKSSView
 
 from Products.eXtremeManagement.browser.projects import ProjectView
 from Products.eXtremeManagement import XMMessageFactory as _
-#from Products.eXtremeManagement.utils import formatTime
+from Products.eXtremeManagement.utils import formatTime
 from Products.statusmessages.interfaces import IStatusMessage
 from webdav.Lockable import wl_isLocked, ResourceLockedError
+from plone.memoize.view import memoize
 
 logger = logging.getLogger('movestory')
 
@@ -66,24 +67,24 @@ class ReleaseplanView(ProjectView):
     We want to expand the list of story dicts with a 'class' item as that's
     too much calculating for the page template.
 
-      >>> mock = [{'review_state': 'in-progress', 'uid': 'myuid', 'locked': False}]
+      >>> mock = [{'review_state': 'estimated', 'uid': 'myuid', 'locked': False}]
       >>> new_mock = view.update_stories(mock)
       >>> new_mock[0]['class']
-      'story-draggable state-in-progress kssattr-story_id-myuid'
+      'story-draggable dnd-state-estimated kssattr-story_id-myuid'
 
-    If the story is completed, it should not be draggable.
+    If the story is completed or in-progress, it should not be draggable.
 
       >>> mock = [{'review_state': 'completed', 'uid': 'myuid', 'locked': False}]
       >>> new_mock = view.update_stories(mock)
       >>> new_mock[0]['class']
-      'state-completed kssattr-story_id-myuid'
+      'dnd-state-completed kssattr-story_id-myuid'
 
     It also should not be draggable if it's locked.
 
-      >>> mock = [{'review_state': 'in-progress', 'uid': 'myuid', 'locked': True}]
+      >>> mock = [{'review_state': 'estimated', 'uid': 'myuid', 'locked': True}]
       >>> new_mock = view.update_stories(mock)
       >>> new_mock[0]['class']
-      'state-in-progress kssattr-story_id-myuid'
+      'dnd-state-estimated kssattr-story_id-myuid'
 
     """
 
@@ -110,19 +111,41 @@ class ReleaseplanView(ProjectView):
 
     def update_stories(self, stories):
         """Add a class to the stories' dicts"""
-        format = '%(edit)skssattr-story_id-%(uid)s'
+        format = '%(edit)sdnd-state-%(review_state)s kssattr-story_id-%(uid)s'
         for story in stories:
             options = {'edit': 'story-draggable '}
             options.update(story)
-            if story['review_state'] == 'completed' or story['locked']:
+            if story['review_state'] in ('draft','completed', 'in-progress') or \
+               story['locked']:
                 # Don't make me draggable
                 options['edit'] = ''
             story['class'] = format % options
 
         return stories
 
+    #@memoize
     def plannable_iterations(self):
         return self.getIterations(('in-progress', 'new'))
+    
+    #@memoize
+    def unassigned_stories(self):
+        context = aq_inner(self.context)
+        filter = dict(portal_type='Story',
+                      sort_on='getObjPositionInParent')
+        brains = context.getFolderContents(filter)
+        results = []
+        if brains:
+            for brain in brains:
+                obj = brain.getObject()
+                info = dict(title=brain.Title,
+                            uid=brain.UID,
+                            estimate=formatTime(brain.size_estimate),
+                            locked=wl_isLocked(obj),
+                            review_state=brain.review_state)
+                results.append(info)
+        results = self.update_stories(results)
+
+        return results
 
 
 class MoveStory(PloneKSSView):

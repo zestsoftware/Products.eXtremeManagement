@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement-es\n"
-"POT-Creation-Date: 2009-01-13 20:25+0000\n"
+"POT-Creation-Date: 2009-01-15 11:44+0000\n"
 "PO-Revision-Date: 2007-12-09 14:30-0300\n"
 "Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
 "Language-Team: Spanish\n"
@@ -38,16 +38,11 @@ msgstr ""
 msgid "Attachments"
 msgstr ""
 
-#. Default: "Click on the lock icon to edit the story"
-#: ./browser/releaseplan.pt:31
-msgid "Click on the lock icon to edit the story"
-msgstr ""
-
 #: ./portlets/poi_creation.py:37
 msgid "Create tasks from issues"
 msgstr ""
 
-#: ./browser/releaseplan.py:198
+#: ./browser/releaseplan.py:224
 msgid "Drag/drop uids incorrect"
 msgstr ""
 
@@ -64,7 +59,7 @@ msgstr ""
 msgid "Iterations"
 msgstr ""
 
-#: ./browser/releaseplan.py:212
+#: ./browser/releaseplan.py:238
 msgid "Move failed: story locked. Unlock the story to move it."
 msgstr ""
 
@@ -155,7 +150,7 @@ msgid "description-overview-my-tasks"
 msgstr "Visión general de las tareas que me pertenecen. Los totales mencionados son mi tiempo total, por lo que usualmente diferirán de agregarles los números de la columna arriba de ellos."
 
 #. Default: "No iterations in progress at this moment."
-#: ./browser/inprogress.pt:59
+#: ./browser/inprogress.pt:72
 msgid "description_no_iterations_in_progress"
 msgstr ""
 
@@ -165,7 +160,7 @@ msgid "description_no_iterations_planned"
 msgstr ""
 
 #. Default: "Nothing invoiced yet"
-#: ./browser/invoicing.pt:106
+#: ./browser/invoicing.pt:119
 msgid "description_nothing_invoiced"
 msgstr ""
 
@@ -369,8 +364,9 @@ msgstr "Horas reales sin procesar"
 msgid "eXtremeManagement_label_rawDifference"
 msgstr "Diferencia sin procesar"
 
-#. Default: "Rawestimate"
-#: content/Task.py
+#. Default: "Estimate"
+#: ./browser/releaseplan.pt:28
+#, fuzzy
 msgid "eXtremeManagement_label_rawEstimate"
 msgstr "Estimación sin procesar"
 
@@ -437,6 +433,11 @@ msgstr ""
 #. Default: "To invoice"
 #: ./portlets/managers.pt:17
 msgid "head_to_invoice"
+msgstr ""
+
+#. Default: "Unplanned stories"
+#: ./browser/releaseplan.pt:66
+msgid "head_unplanned_stories"
 msgstr ""
 
 #. Default: "Create tasks from issues"
@@ -592,7 +593,7 @@ msgid "label_date_completed"
 msgstr ""
 
 #. Default: "Date due"
-#: ./browser/inprogress.pt:25
+#: ./browser/inprogress.pt:26
 msgid "label_date_due"
 msgstr ""
 
@@ -627,7 +628,7 @@ msgid "label_invoicing_overview"
 msgstr ""
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/releaseplan.py:218
+#: ./browser/releaseplan.py:244
 msgid "label_moved_succesfully"
 msgstr ""
 
@@ -642,7 +643,7 @@ msgid "label_offer"
 msgstr ""
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/releaseplan.py:243
+#: ./browser/releaseplan.py:269
 msgid "label_order_updated_succesfully"
 msgstr ""
 
@@ -672,7 +673,7 @@ msgid "label_remaining_budget"
 msgstr ""
 
 #. Default: "Total estimate in hours"
-#: ./browser/inprogress.pt:28
+#: ./browser/inprogress.pt:29
 msgid "label_total_hours"
 msgstr ""
 
@@ -712,7 +713,7 @@ msgid "listingheader-time"
 msgstr "Tiempo"
 
 #. Default: "Total"
-#: ./browser/planned_iterations.pt:39
+#: ./browser/inprogress.pt:36
 msgid "listingheader-total"
 msgstr "Total"
 
@@ -760,7 +761,7 @@ msgid "listingheader_iteration"
 msgstr "Iteración"
 
 #. Default: "Project"
-#: ./browser/inprogress.pt:19
+#: ./browser/inprogress.pt:20
 msgid "listingheader_projects"
 msgstr "Proyecto"
 
