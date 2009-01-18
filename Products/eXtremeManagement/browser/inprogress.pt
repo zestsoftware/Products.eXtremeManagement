@@ -10,9 +10,24 @@
 
     <div metal:fill-slot="main"
          id="inprogress-overview">
-      <h1 i18n:translate="label_inprogress_overview">
-        In-progress overview
+      <h1 i18n:translate="label_current_iterations">
+        Current Iterations 
       </h1>
+      <div id="right-inline-links">
+        <span tal:omit-tag=""
+              tal:condition="view/viewing_billable"
+              i18n:translate="label_billable">Billable</span>
+        <a tal:condition="not: view/viewing_billable"
+           tal:attributes="href view/billable_url"
+           i18n:translate="label_billable">Billable</a>
+           |
+        <span tal:omit-tag=""
+              tal:condition="not: view/viewing_billable"
+              i18n:translate="label_unbillable">Unbillable</span>
+        <a tal:condition="view/viewing_billable"
+           tal:attributes="href view/unbillable_url"
+           i18n:translate="label_unbillable">Unbillable</a>
+      </div>
 
       <table class="listing" tal:condition="view/projectlist">
         <thead>

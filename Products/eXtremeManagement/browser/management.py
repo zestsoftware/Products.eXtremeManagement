@@ -9,9 +9,12 @@ from Products.eXtremeManagement.utils import formatTime
 
 logger = logging.getLogger('xm.listing')
 
+
 class IterationListBaseView(XMBaseView):
 
     iteration_review_state = 'change_in_subclasses'
+    billable_only = None
+    
     _total = None
 
     def sort_results(self, results):
@@ -26,22 +29,22 @@ class IterationListBaseView(XMBaseView):
         """Add additional information to the iterationdict."""
         return {}
 
-    @memoize
     def projectlist(self):
         context = aq_inner(self.context)
         searchpath = '/'.join(context.getPhysicalPath())
         # By default search for all projects from the given path
         # if the context is a project it will return itself
         cfilter = dict(portal_type='Project',
-                       getBillableProject=True,
                        path={'query': searchpath, 'navtree': False})
-        # Get a list of all 'active' projects in case the context is the portal
-        # This will narrow down de number of results and improve performance.
+        if self.billable_only is not None:
+            cfilter['getBillableProject'] = self.billable_only
+            
+
         portal_state = component.getMultiAdapter((self.context, self.request),
                                                  name=u'plone_portal_state')
         portal = portal_state.portal()
         if context == portal:
-            cfilter['review_state'] = 'active'               
+            cfilter['review_state'] = 'active'
         projectbrains = self.catalog.searchResults(cfilter)
         logger.info('%r projects found to iterate over' % len(projectbrains))
 
@@ -121,7 +124,7 @@ class IterationListBaseView(XMBaseView):
 class InvoicingView(IterationListBaseView):
 
     iteration_review_state = 'completed'
-
+    billable_only = True
     _invoiced_total = 0.0
 
     def add_to_total(self, iteration_dict):
@@ -166,16 +169,17 @@ class InvoicingView(IterationListBaseView):
             iteration_info = self.iterationbrain2dict(iterationbrain)
             self._invoiced_total += float(iterationbrain.estimate)
             project = aq_parent(aq_inner(iterationbrain.getObject()))
-            project_info = dict(url=project.absolute_url(),
-                                title=project.Title(),
-                                description=project.Description())
+            project_info = dict(url = project.absolute_url(),
+                                title = project.Title(),
+                                description = project.Description())
             project_info['iterations'] = [iteration_info]
             results.append(project_info)
         return results
 
 
 class InProgressView(IterationListBaseView):
-
+    
+    billable = 'billable'
 
     def add_to_total(self, iteration_dict):
         if self._total is None:
@@ -191,24 +195,39 @@ class InProgressView(IterationListBaseView):
             # total could still be none if there are no iterations.
             return ''
         return '%.2f' % self._total
+        
+    def viewing_billable(self):
+        btype = self.request.get('type', 'billable')
+        if btype == 'unbillable':
+            return False
+        return True
 
-    @memoize
+    def unbillable_url(self):
+        portal_state = component.getMultiAdapter((self.context, self.request),
+                                                 name=u'plone_portal_state')
+        return portal_state.portal_url() + '/inprogress?type=unbillable'
+
+    def billable_url(self):
+        portal_state = component.getMultiAdapter((self.context, self.request),
+                                                 name=u'plone_portal_state')
+        return portal_state.portal_url() + '/inprogress?type=billable'
+
     def projectlist(self):
         """ Return a list on invoiced iterations
         """
-        # Search for Iterations that have been invoiced in the past month
-        iterationbrains = self.catalog.searchResults(
-            portal_type='Iteration',
-            getBillableProject=True,
-            review_state='in-progress')
+        self.billable = self.request.get('type', 'billable')
+        cfilter = dict(portal_type = 'Iteration',
+                       review_state = 'in-progress',
+                       getBillableProject = self.viewing_billable())
+        iterationbrains = self.catalog.searchResults(cfilter)
         results = []
         for iterationbrain in iterationbrains:
             iteration_info = self.iterationbrain2dict(iterationbrain)
             self.add_to_total(iteration_info)
             project = aq_parent(aq_inner(iterationbrain.getObject()))
-            project_info = dict(url=project.absolute_url(),
-                                title=project.Title(),
-                                description=project.Description())
+            project_info = dict(url = project.absolute_url(),
+                                title = project.Title(),
+                                description = project.Description())
             project_info['iterations'] = [iteration_info]
             results.append(project_info)
         return results

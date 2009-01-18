@@ -4,7 +4,7 @@ from Products.eXtremeManagement.utils import formatTime
 
 class FinishedIterationsView(IterationListBaseView):
 
-    iteration_review_state = ['completed', 'invoiced']
+    iteration_review_state = ['completed', 'invoiced']    
 
     def add_to_total(self, iteration_dict):
         if self._total is None:
