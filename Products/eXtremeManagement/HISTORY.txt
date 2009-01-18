@@ -5,6 +5,9 @@ History
 2.0beta4 (unreleased)
 ---------------------
 
+- The listing of In-Progress iterations now has links for billable and
+  unbillable iterations. [jladage]
+
 - Added listing of iterations that have been invoiced this month. [jladage]
 
 - In the releaseplan you can now drag and drop stories to/from the unplanned
