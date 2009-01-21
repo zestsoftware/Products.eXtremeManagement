@@ -617,7 +617,6 @@ td.right {
 	margin: 5px 0 10px;
 	display: block;
 }
-
 /* end story attachments*/
 
 /* </dtml-with> */
