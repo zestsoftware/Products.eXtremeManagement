@@ -345,13 +345,14 @@ button.unlock {
     white-space: nowrap;
 }
 
-.formControls {
-    padding-top: 2px;
-}
-
 .xm-details table th {
   border: 0;
   white-space: nowrap;
+  background: #efefec url(&dtml-portal_url;/background_tableFix.gif) 0 0 repeat-x;
+}
+
+.formControls {
+    padding-top: 2px;
 }
 
 .xm-bookings {
