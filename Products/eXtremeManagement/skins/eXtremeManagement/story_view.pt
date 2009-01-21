@@ -10,7 +10,7 @@
                        story view/main;
                        next story/next;
                        prev story/prev;">
-
+					   
         <metal:prevnext define-macro="previous_next">
           <div class="listingBar" tal:condition="python: next or prev">
             <a class="listingNext"
@@ -37,6 +37,29 @@
           </div>
         </metal:prevnext>
 
+          <div id="story-attachments"
+              tal:define="images python:context.contentValues(filter = {'portal_type':'Image'});
+                          files python:context.contentValues(filter = {'portal_type':'File'})">
+            <span class="heading-attachments"
+                tal:condition="python: images or files"
+                i18n:translate="heading-attachements" >attached files and images</span>
+              <!-- display contained files as links-->
+              <div class="attachment file" tal:repeat="file files">
+                <img src="#" tal:attributes="src string:/${file/getIcon}"/>
+                <a
+                    href="#"
+                    tal:attributes="href string:${file/absolute_url}/view"
+                    tal:content="file/Title">
+                </a>
+              </div>
+              <!-- display contained images as thumbnails, but description is not currently reachable-->
+              <div class="attachment image" tal:repeat="image images">
+                <a href="#" tal:attributes="href string:${image/absolute_url}/image_view_fullscreen">
+                  <span tal:content="structure image/image_thumb"/>
+                </a>
+              </div>
+          </div>
+		
         <tal:details define="estimated context/isEstimated;
                              startable context/startable;
                              tasklist view/tasklist;
@@ -126,36 +149,6 @@
             <div id="task-form-button" i18n:translate="label_add_task">Add task</div>
             <div id="task-form" />
           </tal:add-task>
-
-          <br />
-
-          <tal:attachements
-              tal:define="images python:context.contentValues(filter = {'portal_type':'Image'});
-                          files python:context.contentValues(filter = {'portal_type':'File'})">
-            <h2 class="heading-tasks"
-                tal:condition="python: images and files"
-                i18n:translate="heading_attachements" >Attached files and images</h2>
-            <div>
-              <!-- display contained images as thumbnails, but description is not currently reachable-->
-              <span tal:repeat="image images">
-                <a href="#" tal:attributes="href string:${image/absolute_url}/image_view_fullscreen">
-                  <span tal:content="structure image/image_thumb"/>
-                </a>
-
-              </span>
-            </div>
-            <div>
-              <!-- display contained files as links-->
-              <div tal:repeat="file files">
-                <img src="#" tal:attributes="src string:/${file/getIcon}"/>
-                <a
-                    href="#"
-                    tal:attributes="href string:${file/absolute_url}/view"
-                    tal:content="file/Title">
-                </a>
-              </div>
-            </div>
-          </tal:attachements>
 
         </tal:details>
       </div>

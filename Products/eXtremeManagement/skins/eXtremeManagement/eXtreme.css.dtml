@@ -582,7 +582,7 @@ td.right {
     background: url(&dtml-portal_url;/arrow_blue_inactive.gif) no-repeat scroll 0 5px;
     border: 0;
     float: left;
-    color: #1C718E;
+    color: &dtml-itemColor;;
     text-transform: lowercase;
 }
 
@@ -590,8 +590,33 @@ td.right {
 #task-form-expanded legend {
     padding: 4px 4px 4px 22px;
     background: url(&dtml-portal_url;/arrow_blue_active.gif) no-repeat scroll 4px 7px;
-    color: #1C718E;
+    color: &dtml-itemColor;;
     text-transform: lowercase;
 }
+
+/* start story attachments*/
+#story-attachments {
+	font-size: 90%;
+	margin-bottom: 10px;
+	padding: 2px 5px;
+	background-color: #FDFDFC;
+	border-top: 1px solid &dtml-globalBorderColor;;
+	border-left: 1px solid &dtml-globalBorderColor;;
+}
+
+#story-attachments .attachment {
+	margin: 5px 0;
+}
+
+#story-attachments .image {
+	margin: 5px;
+}
+
+.heading-attachments {
+	margin: 5px 0 10px;
+	display: block;
+}
+
+/* end story attachments*/
 
 /* </dtml-with> */
