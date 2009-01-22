@@ -97,6 +97,7 @@ class IterationListBaseView(XMBaseView):
             man_hours = brain.getManHours,
             raw_estimate = estimate,
             estimate = formatTime(estimate),
+            raw_actual = actual,
             actual = formatTime(actual),
             difference = formatTime(estimate - actual),
             review_state = review_state_id,
@@ -180,6 +181,7 @@ class InvoicingView(IterationListBaseView):
 class InProgressView(IterationListBaseView):
     
     billable = 'billable'
+    _actual = 0.0
 
     def add_to_total(self, iteration_dict):
         if self._total is None:
@@ -196,6 +198,16 @@ class InProgressView(IterationListBaseView):
             return ''
         return '%.2f' % self._total
         
+    def total_actual(self):
+        if self._actual is None:
+            # projectlist hasn't been called yet, so do it to
+            # update the total.
+            self.projectlist()
+        if self._actual is None:
+            # total could still be none if there are no iterations.
+            return ''
+        return '%.2f' % self._actual
+    
     def viewing_billable(self):
         btype = self.request.get('type', 'billable')
         if btype == 'unbillable':
@@ -224,6 +236,7 @@ class InProgressView(IterationListBaseView):
         for iterationbrain in iterationbrains:
             iteration_info = self.iterationbrain2dict(iterationbrain)
             self.add_to_total(iteration_info)
+            self._actual += iteration_info['raw_actual']
             project = aq_parent(aq_inner(iterationbrain.getObject()))
             project_info = dict(url = project.absolute_url(),
                                 title = project.Title(),

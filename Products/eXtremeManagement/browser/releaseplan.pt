@@ -74,7 +74,7 @@
         </thead>
         <tbody class="droppable" id="unplanned_stories">
           <tal:stories repeat="story view/unplanned_stories">
-          <tr tal:attributes="id story/uid;
+          <tr tal:attributes="id string:story-${story/uid};
                               class string:${story/class} kssattr-source_id-unplanned_stories">
             <td class="lock-column">
               

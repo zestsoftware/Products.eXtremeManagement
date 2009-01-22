@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement-es\n"
-"POT-Creation-Date: 2009-01-15 15:58+0000\n"
+"POT-Creation-Date: 2009-01-22 12:11+0000\n"
 "PO-Revision-Date: 2007-12-09 14:30-0300\n"
 "Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
 "Language-Team: Spanish\n"
@@ -124,12 +124,12 @@ msgid "cannot_activate"
 msgstr "No se puede activar"
 
 #. Default: "Need to finish estimating this story by selecting 'estimate' from the state dropdown."
-#: ./skins/eXtremeManagement/story_view.pt:95
+#: ./skins/eXtremeManagement/story_view.pt:118
 msgid "cannot_activate_msg"
 msgstr ""
 
 #. Default: "There are tasks which cannot be activated, please see: ${DYNAMIC_CONTENT}."
-#: ./skins/eXtremeManagement/story_view.pt:97
+#: ./skins/eXtremeManagement/story_view.pt:120
 msgid "cannot_activate_tasks_msg"
 msgstr ""
 
@@ -150,7 +150,7 @@ msgid "description-overview-my-tasks"
 msgstr "Visión general de las tareas que me pertenecen. Los totales mencionados son mi tiempo total, por lo que usualmente diferirán de agregarles los números de la columna arriba de ellos."
 
 #. Default: "No iterations in progress at this moment."
-#: ./browser/inprogress.pt:72
+#: ./browser/inprogress.pt:94
 msgid "description_no_iterations_in_progress"
 msgstr ""
 
@@ -445,6 +445,11 @@ msgstr ""
 msgid "header-create-tasks-from-issues"
 msgstr ""
 
+#. Default: "attached files and images"
+#: ./skins/eXtremeManagement/story_view.pt:43
+msgid "heading-attachements"
+msgstr ""
+
 #. Default: "Billable"
 #: ./skins/eXtremeManagement/booking_view.pt:43
 msgid "heading-billable"
@@ -492,11 +497,6 @@ msgstr ""
 msgid "heading-stories"
 msgstr "User Stories"
 
-#. Default: "Attached files and images"
-#: ./skins/eXtremeManagement/story_view.pt:135
-msgid "heading_attachements"
-msgstr ""
-
 #. Default: "Current Iterations"
 #: ./skins/eXtremeManagement/project_view.pt:47
 msgid "heading_current_iterations"
@@ -518,7 +518,7 @@ msgid "heading_releaseplan"
 msgstr ""
 
 #. Default: "Tasks"
-#: ./skins/eXtremeManagement/story_view.pt:118
+#: ./skins/eXtremeManagement/story_view.pt:141
 msgid "heading_tasks"
 msgstr "Tareas"
 
@@ -577,6 +577,11 @@ msgstr "Iteración"
 msgid "label_add_task"
 msgstr ""
 
+#. Default: "Billable"
+#: ./browser/inprogress.pt:17
+msgid "label_billable"
+msgstr ""
+
 #. Default: "Budget (hours)"
 #: ./skins/eXtremeManagement/project_view.pt:17
 msgid "label_budgetHours"
@@ -587,19 +592,29 @@ msgstr ""
 msgid "label_current_iteration"
 msgstr ""
 
+#. Default: "Current Iterations"
+#: ./browser/inprogress.pt:13
+msgid "label_current_iterations"
+msgstr ""
+
 #. Default: "Date completed"
 #: ./browser/finished.pt:21
 msgid "label_date_completed"
 msgstr ""
 
 #. Default: "Date due"
-#: ./browser/inprogress.pt:26
+#: ./browser/inprogress.pt:41
 msgid "label_date_due"
 msgstr ""
 
 #. Default: "Planned Start Date"
 #: ./browser/planned_iterations.pt:26
 msgid "label_date_start"
+msgstr ""
+
+#. Default: "Estimated hours"
+#: ./browser/inprogress.pt:44
+msgid "label_estimated_hours"
 msgstr ""
 
 #. Default: "Finished iterations overview"
@@ -617,8 +632,8 @@ msgstr ""
 msgid "label_include_global_members"
 msgstr "Incluir Employees globales"
 
-#. Default: "In-progress overview"
-#: ./browser/inprogress.pt:13
+#. Default: "In-progress"
+#: ./portlets/managers.pt:23
 msgid "label_inprogress_overview"
 msgstr ""
 
@@ -653,7 +668,7 @@ msgid "label_order_updated_succesfully"
 msgstr ""
 
 #. Default: "Planned"
-#: ./portlets/iterations.pt:16
+#: ./portlets/iterations.pt:17
 msgid "label_planned_iteration"
 msgstr ""
 
@@ -677,9 +692,14 @@ msgstr ""
 msgid "label_remaining_budget"
 msgstr ""
 
-#. Default: "Total estimate in hours"
-#: ./browser/inprogress.pt:29
-msgid "label_total_hours"
+#. Default: "Unbillable"
+#: ./browser/inprogress.pt:24
+msgid "label_unbillable"
+msgstr ""
+
+#. Default: "Worked hours"
+#: ./browser/inprogress.pt:47
+msgid "label_worked_hours"
 msgstr ""
 
 #. Default: "last 12 months"
@@ -718,7 +738,7 @@ msgid "listingheader-time"
 msgstr "Tiempo"
 
 #. Default: "Total"
-#: ./browser/inprogress.pt:36
+#: ./browser/inprogress.pt:54
 msgid "listingheader-total"
 msgstr "Total"
 
@@ -766,7 +786,7 @@ msgid "listingheader_iteration"
 msgstr "Iteración"
 
 #. Default: "Project"
-#: ./browser/inprogress.pt:20
+#: ./browser/inprogress.pt:35
 msgid "listingheader_projects"
 msgstr "Proyecto"
 
@@ -849,7 +869,7 @@ msgid "no_tasks_defined"
 msgstr "Aún no hay tareas definidas."
 
 #. Default: "No tasks added yet. Please add one."
-#: ./skins/eXtremeManagement/story_view.pt:96
+#: ./skins/eXtremeManagement/story_view.pt:119
 msgid "no_tasks_msg"
 msgstr ""
 

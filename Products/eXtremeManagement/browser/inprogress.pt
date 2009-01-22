@@ -41,8 +41,11 @@
             <th class="nosort" i18n:translate="label_date_due">
               Date due
             </th>
-            <th class="nosort" i18n:translate="label_total_hours">
-              Total estimate in hours
+            <th class="nosort" i18n:translate="label_estimated_hours">
+              Estimated hours
+            </th>
+            <th class="nosort" i18n:translate="label_worked_hours">
+              Worked hours
             </th>
           </tr>
         </thead>
@@ -54,6 +57,8 @@
             </th>
             <td class="right total"
                 tal:content="view/total" />
+            <td class="right total"
+                tal:content="view/total_actual" />
           </tr>
         </tfoot>
         <tbody>
@@ -77,6 +82,8 @@
                                long_format=0)"
                   class="right" />
               <td tal:content="iteration/estimate"
+                  class="right" />
+              <td tal:content="iteration/actual"
                   class="right" />
             </tr>
           </tal:iterations>
