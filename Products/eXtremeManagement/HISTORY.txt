@@ -5,6 +5,9 @@ History
 2.0beta4 (unreleased)
 ---------------------
 
+- Fixed issue 113, customers and employees can now add files and images to the
+  story. [jladage]
+
 - Fixed issue 138, the creator of the task will not receive an e-mail
   notification. [jladage]
 

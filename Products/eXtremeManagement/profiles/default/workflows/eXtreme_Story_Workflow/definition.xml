@@ -10,8 +10,16 @@
  <permission>View</permission>
  <permission>eXtremeManagement: Add Task</permission>
  <permission>eXtremeManagement: Edit roughEstimate</permission>
+ <permission>ATContentTypes: Add File</permission>
+ <permission>ATContentTypes: Add Image</permission>
  <state state_id="completed" title="Completed">
   <exit-transition transition_id="improve"/>
+  <permission-map name="ATContentTypes: Add File"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="ATContentTypes: Add Image"
+                  acquired="True">
+  </permission-map>
   <permission-map name="Access contents information"
                   acquired="False">
    <permission-role>Customer</permission-role>
@@ -52,6 +60,22 @@
  <state state_id="draft" title="Draft">
   <exit-transition transition_id="estimate"/>
   <exit-transition transition_id="submit"/>
+  <permission-map name="ATContentTypes: Add File"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="ATContentTypes: Add Image"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
   <permission-map name="Access contents information"
                   acquired="False">
    <permission-role>Customer</permission-role>
@@ -101,6 +125,22 @@
  <state state_id="estimated" title="Estimated">
   <exit-transition transition_id="activate"/>
   <exit-transition transition_id="retract"/>
+  <permission-map name="ATContentTypes: Add File"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="ATContentTypes: Add Image"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
   <permission-map name="Access contents information"
                   acquired="False">
    <permission-role>Customer</permission-role>
@@ -149,6 +189,22 @@
  <state state_id="in-progress" title="In progress">
   <exit-transition transition_id="complete"/>
   <exit-transition transition_id="deactivate"/>
+  <permission-map name="ATContentTypes: Add File"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="ATContentTypes: Add Image"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
   <permission-map name="Access contents information"
                   acquired="False">
    <permission-role>Customer</permission-role>
@@ -193,6 +249,22 @@
  <state state_id="pending" title="Pending estimate">
   <exit-transition transition_id="estimate"/>
   <exit-transition transition_id="retract"/>
+  <permission-map name="ATContentTypes: Add File"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="ATContentTypes: Add Image"
+                  acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
   <permission-map name="Access contents information"
                   acquired="False">
    <permission-role>Customer</permission-role>
