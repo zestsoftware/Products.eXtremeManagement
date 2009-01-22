@@ -5,6 +5,9 @@ History
 2.0beta4 (unreleased)
 ---------------------
 
+- Fixed issue 139, the dropdown with related tasks in the poi portlet has now
+  a fixed width. [jladage]
+
 - The listing of In-Progress iterations now has links for billable and
   unbillable iterations. [jladage]
 

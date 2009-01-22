@@ -613,6 +613,10 @@ td.right {
 	margin: 5px;
 }
 
+select#story {
+    width:155px;
+}
+
 .heading-attachments {
 	margin: 5px 0 10px;
 	display: block;
