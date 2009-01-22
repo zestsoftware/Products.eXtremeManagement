@@ -5,6 +5,12 @@ History
 2.0beta4 (unreleased)
 ---------------------
 
+- Fixed issue 138, the creator of the task will not receive an e-mail
+  notification. [jladage]
+
+- Fixed issue 120, Current Iterations table has now a column 'worked hours'
+  and updated translations. [jladage]
+
 - Fixed issue 134, releaseplan now uses id attributes that start with story-*
   [jladage].
 
