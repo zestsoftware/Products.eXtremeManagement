@@ -128,12 +128,19 @@ class Renderer(base.Renderer):
                             'iterations': iterations})
         return results
 
-    def have_finished_iterations(self):
+    def has_finished_iterations(self):
         """Do we have finished iterations?"""
         states = [item['title'] for item in self.iterations()]
         if 'invoiced' in states:
             return True
         if 'completed' in states:
+            return True
+        return False
+
+    def has_planned_iterations(self):
+        """Do we have planned iterations?"""
+        states = [item['title'] for item in self.iterations()]
+        if 'new' in states:
             return True
         return False
 

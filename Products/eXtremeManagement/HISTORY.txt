@@ -5,6 +5,9 @@ History
 2.0beta4 (unreleased)
 ---------------------
 
+- Fixed issue 136, the iteration portlet only displays links to current,
+  planned and finished iterations if there is something to show. [jladage]
+
 - Fixed issue 139, the dropdown with related tasks in the poi portlet has now
   a fixed width. [jladage]
 

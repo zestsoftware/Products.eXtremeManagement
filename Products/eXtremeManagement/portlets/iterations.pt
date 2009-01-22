@@ -12,13 +12,14 @@
        i18n:translate="label_current_iteration">Current</a>
   </dd>
 
-  <dd class="portletItem odd">
+  <dd class="portletItem odd"
+      tal:condition="view/has_planned_iterations">
     <a tal:attributes="href string:${view/project_url}/planned-iterations"
        i18n:translate="label_planned_iteration">Planned</a>
   </dd>
 
   <dd class="portletItem even"
-      tal:condition="view/have_finished_iterations">
+      tal:condition="view/has_finished_iterations">
     <a tal:attributes="href string:${view/project_url}/finished"
        i18n:translate="label_finished_overview">Finished</a>
   </dd>
