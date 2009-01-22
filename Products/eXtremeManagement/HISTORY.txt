@@ -5,6 +5,9 @@ History
 2.0beta4 (unreleased)
 ---------------------
 
+- Fixed issue 111, customers can now only view issue of their own trackers.
+  [jladage]
+
 - Fixed issue 113, customers and employees can now add files and images to the
   story. [jladage]
 
