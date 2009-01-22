@@ -150,7 +150,8 @@
  </transition>
  <transition transition_id="reactivate"
              title="Reactivate this task" new_state="to-do"
-             trigger="USER" before_script="" after_script="">
+             trigger="USER" before_script=""
+             after_script="improve_story">
   <action url="" category="workflow">Reactivate this task</action>
   <guard>
    <guard-role>Manager</guard-role>
@@ -210,6 +211,10 @@
   <guard>
   </guard>
  </variable>
+ <script script_id="improve_story" type="External Method"
+         filename=""
+         module="eXtremeManagement.workflow_scripts"
+         function="improve_story"/>
  <script script_id="notify_completed" type="External Method"
          filename=""
          module="eXtremeManagement.workflow_scripts"

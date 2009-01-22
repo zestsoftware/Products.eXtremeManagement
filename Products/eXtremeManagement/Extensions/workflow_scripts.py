@@ -31,6 +31,22 @@ def tryToCompleteStory(self, state_change, **kw):
     except WorkflowException:
         pass
 
+def improve_story(self, state_change, **kw):
+    """
+    Notify interested people that a task has been completed.
+
+    Has been disabled at the moment.
+    """
+    story = state_change.object.aq_parent
+    wf_tool = getToolByName(self, 'portal_workflow')
+    state = wf_tool.getInfoFor(story, 'review_state')
+    if state == 'completed':    
+        from Products.CMFCore.WorkflowCore import WorkflowException
+        try:
+            wf_tool.doActionFor(story, 'improve')
+        except WorkflowException:
+            pass
+
 
 ##########################
 # Story Workflow scripts #

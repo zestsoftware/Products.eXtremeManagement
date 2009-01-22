@@ -5,6 +5,9 @@ History
 2.0beta4 (unreleased)
 ---------------------
 
+- Fixed issue 112, when reactivating a task in a completed story, the story is
+  set to ' in-progress'. [jladage]
+
 - Fixed issue 111, customers can now only view issue of their own trackers.
   [jladage]
 
