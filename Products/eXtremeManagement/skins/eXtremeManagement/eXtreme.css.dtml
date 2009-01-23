@@ -311,12 +311,11 @@ button.unlock {
 
 .xm-details dl {
     margin: 0;
-    padding: 1em;
-    font-size: 0.9em;
+    padding: 0.5em;
 }
 
 .xm-details dt {
-    color: #f66;
+    color: #CC0000;
     margin: 0;
 }
 
@@ -350,6 +349,71 @@ button.unlock {
   white-space: nowrap;
   background: #efefec url(&dtml-portal_url;/background_tableFix.gif) 0 0 repeat-x;
 }
+
+.xm-details .needs-estimate {
+	color: #cc0000;
+}
+
+/* start - xmtooltip css */
+.xmtooltip {
+	display: block;
+	height: 16px;
+	width: 17px;
+	background: url(&dtml-portal_url;/ico-tooltip.gif) 0 0 no-repeat;
+	float: left;
+	padding-left: 20px;
+	position: relative;
+	z-index: 1;
+}
+
+.xmtooltip-box {
+	display: block;
+	visibility: hidden;
+	width: 200px;
+	position: absolute;
+	z-index: 2;
+	right: -48px;
+}
+
+.xmtooltip-box dl{
+	background-color: #ffdd77;
+	border-left: 1px solid #cc0000;
+	border-right: 1px solid #cc0000;
+}
+
+.xmtooltip-top, .xmtooltip-bottom {
+	display: block;
+	height: 5px;
+}
+
+.xmtooltip-top {
+	background: url(&dtml-portal_url;/tooltip-top.gif) 0 0 no-repeat;
+}
+
+.xmtooltip-bottom {
+	background: url(&dtml-portal_url;/tooltip-bottom.gif) 0 0 no-repeat;
+}
+
+a:hover .xmtooltip-box {
+	cursor: pointer;
+	visibility: visible;
+}
+
+.xm-details a:hover {
+	text-decoration: none;
+}
+
+.xm-details .not-startable dd {
+	background: url(&dtml-portal_url;/ico-tooltip.gif) 0 0 no-repeat;
+}
+
+.xm-details .not-startable dt,
+.xm-details .not-startable dd {
+	color: #cc0000;
+	padding-left: 20px;
+}
+	
+/* stop - xmtooltip css */
 
 .formControls {
     padding-top: 2px;

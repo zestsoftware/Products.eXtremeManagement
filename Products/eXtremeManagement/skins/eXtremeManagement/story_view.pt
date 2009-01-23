@@ -107,11 +107,9 @@
                   State
                 </th>
                 <td>
-                  <span tal:replace="story/review_state" /> 
                   <a class="xmtooltip">
-                    <div class="xmtooltip-box">
-                      <span class="xmtooltip-top-left" />
-                      <span class="xmtooltip-top-right" />
+                    <span class="xmtooltip-box">
+                      <span class="xmtooltip-top"></span>
                       <dl tal:condition="not:estimated" class="needs-estimate">
                         <dt i18n:translate="needs_estimate">Needs Estimate</dt>
                         <dd i18n:translate="help_needs_estimate">Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown).</dd>
@@ -124,9 +122,9 @@
                         <dd i18n:translate="no_tasks_msg" tal:condition="not:items">No tasks added yet. Please add one.</dd>
                         <dd i18n:translate="cannot_activate_tasks_msg" tal:condition="tasks_not_startable">There are tasks which cannot be activated, please see: <span tal:replace="tasks_not_startable"></span>.</dd>
                       </dl>
-                      <span class="xmtooltip-bottom-left"/>
-                      <span class="xmtooltip-bottom-right"/>
-                    </div>
+                      <span class="xmtooltip-bottom"></span>
+                    </span>
+                  <span tal:replace="story/review_state" /> 
                   </a>
                 </td>
               </tr>
