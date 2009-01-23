@@ -1,8 +1,9 @@
 import logging
 
+import transaction
 from Products.CMFCore.utils import getToolByName
 
-log = logging.getLogger("eXtremeManagement workflow scripts")
+logger = logging.getLogger("eXtremeManagement workflow scripts")
 
 
 ##########################
@@ -31,6 +32,7 @@ def tryToCompleteStory(self, state_change, **kw):
     except WorkflowException:
         pass
 
+
 def improve_story(self, state_change, **kw):
     """
     Notify interested people that a task has been completed.
@@ -40,7 +42,7 @@ def improve_story(self, state_change, **kw):
     story = state_change.object.aq_parent
     wf_tool = getToolByName(self, 'portal_workflow')
     state = wf_tool.getInfoFor(story, 'review_state')
-    if state == 'completed':    
+    if state == 'completed':
         from Products.CMFCore.WorkflowCore import WorkflowException
         try:
             wf_tool.doActionFor(story, 'improve')
@@ -69,8 +71,10 @@ def startStory(self, state_change, **kw):
         if review_state == 'open':
             try:
                 wf_tool.doActionFor(task, 'activate')
+                logger.debug('Activated task %s', task)
+                transaction.savepoint()
             except WorkflowException:
-                log.error(
+                logger.error(
                     "Task %s with status %s in story %s can not be activated!"
                     % (task.Title(), review_state, story.Title()))
 
@@ -109,7 +113,10 @@ def startIteration(self, state_change, **kw):
         if review_state == 'estimated':
             try:
                 wf_tool.doActionFor(story, 'activate')
+                logger.debug('Activated story %s', story)
+                transaction.savepoint()
             except WorkflowException:
-                log.warn("Story %s with status %s in iteration %s can not be "
-                         "activated." % (story.Title(), review_state,
-                                         iteration.Title()))
+                logger.warn("Story %s with status %s in iteration %s can "
+                            "not be activated." % (story.Title(),
+                                                   review_state,
+                                                   iteration.Title()))

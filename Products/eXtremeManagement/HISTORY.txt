@@ -5,6 +5,14 @@ History
 2.0beta4 (unreleased)
 ---------------------
 
+- Fixed another part of issue 131: by committing subtransactions more
+  often, less ConflictErrors occur and their impact is less. This
+  should speed things up at least a bit. [reinout + mark]
+
+- Moved the startStory and startIteration scripts zo they are
+  triggered *before* the transition of the story/iteration. [reinout +
+  mark]
+
 - Gave our custom roles (Customer, Employee, Projectmanager) some of
   the permissions defined by CMFEditions.  Case in point: on the Zest
   projects site we started using versioning for Stories, and a
