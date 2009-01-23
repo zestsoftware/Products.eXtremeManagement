@@ -302,7 +302,8 @@ class MoveStory(PloneKSSView):
         storybrain = uid_catalog(UID=story_id)
         if storybrain:
             story = storybrain[0].getObject()
-        return (source, target, story)
+            return (source, target, story)
+        return (None, None, None)
 
     def move(self, source, target, story):
         """Actually cut/paste the story from source to target iteration"""
