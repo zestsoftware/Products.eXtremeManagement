@@ -24,7 +24,11 @@ def xm_setup():
     """Set up our Plone Site.
     """
     fiveconfigure.debug_mode = True
+    import Products.eXtremeManagement
+    import Products.Poi
     import xm.booking
+    zcml.load_config('configure.zcml', Products.eXtremeManagement)
+    zcml.load_config('configure.zcml', Products.Poi)
     zcml.load_config('configure.zcml', xm.booking)
     fiveconfigure.debug_mode = False
 
