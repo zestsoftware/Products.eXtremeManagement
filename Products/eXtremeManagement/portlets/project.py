@@ -62,10 +62,8 @@ class Renderer(base.Renderer):
     @property
     def available(self):
         """Determine if the portlet is available at all."""
-        # TODO: Once the "My Projects" drop-down isn't in the Project
-        # Links portlet anymore, this should become:
-        #return self.links()
-        return self.my_projects()
+        if self.project:
+            return True
 
     def _get_project(self):
         """This property return the url of the current project, if not within
@@ -109,20 +107,6 @@ class Renderer(base.Renderer):
             row = (results.index(res)+1)%2 and 'odd' or 'even'
             res['class'] = 'portletItem ' + row
         return results
-
-    @memoize
-    def my_projects(self):
-        # TODO: Once the "My Projects" drop-down isn't in the Project
-        # Links portlet anymore, this method can be removed.
-        pview = getMultiAdapter((self.context, self.request),
-                                name=u'myprojects')
-        pbrains = pview.projectlist
-        projects = []
-        for pbrain in pbrains:
-            projects.append(dict(title = pbrain.Title,
-                                 url = pbrain.getURL,
-                                 description = pbrain.Description))
-        return projects
 
     @memoize
     def tracker_url(self):

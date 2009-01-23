@@ -15,22 +15,14 @@
   </dd>
   </tal:block>
 
-  <dd tal:condition="not: view/links" class="portletItem Odd">
-    <span tal:omit-tag=""
-          i18n:translate="not_in_project_or_no_links">
-      Currently no links are available or no project is selected.
-    </span>
-  </dd>
-
   <dd class="portletItem odd"
       tal:condition="view/links|nothing">
     <a tal:attributes="href string:${view/project_url}/@@releaseplan"
        i18n:translate="label_release_plan">Release Plan</a>
   </dd>
-
-  <dd class="myProject">
-    <span id="my-projects"></span>
+  <dd class="portletFooter">
     <span class="portletBottomLeft"></span>
     <span class="portletBottomRight"></span>
   </dd>
+
 </dl>
