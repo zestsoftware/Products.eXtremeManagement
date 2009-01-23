@@ -507,7 +507,7 @@ UL.xm-assignees LI {
     list-style: none;
     margin: 0;
     padding: 0 0.3em 0 0.3em;
-    background-color: white;
+    background-color: #fff;
 }
 
 .kss-dragdrop-dragging {
@@ -523,9 +523,14 @@ tbody.droppable tr.story-draggable {
     color: #ccc;
 }
 
-.kss-dragdrop-clone-border {
+.kss-dragdrop-clone {
     /* The dragged item shown where it will turn up. */
-    font-weight: bold;
+	background: #EFEFEC !important;
+	border: 1px dashed #ccc  /* a little dirty fix - to overrule the table.listing tr background image */
+}
+
+.kss-dragdrop-clone td {
+	visibility: hidden; /* this hides the text inside the dragdrop-clone */
 }
 
 /* story drag/drop end*/
