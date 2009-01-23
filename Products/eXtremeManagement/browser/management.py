@@ -1,7 +1,6 @@
 from Acquisition import aq_inner, aq_parent
 from zope import component
 from DateTime import DateTime
-from plone.memoize.view import memoize
 import logging
 
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
@@ -67,7 +66,6 @@ class IterationListBaseView(XMBaseView):
                 results.append(info)
         return results
 
-    @memoize
     def total(self):
         if self._total is None:
             # projectlist hasn't been called yet, so do it to
@@ -153,7 +151,6 @@ class InvoicingView(IterationListBaseView):
             return ''
         return '%.2f' % self._invoiced_total
 
-    @memoize
     def invoicedlist(self):
         """ Return a list on invoiced iterations
         """
