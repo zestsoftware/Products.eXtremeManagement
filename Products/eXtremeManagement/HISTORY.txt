@@ -5,6 +5,10 @@ History
 2.0beta4 (unreleased)
 ---------------------
 
+- Fixed issue 131 for changing the workflow state of a task in the
+  story view. Other workflow changed still need attention; they may be
+  the result of ConflictErrors. [reinout + mark]
+
 - Fixed issue 112, when reactivating a task in a completed story, the story is
   set to ' in-progress'. [jladage]
 
@@ -59,7 +63,7 @@ History
 
 - Add task KSS is now also collapseable. [simon, fred]
 
-- Use plone_tools where possible, getting rid of getToolByName. 
+- Use plone_tools where possible, getting rid of getToolByName.
 
 
 
