@@ -37,11 +37,10 @@
           </div>
         </metal:prevnext>
 
-          <div id="story-attachments"
-              tal:define="images python:context.contentValues(filter = {'portal_type':'Image'});
-                          files python:context.contentValues(filter = {'portal_type':'File'})">
+        <tal:attachments define="images python:context.contentValues(filter = {'portal_type':'Image'});
+                                 files python:context.contentValues(filter = {'portal_type':'File'})">
+          <div id="story-attachments" tal:condition="python: images or files">
             <span class="heading-attachments"
-                tal:condition="python: images or files"
                 i18n:translate="heading-attachements" >attached files and images</span>
               <!-- display contained files as links-->
               <div class="attachment file" tal:repeat="file files">
@@ -59,6 +58,7 @@
                 </a>
               </div>
           </div>
+        </tal:attachments>
 		
         <tal:details define="estimated context/isEstimated;
                              startable context/startable;
@@ -101,27 +101,37 @@
                   <span tal:replace="totals/actual" />
                 </td>
               </tr>
+              <tr>
+                <th class="customer_info_header"
+                    i18n:translate="listingheader_state">
+                  State
+                </th>
+                <td>
+                  <span tal:replace="story/review_state" /> <span class="xm-details-exclaim" />
+                  <div class="xmtooltip" style="width: 200px; position: absolute">
+                    <span class="xmtooltip-top-left" />
+                    <span class="xmtooltip-top-right" />
+                    <dl tal:condition="not:estimated" class="needs-estimate">
+                        <dt i18n:translate="needs_estimate">Needs Estimate</dt>
+                        <dd i18n:translate="help_needs_estimate">Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown).</dd>
+                    </dl>
+            
+                    <dl tal:condition="not:startable" class="not-startable"
+                        tal:define="tasks_not_startable view/task_titles_not_startable">
+                        <dt i18n:translate="cannot_activate">Cannot Activate</dt>
+                        <dd i18n:translate="cannot_activate_msg" tal:condition="python:story['review_state'] != 'estimated'">Need to finish estimating this story by selecting 'estimate' from the state dropdown.</dd>
+                        <dd i18n:translate="no_tasks_msg" tal:condition="not:items">No tasks added yet. Please add one.</dd>
+                        <dd i18n:translate="cannot_activate_tasks_msg" tal:condition="tasks_not_startable">There are tasks which cannot be activated, please see: <span tal:replace="tasks_not_startable"></span>.</dd>
+                    </dl>
+                    <span class="xmtooltip-bottom-left"/>
+                    <span class="xmtooltip-bottom-right"/>
+                  </div>
+                </td>
+              </tr>
             </table>
 
             <div class="visualClear"><!-- --></div>
           </div>
-          
-        <tal:errors>
-          <dl tal:condition="not:estimated" class="needs-estimate">
-            <dt i18n:translate="needs_estimate">Needs Estimate</dt>
-            <dd i18n:translate="help_needs_estimate">Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown).</dd>
-          </dl>
-
-          <dl tal:condition="not:startable" class="not-startable"
-              tal:define="tasks_not_startable view/task_titles_not_startable">
-            <dt i18n:translate="cannot_activate">Cannot Activate</dt>
-            <dd i18n:translate="cannot_activate_msg" tal:condition="python:story['review_state'] != 'estimated'">Need to finish estimating this story by selecting 'estimate' from the state dropdown.</dd>
-            <dd i18n:translate="no_tasks_msg" tal:condition="not:items">No tasks added yet. Please add one.</dd>
-            <dd i18n:translate="cannot_activate_tasks_msg" tal:condition="tasks_not_startable">There are tasks which cannot be activated, please see: <span tal:replace="tasks_not_startable"></span>.</dd>
-          </dl>
-        </tal:errors>
-
-
 
           <p class="documentDescription">
             <metal:field use-macro="python:context.widget('description', mode='view')">
