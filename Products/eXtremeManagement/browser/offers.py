@@ -46,6 +46,7 @@ class OfferView(IterationView):
                 title = storybrain.Title,
                 url = storybrain.getURL(),
                 main_text = story_obj.getMainText(),
+                story_obj = story_obj,
                 size_estimate = storybrain.size_estimate,
                 review_state = review_state,
                 review_state_title = self.workflow.getTitleForStateOnType(

@@ -103,6 +103,31 @@
                   </tal:empty>
                 </th>
               </tr>
+              <tr class="story-attachments"
+                     tal:define="story_obj nocall:story/story_obj;
+                                 images python:story_obj.contentValues(filter = {'portal_type':'Image'});
+                                 files python:story_obj.contentValues(filter = {'portal_type':'File'})">
+                <td>
+                  <div class="heading-attachments"
+                        tal:condition="python: images or files"
+                        i18n:translate="heading-attachements" >attached files and images</div>
+                  <!-- display contained files as links-->
+                  <div class="attachment file" tal:repeat="file files">
+                    <img src="#" tal:attributes="src string:/${file/getIcon}"/>
+                    <a
+                        href="#"
+                        tal:attributes="href string:${file/absolute_url}/view"
+                        tal:content="file/Title">
+                    </a>
+                  </div>
+                  <!-- display contained images as thumbnails, but description is not currently reachable-->
+                  <div class="attachment image" tal:repeat="image images">
+                    <a href="#" tal:attributes="href string:${image/absolute_url}/image_view_fullscreen">
+                      <span tal:content="structure image/image_thumb"/>
+                    </a>
+                  </div>
+                </td>
+              </tr>
               <tr>
                 <td colspan="2"
                     class="offer-story-text nosort"

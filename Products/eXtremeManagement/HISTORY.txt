@@ -5,6 +5,8 @@ History
 2.0beta4 (unreleased)
 ---------------------
 
+- Show images and files from the story in the offer view.  [maurits+fred]
+
 - Fixed another part of issue 131: by committing subtransactions more
   often, less ConflictErrors occur and their impact is less. This
   should speed things up at least a bit. [reinout + mark]
