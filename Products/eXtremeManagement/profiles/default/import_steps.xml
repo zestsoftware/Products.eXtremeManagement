@@ -5,6 +5,7 @@
                handler="Products.eXtremeManagement.setuphandlers.importVarious"
                title="eXtremeManagement: miscellaneous import steps">
     <dependency step="propertiestool" />
+    <dependency step="types" />
     <dependency step="catalog" />
     <dependency step="workflow" />
     Import steps that couldn't be mapped to other handlers.
