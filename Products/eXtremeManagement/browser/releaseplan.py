@@ -46,7 +46,8 @@ class ReleaseplanView(ProjectView):
       ...         return []
       >>> import zope.component
       >>> from zope.interface import Interface
-      >>> from Products.eXtremeManagement.browser.interfaces import IIterationView
+      >>> from Products.eXtremeManagement.browser.interfaces import \
+      ... IIterationView
       >>> zope.component.provideAdapter(factory=MockIterationView,
       ...                               adapts=(None, None),
       ...                               provides=IIterationView,
@@ -67,21 +68,24 @@ class ReleaseplanView(ProjectView):
     We want to expand the list of story dicts with a 'class' item as that's
     too much calculating for the page template.
 
-      >>> mock = [{'review_state': 'estimated', 'uid': 'myuid', 'locked': False}]
+      >>> mock = [
+      ... {'review_state': 'estimated', 'uid': 'myuid', 'locked': False}]
       >>> new_mock = view.update_stories(mock)
       >>> new_mock[0]['class']
       'story-draggable dnd-state-estimated kssattr-story_id-myuid'
 
     If the story is completed or in-progress, it should not be draggable.
 
-      >>> mock = [{'review_state': 'completed', 'uid': 'myuid', 'locked': False}]
+      >>> mock = [
+      ... {'review_state': 'completed', 'uid': 'myuid', 'locked': False}]
       >>> new_mock = view.update_stories(mock)
       >>> new_mock[0]['class']
       'dnd-state-completed kssattr-story_id-myuid'
 
     It also should not be draggable if it's locked.
 
-      >>> mock = [{'review_state': 'estimated', 'uid': 'myuid', 'locked': True}]
+      >>> mock = [
+      ... {'review_state': 'estimated', 'uid': 'myuid', 'locked': True}]
       >>> new_mock = view.update_stories(mock)
       >>> new_mock[0]['class']
       'dnd-state-estimated kssattr-story_id-myuid'
@@ -115,8 +119,8 @@ class ReleaseplanView(ProjectView):
         for story in stories:
             options = {'edit': 'story-draggable '}
             options.update(story)
-            if story['review_state'] in ('draft','completed', 'in-progress') or \
-               story['locked']:
+            if story['review_state'] in (
+                'draft', 'completed', 'in-progress') or story['locked']:
                 # Don't make me draggable
                 options['edit'] = ''
             story['class'] = format % options
@@ -126,7 +130,7 @@ class ReleaseplanView(ProjectView):
     #@memoize
     def plannable_iterations(self):
         return self.getIterations(('in-progress', 'new'))
-    
+
     #@memoize
     def unplanned_stories(self):
         context = aq_inner(self.context)
@@ -246,10 +250,11 @@ class MoveStory(PloneKSSView):
                     mapping={'story': story.Title(),
                              'target': target.Title()})
             if target_id == 'unplanned_stories':
-                 msg = _(u'label_moved_to_unplanned_succesfully',
-                     default=u"Moved story '${story}' to the unplanned list.",
-                         mapping={'story': story.Title()})                
-            
+                msg = _(
+                    u'label_moved_to_unplanned_succesfully',
+                    default=u"Moved story '${story}' to the unplanned list.",
+                    mapping={'story': story.Title()})
+
             plone.issuePortalMessage(msg, msgtype='info')
             # We have to set the right kssattr again now that our parent has
             # changed.
