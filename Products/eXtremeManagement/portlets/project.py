@@ -62,6 +62,9 @@ class Renderer(base.Renderer):
     @property
     def available(self):
         """Determine if the portlet is available at all."""
+        # TODO: Once the "My Projects" drop-down isn't in the Project
+        # Links portlet anymore, this should become:
+        #return self.links()
         return self.my_projects()
 
     def _get_project(self):
@@ -109,6 +112,8 @@ class Renderer(base.Renderer):
 
     @memoize
     def my_projects(self):
+        # TODO: Once the "My Projects" drop-down isn't in the Project
+        # Links portlet anymore, this method can be removed.
         pview = getMultiAdapter((self.context, self.request),
                                 name=u'myprojects')
         pbrains = pview.projectlist
@@ -118,18 +123,6 @@ class Renderer(base.Renderer):
                                  url = pbrain.getURL,
                                  description = pbrain.Description))
         return projects
-
-    @memoize
-    def has_projects(self):
-        if len(self.my_projects()) > 1:
-            return True
-        return False
-
-    @memoize
-    def has_single_project(self):
-        if len(self.my_projects()) == 1:
-            return True
-        return False
 
     @memoize
     def tracker_url(self):
@@ -170,11 +163,11 @@ class Renderer(base.Renderer):
                                             name=u'chart')
         except ComponentLookupError:
             return None
-                
+
         if chart.has_data():
             return self.project_url + '/@@chart_view'
         return None
-        
+
 
 class AddForm(base.NullAddForm):
     """Portlet add form.
