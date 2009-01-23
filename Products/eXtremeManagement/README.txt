@@ -31,7 +31,7 @@ Content Types
 
     * Task
       The employees can estimate the story by defining tasks.
-    
+
     * Booking
       While working on tasks the employees can track time and easily book
       those at the end of the day.
@@ -51,6 +51,11 @@ of stories, they can start writing tasks and provide estimates for each task.
 After all tasks have been written and estimated the iteration can be
 started by following the transition 'start working'. This will set the status
 of all tasks to 'todo', so developers will see their tasks in the todo list.
+
+(Activating tasks will send notification email to the assignees. When
+an iteration is activated, this could result in quite some mails to be
+sent. To prevent this from slowing down the activation of the
+iteration, one could consider adding MaildropHost in the instance.)
 
 When completing all tasks in a story the story itself will be set to
 'completed'.
