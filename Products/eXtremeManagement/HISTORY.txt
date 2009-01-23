@@ -14,7 +14,7 @@ History
 - Fixed issue 113, customers and employees can now add files and images to the
   story. [jladage]
 
-- Fixed issue 138, the creator of the task will not receive an e-mail
+- Fixed issue 138, the person doing the transition will not receive an e-mail
   notification. [jladage]
 
 - Fixed issue 120, Current Iterations table has now a column 'worked hours'

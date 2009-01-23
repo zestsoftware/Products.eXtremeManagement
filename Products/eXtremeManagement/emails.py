@@ -169,8 +169,8 @@ def email_task_assignees(object, event, *args, **kwargs):
         return
 
     membership = getToolByName(portal, 'portal_membership')
-    creator_id=object.Creator()
-    creator = membership.getMemberById(creator_id)
+    creator = membership.getMemberById(object.Creator())
+    member_id = membership.getAuthenticatedMember().id
     creator_address = email_address_for_member(creator)
     title = object.Title()
     subject = u'New Task assigned: %s' % safe_unicode(title)
@@ -185,7 +185,7 @@ def email_task_assignees(object, event, *args, **kwargs):
     if estimate is not None:
         estimate = estimate.hours
     recipients = [email_address_for_member(membership.getMemberById(a))
-                  for a in object.getAssignees() if a != creator_id]
+                  for a in object.getAssignees() if a != member_id]
 
     # Let's make sure all strings are unicode.
     values = dict(
