@@ -5,6 +5,9 @@ History
 2.0beta4 (unreleased)
 ---------------------
 
+- Fixed issue 100, list of projects are loaded on DOM load. [reinout +
+  mark]
+
 - Show images and files from the story in the offer view.  [maurits+fred]
 
 - Fixed another part of issue 131: by committing subtransactions more
