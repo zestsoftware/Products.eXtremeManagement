@@ -46,8 +46,7 @@ class ReleaseplanView(ProjectView):
       ...         return []
       >>> import zope.component
       >>> from zope.interface import Interface
-      >>> from Products.eXtremeManagement.browser.interfaces import \
-      ... IIterationView
+      >>> from Products.eXtremeManagement.browser.interfaces import IIterationView
       >>> zope.component.provideAdapter(factory=MockIterationView,
       ...                               adapts=(None, None),
       ...                               provides=IIterationView,
