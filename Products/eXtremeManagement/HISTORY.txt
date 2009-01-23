@@ -5,6 +5,11 @@ History
 2.0beta4 (unreleased)
 ---------------------
 
+- Gave our custom roles (Customer, Employee, Projectmanager) some of
+  the permissions defined by CMFEditions.  Case in point: on the Zest
+  projects site we started using versioning for Stories, and a
+  non-Manager/owner could no longer edit a Story... [maurits]
+
 - Fixed issue 131 for changing the workflow state of a task in the
   story view. Other workflow changed still need attention; they may be
   the result of ConflictErrors. [reinout + mark]

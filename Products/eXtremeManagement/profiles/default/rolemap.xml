@@ -112,6 +112,9 @@
       <role name="Editor"/>
       <role name="Reviewer"/>
       <role name="Contributor" />
+      <role name="Customer" />
+      <role name="Employee" />
+      <role name="Projectmanager" />
     </permission>
     <permission name="CMFEditions: Apply version control"
                 acquire="True">
@@ -120,6 +123,9 @@
       <role name="Editor"/>
       <role name="Reviewer"/>
       <role name="Contributor" />
+      <role name="Customer" />
+      <role name="Employee" />
+      <role name="Projectmanager" />
     </permission>
     <permission name="CMFEditions: Checkout to location"
                 acquire="True">
@@ -127,6 +133,8 @@
       <role name="Owner"/>
       <role name="Editor"/>
       <role name="Reviewer"/>
+      <role name="Employee" />
+      <role name="Projectmanager" />
     </permission>
     <permission name="CMFEditions: Revert to previous versions"
                 acquire="True">
@@ -134,6 +142,8 @@
       <role name="Owner"/>
       <role name="Editor"/>
       <role name="Reviewer"/>
+      <role name="Employee" />
+      <role name="Projectmanager" />
     </permission>
     <permission name="CMFEditions: Save new version"
                 acquire="True">
@@ -142,6 +152,9 @@
       <role name="Editor"/>
       <role name="Reviewer"/>
       <role name="Contributor" />
+      <role name="Customer" />
+      <role name="Employee" />
+      <role name="Projectmanager" />
     </permission>
     <!-- BBB can be removed in release 2.1 -->
     <permission name="eXtremeManagement: Add ProjectMember"
