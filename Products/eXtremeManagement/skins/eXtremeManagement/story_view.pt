@@ -108,7 +108,7 @@
                 </th>
                 <td>
                   <span tal:replace="story/review_state" /> 
-                  <div class="xmtooltip">
+                  <a class="xmtooltip">
                     <span class="xm-details-exclaim" />
                     <div class="xmtooltip-box">
                       <span class="xmtooltip-top-left" />
@@ -128,7 +128,7 @@
                       <span class="xmtooltip-bottom-left"/>
                       <span class="xmtooltip-bottom-right"/>
                     </div>
-                  </div>
+                  </a>
                 </td>
               </tr>
             </table>
