@@ -16,9 +16,9 @@ xmdomain = PTSTranslationDomain('eXtremeManagement')
 # Enable experimental.catalogqueryplan by importing it.
 try:
     import experimental.catalogqueryplan
-    print "experimental.catalogqueryplan enabled"
+    logger.info("experimental.catalogqueryplan enabled")
 except ImportError:
-    print "experimental.catalogqueryplan not enabled"
+    logger.info("experimental.catalogqueryplan not enabled")
 
 
 def initialize(context):
