@@ -24,13 +24,58 @@ def xm_setup():
     """Set up our Plone Site.
     """
     fiveconfigure.debug_mode = True
+    """
+    # First load some meta zcml; this is not needed for
+    # Products.eXtremeManagement, but it *is* for xm.tracker, at least
+    # when you use roadrunner.  Has something to do with the order in
+    # which packages are loaded probably.
+    import zope.security
+    import zope.component
+    import Products.Five
+    import kss.core
+    import Products.GenericSetup
+    import plone.app.portlets
+    import Products.CMFCore
+    import Products.CMFDynamicViewFTI
+    import Products.DCWorkflow
+    zcml.load_config('meta.zcml', zope.security)
+    zcml.load_config('meta.zcml', zope.component)
+    zcml.load_config('meta.zcml', Products.Five)
+    zcml.load_config('meta.zcml', Products.Five.viewlet)
+    zcml.load_config('meta.zcml', kss.core.pluginregistry)
+    zcml.load_config('meta.zcml', Products.GenericSetup)
+    zcml.load_config('meta.zcml', plone.app.portlets)
+    zcml.load_config('meta.zcml', Products.CMFCore)
+    zcml.load_config('permissions.zcml', Products.Five)
+    zcml.load_config('configure.zcml', Products.CMFDynamicViewFTI)
+    zcml.load_config('tool.zcml', Products.DCWorkflow)
+
+    # After this, the tests for xm.tracker still do not run when using
+    # roadrunner; let's comment them out for now.
+    """
+
     import Products.eXtremeManagement
     import Products.Poi
     import xm.booking
+    import xm.tracker
+
+
     zcml.load_config('configure.zcml', Products.eXtremeManagement)
     zcml.load_config('configure.zcml', Products.Poi)
     zcml.load_config('configure.zcml', xm.booking)
+    zcml.load_config('configure.zcml', xm.tracker)
     fiveconfigure.debug_mode = False
+    ztc.installPackage('xm.booking')
+    ztc.installPackage('xm.tracker')
+    try:
+        import xm.theme
+    except ImportError:
+        pass
+    else:
+        fiveconfigure.debug_mode = True
+        zcml.load_config('configure.zcml', xm.theme)
+        fiveconfigure.debug_mode = False
+        ztc.installPackage('xm.theme')
 
 
 xm_setup()
@@ -86,7 +131,7 @@ def setup_xm_content_and_roles():
     workflow = portal.portal_workflow
     workflow.doActionFor(story, 'estimate')
     story.invokeFactory('Task', id='task', hours=5, minutes=30,
-                        title='Make coffee', assignees=(default_user,))
+                        title='Make coffee', assignees=(default_user, ))
     task = story.task
     task.invokeFactory('Booking', id='booking', hours=3, minutes=15,
                        bookingDate=DateTime(2000, 1, 1))
