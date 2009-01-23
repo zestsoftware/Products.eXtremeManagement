@@ -109,7 +109,6 @@
                 <td>
                   <span tal:replace="story/review_state" /> 
                   <a class="xmtooltip">
-                    <span class="xm-details-exclaim" />
                     <div class="xmtooltip-box">
                       <span class="xmtooltip-top-left" />
                       <span class="xmtooltip-top-right" />
