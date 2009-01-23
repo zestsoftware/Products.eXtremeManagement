@@ -105,6 +105,44 @@
            also make it available for e.g. Customers which is not what
            you want. -->
     </permission>
+    <permission name="CMFEditions: Access previous versions"
+                acquire="True">
+      <role name="Manager"/>
+      <role name="Owner"/>
+      <role name="Editor"/>
+      <role name="Reviewer"/>
+      <role name="Contributor" />
+    </permission>
+    <permission name="CMFEditions: Apply version control"
+                acquire="True">
+      <role name="Manager"/>
+      <role name="Owner"/>
+      <role name="Editor"/>
+      <role name="Reviewer"/>
+      <role name="Contributor" />
+    </permission>
+    <permission name="CMFEditions: Checkout to location"
+                acquire="True">
+      <role name="Manager"/>
+      <role name="Owner"/>
+      <role name="Editor"/>
+      <role name="Reviewer"/>
+    </permission>
+    <permission name="CMFEditions: Revert to previous versions"
+                acquire="True">
+      <role name="Manager"/>
+      <role name="Owner"/>
+      <role name="Editor"/>
+      <role name="Reviewer"/>
+    </permission>
+    <permission name="CMFEditions: Save new version"
+                acquire="True">
+      <role name="Manager"/>
+      <role name="Owner"/>
+      <role name="Editor"/>
+      <role name="Reviewer"/>
+      <role name="Contributor" />
+    </permission>
     <!-- BBB can be removed in release 2.1 -->
     <permission name="eXtremeManagement: Add ProjectMember"
                 acquire="True">
