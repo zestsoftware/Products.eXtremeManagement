@@ -245,3 +245,34 @@ msgstr ""
 #: content/Offer.py
 msgid "eXtremeManagement_help_show_draft"
 msgstr ""
+
+
+# xm.booking translations
+#. Default "Add booking"
+#: mx.booking/browser/add.pt
+msgid "label_add_booking"
+msgstr ""
+
+#. Default "Date"
+msgid "head_bookingdate"
+msgstr ""
+
+#. Default "Description"
+msgid "head_description"
+msgstr ""
+
+#. Default "Time"
+msgid "head_time"
+msgstr ""
+
+#. Default "By"      
+msgid "head_by"
+msgstr ""
+
+#. Default "Billable"
+msgid "head_billable"
+msgstr ""
+
+#. Default "Bookings"
+msgid "head_bookings"
+msgstr ""

@@ -31,7 +31,7 @@ msgid "Assign"
 msgstr "Toekennen"
 
 msgid "Close"
-msgstr "sluit"
+msgstr "Sluiten"
 
 msgid "Complete"
 msgstr "Afronden"
@@ -118,7 +118,7 @@ msgid "Reactivate this task"
 msgstr "Heractiveer deze taak"
 
 msgid "Reorder stories"
-msgstr "Verhalen prioriteren"
+msgstr "User stories prioriteren"
 
 msgid "Retract"
 msgstr "Intrekken"

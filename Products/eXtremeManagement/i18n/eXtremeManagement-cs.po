@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-01-22 12:11+0000\n"
+"POT-Creation-Date: 2009-01-23 22:33+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -31,7 +31,7 @@ msgstr ""
 msgid "Add Tasks"
 msgstr ""
 
-#: ./portlets/project.py:100
+#: ./portlets/project.py:103
 msgid "Attachments"
 msgstr ""
 
@@ -39,7 +39,7 @@ msgstr ""
 msgid "Create tasks from issues"
 msgstr ""
 
-#: ./browser/releaseplan.py:224
+#: ./browser/releaseplan.py:227
 msgid "Drag/drop uids incorrect"
 msgstr ""
 
@@ -48,7 +48,7 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-#: ./portlets/project.py:98
+#: ./portlets/project.py:101
 msgid "Issues"
 msgstr ""
 
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Iterations"
 msgstr ""
 
-#: ./browser/releaseplan.py:238
+#: ./browser/releaseplan.py:241
 msgid "Move failed: story locked. Unlock the story to move it."
 msgstr ""
 
@@ -66,7 +66,7 @@ msgid "Note that only issues that aren't already mapped into this iteration will
 msgstr ""
 
 #. Default: "Offer"
-#: ./portlets/project.py:102
+#: ./portlets/project.py:105
 msgid "Offer"
 msgstr ""
 
@@ -122,12 +122,12 @@ msgid "cannot_activate"
 msgstr ""
 
 #. Default: "Need to finish estimating this story by selecting 'estimate' from the state dropdown."
-#: ./skins/eXtremeManagement/story_view.pt:118
+#: ./skins/eXtremeManagement/story_view.pt:124
 msgid "cannot_activate_msg"
 msgstr ""
 
-#. Default: "There are tasks which cannot be activated, please see: ${DYNAMIC_CONTENT}."
-#: ./skins/eXtremeManagement/story_view.pt:120
+#. Default: "There are tasks which cannot be activated, please see: ${tasks}."
+#: ./skins/eXtremeManagement/story_view.pt:133
 msgid "cannot_activate_tasks_msg"
 msgstr ""
 
@@ -139,6 +139,16 @@ msgstr "tento měsíc"
 #. Default: "days"
 #: ./browser/viewlets/templates/story_details_box.pt:39
 msgid "days"
+msgstr ""
+
+#. Default: "Need to assign a time estimate to this task."
+#: ./skins/eXtremeManagement/task_view.pt:73
+msgid "desc_no_estimate"
+msgstr ""
+
+#. Default: "No one has been assigned to this task."
+#: ./skins/eXtremeManagement/task_view.pt:70
+msgid "desc_no_task_assigned"
 msgstr ""
 
 #. Default: "Overview of tasks that are assigned to you. The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
@@ -479,6 +489,26 @@ msgstr "Přejít na"
 msgid "go_to_overview"
 msgstr "Přejít na přehled"
 
+#. Default "Billable"
+msgid "head_billable"
+msgstr ""
+
+#. Default "Date"
+msgid "head_bookingdate"
+msgstr ""
+
+#. Default "Bookings"
+msgid "head_bookings"
+msgstr ""
+
+#. Default "By"
+msgid "head_by"
+msgstr ""
+
+#. Default "Description"
+msgid "head_description"
+msgstr ""
+
 #. Default: "Iterations"
 #: ./portlets/iterations.pt:5
 msgid "head_iterations"
@@ -487,6 +517,10 @@ msgstr ""
 #. Default: "Invoiced this month"
 #: ./browser/invoicing.pt:62
 msgid "head_this_month"
+msgstr ""
+
+#. Default "Time"
+msgid "head_time"
 msgstr ""
 
 #. Default: "To invoice"
@@ -505,7 +539,7 @@ msgid "header-create-tasks-from-issues"
 msgstr ""
 
 #. Default: "attached files and images"
-#: ./skins/eXtremeManagement/story_view.pt:43
+#: ./skins/eXtremeManagement/offer_view.pt:111
 msgid "heading-attachements"
 msgstr ""
 
@@ -578,7 +612,7 @@ msgid "heading_releaseplan"
 msgstr ""
 
 #. Default: "Tasks"
-#: ./skins/eXtremeManagement/story_view.pt:141
+#: ./skins/eXtremeManagement/story_view.pt:163
 msgid "heading_tasks"
 msgstr "Úkoly"
 
@@ -630,6 +664,11 @@ msgstr ""
 #. Default: "iteration"
 #: ./browser/project_chart.pt:20
 msgid "iteration"
+msgstr ""
+
+#. Default "Add booking"
+#: mx.booking/browser/add.pt
+msgid "label_add_booking"
 msgstr ""
 
 #. Default: "Add task"
@@ -703,12 +742,12 @@ msgid "label_invoicing_overview"
 msgstr ""
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/releaseplan.py:244
+#: ./browser/releaseplan.py:247
 msgid "label_moved_succesfully"
 msgstr ""
 
 #. Default: "Moved story '${story}' to the unplanned list."
-#: ./browser/releaseplan.py:249
+#: ./browser/releaseplan.py:252
 msgid "label_moved_to_unplanned_succesfully"
 msgstr ""
 
@@ -723,7 +762,7 @@ msgid "label_offer"
 msgstr ""
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/releaseplan.py:274
+#: ./browser/releaseplan.py:278
 msgid "label_order_updated_succesfully"
 msgstr ""
 
@@ -925,7 +964,7 @@ msgid "no_tasks_defined"
 msgstr "Zatím nebyly zadány žádné úkoly."
 
 #. Default: "No tasks added yet. Please add one."
-#: ./skins/eXtremeManagement/story_view.pt:119
+#: ./skins/eXtremeManagement/story_view.pt:127
 msgid "no_tasks_msg"
 msgstr ""
 

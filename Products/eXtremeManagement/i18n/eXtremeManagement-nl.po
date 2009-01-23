@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-01-22 12:11+0000\n"
+"POT-Creation-Date: 2009-01-23 22:33+0000\n"
 "PO-Revision-Date: 2009-01-22 12:45+0100\n"
 "Last-Translator: Jean-Paul Ladage <j.ladage@zestsoftware.nl>\n"
 "Language-Team: Nederlands <xm@lists.zestsoftware.nl>\n"
@@ -33,7 +33,7 @@ msgstr "Toevoegen"
 msgid "Add Tasks"
 msgstr "Taak toevoegen"
 
-#: ./portlets/project.py:100
+#: ./portlets/project.py:103
 msgid "Attachments"
 msgstr "Bijlagen"
 
@@ -41,7 +41,7 @@ msgstr "Bijlagen"
 msgid "Create tasks from issues"
 msgstr "Taken maken voor issues"
 
-#: ./browser/releaseplan.py:224
+#: ./browser/releaseplan.py:227
 msgid "Drag/drop uids incorrect"
 msgstr "Drag/drop UIDs zijn incorrect"
 
@@ -50,7 +50,7 @@ msgstr "Drag/drop UIDs zijn incorrect"
 msgid "Info"
 msgstr "Info"
 
-#: ./portlets/project.py:98
+#: ./portlets/project.py:101
 msgid "Issues"
 msgstr "Issues"
 
@@ -58,7 +58,7 @@ msgstr "Issues"
 msgid "Iterations"
 msgstr "Iteraties"
 
-#: ./browser/releaseplan.py:238
+#: ./browser/releaseplan.py:241
 msgid "Move failed: story locked. Unlock the story to move it."
 msgstr "Het verplaatsen is mislukt: de user story is gelockt. Verhelp dit en verplaats de story daarna nogmaals."
 
@@ -68,7 +68,7 @@ msgid "Note that only issues that aren't already mapped into this iteration will
 msgstr "Merk op dat alleen issues die nog niet binnen de iteratie zijn gekoppeld, zullen worden toegevoegd."
 
 #. Default: "Offer"
-#: ./portlets/project.py:102
+#: ./portlets/project.py:105
 msgid "Offer"
 msgstr "Offerte"
 
@@ -115,7 +115,7 @@ msgstr "Boekingen per maand"
 #. Default: "Pending Stories"
 #: ./portlets/storyestimation.pt:7
 msgid "box_stories"
-msgstr "In te schatten verhalen"
+msgstr "In te schatten user stories"
 
 #. Default: "Cannot Activate"
 #: ./browser/viewlets/templates/story_details_box.pt:21
@@ -123,14 +123,14 @@ msgid "cannot_activate"
 msgstr "Kan niet starten"
 
 #. Default: "Need to finish estimating this story by selecting 'estimate' from the state dropdown."
-#: ./skins/eXtremeManagement/story_view.pt:118
+#: ./skins/eXtremeManagement/story_view.pt:124
 msgid "cannot_activate_msg"
 msgstr "De status van deze story dient eerst op 'ingeschat' gezet te worden m.b.v. de status dropdown."
 
-#. Default: "There are tasks which cannot be activated, please see: ${DYNAMIC_CONTENT}."
-#: ./skins/eXtremeManagement/story_view.pt:120
+#. Default: "There are tasks which cannot be activated, please see: ${tasks}."
+#: ./skins/eXtremeManagement/story_view.pt:133
 msgid "cannot_activate_tasks_msg"
-msgstr "Er zijn taken die nog niet gestart kunnen worden, te weken: ${DYNAMIC_CONTENT}"
+msgstr "Er zijn taken die nog niet gestart kunnen worden, te weten: ${tasks}"
 
 #. Default: "current month"
 #: ./skins/eXtremeManagement/booking_details.pt:30
@@ -141,6 +141,16 @@ msgstr "huidige maand"
 #: ./browser/viewlets/templates/story_details_box.pt:39
 msgid "days"
 msgstr "dagen"
+
+#. Default: "Need to assign a time estimate to this task."
+#: ./skins/eXtremeManagement/task_view.pt:73
+msgid "desc_no_estimate"
+msgstr "U dient nog een inschatting op te geven, voordat u deze task in de status 'ingeschat' kunt zetten."
+
+#. Default: "No one has been assigned to this task."
+#: ./skins/eXtremeManagement/task_view.pt:70
+msgid "desc_no_task_assigned"
+msgstr "U dient deze taak aan iemand toe te kennen, voordat u deze task in de status 'geschat' kunt zetten. "
 
 #. Default: "Overview of tasks that are assigned to you. The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
 #: ./skins/eXtremeManagement/task_overview.pt:19
@@ -479,6 +489,26 @@ msgstr "Ga naar"
 msgid "go_to_overview"
 msgstr "Ga naar overzicht van"
 
+#. Default "Billable"
+msgid "head_billable"
+msgstr "Betaald"
+
+#. Default "Date"
+msgid "head_bookingdate"
+msgstr "Datum"
+
+#. Default "Bookings"
+msgid "head_bookings"
+msgstr "Boekingen"
+
+#. Default "By"
+msgid "head_by"
+msgstr "Door"
+
+#. Default "Description"
+msgid "head_description"
+msgstr "Omschrijving"
+
 #. Default: "Iterations"
 #: ./portlets/iterations.pt:5
 msgid "head_iterations"
@@ -488,6 +518,10 @@ msgstr "Iteraties"
 #: ./browser/invoicing.pt:62
 msgid "head_this_month"
 msgstr "Deze maand gefactureerd"
+
+#. Default "Time"
+msgid "head_time"
+msgstr "Tijd"
 
 #. Default: "To invoice"
 #: ./portlets/managers.pt:17
@@ -505,7 +539,7 @@ msgid "header-create-tasks-from-issues"
 msgstr "Taken aanmaken voor issues"
 
 #. Default: "attached files and images"
-#: ./skins/eXtremeManagement/story_view.pt:43
+#: ./skins/eXtremeManagement/offer_view.pt:111
 msgid "heading-attachements"
 msgstr "Bijlagen"
 
@@ -577,7 +611,7 @@ msgstr "Release planning"
 
 ### story_view template ###
 #. Default: "Tasks"
-#: ./skins/eXtremeManagement/story_view.pt:141
+#: ./skins/eXtremeManagement/story_view.pt:163
 msgid "heading_tasks"
 msgstr "Taken"
 
@@ -630,6 +664,11 @@ msgstr "De initiële inschatting van de user story is een grove inschatting in d
 #: ./browser/project_chart.pt:20
 msgid "iteration"
 msgstr "iteratie"
+
+#. Default "Add booking"
+#: mx.booking/browser/add.pt
+msgid "label_add_booking"
+msgstr "Boeken"
 
 #. Default: "Add task"
 #: ./browser/add_task.pt:21
@@ -702,12 +741,12 @@ msgid "label_invoicing_overview"
 msgstr "Te factureren"
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/releaseplan.py:244
+#: ./browser/releaseplan.py:247
 msgid "label_moved_succesfully"
 msgstr "User story '${story}' is verplaatst naar iteratie '${target}'."
 
 #. Default: "Moved story '${story}' to the unplanned list."
-#: ./browser/releaseplan.py:249
+#: ./browser/releaseplan.py:252
 msgid "label_moved_to_unplanned_succesfully"
 msgstr "User story '${story}' is verplaatst naar de lijst met ongeplande stories."
 
@@ -722,7 +761,7 @@ msgid "label_offer"
 msgstr "Offerte(s)"
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/releaseplan.py:274
+#: ./browser/releaseplan.py:278
 msgid "label_order_updated_succesfully"
 msgstr "Het veranderen van de volgorde is gelukt"
 
@@ -923,7 +962,7 @@ msgid "no_tasks_defined"
 msgstr "Nog geen taken gedefinieerd."
 
 #. Default: "No tasks added yet. Please add one."
-#: ./skins/eXtremeManagement/story_view.pt:119
+#: ./skins/eXtremeManagement/story_view.pt:127
 msgid "no_tasks_msg"
 msgstr "Nog geen taken toegevoegd."
 

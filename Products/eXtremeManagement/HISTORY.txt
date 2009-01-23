@@ -5,6 +5,10 @@ History
 2.0beta4 (unreleased)
 ---------------------
 
+- Fixed workflow messages in task view and add i18n. [jladage]
+
+- Added translations for the two templates in xm.booking [jladage]
+
 - Fixed issue 100, list of projects are loaded on DOM load. [reinout +
   mark]
 

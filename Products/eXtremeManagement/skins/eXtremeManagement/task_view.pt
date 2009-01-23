@@ -36,13 +36,6 @@
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
         <div class="xm-details">
-          <dl tal:condition="not:startable" class="not-startable">
-            <dt i18n:translate="cannot_activate">Cannot Activate</dt>
-            <dd tal:condition="python:len(context.getAssignees()) == 0">No one has been assigned to this task.</dd>
-            <dd tal:condition="python:context.getHours() == 0 and context.getMinutes() == 0">Need to assign a time estimate to this task.</dd>
-
-          </dl>
-
           <table class="listing"
                  width="100%"
                  cellpadding="0"
@@ -68,7 +61,25 @@
                   i18n:translate="listingheader_state">
                 Status
               </th>
-              <td tal:content="task/review_state" />
+              <td>
+              <a class="xmtooltip">
+                <span class="xmtooltip-box">
+                  <span class="xmtooltip-top"></span>
+                    <dl tal:condition="not:startable" class="not-startable">
+                      <dt i18n:translate="cannot_activate">Cannot Activate</dt>
+                      <dd tal:condition="python:len(context.getAssignees()) == 0"
+                          i18n:translate="desc_no_task_assigned">
+                          No one has been assigned to this task.</dd>
+                      <dd tal:condition="python:context.getHours() == 0 and context.getMinutes() == 0"
+                          i18n:translate="desc_no_estimate">
+                          Need to assign a time estimate to this task.</dd>
+                    </dl>
+                  <span class="xmtooltip-bottom"></span>
+                </span>
+              <span i18n:domain="plone" i18n:translate=""
+                    tal:replace="task/review_state" /> 
+              </a>
+              </td>
             </tr>
             <tr>
               <th class="customer_info_header"
