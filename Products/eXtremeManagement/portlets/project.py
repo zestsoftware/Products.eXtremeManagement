@@ -62,7 +62,7 @@ class Renderer(base.Renderer):
     @property
     def available(self):
         """Determine if the portlet is available at all."""
-        if self.project:
+        if self.project and self.links():
             return True
 
     def _get_project(self):
