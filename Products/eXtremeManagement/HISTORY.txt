@@ -2,8 +2,8 @@ History
 =======
 
 
-2.0beta4 (unreleased)
----------------------
+2.0rc1 (2009-01-25)
+-------------------
 
 - Fixed workflow messages in task view and add i18n. [jladage]
 
