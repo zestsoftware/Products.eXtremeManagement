@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
 "POT-Creation-Date: 2009-01-23 22:33+0000\n"
-"PO-Revision-Date: 2009-01-22 12:45+0100\n"
+"PO-Revision-Date: 2009-01-25 9:45+0100\n"
 "Last-Translator: Jean-Paul Ladage <j.ladage@zestsoftware.nl>\n"
 "Language-Team: Nederlands <xm@lists.zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -286,7 +286,7 @@ msgstr "Voer uw telefoonnummer in."
 #. Default: "Enter a rough estimate in days (tip: use multiples of 0.5 days)"
 #: content/Story.py
 msgid "eXtremeManagement_help_roughEstimate"
-msgstr "Voer een ruwe schatting in dagen in (tip: gebruik deze stappen: 0.5, 1, 2, 3, 5, 8)"
+msgstr "Voer een schatting in dagen in (tip: gebruik deze stappen: 0.5, 1, 2, 3, 5, 8)"
 
 #. Default: "Check this to have the Offer view mark stories which are still in the draft state"
 #: content/Offer.py
@@ -437,7 +437,7 @@ msgstr "Schatting"
 #. Default: "Roughestimate"
 #: content/Story.py
 msgid "eXtremeManagement_label_roughEstimate"
-msgstr "Ruwe schatting"
+msgstr "Schatting"
 
 #. Default: "Show draft state"
 #: content/Offer.py
@@ -868,7 +868,7 @@ msgstr "Einddatum"
 #. Default: "Initial estimate (days)"
 #: ./browser/iteration_planning.pt:38
 msgid "listingheader_estimate"
-msgstr "Ruw geschatte dagen"
+msgstr "Geschatte dagen"
 
 #. Default: "Estimated hours"
 #: ./browser/viewlets/templates/manage_simple_tasklist.pt:18
@@ -1004,7 +1004,7 @@ msgstr "Project links"
 #. Default: "rough story estimates"
 #: ./browser/project_chart.pt:22
 msgid "rough story estimates"
-msgstr "Ruwe inschattingen voor de stories"
+msgstr "Inschattingen voor de stories"
 
 #. Default: "Estimates and worked hours per iteration"
 #: ./browser/project_chart.pt:9

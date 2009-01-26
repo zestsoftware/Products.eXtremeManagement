@@ -5,7 +5,11 @@ History
 2.0rc2 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Only display transition warning icon when there are messages. [jladage]
+
+- Only display project portlet is there are any links to show. [jladage]
+
+- Minor changes to translations. [jladage]
 
 
 2.0rc1 (2009-01-25)
