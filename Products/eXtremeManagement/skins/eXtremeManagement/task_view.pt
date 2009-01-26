@@ -62,7 +62,8 @@
                 Status
               </th>
               <td>
-              <a class="xmtooltip">
+              <a class="xmtooltip"
+                 tal:condition="not: startable">
                 <span class="xmtooltip-box">
                   <span class="xmtooltip-top"></span>
                     <dl tal:condition="not:startable" class="not-startable">
