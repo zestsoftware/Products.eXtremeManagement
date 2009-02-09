@@ -111,7 +111,7 @@
 }
 
 /* start story-listing css*/
-#story-listing th {
+.story-listing th {
     text-align: right;
 }
 /* stop story-listing css*/

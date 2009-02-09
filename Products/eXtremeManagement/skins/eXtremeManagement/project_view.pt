@@ -49,8 +49,7 @@
           <div class="iterations"
                tal:repeat="curIteration current_iterations">
          
-            <table class="listing"
-                  id="story-listing"
+            <table class="listing story-listing"
                   width="97%"
                   border="0"
                   cellpadding="0"

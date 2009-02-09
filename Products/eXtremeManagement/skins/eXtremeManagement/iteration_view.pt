@@ -92,8 +92,7 @@
                                   show_totals python:True">
           <h1 i18n:translate="heading-stories">Stories</h1>
 
-          <table class="listing"
-                 id="story-listing"
+          <table class="listing story-listing"
                  width="97%"
                  cellpadding="0"
                  cellspacing="0">
