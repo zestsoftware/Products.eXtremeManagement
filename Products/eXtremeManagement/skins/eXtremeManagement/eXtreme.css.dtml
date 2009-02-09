@@ -111,7 +111,6 @@
 }
 
 /* start story-listing css*/
-#story-listing td,
 #story-listing th {
     text-align: right;
 }
