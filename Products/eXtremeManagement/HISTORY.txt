@@ -5,7 +5,8 @@ History
 2.0rc3 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Actually use the description textarea from the submitted add task
+  form.  [maurits]
 
 
 2.0rc2 (2009-01-26)

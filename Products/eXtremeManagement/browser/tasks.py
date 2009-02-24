@@ -241,7 +241,7 @@ class MyTasksDetailedView(TasksDetailedView):
             )
 
     def projects(self):
-        # this one is quite expensive 
+        # this one is quite expensive
         context = aq_inner(self.context)
         searchpath = '/'.join(context.getPhysicalPath())
         projects = self.catalog.searchResults(portal_type='Project',
@@ -329,9 +329,10 @@ class Create(BrowserView):
         hours = form.get('hours', 0)
         minutes = form.get('minutes', 0)
         assignees = form.get('assignees', [])
+        description = form.get('description', '')
         context = aq_inner(self.context)
         create_task(context, title=title, hours=hours, minutes=minutes,
-                    assignees=assignees)
+                    assignees=assignees, description=description)
         self.request.response.redirect(context.absolute_url())
 
 
@@ -351,10 +352,11 @@ class Add(PloneKSSView):
                                               msgtype='error')
             return None
         assignees = self.request.form.get('assignees', [])
+        description = self.request.form.get('description', '')
         create_task(context, title=title,
                     hours=self.request.form.get('hours'),
                     minutes=self.request.form.get('minutes'),
-                    assignees=assignees)
+                    assignees=assignees, description=description)
         core = self.getCommandSet('core')
         zopecommands = self.getCommandSet('zope')
 
@@ -383,7 +385,7 @@ class Add(PloneKSSView):
 
 
 def create_task(context, title='Task', hours=0, minutes=0,
-                assignees=[]):
+                assignees=[], description=''):
     """Create a task.
 
     We introduce a Mock Task class for testing.
@@ -476,4 +478,5 @@ def create_task(context, title='Task', hours=0, minutes=0,
     while str(idx) in context.objectIds():
         idx = idx + 1
     context.invokeFactory('Task', id=str(idx), title=title,
-                          hours=hours, minutes=minutes, assignees=assignees)
+                          hours=hours, minutes=minutes, assignees=assignees,
+                          description=description)
