@@ -7,10 +7,12 @@ def read(*rnames):
 
 version = read('Products', 'eXtremeManagement', 'version.txt').strip()
 readme = read('Products', 'eXtremeManagement', 'README.txt')
+install = read('Products', 'eXtremeManagement', 'INSTALL.txt')
 authors = read('Products', 'eXtremeManagement', 'AUTHORS.txt')
 history = read('Products', 'eXtremeManagement', 'HISTORY.txt')
 
-long_description = readme + '\n\n' + authors + '\n\n' + history
+long_description = readme + '\n\n' + install + '\n\n' + authors
+long_description += '\n\n' + history
 
 
 setup(name='Products.eXtremeManagement',
