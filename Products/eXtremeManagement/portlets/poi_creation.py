@@ -54,8 +54,13 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        """Determine if the portlet is available at all."""
-        return self.poi_view.can_add_tasks()
+        """Determine if the portlet is available at all.
+
+        It is available when we are allowed to add a PoiTask here and
+        there are open issues.
+        """
+        return self.poi_view.can_add_tasks() and \
+            len(self.poi_view.get_open_issues_in_project()) > 0
 
     def available_tags(self):
         return self.poi_view.available_tags()

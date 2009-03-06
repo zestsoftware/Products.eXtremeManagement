@@ -5,6 +5,9 @@ History
 2.0rc3 (unreleased)
 -------------------
 
+- Added extra check in poi portlet to only show when there are open
+  issues.  Fixes issue 154.  [maurits]
+
 - Actually use the description textarea from the submitted add task
   form.  [maurits]
 
