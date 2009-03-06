@@ -8,15 +8,16 @@ Installation
   Products.eXtremeManagement in the main eggs section of your
   buildout.cfg.
 
-  *Important*: you need to install egenix-mx-base from
-   http://egenix.com.  Either use the installers provided by them or
-   use your own system tools (``apt-get install
-   python-egenix-mxdatetime`` works on Debian/Ubuntu) or use
-   ``easy_install egenix-mx-base``.  On Windows the installers seem to
-   be the easiest way.
+  *Important*: you need to install egenix-mx-base from Egenix_.
+  Either use the installers provided by them or use your own system
+  tools (``apt-get install python-egenix-mxdatetime`` works on
+  Debian/Ubuntu) or use ``easy_install egenix-mx-base``.  On Windows
+  the installers seem to be the easiest way.
 
   Then restart your zope instance and use the Add/Remove products page
   in Site Setup to install eXtremeManagement.
+
+.. _Egenix: http://egenix.com/
 
 
 Dependencies
@@ -37,7 +38,7 @@ For reference, here are the dependencies:
     lets you easily link to existing issues in the tracker of your
     project.
 
-  * The mx.DateTime library from Egenix; see the Installation_
+  * The mx.DateTime library from Egenix_; see the Installation_
     instructions above.
 
 
