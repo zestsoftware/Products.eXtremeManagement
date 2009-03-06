@@ -3,32 +3,31 @@ Installation
 
   Make a backup of your site.  You can never be too careful.
 
-  Easiest is using buildout: just add Products.eXtremeManagement in
-  the main eggs section.
+  We strongly advise using buildout; it is certainly not impossibly to
+  get it to work in other ways but this is not supported.  Just add
+  Products.eXtremeManagement in the main eggs section of your
+  buildout.cfg.
 
-  If you are not using buildout:
+  *Important*: you need to install egenix-mx-base from
+   http://egenix.com.  Either use the installers provided by them or
+   use your own system tools (``apt-get install
+   python-egenix-mxdatetime`` works on Debian/Ubuntu) or use
+   ``easy_install egenix-mx-base``.  On Windows the installers seem to
+   be the easiest way.
 
-  - Put eXtremeManagement its own directory within the Products dir of
-    your zope instance.
-
-  - In the lib/python directory of your instance create a directory
-    ``xm``.  Put an empty ``__init__.py`` file in that directory.
-    From the cheese shop (http://pypi.python.org/pypi/) get xm.booking
-    and xm.portlets.  Unpack these and arrange it so that the ``xm``
-    directory has the ``booking`` directory from ``xm.booking`` and
-    the ``portlets`` directory from ``xm.portlets``.
-
-  Then use the portal_quickinstaller in Plone to install it.
+  Then restart your zope instance and use the Add/Remove products page
+  in Site Setup to install eXtremeManagement.
 
 
 Dependencies
 ============
 
-  * Plone:
+For reference, here are the dependencies:
 
-    - 3.0 or 3.1 with Zope 2.10
+  * Plone: 3.1 or 3.2 with Zope 2.10.
 
-  * xm.booking and xm.portlets (pulled in automatically via setup.py)
+  * Some xm.* and kss.* packages and pygooglechart (pulled in
+    automatically via setup.py)
 
   * Poi with its dependencies.  Get a bundle with products fit for the
     Plone version you are using: http://plone.org/products/poi
@@ -38,18 +37,19 @@ Dependencies
     lets you easily link to existing issues in the tracker of your
     project.
 
-    We hope to be flexible enough to make integration with other issue
-    trackers (e.g. trac) possible.  But the current eXtremeManagement
-    developers like Poi. :)
+  * The mx.DateTime library from Egenix; see the Installation_
+    instructions above.
 
 
-Extras
-======
+Optional extra
+==============
 
-  If you have a project management website you should consider
-  installing the ``xm.theme`` package.  This gets rid of part of the
-  default Plone UI so it fits a project management site more.  Try
-  this out locally before you use it in production.
+  If you have a project management website you should seriously
+  consider installing the ``xm.theme`` package.  This gets rid of part
+  of the default Plone UI so it fits a project management site more.
+  Try this out locally before you use it in production.  Note that
+  this may become a real dependency in newer versions of
+  Products.eXtremeManagement
 
 
 Conflicting Products
