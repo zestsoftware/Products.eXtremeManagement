@@ -65,8 +65,7 @@ class Renderer(base.Renderer):
     @property
     def available(self):
         """Determine if the portlet is available at all."""
-        if self.project:
-            return True
+        return self.project and self.iterations()
 
     def _get_project(self):
         """This property return the url of the current project, if not within
