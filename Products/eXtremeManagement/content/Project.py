@@ -16,7 +16,7 @@ from Products.eXtremeManagement.interfaces import IXMProject
 DefaultSchema = Schema((
     FloatField(
         name='budgetHours',
-        write_permission="eXtremeManagement: Edit bugetHours",
+        write_permission="eXtremeManagement: Edit budgetHours",
         validators=('isDecimal', ),
         widget=DecimalWidget(
             description="Enter the budget of the project in hours.",
