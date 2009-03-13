@@ -1,7 +1,6 @@
 <dl class="portlet portletProjectPortlet"
     i18n:domain="eXtremeManagement"
-    tal:define="links view/links;
-                stories view/stories">
+    tal:define="stories view/stories">
   <dt class="portletHeader">
     <span class="portletTopLeft"></span>
     <span i18n:translate="box_stories">
@@ -13,7 +12,7 @@
   <tal:block tal:repeat="obj view/stories">
     <dd tal:define="oddrow repeat/obj/odd;
                     end repeat/obj/end;
-                    oddeven python:test(oddrow, ' even', ' odd');
+                    oddeven python:oddrow and ' even' or ' odd';
                     class python:'portletItem' + oddeven;"
         tal:attributes="class class">
 
@@ -22,7 +21,7 @@
              height="16"
              width="16"
              tal:attributes="src string:${here/portal_url}/${obj/getIcon};" />
-        <span tal:replace="python:test(obj.Title, obj.Title, obj.getId)">
+        <span tal:replace="python:obj.Title and obj.Title or obj.getId">
           ECP
         </span>
       </a>
