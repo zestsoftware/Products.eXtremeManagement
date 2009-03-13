@@ -168,16 +168,11 @@ class testWorkflow(eXtremeManagementTestCase):
         # Return to initial state:
         self.tryAllowedTransition(self.story, 'story',
                                   'estimated', 'retract', 'draft')
-        # draft -> pending -> draft
+        # There is no need for a manager to set the story to pending
+        self.tryForbiddenTransition(self.story, 'draft', 'submit')
+        # draft -> estimated -> draft
         self.tryAllowedTransition(self.story, 'story',
-                                  'draft', 'submit', 'pending')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'pending', 'retract', 'draft')
-        # draft -> pending -> estimated -> draft
-        self.tryAllowedTransition(self.story, 'story',
-                                  'draft', 'submit', 'pending')
-        self.tryAllowedTransition(self.story, 'story',
-                                  'pending', 'estimate', 'estimated')
+                                  'draft', 'estimate', 'estimated')
         self.tryAllowedTransition(self.story, 'story',
                                   'estimated', 'retract', 'draft')
         self.tryFullStoryRoute()
