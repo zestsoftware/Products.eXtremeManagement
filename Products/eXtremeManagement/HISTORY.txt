@@ -5,6 +5,8 @@ History
 2.0rc3 (unreleased)
 -------------------
 
+- Fixed Typo in permission to guard editting the budget hours. [jladage]
+
 - Fixed bug in pending stories portlet. [maurits+jladage]
 
 - Added extra check in poi portlet to only show when there are open
