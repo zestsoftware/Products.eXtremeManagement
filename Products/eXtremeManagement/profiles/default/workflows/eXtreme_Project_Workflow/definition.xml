@@ -1,8 +1,5 @@
-<?xml version="1.0"?>
-<dc-workflow workflow_id="eXtreme_Project_Workflow"
-             title="eXtreme_Project_Workflow" description=""
-             state_variable="review_state"
-             initial_state="private">
+<?xml version="1.0" encoding="UTF-8"?>
+<dc-workflow workflow_id="eXtreme_Project_Workflow" title="eXtreme_Project_Workflow" description="" state_variable="review_state" initial_state="private">
  <permission>Access contents information</permission>
  <permission>Add portal content</permission>
  <permission>Copy or Move</permission>
@@ -11,24 +8,51 @@
  <permission>Modify portal content</permission>
  <permission>Request review</permission>
  <permission>View</permission>
- <permission>View management screens</permission>
  <permission>eXtremeManagement: Add Iteration</permission>
  <permission>eXtremeManagement: Add Story</permission>
  <permission>eXtremeManagement: Edit budgetHours</permission>
+ <permission>ATContentTypes: Add Document</permission>
+ <permission>ATContentTypes: Add File</permission>
+ <permission>ATContentTypes: Add Image</permission>
+ <permission>ATContentTypes: Add Link</permission>
  <state state_id="active" title="Active">
   <exit-transition transition_id="close"/>
   <exit-transition transition_id="deactivate"/>
-  <permission-map name="Access contents information"
-                  acquired="False">
+  <permission-map name="ATContentTypes: Add Document" acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="ATContentTypes: Add File" acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="ATContentTypes: Add Image" acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="ATContentTypes: Add Link" acquired="False">
+   <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="Access contents information" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="Add portal content" acquired="True">
+  <permission-map name="Add portal content" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Copy or Move" acquired="False">
@@ -43,23 +67,20 @@
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="List folder contents"
-                  acquired="False">
+  <permission-map name="List folder contents" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="Modify portal content"
-                  acquired="False">
+  <permission-map name="Modify portal content" acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="Request review" acquired="True">
+  <permission-map name="Request review" acquired="False">
    <permission-role>Customer</permission-role>
-   <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Customer</permission-role>
@@ -68,36 +89,34 @@
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="View management screens"
-                  acquired="True">
-   <permission-role>Customer</permission-role>
-   <permission-role>Employee</permission-role>
-   <permission-role>Projectmanager</permission-role>
-  </permission-map>
-  <permission-map name="eXtremeManagement: Add Iteration"
-                  acquired="False">
+  <permission-map name="eXtremeManagement: Add Iteration" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
-   <permission-role>Employee"</permission-role>
-   <permission-role>Customer"</permission-role>
-
   </permission-map>
-  <permission-map name="eXtremeManagement: Add Story"
-                  acquired="False">
+  <permission-map name="eXtremeManagement: Add Story" acquired="False">
    <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="eXtremeManagement: Edit budgetHours"
-                  acquired="True">
+  <permission-map name="eXtremeManagement: Edit budgetHours" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
   </permission-map>
  </state>
  <state state_id="completed" title="Completed">
   <exit-transition transition_id="reactivate"/>
-  <permission-map name="Access contents information"
-                  acquired="False">
+  <permission-map name="ATContentTypes: Add Document" acquired="False">
+  </permission-map>
+  <permission-map name="ATContentTypes: Add File" acquired="False">
+  </permission-map>
+  <permission-map name="ATContentTypes: Add Image" acquired="False">
+  </permission-map>
+  <permission-map name="ATContentTypes: Add Link" acquired="False">
+  </permission-map>
+  <permission-map name="Access contents information" acquired="False">
    <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
@@ -106,120 +125,106 @@
   </permission-map>
   <permission-map name="Copy or Move" acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Delete objects" acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="List folder contents"
-                  acquired="False">
+  <permission-map name="List folder contents" acquired="False">
   </permission-map>
-  <permission-map name="Modify portal content"
-                  acquired="False">
+  <permission-map name="Modify portal content" acquired="False">
   </permission-map>
-  <permission-map name="Request review" acquired="True">
+  <permission-map name="Request review" acquired="False">
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Customer</permission-role>
+   <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="View management screens"
-                  acquired="True">
+  <permission-map name="eXtremeManagement: Add Iteration" acquired="False">
   </permission-map>
-  <permission-map name="eXtremeManagement: Add Iteration"
-                  acquired="False">
+  <permission-map name="eXtremeManagement: Add Story" acquired="False">
   </permission-map>
-  <permission-map name="eXtremeManagement: Add Story"
-                  acquired="False">
-  </permission-map>
-  <permission-map name="eXtremeManagement: Edit budgetHours"
-                  acquired="False">
+  <permission-map name="eXtremeManagement: Edit budgetHours" acquired="False">
   </permission-map>
  </state>
  <state state_id="private" title="Private">
   <exit-transition transition_id="activate"/>
-  <permission-map name="Access contents information"
-                  acquired="False">
+  <permission-map name="ATContentTypes: Add Document" acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="ATContentTypes: Add File" acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="ATContentTypes: Add Image" acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="ATContentTypes: Add Link" acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Projectmanager</permission-role>
+  </permission-map>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Employee</permission-role>
+   <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Copy or Move" acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Delete objects" acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="List folder contents"
-                  acquired="False">
+  <permission-map name="List folder contents" acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="Modify portal content"
-                  acquired="False">
+  <permission-map name="Modify portal content" acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="Request review" acquired="True">
-   <permission-role>Projectmanager</permission-role>
+  <permission-map name="Request review" acquired="False">
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="View management screens"
-                  acquired="True">
-   <permission-role>Employee</permission-role>
-   <permission-role>Projectmanager</permission-role>
-  </permission-map>
-  <permission-map name="eXtremeManagement: Add Iteration"
-                  acquired="False">
+  <permission-map name="eXtremeManagement: Add Iteration" acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
-   <permission-role>Employee"</permission-role>
   </permission-map>
-  <permission-map name="eXtremeManagement: Add Story"
-                  acquired="False">
+  <permission-map name="eXtremeManagement: Add Story" acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
-  <permission-map name="eXtremeManagement: Edit budgetHours"
-                  acquired="False">
+  <permission-map name="eXtremeManagement: Edit budgetHours" acquired="False">
    <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>
  </state>
- <transition transition_id="activate" title="Activate"
-             new_state="active" trigger="USER"
-             before_script="" after_script="">
+ <transition transition_id="activate" title="Activate" new_state="active" trigger="USER" before_script="" after_script="">
   <action url="" category="workflow">Activate</action>
   <guard>
    <guard-role>Owner</guard-role>
@@ -227,9 +232,7 @@
    <guard-role>Projectmanager</guard-role>
   </guard>
  </transition>
- <transition transition_id="close" title="Close"
-             new_state="completed" trigger="USER"
-             before_script="" after_script="">
+ <transition transition_id="close" title="Close" new_state="completed" trigger="USER" before_script="" after_script="">
   <action url="" category="workflow">Close</action>
   <guard>
    <guard-role>Owner</guard-role>
@@ -237,9 +240,7 @@
    <guard-role>Projectmanager</guard-role>
   </guard>
  </transition>
- <transition transition_id="deactivate" title="Deactivate"
-             new_state="private" trigger="USER"
-             before_script="" after_script="">
+ <transition transition_id="deactivate" title="Deactivate" new_state="private" trigger="USER" before_script="" after_script="">
   <action url="" category="workflow">Deactivate</action>
   <guard>
    <guard-role>Owner</guard-role>
@@ -247,9 +248,7 @@
    <guard-role>Projectmanager</guard-role>
   </guard>
  </transition>
- <transition transition_id="reactivate" title="Reactivate"
-             new_state="active" trigger="USER"
-             before_script="" after_script="">
+ <transition transition_id="reactivate" title="Reactivate" new_state="active" trigger="USER" before_script="" after_script="">
   <action url="" category="workflow">Reactivate</action>
   <guard>
    <guard-role>Owner</guard-role>
@@ -257,8 +256,7 @@
    <guard-role>Projectmanager</guard-role>
   </guard>
  </transition>
- <variable variable_id="action" for_catalog="False"
-           for_status="True" update_always="True">
+ <variable variable_id="action" for_catalog="False" for_status="True" update_always="True">
   <description>The last transition</description>
   <default>
    
@@ -267,8 +265,7 @@
   <guard>
   </guard>
  </variable>
- <variable variable_id="actor" for_catalog="False"
-           for_status="True" update_always="True">
+ <variable variable_id="actor" for_catalog="False" for_status="True" update_always="True">
   <description>The ID of the user who performed the last transition</description>
   <default>
    
@@ -277,8 +274,7 @@
   <guard>
   </guard>
  </variable>
- <variable variable_id="comments" for_catalog="False"
-           for_status="True" update_always="True">
+ <variable variable_id="comments" for_catalog="False" for_status="True" update_always="True">
   <description>Comments about the last transition</description>
   <default>
    
@@ -287,8 +283,7 @@
   <guard>
   </guard>
  </variable>
- <variable variable_id="review_history" for_catalog="False"
-           for_status="False" update_always="False">
+ <variable variable_id="review_history" for_catalog="False" for_status="False" update_always="False">
   <description>Provides access to workflow history</description>
   <default>
    
@@ -299,8 +294,7 @@
    <guard-permission>Review portal content</guard-permission>
   </guard>
  </variable>
- <variable variable_id="time" for_catalog="False"
-           for_status="True" update_always="True">
+ <variable variable_id="time" for_catalog="False" for_status="True" update_always="True">
   <description>Time of the last transition</description>
   <default>
    
