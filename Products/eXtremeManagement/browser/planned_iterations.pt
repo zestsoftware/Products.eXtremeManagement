@@ -79,7 +79,8 @@
       <p tal:condition="not: view/projectlist"
          i18n:translate="description_no_iterations_planned">
          No iterations are planned at this moment.</p>
-      <a tal:attributes="href string: ${view/project_url}/createObject?type_name=Iteration"
+      <a tal:condition="python: checkPermission('eXtremeManagement: Add Iteration')"
+         tal:attributes="href string: ${view/project_url}/createObject?type_name=Iteration"
          i18n:translate="link_create_iteration">New Iteration</a>
 
     </div>
