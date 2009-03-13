@@ -5,7 +5,7 @@ History
 2.0rc3 (unreleased)
 -------------------
 
-- Updated Projects workflow.  [maurits+jladage]
+- Updated Projects and Story workflows.  [maurits+jladage]
 
 - Fixed Typo in permission to guard editting the budget hours. [jladage]
 
