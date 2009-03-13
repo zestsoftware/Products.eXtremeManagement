@@ -7,7 +7,7 @@ History
 
 - Updated Projects and Story workflows.  [maurits+jladage]
 
-- Fixed Typo in permission to guard editting the budget hours. [jladage]
+- Fixed Typo in permission to guard editing the budget hours. [jladage]
 
 - Fixed bug in pending stories portlet. [maurits+jladage]
 
