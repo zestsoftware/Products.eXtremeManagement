@@ -5,6 +5,9 @@ History
 2.0rc3 (unreleased)
 -------------------
 
+- Project managers can now close an iteration and automate copying over unfinished
+  stories, including unfinished tasks. [jladage]
+
 - Updated Projects and Story workflows.  [maurits+jladage]
 
 - Fixed Typo in permission to guard editing the budget hours. [jladage]
