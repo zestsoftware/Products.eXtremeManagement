@@ -191,7 +191,7 @@
    <guard-role>Employee</guard-role>
    <guard-role>Manager</guard-role>
    <guard-role>Projectmanager</guard-role>
-   <guard-expression>here/completable</guard-expression>
+   <guard-expression></guard-expression>
   </guard>
  </transition>
  <transition transition_id="invoice" title="Invoice"

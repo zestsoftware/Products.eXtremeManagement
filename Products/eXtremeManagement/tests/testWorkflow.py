@@ -108,14 +108,12 @@ class testWorkflow(eXtremeManagementTestCase):
                                   'new', 'start', 'in-progress')
         self.assertEqual(self.workflow.getInfoFor(self.story, 'review_state'),
                          'in-progress')
-        self.assertEqual(self.iteration.completable(), False)
         self.assertEqual(self.story.completable(), False)
         self.tryAllowedTransition(self.task, 'task',
                                   'to-do', 'complete', 'completed')
         # This _should_ have automatically set the Story and the
         # Iteration to completed.
         self.assertEqual(self.story.completable(), True)
-        self.assertEqual(self.iteration.completable(), True)
         self.assertEqual(self.workflow.getInfoFor(self.story, 'review_state'),
                          'completed')
         self.assertEqual(

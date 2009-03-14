@@ -93,21 +93,6 @@ class Iteration(OrderedBaseFolder):
                 return False
         return True
 
-    security.declarePublic('completable')
-
-    def completable(self):
-        """
-        Test if all stories in this iteration have completed.
-        """
-        portal = getToolByName(self, 'portal_url').getPortalObject()
-        wf_tool = getToolByName(portal, 'portal_workflow')
-        stories = self.contentValues(filter={'portal_type': 'Story'})
-        for story in stories:
-            review_state = wf_tool.getInfoFor(story, 'review_state')
-            if review_state != 'completed':
-                return False
-        return True
-
     security.declarePublic('defaultStartDate')
 
     def defaultStartDate(self):

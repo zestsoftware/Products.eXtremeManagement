@@ -108,6 +108,13 @@ class IterationClosingView(BrowserView):
                     targetit[x.getId].manage_delObjects([y.getId])
 
             self.remove_bookings(xobj)
+            wf_tool = cmfutils.getToolByName(self.portal, 'portal_workflow')
+            from Products.CMFCore.WorkflowCore import WorkflowException
+            try:
+                wf_tool.doActionFor(self.context, 'complete')
+            except WorkflowException:
+                pass
+            
 
     def remove_bookings(self, obj):
         path = '/'.join(obj.getPhysicalPath())
