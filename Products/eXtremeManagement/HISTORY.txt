@@ -2,7 +2,7 @@ History
 =======
 
 
-2.0 (unreleased)
+2.0 (2009-03-15)
 ----------------
 
 - Project managers can now close an iteration and automate copying over unfinished
