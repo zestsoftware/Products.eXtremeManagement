@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="xm.theme">
+
+  <head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border', 0)" />
+  </head>
+
+  <body>
+    <div metal:fill-slot="main">
+      <h1 i18n:translate="title_close_iteration">
+        Close Iteration
+      </h1>
+      <p i18n:translate="help_close_iteration" class="description">
+        Close an iteration by moving all unfinished stories and tasks
+        to the next iteration. The following stories are not completed yet.
+      </p>
+      <ul>
+        <li tal:repeat="story view/pending_stories">
+          <a href=""
+             tal:attributes="href string:${story/url}/view"
+             tal:content="story/title"></a>
+        </li>
+      </ul>
+      <form action="close-iteration" method="POST"
+        tal:attributes="action string:${context/absolute_url}/@@close-iteration">
+        <div class="field">
+          
+          <label for="targetit" i18n:translate="label_next_iteration">
+            Next Iteration
+          </label>
+          <br />
+
+          <div i18n:translate="help_next_iteration"
+               class="formHelp">
+          Select the next iteration from the dropdown or add the title of a
+          new iteration.
+          </div>
+
+          <select name="targetit">
+            <option value="new" i18n:translate="label_new_iteration">
+              New Iteration</option>
+            <tal:block repeat="iteration view/target_iterations">
+            <option value="" tal:attributes="value iteration/uid"
+                    tal:content="iteration/title"></option>
+            </tal:block>
+          </select>
+          <input type="text" name="title" />
+
+        </div>
+        <br />
+        <div class="formControls">
+            <input class="context"
+                   type="submit"
+                   value="Close Iteration"
+                   name="close"
+                   i18n:attributes="value label_close;"
+                   />
+            <input class="standalone"
+                   type="submit"
+                   value="Cancel"
+                   name="cancel"
+                   i18n:attributes="value label_cancel;"
+                   />
+        </div>
+      </form>          
+    </div>
+  </body>
+</html>

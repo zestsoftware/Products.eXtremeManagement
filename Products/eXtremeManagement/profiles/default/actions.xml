@@ -24,4 +24,17 @@
       <property name="visible">True</property>
     </object>
   </object>
+  <object name="object_buttons" meta_type="CMF Action Category">
+    <object name="close_iteration" meta_type="CMF Action" i18n:domain="xm.tracker">
+      <property name="title" i18n:translate="head_close_iteration">Close Iteration</property>
+      <property name="description" i18n:translate=""/>
+      <property name="url_expr">string:${here/absolute_url}/@@close-iteration</property>
+      <property name="icon_expr"/>
+      <property name="available_expr">python:here.portal_type == 'Iteration'</property>
+      <property name="permissions">
+        <element value="eXtremeManagement: Add Iteration"/>
+      </property>
+      <property name="visible">True</property>
+    </object>
+  </object>
 </object>

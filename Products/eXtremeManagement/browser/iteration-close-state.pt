@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="xm.theme">
+
+  <head>
+  </head>
+  <body>
+    <div metal:fill-slot="main">
+      <div metal:define-macro="body">
+        <h1 i18n:translate="title_iteration_closed">
+          Iteration closed
+        </h1>
+        <p i18n:translate="description_close_iteration" class="description">
+          The iteration has been closed.
+        </p>
+
+        <p tal:define="targetit view/targetit">
+          The new iteration is <a tal:attributes="href targetit/url"
+                                  tal:content="targetit/title"></a>.
+        </p>
+
+      </div>
+    </div>
+  </body>
+</html>

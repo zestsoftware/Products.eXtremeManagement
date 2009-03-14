@@ -1,8 +1,10 @@
+import Acquisition
 from Products.Five import BrowserView
 from zope.cachedescriptors.property import Lazy
 from plone.memoize.view import memoize_contextless
 
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
+from Products.eXtremeManagement import interfaces
 
 
 class XMGlobalState(BrowserView):
@@ -18,6 +20,37 @@ class XMGlobalState(BrowserView):
         except ImportError:
             return False
         return True
+
+    @Lazy
+    def project(self):
+        context = Acquisition.aq_inner(self.context)
+        if interfaces.IXMProject.providedBy(context):
+            return context
+
+        iteration = self.iteration
+        if iteration is None:
+            return None
+        return Acquisition.aq_parent(iteration)
+
+    @Lazy
+    def iteration(self):
+        context = Acquisition.aq_inner(self.context)
+        if interfaces.IXMIteration.providedBy(context):
+            return context
+
+        story = self.story
+        if story is None:
+            return None
+        return Acquisition.aq_parent(story)
+
+    @Lazy
+    def story(self):
+        context = Acquisition.aq_inner(self.context)
+        if interfaces.IXMStory.providedBy(context):
+            return context
+        if interfaces.IXMTask.providedBy(context):
+            return Acquisition.aq_parent(context)
+        return None
 
 
 class WorkflowChangeView(XMBaseView):
