@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-01-23 22:33+0000\n"
+"POT-Creation-Date: 2009-03-14 22:14+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Add Tasks"
 msgstr ""
 
-#: ./portlets/project.py:103
+#: ./portlets/project.py:101
 msgid "Attachments"
 msgstr ""
 
@@ -50,7 +50,7 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-#: ./portlets/project.py:101
+#: ./portlets/project.py:99
 msgid "Issues"
 msgstr ""
 
@@ -68,7 +68,7 @@ msgid "Note that only issues that aren't already mapped into this iteration will
 msgstr ""
 
 #. Default: "Offer"
-#: ./portlets/project.py:105
+#: ./portlets/project.py:103
 msgid "Offer"
 msgstr ""
 
@@ -89,11 +89,11 @@ msgstr ""
 msgid "Related XM Tasks"
 msgstr ""
 
-#: ./browser/tasks.py:375
+#: ./browser/tasks.py:377
 msgid "Task added"
 msgstr ""
 
-#: ./browser/tasks.py:350
+#: ./browser/tasks.py:351
 msgid "Title is required"
 msgstr ""
 
@@ -113,7 +113,7 @@ msgid "booking_month"
 msgstr "Entrées (bookings) par mois"
 
 #. Default: "Pending Stories"
-#: ./portlets/storyestimation.pt:7
+#: ./portlets/storyestimation.pt:6
 #, fuzzy
 msgid "box_stories"
 msgstr "Histoires-usager (stories) en attente"
@@ -144,12 +144,12 @@ msgid "days"
 msgstr ""
 
 #. Default: "Need to assign a time estimate to this task."
-#: ./skins/eXtremeManagement/task_view.pt:73
+#: ./skins/eXtremeManagement/task_view.pt:74
 msgid "desc_no_estimate"
 msgstr ""
 
 #. Default: "No one has been assigned to this task."
-#: ./skins/eXtremeManagement/task_view.pt:70
+#: ./skins/eXtremeManagement/task_view.pt:71
 msgid "desc_no_task_assigned"
 msgstr ""
 
@@ -575,7 +575,7 @@ msgid "heading-bookings-per-day"
 msgstr "\"Bookings\" par jour pour ce mois"
 
 #. Default: "Hours per employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:132
+#: ./skins/eXtremeManagement/iteration_view.pt:131
 msgid "heading-hours-per-employee"
 msgstr "Heures par employé"
 
@@ -616,13 +616,18 @@ msgid "heading_releaseplan"
 msgstr ""
 
 #. Default: "Tasks"
-#: ./skins/eXtremeManagement/story_view.pt:163
+#: ./skins/eXtremeManagement/story_view.pt:166
 msgid "heading_tasks"
 msgstr "Tâches"
 
 #. Default: "Enter the budget of the project in hours."
 #: content/Project.py
 msgid "help_budgetHours"
+msgstr ""
+
+#. Default: "Close an iteration by moving all unfinished stories and tasks to the next iteration. The following stories are not completed yet."
+#: ./browser/close-iteration.pt:16
+msgid "help_close_iteration"
 msgstr ""
 
 #. Default: "There are stories which cannot be activated:"
@@ -660,8 +665,13 @@ msgstr ""
 msgid "help_needs_estimate"
 msgstr ""
 
+#. Default: "Select the next iteration from the dropdown or add the title of a new iteration."
+#: ./browser/close-iteration.pt:36
+msgid "help_next_iteration"
+msgstr ""
+
 #. Default: "The Initial estimate of the story is a rough estimate in days.  The Tasks estimate is the total estimate in hours for all tasks.  If there is a big difference there could be a logical explanation.  You should investigate that to be sure."
-#: ./skins/eXtremeManagement/iteration_view.pt:121
+#: ./skins/eXtremeManagement/iteration_view.pt:120
 msgid "help_stories_table"
 msgstr ""
 
@@ -688,6 +698,16 @@ msgstr ""
 #. Default: "Budget (hours)"
 #: ./skins/eXtremeManagement/project_view.pt:17
 msgid "label_budgetHours"
+msgstr ""
+
+#. Default: "Cancel"
+#: ./browser/close-iteration.pt:61
+msgid "label_cancel"
+msgstr ""
+
+#. Default: "Close Iteration"
+#: ./browser/close-iteration.pt:55
+msgid "label_close"
 msgstr ""
 
 #. Default: "Current"
@@ -755,9 +775,19 @@ msgstr ""
 msgid "label_moved_to_unplanned_succesfully"
 msgstr ""
 
+#. Default: "New Iteration"
+#: ./browser/close-iteration.pt:43
+msgid "label_new_iteration"
+msgstr ""
+
 #. Default: "Planned iterations"
 #: ./browser/planned_iterations.pt:16
 msgid "label_new_iterations_overview"
+msgstr ""
+
+#. Default: "Next Iteration"
+#: ./browser/close-iteration.pt:31
+msgid "label_next_iteration"
 msgstr ""
 
 #. Default: "Offer(s)"
@@ -786,12 +816,12 @@ msgid "label_recalculate_estimated_time"
 msgstr ""
 
 #. Default: "Release Plan"
-#: ./portlets/project.pt:27
+#: ./portlets/project.pt:20
 msgid "label_release_plan"
 msgstr ""
 
 #. Default: "Remaining budget (hours)"
-#: ./skins/eXtremeManagement/iteration_view.pt:112
+#: ./skins/eXtremeManagement/iteration_view.pt:111
 msgid "label_remaining_budget"
 msgstr ""
 
@@ -811,7 +841,7 @@ msgid "last_12_months"
 msgstr "12 derniers mois"
 
 #. Default: "New Iteration"
-#: ./browser/planned_iterations.pt:82
+#: ./browser/planned_iterations.pt:84
 msgid "link_create_iteration"
 msgstr ""
 
@@ -861,7 +891,7 @@ msgid "listingheader_diff_hours"
 msgstr ""
 
 #. Default: "Employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:140
+#: ./skins/eXtremeManagement/iteration_view.pt:139
 msgid "listingheader_employee"
 msgstr "Employé"
 
@@ -923,12 +953,12 @@ msgid "listingheader_total_actual"
 msgstr "Total réel"
 
 #. Default: "Total Difference"
-#: ./skins/eXtremeManagement/iteration_view.pt:145
+#: ./skins/eXtremeManagement/iteration_view.pt:144
 msgid "listingheader_total_difference"
 msgstr "Différence entre les totaux"
 
 #. Default: "Total Estimate"
-#: ./skins/eXtremeManagement/iteration_view.pt:141
+#: ./skins/eXtremeManagement/iteration_view.pt:140
 msgid "listingheader_total_estimate"
 msgstr "Total estimé"
 
@@ -959,7 +989,7 @@ msgid "next"
 msgstr "Suivant:"
 
 #. Default: "No stories published yet!"
-#: ./skins/eXtremeManagement/iteration_view.pt:163
+#: ./skins/eXtremeManagement/iteration_view.pt:162
 msgid "no_stories_published"
 msgstr "Aucune histoire-usager n'a été publiée!"
 
@@ -971,11 +1001,6 @@ msgstr "Aucune tâche n'a été définie."
 #. Default: "No tasks added yet. Please add one."
 #: ./skins/eXtremeManagement/story_view.pt:127
 msgid "no_tasks_msg"
-msgstr ""
-
-#. Default: "Currently no links are available or no project is selected."
-#: ./portlets/project.pt:19
-msgid "not_in_project_or_no_links"
 msgstr ""
 
 #. Default: "Billable"
@@ -1028,6 +1053,11 @@ msgstr ""
 #: ./portlets/portlet_tasks.pt:12
 msgid "task_overview"
 msgstr "Vue générale de la tâche"
+
+#. Default: "Close Iteration"
+#: ./browser/close-iteration.pt:13
+msgid "title_close_iteration"
+msgstr ""
 
 #. Default: "Total"
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:130

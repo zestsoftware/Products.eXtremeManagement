@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
       lang="en-US"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="xm.theme">
+      i18n:domain="eXtremeManagement">
 
   <head>
     <metal:block fill-slot="top_slot"

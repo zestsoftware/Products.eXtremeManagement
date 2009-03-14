@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-01-23 22:33+0000\n"
-"PO-Revision-Date: 2009-01-25 9:45+0100\n"
+"POT-Creation-Date: 2009-03-14 22:14+0000\n"
+"PO-Revision-Date: 2009-03-14 22:45+0100\n"
 "Last-Translator: Jean-Paul Ladage <j.ladage@zestsoftware.nl>\n"
 "Language-Team: Nederlands <xm@lists.zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Toevoegen"
 msgid "Add Tasks"
 msgstr "Taak toevoegen"
 
-#: ./portlets/project.py:103
+#: ./portlets/project.py:101
 msgid "Attachments"
 msgstr "Bijlagen"
 
@@ -50,7 +50,7 @@ msgstr "Drag/drop UIDs zijn incorrect"
 msgid "Info"
 msgstr "Info"
 
-#: ./portlets/project.py:101
+#: ./portlets/project.py:99
 msgid "Issues"
 msgstr "Issues"
 
@@ -68,7 +68,7 @@ msgid "Note that only issues that aren't already mapped into this iteration will
 msgstr "Merk op dat alleen issues die nog niet binnen de iteratie zijn gekoppeld, zullen worden toegevoegd."
 
 #. Default: "Offer"
-#: ./portlets/project.py:105
+#: ./portlets/project.py:103
 msgid "Offer"
 msgstr "Offerte"
 
@@ -89,11 +89,11 @@ msgstr "Project links"
 msgid "Related XM Tasks"
 msgstr "Gerelateerde taken"
 
-#: ./browser/tasks.py:375
+#: ./browser/tasks.py:377
 msgid "Task added"
 msgstr "Taak toegevoegd"
 
-#: ./browser/tasks.py:350
+#: ./browser/tasks.py:351
 msgid "Title is required"
 msgstr "Titel is verplicht"
 
@@ -113,7 +113,7 @@ msgid "booking_month"
 msgstr "Boekingen per maand"
 
 #. Default: "Pending Stories"
-#: ./portlets/storyestimation.pt:7
+#: ./portlets/storyestimation.pt:6
 msgid "box_stories"
 msgstr "In te schatten user stories"
 
@@ -143,12 +143,12 @@ msgid "days"
 msgstr "dagen"
 
 #. Default: "Need to assign a time estimate to this task."
-#: ./skins/eXtremeManagement/task_view.pt:73
+#: ./skins/eXtremeManagement/task_view.pt:74
 msgid "desc_no_estimate"
 msgstr "U dient nog een inschatting op te geven, voordat u deze task in de status 'ingeschat' kunt zetten."
 
 #. Default: "No one has been assigned to this task."
-#: ./skins/eXtremeManagement/task_view.pt:70
+#: ./skins/eXtremeManagement/task_view.pt:71
 msgid "desc_no_task_assigned"
 msgstr "U dient deze taak aan iemand toe te kennen, voordat u deze task in de status 'geschat' kunt zetten. "
 
@@ -569,7 +569,7 @@ msgid "heading-bookings-per-day"
 msgstr "Boekingen per dag"
 
 #. Default: "Hours per employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:132
+#: ./skins/eXtremeManagement/iteration_view.pt:131
 msgid "heading-hours-per-employee"
 msgstr "Uren per medewerker"
 
@@ -611,7 +611,7 @@ msgstr "Release planning"
 
 ### story_view template ###
 #. Default: "Tasks"
-#: ./skins/eXtremeManagement/story_view.pt:163
+#: ./skins/eXtremeManagement/story_view.pt:166
 msgid "heading_tasks"
 msgstr "Taken"
 
@@ -619,6 +619,11 @@ msgstr "Taken"
 #: content/Project.py
 msgid "help_budgetHours"
 msgstr "Voer het budget van het project in uren in."
+
+#. Default: "Close an iteration by moving all unfinished stories and tasks to the next iteration. The following stories are not completed yet."
+#: ./browser/close-iteration.pt:16
+msgid "help_close_iteration"
+msgstr "Hier kunt u de iteratie afronden door alle niet afgeronde user stories en taken naar de volgende iteratie verplaatsen. De onderstaande user stories zijn nog niet afgerond."
 
 #. Default: "There are stories which cannot be activated:"
 #: ./skins/eXtremeManagement/iteration_view.pt:71
@@ -655,8 +660,13 @@ msgstr "andere iteratie bewerken"
 msgid "help_needs_estimate"
 msgstr "Kan niet beginnen met werken aan deze user story totdat het is geschat (vul een schatting in en selecteer 'markeer als geschat' van de status dropdown"
 
+#. Default: "Select the next iteration from the dropdown or add the title of a new iteration."
+#: ./browser/close-iteration.pt:36
+msgid "help_next_iteration"
+msgstr "Selecteer de volgende iteratie of geef de titel van een nieuwe iteratie op."
+
 #. Default: "The Initial estimate of the story is a rough estimate in days.  The Tasks estimate is the total estimate in hours for all tasks.  If there is a big difference there could be a logical explanation.  You should investigate that to be sure."
-#: ./skins/eXtremeManagement/iteration_view.pt:121
+#: ./skins/eXtremeManagement/iteration_view.pt:120
 msgid "help_stories_table"
 msgstr "De initiële inschatting van de user story is een grove inschatting in dagen. De taak inschatting is de som van de inschatting van alle taken in uren."
 
@@ -684,6 +694,16 @@ msgstr "Betaald"
 #: ./skins/eXtremeManagement/project_view.pt:17
 msgid "label_budgetHours"
 msgstr "Budget (uren)"
+
+#. Default: "Cancel"
+#: ./browser/close-iteration.pt:61
+msgid "label_cancel"
+msgstr "Annuleren"
+
+#. Default: "Close Iteration"
+#: ./browser/close-iteration.pt:55
+msgid "label_close"
+msgstr "Iteratie afronden"
 
 #. Default: "Current"
 #: ./portlets/iterations.pt:11
@@ -750,10 +770,20 @@ msgstr "User story '${story}' is verplaatst naar iteratie '${target}'."
 msgid "label_moved_to_unplanned_succesfully"
 msgstr "User story '${story}' is verplaatst naar de lijst met ongeplande stories."
 
+#. Default: "New Iteration"
+#: ./browser/close-iteration.pt:43
+msgid "label_new_iteration"
+msgstr "Nieuwe iteratie"
+
 #. Default: "Planned iterations"
 #: ./browser/planned_iterations.pt:16
 msgid "label_new_iterations_overview"
 msgstr "Geplande iteraties"
+
+#. Default: "Next Iteration"
+#: ./browser/close-iteration.pt:31
+msgid "label_next_iteration"
+msgstr "Volgende iteratie"
 
 #. Default: "Offer(s)"
 #: ./skins/eXtremeManagement/project_view.pt:25
@@ -781,12 +811,12 @@ msgid "label_recalculate_estimated_time"
 msgstr "Herbereken geschatte tijd"
 
 #. Default: "Release Plan"
-#: ./portlets/project.pt:27
+#: ./portlets/project.pt:20
 msgid "label_release_plan"
 msgstr "Release Plan"
 
 #. Default: "Remaining budget (hours)"
-#: ./skins/eXtremeManagement/iteration_view.pt:112
+#: ./skins/eXtremeManagement/iteration_view.pt:111
 msgid "label_remaining_budget"
 msgstr "Resterende uren"
 
@@ -806,7 +836,7 @@ msgid "last_12_months"
 msgstr "laatste 12 maanden"
 
 #. Default: "New Iteration"
-#: ./browser/planned_iterations.pt:82
+#: ./browser/planned_iterations.pt:84
 msgid "link_create_iteration"
 msgstr "Nieuwe iteratie"
 
@@ -856,7 +886,7 @@ msgid "listingheader_diff_hours"
 msgstr "Verschil"
 
 #. Default: "Employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:140
+#: ./skins/eXtremeManagement/iteration_view.pt:139
 msgid "listingheader_employee"
 msgstr "Medewerker"
 
@@ -917,12 +947,12 @@ msgid "listingheader_total_actual"
 msgstr "Totaal gewerkte uren"
 
 #. Default: "Total Difference"
-#: ./skins/eXtremeManagement/iteration_view.pt:145
+#: ./skins/eXtremeManagement/iteration_view.pt:144
 msgid "listingheader_total_difference"
 msgstr "Totaal verschil"
 
 #. Default: "Total Estimate"
-#: ./skins/eXtremeManagement/iteration_view.pt:141
+#: ./skins/eXtremeManagement/iteration_view.pt:140
 msgid "listingheader_total_estimate"
 msgstr "Totaal geschat"
 
@@ -952,7 +982,7 @@ msgid "next"
 msgstr "volgende"
 
 #. Default: "No stories published yet!"
-#: ./skins/eXtremeManagement/iteration_view.pt:163
+#: ./skins/eXtremeManagement/iteration_view.pt:162
 msgid "no_stories_published"
 msgstr "Er zijn op dit moment geen stories gedefinieerd!"
 
@@ -965,11 +995,6 @@ msgstr "Nog geen taken gedefinieerd."
 #: ./skins/eXtremeManagement/story_view.pt:127
 msgid "no_tasks_msg"
 msgstr "Nog geen taken toegevoegd."
-
-#. Default: "Currently no links are available or no project is selected."
-#: ./portlets/project.pt:19
-msgid "not_in_project_or_no_links"
-msgstr "Er is geen project geselecteerd of er zijn geen links beschikbaar."
 
 #. Default: "Billable"
 #: ./skins/eXtremeManagement/booking_month.pt:77
@@ -1020,6 +1045,11 @@ msgstr "taak schattingen"
 #: ./portlets/portlet_tasks.pt:12
 msgid "task_overview"
 msgstr "Takenlijst"
+
+#. Default: "Close Iteration"
+#: ./browser/close-iteration.pt:13
+msgid "title_close_iteration"
+msgstr "Iteratie afronden"
 
 #. Default: "Total"
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:130
