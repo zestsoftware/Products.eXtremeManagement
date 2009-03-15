@@ -38,15 +38,15 @@ setup(name='Products.eXtremeManagement',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
-          'xm.booking',
-          'xm.portlets',
-          'xm.tracker',
-          'xm.charting',
-          'kss.plugin.yuidnd',
-          'kss.plugin.cns',
+          'xm.booking >= 0.9, <= 1.0dev',
+          'xm.portlets >= 0.8, <= 0.9dev',
+          'xm.tracker >= 1.0, <= 1.1dev',
+          'xm.charting >= 0.3, <= 0.4dev',
+          'kss.plugin.yuidnd >= 0.7, <= 0.8dev',
+          'kss.plugin.cns >= 1.1, <= 1.2dev',
           'Products.contentmigration >= 1.0b4',
-          'Products.Poi',
-          'pygooglechart',
+          'Products.Poi >= 1.2 <= 1.3dev',
+          'pygooglechart >= 0.2.1, <= 0.3dev',
       ],
       entry_points="""
       # -*- Entry points: -*-
