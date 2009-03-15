@@ -45,7 +45,7 @@ setup(name='Products.eXtremeManagement',
           'kss.plugin.yuidnd >= 0.7, <= 0.8dev',
           'kss.plugin.cns >= 1.1, <= 1.2dev',
           'Products.contentmigration >= 1.0b4',
-          'Products.Poi >= 1.2 <= 1.3dev',
+          'Products.Poi >= 1.2, <= 1.3dev',
           'pygooglechart >= 0.2.1, <= 0.3dev',
       ],
       entry_points="""
