@@ -5,7 +5,9 @@ History
 2.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Updated README.txt with the time tracker and iteration closing feature. [jladage]
+
+- Added setup.py with aliases to upload to pypi and plone.org [jladage]
 
 
 2.0 (2009-03-15)
