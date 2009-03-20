@@ -5,6 +5,12 @@ History
 2.0.1 (unreleased)
 ------------------
 
+- When viewing a task in a completed story would show you a login form. This 
+  was caused by removing the modify portal content permission for manager
+  [jladage]
+
+- Fixed http://plone.org/products/extreme-management-tool/issues/167 [jladage]
+
 - Updated README.txt with the time tracker and iteration closing feature. [jladage]
 
 - Added setup.py with aliases to upload to pypi and plone.org [jladage]

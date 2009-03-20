@@ -87,12 +87,9 @@ def tryToCompleteIteration(self, state_change, **kw):
     portal = self
     story=state_change.object
     iteration = story.aq_parent
-    wf_tool = getToolByName(portal, 'portal_workflow')
-    from Products.CMFCore.WorkflowCore import WorkflowException
-    try:
+    if iteration.completable():
+        wf_tool = getToolByName(portal, 'portal_workflow')
         wf_tool.doActionFor(iteration, 'complete')
-    except WorkflowException:
-        pass
 
 ##############################
 # Iteration Workflow scripts #
