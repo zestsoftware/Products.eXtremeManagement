@@ -32,6 +32,7 @@
    <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Manager</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Customer</permission-role>
