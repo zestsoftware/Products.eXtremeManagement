@@ -142,7 +142,7 @@ class ReleaseplanView(ProjectView):
                 obj = brain.getObject()
                 info = dict(title=brain.Title,
                             uid=brain.UID,
-                            estimate=formatTime(brain.size_estimate),
+                            estimate=brain.size_estimate,
                             locked=wl_isLocked(obj),
                             review_state=brain.review_state)
                 results.append(info)

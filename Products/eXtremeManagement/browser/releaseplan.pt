@@ -44,7 +44,7 @@
               </form>
             </td>
             <td tal:content="story/title"/>
-            <td tal:content="story/estimate"/>
+            <td tal:content="story/size_estimate"/>
           </tr>
           </tal:stories>
           <tal:nostories condition="not: iteration/stories">
