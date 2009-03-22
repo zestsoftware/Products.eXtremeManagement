@@ -1,0 +1,58 @@
+<table id="iterationlist" class="listing" tal:condition="view/projectlist">
+  <thead>
+    <tr>
+      <th class="nosort" i18n:translate="listingheader_iteration">
+        Iteration
+      </th>
+      <th class="nosort" i18n:translate="label_date_start">
+        Planned Start Date
+      </th>
+      <th class="nosort" i18n:translate="label_date_completed">
+        Date completed
+      </th>
+      <th class="nosort" i18n:translate="listingheader_estimate">
+        Initial estimate (days)
+      </th>
+    </tr>
+  </thead>
+  <tfoot tal:condition="view/total">
+    <tr>
+      <th colspan="3"
+          i18n:translate="listingheader-total">
+        Total
+      </th>
+      <td class="right total"
+          tal:content="view/total" />
+    </tr>
+  </tfoot>
+  <tbody>
+    <tal:projects tal:repeat="project view/projectlist">
+      <tal:iterations tal:repeat="iteration project/iterations">
+        <tr>
+          <td>
+            <a tal:content="iteration/title"
+               tal:attributes="title iteration/description;
+                               href iteration/url;"/>
+          </td>
+          <td tal:condition="iteration/start_date"
+              tal:content="python:context.toLocalizedTime(iteration['start_date'],
+                           long_format=0)"
+              class="right" />
+          <td tal:condition="not: iteration/start_date"
+              class="right" > - </td>
+          <td tal:condition="iteration/completion_date" 
+              tal:content="python: context.toLocalizedTime(iteration['completion_date'], long_format=0)" />                    
+          <td tal:condition="python: iteration['end_date'] and not iteration['completion_date']" 
+              tal:content="python: context.toLocalizedTime(iteration['end_date'], long_format=0)" />                    
+          <td tal:condition="python: not iteration['completion_date'] and not iteration['end_date']"
+              class="right"> - </td>
+          <td tal:condition="iteration/rough_estimate"
+              tal:content="iteration/rough_estimate"
+              class="right"/>
+          <td tal:condition="not: iteration/rough_estimate"
+              class="right"> - </td>
+        </tr>
+      </tal:iterations>
+    </tal:projects>
+  </tbody>
+</table>

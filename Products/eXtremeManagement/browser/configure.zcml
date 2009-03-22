@@ -199,6 +199,12 @@
       factory=".iterations.IterationForm"
       />
 
+  <zope:adapter
+      name="xm.iteration_list"
+      provides="zope.contentprovider.interfaces.IContentProvider"
+      factory=".iterations.IterationList"
+      />
+
   <page
       name="xm_add_iteration"
       for="Products.eXtremeManagement.interfaces.IXMProject"

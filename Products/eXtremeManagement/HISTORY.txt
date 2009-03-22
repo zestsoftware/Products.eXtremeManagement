@@ -5,6 +5,9 @@ History
 2.0.1 (unreleased)
 ------------------
 
+- Fixed http://plone.org/products/extreme-management-tool/issues/168
+  In the planned iterations view you can now add new iterations [jladage]
+
 - Fixed http://plone.org/products/extreme-management-tool/issues/166 [jladage]
 
 - When viewing a task in a completed story would show you a login form. This 

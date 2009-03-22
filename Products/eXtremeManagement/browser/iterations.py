@@ -281,6 +281,25 @@ class IterationForm(Explicit):
     render = ViewPageTemplateFile("add_iteration.pt")
 
 
+class IterationList(Explicit):
+    adapts(Interface, IDefaultBrowserLayer, IBrowserView)
+
+    def __init__(self, context, request, view):
+        self.__parent__ = view
+        self.context = context
+        self.request = request
+        self.view = view
+        planned = self.context.restrictedTraverse('@@planned-iterations')
+        self.projectlist = planned.projectlist()
+        self.total = planned.total()
+
+    def update(self):
+        pass
+
+
+    render = ViewPageTemplateFile("iteration_list.pt")
+
+
 class Create(BrowserView):
     """Create a new iteration"""
 
@@ -314,11 +333,7 @@ class Add(PloneKSSView):
         context.invokeFactory(type_name="Iteration", id=new_id, title=title)
         core = self.getCommandSet('core')
         zopecommands = self.getCommandSet('zope')
-
-        # Refresh the add iteration form
-        selector = core.getHtmlIdSelector('add-iteration')
-        zopecommands.refreshProvider(selector, name = 'xm.iteration_form')
-
-        # Set a portal message to inform the user of the change.
+        zopecommands.refreshProvider('#iterationlist', name = 'xm.iteration_list')
+        zopecommands.refreshProvider('#add-iteration', name = 'xm.iteration_form')
         plone_commands.issuePortalMessage(_(u'Iteration added'),
                                           msgtype='info')
