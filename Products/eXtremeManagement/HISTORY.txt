@@ -2,7 +2,7 @@ History
 =======
 
 
-2.0.1 (unreleased)
+2.0.1 (2009-03-22)
 ------------------
 
 - Fixed http://plone.org/products/extreme-management-tool/issues/168
