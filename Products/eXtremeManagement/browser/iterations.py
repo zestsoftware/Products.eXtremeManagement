@@ -1,7 +1,16 @@
+from webdav.Lockable import wl_isLocked
 from Acquisition import aq_inner
 from Acquisition import aq_parent
+from Acquisition import Explicit
+from zope.component import adapts
+from zope.interface import Interface
+from zope.publisher.interfaces.browser import IBrowserView
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from plone.app.kss.plonekssview import PloneKSSView
+from kss.core import kssaction
 from Products.CMFCore.utils import getToolByName
-
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from xm.booking.timing.interfaces import IActualHours
 from xm.booking.timing.interfaces import IEstimate
@@ -9,7 +18,7 @@ from Products.eXtremeManagement.content.Iteration import \
     UNACCEPTABLE_STATUSES as UNACCEPTABLE_STORY_STATUSES
 from Products.eXtremeManagement.utils import formatTime
 from Products.eXtremeManagement.utils import getStateSortedContents
-from webdav.Lockable import wl_isLocked
+from Products.eXtremeManagement import XMMessageFactory as _
 
 
 class IterationView(XMBaseView):
@@ -261,3 +270,55 @@ class PlanningView(IterationView):
                 if new_val:
                     story_obj = self.context.get(story['story_id'])
                     story_obj.set_size_estimate(float(new_val))
+
+
+class IterationForm(Explicit):
+    adapts(Interface, IDefaultBrowserLayer, IBrowserView)
+
+    def update(self):
+        pass
+
+    render = ViewPageTemplateFile("add_iteration.pt")
+
+
+class Create(BrowserView):
+    """Create a new iteration"""
+
+    def __call__(self):
+        form = self.request.form
+        title = form.get('title', '')
+        if title == '':
+            #status message
+            return
+        context = aq_inner(self.context)
+        plone_utils = getToolByName(self.context, 'plone_utils')
+        new_id = plone_utils.normalizeString(title)
+        context.invokeFactory(type_name="Iteration", id=new_id, title=title)
+        plone_utils.addPortalMessage(_(u'Iteration added.'))
+        self.request.response.redirect(context.absolute_url() + '/@@planned-iterations')
+
+
+class Add(PloneKSSView):
+
+    @kssaction
+    def add_iteration(self):
+        context = aq_inner(self.context)
+        plone_commands = self.getCommandSet('plone')
+        title = self.request.form.get('title')
+        if not title:
+            plone_commands.issuePortalMessage(_(u'Title is required'),
+                                              msgtype='error')
+            return None
+        plone_utils = getToolByName(self.context, 'plone_utils')
+        new_id = plone_utils.normalizeString(title)
+        context.invokeFactory(type_name="Iteration", id=new_id, title=title)
+        core = self.getCommandSet('core')
+        zopecommands = self.getCommandSet('zope')
+
+        # Refresh the add iteration form
+        selector = core.getHtmlIdSelector('add-iteration')
+        zopecommands.refreshProvider(selector, name = 'xm.iteration_form')
+
+        # Set a portal message to inform the user of the change.
+        plone_commands.issuePortalMessage(_(u'Iteration added'),
+                                          msgtype='info')

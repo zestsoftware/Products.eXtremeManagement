@@ -67,3 +67,31 @@ dl.actionMenu:load {
     setStyle-name: display;
     setStyle-value: block;
 }
+
+#iteration-form-button:click {
+    evt-click-preventdefault: true;
+    evt-click-allowbubbling: true;
+    action-server: xm.kss_iteration_form;
+    action-client: setStyle;
+    setStyle-name: display;
+    setStyle-value: none;
+}
+
+#iteration-form-expanded legend:click {
+    evt-click-preventdefault: true;
+    evt-click-allowbubbling: true;
+    action-client: replaceHTML;
+    replaceHTML-kssSelector: htmlid('iteration-form-expanded');
+    replaceHTML-html: '<div id="iteration-form"/>';
+    action-client: setStyle;
+    setStyle-kssSelector: htmlid('iteration-form-button');
+    setStyle-name: display;
+    setStyle-value: block;
+}
+
+#submit-iteration:click {
+    evt-click-preventdefault: true;
+    evt-click-allowbubbling: true;
+    action-server: xm_add_iteration;
+    xm_add_iteration-kssSubmitForm: currentForm();
+}

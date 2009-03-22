@@ -10,12 +10,14 @@
 
   <body>
 
-
     <div metal:fill-slot="main"
          id="planned-iterations">
       <h1 i18n:translate="label_new_iterations_overview">
         Planned iterations
       </h1>
+
+      <!-- TODO: make a contentProvider of this table
+      <div tal:replace="structure provider:xm.plannedlist"> -->
 
       <table class="listing" tal:condition="view/projectlist">
         <thead>
@@ -75,16 +77,15 @@
           </tal:projects>
         </tbody>
       </table>
+      
 
       <p tal:condition="not: view/projectlist"
          i18n:translate="description_no_iterations_planned">
          No iterations are planned at this moment.
       </p>
-      <div id="task-form-button">
-        <a tal:condition="python: checkPermission('eXtremeManagement: Add Iteration', context)"
-           tal:attributes="href string: ${view/project_url}/createObject?type_name=Iteration"
-           i18n:translate="link_create_iteration">New Iteration</a>
-      </div>
+
+      <div id="iteration-form-button" i18n:translate="label_new_iteration">New Iteration</div>
+      <div id="iteration-form" />
 
     </div>
   </body>

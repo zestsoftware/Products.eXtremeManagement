@@ -1,0 +1,33 @@
+<div id="iteration-form-expanded"
+     i18n:domain="eXtremeManagement"
+     tal:define="project_view context/@@project">
+
+  <div class="visualClear"></div>
+    
+  <form name="add_iteration"
+        method="post"
+        id="additerationform"
+        action=""
+        tal:attributes="action string:${context/absolute_url}/@@xm_create_iteration">
+
+      <fieldset>
+         <legend i18n:translate="label_new_iteration">New iteration</legend>
+      <input name="title"
+             id="title"
+             value=""
+             type="text"
+             size="45"
+             id="new-iteration"
+             tabindex="1" />
+
+    <div class="formControls">
+      <input value="Add Iteration"
+             id="submit-iteration"
+             i18n:attributes="value label_add_iteration;"
+             type="submit"
+             class="standalone"
+             tabindex="2" />
+    </div>
+    </fieldset>
+  </form>
+</div>

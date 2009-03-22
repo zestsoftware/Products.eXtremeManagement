@@ -75,6 +75,17 @@ class KSSTaskForm(PloneKSSView):
         zope.refreshProvider(selector, 'xm.task_form')
 
 
+class KSSIterationForm(PloneKSSView):
+    
+    @kssaction
+    def kss_iteration_form(self):
+        """Return the add iteration form"""
+        core = self.getCommandSet('core')
+        zope = self.getCommandSet('zope')
+        selector = core.getHtmlIdSelector('iteration-form')
+        zope.refreshProvider(selector, 'xm.iteration_form')
+
+
 class WorkflowGadget(PloneKSSView):
 
     implements(IPloneKSSView, IViewView)

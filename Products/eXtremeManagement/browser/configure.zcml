@@ -184,6 +184,38 @@
       />
 
   <page
+      for="Products.eXtremeManagement.interfaces.IXMProject"
+      class=".xm_kss.KSSIterationForm"
+      attribute="kss_iteration_form"
+      name="xm.kss_iteration_form"
+      permission="zope2.View"
+      />
+
+  <!-- this content provider is called by a kss server-action to display the
+       form inline-->
+  <zope:adapter
+      name="xm.iteration_form"
+      provides="zope.contentprovider.interfaces.IContentProvider"
+      factory=".iterations.IterationForm"
+      />
+
+  <page
+      name="xm_add_iteration"
+      for="Products.eXtremeManagement.interfaces.IXMProject"
+      class=".iterations.Add"
+      attribute="add_iteration"
+      permission="xm.AddIteration"
+      />
+      
+  <page
+      name="xm_create_iteration"
+      for="Products.eXtremeManagement.interfaces.IXMProject"
+      class=".iterations.Create"
+      permission="xm.AddIteration"
+      />
+  
+
+  <page
       name="offer"
       class=".offers.OfferView"
       for="Products.eXtremeManagement.interfaces.IXMOffer"
