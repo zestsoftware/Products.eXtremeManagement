@@ -10,7 +10,7 @@
                        story view/main;
                        next story/next;
                        prev story/prev;">
-					   
+
         <metal:prevnext define-macro="previous_next">
           <div class="listingBar" tal:condition="python: next or prev">
             <a class="listingNext"
@@ -59,7 +59,7 @@
               </div>
           </div>
         </tal:attachments>
-		
+
         <tal:details define="estimated context/isEstimated;
                              startable context/startable;
                              tasklist view/tasklist;
@@ -117,7 +117,7 @@
                           estimated (fill in estimate value and select
                           'estimate' from the state dropdown).</dd>
                       </dl>
-            
+
                       <dl tal:condition="not:startable" class="not-startable"
                           tal:define="tasks_not_startable view/task_titles_not_startable">
                         <dt i18n:translate="cannot_activate">Cannot Activate</dt>
@@ -136,7 +136,7 @@
                       <span class="xmtooltip-bottom"></span>
                     </span>
                   <span i18n:domain="plone" i18n:translate=""
-                        tal:replace="story/review_state" /> 
+                        tal:replace="story/review_state" />
                   </a>
                   <span i18n:domain="plone" i18n:translate=""
                         tal:condition="python: estimated and startable"
@@ -169,7 +169,7 @@
                 define="realtasks tasklist"
                 replace="structure provider:xm.tasklist.simple" />
           </tal:block>
-		  
+
           <tal:add-task condition="python:story['review_state'] == 'estimated'">
             <div id="task-form-button" i18n:translate="label_add_task">Add task</div>
             <div id="task-form" />
