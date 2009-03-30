@@ -2,7 +2,12 @@ from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from zope.cachedescriptors.property import Lazy
 from plone.memoize.view import memoize
+from kss.core import kssaction
+from plone.app.kss.plonekssview import PloneKSSView
 from zope.component import getMultiAdapter
+from datetime import date, timedelta
+import time
+
 try:
     import xm.theme
 except ImportError:
@@ -14,6 +19,90 @@ else:
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
 
+
+class Projects(XMBaseView):
+    """Manage all projects.
+    """
+
+    @memoize
+    def iterationsforproject(self, projectbrain):
+        searchpath = projectbrain.getPath()
+        # Search for Iterations that are ready to get invoiced
+        return self.catalog.searchResults(portal_type='Iteration', 
+                                                     path=searchpath)
+
+    @memoize
+    def projects(self):
+        return self.catalog.searchResults(portal_type='Project',
+                                          review_state='active')[:2]
+    
+
+class Scheduling(Projects):
+    """Pan-project scheduling"""
+    
+    weekcount = 14
+    weekpreroll = 2
+    # Displayed width in pixels - declared here so we can calculate iteration 
+    # positions in code
+    cellwidth = 16 
+    
+    def datetotimestamp(self, dateobj):
+        return int(time.mktime(dateobj.timetuple()))
+
+    def displayrange(self):
+        return timedelta(self.weekcount*7)
+
+    def startingdate(self):
+        try:
+            start = date.fromtimestamp(int(self.request.get('start')))
+        except TypeError:
+            start = date.today()
+        monday = start - timedelta(self.weekpreroll*7)
+        while monday.weekday() != 0:
+            monday -= timedelta(1)
+        return monday
+
+    def endingdate(self):
+        return self.startingdate() + self.displayrange()
+
+    def schedule_weeks(self):
+        """
+        Calculate the day range to display in the schedule view, showing the 
+        weeks before and after the current date.
+        """
+        monday = self.startingdate()
+        return [monday + timedelta(i*7) for i in range(self.weekcount)]
+        
+    def iterationsforproject(self, projectbrain):
+        """Filter iterations based on the current date range"""
+        sdate = self.datetotimestamp(self.startingdate())
+        edate = self.datetotimestamp(self.endingdate())
+        iterations = []
+        for iterationbrain in Projects.iterationsforproject(self, projectbrain):
+            iteration = iterationbrain.getObject()
+            try: 
+                start = float(iteration.startDate)
+                end = float(iteration.endDate)
+                if sdate < start and end < edate:
+                    iterations.append(dict(
+                        id = iteration.id,
+                        title = iteration.Title(),
+                        start = int((start - sdate) / 60 / 60 / 24)  * self.cellwidth,
+                        period = int((end - start) / 60 / 60 / 24) * self.cellwidth,
+                    ))
+            except TypeError:
+                pass # Probably empty iteration dates
+        return iterations
+        
+
+class MoveIteration(PloneKSSView):
+    """Respond to a KSS request to move an iteration to a new start day"""
+    
+    @kssaction
+    def move_iteration(self, uid, dayoffset):
+        """Find an iteration by uid and move it to a new start day"""
+        print 'move_iteration', uid, dayoffset
+        
 
 class MyProjects(XMBaseView):
     """Return the projects that I have tasks in.

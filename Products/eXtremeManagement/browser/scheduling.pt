@@ -1,0 +1,124 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="xm.theme">
+
+  <head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border', 1)" />
+  </head>
+  <body>
+  
+    <div metal:fill-slot="main">
+      <div metal:define-macro="body">
+    <script type="text/javascript" tal:content="string:var cellwidth = ${view/cellwidth}, weekcount = ${view/weekcount}, weekpreroll = ${view/weekpreroll};" />
+    <script type="text/javascript">
+      // width of a day in the display
+      var weekwidth = 7 * cellwidth, viewportwidth = 0;
+      jq.ui.plugin.add("draggable", "shove", {
+        start: function (event, ui) {
+          var inst = jq(this), widget = inst.data("draggable");
+          widget.shove = event.ctrlKey;
+          var next = inst.next();
+          if (widget.shove && next.length) next.data("draggable").mouseStart(event);
+        },
+        
+        drag: function (event, ui) {
+          var inst = jq(this), widget = inst.data("draggable");
+          var next = inst.next();
+          if (next.length) {
+            if (ui.position.left + inst.width() > next.position().left) {
+              ui.position.left = next.position().left - inst.width();
+            }
+          }
+          if (widget.shove && next.length) next.data("draggable").mouseDrag(event);
+          var prev = inst.prev();
+          if (prev.length) {
+            if (ui.position.left < prev.position().left + prev.width()) {
+              ui.position.left = prev.position().left + prev.width();
+            }
+          }
+        },
+        
+        stop: function (event, ui) {
+          var inst = jq(this), widget = inst.data("draggable");
+          var next = inst.next();
+          if (widget.shove && next.length) next.data("draggable").mouseStop(event);
+          console.log(inst, inst.position());
+          var oper = new kukit.op.Oper();
+          oper.parms.dayoffset = String(inst.position().left / cellwidth);
+          var res = oper.executeServerAction("move_iteration");
+          console.log('ssc', res);
+        }
+      });
+    
+      jq(document).ready( function setup () {
+        // Set all the display aspects of the schedule view...
+        viewportwidth = jq("#schedule-field").width();
+        jq("#schedule-bars").css({
+          width: weekcount * weekwidth,
+          left: (2 * weekcount * weekwidth - viewportwidth) - (weekcount * weekwidth) - (2 * weekwidth)  
+        });
+        jq("#schedule-containment").css({
+          left: -1008, // Need to work out how to calculate this.. every time I try I go cross-eyed. :) [SMH]
+          width: 2 * weekcount * weekwidth - viewportwidth
+        });
+        jq("#schedule-bars").draggable({
+          axis: 'x', 
+          containment: 'parent',
+          grid: [cellwidth, 32],
+        });
+        jq(".iteration-bar").draggable({
+            axis: 'x', 
+            containment: 'parent',
+            grid: [cellwidth, 32],
+            shove: 'true'
+        });
+      });
+    </script>
+    
+    <h1 i18n:translate="project_scheduling">
+          Project Scheduling
+        </h1>
+        <div tal:omit-tag=""
+            i18n:translate="description_project_scheduling">
+            Manage the iterations of active projects.
+        </div>
+
+        <div id="period-selection" 
+             tal:define="view_url string:${context/absolute_url}/@@project_scheduling;
+                         prev python:view.datetotimestamp(view.startingdate() - view.displayrange());
+                         next python:view.datetotimestamp(view.endingdate())">
+          <a href="" style="float: right" tal:attributes="href string:$view_url?start=$next" >next period &gt;&gt;</a>
+          <a href="" tal:attributes="href string:$view_url?start=$prev" >&lt;&lt; previous period</a>
+        </div>
+
+        <div id="schedule-wrapper">
+          <div id="schedule-labels">
+            <div class="schedule-label"></div>
+            <div class="schedule-label" tal:repeat="project view/projects">
+              <a href="" tal:content="project/Title" tal:attributes="href python:project.getObject().absolute_url()" />
+            </div>
+          </div>
+          
+          <div id="schedule-field">
+            <div id="schedule-containment">
+              <div id="schedule-bars">
+                <div id="schedule-dates">
+                  <div class="schedule-date" tal:repeat="date view/schedule_weeks" tal:content="date"/>
+                </div>
+                <div class="schedule-bar" tal:repeat="project view/projects">
+                  <div class="iteration-bar" tal:repeat="iteration python:view.iterationsforproject(project)" 
+                       tal:content="iteration/title" 
+                       tal:attributes="style string: left: ${iteration/start}px;; width: ${iteration/period}px" />
+                </div>
+              </div>
+            </div>
+          </div>
+            
+        </div><br style="clear: both"/>
+    
+      </div>
+    </div>
+  </body>
+</html>

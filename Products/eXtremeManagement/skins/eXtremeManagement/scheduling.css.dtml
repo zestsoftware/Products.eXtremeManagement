@@ -1,0 +1,64 @@
+/* <dtml-var "enableHTTPCompression(request=REQUEST, debug=1, css=1)"> (this is for http compression) */
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+#schedule-wrapper {
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  float: left;
+  width: 690px;
+}
+#schedule-labels {
+  width: 129px;
+  background-color: #fbb;
+  float: left;
+  border-right: 1px solid black;
+}
+#schedule-field {
+  overflow: hidden;
+  width: 560px; /* 5*112px */
+  clear: right;
+  float: left;
+}
+#schedule-containment {
+  position: relative;
+/* Set in code 
+  left: -800px; 
+  width: 2400px;*/
+}
+#schedule-bars {
+  position: relative;
+/* Set in code 
+  left: 800px;
+  width: 1600px; */
+  background-color: #bfb;
+}
+#schedule-dates { }
+  .schedule-date {
+  float: left;
+  width: 112px; /* 7 x 16px */
+  background: url(&dtml-portal_url;/black-dot.gif) repeat-y top right;
+}
+.schedule-label, .schedule-bar, #schedule-dates, .schedule-date, .iteration-bar {
+height: 32px;
+}
+#schedule-dates, .schedule-label {
+background: url(&dtml-portal_url;/black-dot.gif) repeat-x bottom left;
+}
+.schedule-bar {
+background: url(&dtml-portal_url;/black-grid.gif);
+position: relative;
+}
+.iteration-bar {
+background-color: #bbf;
+width: 80px;
+position: absolute;
+}
+.ui-draggable-overlapped {
+background-color: red;
+}
+.ui-draggable-overlapping {
+background-color: green;
+}
+
+/* </dtml-with> */

@@ -2,6 +2,14 @@ from zope.interface import Attribute
 from zope.publisher.interfaces.browser import IBrowserView
 
 
+class IProjects(IBrowserView):
+    """Manage all active projects.
+    """
+
+    def projects():
+        pass
+
+
 class IMyProjects(IBrowserView):
     """Return the projects that the logged in user has tasks in.
     """

@@ -6,6 +6,23 @@
   <include package=".viewlets" />
 
   <page
+      name="project_scheduling"
+      class=".projects.Scheduling"
+      for="*"
+      permission="zope2.View"
+      template="scheduling.pt"
+      allowed_interface=".interfaces.IProjects"
+      />
+  
+  <!-- server action to update the start and end of an iteration -->
+  <page
+      for="*"
+      class=".projects.MoveIteration"
+      name="move_iteration"
+      permission="zope2.View"
+      />
+
+  <page
       name="myprojects"
       class=".projects.MyProjects"
       for="*"
@@ -275,6 +292,7 @@
       />
 
   <!-- kss -->
+
   <resource
       file="extrememanagement.kss"
       name="extrememanagement.kss"

@@ -18,4 +18,10 @@
  <javascript cacheable="True" compression="safe" cookable="True"
     enabled="True" expression="" id="++resource++dragdrop.js" inline="False"
     insert-after="++resource++animation.js"/>
+ <javascript cacheable="True" compression="safe" cookable="True"
+    enabled="True" id="jquery-ui.js" inline="False" insert-after="jquery.js"
+    expression="not:python:here.restrictedTraverse('@@kss_devel_mode').ison()" />
+ <javascript cacheable="True" compression="safe" cookable="True"
+    enabled="True" id="jquery-ui.js" inline="False" insert-after="jquery.js"
+    expression="python: not here.restrictedTraverse('@@plone_portal_state').anonymous() and here.restrictedTraverse('@@kss_devel_mode').ison()" />
 </object>

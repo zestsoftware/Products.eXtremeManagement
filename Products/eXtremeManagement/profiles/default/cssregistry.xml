@@ -3,4 +3,7 @@
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="True" expression="" id="eXtreme.css" media="all" rel="stylesheet"
     rendering="import"/>
+ <stylesheet title="" cacheable="True" compression="safe" cookable="True"
+    enabled="True" expression="" id="scheduling.css" media="all" rel="stylesheet"
+    rendering="import"/>
 </object>
