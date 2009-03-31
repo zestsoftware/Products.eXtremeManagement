@@ -87,8 +87,9 @@ def tryToCompleteIteration(self, state_change, **kw):
     portal = self
     story=state_change.object
     iteration = story.aq_parent
-    if iteration.completable():
-        wf_tool = getToolByName(portal, 'portal_workflow')
+    wf_tool = getToolByName(portal, 'portal_workflow')
+    if wf_tool.getInfoFor(iteration, 'review_state') == 'in-progress' and \
+            iteration.completable():
         wf_tool.doActionFor(iteration, 'complete')
 
 ##############################
