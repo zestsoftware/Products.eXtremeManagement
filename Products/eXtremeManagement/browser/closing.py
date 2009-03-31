@@ -67,17 +67,24 @@ class IterationClosingView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
+
+    @property
+    def project(self):
         state = component.getMultiAdapter((self.context, self.request),
                                           interface.Interface,
                                           u'xm_global_state')
-        self.project = state.project
+        return state.project
 
+    @property
+    def portal(self):
         pview = component.getMultiAdapter((self.context, self.request),
                                           interface.Interface,
                                           u'plone_portal_state')
+        return pview.portal()
 
-        self.portal = portal = pview.portal()
-        self.catalog = portal.portal_catalog
+    @property
+    def catalog(self):
+        return self.portal.portal_catalog
 
     @Lazy
     def pending_stories(self):
@@ -114,12 +121,11 @@ class IterationClosingView(BrowserView):
                 wf_tool.doActionFor(self.context, 'complete')
             except WorkflowException:
                 pass
-            
 
     def remove_bookings(self, obj):
         path = '/'.join(obj.getPhysicalPath())
         all = {}
-        for x in self.catalog(portal_type='Booking', path='/'.join(path)):
+        for x in self.catalog(portal_type='Booking', path=path):
             parent = x.getPath()[:-1]
             ids = all.get(parent, None)
             if ids is None:
@@ -129,7 +135,7 @@ class IterationClosingView(BrowserView):
         for parentpath, ids in all.items():
             logger.info('Deleting from %r: %r' % (parentpath, ids))
             parent = self.portal.restrictedTraverse(parentpath)
-            parent.manage_delObjects(ids)
+            parent.manage_delObjects(list(ids))
 
         logger.info('Bookings cleaned up')
 

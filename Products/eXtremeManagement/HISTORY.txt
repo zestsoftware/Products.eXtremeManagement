@@ -5,7 +5,9 @@ History
 2.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed iteration closing tests by using properties.
+  Fixed 'TypeError: unindexable object' in iteration closing view.
+  [maurits]
 
 
 2.0.1 (2009-03-22)
