@@ -110,6 +110,8 @@ def send(portal, message, subject, recipients=[]):
     sender_name = str(Header(safe_unicode(sender_name), header_charset))
     # Make sure email addresses do not contain non-ASCII characters
     sender_addr = sender_addr.encode('ascii')
+    # XXX We should first format the address, and *then* use the
+    # Header class.
     email_from = formataddr((sender_name, sender_addr))
 
     # Same for the list of recipients.
@@ -127,6 +129,8 @@ def send(portal, message, subject, recipients=[]):
         recipient_name = str(Header(safe_unicode(recipient_name),
                                     header_charset))
         recipient_addr = recipient_addr.encode('ascii')
+        # XXX We should first format the address, and *then* use the
+        # Header class.
         formatted = formataddr((recipient_name, recipient_addr))
         formatted_recipients.append(formatted)
     email_to = ', '.join(formatted_recipients)
