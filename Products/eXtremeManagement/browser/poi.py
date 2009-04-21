@@ -6,6 +6,7 @@ from zope.component import queryMultiAdapter
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.interfaces import IReferenceable
 from Products.statusmessages.interfaces import IStatusMessage
+from Products.CMFPlone.utils import safe_unicode 
 
 from Products.eXtremeManagement.interfaces.xmissuegetter import IXMIssueGetter
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
@@ -109,7 +110,7 @@ class PoiView(XMBaseView):
 
     def _add_message(self, message, type='info'):
         addMessage = IStatusMessage(self.request).addStatusMessage
-        addMessage(message, type)
+        addMessage(safe_unicode(message), type)
 
     def add_tasks_from_tags(self, tags):
         issues, ignore = self._get_open_issues(tags)
