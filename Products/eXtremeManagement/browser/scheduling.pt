@@ -11,7 +11,7 @@
   
     <div metal:fill-slot="main">
       <div metal:define-macro="body">
-    <script type="text/javascript" tal:content="string:var cellwidth = ${view/cellwidth}, weekcount = ${view/weekcount}, weekpreroll = ${view/weekpreroll};" />
+    <script type="text/javascript" tal:content="string:var cellwidth = ${view/cellwidth}, weekcount = ${view/weekcount}, weekpreroll = ${view/weekpreroll}, daystart = ${view/startingtimestamp};" />
     <script type="text/javascript">
       // width of a day in the display
       var weekwidth = 7 * cellwidth, viewportwidth = 0;
@@ -44,11 +44,14 @@
           var inst = jq(this), widget = inst.data("draggable");
           var next = inst.next();
           if (widget.shove && next.length) next.data("draggable").mouseStop(event);
-          console.log(inst, inst.position());
+          console.log(inst, inst.position(), inst.position().left / cellwidth, inst.attr('id'), daystart);
           var oper = new kukit.op.Oper();
           oper.parms.dayoffset = String(inst.position().left / cellwidth);
-          var res = oper.executeServerAction("move_iteration");
-          console.log('ssc', res);
+          oper.parms.daystart = String(daystart);
+          oper.parms.uid = inst.attr('id');
+          oper.kssParms = {'kssUrl': 'move_iteration'};
+          console.log(oper);
+          oper.executeServerAction();
         }
       });
     
@@ -110,7 +113,7 @@
                 <div class="schedule-bar" tal:repeat="project view/projects">
                   <div class="iteration-bar" tal:repeat="iteration python:view.iterationsforproject(project)" 
                        tal:content="iteration/title" 
-                       tal:attributes="style string: left: ${iteration/start}px;; width: ${iteration/period}px" />
+                       tal:attributes="style string: left: ${iteration/start}px;; width: ${iteration/period}px; id iteration/uid" />
                 </div>
               </div>
             </div>

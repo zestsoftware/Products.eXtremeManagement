@@ -14,10 +14,11 @@
       allowed_interface=".interfaces.IProjects"
       />
   
-  <!-- server action to update the start and end of an iteration -->
+  <!-- KSS server action to update the start and end of an iteration -->
   <page
       for="*"
       class=".projects.MoveIteration"
+      attribute="move_iteration"
       name="move_iteration"
       permission="zope2.View"
       />

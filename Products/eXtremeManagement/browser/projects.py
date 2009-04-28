@@ -52,11 +52,15 @@ class Scheduling(Projects):
     def displayrange(self):
         return timedelta(self.weekcount*7)
 
-    def startingdate(self):
+    def startingtimestamp(self):
         try:
-            start = date.fromtimestamp(int(self.request.get('start')))
+            start = int(self.request.get('start'))
         except TypeError:
-            start = date.today()
+            start = int(time.time())
+        return start
+        
+    def startingdate(self):
+        start = date.fromtimestamp(self.startingtimestamp())
         monday = start - timedelta(self.weekpreroll*7)
         while monday.weekday() != 0:
             monday -= timedelta(1)
@@ -74,7 +78,8 @@ class Scheduling(Projects):
         return [monday + timedelta(i*7) for i in range(self.weekcount)]
         
     def iterationsforproject(self, projectbrain):
-        """Filter iterations based on the current date range"""
+        """Filter iterations based on the current date range and build a data 
+        structure useful to the JavaScript interface"""
         sdate = self.datetotimestamp(self.startingdate())
         edate = self.datetotimestamp(self.endingdate())
         iterations = []
@@ -85,7 +90,7 @@ class Scheduling(Projects):
                 end = float(iteration.endDate)
                 if sdate < start and end < edate:
                     iterations.append(dict(
-                        id = iteration.id,
+                        uid = iteration.UID,
                         title = iteration.Title(),
                         start = int((start - sdate) / 60 / 60 / 24)  * self.cellwidth,
                         period = int((end - start) / 60 / 60 / 24) * self.cellwidth,
@@ -99,9 +104,10 @@ class MoveIteration(PloneKSSView):
     """Respond to a KSS request to move an iteration to a new start day"""
     
     @kssaction
-    def move_iteration(self, uid, dayoffset):
+    def move_iteration(self, uid, daystart, dayoffset):
         """Find an iteration by uid and move it to a new start day"""
-        print 'move_iteration', uid, dayoffset
+        print 'move_iteration', uid, date.fromtimestamp(int(daystart)), dayoffset
+        # Set start date of iteration with UID 'uid' to start - dayoffset
         
 
 class MyProjects(XMBaseView):
