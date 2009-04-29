@@ -174,7 +174,7 @@
                 replace="structure provider:xm.tasklist.simple" />
           </tal:block>
 
-          <tal:add-task condition="python:story['review_state'] == 'estimated'">
+          <tal:add-task condition="python:checkPermission('eXtremeManagement: Add Task', context)">
             <div id="task-form-button" i18n:translate="label_add_task">Add task</div>
             <div id="task-form" />
           </tal:add-task>
