@@ -3,16 +3,17 @@
 /* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
 
 #schedule-wrapper {
-  border-left: 1px solid black;
-  border-top: 1px solid black;
+  border-top: 1px solid #d1d2cd;
   float: left;
   width: 690px;
+  margin-top: 1ex;
 }
 #schedule-labels {
   width: 129px;
-  background-color: #fbb;
+  background-color: #ebebe9;
   float: left;
-  border-right: 1px solid black;
+  border-left: 1px solid #d1d2cd;
+  border-bottom: 1px solid #d1d2cd;
 }
 #schedule-field {
   overflow: hidden;
@@ -22,28 +23,48 @@
 }
 #schedule-containment {
   position: relative;
-/* Set in code 
-  left: -800px; 
+/* Set in code
+  left: -800px;
   width: 2400px;*/
 }
 #schedule-bars {
   position: relative;
-/* Set in code 
+/* Set in code
   left: 800px;
   width: 1600px; */
   background-color: #bfb;
 }
-#schedule-dates { }
+
+#schedule-dates {
+  background: #fff;
+  border-bottom: 1px solid red;
+  background: url(&dtml-portal_url;/schedule-label.gif) no-repeat right top;
+}
+
   .schedule-date {
   float: left;
-  width: 112px; /* 7 x 16px */
-  background: url(&dtml-portal_url;/black-dot.gif) repeat-y top right;
+  width: 111px; /* 7 x 16px */
+  border-right: 1px solid red;
 }
+
 .schedule-label, .schedule-bar, #schedule-dates, .schedule-date, .draggable-iteration-bar, .undraggable-iteration-bar {
 height: 32px;
 }
-#schedule-dates, .schedule-label {
-background: url(&dtml-portal_url;/black-dot.gif) repeat-x bottom left;
+.schedule-label.header,  #schedule-dates {
+height: 18px;
+}
+.schedule-label {
+background: url(&dtml-portal_url;/schedule-label.gif) repeat-x right top;
+}
+.schedule-label a {
+font-weight: bold;
+display: table-cell;
+vertical-align: middle;
+height: 30px;
+padding-left: 10px;
+}
+.schedule-label.header {
+background: url(&dtml-portal_url;/schedule-label-header.gif) repeat-x right top;
 }
 .schedule-bar {
 background: url(&dtml-portal_url;/black-grid.gif);
@@ -64,6 +85,10 @@ background-color: red;
 }
 .ui-draggable-overlapping {
 background-color: green;
+}
+
+#period-selection {
+    margin-top: 2ex;
 }
 
 #project_list_widget {
