@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-03-14 22:14+0000\n"
+"POT-Creation-Date: 2009-04-29 09:42+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -54,6 +54,10 @@ msgstr ""
 msgid "Issues"
 msgstr ""
 
+#: ./browser/iterations.py:316
+msgid "Iteration added."
+msgstr ""
+
 #: ./portlets/iterations.py:40
 msgid "Iterations"
 msgstr ""
@@ -93,7 +97,7 @@ msgstr ""
 msgid "Task added"
 msgstr ""
 
-#: ./browser/tasks.py:351
+#: ./browser/iterations.py:328
 msgid "Title is required"
 msgstr ""
 
@@ -165,7 +169,7 @@ msgid "description_no_iterations_in_progress"
 msgstr ""
 
 #. Default: "No iterations are planned at this moment."
-#: ./browser/planned_iterations.pt:79
+#: ./browser/planned_iterations.pt:20
 msgid "description_no_iterations_planned"
 msgstr ""
 
@@ -685,6 +689,11 @@ msgstr ""
 msgid "label_add_booking"
 msgstr ""
 
+#. Default: "Add Iteration"
+#: ./browser/add_iteration.pt:24
+msgid "label_add_iteration"
+msgstr ""
+
 #. Default: "Add task"
 #: ./browser/add_task.pt:21
 msgid "label_add_task"
@@ -730,11 +739,6 @@ msgstr ""
 msgid "label_date_due"
 msgstr ""
 
-#. Default: "Planned Start Date"
-#: ./browser/planned_iterations.pt:26
-msgid "label_date_start"
-msgstr ""
-
 #. Default: "Estimated hours"
 #: ./browser/inprogress.pt:44
 msgid "label_estimated_hours"
@@ -775,13 +779,13 @@ msgstr ""
 msgid "label_moved_to_unplanned_succesfully"
 msgstr ""
 
-#. Default: "New Iteration"
-#: ./browser/close-iteration.pt:43
+#. Default: "New iteration"
+#: ./browser/add_iteration.pt:14
 msgid "label_new_iteration"
 msgstr ""
 
 #. Default: "Planned iterations"
-#: ./browser/planned_iterations.pt:16
+#: ./browser/planned_iterations.pt:14
 msgid "label_new_iterations_overview"
 msgstr ""
 
@@ -839,11 +843,6 @@ msgstr ""
 #: ./skins/eXtremeManagement/booking_month.pt:20
 msgid "last_12_months"
 msgstr "12 derniers mois"
-
-#. Default: "New Iteration"
-#: ./browser/planned_iterations.pt:84
-msgid "link_create_iteration"
-msgstr ""
 
 #. Default: "Booking"
 #: ./skins/eXtremeManagement/booking_details.pt:54

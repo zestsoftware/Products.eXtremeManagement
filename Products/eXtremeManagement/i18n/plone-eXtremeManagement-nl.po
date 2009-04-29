@@ -174,3 +174,8 @@ msgstr "gefactureerd"
 msgid "open"
 msgstr "open"
 
+# localroles.py
+# default "Customer can track project"
+msgid "title_customer_role"
+msgstr "Klant kan project volgen"
+

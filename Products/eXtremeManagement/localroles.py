@@ -20,7 +20,7 @@ class CustomerRole(object):
     implements(ISharingPageRole)
 
     title = PMF(u"title_customer_role",
-                default="Can track project")
+                default="Customer can track project")
     required_permission = 'eXtremeManagement: Add Project'
 
 

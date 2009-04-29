@@ -335,5 +335,5 @@ class Add(PloneKSSView):
         zopecommands = self.getCommandSet('zope')
         zopecommands.refreshProvider('#iterationlist', name = 'xm.iteration_list')
         zopecommands.refreshProvider('#add-iteration', name = 'xm.iteration_form')
-        plone_commands.issuePortalMessage(_(u'Iteration added'),
+        plone_commands.issuePortalMessage(_(u'Iteration added.'),
                                           msgtype='info')

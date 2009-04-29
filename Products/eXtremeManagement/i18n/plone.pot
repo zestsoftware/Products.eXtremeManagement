@@ -171,3 +171,8 @@ msgstr ""
 
 msgid "Reorder stories"
 msgstr ""
+
+# localroles.py
+# default "Customer can track project"
+msgid "title_customer_role"
+msgstr ""

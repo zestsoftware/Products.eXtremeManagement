@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-03-14 22:14+0000\n"
+"POT-Creation-Date: 2009-04-29 09:42+0000\n"
 "PO-Revision-Date: 2009-03-14 22:45+0100\n"
 "Last-Translator: Jean-Paul Ladage <j.ladage@zestsoftware.nl>\n"
 "Language-Team: Nederlands <xm@lists.zestsoftware.nl>\n"
@@ -54,6 +54,10 @@ msgstr "Info"
 msgid "Issues"
 msgstr "Issues"
 
+#: ./browser/iterations.py:316
+msgid "Iteration added."
+msgstr "Iteratie toegevoegd."
+
 #: ./portlets/iterations.py:40
 msgid "Iterations"
 msgstr "Iteraties"
@@ -93,7 +97,7 @@ msgstr "Gerelateerde taken"
 msgid "Task added"
 msgstr "Taak toegevoegd"
 
-#: ./browser/tasks.py:351
+#: ./browser/iterations.py:328
 msgid "Title is required"
 msgstr "Titel is verplicht"
 
@@ -163,7 +167,7 @@ msgid "description_no_iterations_in_progress"
 msgstr "Er zijn op dit moment geen lopende iteraties."
 
 #. Default: "No iterations are planned at this moment."
-#: ./browser/planned_iterations.pt:79
+#: ./browser/planned_iterations.pt:20
 msgid "description_no_iterations_planned"
 msgstr "Er zijn nog geen nieuwe iteraties geplant."
 
@@ -680,6 +684,11 @@ msgstr "iteratie"
 msgid "label_add_booking"
 msgstr "Boeken"
 
+#. Default: "Add Iteration"
+#: ./browser/add_iteration.pt:24
+msgid "label_add_iteration"
+msgstr "Iteratie toevoegen"
+
 #. Default: "Add task"
 #: ./browser/add_task.pt:21
 msgid "label_add_task"
@@ -725,11 +734,6 @@ msgstr "Einddatum"
 msgid "label_date_due"
 msgstr "Einddatum"
 
-#. Default: "Planned Start Date"
-#: ./browser/planned_iterations.pt:26
-msgid "label_date_start"
-msgstr "Startdatum"
-
 #. Default: "Estimated hours"
 #: ./browser/inprogress.pt:44
 msgid "label_estimated_hours"
@@ -770,13 +774,14 @@ msgstr "User story '${story}' is verplaatst naar iteratie '${target}'."
 msgid "label_moved_to_unplanned_succesfully"
 msgstr "User story '${story}' is verplaatst naar de lijst met ongeplande stories."
 
-#. Default: "New Iteration"
-#: ./browser/close-iteration.pt:43
+#. Default: "New iteration"
+#: ./browser/add_iteration.pt:14
+#, fuzzy
 msgid "label_new_iteration"
 msgstr "Nieuwe iteratie"
 
 #. Default: "Planned iterations"
-#: ./browser/planned_iterations.pt:16
+#: ./browser/planned_iterations.pt:14
 msgid "label_new_iterations_overview"
 msgstr "Geplande iteraties"
 
@@ -834,11 +839,6 @@ msgstr "Gewerkte uren"
 #: ./skins/eXtremeManagement/booking_month.pt:20
 msgid "last_12_months"
 msgstr "laatste 12 maanden"
-
-#. Default: "New Iteration"
-#: ./browser/planned_iterations.pt:84
-msgid "link_create_iteration"
-msgstr "Nieuwe iteratie"
 
 #. Default: "Booking"
 #: ./skins/eXtremeManagement/booking_details.pt:54

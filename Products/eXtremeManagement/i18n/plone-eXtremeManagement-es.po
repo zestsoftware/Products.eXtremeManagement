@@ -174,3 +174,8 @@ msgstr "facturado"
 msgid "open"
 msgstr "abierto"
 
+# localroles.py
+# default "Customer can track project"
+msgid "title_customer_role"
+msgstr ""
+
