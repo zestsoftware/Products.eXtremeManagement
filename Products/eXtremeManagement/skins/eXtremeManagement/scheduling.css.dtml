@@ -3,7 +3,9 @@
 /* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
 
 #schedule-wrapper {
-  border-top: 1px solid #d1d2cd;
+  border-color: #d1d2cd;
+  border-style: solid;
+  border-width: 1px 0 1px 0;
   float: left;
   width: 690px;
   margin-top: 1ex;
@@ -17,7 +19,8 @@
 }
 #schedule-field {
   overflow: hidden;
-  width: 560px; /* 5*112px */
+  width: 559px; /* 5*112px */
+  border-right: 1px solid #d1d2cd;
   clear: right;
   float: left;
 }
@@ -32,19 +35,21 @@
 /* Set in code
   left: 800px;
   width: 1600px; */
-  background-color: #bfb;
+  background-color: #fff;
 }
 
 #schedule-dates {
   background: #fff;
-  border-bottom: 1px solid red;
-  background: url(&dtml-portal_url;/schedule-label.gif) no-repeat right top;
+  border-bottom: 1px solid #99bbe8;
 }
 
   .schedule-date {
   float: left;
-  width: 111px; /* 7 x 16px */
-  border-right: 1px solid red;
+  width: 112px; /* 7 x 16px */
+  background: url(&dtml-portal_url;/black-dot.gif) repeat-y right top;
+  font-size: 90%;
+  line-height: 1.5em;
+  text-indent: 1em;
 }
 
 .schedule-label, .schedule-bar, #schedule-dates, .schedule-date, .draggable-iteration-bar, .undraggable-iteration-bar {
@@ -52,6 +57,7 @@ height: 32px;
 }
 .schedule-label.header,  #schedule-dates {
 height: 18px;
+background: url(&dtml-portal_url;/schedule-bumber.gif) repeat-y right top;
 }
 .schedule-label {
 background: url(&dtml-portal_url;/schedule-label.gif) repeat-x right top;
@@ -67,12 +73,14 @@ padding-left: 10px;
 background: url(&dtml-portal_url;/schedule-label-header.gif) repeat-x right top;
 }
 .schedule-bar {
-background: url(&dtml-portal_url;/black-grid.gif);
+background: url(&dtml-portal_url;/color-grid.gif);
 position: relative;
 }
 .draggable-iteration-bar, .undraggable-iteration-bar {
 width: 80px;
 position: absolute;
+line-height: 2.5em;
+text-indent: 1em;
 }
 .undraggable-iteration-bar {
 background-color: #fbb;
@@ -85,6 +93,17 @@ background-color: red;
 }
 .ui-draggable-overlapping {
 background-color: green;
+}
+
+.ui-draggable-dragging {
+background-color: orange;
+border-color: #99bbe8;
+border-style: solid;
+border-width: 0 1px 0 1px;
+}
+
+.current-date {
+    background-color: #e4f8c4;
 }
 
 #period-selection {
