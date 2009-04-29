@@ -28,85 +28,85 @@
         </h1>
 
         <tal:not_for_customer condition="can_view_details">
-        <div tal:replace="structure provider:plone.belowcontenttitle" />
+          <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-        <p class="documentDescription">
-          <metal:field use-macro="python:here.widget('description', mode='view')">
-            Description
+          <p class="documentDescription">
+            <metal:field use-macro="python:here.widget('description', mode='view')">
+              Description
+            </metal:field>
+          </p>
+
+          <div tal:replace="structure provider:plone.abovecontentbody" />
+
+          <div class="xm-details">
+            <table class="listing"
+                   width="100%"
+                   cellpadding="0"
+                   cellspacing="0">
+              <tr>
+                <th class="customer_info_header"
+                    i18n:translate="listingheader_estimate_hours">
+                  Estimate (hours)
+                </th>
+                <td tal:content="task/estimate" />
+              </tr>
+              <tr>
+                <th class="customer_info_header"
+                    i18n:translate="listingheader_workedhours">
+                  Worked hours
+                </th>
+                <td tal:content="task/actual">
+                  0:00
+                </td>
+              </tr>
+              <tr>
+                <th class="customer_info_header"
+                    i18n:translate="listingheader_state">
+                  Status
+                </th>
+                <td>
+                  <a class="xmtooltip"
+                     tal:condition="not: startable">
+                    <span class="xmtooltip-box">
+                      <span class="xmtooltip-top"></span>
+                      <dl tal:condition="not:startable" class="not-startable">
+                        <dt i18n:translate="cannot_activate">Cannot Activate</dt>
+                        <dd tal:condition="python:len(context.getAssignees()) == 0"
+                            i18n:translate="desc_no_task_assigned">
+                        No one has been assigned to this task.</dd>
+                        <dd tal:condition="python:context.getHours() == 0 and context.getMinutes() == 0"
+                            i18n:translate="desc_no_estimate">
+                        Need to assign a time estimate to this task.</dd>
+                      </dl>
+                      <span class="xmtooltip-bottom"></span>
+                    </span>
+                    <span i18n:domain="plone" i18n:translate=""
+                          tal:replace="task/review_state" /> 
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <th class="customer_info_header"
+                    i18n:translate="listingheader_assignees">
+                  Assignee(s)
+                </th>
+                <td>
+                  <ul class="xm-assignees">
+                    <li tal:repeat="item task/assignees"><span tal:replace="item/niceName">Assignee</span></li>
+                  </ul>
+                </td>
+              </tr>
+            </table>
+
+            <div class="visualClear"><!-- --></div>
+          </div>
+
+          <metal:field use-macro="python:here.widget('mainText', mode='view')">
+            Body text
           </metal:field>
-        </p>
 
-        <div tal:replace="structure provider:plone.abovecontentbody" />
-
-        <div class="xm-details">
-          <table class="listing"
-                 width="100%"
-                 cellpadding="0"
-                 cellspacing="0">
-            <tr>
-              <th class="customer_info_header"
-                  i18n:translate="listingheader_estimate_hours">
-                Estimate (hours)
-              </th>
-              <td tal:content="task/estimate" />
-            </tr>
-            <tr>
-              <th class="customer_info_header"
-                  i18n:translate="listingheader_workedhours">
-                Worked hours
-              </th>
-              <td tal:content="task/actual">
-                0:00
-              </td>
-            </tr>
-            <tr>
-              <th class="customer_info_header"
-                  i18n:translate="listingheader_state">
-                Status
-              </th>
-              <td>
-              <a class="xmtooltip"
-                 tal:condition="not: startable">
-                <span class="xmtooltip-box">
-                  <span class="xmtooltip-top"></span>
-                    <dl tal:condition="not:startable" class="not-startable">
-                      <dt i18n:translate="cannot_activate">Cannot Activate</dt>
-                      <dd tal:condition="python:len(context.getAssignees()) == 0"
-                          i18n:translate="desc_no_task_assigned">
-                          No one has been assigned to this task.</dd>
-                      <dd tal:condition="python:context.getHours() == 0 and context.getMinutes() == 0"
-                          i18n:translate="desc_no_estimate">
-                          Need to assign a time estimate to this task.</dd>
-                    </dl>
-                  <span class="xmtooltip-bottom"></span>
-                </span>
-              <span i18n:domain="plone" i18n:translate=""
-                    tal:replace="task/review_state" /> 
-              </a>
-              </td>
-            </tr>
-            <tr>
-              <th class="customer_info_header"
-                  i18n:translate="listingheader_assignees">
-                Assignee(s)
-              </th>
-              <td>
-                <ul class="xm-assignees">
-                  <li tal:repeat="item task/assignees"><span tal:replace="item/niceName">Assignee</span></li>
-                </ul>
-              </td>
-            </tr>
-          </table>
-
-          <div class="visualClear"><!-- --></div>
-        </div>
-
-        <metal:field use-macro="python:here.widget('mainText', mode='view')">
-          Body text
-        </metal:field>
-
-        <div id="break-before-bookings" class="visualClear"><!-- --></div>
-        <div tal:replace="structure provider:plone.belowcontentbody" />
+          <div id="break-before-bookings" class="visualClear"><!-- --></div>
+          <div tal:replace="structure provider:plone.belowcontentbody" />
         </tal:not_for_customer>
       </tal:main-macro>
       <metal:block metal:define-macro="folderlisting" />
