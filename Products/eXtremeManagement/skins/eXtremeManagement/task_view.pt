@@ -6,15 +6,17 @@
   <body>
 
     <metal:main fill-slot="main">
-      <tal:main-macro metal:define-macro="main"
-                      tal:define="view context/@@task;
-                                  task view/main;
-                                  tasks python:context.aq_parent.getFolderContents();
-                                  num_tasks python:len(tasks);
-                                  pos context/getObjPositionInParent;
-                                  next python:pos &lt; num_tasks-1 and tasks[pos+1];
-                                  prev python:pos != 0 and tasks[pos-1];
-                                  startable context/startable">
+      <tal:main-macro
+          metal:define-macro="main"
+          tal:define="view context/@@task;
+                      task view/main;
+                      tasks python:context.aq_parent.getFolderContents();
+                      num_tasks python:len(tasks);
+                      pos context/getObjPositionInParent;
+                      next python:pos &lt; num_tasks-1 and tasks[pos+1];
+                      prev python:pos != 0 and tasks[pos-1];
+                      startable context/startable;
+                      can_view_details python:checkPermission('eXtremeManagement: View Details', context);">
 
         <metal:prevnext use-macro="context/story_view/macros/previous_next" />
         <div tal:replace="structure provider:plone.abovecontenttitle" />
@@ -25,6 +27,7 @@
           </metal:field>
         </h1>
 
+        <tal:not_for_customer condition="can_view_details">
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 
         <p class="documentDescription">
@@ -103,8 +106,8 @@
         </metal:field>
 
         <div id="break-before-bookings" class="visualClear"><!-- --></div>
-
         <div tal:replace="structure provider:plone.belowcontentbody" />
+        </tal:not_for_customer>
       </tal:main-macro>
       <metal:block metal:define-macro="folderlisting" />
     </metal:main>

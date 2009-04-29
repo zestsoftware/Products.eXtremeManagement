@@ -5,6 +5,9 @@ History
 2.0.2 (unreleased)
 ------------------
 
+- For a Customer that is smart enough to traverse to a Task manually,
+  we only show the title and nothing more.  [maurits+mike]
+
 - Protect the Add task form in the story view with the Add Task
   permission, so for example Customers are not shown this option.
   [maurits+mike]
