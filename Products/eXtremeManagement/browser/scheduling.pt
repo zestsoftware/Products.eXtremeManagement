@@ -44,13 +44,13 @@
           var inst = jq(this), widget = inst.data("draggable");
           var next = inst.next();
           if (widget.shove && next.length) next.data("draggable").mouseStop(event);
-          console.log(inst, inst.position(), inst.position().left / cellwidth, inst.attr('id'), daystart);
+          //console.log(inst, inst.position(), inst.position().left / cellwidth, inst.attr('id'), daystart);
           var oper = new kukit.op.Oper();
           oper.parms.dayoffset = String(inst.position().left / cellwidth);
           oper.parms.daystart = String(daystart);
           oper.parms.uid = inst.attr('id');
           oper.kssParms = {'kssUrl': 'move_iteration'};
-          console.log(oper);
+          //console.log(oper);
           oper.executeServerAction();
         }
       });
@@ -112,7 +112,7 @@
                   <div class="schedule-date" tal:repeat="date view/schedule_weeks" tal:content="date"/>
                 </div>
                 <div class="schedule-bar" tal:repeat="project view/projects">
-                  <div class="iteration-bar" tal:repeat="iteration python:view.iterationsforproject(project)" 
+                  <div tal:repeat="iteration python:view.iterationsforproject(project)" 
                        tal:content="iteration/title" 
                        tal:attributes="style string: left: ${iteration/start}px;; width: ${iteration/period}px; 
                                        id iteration/uid;
