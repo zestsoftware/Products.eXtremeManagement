@@ -61,9 +61,9 @@
                               iteration_dict iteration_view/main;
                               realstories iteration_view/stories;
                               iteration_number repeat/curIteration/number;
-                              show_task_count python:True;
+                              show_task_count python:False;
                               show_progress python:True;
-                              show_totals python:False;
+                              show_totals python:True;
                               show_iteration python:True">
                 <div tal:replace="structure provider:xm.storylist.simple" />
 

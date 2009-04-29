@@ -5,6 +5,10 @@ History
 2.0.2 (unreleased)
 ------------------
 
+- In the project view, show the totals of the current iteration(s).
+  In the simple story list, fix the colspan when show_task_count is
+  False.  [maurits+mike]
+
 - Do not give Customers (or Contributors) any permissions on
   bookings.  [maurits+mike]
 

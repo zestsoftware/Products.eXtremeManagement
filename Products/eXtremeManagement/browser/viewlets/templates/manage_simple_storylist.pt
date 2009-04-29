@@ -26,7 +26,7 @@
           </a>
         </th>
         <th colspan="1"
-            tal:attributes="colspan python: show_task_count and 4 or 1"
+            tal:attributes="colspan python: show_task_count and 4 or 3"
             class="iteration-state nosort">
           <span i18n:translate="status">status</span>:
           <span tal:content="structure iteration_dict/review_state"/>
