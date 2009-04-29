@@ -77,10 +77,6 @@
             grid: [cellwidth, 32],
             shove: 'true'
         });
-        jq('#project_list_widget h3').click(function () {
-          jq('#project_list_widget #widget_listing').toggle();
-          console.log('hiding');
-        });
       });
       
     </script>
