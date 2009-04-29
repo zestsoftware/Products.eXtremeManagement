@@ -7,6 +7,7 @@ from plone.app.kss.plonekssview import PloneKSSView
 from zope.component import getMultiAdapter
 from datetime import date, timedelta
 import time
+from DateTime import DateTime
 
 try:
     import xm.theme
@@ -59,8 +60,9 @@ class Scheduling(Projects):
             start = int(time.time())
         return start
         
-    def startingdate(self):
-        start = date.fromtimestamp(self.startingtimestamp())
+    def startingdate(self, stamp=None):
+        stamp = stamp or self.startingtimestamp()
+        start = date.fromtimestamp(stamp)
         monday = start - timedelta(self.weekpreroll*7)
         while monday.weekday() != 0:
             monday -= timedelta(1)
@@ -107,8 +109,18 @@ class MoveIteration(PloneKSSView):
     def move_iteration(self, uid, daystart, dayoffset):
         """Find an iteration by uid and move it to a new start day"""
         print 'move_iteration', uid, date.fromtimestamp(int(daystart)), dayoffset
-        # Set start date of iteration with UID 'uid' to start - dayoffset
-        
+        # Sanitise the daystart
+        view = self.context.restrictedTraverse('@@project_scheduling')
+        first_day = view.startingdate(stamp=int(daystart))
+        # Set start date of iteration with UID 'uid' to first_day + dayoffset
+        newd = first_day + timedelta(int(dayoffset))
+        uid_catalog = getToolByName(self.context, 'uid_catalog')
+        brain = uid_catalog(UID=uid)[0]
+        obj = brain.getObject()
+        duration = obj.duration()
+        obj.startDate = DateTime(newd.year, newd.month, newd.day)
+        # Maintain duration of iteration by setting endDate too
+        obj.endDate = obj.startDate + duration
 
 class MyProjects(XMBaseView):
     """Return the projects that I have tasks in.
