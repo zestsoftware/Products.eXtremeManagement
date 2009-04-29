@@ -5,6 +5,13 @@ History
 2.0.2 (unreleased)
 ------------------
 
+- Reinstated the xm.story.detailsbox provider as the canonical spot
+  for putting the story details box.  Previously it was there and in
+  the story_view.pt, which meant there were subtle differences when
+  creating a booking (provider was updated) and just viewing the page
+  (the story_view.pt was used).  All has been moved to the provider.
+  [maurits]
+
 - Allow starting a Task when it has no assignees, so Employees can
   pick their Tasks.  We plan to create a view to make that picking
   easier, or perhaps to bulk assign some tasks.  [maurits]

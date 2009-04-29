@@ -36,7 +36,7 @@
       <tr>
         <th class="customer_info_header"
             i18n:translate="listingheader_estimate">
-          Initial estimated days
+          Initial Estimate (days)
         </th>
         <td>
           <span tal:replace="structure main/rough_estimate" />
@@ -46,7 +46,7 @@
       <tr tal:condition="can_view_details">
         <th class="customer_info_header"
             i18n:translate="listingheader_tasks_estimate">
-          Task estimated hours
+          Tasks Estimate (hours)
         </th>
         <td>
           <span tal:replace="totals/estimate" />
@@ -59,6 +59,48 @@
         </th>
         <td>
           <span tal:replace="totals/actual" />
+        </td>
+      </tr>
+      <tr>
+        <th class="customer_info_header"
+            i18n:translate="listingheader_state">
+          State
+        </th>
+        <td>
+          <a class="xmtooltip" tal:condition="python: not estimated or not startable">
+            <span class="xmtooltip-box">
+              <span class="xmtooltip-top"></span>
+              <dl tal:condition="not:estimated" class="needs-estimate">
+                <dt i18n:translate="needs_estimate">Needs Estimate</dt>
+                <dd i18n:translate="help_needs_estimate">
+                  Cannot begin working on this story until it has been
+                  estimated (fill in estimate value and select
+                'estimate' from the state dropdown).</dd>
+              </dl>
+
+              <dl tal:condition="not:startable" class="not-startable"
+                  tal:define="tasks_not_startable storyview/task_titles_not_startable">
+                <dt i18n:translate="cannot_activate">Cannot Activate</dt>
+                <dd i18n:translate="cannot_activate_msg"
+                    tal:condition="python:main['review_state'] != 'estimated'">
+                Need to finish estimating this story by selecting 'estimate' from the state dropdown.</dd>
+                <dd i18n:translate="no_tasks_msg"
+                    tal:condition="not:items">
+                No tasks added yet. Please add one.</dd>
+                <dd i18n:translate="cannot_activate_tasks_msg"
+                    tal:condition="tasks_not_startable">
+                  There are tasks which cannot be activated, please
+                  see: <span i18n:name="tasks" tal:replace="tasks_not_startable" />.
+                </dd>
+              </dl>
+              <span class="xmtooltip-bottom"></span>
+            </span>
+            <span i18n:domain="plone" i18n:translate=""
+                  tal:replace="main/review_state" />
+          </a>
+          <span i18n:domain="plone" i18n:translate=""
+                tal:condition="python: estimated and startable"
+                tal:replace="main/review_state"/>
         </td>
       </tr>
     </table>
