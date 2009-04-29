@@ -95,8 +95,3 @@ dl.actionMenu:load {
     action-server: xm_add_iteration;
     xm_add_iteration-kssSubmitForm: currentForm();
 }
-
-/*behaviour:scheduling-move_instance {
-    action-server: xm_add_iteration; 
-    alert-message: "Triggered";
-}*/

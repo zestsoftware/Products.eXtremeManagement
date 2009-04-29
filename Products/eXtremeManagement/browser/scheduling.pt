@@ -71,16 +71,21 @@
           containment: 'parent',
           grid: [cellwidth, 32],
         });
-        jq(".iteration-bar").draggable({
+        jq(".draggable-iteration-bar").draggable({
             axis: 'x', 
             containment: 'parent',
             grid: [cellwidth, 32],
             shove: 'true'
         });
+        jq('#project_list_widget h3').click(function () {
+          jq('#project_list_widget #widget_listing').toggle();
+          console.log('hiding');
+        });
       });
+      
     </script>
     
-    <h1 i18n:translate="project_scheduling">
+        <h1 i18n:translate="project_scheduling">
           Project Scheduling
         </h1>
         <div tal:omit-tag=""
@@ -113,7 +118,9 @@
                 <div class="schedule-bar" tal:repeat="project view/projects">
                   <div class="iteration-bar" tal:repeat="iteration python:view.iterationsforproject(project)" 
                        tal:content="iteration/title" 
-                       tal:attributes="style string: left: ${iteration/start}px;; width: ${iteration/period}px; id iteration/uid" />
+                       tal:attributes="style string: left: ${iteration/start}px;; width: ${iteration/period}px; 
+                                       id iteration/uid;
+                                       class python: iteration['movable'] and 'draggable-iteration-bar' or 'undraggable-iteration-bar'" />
                 </div>
               </div>
             </div>

@@ -35,7 +35,7 @@ class Projects(XMBaseView):
     @memoize
     def projects(self):
         return self.catalog.searchResults(portal_type='Project',
-                                          review_state='active')[:2]
+                                          review_state='active')
     
 
 class Scheduling(Projects):
@@ -94,6 +94,8 @@ class Scheduling(Projects):
                     iterations.append(dict(
                         uid = iteration.UID,
                         title = iteration.Title(),
+                        # only unstarted iterations can be moved...
+                        movable = time.time() < start, 
                         start = int((start - sdate) / 60 / 60 / 24)  * self.cellwidth,
                         period = int((end - start) / 60 / 60 / 24) * self.cellwidth,
                     ))

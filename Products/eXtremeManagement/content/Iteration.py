@@ -115,4 +115,10 @@ class Iteration(OrderedBaseFolder):
                 return False
         return True
 
+    def duration(self):
+        """
+        Calculate the duration of this iteration in days
+        """
+        return int(round(self.endDate - self.startDate))
+
 registerType(Iteration, 'eXtremeManagement')

@@ -39,7 +39,7 @@
   width: 112px; /* 7 x 16px */
   background: url(&dtml-portal_url;/black-dot.gif) repeat-y top right;
 }
-.schedule-label, .schedule-bar, #schedule-dates, .schedule-date, .iteration-bar {
+.schedule-label, .schedule-bar, #schedule-dates, .schedule-date, .draggable-iteration-bar, .undraggable-iteration-bar {
 height: 32px;
 }
 #schedule-dates, .schedule-label {
@@ -49,16 +49,34 @@ background: url(&dtml-portal_url;/black-dot.gif) repeat-x bottom left;
 background: url(&dtml-portal_url;/black-grid.gif);
 position: relative;
 }
-.iteration-bar {
-background-color: #bbf;
+.draggable-iteration-bar, .undraggable-iteration-bar {
 width: 80px;
 position: absolute;
+}
+.undraggable-iteration-bar {
+background-color: #fbb;
+}
+.draggable-iteration-bar {
+background-color: #bbf;
 }
 .ui-draggable-overlapped {
 background-color: red;
 }
 .ui-draggable-overlapping {
 background-color: green;
+}
+
+#project_list_widget {
+    border: 1px solid gray;
+    right: 10px;
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+    padding: 5px;
+}
+
+#project_list_widget #widget_listing {
+    display: none;
 }
 
 /* </dtml-with> */
