@@ -125,8 +125,9 @@
           </p>
 
           <tal:membertasks
-              tal:define="membertasks context/@@employee_totals/totals;"
-              tal:condition="membertasks">
+              tal:define="membertasks context/@@employee_totals/totals;
+                          can_view_details python:checkPermission('eXtremeManagement: View Details', context);"
+              tal:condition="python:membertasks and can_view_details">
             <h1 i18n:translate="heading-hours-per-employee">
             Hours per employee</h1>
             <table class="listing hours-per-employee"
