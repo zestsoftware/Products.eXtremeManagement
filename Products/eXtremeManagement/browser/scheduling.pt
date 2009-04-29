@@ -98,7 +98,7 @@
 
         <div id="schedule-wrapper">
           <div id="schedule-labels">
-            <div class="schedule-label"></div>
+            <div class="schedule-label header"></div>
             <div class="schedule-label" tal:repeat="project view/projects">
               <a href="" tal:content="project/Title" tal:attributes="href python:project.getObject().absolute_url()" />
             </div>
