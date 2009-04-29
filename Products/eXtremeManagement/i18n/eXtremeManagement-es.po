@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement-es\n"
-"POT-Creation-Date: 2009-04-29 09:42+0000\n"
+"POT-Creation-Date: 2009-04-29 10:27+0000\n"
 "PO-Revision-Date: 2007-12-09 14:30-0300\n"
 "Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
 "Language-Team: Spanish\n"
@@ -556,7 +556,7 @@ msgid "heading_releaseplan"
 msgstr ""
 
 #. Default: "Tasks"
-#: ./skins/eXtremeManagement/story_view.pt:166
+#: ./skins/eXtremeManagement/story_view.pt:168
 msgid "heading_tasks"
 msgstr "Tareas"
 
@@ -994,6 +994,11 @@ msgstr "Vista general de tarea"
 #. Default: "Close Iteration"
 #: ./browser/close-iteration.pt:13
 msgid "title_close_iteration"
+msgstr ""
+
+#. Default: "Offer stories"
+#: ./skins/eXtremeManagement/offer_view.pt:58
+msgid "title_offer_stories"
 msgstr ""
 
 #. Default: "Total"

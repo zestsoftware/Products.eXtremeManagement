@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-04-29 09:42+0000\n"
+"POT-Creation-Date: 2009-04-29 10:27+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -547,7 +547,7 @@ msgid "heading_releaseplan"
 msgstr ""
 
 #. Default: "Tasks"
-#: ./skins/eXtremeManagement/story_view.pt:166
+#: ./skins/eXtremeManagement/story_view.pt:168
 msgid "heading_tasks"
 msgstr ""
 
@@ -980,6 +980,11 @@ msgstr ""
 #. Default: "Close Iteration"
 #: ./browser/close-iteration.pt:13
 msgid "title_close_iteration"
+msgstr ""
+
+#. Default: "Offer stories"
+#: ./skins/eXtremeManagement/offer_view.pt:58
+msgid "title_offer_stories"
 msgstr ""
 
 #. Default: "Total"

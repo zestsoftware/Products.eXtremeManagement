@@ -5,6 +5,11 @@ History
 2.0.2 (unreleased)
 ------------------
 
+- Rename 'Can track projects' to include 'customer' so that it is obvious
+  that this is the role to assign to customers who should have access to XM.
+  Updated several translations and added the translation labels for the
+  XM specific roles [laurens+fred]
+
 - Added permission xm.ViewDetails (eXtremeManagement: View Details).
   In the rolemap.xml we give this permission to Manager,
   Projectmanager and Employee.  The task list in the story view is now

@@ -175,4 +175,14 @@ msgstr ""
 # localroles.py
 # default "Customer can track project"
 msgid "title_customer_role"
-msgstr ""
+msgstr "Klant kan project volgen"
+
+# localroles.py
+# default "Works on project"
+msgid "title_employee_role"
+msgstr "Werkt aan project"
+
+# localroles.py
+# default "Can manage project"
+msgid "title_projectmanager_role"
+msgstr "Beheert project"

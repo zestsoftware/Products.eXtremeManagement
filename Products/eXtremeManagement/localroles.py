@@ -12,7 +12,7 @@ class EmployeeRole(object):
     implements(ISharingPageRole)
 
     title = PMF(u"title_employee_role",
-                default="Can be assigned tasks")
+                default="Works on project")
     required_permission = 'eXtremeManagement: Add Project'
 
 

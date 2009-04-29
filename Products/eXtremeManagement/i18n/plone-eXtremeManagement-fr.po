@@ -179,3 +179,13 @@ msgstr "ouvert"
 msgid "title_customer_role"
 msgstr ""
 
+# localroles.py
+# default "Works on project"
+msgid "title_employee_role"
+msgstr ""
+
+# localroles.py
+# default "Can manage project"
+msgid "title_projectmanager_role"
+msgstr ""
+

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-04-29 09:42+0000\n"
+"POT-Creation-Date: 2009-04-29 10:27+0000\n"
 "PO-Revision-Date: 2009-03-14 22:45+0100\n"
 "Last-Translator: Jean-Paul Ladage <j.ladage@zestsoftware.nl>\n"
 "Language-Team: Nederlands <xm@lists.zestsoftware.nl>\n"
@@ -615,7 +615,7 @@ msgstr "Release planning"
 
 ### story_view template ###
 #. Default: "Tasks"
-#: ./skins/eXtremeManagement/story_view.pt:166
+#: ./skins/eXtremeManagement/story_view.pt:168
 msgid "heading_tasks"
 msgstr "Taken"
 
@@ -1050,6 +1050,11 @@ msgstr "Takenlijst"
 #: ./browser/close-iteration.pt:13
 msgid "title_close_iteration"
 msgstr "Iteratie afronden"
+
+#. Default: "Offer stories"
+#: ./skins/eXtremeManagement/offer_view.pt:58
+msgid "title_offer_stories"
+msgstr "User stories in de offerte"
 
 #. Default: "Total"
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:130

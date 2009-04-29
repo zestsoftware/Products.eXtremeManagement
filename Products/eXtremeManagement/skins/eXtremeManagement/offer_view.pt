@@ -55,7 +55,7 @@
 
         <div id="break-before-stories" class="visualClear"><!-- --></div>
 
-        <h2>Offer stories</h2>
+        <h2 i18n:translate="title_offer_stories">Offer stories</h2>
         <table tal:condition="stories"
                width="100%"
                cellpadding="0"
