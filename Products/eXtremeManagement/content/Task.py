@@ -143,12 +143,15 @@ class Task(BaseFolder):
     security.declarePublic('startable')
 
     def startable(self):
+        """Is the task startable?
+
+        A task should have an estimate.
+
+        Previously, we also required having an assignee, but not
+        anymore: you should be able to start an iteration with all its
+        stories and tasks and then developers can pick their tasks,
+        without having them picked for them.
         """
-        A task should have an assignee and either an estimate or a
-        booking.
-        """
-        if len(self.getAssignees()) == 0:
-            return False
         if (self.getHours() > 0 or self.getMinutes() > 0):
             return True
         return False

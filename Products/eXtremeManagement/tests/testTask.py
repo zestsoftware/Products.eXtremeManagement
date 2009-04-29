@@ -88,13 +88,14 @@ class testTask(eXtremeManagementTestCase):
         self.assertEqual(workflow.getInfoFor(task, 'review_state'),
                          'open')
         self.assertEqual(task.startable(), False)
-        task.update(assignees='developer')
-        self.assertEqual(task.startable(), False)
         task.update(hours=0)
         self.assertEqual(task.startable(), False)
         task.update(hours=-1)
         self.assertEqual(task.startable(), False)
         task.update(hours=1)
+        self.assertEqual(task.startable(), True)
+        # Having assignees or not does not matter anymore:
+        task.update(assignees='developer')
         self.assertEqual(task.startable(), True)
         task.update(hours=0)
         self.assertEqual(task.startable(), False)
@@ -102,12 +103,9 @@ class testTask(eXtremeManagementTestCase):
         self.assertEqual(task.startable(), False)
         task.update(minutes=15)
         self.assertEqual(task.startable(), True)
-        task.update(assignees=('', ))
-        self.assertEqual(task.startable(), False)
 
         self.story.invokeFactory('Task', id='task3')
         task3 = self.story.task3
-        task3.update(assignees='developer')
         self.assertEqual(task3.startable(), False)
 
         # We used to let a Task be startable without an estimate if
