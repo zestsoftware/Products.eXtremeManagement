@@ -1,42 +1,102 @@
+Close iterations
+================
+
+Setup
+-----
+
+First we need some setup. Since we are creating unit tests, we need
+some Mock objects as stand-ins for real iterations, stories, etc.
 
     >>> class Mock(object):
     ...     def __init__(self, **kwargs):
     ...         self.__dict__.update(kwargs)
     >>> class MockFolder(object):
-    ...     def __init__(self, contents=[], uid=None):
-    ...         self.uid = uid
+    ...     def __init__(self, contents=[], uid=None, **kwargs):
+    ...         self.uid = self.Title = uid
     ...         self.contents = contents
+    ...         self.__dict__.update(kwargs)
     ...     def UID(self):
     ...         return self.uid
     ...     def getFolderContents(self, *args, **kwargs):
-    ...         return self.contents
+    ...         result = []
+    ...         for item in self.contents:
+    ...             item.UID = item.uid
+    ...             result.append(item)
+    ...         return result
+
+Now we'll use these to create some 'content' we can play with. We need
+an iteration with stories which in turn have tasks and bookings.
 
     >>> from zope.component import provideAdapter
     >>> from zope.interface import Interface
-    >>> project = MockFolder(
-    ...     [Mock(Title='Iteration1',
-    ...           getURL=lambda: 'http://somehost.com/iteration1',
-    ...           UID='Iteration1'),
-    ...      Mock(Title='Iteration2',
-    ...           getURL=lambda: 'http://somehost.com/iteration2',
-    ...           UID='Iteration2')])
+    >>> current_iteration = MockFolder(
+    ...     [Mock(Title='Story1',
+    ...           getURL=lambda: 'http://somehost.com/story1',
+    ...           getId='story1',
+    ...           uid='story1'),
+    ...      Mock(Title='Story2',
+    ...           getURL=lambda: 'http://somehost.com/story2',
+    ...           getId='story2',
+    ...           uid='story2')],
+    ...     'Iteration1',
+    ...     getURL=lambda:'http://somehost.com/iteration1')
+    >>> next_iteration = MockFolder(
+    ...     [Mock(Title='Story1',
+    ...           getURL=lambda: 'http://somehost.com/story1',
+    ...           getId='story1',
+    ...           uid='story1')],
+    ...     'Iteration2',
+    ...     getURL=lambda:'http://somehost.com/iteration2')
+    >>> project = MockFolder([current_iteration,
+    ...                      next_iteration])
     >>> class MockState(object):
     ...     def __init__(self, context, request):
     ...         self.project = project
     >>> provideAdapter(MockState, (MockFolder, Mock), Interface,
     ...                u'xm_global_state')
 
-    >>> context = MockFolder(
-    ...     [Mock(Title='Story1',
-    ...           getURL=lambda: 'http://somehost.com/story1'),
-    ...      Mock(Title='Story2',
-    ...           getURL=lambda: 'http://somehost.com/story2')],
-    ...     'Iteration1')
+
+IterationClosingView
+--------------------
+
+Wow, now this is sorted out, we can finally start testing the view
+that will take care of closing the old iteration and prepare the new
+iteration.
+
+Before we can test our view, we need to instantiate it. We use the the
+'current iteration' as the context.
 
     >>> from Products.eXtremeManagement.browser.closing import IterationClosingView
-    >>> view = IterationClosingView(context, Mock())
+    >>> view = IterationClosingView(current_iteration, Mock())
+
+We can now see our pending stories. (Which, due to the implementation
+of our mock getFolderContents, are all the stories.)
+
     >>> [x['title'] for x in view.pending_stories]
     ['Story1', 'Story2']
 
+The ``target_iterations`` method should return all new iterations,
+other than the current one. (Again, due to the way we implemented
+getFolderContents in this test, it just returns all other iterations
+than the current one.)
+
     >>> [x['title'] for x in view.target_iterations]
     ['Iteration2']
+
+It we want to move uncompleted stories to a next iteration, we need to
+check if that's possible first.
+
+    >>> view.conflicting_stories(next_iteration)
+    ['story1']
+
+There are two ways of tackling this: either make sure the duplicate
+story will not be copied to the new iteration because it is completed,
+or remove the story from the new iteration.
+
+Since we are not filtering on content states in this unit test, the
+first option will not be demonstrated here. Which leaves removing the
+story from the new (target) iteration.
+
+    >>> next_iteration.contents = []
+    >>> view.conflicting_stories(next_iteration)
+    []

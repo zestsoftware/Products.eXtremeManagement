@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="eXtremeManagement">
+
+  <head>
+  </head>
+  <body>
+    <div metal:fill-slot="main">
+      <div metal:define-macro="body">
+        <h1 i18n:translate="title_closing_failed">
+          Closing iteration failed
+        </h1>
+        <p i18n:translate="description_conflicting_stories" class="description">
+          The iteration could not be closed since there are
+          uncompleted stories which also exist in the selected next
+          iteration:
+        </p>
+
+        <ul>
+          <li tal:repeat="story view/conflicting_story_list"
+              tal:content="story" />
+        </ul>
+
+        <p>
+          <span i18n:translate="resolve_conflicting_stories" class="description">
+            Resolve this by either closing the stories in the current
+            iteration, or remove them from the selected next
+            iteration:
+          </span>
+
+          <a tal:attributes="href view/context/absolute_url">
+            <span i18n:translate="current_iteration_link">current iteration</span></a>,
+
+          <a tal:attributes="href view/targetit/url">
+            <span i18n:translate="selected_iteration_link">selected iteration</span></a>.
+        </p>
+
+      </div>
+    </div>
+  </body>
+</html>

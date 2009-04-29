@@ -21,6 +21,8 @@ class IterationClosingView(BrowserView):
                                  review_state='new')
 
     iteration_close_state = ViewPageTemplateFile('iteration-close-state.pt')
+    migration_impossible_state = ViewPageTemplateFile(
+        'migration-impossible-state.pt')
 
     def __init__(self, context, request):
         self.context = context
@@ -48,7 +50,8 @@ class IterationClosingView(BrowserView):
     def pending_stories(self):
         stories = self.context.getFolderContents(self.story_crit)
         return [{'title': x.Title,
-                 'url': x.getURL()}
+                 'url': x.getURL(),
+                 'id': x.getId}
                 for x in stories]
 
     @Lazy
@@ -60,19 +63,31 @@ class IterationClosingView(BrowserView):
                  'uid': x.UID}
                 for x in iterations if x.UID != thisUID]
 
+    def conflicting_stories(self, targetit):
+        """Return story IDs of the context that already exist in the
+        target iteration.
+        """
+        pendingids = [x['id'] for x in self.pending_stories]
+        target_story_ids = [x.getId for x in targetit.getFolderContents()]
+        duplicate_stories = []
+        for source_story_id in pendingids:
+            if source_story_id in target_story_ids:
+                duplicate_stories.append(source_story_id)
+        return duplicate_stories
+
     def migrate_stories(self, targetit):
-        pendingids = [x.getId
-                      for x in self.context.getFolderContents(self.story_crit)]
+        pendingids = [x['id'] for x in self.pending_stories]
         copy = self.context.manage_copyObjects(ids=pendingids)
         targetit.manage_pasteObjects(copy)
-        for x in self.context.getFolderContents(self.story_crit):
+        for source_story in self.context.getFolderContents(self.story_crit):
             # delete all tasks that were completed from the target story
-            xobj = x.getObject()
-            for y in xobj.getFolderContents({'portal_type': 'Task',
-                                             'review_state': 'completed'}):
-                    targetit[x.getId].manage_delObjects([y.getId])
-
-            self.remove_bookings(xobj)
+            source_story_obj = source_story.getObject()
+            for source_task in source_story_obj.getFolderContents(
+                {'portal_type': 'Task',
+                 'review_state': 'completed'}):
+                targetit[source_story.getId].manage_delObjects(
+                    [source_task.getId])
+            self.remove_bookings(targetit[source_story.getId])
             wf_tool = cmfutils.getToolByName(self.portal, 'portal_workflow')
             from Products.CMFCore.WorkflowCore import WorkflowException
             try:
@@ -121,6 +136,11 @@ class IterationClosingView(BrowserView):
         targetit = self.ensure_targetit()
         self.targetit = {'title': targetit.Title(),
                          'url': targetit.absolute_url()}
+
+        self.conflicting_story_list = self.conflicting_stories(targetit)
+        if self.conflicting_story_list:
+            return self.migration_impossible_state()
+
         self.migrate_stories(targetit)
 
         return self.iteration_close_state()

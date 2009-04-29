@@ -13,7 +13,7 @@
       template="scheduling.pt"
       allowed_interface=".interfaces.IProjects"
       />
-  
+
   <!-- KSS server action to update the start and end of an iteration -->
   <page
       for="*"
@@ -120,7 +120,7 @@
       />
 
   <!-- kss action for adding a task -->
-  
+
   <!-- this content provider is called by a kss server-action to display the
        form inline-->
   <zope:adapter
@@ -230,14 +230,14 @@
       attribute="add_iteration"
       permission="xm.AddIteration"
       />
-      
+
   <page
       name="xm_create_iteration"
       for="Products.eXtremeManagement.interfaces.IXMProject"
       class=".iterations.Create"
       permission="xm.AddIteration"
       />
-  
+
 
   <page
       name="offer"
@@ -395,7 +395,7 @@
       name="close-iteration"
       for="Products.eXtremeManagement.interfaces.IXMIteration"
       class=".closing.IterationClosingView"
-      permission="cmf.ManagePortal"
+      permission="xm.AddIteration"
       template="close-iteration.pt"
       />
 

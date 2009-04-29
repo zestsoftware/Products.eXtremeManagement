@@ -5,6 +5,17 @@ History
 2.0.2 (unreleased)
 ------------------
 
+- Fix several problems with automatically closing iterations:
+
+  - First check for duplicate story IDs in the new iteration.
+
+  - Remove bookings from new iteration instead of the current.
+
+  - Changed the permission for the close-iteration view to
+    AddIteration instead of Manage Portal.
+
+  [fred + mark]
+
 - Reinstated the xm.story.detailsbox provider as the canonical spot
   for putting the story details box.  Previously it was there and in
   the story_view.pt, which meant there were subtle differences when

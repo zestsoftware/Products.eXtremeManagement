@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-04-29 10:27+0000\n"
-"PO-Revision-Date: 2009-03-14 22:45+0100\n"
+"POT-Creation-Date: 2009-04-29 15:06+0000\n"
+"PO-Revision-Date: 2009-04-29 17:07+0200\n"
 "Last-Translator: Jean-Paul Ladage <j.ladage@zestsoftware.nl>\n"
 "Language-Team: Nederlands <xm@lists.zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Is-Fallback-For: nl-be\n"
 
 #. Default: "Actual hours"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:50
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:53
 msgid "Actual_hours"
 msgstr "Gewerkte uren"
 
@@ -107,7 +107,7 @@ msgid "add-task-in"
 msgstr "Taak toevoegen in"
 
 #. Default: "Back to"
-#: ./skins/eXtremeManagement/booking_details.pt:27
+#: ./skins/eXtremeManagement/booking_month.pt:41
 msgid "back_to"
 msgstr "Terug naar"
 
@@ -122,37 +122,42 @@ msgid "box_stories"
 msgstr "In te schatten user stories"
 
 #. Default: "Cannot Activate"
-#: ./browser/viewlets/templates/story_details_box.pt:21
+#: ./browser/viewlets/templates/story_details_box.pt:25
 msgid "cannot_activate"
 msgstr "Kan niet starten"
 
 #. Default: "Need to finish estimating this story by selecting 'estimate' from the state dropdown."
-#: ./skins/eXtremeManagement/story_view.pt:124
+#: ./skins/eXtremeManagement/story_view.pt:126
 msgid "cannot_activate_msg"
 msgstr "De status van deze story dient eerst op 'ingeschat' gezet te worden m.b.v. de status dropdown."
 
 #. Default: "There are tasks which cannot be activated, please see: ${tasks}."
-#: ./skins/eXtremeManagement/story_view.pt:133
+#: ./skins/eXtremeManagement/story_view.pt:135
 msgid "cannot_activate_tasks_msg"
 msgstr "Er zijn taken die nog niet gestart kunnen worden, te weten: ${tasks}"
 
 #. Default: "current month"
-#: ./skins/eXtremeManagement/booking_details.pt:30
+#: ./skins/eXtremeManagement/booking_month.pt:44
 msgid "current-month"
 msgstr "huidige maand"
 
+#. Default: "current iteration"
+#: ./browser/migration-impossible-state.pt:33
+msgid "current_iteration_link"
+msgstr "huidige iteratie"
+
 #. Default: "days"
-#: ./browser/viewlets/templates/story_details_box.pt:39
+#: ./browser/viewlets/templates/story_details_box.pt:43
 msgid "days"
 msgstr "dagen"
 
 #. Default: "Need to assign a time estimate to this task."
-#: ./skins/eXtremeManagement/task_view.pt:74
+#: ./skins/eXtremeManagement/task_view.pt:77
 msgid "desc_no_estimate"
 msgstr "U dient nog een inschatting op te geven, voordat u deze task in de status 'ingeschat' kunt zetten."
 
 #. Default: "No one has been assigned to this task."
-#: ./skins/eXtremeManagement/task_view.pt:71
+#: ./skins/eXtremeManagement/task_view.pt:74
 msgid "desc_no_task_assigned"
 msgstr "U dient deze taak aan iemand toe te kennen, voordat u deze task in de status 'geschat' kunt zetten. "
 
@@ -160,6 +165,11 @@ msgstr "U dient deze taak aan iemand toe te kennen, voordat u deze task in de st
 #: ./skins/eXtremeManagement/task_overview.pt:19
 msgid "description-overview-my-tasks"
 msgstr "Overzicht van de taken die aan mij zijn toegewezen. De genoemde totalen zijn totaaltijden voor mijzelf. Ze zullen normaal gesproken afwijken van de uitkomst van het optellen van de kolom erboven."
+
+#. Default: "The iteration could not be closed since there are uncompleted stories which also exist in the selected next iteration:"
+#: ./browser/migration-impossible-state.pt:14
+msgid "description_conflicting_stories"
+msgstr "De iteratie kon niet worden afgesloten omdat niet afgesloten user stories onder dezelfde naam in de nieuwe iteratie voorkomen."
 
 #. Default: "No iterations in progress at this moment."
 #: ./browser/inprogress.pt:94
@@ -484,7 +494,7 @@ msgid "estimated_start_project"
 msgstr "Geschatte start project"
 
 #. Default: "Go to"
-#: ./skins/eXtremeManagement/booking_details.pt:16
+#: ./skins/eXtremeManagement/booking_month.pt:30
 msgid "go_to"
 msgstr "Ga naar"
 
@@ -543,7 +553,7 @@ msgid "header-create-tasks-from-issues"
 msgstr "Taken aanmaken voor issues"
 
 #. Default: "attached files and images"
-#: ./skins/eXtremeManagement/offer_view.pt:111
+#: ./skins/eXtremeManagement/story_view.pt:43
 msgid "heading-attachements"
 msgstr "Bijlagen"
 
@@ -573,7 +583,7 @@ msgid "heading-bookings-per-day"
 msgstr "Boekingen per dag"
 
 #. Default: "Hours per employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:131
+#: ./skins/eXtremeManagement/iteration_view.pt:123
 msgid "heading-hours-per-employee"
 msgstr "Uren per medewerker"
 
@@ -588,7 +598,7 @@ msgid "heading-related-xm-tasks"
 msgstr "Gerelateerde taken"
 
 #. Default: "Stories"
-#: ./browser/iteration_planning.pt:27
+#: ./browser/iteration_planning.pt:26
 msgid "heading-stories"
 msgstr "User stories"
 
@@ -615,7 +625,7 @@ msgstr "Release planning"
 
 ### story_view template ###
 #. Default: "Tasks"
-#: ./skins/eXtremeManagement/story_view.pt:168
+#: ./skins/eXtremeManagement/story_view.pt:170
 msgid "heading_tasks"
 msgstr "Taken"
 
@@ -660,7 +670,7 @@ msgid "help_multiple_current_iterations_go_here"
 msgstr "andere iteratie bewerken"
 
 #. Default: "Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown)."
-#: ./browser/viewlets/templates/story_details_box.pt:16
+#: ./browser/viewlets/templates/story_details_box.pt:20
 msgid "help_needs_estimate"
 msgstr "Kan niet beginnen met werken aan deze user story totdat het is geschat (vul een schatting in en selecteer 'markeer als geschat' van de status dropdown"
 
@@ -668,11 +678,6 @@ msgstr "Kan niet beginnen met werken aan deze user story totdat het is geschat (
 #: ./browser/close-iteration.pt:36
 msgid "help_next_iteration"
 msgstr "Selecteer de volgende iteratie of geef de titel van een nieuwe iteratie op."
-
-#. Default: "The Initial estimate of the story is a rough estimate in days.  The Tasks estimate is the total estimate in hours for all tasks.  If there is a big difference there could be a logical explanation.  You should investigate that to be sure."
-#: ./skins/eXtremeManagement/iteration_view.pt:120
-msgid "help_stories_table"
-msgstr "De initiële inschatting van de user story is een grove inschatting in dagen. De taak inschatting is de som van de inschatting van alle taken in uren."
 
 #. Default: "iteration"
 #: ./browser/project_chart.pt:20
@@ -725,7 +730,7 @@ msgid "label_current_iterations"
 msgstr "Lopende Iteraties"
 
 #. Default: "Date completed"
-#: ./browser/finished.pt:21
+#: ./browser/invoicing.pt:25
 msgid "label_date_completed"
 msgstr "Einddatum"
 
@@ -745,7 +750,7 @@ msgid "label_finished_overview"
 msgstr "Afgeronde iteraties"
 
 #. Default: "Hours worked"
-#: ./browser/finished.pt:27
+#: ./browser/invoicing.pt:28
 msgid "label_hours_worked"
 msgstr "Gewerkte uren"
 
@@ -774,9 +779,8 @@ msgstr "User story '${story}' is verplaatst naar iteratie '${target}'."
 msgid "label_moved_to_unplanned_succesfully"
 msgstr "User story '${story}' is verplaatst naar de lijst met ongeplande stories."
 
-#. Default: "New iteration"
-#: ./browser/add_iteration.pt:14
-#, fuzzy
+#. Default: "New Iteration"
+#: ./browser/close-iteration.pt:43
 msgid "label_new_iteration"
 msgstr "Nieuwe iteratie"
 
@@ -821,7 +825,7 @@ msgid "label_release_plan"
 msgstr "Release Plan"
 
 #. Default: "Remaining budget (hours)"
-#: ./skins/eXtremeManagement/iteration_view.pt:111
+#: ./skins/eXtremeManagement/iteration_view.pt:110
 msgid "label_remaining_budget"
 msgstr "Resterende uren"
 
@@ -866,7 +870,7 @@ msgid "listingheader-time"
 msgstr "Tijd"
 
 #. Default: "Total"
-#: ./browser/inprogress.pt:54
+#: ./browser/invoicing.pt:83
 msgid "listingheader-total"
 msgstr "Totaal"
 
@@ -876,17 +880,17 @@ msgid "listingheader-week-number"
 msgstr "Week"
 
 #. Default: "Assignee(s)"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:22
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:27
 msgid "listingheader_assignees"
 msgstr "Toegekend aan"
 
 #. Default: "Difference hours"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:20
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:25
 msgid "listingheader_diff_hours"
 msgstr "Verschil"
 
 #. Default: "Employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:139
+#: ./skins/eXtremeManagement/iteration_view.pt:131
 msgid "listingheader_employee"
 msgstr "Medewerker"
 
@@ -896,22 +900,22 @@ msgid "listingheader_enddate"
 msgstr "Einddatum"
 
 #. Default: "Initial estimate (days)"
-#: ./browser/iteration_planning.pt:38
+#: ./browser/iteration_planning.pt:37
 msgid "listingheader_estimate"
 msgstr "Geschatte dagen"
 
 #. Default: "Estimated hours"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:18
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:23
 msgid "listingheader_estimate_hours"
 msgstr "Geschatte uren"
 
 #. Default: "Iteration"
-#: ./browser/finished.pt:24
+#: ./browser/invoicing.pt:22
 msgid "listingheader_iteration"
 msgstr "Iteratie"
 
 #. Default: "Project"
-#: ./browser/inprogress.pt:35
+#: ./browser/invoicing.pt:19
 msgid "listingheader_projects"
 msgstr "Project"
 
@@ -921,23 +925,23 @@ msgid "listingheader_startdate"
 msgstr "Startdatum"
 
 #. Default: "Status"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:44
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:46
 msgid "listingheader_state"
 msgstr "Status"
 
 #. Default: "Story"
-#: ./browser/iteration_planning.pt:36
+#: ./browser/iteration_planning.pt:35
 msgid "listingheader_story"
 msgstr "User Story"
 
 #. Default: "Tasks estimate (hours)"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:48
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:50
 msgid "listingheader_tasks_estimate"
 msgstr "Geschatte uren"
 
 ### iteration_view template ###
 #. Default: "Title"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:17
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:22
 msgid "listingheader_title"
 msgstr "Titel"
 
@@ -947,17 +951,17 @@ msgid "listingheader_total_actual"
 msgstr "Totaal gewerkte uren"
 
 #. Default: "Total Difference"
-#: ./skins/eXtremeManagement/iteration_view.pt:144
+#: ./skins/eXtremeManagement/iteration_view.pt:136
 msgid "listingheader_total_difference"
 msgstr "Totaal verschil"
 
 #. Default: "Total Estimate"
-#: ./skins/eXtremeManagement/iteration_view.pt:140
+#: ./skins/eXtremeManagement/iteration_view.pt:132
 msgid "listingheader_total_estimate"
 msgstr "Totaal geschat"
 
 #. Default: "Worked hours"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:19
+#: ./browser/viewlets/templates/story_details_box.pt:56
 msgid "listingheader_workedhours"
 msgstr "Gewerkte uren"
 
@@ -972,7 +976,7 @@ msgid "name"
 msgstr "Naam"
 
 #. Default: "Needs Estimate"
-#: ./browser/viewlets/templates/story_details_box.pt:15
+#: ./browser/viewlets/templates/story_details_box.pt:19
 msgid "needs_estimate"
 msgstr "Schatting nodig"
 
@@ -982,17 +986,17 @@ msgid "next"
 msgstr "volgende"
 
 #. Default: "No stories published yet!"
-#: ./skins/eXtremeManagement/iteration_view.pt:162
+#: ./skins/eXtremeManagement/iteration_view.pt:154
 msgid "no_stories_published"
 msgstr "Er zijn op dit moment geen stories gedefinieerd!"
 
 #. Default: "No tasks defined yet."
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:110
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:114
 msgid "no_tasks_defined"
 msgstr "Nog geen taken gedefinieerd."
 
 #. Default: "No tasks added yet. Please add one."
-#: ./skins/eXtremeManagement/story_view.pt:127
+#: ./skins/eXtremeManagement/story_view.pt:129
 msgid "no_tasks_msg"
 msgstr "Nog geen taken toegevoegd."
 
@@ -1012,12 +1016,12 @@ msgid "previous"
 msgstr "vorige"
 
 #. Default: "previous month"
-#: ./skins/eXtremeManagement/booking_details.pt:19
+#: ./skins/eXtremeManagement/booking_month.pt:33
 msgid "previous-month"
 msgstr "vorige maand"
 
 #. Default: "progress bar"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:92
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:95
 msgid "progress_bar"
 msgstr "Voortgangsbalk"
 
@@ -1026,10 +1030,20 @@ msgstr "Voortgangsbalk"
 msgid "project_links"
 msgstr "Project links"
 
+#. Default: "Resolve this by either closing the stories in the current iteration, or remove them from the selected next iteration:"
+#: ./browser/migration-impossible-state.pt:26
+msgid "resolve_conflicting_stories"
+msgstr "Los dit op door de user stories in deze iteratie te sluiten of in de volgende iteratie te verwijderen."
+
 #. Default: "rough story estimates"
 #: ./browser/project_chart.pt:22
 msgid "rough story estimates"
 msgstr "Inschattingen voor de stories"
+
+#. Default: "selected iteration"
+#: ./browser/migration-impossible-state.pt:36
+msgid "selected_iteration_link"
+msgstr "volgende iteratie"
 
 #. Default: "Estimates and worked hours per iteration"
 #: ./browser/project_chart.pt:9
@@ -1051,13 +1065,18 @@ msgstr "Takenlijst"
 msgid "title_close_iteration"
 msgstr "Iteratie afronden"
 
+#. Default: "Closing iteration failed"
+#: ./browser/migration-impossible-state.pt:11
+msgid "title_closing_failed"
+msgstr "Afsluiten van de iteratie afgebroken"
+
 #. Default: "Offer stories"
 #: ./skins/eXtremeManagement/offer_view.pt:58
 msgid "title_offer_stories"
 msgstr "User stories in de offerte"
 
 #. Default: "Total"
-#: ./browser/viewlets/templates/manage_simple_storylist.pt:130
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:134
 msgid "total"
 msgstr "Totaal"
 
