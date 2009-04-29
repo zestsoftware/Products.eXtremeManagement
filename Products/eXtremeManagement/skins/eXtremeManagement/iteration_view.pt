@@ -87,8 +87,7 @@
         <div id="break-before-stories" class="visualClear"><!-- --></div>
 
         <tal:subitems tal:condition="stories"
-                      tal:define="show_task_count python:False;
-                                  show_progress python:False;
+                      tal:define="show_progress python:False;
                                   show_totals python:True">
           <h1 i18n:translate="heading-stories">Stories</h1>
 

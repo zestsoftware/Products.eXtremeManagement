@@ -5,7 +5,6 @@
             iteration_number view/iteration_number;
             iteration_icon view/iteration_icon;
             show_iteration view/show_iteration;
-            show_task_count view/show_task_count;
             show_progress view/show_progress;
             show_totals view/show_totals;
             iteration_view iteration_object/@@iteration;
@@ -25,8 +24,7 @@
             <span tal:replace="iteration_dict/title">Title</span>
           </a>
         </th>
-        <th colspan="1"
-            tal:attributes="colspan python: show_task_count and 4 or 3"
+        <th colspan="3"
             class="iteration-state nosort">
           <span i18n:translate="status">status</span>:
           <span tal:content="structure iteration_dict/review_state"/>
@@ -122,8 +120,7 @@
       </tr>
       <tr class="story-details-empty"
           tal:attributes="id string:story-details-${story/uid};">
-        <td class="story-details-td" colspan="5"
-            tal:attributes="colspan python:view.show_task_count and 7 or 5;">
+        <td class="story-details-td" colspan="5">
           <span
               tal:attributes="id string:story-details-target-${story/uid};">
             <!-- Target for KSS to place the story details. -->
@@ -136,7 +133,6 @@
        tal:condition="show_totals">
           <th class="td-story-title"
              colspan="2"
-             tal:attributes="colspan python:show_task_count and 4 or 2"
              i18n:translate="total"
              i18n:domain="eXtremeManagement">Total</th>
           <th tal:content="iteration_dict/size_estimate" />

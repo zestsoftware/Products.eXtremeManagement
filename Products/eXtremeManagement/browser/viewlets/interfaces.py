@@ -23,8 +23,6 @@ class ISimpleStoryList(IViewletManager):
         title=u'Number (as string) of the iteration.')
 
     show_iteration = zope.schema.Bool(title=u'Show a row for the iteration.')
-    show_task_count = zope.schema.Bool(
-        title=u'Show number of completed/open tasks.')
     show_progress = zope.schema.Bool(title=u'Show progress bar per story.')
     show_totals = zope.schema.Bool(title=u'Show totals for the iteration.')
 

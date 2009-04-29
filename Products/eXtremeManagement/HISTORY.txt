@@ -5,9 +5,11 @@ History
 2.0.2 (unreleased)
 ------------------
 
+- Removed all traces of the show_task_count option for the story list,
+  as since the last commit it was always set to False.  [maurits+mike]
+
 - In the project view, show the totals of the current iteration(s).
-  In the simple story list, fix the colspan when show_task_count is
-  False.  [maurits+mike]
+  In the simple story list, fix the colspan.  [maurits+mike]
 
 - Do not give Customers (or Contributors) any permissions on
   bookings.  [maurits+mike]

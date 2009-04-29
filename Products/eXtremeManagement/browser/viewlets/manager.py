@@ -43,7 +43,6 @@ class SimpleStoryListManager(Explicit):
     iteration_object = None
     iteration_dict = None
     show_iteration = False
-    show_task_count = False
     show_progress = False
     show_totals = False
     iteration_number = '1'
