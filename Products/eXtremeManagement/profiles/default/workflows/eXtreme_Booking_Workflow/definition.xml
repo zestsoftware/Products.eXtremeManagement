@@ -10,18 +10,15 @@
  <state state_id="booking" title="booking">
   <permission-map name="Access contents information"
                   acquired="False">
-   <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
-   <permission-role>Contributor</permission-role>
   </permission-map>
   <permission-map name="List folder contents"
                   acquired="False">
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
-   <permission-role>Contributor</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
@@ -30,11 +27,9 @@
    <permission-role>Projectmanager</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
-   <permission-role>Customer</permission-role>
    <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
-   <permission-role>Contributor</permission-role>
   </permission-map>
  </state>
  <variable variable_id="action" for_catalog="False"
