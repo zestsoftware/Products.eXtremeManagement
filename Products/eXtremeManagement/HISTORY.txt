@@ -5,6 +5,9 @@ History
 2.0.2 (unreleased)
 ------------------
 
+- Do not show Customers the total estimated hours of all tasks in a
+  story.  [maurits+mike]
+
 - Do not show the task details in the expanded story view for
   Customers.  [maurits+mike]
 

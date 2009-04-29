@@ -8,7 +8,11 @@
             show_task_count view/show_task_count;
             show_progress view/show_progress;
             show_totals view/show_totals;
-            iteration_view iteration_object/@@iteration"
+            iteration_view iteration_object/@@iteration;
+            tools context/@@plone_tools;
+            mtool tools/membership;
+            checkPermission nocall:mtool/checkPermission;
+            can_view_details python:checkPermission('eXtremeManagement: View Details', context);"
     condition="stories">
 
     <tal:extraheader condition="show_iteration">
@@ -46,6 +50,7 @@
       <th i18n:translate="listingheader_estimate"
           class="initEstimateHeader nosort">Initial estimate (days)</th>
       <th i18n:translate="listingheader_tasks_estimate"
+          tal:condition="can_view_details"
           class="tasksEstimateHeader nosort">Tasks estimate (hours)</th>
       <th class="actualHoursHeader nosort"
           i18n:translate="Actual_hours">Actual hours</th>
@@ -105,12 +110,14 @@
         </td>
         
         <td tal:content="story/size_estimate" />
-        <td tal:condition="story/raw_estimate"
-            tal:content="story/estimate" />
-        <td tal:condition="not:story/raw_estimate"
-            i18n:translate="no_tasks_defined">
-          No tasks defined yet.
-        </td>
+        <tal:task_estimate condition="can_view_details">
+          <td tal:condition="story/raw_estimate"
+              tal:content="story/estimate" />
+          <td tal:condition="not:story/raw_estimate"
+              i18n:translate="no_tasks_defined">
+            No tasks defined yet.
+          </td>
+        </tal:task_estimate>
         <td tal:content="story/actual" />
       </tr>
       <tr class="story-details-empty"
@@ -133,7 +140,8 @@
              i18n:translate="total"
              i18n:domain="eXtremeManagement">Total</th>
           <th tal:content="iteration_dict/size_estimate" />
-          <th tal:content="iteration_dict/estimate" />
+          <th tal:content="iteration_dict/estimate"
+              tal:condition="can_view_details"/>
           <th tal:content="iteration_dict/actual" />
     </tr>
 </tal:storylist>

@@ -6,7 +6,11 @@
             items tasklist/tasks;
             totals tasklist/totals;
             estimated story_object/isEstimated;
-            startable story_object/startable"
+            startable story_object/startable;
+            tools context/@@plone_tools;
+            mtool tools/membership;
+            checkPermission nocall:mtool/checkPermission;
+            can_view_details python:checkPermission('eXtremeManagement: View Details', context);"
     i18n:domain="eXtremeManagement">
 
   <div class="xm-details">
@@ -39,7 +43,7 @@
           <span i18n:translate="days">days</span>
         </td>
       </tr>
-      <tr>
+      <tr tal:condition="can_view_details">
         <th class="customer_info_header"
             i18n:translate="listingheader_tasks_estimate">
           Task estimated hours

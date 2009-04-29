@@ -60,13 +60,15 @@
           </div>
         </tal:attachments>
 
-        <tal:details define="estimated context/isEstimated;
-                             startable context/startable;
-                             tasklist view/tasklist;
-                             items tasklist/tasks;
-                             view context/@@story;
-                             story view/main;
-                             totals tasklist/totals;">
+        <tal:details
+            define="estimated context/isEstimated;
+                    startable context/startable;
+                    tasklist view/tasklist;
+                    items tasklist/tasks;
+                    view context/@@story;
+                    story view/main;
+                    totals tasklist/totals;
+                    can_view_details python:checkPermission('eXtremeManagement: View Details', context);">
 
           <div class="xm-details">
             <table class="listing"
@@ -83,7 +85,7 @@
                   <span i18n:translate="days">days</span>
                 </td>
               </tr>
-              <tr>
+              <tr tal:condition="can_view_details">
                 <th class="customer_info_header"
                     i18n:translate="listingheader_tasks_estimate">
                   Tasks Estimate (hours)
