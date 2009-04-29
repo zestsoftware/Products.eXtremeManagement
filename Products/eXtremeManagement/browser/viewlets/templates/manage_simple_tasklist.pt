@@ -3,7 +3,12 @@
     define="tasklist python: view.realtasks or view.tasks or context.restrictedTraverse('@@task_details').tasklist(sort_by_state=True);
             items tasklist/tasks|nothing;
             totals tasklist/totals|nothing;
-            show_story view/show_story;">
+            show_story view/show_story;
+            tools context/@@plone_tools;
+            mtool tools/membership;
+            checkPermission nocall:mtool/checkPermission;
+            can_view_details python:checkPermission('eXtremeManagement: View Details', context);"
+    condition="can_view_details">
 
   <table class="listing nosort tasklist_table"
          width="100%"

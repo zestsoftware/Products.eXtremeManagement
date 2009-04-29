@@ -5,6 +5,9 @@ History
 2.0.2 (unreleased)
 ------------------
 
+- Do not show the task details in the expanded story view for
+  Customers.  [maurits+mike]
+
 - Rename 'Can track projects' to include 'customer' so that it is obvious
   that this is the role to assign to customers who should have access to XM.
   Updated several translations and added the translation labels for the
