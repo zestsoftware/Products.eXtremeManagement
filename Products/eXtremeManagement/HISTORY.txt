@@ -5,6 +5,8 @@ History
 2.0.2 (unreleased)
 ------------------
 
+- Refactor the tests so we can have doctests being unit tests. [mark]
+
 - Removed all traces of the show_task_count option for the story list,
   as since the last commit it was always set to False.  [maurits+mike]
 
@@ -57,7 +59,7 @@ History
 
 - Fixed http://plone.org/products/extreme-management-tool/issues/166 [jladage]
 
-- When viewing a task in a completed story would show you a login form. This 
+- When viewing a task in a completed story would show you a login form. This
   was caused by removing the modify portal content permission for manager
   [jladage]
 

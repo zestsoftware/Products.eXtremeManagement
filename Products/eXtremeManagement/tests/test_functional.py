@@ -24,7 +24,7 @@ OPTIONFLAGS = (doctest.ELLIPSIS |
 def list_doctests():
     home = package_home(xm_globals)
     return [filename for filename in
-            glob.glob(os.path.sep.join([home, 'doc', '*.txt']))]
+            glob.glob(os.path.sep.join([home, 'doc', 'func_*.txt']))]
 
 
 def setUp(test):
