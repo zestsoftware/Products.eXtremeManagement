@@ -5,6 +5,13 @@ History
 2.0.2 (unreleased)
 ------------------
 
+- Added permission xm.ViewDetails (eXtremeManagement: View Details).
+  In the rolemap.xml we give this permission to Manager,
+  Projectmanager and Employee.  The task list in the story view is now
+  protected with this permission.  [maurits+mike]
+
+- Added dependency on collective.autopermission.  [maurits+mike]
+
 - Do not give Contributors the Modify portal content permission in the
   booking workflow.  Customers that for some reason also have the
   Contributor role could edit bookings.  Note: needs an update of the

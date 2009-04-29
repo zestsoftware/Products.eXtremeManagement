@@ -1,6 +1,8 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            i18n_domain="eXtremeManagement">
 
+  <include package="collective.autopermission" />
+
   <permission
       id="xm.AddProject"
       title="eXtremeManagement: Add Project" />
@@ -28,6 +30,10 @@
   <permission
       id="xm.ViewTracker"
       title="eXtremeManagement: View Tracker" />
+
+  <permission
+      id="xm.ViewDetails"
+      title="eXtremeManagement: View Details" />
 
   <!-- BBB can be removed in release 2.1 -->
   <permission
