@@ -109,7 +109,8 @@
             <div id="schedule-containment">
               <div id="schedule-bars">
                 <div id="schedule-dates">
-                  <div class="schedule-date" tal:repeat="date view/schedule_weeks" tal:content="date"/>
+                  <div tal:repeat="date view/schedule_weeks" tal:content="date" 
+                       tal:attributes="class python: (view.currentweek() == date) and 'schedule-date current-date' or 'schedule-date'"/>
                 </div>
                 <div class="schedule-bar" tal:repeat="project view/projects">
                   <div tal:repeat="iteration python:view.iterationsforproject(project)" 

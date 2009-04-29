@@ -41,8 +41,8 @@ class Projects(XMBaseView):
 class Scheduling(Projects):
     """Pan-project scheduling"""
     
-    weekcount = 14
-    weekpreroll = 2
+    weekcount = 14 # Number of weeks to display
+    weekpreroll = 2 # Number of weeks to show *before* the desired starting date 
     # Displayed width in pixels - declared here so we can calculate iteration 
     # positions in code
     cellwidth = 16 
@@ -70,6 +70,13 @@ class Scheduling(Projects):
 
     def endingdate(self):
         return self.startingdate() + self.displayrange()
+
+    def currentweek(self):
+        """Calculate the first day of the current week"""
+        monday = date.today()
+        while monday.weekday() != 0:
+            monday -= timedelta(1)
+        return monday
 
     def schedule_weeks(self):
         """
