@@ -116,14 +116,6 @@
             </tr>
           </table>
              
-          <p class="discreet" i18n:translate="help_stories_table">
-            The Initial estimate of the story is a rough estimate in
-            days.  The Tasks estimate is the total estimate in hours
-            for all tasks.  If there is a big difference there could
-            be a logical explanation.  You should investigate that to
-            be sure.
-          </p>
-
           <tal:membertasks
               tal:define="membertasks context/@@employee_totals/totals;
                           can_view_details python:checkPermission('eXtremeManagement: View Details', context);"
