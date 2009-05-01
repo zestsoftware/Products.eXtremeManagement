@@ -111,19 +111,24 @@
                 <div id="schedule-dates">
                   <div tal:repeat="date view/schedule_weeks" tal:content="date" 
                        tal:attributes="class python: (view.currentweek() == date) and 'schedule-date current-date' or 'schedule-date'"/>
+                      <span class="schedule-bumber" />
                 </div>
                 <div class="schedule-bar" tal:repeat="project view/projects">
-                  <div tal:repeat="iteration python:view.iterationsforproject(project)" 
-                       tal:content="iteration/title" 
+                  <div tal:repeat="iteration python:view.iterationsforproject(project)"
                        tal:attributes="style string: left: ${iteration/start}px;; width: ${iteration/period}px; 
                                        id iteration/uid;
-                                       class python: iteration['movable'] and 'draggable-iteration-bar' or 'undraggable-iteration-bar'" />
-                </div>
+                                        title iteration/title;
+                                       class python: iteration['movable'] and 'draggable-iteration-bar' or 'undraggable-iteration-bar'">
+                      <span class="iteration-title" tal:content="iteration/title" />
+                      <span class="iteration-colon">::</span>
+                      <br class="clear"/>
+                 </div>
+                 </div>
               </div>
             </div>
           </div>
             
-        </div><br style="clear: both"/>
+        </div><br class="clear"/>
     
       </div>
     </div>

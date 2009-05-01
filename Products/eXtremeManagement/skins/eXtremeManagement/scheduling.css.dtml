@@ -3,103 +3,152 @@
 /* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
 
 #schedule-wrapper {
-  border-color: #d1d2cd;
-  border-style: solid;
-  border-width: 1px 0 1px 0;
-  float: left;
-  width: 690px;
-  margin-top: 1ex;
+    border-color: #d1d2cd;
+    border-style: solid;
+    border-width: 1px 0 1px 0;
+    float: left;
+    width: 690px;
+    margin-top: 1ex;
 }
+
 #schedule-labels {
-  width: 129px;
-  background-color: #ebebe9;
-  float: left;
-  border-left: 1px solid #d1d2cd;
-  border-bottom: 1px solid #d1d2cd;
+    width: 129px;
+    background-color: #ebebe9;
+    float: left;
+    border-left: 1px solid #d1d2cd;
+    border-bottom: 1px solid #d1d2cd;
 }
+
 #schedule-field {
-  overflow: hidden;
-  width: 559px; /* 5*112px */
-  border-right: 1px solid #d1d2cd;
-  clear: right;
-  float: left;
+    overflow: hidden;
+    width: 559px; /* 5*112px */
+    border-right: 1px solid #d1d2cd;
+    clear: right;
+    float: left;
 }
+
 #schedule-containment {
-  position: relative;
-/* Set in code
-  left: -800px;
-  width: 2400px;*/
+    position: relative;
+    /* Set in code
+    left: -800px;
+    width: 2400px;*/
 }
+
 #schedule-bars {
-  position: relative;
-/* Set in code
-  left: 800px;
-  width: 1600px; */
-  background-color: #fff;
+    position: relative;
+    /* Set in code
+    left: 800px;
+    width: 1600px; */
+    background-color: #fff;
+    border-left: 1px solid #fff;
 }
 
 #schedule-dates {
-  background: #fff;
-  border-bottom: 1px solid #99bbe8;
+    background: #fff;
+    border-bottom: 1px solid #fff;
 }
 
   .schedule-date {
-  float: left;
-  width: 112px; /* 7 x 16px */
-  background: url(&dtml-portal_url;/black-dot.gif) repeat-y right top;
-  font-size: 90%;
-  line-height: 1.5em;
-  text-indent: 1em;
+    float: left;
+    width: 112px; /* 7 x 16px */
+    background: url(&dtml-portal_url;/black-dot.gif) repeat-y right top;
+    font-size: 90%;
+    line-height: 1.75em;
+    text-indent: 0.75em;
+    color: #505050;
+    font-weight: bold;
 }
 
-.schedule-label, .schedule-bar, #schedule-dates, .schedule-date, .draggable-iteration-bar, .undraggable-iteration-bar {
-height: 32px;
+.schedule-label, .schedule-bar, #schedule-dates, .schedule-date, .draggable-iteration-bar, .undraggable-iteration-bar, .schedule-bumber {
+    height: 32px;
 }
+
 .schedule-label.header,  #schedule-dates {
-height: 18px;
-background: url(&dtml-portal_url;/schedule-bumber.gif) repeat-y right top;
-}
-.schedule-label {
-background: url(&dtml-portal_url;/schedule-label.gif) repeat-x right top;
-}
-.schedule-label a {
-font-weight: bold;
-display: table-cell;
-vertical-align: middle;
-height: 30px;
-padding-left: 10px;
-}
-.schedule-label.header {
-background: url(&dtml-portal_url;/schedule-label-header.gif) repeat-x right top;
-}
-.schedule-bar {
-background: url(&dtml-portal_url;/color-grid.gif);
-position: relative;
-}
-.draggable-iteration-bar, .undraggable-iteration-bar {
-width: 80px;
-position: absolute;
-line-height: 2.5em;
-text-indent: 1em;
-}
-.undraggable-iteration-bar {
-background-color: #fbb;
-}
-.draggable-iteration-bar {
-background-color: #bbf;
-}
-.ui-draggable-overlapped {
-background-color: red;
-}
-.ui-draggable-overlapping {
-background-color: green;
+    height: 18px;
+    background: url(&dtml-portal_url;/background_tableHeader.gif) repeat-x right top;
 }
 
-.ui-draggable-dragging {
-background-color: orange;
-border-color: #99bbe8;
-border-style: solid;
-border-width: 0 1px 0 1px;
+.schedule-label {
+    background: url(&dtml-portal_url;/schedule-label.gif) repeat-x right top;
+}
+
+.schedule-label a {
+    font-weight: bold;
+    display: table-cell;
+    vertical-align: middle;
+    height: 30px;
+    padding-left: 10px;
+}
+
+.schedule-label.header {
+    background: url(&dtml-portal_url;/schedule-label-header.gif) repeat-x right top;
+}
+
+.schedule-bar {
+    background: url(&dtml-portal_url;/color-grid.gif);
+    position: relative;
+    cursor: pointer;
+}
+
+.schedule-bumber {
+    background: url(&dtml-portal_url;/schedule-bumber.gif) repeat-y right top;
+    display: block;
+}
+
+.draggable-iteration-bar, .undraggable-iteration-bar {
+    width: 80px;
+    position: absolute;
+    line-height: 2.5em;
+    text-indent: 1em;
+    margin-left: -2px; /* this fixes the off-set on the color-grid*/
+    border-style: solid;
+    border-width: 1px;
+    border-color: #eeede8 #adadad #c6c4bc #dbdad6;
+    height: 30px;
+}
+
+.undraggable-iteration-bar {
+    background-color: #e7e7e4;
+    color: #333;
+    cursor: default;
+    border-color: #e0dcd3;
+}
+
+.draggable-iteration-bar {
+    background: #f0f0ed url(http://projects.zestsoftware.nl/background_tableFix.gif) repeat-x scroll 0 0;
+    cursor: pointer;
+}
+
+.ui-draggable-overlapped {
+    background-color: red;
+}
+
+.ui-draggable-overlapping {
+    background-color: orange;
+}
+
+.draggable-iteration-bar.ui-draggable-dragging {
+    background: #a7d9fc url(&dtml-portal_url;/iteration-bar-dragging.gif) repeat-x;
+    border-color: #99bbe8;
+}
+
+.iteration-title {
+    float:left;
+}
+
+.iteration-colon {
+    float: right;
+    text-indent: 0;
+    padding-right: 0.5em;
+    color: #333;
+}
+
+.undraggable-iteration-bar .iteration-colon {
+    color: #999;
+}
+
+.draggable-iteration-bar.ui-draggable-dragging .iteration-colon {
+    color: #99bbe8;
 }
 
 .current-date {
@@ -121,6 +170,10 @@ border-width: 0 1px 0 1px;
 
 #project_list_widget #widget_listing {
     display: none;
+}
+
+.clear {
+    clear: both;
 }
 
 /* </dtml-with> */

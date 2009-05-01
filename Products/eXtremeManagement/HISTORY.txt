@@ -5,6 +5,8 @@ History
 2.0.2 (unreleased)
 ------------------
 
+- css and additional html for iteration-slider. [laurens]
+
 - Fix several problems with automatically closing iterations:
 
   - First check for duplicate story IDs in the new iteration.
