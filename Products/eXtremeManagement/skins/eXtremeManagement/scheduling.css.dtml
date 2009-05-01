@@ -20,6 +20,7 @@
 }
 
 #schedule-field {
+   position: relative; /* don't remove this! it fixes the overflow in IE7*/
     overflow: hidden;
     width: 559px; /* 5*112px */
     border-right: 1px solid #d1d2cd;
@@ -88,11 +89,6 @@
     background: url(&dtml-portal_url;/color-grid.gif);
     position: relative;
     cursor: pointer;
-}
-
-.schedule-bumber {
-    background: url(&dtml-portal_url;/schedule-bumber.gif) repeat-y right top;
-    display: block;
 }
 
 .draggable-iteration-bar, .undraggable-iteration-bar {

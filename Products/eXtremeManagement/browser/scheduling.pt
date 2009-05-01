@@ -111,7 +111,6 @@
                 <div id="schedule-dates">
                   <div tal:repeat="date view/schedule_weeks" tal:content="date" 
                        tal:attributes="class python: (view.currentweek() == date) and 'schedule-date current-date' or 'schedule-date'"/>
-                      <span class="schedule-bumber" />
                 </div>
                 <div class="schedule-bar" tal:repeat="project view/projects">
                   <div tal:repeat="iteration python:view.iterationsforproject(project)"
