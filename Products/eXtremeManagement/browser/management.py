@@ -54,7 +54,8 @@ class IterationListBaseView(XMBaseView):
             iterationbrains = self.catalog.searchResults(
                 portal_type='Iteration',
                 review_state=self.iteration_review_state,
-                path={'query': searchpath, 'navtree': False})
+                path={'query': searchpath, 'navtree': False},
+                sort_on='getEndDate')
             if len(iterationbrains) > 0:
                 iteration_list = []
                 for iterationbrain in iterationbrains:
@@ -161,7 +162,8 @@ class InvoicingView(IterationListBaseView):
         iterationbrains = self.catalog.searchResults(
             portal_type='Iteration',
             review_state='invoiced',
-            modified={'query': start_of_month, 'range': 'min'})
+            modified={'query': start_of_month, 'range': 'min'},
+            sort_on='getEndDate')
         results = []
         for iterationbrain in iterationbrains:
             iteration_info = self.iterationbrain2dict(iterationbrain)
@@ -227,7 +229,8 @@ class InProgressView(IterationListBaseView):
         self.billable = self.request.get('type', 'billable')
         cfilter = dict(portal_type = 'Iteration',
                        review_state = 'in-progress',
-                       getBillableProject = self.viewing_billable())
+                       getBillableProject = self.viewing_billable(),
+                       sort_on = 'getEndDate')
         iterationbrains = self.catalog.searchResults(cfilter)
         results = []
         for iterationbrain in iterationbrains:
