@@ -2,7 +2,7 @@ History
 =======
 
 
-2.0.2 (unreleased)
+2.0.2 (2009-05-05)
 ------------------
 
 - Added position:relative on #schedule-field to fix the overflow in IE7. [laurens]
