@@ -34,6 +34,7 @@ def addCatalogIndexes(site, logger):
         logger.info("Indexing new indexes %s.", ', '.join(indexables))
         catalog.manage_reindexIndex(ids=indexables)
 
+
 def configureKupu(portal, logger):
     """In Plone 3.0 / kupu 1.4 we can actually use a kupu.xml file
     instead, which is better.
