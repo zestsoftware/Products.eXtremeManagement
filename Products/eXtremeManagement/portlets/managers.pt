@@ -25,6 +25,12 @@
       In-progress
     </a>
   </dd>
+  <dd class="portletItem even">
+    <a tal:attributes="href string:${view/site_url}/scheduling"
+       i18n:translate="label_scheduling">
+      Scheduling
+    </a>
+  </dd>
   <dd class="portletFooter">
     <span class="portletBottomLeft"></span>
     <span class="portletBottomRight"></span>

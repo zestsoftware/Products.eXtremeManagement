@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-04-29 15:06+0000\n"
+"POT-Creation-Date: 2009-05-11 20:35+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -105,7 +105,7 @@ msgid "add-task-in"
 msgstr ""
 
 #. Default: "Back to"
-#: ./skins/eXtremeManagement/booking_month.pt:41
+#: ./skins/eXtremeManagement/booking_details.pt:27
 msgid "back_to"
 msgstr "Zpět na"
 
@@ -126,17 +126,17 @@ msgid "cannot_activate"
 msgstr ""
 
 #. Default: "Need to finish estimating this story by selecting 'estimate' from the state dropdown."
-#: ./skins/eXtremeManagement/story_view.pt:126
+#: ./browser/viewlets/templates/story_details_box.pt:84
 msgid "cannot_activate_msg"
 msgstr ""
 
 #. Default: "There are tasks which cannot be activated, please see: ${tasks}."
-#: ./skins/eXtremeManagement/story_view.pt:135
+#: ./browser/viewlets/templates/story_details_box.pt:93
 msgid "cannot_activate_tasks_msg"
 msgstr ""
 
 #. Default: "current month"
-#: ./skins/eXtremeManagement/booking_month.pt:44
+#: ./skins/eXtremeManagement/booking_details.pt:30
 msgid "current-month"
 msgstr "tento měsíc"
 
@@ -171,7 +171,7 @@ msgid "description_conflicting_stories"
 msgstr ""
 
 #. Default: "No iterations in progress at this moment."
-#: ./browser/inprogress.pt:94
+#: ./browser/inprogress.pt:92
 msgid "description_no_iterations_in_progress"
 msgstr ""
 
@@ -181,12 +181,12 @@ msgid "description_no_iterations_planned"
 msgstr ""
 
 #. Default: "Nothing invoiced yet"
-#: ./browser/invoicing.pt:119
+#: ./browser/invoicing.pt:115
 msgid "description_nothing_invoiced"
 msgstr ""
 
 #. Default: "Nothing to invoice"
-#: ./browser/invoicing.pt:59
+#: ./browser/invoicing.pt:57
 msgid "description_nothing_to_invoice"
 msgstr ""
 
@@ -494,7 +494,7 @@ msgid "estimated_start_project"
 msgstr ""
 
 #. Default: "Go to"
-#: ./skins/eXtremeManagement/booking_month.pt:30
+#: ./skins/eXtremeManagement/booking_details.pt:16
 msgid "go_to"
 msgstr "Přejít na"
 
@@ -529,7 +529,7 @@ msgid "head_iterations"
 msgstr ""
 
 #. Default: "Invoiced this month"
-#: ./browser/invoicing.pt:62
+#: ./browser/invoicing.pt:60
 msgid "head_this_month"
 msgstr ""
 
@@ -553,7 +553,7 @@ msgid "header-create-tasks-from-issues"
 msgstr ""
 
 #. Default: "attached files and images"
-#: ./skins/eXtremeManagement/story_view.pt:43
+#: ./skins/eXtremeManagement/offer_view.pt:111
 msgid "heading-attachements"
 msgstr ""
 
@@ -626,7 +626,7 @@ msgid "heading_releaseplan"
 msgstr ""
 
 #. Default: "Tasks"
-#: ./skins/eXtremeManagement/story_view.pt:170
+#: ./skins/eXtremeManagement/story_view.pt:93
 msgid "heading_tasks"
 msgstr "Úkoly"
 
@@ -731,7 +731,7 @@ msgid "label_current_iterations"
 msgstr ""
 
 #. Default: "Date completed"
-#: ./browser/invoicing.pt:25
+#: ./browser/finished.pt:21
 msgid "label_date_completed"
 msgstr ""
 
@@ -751,7 +751,7 @@ msgid "label_finished_overview"
 msgstr ""
 
 #. Default: "Hours worked"
-#: ./browser/invoicing.pt:28
+#: ./browser/finished.pt:27
 msgid "label_hours_worked"
 msgstr ""
 
@@ -780,8 +780,8 @@ msgstr ""
 msgid "label_moved_to_unplanned_succesfully"
 msgstr ""
 
-#. Default: "New Iteration"
-#: ./browser/close-iteration.pt:43
+#. Default: "New iteration"
+#: ./browser/add_iteration.pt:14
 msgid "label_new_iteration"
 msgstr ""
 
@@ -830,6 +830,11 @@ msgstr ""
 msgid "label_remaining_budget"
 msgstr ""
 
+#. Default: "Scheduling"
+#: ./portlets/managers.pt:29
+msgid "label_scheduling"
+msgstr ""
+
 #. Default: "Unbillable"
 #: ./browser/inprogress.pt:24
 msgid "label_unbillable"
@@ -871,7 +876,7 @@ msgid "listingheader-time"
 msgstr "Čas"
 
 #. Default: "Total"
-#: ./browser/invoicing.pt:83
+#: ./browser/inprogress.pt:54
 msgid "listingheader-total"
 msgstr ""
 
@@ -911,12 +916,12 @@ msgid "listingheader_estimate_hours"
 msgstr ""
 
 #. Default: "Iteration"
-#: ./browser/invoicing.pt:22
+#: ./browser/finished.pt:24
 msgid "listingheader_iteration"
 msgstr "Iterace"
 
 #. Default: "Project"
-#: ./browser/invoicing.pt:19
+#: ./browser/inprogress.pt:35
 msgid "listingheader_projects"
 msgstr "Projekt"
 
@@ -963,7 +968,7 @@ msgid "listingheader_total_estimate"
 msgstr "Celkový odhad"
 
 #. Default: "Worked hours"
-#: ./browser/viewlets/templates/story_details_box.pt:56
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:24
 msgid "listingheader_workedhours"
 msgstr ""
 
@@ -998,7 +1003,7 @@ msgid "no_tasks_defined"
 msgstr "Zatím nebyly zadány žádné úkoly."
 
 #. Default: "No tasks added yet. Please add one."
-#: ./skins/eXtremeManagement/story_view.pt:129
+#: ./browser/viewlets/templates/story_details_box.pt:87
 msgid "no_tasks_msg"
 msgstr ""
 
@@ -1018,7 +1023,7 @@ msgid "previous"
 msgstr ""
 
 #. Default: "previous month"
-#: ./skins/eXtremeManagement/booking_month.pt:33
+#: ./skins/eXtremeManagement/booking_details.pt:19
 msgid "previous-month"
 msgstr "předchozí měsíc"
 

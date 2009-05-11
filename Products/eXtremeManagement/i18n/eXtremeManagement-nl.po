@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-04-29 15:06+0000\n"
+"POT-Creation-Date: 2009-05-11 20:35+0000\n"
 "PO-Revision-Date: 2009-04-29 17:07+0200\n"
 "Last-Translator: Jean-Paul Ladage <j.ladage@zestsoftware.nl>\n"
 "Language-Team: Nederlands <xm@lists.zestsoftware.nl>\n"
@@ -107,7 +107,7 @@ msgid "add-task-in"
 msgstr "Taak toevoegen in"
 
 #. Default: "Back to"
-#: ./skins/eXtremeManagement/booking_month.pt:41
+#: ./skins/eXtremeManagement/booking_details.pt:27
 msgid "back_to"
 msgstr "Terug naar"
 
@@ -127,17 +127,17 @@ msgid "cannot_activate"
 msgstr "Kan niet starten"
 
 #. Default: "Need to finish estimating this story by selecting 'estimate' from the state dropdown."
-#: ./skins/eXtremeManagement/story_view.pt:126
+#: ./browser/viewlets/templates/story_details_box.pt:84
 msgid "cannot_activate_msg"
 msgstr "De status van deze story dient eerst op 'ingeschat' gezet te worden m.b.v. de status dropdown."
 
 #. Default: "There are tasks which cannot be activated, please see: ${tasks}."
-#: ./skins/eXtremeManagement/story_view.pt:135
+#: ./browser/viewlets/templates/story_details_box.pt:93
 msgid "cannot_activate_tasks_msg"
 msgstr "Er zijn taken die nog niet gestart kunnen worden, te weten: ${tasks}"
 
 #. Default: "current month"
-#: ./skins/eXtremeManagement/booking_month.pt:44
+#: ./skins/eXtremeManagement/booking_details.pt:30
 msgid "current-month"
 msgstr "huidige maand"
 
@@ -172,7 +172,7 @@ msgid "description_conflicting_stories"
 msgstr "De iteratie kon niet worden afgesloten omdat niet afgesloten user stories onder dezelfde naam in de nieuwe iteratie voorkomen."
 
 #. Default: "No iterations in progress at this moment."
-#: ./browser/inprogress.pt:94
+#: ./browser/inprogress.pt:92
 msgid "description_no_iterations_in_progress"
 msgstr "Er zijn op dit moment geen lopende iteraties."
 
@@ -182,12 +182,12 @@ msgid "description_no_iterations_planned"
 msgstr "Er zijn nog geen nieuwe iteraties geplant."
 
 #. Default: "Nothing invoiced yet"
-#: ./browser/invoicing.pt:119
+#: ./browser/invoicing.pt:115
 msgid "description_nothing_invoiced"
 msgstr "Er zijn nog geen iteraties gefactureerd."
 
 #. Default: "Nothing to invoice"
-#: ./browser/invoicing.pt:59
+#: ./browser/invoicing.pt:57
 msgid "description_nothing_to_invoice"
 msgstr "Er zijn nog geen iteraties die kunnen worden gefactureerd."
 
@@ -494,7 +494,7 @@ msgid "estimated_start_project"
 msgstr "Geschatte start project"
 
 #. Default: "Go to"
-#: ./skins/eXtremeManagement/booking_month.pt:30
+#: ./skins/eXtremeManagement/booking_details.pt:16
 msgid "go_to"
 msgstr "Ga naar"
 
@@ -529,7 +529,7 @@ msgid "head_iterations"
 msgstr "Iteraties"
 
 #. Default: "Invoiced this month"
-#: ./browser/invoicing.pt:62
+#: ./browser/invoicing.pt:60
 msgid "head_this_month"
 msgstr "Deze maand gefactureerd"
 
@@ -553,7 +553,7 @@ msgid "header-create-tasks-from-issues"
 msgstr "Taken aanmaken voor issues"
 
 #. Default: "attached files and images"
-#: ./skins/eXtremeManagement/story_view.pt:43
+#: ./skins/eXtremeManagement/offer_view.pt:111
 msgid "heading-attachements"
 msgstr "Bijlagen"
 
@@ -625,7 +625,7 @@ msgstr "Release planning"
 
 ### story_view template ###
 #. Default: "Tasks"
-#: ./skins/eXtremeManagement/story_view.pt:170
+#: ./skins/eXtremeManagement/story_view.pt:93
 msgid "heading_tasks"
 msgstr "Taken"
 
@@ -730,7 +730,7 @@ msgid "label_current_iterations"
 msgstr "Lopende Iteraties"
 
 #. Default: "Date completed"
-#: ./browser/invoicing.pt:25
+#: ./browser/finished.pt:21
 msgid "label_date_completed"
 msgstr "Einddatum"
 
@@ -750,7 +750,7 @@ msgid "label_finished_overview"
 msgstr "Afgeronde iteraties"
 
 #. Default: "Hours worked"
-#: ./browser/invoicing.pt:28
+#: ./browser/finished.pt:27
 msgid "label_hours_worked"
 msgstr "Gewerkte uren"
 
@@ -779,8 +779,9 @@ msgstr "User story '${story}' is verplaatst naar iteratie '${target}'."
 msgid "label_moved_to_unplanned_succesfully"
 msgstr "User story '${story}' is verplaatst naar de lijst met ongeplande stories."
 
-#. Default: "New Iteration"
-#: ./browser/close-iteration.pt:43
+#. Default: "New iteration"
+#: ./browser/add_iteration.pt:14
+#, fuzzy
 msgid "label_new_iteration"
 msgstr "Nieuwe iteratie"
 
@@ -829,6 +830,11 @@ msgstr "Release Plan"
 msgid "label_remaining_budget"
 msgstr "Resterende uren"
 
+#. Default: "Scheduling"
+#: ./portlets/managers.pt:29
+msgid "label_scheduling"
+msgstr "Planning"
+
 #. Default: "Unbillable"
 #: ./browser/inprogress.pt:24
 msgid "label_unbillable"
@@ -870,7 +876,7 @@ msgid "listingheader-time"
 msgstr "Tijd"
 
 #. Default: "Total"
-#: ./browser/invoicing.pt:83
+#: ./browser/inprogress.pt:54
 msgid "listingheader-total"
 msgstr "Totaal"
 
@@ -910,12 +916,12 @@ msgid "listingheader_estimate_hours"
 msgstr "Geschatte uren"
 
 #. Default: "Iteration"
-#: ./browser/invoicing.pt:22
+#: ./browser/finished.pt:24
 msgid "listingheader_iteration"
 msgstr "Iteratie"
 
 #. Default: "Project"
-#: ./browser/invoicing.pt:19
+#: ./browser/inprogress.pt:35
 msgid "listingheader_projects"
 msgstr "Project"
 
@@ -961,7 +967,7 @@ msgid "listingheader_total_estimate"
 msgstr "Totaal geschat"
 
 #. Default: "Worked hours"
-#: ./browser/viewlets/templates/story_details_box.pt:56
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:24
 msgid "listingheader_workedhours"
 msgstr "Gewerkte uren"
 
@@ -996,7 +1002,7 @@ msgid "no_tasks_defined"
 msgstr "Nog geen taken gedefinieerd."
 
 #. Default: "No tasks added yet. Please add one."
-#: ./skins/eXtremeManagement/story_view.pt:129
+#: ./browser/viewlets/templates/story_details_box.pt:87
 msgid "no_tasks_msg"
 msgstr "Nog geen taken toegevoegd."
 
@@ -1016,7 +1022,7 @@ msgid "previous"
 msgstr "vorige"
 
 #. Default: "previous month"
-#: ./skins/eXtremeManagement/booking_month.pt:33
+#: ./skins/eXtremeManagement/booking_details.pt:19
 msgid "previous-month"
 msgstr "vorige maand"
 
