@@ -29,31 +29,29 @@
             Hours worked
           </th>
         </tr>
+        <tal:iterations tal:repeat="item view/projectlist">
+        <tr>
+          <td>
+            <a tal:content="item/title"
+               tal:attributes="title item/description;
+                               href item/url;"/>
+          </td>
+          <td>
+            <a tal:content="item/iteration_title"
+               tal:attributes="title item/iteration_description;
+                               href item/iteration_url;"/>
+          </td>
+          <td tal:condition="not: item/completion_date"
+              class="right"> - </td>
+          <td tal:condition="item/completion_date"
+              tal:content="python:context.toLocalizedTime(item['completion_date'],
+                         long_format=0)"
+              class="right" />
+          <td tal:content="item/actual"
+              class="right" />
+        </tr>
 
-        <tal:projects tal:repeat="project view/projectlist">
-          <tal:iterations tal:repeat="iteration project/iterations">
-            <tr>
-              <td>
-                <a tal:content="project/title"
-                   tal:attributes="title project/description;
-                                   href project/url;"/>
-              </td>
-              <td>
-                <a tal:content="iteration/title"
-                   tal:attributes="title iteration/description;
-                                   href iteration/url;"/>
-              </td>
-              <td tal:condition="not: iteration/completion_date"
-                  class="right"> - </td>
-              <td tal:condition="iteration/completion_date"
-                  tal:content="python:context.toLocalizedTime(iteration['completion_date'],
-                             long_format=0)"
-                  class="right" />
-              <td tal:content="iteration/actual"
-                  class="right" />
-            </tr>
-          </tal:iterations>
-        </tal:projects>
+        </tal:iterations>
       </table>
       
       <p tal:condition="not: view/projectlist"
@@ -89,30 +87,28 @@
           </tr>
         </tfoot>
         <tbody>
-        <tal:projects tal:repeat="project view/invoicedlist">
-          <tal:iterations tal:repeat="iteration project/iterations">
-            <tr>
-              <td>
-                <a tal:content="project/title"
-                   tal:attributes="title project/description;
-                                   href project/url;"/>
-              </td>
-              <td>
-                <a tal:content="iteration/title"
-                   tal:attributes="title iteration/description;
-                                   href iteration/url;"/>
-              </td>
-              <td tal:condition="not: iteration/completion_date"
-                  class="right"> - </td>
-              <td tal:condition="iteration/completion_date"
-                  tal:content="python:context.toLocalizedTime(iteration['completion_date'],
-                             long_format=0)"
-                  class="right" />
-              <td tal:content="iteration/actual"
-                  class="right" />
-            </tr>
-          </tal:iterations>
-        </tal:projects>
+        <tal:iterations tal:repeat="item view/invoicedlist">
+          <tr>
+            <td>
+              <a tal:content="item/title"
+                 tal:attributes="title item/description;
+                                 href item/url;"/>
+            </td>
+            <td>
+              <a tal:content="item/iteration_title"
+                 tal:attributes="title item/iteration_description;
+                                 href item/iteration_url;"/>
+            </td>
+            <td tal:condition="not: item/completion_date"
+                class="right"> - </td>
+            <td tal:condition="item/completion_date"
+                tal:content="python:context.toLocalizedTime(item['completion_date'],
+                           long_format=0)"
+                class="right" />
+            <td tal:content="item/actual"
+                class="right" />
+          </tr>
+        </tal:iterations>
         </tbody>
       </table>
 

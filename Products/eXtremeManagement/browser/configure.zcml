@@ -6,7 +6,7 @@
   <include package=".viewlets" />
 
   <page
-      name="project_scheduling"
+      name="scheduling"
       class=".projects.Scheduling"
       for="*"
       permission="zope2.View"

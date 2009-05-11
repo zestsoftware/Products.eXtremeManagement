@@ -119,7 +119,7 @@ class MoveIteration(PloneKSSView):
         """Find an iteration by uid and move it to a new start day"""
         print 'move_iteration', uid, date.fromtimestamp(int(daystart)), dayoffset
         # Sanitise the daystart
-        view = self.context.restrictedTraverse('@@project_scheduling')
+        view = self.context.restrictedTraverse('@@scheduling')
         first_day = view.startingdate(stamp=int(daystart))
         # Set start date of iteration with UID 'uid' to first_day + dayoffset
         newd = first_day + timedelta(int(dayoffset))

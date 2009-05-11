@@ -5,13 +5,17 @@ History
 2.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed issue of disappearing iterations in the planned, finished, invoiced
+  and inprogress iteration view. Sorting on fields that have no value will
+  remove those items from the result. Alse the code has been refactored by
+  adding memoizes and moving portal_state to xmbase. [jladage]
 
 
 2.0.2 (2009-05-05)
 ------------------
 
-- Added position:relative on #schedule-field to fix the overflow in IE7. [laurens]
+- Added position:relative on #schedule-field to fix the overflow in IE7.
+  [laurens]
 - Removed schedule-bumber tag and css: it messed up IE7/IE8. [laurens]
 - css and additional html for iteration-slider. [laurens]
 
