@@ -13,6 +13,9 @@ Installation
   tools (``apt-get install python-egenix-mxdatetime`` works on
   Debian/Ubuntu) or use ``easy_install egenix-mx-base``.  On Windows
   the installers seem to be the easiest way.
+  For mac users, do:  sudo easy_install-2.4 egenix-mx-base
+  Then open python terminal: python2.4
+  >>import mx.DateTime
 
   Then restart your zope instance and use the Add/Remove products page
   in Site Setup to install eXtremeManagement.
