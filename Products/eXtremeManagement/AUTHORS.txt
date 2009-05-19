@@ -22,3 +22,5 @@ Hans-Peter Locher <hans-peter.locher@inquant.de>
 Stefan Eletzhofer <stefan.eletzhofer@inquant.de>
 
 Reinout van Rees <r.van.rees@zestsoftware.nl>
+
+Jens Klein <jens@bluedynamics.com>

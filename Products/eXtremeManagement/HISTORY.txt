@@ -5,6 +5,8 @@ History
 2.0.3 (unreleased)
 ------------------
 
+- Started german translation. Refinement follows. [jensens] 
+
 - Fixed issue of disappearing iterations in the planned, finished, invoiced
   and inprogress iteration view. Sorting on fields that have no value will
   remove those items from the result. Alse the code has been refactored by

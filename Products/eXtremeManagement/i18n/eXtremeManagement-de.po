@@ -1,0 +1,1065 @@
+# Translation of eXtremeManagement.pot to German
+# Jens Klein <jens@bluedynamics.com>, 2009
+msgid ""
+msgstr ""
+"Project-Id-Version: eXtremeManagement\n"
+"POT-Creation-Date: 2009-05-11 20:35+0000\n"
+"PO-Revision-Date: 2009-05-19 21:07+0100\n"
+"Last-Translator: Jens Klein <jens@bluedynamics.com>\n"
+"Language-Team: BlueDynamics Alliance <dev@bluedynamics.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: de\n"
+"Language-Name: German\n"
+"Preferred-Encodings: utf-8 latin2\n"
+"Domain: eXtremeManagement\n"
+"X-Is-Fallback-For: de-at de-li de-lu de-ch de-de\n"
+
+#. Default: "Actual hours"
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:53
+msgid "Actual_hours"
+msgstr "Aktuelle Stunden"
+
+#. Default: "Add"
+#: ./portlets/poi.pt:43
+msgid "Add"
+msgstr "Hinzufügen"
+
+#. Default: "Add Tasks"
+#: ./portlets/poi_creation.pt:25
+msgid "Add Tasks"
+msgstr "Aufgaben hinzufügen"
+
+#: ./portlets/project.py:101
+msgid "Attachments"
+msgstr "Anhänge"
+
+#: ./portlets/poi_creation.py:37
+msgid "Create tasks from issues"
+msgstr "Erstelle Aufgaben aus Problemen"
+
+#: ./browser/releaseplan.py:227
+msgid "Drag/drop uids incorrect"
+msgstr "Drag/Drop UIDS sind falsch"
+
+#. Default: "Info"
+#: ./skins/eXtremeManagement/iteration_view.pt:14
+msgid "Info"
+msgstr "Information"
+
+#: ./portlets/project.py:99
+msgid "Issues"
+msgstr "Problem"
+
+#: ./browser/iterations.py:316
+msgid "Iteration added."
+msgstr "Zyklus hinzugefügt."
+
+#: ./portlets/iterations.py:40
+msgid "Iterations"
+msgstr "Zyklen"
+
+#: ./browser/releaseplan.py:241
+msgid "Move failed: story locked. Unlock the story to move it."
+msgstr "Verschieben fehlgeschlagen: Anforderung ist gesperrt. Entsperren Sie die Anforderung bevor Sie sie verschieben."
+
+#. Default: "Note that only issues that aren't already mapped into this iteration will be added."
+#: ./portlets/poi_creation.pt:33
+msgid "Note that only issues that aren't already mapped into this iteration will be added."
+msgstr ""
+
+#: ./portlets/project.py:103
+msgid "Offer"
+msgstr "Angebot"
+
+#: ./browser/maintenance.py:16
+msgid "Perform various maintenance tasks. If you know the totals are wrong, you can recalculate them here. This should normally not be needed, so do not touch this unless you know what you are doing.  Then again, it does not hurt, except that it takes a long time."
+msgstr ""
+
+#. Default: "Project Management"
+#: ./portlets/managers.pt:5
+msgid "Project Management"
+msgstr "Projekt-Management"
+
+#: ./portlets/project.py:40
+msgid "Project links"
+msgstr ""
+
+#: ./portlets/poi.py:37
+msgid "Related XM Tasks"
+msgstr "Verwandte XM Aufgaben"
+
+#: ./browser/tasks.py:377
+msgid "Task added"
+msgstr "Aufgabe hinzugefügt"
+
+#: ./browser/iterations.py:328
+msgid "Title is required"
+msgstr ""
+
+#. Default: "Add a task in"
+#: ./portlets/poi.pt:32
+msgid "add-task-in"
+msgstr ""
+
+#. Default: "Back to"
+#: ./skins/eXtremeManagement/booking_details.pt:27
+msgid "back_to"
+msgstr "Zurück zu"
+
+#. Default: "Bookings per month"
+#: ./portlets/portlet_tasks.pt:26
+msgid "booking_month"
+msgstr ""
+
+#. Default: "Pending Stories"
+#: ./portlets/storyestimation.pt:6
+msgid "box_stories"
+msgstr ""
+
+#. Default: "Cannot Activate"
+#: ./browser/viewlets/templates/story_details_box.pt:25
+msgid "cannot_activate"
+msgstr ""
+
+#. Default: "Need to finish estimating this story by selecting 'estimate' from the state dropdown."
+#: ./browser/viewlets/templates/story_details_box.pt:84
+msgid "cannot_activate_msg"
+msgstr ""
+
+#. Default: "There are tasks which cannot be activated, please see: ${tasks}."
+#: ./browser/viewlets/templates/story_details_box.pt:93
+msgid "cannot_activate_tasks_msg"
+msgstr ""
+
+#. Default: "current month"
+#: ./skins/eXtremeManagement/booking_details.pt:30
+msgid "current-month"
+msgstr "aktueller Monat"
+
+#. Default: "current iteration"
+#: ./browser/migration-impossible-state.pt:33
+msgid "current_iteration_link"
+msgstr "aktueller Zyklus"
+
+#. Default: "days"
+#: ./browser/viewlets/templates/story_details_box.pt:43
+msgid "days"
+msgstr "Tage"
+
+#. Default: "Need to assign a time estimate to this task."
+#: ./skins/eXtremeManagement/task_view.pt:77
+msgid "desc_no_estimate"
+msgstr ""
+
+#. Default: "No one has been assigned to this task."
+#: ./skins/eXtremeManagement/task_view.pt:74
+msgid "desc_no_task_assigned"
+msgstr ""
+
+#. Default: "Overview of tasks that are assigned to you. The totals mentioned are the total time for myself, so they will usually differ from adding the numbers of the column above it."
+#: ./skins/eXtremeManagement/task_overview.pt:19
+msgid "description-overview-my-tasks"
+msgstr ""
+
+#. Default: "The iteration could not be closed since there are uncompleted stories which also exist in the selected next iteration:"
+#: ./browser/migration-impossible-state.pt:14
+msgid "description_conflicting_stories"
+msgstr ""
+
+#. Default: "No iterations in progress at this moment."
+#: ./browser/inprogress.pt:92
+msgid "description_no_iterations_in_progress"
+msgstr ""
+
+#. Default: "No iterations are planned at this moment."
+#: ./browser/planned_iterations.pt:20
+msgid "description_no_iterations_planned"
+msgstr ""
+
+#. Default: "Nothing invoiced yet"
+#: ./browser/invoicing.pt:115
+msgid "description_nothing_invoiced"
+msgstr ""
+
+#. Default: "Nothing to invoice"
+#: ./browser/invoicing.pt:57
+msgid "description_nothing_to_invoice"
+msgstr ""
+
+#. Default: "This view provides an overall plan for this project. You can prioritize stories by dragging them inside and between iterations."
+#: ./browser/releaseplan.pt:14
+msgid "description_releaseplan"
+msgstr "Ein Gesamtübersicht über das ganze Projekt. Sie können Anforderungen priorisieren, indem Sie diese innerhalb und zwischen den Zyklen hin- und herziehen."
+
+#. Default: "Detailed bookings"
+#: ./portlets/portlet_tasks.pt:19
+msgid "detailed_bookings"
+msgstr ""
+
+#: ./browser/maintenance.py:15
+msgid "eXtremeManagement maintenance"
+msgstr ""
+
+#. Default: "Enter address."
+#: content/Customer.py
+msgid "eXtremeManagement_help_address"
+msgstr "Adresse eingeben"
+
+#. Default: "Select the member(s) to assign this task to."
+#: content/Task.py
+msgid "eXtremeManagement_help_assignees"
+msgstr "Wählen Sie die Person aus, die diesem Task zugewiesen werden soll."
+
+#. Default: "Date that you worked on this task"
+#: content/Booking.py
+msgid "eXtremeManagement_help_bookingDate"
+msgstr "Das Datum, an dem Sie an der Aufgabe gearbeitet haben."
+
+#. Default: "Enter city name."
+#: content/Customer.py
+msgid "eXtremeManagement_help_city"
+msgstr "Stadt eingeben"
+
+#. Default: "Enter country."
+#: content/Customer.py
+msgid "eXtremeManagement_help_country"
+msgstr "Land eingeben"
+
+#. Default: "Enter your email address."
+#: content/ProjectMember.py
+msgid "eXtremeManagement_help_email"
+msgstr "Geben Sie Ihre E-Mail Adresse ein."
+
+#. Default: "Enter your fax number."
+#: content/Customer.py
+msgid "eXtremeManagement_help_fax"
+msgstr "Geben Sie Ihre FAX-Nummer ein."
+
+#. Default: "Enter a name, eg. John Smith."
+#: content/ProjectMember.py
+msgid "eXtremeManagement_help_fullname"
+msgstr "Einen Namen eingeben, z.B. Max Mustermann."
+
+#. Default: "Enter the estimated time (in hours)."
+#: content/Task.py
+msgid "eXtremeManagement_help_hours"
+msgstr "Geben Sie die geschätzte Zeit (in Stunden) ein."
+
+#. Default: "Enter the main description for this object."
+#: content/Story.py
+msgid "eXtremeManagement_help_mainText"
+msgstr "Geben Sie die Haupt-Beschreibung für diesen Eintrag ein."
+
+#. Default: "Enter the rest of the estimated time in minutes"
+#: content/Task.py
+msgid "eXtremeManagement_help_minutes"
+msgstr "Geben Sie den Rest der geschätzten Zeit in Minuten ein."
+
+#. Default: "Enter the company name for this customer"
+#: content/Customer.py
+msgid "eXtremeManagement_help_name"
+msgstr "Geben Sie den Firmen-Namen des Kunden ein."
+
+#. Default: "Enter your phone number."
+#: content/ProjectMember.py
+#: content/Customer.py
+msgid "eXtremeManagement_help_phone"
+msgstr "Geben Sie Ihre Telefonnummer ein."
+
+#. Default: "Enter a rough estimate in days (tip: use multiples of 0.5 days)"
+#: content/Story.py
+msgid "eXtremeManagement_help_roughEstimate"
+msgstr "Geben Sie eine grobe Schätzung in Tagen an (Tipp: Nehmen Sie ein vielfaches von 0.5 Tagen)."
+
+#. Default: "Check this to have the Offer view mark stories which are still in the draft state"
+#: content/Offer.py
+msgid "eXtremeManagement_help_show_draft"
+msgstr ""
+
+#. Default: "Enter your website address."
+#: content/Customer.py
+msgid "eXtremeManagement_help_website"
+msgstr "Geben Sie die Adresse Ihrer Internetseite ein."
+
+#. Default: "Enter zip code."
+#: content/Customer.py
+msgid "eXtremeManagement_help_zipCode"
+msgstr "Postleitzahl eingeben."
+
+#. Default: "Address"
+#: content/Customer.py
+msgid "eXtremeManagement_label_address"
+msgstr "Adresse"
+
+#. Default: "Assignees"
+#: content/Task.py
+msgid "eXtremeManagement_label_assignees"
+msgstr "Zugewiesene"
+
+#. Default: "Billable"
+#: content/Booking.py
+msgid "eXtremeManagement_label_billable"
+msgstr "Verrechenbar"
+
+#. Default: "Bookingdate"
+#: content/Booking.py
+msgid "eXtremeManagement_label_bookingDate"
+msgstr "Buchungsdatum"
+
+#. Default: "City"
+#: content/Customer.py
+msgid "eXtremeManagement_label_city"
+msgstr "Stadt"
+
+#. Default: "Country"
+#: content/Customer.py
+msgid "eXtremeManagement_label_country"
+msgstr "Land"
+
+#. Default: "Email"
+#: content/ProjectMember.py
+msgid "eXtremeManagement_label_email"
+msgstr "E-Mail"
+
+#. Default: "Enddate"
+#: content/Iteration.py
+msgid "eXtremeManagement_label_endDate"
+msgstr "End-Datum"
+
+#. Default: "Fax"
+#: content/Customer.py
+msgid "eXtremeManagement_label_fax"
+msgstr "Fax"
+
+#. Default: "Fullname"
+#: content/ProjectMember.py
+msgid "eXtremeManagement_label_fullname"
+msgstr "Vor- und Nachname"
+
+#. Default: "Hours"
+#: content/Task.py
+#: content/Booking.py
+msgid "eXtremeManagement_label_hours"
+msgstr "Stunden"
+
+#. Default: "Maintext"
+#: content/Story.py
+#: content/Task.py
+msgid "eXtremeManagement_label_mainText"
+msgstr "Haupt-Text"
+
+#. Default: "Man hours"
+#: ./skins/eXtremeManagement/iteration_view.pt:33
+msgid "eXtremeManagement_label_manHours"
+msgstr "Personen-Stunden"
+
+#. Default: "Minutes"
+#: content/Task.py
+#: content/Booking.py
+msgid "eXtremeManagement_label_minutes"
+msgstr "Minuten"
+
+#. Default: "Name"
+#: content/Customer.py
+msgid "eXtremeManagement_label_name"
+msgstr "Name"
+
+#. Default: "Phone"
+#: content/ProjectMember.py
+#: content/Customer.py
+msgid "eXtremeManagement_label_phone"
+msgstr "Telefon"
+
+#. Default: "Rawactualhours"
+#: content/Task.py
+msgid "eXtremeManagement_label_rawActualHours"
+msgstr "Rohe aktuelle Stunden"
+
+#. Default: "Rawdifference"
+#: content/Task.py
+msgid "eXtremeManagement_label_rawDifference"
+msgstr "Roh-Differenz"
+
+#. Default: "Estimate"
+#: ./browser/releaseplan.pt:28
+msgid "eXtremeManagement_label_rawEstimate"
+msgstr "Schätzung"
+
+#. Default: "Roughestimate"
+#: content/Story.py
+msgid "eXtremeManagement_label_roughEstimate"
+msgstr "Grob-Schätzung"
+
+#. Default: "Show draft state"
+#: content/Offer.py
+msgid "eXtremeManagement_label_show_draft"
+msgstr "Zeige Entwurfs-Stadien"
+
+#. Default: "Startdate"
+#: content/Iteration.py
+msgid "eXtremeManagement_label_startDate"
+msgstr "Start-Datum"
+
+#. Default: "Website"
+#: content/Customer.py
+msgid "eXtremeManagement_label_website"
+msgstr "Webseite"
+
+#. Default: "Zipcode"
+#: content/Customer.py
+msgid "eXtremeManagement_label_zipCode"
+msgstr "PLZ"
+
+#. Default: "Employees"
+#: ./portlets/managers.pt:11
+msgid "employees"
+msgstr "Personal"
+
+#. Default: "Estimated release date"
+#: ./skins/eXtremeManagement/offer_view.pt:35
+msgid "estimated_release_date"
+msgstr "Geschätztes Fertigstellungs-Datum"
+
+#. Default: "Estimated start of project"
+#: ./skins/eXtremeManagement/offer_view.pt:25
+msgid "estimated_start_project"
+msgstr "Geschätzter Projekt-Start"
+
+#. Default: "Go to"
+#: ./skins/eXtremeManagement/booking_details.pt:16
+msgid "go_to"
+msgstr "Gehe zu"
+
+#. Default: "Go to overview of"
+#: ./skins/eXtremeManagement/booking_month.pt:17
+msgid "go_to_overview"
+msgstr "Gehe zur Übersicht der"
+
+#. Default "Billable"
+msgid "head_billable"
+msgstr "Abrechenbar"
+
+#. Default "Date"
+msgid "head_bookingdate"
+msgstr "Datum"
+
+#. Default "Bookings"
+msgid "head_bookings"
+msgstr "Buchungen"
+
+#. Default "By"
+msgid "head_by"
+msgstr "von"
+
+#. Default "Description"
+msgid "head_description"
+msgstr "Beschreibung"
+
+#. Default: "Iterations"
+#: ./portlets/iterations.pt:5
+msgid "head_iterations"
+msgstr "Zyklen"
+
+#. Default: "Invoiced this month"
+#: ./browser/invoicing.pt:60
+msgid "head_this_month"
+msgstr "Diesen Monat in abgerechnet"
+
+#. Default "Time"
+msgid "head_time"
+msgstr "Zeit"
+
+#. Default: "To invoice"
+#: ./portlets/managers.pt:17
+msgid "head_to_invoice"
+msgstr "Abzurechnen"
+
+#. Default: "Unplanned stories"
+#: ./browser/releaseplan.pt:66
+msgid "head_unplanned_stories"
+msgstr "Ungeplante Anforderungen"
+
+#. Default: "Create tasks from issues"
+#: ./portlets/poi_creation.pt:5
+msgid "header-create-tasks-from-issues"
+msgstr "Erzeuge aus einme Problem eine Aufgabe"
+
+#. Default: "attached files and images"
+#: ./skins/eXtremeManagement/offer_view.pt:111
+msgid "heading-attachements"
+msgstr "Angehängte Dateien und Bilder"
+
+#. Default: "Billable"
+#: ./skins/eXtremeManagement/booking_view.pt:43
+msgid "heading-billable"
+msgstr "Abrechenbar"
+
+#. Default: "Booking"
+#: ./skins/eXtremeManagement/booking_view.pt:33
+msgid "heading-booking"
+msgstr "Buchung"
+
+#. Default: "Booking date"
+#: ./skins/eXtremeManagement/booking_view.pt:38
+msgid "heading-booking-date"
+msgstr "Buchungsdatum"
+
+#. Default: "Bookings"
+#: ./skins/eXtremeManagement/booking_details.pt:42
+msgid "heading-bookings"
+msgstr "Buchungen"
+
+#. Default: "Bookings per day"
+#: ./skins/eXtremeManagement/booking_month.pt:15
+msgid "heading-bookings-per-day"
+msgstr "Buchungen pro Tag"
+
+#. Default: "Hours per employee"
+#: ./skins/eXtremeManagement/iteration_view.pt:123
+msgid "heading-hours-per-employee"
+msgstr "Stunden pro Person"
+
+#. Default: "My task list"
+#: ./skins/eXtremeManagement/task_overview.pt:17
+msgid "heading-my-task-overview"
+msgstr "Liste meiner Aufgaben"
+
+#. Default: "Related XM Tasks"
+#: ./portlets/poi.pt:7
+msgid "heading-related-xm-tasks"
+msgstr "Verknüpfte XM Aufgaben"
+
+#. Default: "Stories"
+#: ./browser/iteration_planning.pt:26
+msgid "heading-stories"
+msgstr "Anforderungen"
+
+#. Default: "Current Iterations"
+#: ./skins/eXtremeManagement/project_view.pt:47
+msgid "heading_current_iterations"
+msgstr "Aktuelle Zyklen"
+
+#. Default: "Project Overview Chart"
+#: ./browser/project_chart.pt:8
+msgid "heading_project_chart_overview"
+msgstr "Diagram Projekt-Übersicht"
+
+#. Default: "Estimates and worked (in days)"
+#: ./browser/project_chart.pt:17
+msgid "heading_project_chart_table"
+msgstr "Geschätzt und gearbeitet (in Tagen)"
+
+#. Default: "Release plan"
+#: ./browser/releaseplan.pt:13
+msgid "heading_releaseplan"
+msgstr "Fertigstellungsplan"
+
+#. Default: "Tasks"
+#: ./skins/eXtremeManagement/story_view.pt:93
+msgid "heading_tasks"
+msgstr "Aufgaben"
+
+#. Default: "Enter the budget of the project in hours."
+#: content/Project.py
+msgid "help_budgetHours"
+msgstr "Geben Sie das Budget des Projektes in Stunden ein."
+
+#. Default: "Close an iteration by moving all unfinished stories and tasks to the next iteration. The following stories are not completed yet."
+#: ./browser/close-iteration.pt:16
+msgid "help_close_iteration"
+msgstr "Schließen eines Zyklus durch Verschieben aller unfertigen Anforderungen und Aufgaben in die nächsten Zyklus. Die folgenden Anforderungen sind bis jetzt noch nicht fertiggestellt."
+
+#. Default: "There are stories which cannot be activated:"
+#: ./skins/eXtremeManagement/iteration_view.pt:71
+msgid "help_estimate_stories"
+msgstr "Es gibt Anforderungen die nicht aktiviert werden können."
+
+#. Default: "If selected, Members with a global role 'Employee' will appear in the assignees list of a Task."
+#: content/Project.py
+msgid "help_include_global_members"
+msgstr ""
+
+#. Default: "To quickly estimate all the stories in this iteration, use the"
+#: ./skins/eXtremeManagement/iteration_view.pt:73
+msgid "help_iteration_planning"
+msgstr "Um schnell alle Anforderungen dieses Zyklus schätzen zu können, benutzen Sie die"
+
+#. Default: "Iteration planning view"
+#: ./skins/eXtremeManagement/iteration_view.pt:75
+msgid "help_iteration_planning_link"
+msgstr "Zyklus-Planungsansicht"
+
+#. Default: "Currently multiple iterations are 'in-progress' at this moment. If you forgot to close the previous iteration, you can find it ${go_here}."
+#: ./skins/eXtremeManagement/iteration_view.pt:20
+msgid "help_multiple_current_iterations"
+msgstr "Momentan sind mehrere Zyklen 'in Arbeit'. Haben Sie vergessen vorherige Zyklen zu schließen? Sie können es ${go_here} ändern."
+
+#. Default: "here"
+#: ./skins/eXtremeManagement/iteration_view.pt:20
+msgid "help_multiple_current_iterations_go_here"
+msgstr "hier"
+
+#. Default: "Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown)."
+#: ./browser/viewlets/templates/story_details_box.pt:20
+msgid "help_needs_estimate"
+msgstr ""
+
+#. Default: "Select the next iteration from the dropdown or add the title of a new iteration."
+#: ./browser/close-iteration.pt:36
+msgid "help_next_iteration"
+msgstr ""
+
+#. Default: "iteration"
+#: ./browser/project_chart.pt:20
+msgid "iteration"
+msgstr "Zyklus"
+
+# xm.booking translations
+#. Default "Add booking"
+#: mx.booking/browser/add.pt
+msgid "label_add_booking"
+msgstr "Buchung hinzufügen"
+
+#. Default: "Add Iteration"
+#: ./browser/add_iteration.pt:24
+msgid "label_add_iteration"
+msgstr "Zyklus hinzufügen"
+
+#. Default: "Add task"
+#: ./browser/add_task.pt:21
+msgid "label_add_task"
+msgstr "Aufgabe hinzufügen"
+
+#. Default: "Billable"
+#: ./browser/inprogress.pt:17
+msgid "label_billable"
+msgstr "Abrechenbar"
+
+#. Default: "Budget (hours)"
+#: ./skins/eXtremeManagement/project_view.pt:17
+msgid "label_budgetHours"
+msgstr "Budget (Stunden)"
+
+#. Default: "Cancel"
+#: ./browser/close-iteration.pt:61
+msgid "label_cancel"
+msgstr "Abbrechen"
+
+#. Default: "Close Iteration"
+#: ./browser/close-iteration.pt:55
+msgid "label_close"
+msgstr "Zyklus schließen"
+
+#. Default: "Current"
+#: ./portlets/iterations.pt:11
+msgid "label_current_iteration"
+msgstr "Aktuell"
+
+#. Default: "Current Iterations"
+#: ./browser/inprogress.pt:13
+msgid "label_current_iterations"
+msgstr "Aktuelle Zyklen"
+
+#. Default: "Date completed"
+#: ./browser/finished.pt:21
+msgid "label_date_completed"
+msgstr "Abschluss-Datum"
+
+#. Default: "Date due"
+#: ./browser/inprogress.pt:41
+msgid "label_date_due"
+msgstr "Plan-Datum"
+
+#. Default: "Estimated hours"
+#: ./browser/inprogress.pt:44
+msgid "label_estimated_hours"
+msgstr "Geschätzte Stunden"
+
+#. Default: "Finished iterations overview"
+#: ./browser/finished.pt:14
+msgid "label_finished_overview"
+msgstr "Übersicht abgeschlossener Zyklen"
+
+#. Default: "Hours worked"
+#: ./browser/finished.pt:27
+msgid "label_hours_worked"
+msgstr "gearbeitete Stunden"
+
+#. Default: "Include global Employees"
+#: content/Project.py
+msgid "label_include_global_members"
+msgstr "Einbeziehen des globalen Personals"
+
+#. Default: "In-progress"
+#: ./portlets/managers.pt:23
+msgid "label_inprogress_overview"
+msgstr "In Arbeit"
+
+#. Default: "Invoicing overview"
+#: ./browser/invoicing.pt:13
+msgid "label_invoicing_overview"
+msgstr "Abrechnungs-Übersicht"
+
+#. Default: "Moved story '${story}' to iteration '${target}'."
+#: ./browser/releaseplan.py:247
+msgid "label_moved_succesfully"
+msgstr "Anforderung '${story}' wurde in Zyklus '${target}' verschoben."
+
+#. Default: "Moved story '${story}' to the unplanned list."
+#: ./browser/releaseplan.py:252
+msgid "label_moved_to_unplanned_succesfully"
+msgstr "Anforderung '${story}' wurde in die Liste der ungeplanten verschoben."
+
+#. Default: "New iteration"
+#: ./browser/add_iteration.pt:14
+msgid "label_new_iteration"
+msgstr "Neuer Zyklus"
+
+#. Default: "Planned iterations"
+#: ./browser/planned_iterations.pt:14
+msgid "label_new_iterations_overview"
+msgstr "Geplante Zyklen"
+
+#. Default: "Next Iteration"
+#: ./browser/close-iteration.pt:31
+msgid "label_next_iteration"
+msgstr "Nächster Zyklus"
+
+#. Default: "Offer(s)"
+#: ./skins/eXtremeManagement/project_view.pt:25
+msgid "label_offer"
+msgstr "Angebot(e)"
+
+#. Default: "The position of story '${story}' in the iteration has been changed."
+#: ./browser/releaseplan.py:278
+msgid "label_order_updated_succesfully"
+msgstr "Die Position der Anforderung '${story}' wurde innerhalb des Zyklus verändert."
+
+#. Default: "Planned"
+#: ./portlets/iterations.pt:17
+msgid "label_planned_iteration"
+msgstr "Geplant"
+
+#. Default: "Recalculate actual hours"
+#: ./browser/maintenance.py:24
+msgid "label_recalculate_actual_hours"
+msgstr "Neuberechnung der aktuelle Stunden"
+
+#. Default: "Recalculate estimated time"
+#: ./browser/maintenance.py:44
+msgid "label_recalculate_estimated_time"
+msgstr "Neuberechnung der geschätzten Stunden"
+
+#. Default: "Release Plan"
+#: ./portlets/project.pt:20
+msgid "label_release_plan"
+msgstr "Fertigstellungsplan"
+
+#. Default: "Remaining budget (hours)"
+#: ./skins/eXtremeManagement/iteration_view.pt:110
+msgid "label_remaining_budget"
+msgstr "Verbleibendes Budget (Stunden)"
+
+#. Default: "Scheduling"
+#: ./portlets/managers.pt:29
+msgid "label_scheduling"
+msgstr "Terminplanung"
+
+#. Default: "Unbillable"
+#: ./browser/inprogress.pt:24
+msgid "label_unbillable"
+msgstr "Nicht Verrechenbar"
+
+#. Default: "Worked hours"
+#: ./browser/inprogress.pt:47
+msgid "label_worked_hours"
+msgstr "Gearbeitete Stunden"
+
+#. Default: "last 12 months"
+#: ./skins/eXtremeManagement/booking_month.pt:20
+msgid "last_12_months"
+msgstr "letzte 12 Monate"
+
+#. Default: "Booking"
+#: ./skins/eXtremeManagement/booking_details.pt:54
+msgid "listingheader-booking"
+msgstr "Buchung"
+
+#. Default: "Date"
+#: ./skins/eXtremeManagement/booking_details.pt:48
+msgid "listingheader-date"
+msgstr "Datum"
+
+#. Default: "Start"
+#: ./skins/eXtremeManagement/booking_month.pt:68
+msgid "listingheader-start-of-week"
+msgstr "Start"
+
+#. Default: "Task"
+#: ./skins/eXtremeManagement/booking_details.pt:51
+msgid "listingheader-task"
+msgstr "Aufgabe"
+
+#. Default: "Time"
+#: ./skins/eXtremeManagement/booking_details.pt:57
+msgid "listingheader-time"
+msgstr "Zeit"
+
+#. Default: "Total"
+#: ./browser/inprogress.pt:54
+msgid "listingheader-total"
+msgstr "Gesamt"
+
+#. Default: "Week"
+#: ./skins/eXtremeManagement/booking_month.pt:67
+msgid "listingheader-week-number"
+msgstr "Woche"
+
+#. Default: "Assignee(s)"
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:27
+msgid "listingheader_assignees"
+msgstr "Zuständige(r)"
+
+#. Default: "Difference hours"
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:25
+msgid "listingheader_diff_hours"
+msgstr "Stundendifferenz"
+
+#. Default: "Employee"
+#: ./skins/eXtremeManagement/iteration_view.pt:131
+msgid "listingheader_employee"
+msgstr "Person"
+
+#. Default: "End date"
+#: ./skins/eXtremeManagement/iteration_view.pt:53
+msgid "listingheader_enddate"
+msgstr "End-Datum"
+
+#. Default: "Initial estimate (days)"
+#: ./browser/iteration_planning.pt:37
+msgid "listingheader_estimate"
+msgstr "Ursprünglich geschätzte Zeit (in Tagen)"
+
+#. Default: "Estimated hours"
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:23
+msgid "listingheader_estimate_hours"
+msgstr "Geschätzte Zeit"
+
+#. Default: "Iteration"
+#: ./browser/finished.pt:24
+msgid "listingheader_iteration"
+msgstr "Zyklus"
+
+#. Default: "Project"
+#: ./browser/inprogress.pt:35
+msgid "listingheader_projects"
+msgstr "Projekt"
+
+#. Default: "Start date"
+#: ./skins/eXtremeManagement/iteration_view.pt:46
+msgid "listingheader_startdate"
+msgstr "Start-Datum"
+
+#. Default: "Status"
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:46
+msgid "listingheader_state"
+msgstr "Stadium"
+
+#. Default: "Story"
+#: ./browser/iteration_planning.pt:35
+msgid "listingheader_story"
+msgstr "Anforderung"
+
+#. Default: "Tasks estimate (hours)"
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:50
+msgid "listingheader_tasks_estimate"
+msgstr "Geschätzt für die Aufgabe (Stunden)"
+
+#. Default: "Title"
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:22
+msgid "listingheader_title"
+msgstr "Titel"
+
+#. Default: "Total Actual"
+#: ./browser/finished.pt:34
+msgid "listingheader_total_actual"
+msgstr "Gesamt aktuell"
+
+#. Default: "Total Difference"
+#: ./skins/eXtremeManagement/iteration_view.pt:136
+msgid "listingheader_total_difference"
+msgstr "Gesamt Differenz"
+
+#. Default: "Total Estimate"
+#: ./skins/eXtremeManagement/iteration_view.pt:132
+msgid "listingheader_total_estimate"
+msgstr "Gesamt geschätzt"
+
+#. Default: "Worked hours"
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:24
+msgid "listingheader_workedhours"
+msgstr "Gearbeitete Stunden"
+
+#. Default: "${count} comment(s) in this story."
+#: ./browser/viewlets/templates/manage_story_details.pt:18
+msgid "msg_number_of_comments_in_story"
+msgstr "${count} Kommentar(e) für diese Anforderung."
+
+#. Default: "name"
+#: ./browser/project_chart.pt:21
+msgid "name"
+msgstr "Name"
+
+#. Default: "Needs Estimate"
+#: ./browser/viewlets/templates/story_details_box.pt:19
+msgid "needs_estimate"
+msgstr "Schätzung benötigt"
+
+#. Default: "Next"
+#: ./skins/eXtremeManagement/story_view.pt:23
+msgid "next"
+msgstr "Nächster"
+
+#. Default: "No stories published yet!"
+#: ./skins/eXtremeManagement/iteration_view.pt:154
+msgid "no_stories_published"
+msgstr "Bisher wurden noch keine Anforderungen veröffentlicht!"
+
+#. Default: "No tasks defined yet."
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:114
+msgid "no_tasks_defined"
+msgstr "Bisher wurden noch keine Aufgaben definiert."
+
+#. Default: "No tasks added yet. Please add one."
+#: ./browser/viewlets/templates/story_details_box.pt:87
+msgid "no_tasks_msg"
+msgstr "Bisher wurden keine Aufgaben hinzugefügt. Bitte erledigen."
+
+#. Default: "Billable"
+#: ./skins/eXtremeManagement/booking_month.pt:77
+msgid "perc_billable"
+msgstr "Abrechenbar"
+
+#. Default: "Personal administration"
+#: ./portlets/portlet_tasks.pt:5
+msgid "personal_administration"
+msgstr "Persönliche Einstellungen"
+
+#. Default: "Previous"
+#: ./skins/eXtremeManagement/story_view.pt:34
+msgid "previous"
+msgstr "Vorheriger"
+
+#. Default: "previous month"
+#: ./skins/eXtremeManagement/booking_details.pt:19
+msgid "previous-month"
+msgstr "voriger Monat"
+
+#. Default: "progress bar"
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:95
+msgid "progress_bar"
+msgstr "Fortschritts-Balken"
+
+#. Default: "Project links"
+#: ./portlets/project.pt:5
+msgid "project_links"
+msgstr "Projekt Links"
+
+#. Default: "Resolve this by either closing the stories in the current iteration, or remove them from the selected next iteration:"
+#: ./browser/migration-impossible-state.pt:26
+msgid "resolve_conflicting_stories"
+msgstr ""
+
+#. Default: "rough story estimates"
+#: ./browser/project_chart.pt:22
+msgid "rough story estimates"
+msgstr "Grobe Schätzung der Anforderung"
+
+#. Default: "selected iteration"
+#: ./browser/migration-impossible-state.pt:36
+msgid "selected_iteration_link"
+msgstr "ausgewählter Zyklus"
+
+#. Default: "Estimates and worked hours per iteration"
+#: ./browser/project_chart.pt:9
+msgid "subtitle_project_chart_overview"
+msgstr "Geschätzte und gearbeitete Stunden pro Zyklus"
+
+#. Default: "task estimates"
+#: ./browser/project_chart.pt:23
+msgid "task estimates"
+msgstr "Schätzungen für Aufgaben"
+
+#. Default: "Task overview"
+#: ./portlets/portlet_tasks.pt:12
+msgid "task_overview"
+msgstr "Übersicht der Aufgaben"
+
+#. Default: "Close Iteration"
+#: ./browser/close-iteration.pt:13
+msgid "title_close_iteration"
+msgstr "Schließe Zyklus"
+
+#. Default: "Closing iteration failed"
+#: ./browser/migration-impossible-state.pt:11
+msgid "title_closing_failed"
+msgstr "Schließen des Zyklus fehlgeschlagen"
+
+#. Default: "Offer stories"
+#: ./skins/eXtremeManagement/offer_view.pt:58
+msgid "title_offer_stories"
+msgstr "Angebots-Anforderungen "
+
+#. Default: "Total"
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:134
+msgid "total"
+msgstr "Gesamt"
+
+#. Default: "velocity chart"
+#: ./browser/project_chart.pt:12
+msgid "velocity chart"
+msgstr "Geschwindgkeits-Diagramm"
+
+#. Default: "Friday"
+#: ./skins/eXtremeManagement/booking_month.pt:73
+msgid "weekday_fri"
+msgstr "Freitag"
+
+#. Default: "Monday"
+#: ./skins/eXtremeManagement/booking_month.pt:69
+msgid "weekday_mon"
+msgstr "Montag"
+
+#. Default: "Saturday"
+#: ./skins/eXtremeManagement/booking_month.pt:74
+msgid "weekday_sat"
+msgstr "Samstag"
+
+#. Default: "Sunday"
+#: ./skins/eXtremeManagement/booking_month.pt:75
+msgid "weekday_sun"
+msgstr "Sonntag"
+
+#. Default: "Thursday"
+#: ./skins/eXtremeManagement/booking_month.pt:72
+msgid "weekday_thu"
+msgstr "Donnerstag"
+
+#. Default: "Tuesday"
+#: ./skins/eXtremeManagement/booking_month.pt:70
+msgid "weekday_tue"
+msgstr "Dienstag"
+
+#. Default: "Wednesday"
+#: ./skins/eXtremeManagement/booking_month.pt:71
+msgid "weekday_wed"
+msgstr "Mittwoch"
+
+#. Default: "worked"
+#: ./browser/project_chart.pt:24
+msgid "worked"
+msgstr "gearbeitet"
+
