@@ -11,7 +11,7 @@
              tal:repeat="link view/links">
   <dd class="portletItem even">
     <a tal:attributes="href link/url"
-       tal:content="link/title">Title</a>
+       tal:content="link/title" />
   </dd>
   </tal:block>
 

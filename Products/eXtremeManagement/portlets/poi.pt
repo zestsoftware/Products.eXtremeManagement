@@ -18,9 +18,7 @@
       <li tal:repeat="link links">
         <a tal:attributes="href link/url;
                            class string:task-link state-${link/state}"
-           tal:content="string:${link/iterationid}: ${link/title}">
-          Task Title
-        </a>
+           tal:content="string:${link/iterationid}: ${link/title}" />
       </li>
     </ul>
   </dd>

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2009-05-11 20:35+0000\n"
+"POT-Creation-Date: 2005-05-19 21:13+0000\n"
 "PO-Revision-Date: 2009-05-19 21:07+0100\n"
 "Last-Translator: Jens Klein <jens@bluedynamics.com>\n"
 "Language-Team: BlueDynamics Alliance <dev@bluedynamics.com>\n"
@@ -17,107 +17,47 @@ msgstr ""
 "Domain: plone\n"
 "X-Is-Fallback-For: de-at de-li de-lu de-ch de-de\n"
 
-msgid "completed"
-msgstr "abgeschlossen"
-
-msgid "open"
-msgstr "offen"
-
-msgid "In progress"
-msgstr "In Arbeit"
+msgid "Accept"
+msgstr "Akzeptieren"
 
 msgid "Activate"
 msgstr "Aktivieren"
 
-msgid "Deactivate"
-msgstr "Deaktivieren"
-
-msgid "Complete"
-msgstr "Vollständig"
-
-msgid "estimated"
-msgstr "geschätzt"
-
-msgid "draft"
-msgstr "Entwurf"
-
-msgid "assigned"
-msgstr "zugewiesen"
-
-msgid "activated"
-msgstr "aktiviert"
-
-msgid "Accept"
-msgstr "Akzeptieren"
+msgid "Active"
+msgstr "Aktiv"
 
 msgid "Assign"
 msgstr "Zuweisen"
 
-msgid "Invoice"
-msgstr "Abrechnen"
-
-msgid "invoiced"
-msgstr "Abgerechnet"
-
-msgid "Estimate"
-msgstr "Schätzen"
-
-msgid "CustomerFolder"
-msgstr "Kunden-Order"
-
-msgid "Project Folder"
-msgstr "Projekt-Ordner"
-
-msgid "Customer"
-msgstr "Kunde"
-
-msgid "Employee"
-msgstr "Personal"
-
-msgid "ProjectMember"
-msgstr "Projekt-Teilnehmer"
-
-msgid "Project"
-msgstr "Projekt"
-
-msgid "Iteration"
-msgstr "Zyklus"
-
-msgid "Story"
-msgstr "Anforderung"
-
-msgid "Task"
-msgstr "Aufgabe"
-
-msgid "Customer Folder"
-msgstr "Kunden-Ordner"
-
-msgid "Project Member"
-msgstr "Projekt-Teilnehmer"
-
-msgid "Time registration"
-msgstr "Zeit Erfassung"
-
-msgid "activate"
-msgstr "aktivieren"
-
-msgid "booking"
-msgstr "buchen"
-
 msgid "Close"
 msgstr "abschliessen"
 
-msgid "complete"
-msgstr "vollendet"
+msgid "Complete"
+msgstr "Vollständig"
 
 msgid "Completed"
 msgstr "Vollenden"
 
-msgid "deactivate"
-msgstr "deaktivieren"
+msgid "Customer"
+msgstr "Kunde"
+
+msgid "Customer Folder"
+msgstr "Kunden-Ordner"
+
+msgid "CustomerFolder"
+msgstr "Kunden-Order"
+
+msgid "Deactivate"
+msgstr "Deaktivieren"
 
 msgid "Draft"
 msgstr "Entwurf"
+
+msgid "Employee"
+msgstr "Personal"
+
+msgid "Estimate"
+msgstr "Schätzen"
 
 msgid "Estimated"
 msgstr "Geschätzt"
@@ -128,11 +68,20 @@ msgstr "Beenden"
 msgid "Improve"
 msgstr "Verfeinern"
 
+msgid "In progress"
+msgstr "In Arbeit"
+
 msgid "In-progress"
 msgstr "In Arbeit"
 
+msgid "Invoice"
+msgstr "Abrechnen"
+
 msgid "Invoiced"
 msgstr "Abgerechnet"
+
+msgid "Iteration"
+msgstr "Zyklus"
 
 msgid "Mark as completed"
 msgstr "Als vollendet markieren"
@@ -149,11 +98,26 @@ msgstr "wartende Schätzung"
 msgid "Private"
 msgstr "Privat"
 
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Project Folder"
+msgstr "Projekt-Ordner"
+
+msgid "Project Member"
+msgstr "Projekt-Teilnehmer"
+
+msgid "ProjectMember"
+msgstr "Projekt-Teilnehmer"
+
 msgid "Reactivate"
 msgstr "Reaktivieren"
 
 msgid "Reactivate this task"
 msgstr "Diese Aufgabe reaktivieren"
+
+msgid "Reorder stories"
+msgstr "Neuordung der Anforderungen"
 
 msgid "Retract"
 msgstr "Zurückziehen"
@@ -161,17 +125,53 @@ msgstr "Zurückziehen"
 msgid "Start working"
 msgstr "Beginne die Arbeit"
 
+msgid "Story"
+msgstr "Anforderung"
+
 msgid "Submit for estimate"
 msgstr "Zur Schätzung einreichen"
+
+msgid "Task"
+msgstr "Aufgabe"
+
+msgid "Time registration"
+msgstr "Zeit Erfassung"
 
 msgid "To-do"
 msgstr "zu Erledigen"
 
-msgid "Active"
-msgstr "Aktiv"
+msgid "activate"
+msgstr "aktivieren"
 
-msgid "Reorder stories"
-msgstr "Neuordung der Anforderungen"
+msgid "activated"
+msgstr "aktiviert"
+
+msgid "assigned"
+msgstr "zugewiesen"
+
+msgid "booking"
+msgstr "buchen"
+
+msgid "complete"
+msgstr "vollendet"
+
+msgid "completed"
+msgstr "abgeschlossen"
+
+msgid "deactivate"
+msgstr "deaktivieren"
+
+msgid "draft"
+msgstr "Entwurf"
+
+msgid "estimated"
+msgstr "geschätzt"
+
+msgid "invoiced"
+msgstr "Abgerechnet"
+
+msgid "open"
+msgstr "offen"
 
 # localroles.py
 # default "Customer can track project"
@@ -187,3 +187,4 @@ msgstr "Arbeitet am Projekt"
 # default "Can manage project"
 msgid "title_projectmanager_role"
 msgstr "Managed das Projekt"
+

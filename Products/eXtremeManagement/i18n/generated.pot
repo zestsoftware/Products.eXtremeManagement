@@ -159,11 +159,6 @@ msgstr ""
 msgid "eXtremeManagement_label_mainText"
 msgstr ""
 
-#. Default: "Manhours"
-#: content/Iteration.py
-msgid "eXtremeManagement_label_manHours"
-msgstr ""
-
 #. Default: "Minutes"
 #: content/Task.py
 #: content/Booking.py
@@ -189,11 +184,6 @@ msgstr ""
 #. Default: "Rawdifference"
 #: content/Task.py
 msgid "eXtremeManagement_label_rawDifference"
-msgstr ""
-
-#. Default: "Rawestimate"
-#: content/Task.py
-msgid "eXtremeManagement_label_rawEstimate"
 msgstr ""
 
 #. Default: "Roughestimate"
@@ -229,11 +219,6 @@ msgstr ""
 #. Default: "Enter the budget of the project in hours."
 #: content/Project.py
 msgid "help_budgetHours"
-msgstr ""
-
-#. Default: "Offer"
-#: content/Offer.py
-msgid "Offer"
 msgstr ""
 
 #. Default: "Show draft state"

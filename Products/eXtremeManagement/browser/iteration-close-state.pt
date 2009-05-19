@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
       lang="en-US"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="xm.theme">
+      i18n:domain="eXtremeManagement">
 
   <head>
   </head>
@@ -15,9 +15,11 @@
           The iteration has been closed.
         </p>
 
-        <p tal:define="targetit view/targetit">
+        <p tal:define="targetit view/targetit"
+           i18n:translate="description_new_iteration_link">
           The new iteration is <a tal:attributes="href targetit/url"
-                                  tal:content="targetit/title"></a>.
+                                  tal:content="targetit/title"
+                                  i18n:name="link" />.
         </p>
 
       </div>

@@ -16,9 +16,7 @@
                                  id string:tag-${tag}"
                  type="checkbox" name="tags:list" />
           <label tal:attributes="for string:tag-${tag}"
-                 tal:content="tag">
-            Your tag
-          </label>
+                 tal:content="tag" />
         </div>
       </tal:repeat>
 
