@@ -68,7 +68,7 @@ msgstr "Verschieben fehlgeschlagen: Anforderung ist gesperrt. Entsperren Sie die
 #. Default: "Note that only issues that aren't already mapped into this iteration will be added."
 #: ./portlets/poi_creation.pt:33
 msgid "Note that only issues that aren't already mapped into this iteration will be added."
-msgstr ""
+msgstr "Nehmen Sie zur Kenntnis, daß nur Probleme hinzufügen können, die nicht schon einem Zyklus zugeordnet sind."
 
 #: ./portlets/project.py:103
 msgid "Offer"
@@ -85,7 +85,7 @@ msgstr "Projekt-Management"
 
 #: ./portlets/project.py:40
 msgid "Project links"
-msgstr ""
+msgstr "Projekt-Links"
 
 #: ./portlets/poi.py:37
 msgid "Related XM Tasks"
@@ -97,12 +97,12 @@ msgstr "Aufgabe hinzugefügt"
 
 #: ./browser/iterations.py:328
 msgid "Title is required"
-msgstr ""
+msgstr "Der Titel ist erforderlich"
 
 #. Default: "Add a task in"
 #: ./portlets/poi.pt:32
 msgid "add-task-in"
-msgstr ""
+msgstr "Aufgabe hinzufügen zu"
 
 #. Default: "Back to"
 #: ./skins/eXtremeManagement/booking_details.pt:27
@@ -112,17 +112,17 @@ msgstr "Zurück zu"
 #. Default: "Bookings per month"
 #: ./portlets/portlet_tasks.pt:26
 msgid "booking_month"
-msgstr ""
+msgstr "Buchungen pro Monat"
 
 #. Default: "Pending Stories"
 #: ./portlets/storyestimation.pt:6
 msgid "box_stories"
-msgstr ""
+msgstr "wartende Anforderungen"
 
 #. Default: "Cannot Activate"
 #: ./browser/viewlets/templates/story_details_box.pt:25
 msgid "cannot_activate"
-msgstr ""
+msgstr "Nicht aktivierbar"
 
 #. Default: "Need to finish estimating this story by selecting 'estimate' from the state dropdown."
 #: ./browser/viewlets/templates/story_details_box.pt:84
@@ -197,11 +197,11 @@ msgstr "Ein Gesamtübersicht über das ganze Projekt. Sie können Anforderungen 
 #. Default: "Detailed bookings"
 #: ./portlets/portlet_tasks.pt:19
 msgid "detailed_bookings"
-msgstr ""
+msgstr "Detaillierte Buchungen"
 
 #: ./browser/maintenance.py:15
 msgid "eXtremeManagement maintenance"
-msgstr ""
+msgstr "eXtremeManagement Wartung"
 
 #. Default: "Enter address."
 #: content/Customer.py
@@ -277,7 +277,7 @@ msgstr "Geben Sie eine grobe Schätzung in Tagen an (Tipp: Nehmen Sie ein vielfa
 #. Default: "Check this to have the Offer view mark stories which are still in the draft state"
 #: content/Offer.py
 msgid "eXtremeManagement_help_show_draft"
-msgstr ""
+msgstr "Wollen Sie in der Angebotsansicht Anforderungen im Entwurfs-Stadium extra markiert haben?"
 
 #. Default: "Enter your website address."
 #: content/Customer.py
@@ -580,7 +580,7 @@ msgstr "Es gibt Anforderungen die nicht aktiviert werden können."
 #. Default: "If selected, Members with a global role 'Employee' will appear in the assignees list of a Task."
 #: content/Project.py
 msgid "help_include_global_members"
-msgstr ""
+msgstr "Wollen Sie Teilnehmer mit der Rolle 'Personal' in der Liste der möglichen Zuständigen für eine Aufgabe auswählen können?"
 
 #. Default: "To quickly estimate all the stories in this iteration, use the"
 #: ./skins/eXtremeManagement/iteration_view.pt:73
@@ -605,12 +605,12 @@ msgstr "hier"
 #. Default: "Cannot begin working on this story until it has been estimated (fill in estimate value and select 'estimate' from the state dropdown)."
 #: ./browser/viewlets/templates/story_details_box.pt:20
 msgid "help_needs_estimate"
-msgstr ""
+msgstr "Ohne Schätzung kann die Aufgabe nicht begonnen werden (füllen sie den Schätzwert ein und wählen sie 'Schätzen' aus der Status-Auswahl)."
 
 #. Default: "Select the next iteration from the dropdown or add the title of a new iteration."
 #: ./browser/close-iteration.pt:36
 msgid "help_next_iteration"
-msgstr ""
+msgstr "Wählen Sie den nächsten Zyklus aus der Auswahlliste oder geben Sie den Titel eines neuen Zyklus ein."
 
 #. Default: "iteration"
 #: ./browser/project_chart.pt:20
