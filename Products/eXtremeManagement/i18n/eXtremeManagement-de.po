@@ -1117,3 +1117,8 @@ msgstr "Mittwoch"
 msgid "worked"
 msgstr "gearbeitet"
 
+msgid "Projects"
+msgstr "Projekte"
+
+msgid "Time Tracker"
+msgstr "Zeiterfassung"

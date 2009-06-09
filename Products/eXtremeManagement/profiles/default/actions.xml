@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <object name="portal_actions" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
   <object name="site_actions" meta_type="CMF Action Category">
-    <object name="projects" meta_type="CMF Action" i18n:domain="xm.tracker" insert-after="plone_setup">
+    <object name="projects" meta_type="CMF Action" i18n:domain="eXtremeManagement" insert-after="plone_setup">
       <property name="title" i18n:translate="head_projects">Projects</property>
       <property name="description" i18n:translate=""/>
       <property name="url_expr">string:${portal_url}</property>
@@ -12,7 +12,7 @@
       </property>
       <property name="visible">True</property>
     </object>
-    <object name="tracker" meta_type="CMF Action" i18n:domain="xm.tracker">
+    <object name="tracker" meta_type="CMF Action" i18n:domain="eXtremeManagement">
       <property name="title" i18n:translate="head_timetracker">Time Tracker</property>
       <property name="description" i18n:translate=""/>
       <property name="url_expr">string:${portal_url}/@@tracker</property>
@@ -25,7 +25,7 @@
     </object>
   </object>
   <object name="object_buttons" meta_type="CMF Action Category">
-    <object name="close_iteration" meta_type="CMF Action" i18n:domain="xm.tracker">
+    <object name="close_iteration" meta_type="CMF Action" i18n:domain="eXtremeManagement">
       <property name="title" i18n:translate="head_close_iteration">Close Iteration</property>
       <property name="description" i18n:translate=""/>
       <property name="url_expr">string:${here/absolute_url}/@@close-iteration</property>

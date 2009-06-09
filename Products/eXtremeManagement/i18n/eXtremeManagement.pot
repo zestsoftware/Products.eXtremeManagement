@@ -1111,3 +1111,8 @@ msgstr ""
 msgid "worked"
 msgstr ""
 
+msgid "Projects"
+msgstr ""
+
+msgid "Time Tracker"
+msgstr ""
