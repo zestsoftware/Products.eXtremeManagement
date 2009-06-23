@@ -96,7 +96,7 @@ class Task(BaseFolder):
 
     @property
     def estimate(self):
-        return self.getHours() + (self.getMinutes() / 60.0)
+        return int(self.getHours()) + (int(self.getMinutes()) / 60.0)
 
     security.declarePublic('recalc')
 
