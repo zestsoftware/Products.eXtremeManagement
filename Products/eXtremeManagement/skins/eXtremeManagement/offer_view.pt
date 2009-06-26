@@ -78,14 +78,17 @@
             <tal:repeat repeat="story stories">
               <tr class="storyTitle-storyEstimate">
                 <th class="nosort">
-                  <span tal:replace="story/title" />
+                  <a href=""
+                     tal:attributes="href string:${story/url}/view">
+                    <span tal:replace="story/title" />
+                  </a>    
                   <span class=""
                         tal:attributes="class story/draft_class"
                         tal:condition="story/show_draft_story">
                     (<span i18n:domain="plone"
                     i18n:translate="Draft">Draft</span>)
                   </span>
-                    <a href=""
+                  <a href=""
                      tal:condition="story/editable"
                      tal:attributes="href string:${story/url}/edit">
                     <img src="edit.gif" alt="Edit" title="Edit"

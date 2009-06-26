@@ -5,6 +5,8 @@ History
 2.0.3 (unreleased)
 ------------------
 
+- Title of story in offer_view is now a link to the story's view. [jensens] 
+
 - Started german translation. Refinement follows. [jensens] 
 
 - Fixed issue of disappearing iterations in the planned, finished, invoiced
