@@ -5,6 +5,9 @@ History
 2.0.3 (unreleased)
 ------------------
 
+- Added edit link+icon on manage_simple_tasklist table to have an short link to
+  to the edit form of the task. [jensens]  
+
 - Title of story in offer_view is now a link to the story's view. [jensens] 
 
 - Started german translation. Refinement follows. [jensens] 
