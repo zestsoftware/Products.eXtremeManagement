@@ -29,8 +29,14 @@ def addSimpleType(browser, container, title, type_name):
     browser.open(
         container.absolute_url() + '/createObject?type_name=' + type_name)
     browser.getControl(name='title').value = title
-    browser.getControl(name='form_submit').click()
+    try:
+        button = browser.getControl(name='form.button.save')
+    except LookupError:
+        # BBB for Plone < 3.3 (Products.Archetypes < 1.5.11)
+        button = browser.getControl(name='form_submit')
+    button.click()
     return _submitChecks(browser, title)
+
 
 # BBB Can be removed in release 2.1
 def addProjectFolder(browser, container, title):
@@ -65,7 +71,12 @@ def addStory(browser, container, title, text, estimate=None):
     browser.getControl(name='mainText').value = text
     if estimate is not None:
         browser.getControl(name='roughEstimate').value = str(estimate)
-    browser.getControl(name='form_submit').click()
+    try:
+        button = browser.getControl(name='form.button.save')
+    except LookupError:
+        # BBB for Plone < 3.3 (Products.Archetypes < 1.5.11)
+        button = browser.getControl(name='form_submit')
+    button.click()
     return _submitChecks(browser, title)
 
 
@@ -84,7 +95,12 @@ def addBooking(browser, container, title, hours=None, minutes=None):
         browser.getControl(name='hours').value = [str(hours)]
     if minutes is not None:
         browser.getControl(name='minutes').value = [str(minutes)]
-    browser.getControl(name='form_submit').click()
+    try:
+        button = browser.getControl(name='form.button.save')
+    except LookupError:
+        # BBB for Plone < 3.3 (Products.Archetypes < 1.5.11)
+        button = browser.getControl(name='form_submit')
+    button.click()
     return _submitChecks(browser, title)
 
 
