@@ -102,7 +102,7 @@ iterations and of the story being dragged.
     >>> browser.open(self.newproject.absolute_url() + '/move_story?' + query)
     >>> print browser.contents
     <?xml version="1.0" encoding="utf-8" ?>
-    <kukit xmlns="http://www.kukit.org/commands/1.1">
+    <kukit...>
     <commands>
     ...
     </commands>
