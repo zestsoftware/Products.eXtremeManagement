@@ -81,7 +81,7 @@
                       <span class="xmtooltip-bottom"></span>
                     </span>
                     <span i18n:domain="plone" i18n:translate=""
-                          tal:replace="task/review_state" /> 
+                          tal:replace="task/review_state" />
                   </a>
                 </td>
               </tr>

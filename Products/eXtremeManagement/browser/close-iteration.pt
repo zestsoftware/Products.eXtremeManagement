@@ -27,7 +27,7 @@
       <form action="close-iteration" method="POST"
         tal:attributes="action string:${context/absolute_url}/@@close-iteration">
         <div class="field">
-          
+
           <label for="targetit" i18n:translate="label_next_iteration">
             Next Iteration
           </label>
@@ -65,7 +65,7 @@
                    i18n:attributes="value label_cancel;"
                    />
         </div>
-      </form>          
+      </form>
     </div>
   </body>
 </html>

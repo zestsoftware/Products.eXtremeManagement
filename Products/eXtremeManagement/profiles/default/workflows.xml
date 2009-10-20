@@ -47,7 +47,7 @@
   <type type_id="PoiTask">
    <bound-workflow workflow_id="eXtreme_Task_Workflow"/>
   </type>
-  
+
   <!-- BBB can be removed in release 2.1 -->
   <type type_id="ProjectFolder">
    <bound-workflow workflow_id="folder_workflow"/>

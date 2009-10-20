@@ -33,7 +33,7 @@
               </td>
             </tr>
           </table>
-          
+
           <div class="visualClear"><!-- --></div>
         </div>
 
@@ -45,10 +45,10 @@
 
         <tal:block tal:condition="current_iterations">
           <h2 i18n:translate="heading_current_iterations">Current Iterations</h2>
-          
+
           <div class="iterations"
                tal:repeat="curIteration current_iterations">
-         
+
             <table class="listing story-listing"
                   width="97%"
                   border="0"

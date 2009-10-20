@@ -81,7 +81,7 @@
                   <a href=""
                      tal:attributes="href string:${story/url}/view">
                     <span tal:replace="story/title" />
-                  </a>    
+                  </a>
                   <span class=""
                         tal:attributes="class story/draft_class"
                         tal:condition="story/show_draft_story">

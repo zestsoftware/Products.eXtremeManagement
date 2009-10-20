@@ -13,7 +13,7 @@ class IterationListBaseView(XMBaseView):
 
     iteration_review_state = 'change_in_subclasses'
     billable_only = None
-    
+
     _total = None
 
     def sort_results(self, results):
@@ -39,7 +39,7 @@ class IterationListBaseView(XMBaseView):
                        path={'query': searchpath, 'navtree': False})
         if self.billable_only is not None:
             cfilter['getBillableProject'] = self.billable_only
-            
+
         portal = self.portal_state.portal()
         projectbrains = self.catalog.searchResults(cfilter)
         logger.info('%r projects found to iterate over' % len(projectbrains))
@@ -180,9 +180,9 @@ class InvoicingView(IterationListBaseView):
 
 
 class InProgressView(IterationListBaseView):
-    
+
     billable = 'billable'
-    _actual = 0.0    
+    _actual = 0.0
 
     def sort_results(self, results):
         # sorting on end_date of the iteration
@@ -208,7 +208,7 @@ class InProgressView(IterationListBaseView):
             # total could still be none if there are no iterations.
             return ''
         return '%.2f' % self._total
-        
+
     @memoize
     def total_actual(self):
         if self._actual is None:
@@ -219,7 +219,7 @@ class InProgressView(IterationListBaseView):
             # total could still be none if there are no iterations.
             return ''
         return '%.2f' % self._actual
-    
+
     @memoize
     def viewing_billable(self):
         btype = self.request.get('type', 'billable')

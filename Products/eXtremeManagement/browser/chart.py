@@ -82,7 +82,7 @@ class ChartView(BrowserView):
             if ISizeEstimate.providedBy(story):
                 total += ISizeEstimate(story).size_estimate
         return total
-        
+
 ### Table & graph data per iteration methods
 
     @memoize

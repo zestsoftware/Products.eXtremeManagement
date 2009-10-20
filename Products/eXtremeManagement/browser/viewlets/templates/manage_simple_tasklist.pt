@@ -47,8 +47,8 @@
         <a tal:attributes="href task/url"
            tal:content="task/title" />
         <a href="#" tal:attributes="href string:${task/url}/edit"
-        ><img src="" title="edit" 
-              tal:attributes="src string:${context/portal_url}/edit.gif" /></a>                  
+        ><img src="" title="edit"
+              tal:attributes="src string:${context/portal_url}/edit.gif" /></a>
       </td>
       <td tal:content="task/estimate" />
       <td tal:content="task/actual" />

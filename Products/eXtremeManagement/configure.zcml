@@ -11,7 +11,7 @@
   <include package="xm.booking" />
   <include package="kss.plugin.cns" />
   <include package="kss.plugin.yuidnd" />
-  
+
   <include
       zcml:condition="installed xm.tracker"
       package="xm.tracker" />

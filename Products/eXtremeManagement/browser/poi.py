@@ -6,7 +6,7 @@ from zope.component import queryMultiAdapter
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.interfaces import IReferenceable
 from Products.statusmessages.interfaces import IStatusMessage
-from Products.CMFPlone.utils import safe_unicode 
+from Products.CMFPlone.utils import safe_unicode
 
 from Products.eXtremeManagement.interfaces.xmissuegetter import IXMIssueGetter
 from Products.eXtremeManagement.browser.xmbase import XMBaseView

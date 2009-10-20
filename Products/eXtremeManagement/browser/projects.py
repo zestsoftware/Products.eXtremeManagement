@@ -29,24 +29,24 @@ class Projects(XMBaseView):
     def iterationsforproject(self, projectbrain):
         searchpath = projectbrain.getPath()
         # Search for Iterations that are ready to get invoiced
-        return self.catalog.searchResults(portal_type='Iteration', 
+        return self.catalog.searchResults(portal_type='Iteration',
                                                      path=searchpath)
 
     @memoize
     def projects(self):
         return self.catalog.searchResults(portal_type='Project',
                                           review_state='active')
-    
+
 
 class Scheduling(Projects):
     """Pan-project scheduling"""
-    
+
     weekcount = 14 # Number of weeks to display
-    weekpreroll = 2 # Number of weeks to show *before* the desired starting date 
-    # Displayed width in pixels - declared here so we can calculate iteration 
+    weekpreroll = 2 # Number of weeks to show *before* the desired starting date
+    # Displayed width in pixels - declared here so we can calculate iteration
     # positions in code
-    cellwidth = 16 
-    
+    cellwidth = 16
+
     def datetotimestamp(self, dateobj):
         return int(time.mktime(dateobj.timetuple()))
 
@@ -59,7 +59,7 @@ class Scheduling(Projects):
         except TypeError:
             start = int(time.time())
         return start
-        
+
     def startingdate(self, stamp=None):
         stamp = stamp or self.startingtimestamp()
         start = date.fromtimestamp(stamp)
@@ -80,21 +80,21 @@ class Scheduling(Projects):
 
     def schedule_weeks(self):
         """
-        Calculate the day range to display in the schedule view, showing the 
+        Calculate the day range to display in the schedule view, showing the
         weeks before and after the current date.
         """
         monday = self.startingdate()
         return [monday + timedelta(i*7) for i in range(self.weekcount)]
-        
+
     def iterationsforproject(self, projectbrain):
-        """Filter iterations based on the current date range and build a data 
+        """Filter iterations based on the current date range and build a data
         structure useful to the JavaScript interface"""
         sdate = self.datetotimestamp(self.startingdate())
         edate = self.datetotimestamp(self.endingdate())
         iterations = []
         for iterationbrain in Projects.iterationsforproject(self, projectbrain):
             iteration = iterationbrain.getObject()
-            try: 
+            try:
                 start = float(iteration.startDate)
                 end = float(iteration.endDate)
                 if sdate < start and end < edate:
@@ -102,18 +102,18 @@ class Scheduling(Projects):
                         uid = iteration.UID,
                         title = iteration.Title(),
                         # only unstarted iterations can be moved...
-                        movable = time.time() < start, 
+                        movable = time.time() < start,
                         start = int((start - sdate) / 60 / 60 / 24)  * self.cellwidth,
                         period = int((end - start) / 60 / 60 / 24) * self.cellwidth,
                     ))
             except TypeError:
                 pass # Probably empty iteration dates
         return iterations
-        
+
 
 class MoveIteration(PloneKSSView):
     """Respond to a KSS request to move an iteration to a new start day"""
-    
+
     @kssaction
     def move_iteration(self, uid, daystart, dayoffset):
         """Find an iteration by uid and move it to a new start day"""

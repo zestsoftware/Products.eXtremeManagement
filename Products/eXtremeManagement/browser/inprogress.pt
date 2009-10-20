@@ -11,7 +11,7 @@
     <div metal:fill-slot="main"
          id="inprogress-overview">
       <h1 i18n:translate="label_current_iterations">
-        Current Iterations 
+        Current Iterations
       </h1>
       <div id="right-inline-links">
         <span tal:omit-tag=""
@@ -88,7 +88,7 @@
         </tal:iterations>
         </tbody>
       </table>
-      
+
       <p tal:condition="not: view/projectlist"
          i18n:translate="description_no_iterations_in_progress">
          No iterations in progress at this moment.</p>

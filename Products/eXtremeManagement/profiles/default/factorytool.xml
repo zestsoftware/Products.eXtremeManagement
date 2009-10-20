@@ -8,7 +8,7 @@
   <type portal_type="Story"/>
   <type portal_type="Task"/>
   <type portal_type="PoiTask"/>
-  
+
   <!-- BBB can be removed in release 2.1 -->
   <type portal_type="Customer"/>
   <type portal_type="CustomerFolder"/>

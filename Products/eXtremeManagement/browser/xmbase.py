@@ -32,9 +32,8 @@ class XMBaseView(BrowserView):
     def tools(self):
         return getMultiAdapter((self.context, self.request),
                                 name=u'plone_tools')
-                        
+
     @property
     def portal_state(self):
         return getMultiAdapter((self.context, self.request),
                                 name=u'plone_portal_state')
-    

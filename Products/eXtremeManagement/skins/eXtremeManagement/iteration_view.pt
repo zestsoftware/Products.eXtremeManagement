@@ -24,7 +24,7 @@
         </dl>
 
         <div class="xm-details">
-  
+
           <table class="listing"
                  width="100%"
                  cellpadding="0"
@@ -72,7 +72,7 @@
               <a tal:attributes="title stories_not_startable">?</a><br/>
               <span i18n:translate="help_iteration_planning">
                 To quickly estimate all the stories in this iteration, use the</span>
-              <a i18n:translate="help_iteration_planning_link" 
+              <a i18n:translate="help_iteration_planning_link"
                  tal:attributes="href string:${context/absolute_url}/iteration_planning"
                  >Iteration planning view</a>.
             </dd>
@@ -105,7 +105,7 @@
           <table class="remaining_budget_table" width="97%" cellspacing="0" cellpadding="0"
                  tal:condition="iteration/budget_left">
             <tr>
-                <td> 
+                <td>
                 <span class="totalOfProject">
                   <span i18n:translate="label_remaining_budget">
                       Remaining budget (hours)
@@ -115,7 +115,7 @@
                </td>
             </tr>
           </table>
-             
+
           <tal:membertasks
               tal:define="membertasks context/@@employee_totals/totals;
                           can_view_details python:checkPermission('eXtremeManagement: View Details', context);"

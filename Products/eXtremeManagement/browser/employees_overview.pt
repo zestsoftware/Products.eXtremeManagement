@@ -15,7 +15,7 @@
         </h1>
         <span tal:omit-tag=""
             i18n:translate="description_employees_overview">
-            In the overview, you'll find for each employee how much billable 
+            In the overview, you'll find for each employee how much billable
                he/she worked per month in %.
          </span>
         <table class="listing employees-overview">
@@ -36,7 +36,7 @@
               </a>
             </td>
           </tr>
-         </tal:employees> 
+         </tal:employees>
         </table>
       </div>
     </div>

@@ -8,7 +8,7 @@
                  tal:define="dummy python:request.set('disable_border', 1)" />
   </head>
   <body>
-  
+
     <div metal:fill-slot="main">
       <div metal:define-macro="body">
     <script type="text/javascript" tal:content="string:var cellwidth = ${view/cellwidth}, weekcount = ${view/weekcount}, weekpreroll = ${view/weekpreroll}, daystart = ${view/startingtimestamp};" />
@@ -22,7 +22,7 @@
           var next = inst.next();
           if (widget.shove && next.length) next.data("draggable").mouseStart(event);
         },
-        
+
         drag: function (event, ui) {
           var inst = jq(this), widget = inst.data("draggable");
           var next = inst.next();
@@ -39,7 +39,7 @@
             }
           }
         },
-        
+
         stop: function (event, ui) {
           var inst = jq(this), widget = inst.data("draggable");
           var next = inst.next();
@@ -54,33 +54,33 @@
           oper.executeServerAction();
         }
       });
-    
+
       jq(document).ready( function setup () {
         // Set all the display aspects of the schedule view...
         viewportwidth = jq("#schedule-field").width();
         jq("#schedule-bars").css({
           width: weekcount * weekwidth,
-          left: (2 * weekcount * weekwidth - viewportwidth) - (weekcount * weekwidth) - (2 * weekwidth)  
+          left: (2 * weekcount * weekwidth - viewportwidth) - (weekcount * weekwidth) - (2 * weekwidth)
         });
         jq("#schedule-containment").css({
           left: -1008, // Need to work out how to calculate this.. every time I try I go cross-eyed. :) [SMH]
           width: 2 * weekcount * weekwidth - viewportwidth
         });
         jq("#schedule-bars").draggable({
-          axis: 'x', 
+          axis: 'x',
           containment: 'parent',
           grid: [cellwidth, 32]
         });
         jq(".draggable-iteration-bar").draggable({
-            axis: 'x', 
+            axis: 'x',
             containment: 'parent',
             grid: [cellwidth, 32],
             shove: 'true'
         });
       });
-      
+
     </script>
-    
+
         <h1 i18n:translate="project_scheduling">
           Project Scheduling
         </h1>
@@ -89,7 +89,7 @@
             Manage the iterations of active projects.
         </div>
 
-        <div id="period-selection" 
+        <div id="period-selection"
              tal:define="view_url string:${context/absolute_url}/@@scheduling;
                          prev python:view.datetotimestamp(view.startingdate() - view.displayrange());
                          next python:view.datetotimestamp(view.endingdate())">
@@ -104,17 +104,17 @@
               <a href="" tal:content="project/Title" tal:attributes="href python:project.getObject().absolute_url()" />
             </div>
           </div>
-          
+
           <div id="schedule-field">
             <div id="schedule-containment">
               <div id="schedule-bars">
                 <div id="schedule-dates">
-                  <div tal:repeat="date view/schedule_weeks" tal:content="date" 
+                  <div tal:repeat="date view/schedule_weeks" tal:content="date"
                        tal:attributes="class python: (view.currentweek() == date) and 'schedule-date current-date' or 'schedule-date'"/>
                 </div>
                 <div class="schedule-bar" tal:repeat="project view/projects">
                   <div tal:repeat="iteration python:view.iterationsforproject(project)"
-                       tal:attributes="style string: left: ${iteration/start}px;; width: ${iteration/period}px; 
+                       tal:attributes="style string: left: ${iteration/start}px;; width: ${iteration/period}px;
                                        id iteration/uid;
                                         title iteration/title;
                                        class python: iteration['movable'] and 'draggable-iteration-bar' or 'undraggable-iteration-bar'">
@@ -126,9 +126,9 @@
               </div>
             </div>
           </div>
-            
+
         </div><br class="clear"/>
-    
+
       </div>
     </div>
   </body>

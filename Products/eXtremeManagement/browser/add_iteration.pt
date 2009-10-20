@@ -3,7 +3,7 @@
      tal:define="project_view context/@@project">
 
   <div class="visualClear"></div>
-    
+
   <form name="add_iteration"
         method="post"
         id="additerationform"

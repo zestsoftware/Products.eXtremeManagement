@@ -65,7 +65,7 @@ class ViewletReloader(object):
 
 
 class KSSTaskForm(PloneKSSView):
-    
+
     @kssaction
     def kss_task_form(self):
         """Return the add task form"""
@@ -76,7 +76,7 @@ class KSSTaskForm(PloneKSSView):
 
 
 class KSSIterationForm(PloneKSSView):
-    
+
     @kssaction
     def kss_iteration_form(self):
         """Return the add iteration form"""

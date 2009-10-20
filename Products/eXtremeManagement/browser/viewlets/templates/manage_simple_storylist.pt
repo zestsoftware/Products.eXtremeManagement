@@ -85,7 +85,7 @@
           <span class="progress_percentage">
              <span>
                 (<tal:block i18n:domain="plone"
-                  i18n:translate="" 
+                  i18n:translate=""
                   content="story/review_state_title" />)
             </span>
             <tal:percentage tal:content="story/progress" />%&nbsp;
@@ -106,7 +106,7 @@
                  i18n:attributes="alt progress_bar" />
           </div>
         </td>
-        
+
         <td tal:content="story/size_estimate" />
         <tal:task_estimate condition="can_view_details">
           <td tal:condition="story/raw_estimate"
@@ -128,7 +128,7 @@
         </td>
       </tr>
     </tal:repeat>
-    
+
     <tr class="totalTasks"
        tal:condition="show_totals">
           <th class="td-story-title"

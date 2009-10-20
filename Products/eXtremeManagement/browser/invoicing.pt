@@ -53,7 +53,7 @@
 
         </tal:iterations>
       </table>
-      
+
       <p tal:condition="not: view/projectlist"
          i18n:translate="description_nothing_to_invoice">Nothing to invoice</p>
 

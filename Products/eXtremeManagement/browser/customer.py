@@ -5,8 +5,8 @@ from Products.eXtremeManagement.browser.xmbase import XMBaseView
 
 
 class IterationListBaseView(XMBaseView):
-    
-    iteration_review_state = 'change_in_subclasses'    
+
+    iteration_review_state = 'change_in_subclasses'
     _total = None
 
     def sort_results(self, results):
@@ -96,7 +96,7 @@ class IterationListBaseView(XMBaseView):
 
 class FinishedIterationsView(IterationListBaseView):
 
-    iteration_review_state = ['completed', 'invoiced']    
+    iteration_review_state = ['completed', 'invoiced']
 
     def add_to_total(self, iteration_dict):
         if self._total is None:
@@ -158,7 +158,7 @@ class PlannedIterationsView(IterationListBaseView):
 
         results.sort(key=sort_key)
         return results
-        
+
     @memoize
     def project_url(self):
         return self.context.getProject().absolute_url()

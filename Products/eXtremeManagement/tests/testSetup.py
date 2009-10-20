@@ -21,7 +21,7 @@ class testSetup(eXtremeManagementTestCase):
         self.failUnless('Task' in ids)
         self.failUnless('PoiTask' in ids)
         self.failUnless('Booking' in ids)
-        
+
         # BBB can be removed in release 2.1
         self.failUnless('CustomerFolder' in ids)
         self.failUnless('Customer' in ids)

@@ -8,7 +8,7 @@
   </span>
   <tal:addtask
       condition="story_view/show_add_task_form">
-  
+
     <div class="visualClear"></div>
 
     <form name="add_task"
@@ -19,14 +19,14 @@
 
        <fieldset>
           <legend i18n:translate="label_add_task">Add task</legend>
-          
+
           <input name="title"
              value=""
              type="text"
              size="45"
              id="new-task"
 			 tabindex="2" />
-        
+
               <!-- This should not be hardcoded -->
 			<select name="hours" id="hours">
                 <option selected="selected"
@@ -51,15 +51,15 @@
                   <option value="30">30</option>
                   <option value="45">45</option>
                 </select>
-         
-             
+
+
          <div class="visualClear"></div>
          <div class="position-quick-task">
             <textarea name="description"
                rows="5"
                id="new-task-description"
-			   tabindex="3"></textarea> 
-         
+			   tabindex="3"></textarea>
+
             <select name="assignees"
                     id="assignees"
                     tal:define="assignees story_view/get_possible_assignees"
@@ -71,8 +71,8 @@
                         tal:content="assignee/name" />
               </tal:assignees>
             </select>
-         </div>   
-         
+         </div>
+
             <input value="Add task"
                    id="submit-task"
                    i18n:attributes="value label_add_task;"

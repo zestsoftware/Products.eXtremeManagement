@@ -77,7 +77,7 @@ class Story(OrderedBaseFolder):
         """Set the rough estimate and update the catalog"""
         self.setRoughEstimate(val)
         self.recalc()
-        
+
     def recalc(self):
         """See the ISizeEstimate interface.
         With our implementation we only need a reindex here actually.
