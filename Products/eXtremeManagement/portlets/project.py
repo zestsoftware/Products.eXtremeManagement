@@ -95,6 +95,7 @@ class Renderer(base.Renderer):
             attachments = self.attachments_url()
             offers = self.offers_url()
             # chart = self.chart_url()
+            results.append(dict(url=self.project_url, title=_(u'Project')))
             if tracker:
                 results.append(dict(url=tracker, title=_(u'Issues')))
             if attachments:
