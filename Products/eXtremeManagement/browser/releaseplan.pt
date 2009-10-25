@@ -47,7 +47,10 @@
                   <button class="unlock" type="submit" />
               </form>
             </td>
-            <td tal:content="story/title"/>
+            <td>
+              <a tal:attributes="href story/url">link </a>
+              <span tal:replace="story/title"/>
+            </td>
             <td tal:content="story/size_estimate"/>
           </tr>
           </tal:stories>
@@ -89,7 +92,10 @@
                   <button class="unlock" type="submit" />
               </form>
             </td>
-            <td tal:content="story/title"/>
+            <td>
+              <a tal:attributes="href story/url">link </a>
+              <span tal:replace="story/title"/>
+            </td>
             <td tal:content="story/estimate"/>
           </tr>
           </tal:stories>

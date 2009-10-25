@@ -131,6 +131,16 @@ class ReleaseplanView(ProjectView):
     def plannable_iterations(self):
         return self.getIterations(('in-progress', 'new'))
 
+    def storybrain2dict(self, brain):
+        obj = brain.getObject()
+        info = dict(title=brain.Title,
+                    uid=brain.UID,
+                    url=brain.getURL(),
+                    estimate=brain.size_estimate,
+                    locked=wl_isLocked(obj),
+                    review_state=brain.review_state)
+        return info
+
     #@memoize
     def unplanned_stories(self):
         context = aq_inner(self.context)
@@ -140,12 +150,7 @@ class ReleaseplanView(ProjectView):
         results = []
         if brains:
             for brain in brains:
-                obj = brain.getObject()
-                info = dict(title=brain.Title,
-                            uid=brain.UID,
-                            estimate=brain.size_estimate,
-                            locked=wl_isLocked(obj),
-                            review_state=brain.review_state)
+                info = self.storybrain2dict(brain)
                 results.append(info)
         results = self.update_stories(results)
 
