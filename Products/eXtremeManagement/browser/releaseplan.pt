@@ -26,7 +26,9 @@
                    i18n:attributes="alt label_unlock_item;
                                     title label_unlock_items" />
             </th>
-            <th tal:content="iteration/title"/>
+            <th>
+              <a tal:attributes="href iteration/url" tal:content="iteration/title"/>
+            </th>
             <th class="estimate-column"
                 i18n:translate="eXtremeManagement_label_rawEstimate">
                 Estimate

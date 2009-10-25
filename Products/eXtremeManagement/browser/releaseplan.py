@@ -103,6 +103,7 @@ class ReleaseplanView(ProjectView):
                                          locked_status=True)
         stories = self.update_stories(stories)
         returnvalue = dict(
+            url = brain.getURL(),
             title = brain.Title,
             description = brain.Description,
             brain = brain,
