@@ -8,7 +8,7 @@ Content Types
 -------------
 
     * Project
-      Multiple projects can be added by employees. For each project,
+      Multiple projects can be added by projectmanagers. For each project,
       iterations and stories can be added by both the customers and employees.
 
     * Iteration
