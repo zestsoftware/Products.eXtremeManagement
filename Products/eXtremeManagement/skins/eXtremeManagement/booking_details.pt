@@ -49,7 +49,7 @@
             <th class="nosort" i18n:translate="listingheader-date">
               Date
             </th>
-            <th class="nosort" i18n:translate="listingheader-assignedto">
+            <th class="nosort" i18n:translate="listingheader-task">
               Task
             </th>
             <th tal:condition="python:memberid == 'all'"
@@ -88,12 +88,15 @@
             <td>
               <a tal:attributes="href booking/booking_url"
                  class="booking_title"
-                 tal:content="booking/booking_title" />
+                 tal:content="booking/booking_title" ></a>
               <div class="booking_description"
                    tal:content="structure booking/booking_description" />
             </td>
             <td tal:content="booking/booking_hours" />
-            <td>xxx</td>
+            <td>
+              <span tal:replace="booking/task_cumulative_time" /> / 
+              <span tal:replace="booking/task_time" />
+            </td>
           </tr>
           <tr id="booking-details-total" >
             <th i18n:translate="listingheader-total"

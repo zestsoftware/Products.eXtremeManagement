@@ -63,8 +63,16 @@ class BookingsDetailedView(XMBaseView):
             contentFilter['Creator'] = self.memberid
         bookingbrains = self.catalog.searchResults(**contentFilter)
 
+        cumulative = {}
         for bookingbrain in bookingbrains:
             info = self.bookingbrain2extended_dict(bookingbrain)
+
+            # Add cumulative time
+            key = '/'.join(bookingbrain.getPath().split('/')[:-1])
+            cumulative.setdefault(key, 0)            
+            cumulative[key] = cumulative[key] + bookingbrain.actual_time
+            info['task_cumulative_time'] = formatTime(cumulative[key])
+
             self.bookinglist.append(info)
             self.raw_total += bookingbrain.actual_time
 
@@ -139,6 +147,7 @@ class BookingsDetailedView(XMBaseView):
             project_title = project_title,
             task_url = taskbrain.getURL(),
             task_title = taskbrain.Title,
+            task_time = formatTime(taskbrain.estimate),
             # base_view of a booking gets redirected to the task view,
             # which we do not want here.
             booking_url = bookingbrain.getURL() + '/base_edit',
