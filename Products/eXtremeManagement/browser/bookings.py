@@ -52,13 +52,16 @@ class BookingsDetailedView(XMBaseView):
     def update(self):
         # Get all bookings brains with the given restrictions of
         # period, memberid, etc
-        bookingbrains = self.catalog.searchResults(
+        contentFilter = dict(
             portal_type='Booking',
             getBookingDate={"query": [self.startDate, self.endDate],
                             "range": "minmax"},
             sort_on='getBookingDate',
-            Creator=self.memberid,
-            path=self.searchpath)
+            path=self.searchpath
+        )
+        if self.memberid != 'all':
+            contentFilter['Creator'] = self.memberid
+        bookingbrains = self.catalog.searchResults(**contentFilter)
 
         for bookingbrain in bookingbrains:
             info = self.bookingbrain2extended_dict(bookingbrain)

@@ -17,10 +17,10 @@
           Go to
         </tal:goto>
         <a tal:condition="not: request/memberid|nothing"
-           tal:attributes="href string:${template/absolute_url}?previous=1"
+           tal:attributes="href string:${context/absolute_url}/${template/id}?previous=1"
            i18n:translate="previous-month">previous month</a>
         <a tal:condition="request/memberid|nothing"
-           tal:attributes="href string:${template/absolute_url}?previous=1&amp;memberid=${request/memberid}"
+           tal:attributes="href string:${context/absolute_url}/${template/id}?previous=1&amp;memberid=${request/memberid}"
            i18n:translate="previous-month">previous month</a>
       </p>
       <p tal:condition="request/previous|nothing">
@@ -28,16 +28,17 @@
           Back to
         </tal:back>
         <a tal:condition="not: request/memberid|nothing"
-           tal:attributes="href string:${template/absolute_url}"
+           tal:attributes="href string:${context/absolute_url}/${template/id}"
            i18n:translate="current-month">current month</a>
         <a tal:condition="request/memberid|nothing"
-           tal:attributes="href string:${template/absolute_url}?memberid=${request/memberid}"
+           tal:attributes="href string:${context/absolute_url}/${template/id}?memberid=${request/memberid}"
            i18n:translate="current-month">current month</a>
       </p>
       <tal:block tal:define="current_path python:'/'.join(context.getPhysicalPath());
                              view context/@@monthbooking_details;
                              main view/main;
-                             bookings view/bookinglist"
+                             bookings view/bookinglist;
+                             memberid request/memberid|string:"
                  tal:condition="bookings">
         <h1 i18n:translate="heading-bookings">Bookings</h1>
 
@@ -48,14 +49,21 @@
             <th class="nosort" i18n:translate="listingheader-date">
               Date
             </th>
-            <th class="nosort" i18n:translate="listingheader-task">
+            <th class="nosort" i18n:translate="listingheader-assignedto">
               Task
+            </th>
+            <th tal:condition="python:memberid == 'all'"
+                class="nosort" i18n:translate="listingheader-member">
+              Assigned to
             </th>
             <th class="nosort" i18n:translate="listingheader-booking">
               Booking
             </th>
             <th class="nosort" i18n:translate="listingheader-time">
               Time
+            </th>
+            <th class="nosort" i18n:translate="listingheader-cumulative-time">
+              Cumulative Time
             </th>
           </tr>
 
@@ -72,6 +80,11 @@
                  class="booking_title"
                  tal:content="booking/task_title" />
             </td>
+            <td tal:condition="python:memberid == 'all'">
+              <a tal:attributes="href string:${context/absolute_url}/${template/id}/booking_details?memberid=${booking/creator}"
+                 tal:content="booking/creator">
+              </a>
+            </td>
             <td>
               <a tal:attributes="href booking/booking_url"
                  class="booking_title"
@@ -80,13 +93,16 @@
                    tal:content="structure booking/booking_description" />
             </td>
             <td tal:content="booking/booking_hours" />
+            <td>xxx</td>
           </tr>
           <tr id="booking-details-total" >
             <th i18n:translate="listingheader-total"
+                tal:attributes="colspan python:(memberid == 'all') and 4 or 3"
                 colspan="3">
               Total
             </th>
             <th tal:content="main/total" />
+            <th></th>
           </tr>
         </table>
       </tal:block>
