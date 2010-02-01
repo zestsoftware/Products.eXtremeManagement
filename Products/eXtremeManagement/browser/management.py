@@ -4,7 +4,7 @@ import logging
 from plone.memoize.view import memoize
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
-from zope import component
+#from zope import component
 
 logger = logging.getLogger('xm.listing')
 
@@ -40,7 +40,7 @@ class IterationListBaseView(XMBaseView):
         if self.billable_only is not None:
             cfilter['getBillableProject'] = self.billable_only
 
-        portal = self.portal_state.portal()
+        #portal = self.portal_state.portal()
         projectbrains = self.catalog.searchResults(cfilter)
         logger.info('%r projects found to iterate over' % len(projectbrains))
 
@@ -71,12 +71,15 @@ class IterationListBaseView(XMBaseView):
     def iterationbrain2dict(self, brain):
         """Get a dict with info from this iteration brain.
         """
-        review_state_id = brain.review_state
+        #review_state_id = brain.review_state
         estimate = brain.estimate
         actual = brain.actual_time
         obj = brain.getObject()
-        history = self.workflow.getHistoryOf('eXtreme_Iteration_Workflow',
-                                             obj)
+        wf_id = 'eXtreme_Iteration_Workflow' # fallback
+        wfs = self.workflow.getWorkflowsFor(obj)
+        if len(wfs):
+            wf_id = wfs[0].id
+        history = self.workflow.getHistoryOf(wf_id, obj)
         completion_date = None
         for item in history:
             if item['action'] == 'complete':
