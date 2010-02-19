@@ -26,6 +26,12 @@
     </a>
   </dd>
   <dd class="portletItem even">
+    <a i18n:translate="detailed_bookings_all"
+       tal:attributes="href string:${view/site_url}/booking_details?memberid=all">
+      Detailed bookings (all projects)
+    </a>
+  </dd>
+  <dd class="portletItem even">
     <a tal:attributes="href string:${view/site_url}/scheduling"
        i18n:translate="label_scheduling">
       Scheduling

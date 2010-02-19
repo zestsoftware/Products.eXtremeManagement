@@ -15,13 +15,6 @@
     </a>
   </dd>
 
-  <dd class="portletItem even">
-    <a i18n:translate="detailed_bookings_all"
-       tal:attributes="href string:${view/portal_url}/booking_details?memberid=all">
-      Detailed bookings (all)
-    </a>
-  </dd>
-
   <dd class="portletItem odd">
     <a i18n:translate="detailed_bookings"
        tal:attributes="href string:${view/portal_url}/booking_details">
