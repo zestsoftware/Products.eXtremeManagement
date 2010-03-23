@@ -34,7 +34,7 @@ schema = Schema((
     ),
     IntegerField(
         name='hours',
-        default="0",
+        default=0,
         label="Estimated hours",
         validators=('isInt', ),
         widget=IntegerWidget(
@@ -48,7 +48,7 @@ schema = Schema((
         name='minutes',
         vocabulary=quarter_vocabulary,
         validators=('isInt', ),
-        default="0",
+        default=0,
         label="Estimated minutes",
         widget=SelectionWidget(
             description="Enter the rest of the estimated time in minutes",
