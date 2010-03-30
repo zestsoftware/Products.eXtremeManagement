@@ -94,8 +94,11 @@
             </td>
             <td tal:content="booking/booking_hours" />
             <td>
-              <span tal:replace="booking/task_cumulative_time" /> / 
-              <span tal:replace="booking/task_time" />
+              <font tal:omit-tag="python:booking['raw_task_cumulative_time'] != booking['raw_task_time']"
+                    color="red">
+                <span tal:replace="booking/task_cumulative_time" /> / 
+                <span tal:replace="booking/task_time" />
+              </font>
             </td>
           </tr>
           <tr id="booking-details-total" >
