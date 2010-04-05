@@ -1,0 +1,190 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: eXtremeManagement\n"
+"POT-Creation-Date: 2005-05-19 21:13+0000\n"
+"PO-Revision-Date: 2010-04-05 19:44+0100\n"
+"Last-Translator: Simone Deponti <simone.deponti@abstract.it>\n"
+"Language-Team: Abstract <simone.deponti@abstract.it>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"Domain: plone\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+msgid "completed"
+msgstr "completato"
+
+msgid "open"
+msgstr "aperto"
+
+msgid "In progress"
+msgstr "In corso"
+
+msgid "Activate"
+msgstr "Attiva"
+
+msgid "Deactivate"
+msgstr "Disattiva"
+
+msgid "Complete"
+msgstr "Completa"
+
+msgid "estimated"
+msgstr "stimato"
+
+msgid "draft"
+msgstr "bozza"
+
+msgid "assigned"
+msgstr "assegnato"
+
+msgid "activated"
+msgstr "attivato"
+
+msgid "Accept"
+msgstr "Accetta"
+
+msgid "Assign"
+msgstr "Assegna"
+
+msgid "Invoice"
+msgstr "Fattura"
+
+msgid "invoiced"
+msgstr "fatturato"
+
+msgid "Estimate"
+msgstr "Stima"
+
+msgid "CustomerFolder"
+msgstr "Cartella cliente"
+
+msgid "Project Folder"
+msgstr "Cartella progetto"
+
+msgid "Customer"
+msgstr "Cliente"
+
+msgid "Employee"
+msgstr "Impiegato"
+
+msgid "ProjectMember"
+msgstr "Membro del team"
+
+msgid "Project"
+msgstr "Progetto"
+
+msgid "Iteration"
+msgstr "Iterazione"
+
+msgid "Story"
+msgstr "Storia"
+
+msgid "Task"
+msgstr "Task"
+
+msgid "Customer Folder"
+msgstr "Cartella cliente"
+
+msgid "Project Member"
+msgstr "Membro del team"
+
+msgid "Time registration"
+msgstr "Tracciamento tempi"
+
+msgid "activate"
+msgstr "attiva"
+
+msgid "booking"
+msgstr "ore lavorate"
+
+msgid "Close"
+msgstr "Chiudi"
+
+msgid "complete"
+msgstr "completa"
+
+msgid "Completed"
+msgstr "Completato"
+
+msgid "deactivate"
+msgstr "disattiva"
+
+msgid "Draft"
+msgstr "Bozza"
+
+msgid "Estimated"
+msgstr "Stimata"
+
+msgid "Finish"
+msgstr "Finisci"
+
+msgid "Improve"
+msgstr "Migliora"
+
+msgid "In-progress"
+msgstr "In corso"
+
+msgid "Invoiced"
+msgstr "Fatturata"
+
+msgid "Mark as completed"
+msgstr "Segna come completata"
+
+msgid "Mark as estimated"
+msgstr "Segna come stimata"
+
+msgid "New"
+msgstr "Nuovo"
+
+msgid "Pending estimate"
+msgstr "Deve essere stimata"
+
+msgid "Private"
+msgstr "Privato"
+
+msgid "Reactivate"
+msgstr "Riattiva"
+
+msgid "Reactivate this task"
+msgstr "Riattiva questa task"
+
+msgid "Retract"
+msgstr "Ritira"
+
+msgid "Start working"
+msgstr "Inizia la lavorazione"
+
+msgid "Submit for estimate"
+msgstr "Chiedi la stima"
+
+msgid "To-do"
+msgstr "Da fare"
+
+msgid "Active"
+msgstr "Attiova"
+
+msgid "Reorder stories"
+msgstr "Riordina storie"
+
+# localroles.py
+# default "Customer can track project"
+msgid "title_customer_role"
+msgstr "Cliente"
+
+# localroles.py
+# default "Works on project"
+msgid "title_employee_role"
+msgstr "Impiegato"
+
+# localroles.py
+# default "Can manage project"
+msgid "title_projectmanager_role"
+msgstr "Project manager"
+
