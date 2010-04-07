@@ -39,6 +39,8 @@ class ReleaseplanView(ProjectView):
       ...         self.kw = kw
       ...     def __getattr__(self, key):
       ...         return self.kw[key]
+      ...     def getURL(self):
+      ...         return 'http://mock-brain-url/'
       >>> class MockIterationView(object):
       ...     def __init__(self, context, request):
       ...         pass
@@ -62,7 +64,8 @@ class ReleaseplanView(ProjectView):
        'locked': 0,
        'stories': [],
        'title': 'title',
-       'uid': '1234'}
+       'uid': '1234',
+       'url': 'http://mock-brain-url/'}
 
     We want to expand the list of story dicts with a 'class' item as that's
     too much calculating for the page template.
