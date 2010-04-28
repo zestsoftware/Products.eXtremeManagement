@@ -49,7 +49,7 @@ class IterationView(XMBaseView):
                              if item.size_estimate is not None])
 
         review_state = self.workflow.getInfoFor(context, 'review_state')
-        if review_state in ['completed', 'invoiced']:
+        if review_state in ['completed', 'invoiced', 'own-account']:
             budget_left = None
         else:
             budget_left = self.actual_budget_left()

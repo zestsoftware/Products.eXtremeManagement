@@ -96,7 +96,7 @@ class IterationListBaseView(XMBaseView):
 
 class FinishedIterationsView(IterationListBaseView):
 
-    iteration_review_state = ['completed', 'invoiced']
+    iteration_review_state = ['completed', 'invoiced', 'own-account']
 
     def add_to_total(self, iteration_dict):
         if self._total is None:

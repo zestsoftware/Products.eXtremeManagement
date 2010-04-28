@@ -134,6 +134,8 @@ class Renderer(base.Renderer):
             return True
         if 'completed' in states:
             return True
+        if 'own-account' in states:
+            return True
         return False
 
     def has_planned_iterations(self):
