@@ -4,7 +4,6 @@ import logging
 from plone.memoize.view import memoize
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
-#from zope import component
 
 logger = logging.getLogger('xm.listing')
 
@@ -71,7 +70,6 @@ class IterationListBaseView(XMBaseView):
     def iterationbrain2dict(self, brain):
         """Get a dict with info from this iteration brain.
         """
-        #review_state_id = brain.review_state
         estimate = brain.estimate
         actual = brain.actual_time
         obj = brain.getObject()
