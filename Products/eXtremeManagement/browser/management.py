@@ -121,8 +121,9 @@ class InvoicingView(IterationListBaseView):
 
     def sort_results(self, results):
         # allow sorting in subclasses by default on end_date of the iteration
+
         def sort_key(item):
-          return item['end_date']
+            return item['end_date']
 
         results.sort(key=sort_key)
 
@@ -189,8 +190,9 @@ class InProgressView(IterationListBaseView):
 
     def sort_results(self, results):
         # sorting on end_date of the iteration
+
         def sort_key(item):
-          return item['end_date']
+            return item['end_date']
 
         results.sort(key=sort_key)
 
