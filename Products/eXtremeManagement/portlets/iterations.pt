@@ -21,7 +21,7 @@
   <dd class="portletItem even"
       tal:condition="view/has_finished_iterations">
     <a tal:attributes="href string:${view/project_url}/finished"
-       i18n:translate="label_finished_overview">Finished</a>
+       i18n:translate="label_finished">Finished</a>
   </dd>
 
   <dd class="portletFooter">

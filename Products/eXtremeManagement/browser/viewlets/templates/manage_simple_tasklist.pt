@@ -20,7 +20,7 @@
         <th class="nosort" i18n:translate="listingheader_story"
             tal:condition="show_story">Story</th>
         <th class="nosort" i18n:translate="listingheader_title">Title</th>
-        <th class="nosort" i18n:translate="listingheader_estimate_hours">Estimated hours</th>
+        <th class="nosort" i18n:translate="listingheader_estimated_hours">Estimated hours</th>
         <th class="nosort" i18n:translate="listingheader_workedhours">Worked hours</th>
         <th class="nosort" i18n:translate="listingheader_diff_hours">Difference hours</th>
         <th class="nosort" i18n:translate="listingheader_state">Status</th>

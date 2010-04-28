@@ -5,6 +5,9 @@ History
 2.0.3 (unreleased)
 ------------------
 
+- Fixed i18n inconsistencies.
+  [maurits]
+
 - Fixed hard-coded WF ID for iteration CTs.  This should fix #204.
   http://plone.org/products/extreme-management-tool/issues/204/view
   [seletz]

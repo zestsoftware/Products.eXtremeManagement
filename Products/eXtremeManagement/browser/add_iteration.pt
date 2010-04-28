@@ -11,7 +11,7 @@
         tal:attributes="action string:${context/absolute_url}/@@xm_create_iteration">
 
       <fieldset>
-         <legend i18n:translate="label_new_iteration">New iteration</legend>
+         <legend i18n:translate="label_new_iteration">New Iteration</legend>
       <input name="title"
              value=""
              type="text"

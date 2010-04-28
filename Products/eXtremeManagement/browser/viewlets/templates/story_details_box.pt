@@ -36,7 +36,7 @@
       <tr>
         <th class="customer_info_header"
             i18n:translate="listingheader_estimate">
-          Initial Estimate (days)
+          Initial estimate (days)
         </th>
         <td>
           <span tal:replace="structure main/rough_estimate" />
@@ -46,7 +46,7 @@
       <tr tal:condition="can_view_details">
         <th class="customer_info_header"
             i18n:translate="listingheader_tasks_estimate">
-          Tasks Estimate (hours)
+          Tasks estimate (hours)
         </th>
         <td>
           <span tal:replace="totals/estimate" />
@@ -64,7 +64,7 @@
       <tr>
         <th class="customer_info_header"
             i18n:translate="listingheader_state">
-          State
+          Status
         </th>
         <td>
           <a class="xmtooltip" tal:condition="python: not estimated or not startable">

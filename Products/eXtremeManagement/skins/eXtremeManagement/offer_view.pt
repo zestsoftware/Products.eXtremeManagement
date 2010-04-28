@@ -141,7 +141,7 @@
               <th class="alignRight nosort" i18n:translate="total">Total</th>
               <th class="alignRight nosort">
                 <span tal:replace="iteration/size_estimate" />
-                <span i18n:translate="days" tal:omit-tag="" />
+                <span i18n:translate="days" tal:omit-tag="">days</span>
               </th>
             </tr>
           </tbody>
