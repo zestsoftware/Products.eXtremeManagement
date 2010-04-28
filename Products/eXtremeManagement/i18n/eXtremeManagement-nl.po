@@ -1,12 +1,12 @@
 # Ahmad Hadi <ahadi@zestsoftware.nl>, 2005
-# Maurits van Rees <m.van.rees@zestsoftware.nl>, 2006
+# Maurits van Rees <m.van.rees@zestsoftware.nl>, 2006-2010
 # Jean-Paul Ladage <j.ladage@zestsoftware.nl>, 2009
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
 "POT-Creation-Date: 2010-04-28 16:21+0000\n"
-"PO-Revision-Date: 2009-05-20 00:05+0200\n"
-"Last-Translator: Maurits van Rees Ladage <m.van.rees@zestsoftware.nl>\n"
+"PO-Revision-Date: 2010-04-28 18:26+0200\n"
+"Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <xm@lists.zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -82,7 +82,7 @@ msgstr "Voer diverse onderhoudstaken uit. Wanneer u weet dat de totalen verkeerd
 
 #: ./portlets/project.py:98
 msgid "Project"
-msgstr ""
+msgstr "Project"
 
 #. Default: "Project Management"
 #: ./portlets/managers.pt:5
@@ -556,7 +556,7 @@ msgstr "Door"
 #. Default: "Close Iteration"
 #: ./profiles/default/actions.xml
 msgid "head_close_iteration"
-msgstr ""
+msgstr "Rond iteratie af"
 
 #. Default "Description"
 msgid "head_description"
@@ -575,7 +575,7 @@ msgstr "Naam"
 #. Default: "Projects"
 #: ./profiles/default/actions.xml
 msgid "head_projects"
-msgstr ""
+msgstr "Projecten"
 
 #. Default: "Invoiced this month"
 #: ./browser/invoicing.pt:60
@@ -589,7 +589,7 @@ msgstr "Tijd"
 #. Default: "Time Tracker"
 #: ./profiles/default/actions.xml
 msgid "head_timetracker"
-msgstr ""
+msgstr "Time tracker"
 
 #. Default: "To invoice"
 #: ./portlets/managers.pt:17
@@ -800,7 +800,7 @@ msgstr "Einddatum"
 #. Default: "edit"
 #: ./browser/viewlets/templates/manage_simple_tasklist.pt:50
 msgid "label_edit"
-msgstr ""
+msgstr "bewerken"
 
 #. Default: "Estimated hours"
 #: ./browser/inprogress.pt:44
@@ -810,13 +810,12 @@ msgstr "Geschatte uren"
 #. Default: "Finished"
 #: ./portlets/iterations.pt:23
 msgid "label_finished"
-msgstr ""
+msgstr "Afgerond"
 
 #. Default: "Finished iterations overview"
 #: ./browser/finished.pt:14
-#, fuzzy
 msgid "label_finished_overview"
-msgstr "Afgerond"
+msgstr "Overzicht afgeronde iteraties"
 
 #. Default: "Hours worked"
 #: ./browser/finished.pt:27
@@ -842,7 +841,7 @@ msgstr "Te factureren"
 #. Default: "link"
 #: ./browser/releaseplan.pt:51
 msgid "label_link"
-msgstr ""
+msgstr "link"
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
 #: ./browser/releaseplan.py:256
@@ -1009,7 +1008,7 @@ msgstr "Geschatte uren"
 #. Default: "Estimated hours"
 #: ./browser/viewlets/templates/manage_simple_tasklist.pt:23
 msgid "listingheader_estimated_hours"
-msgstr ""
+msgstr "Geschatte uren"
 
 #. Default: "Iteration"
 #: ./browser/finished.pt:24
@@ -1046,9 +1045,8 @@ msgstr "User Story"
 #. Default: "Tasks estimate (hours)"
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:50
 #: ./browser/viewlets/templates/story_details_box.pt:47
-#, fuzzy
 msgid "listingheader_tasks_estimate"
-msgstr "Geschatte uren voor taken"
+msgstr "Inschatting taken (uren)"
 
 ### iteration_view template ###
 #. Default: "Title"

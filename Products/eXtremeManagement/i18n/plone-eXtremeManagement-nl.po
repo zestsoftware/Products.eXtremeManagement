@@ -1,11 +1,11 @@
 # Translation of plone-eXtremeManagement.pot to Dutch
 # Ahmad Hadi <ahadi@zestsoftware.nl>, 2005
-# Maurits van Rees <m.van.rees@zestsoftware.nl>, 2006
+# Maurits van Rees <m.van.rees@zestsoftware.nl>, 2006-2010
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
 "POT-Creation-Date: 2005-05-19 21:13+0000\n"
-"PO-Revision-Date: 2008-09-10 17:25+0200\n"
+"PO-Revision-Date: 2010-04-28 18:26+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <service@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -182,10 +182,10 @@ msgstr "Klant kan project volgen"
 # localroles.py
 # default "Works on project"
 msgid "title_employee_role"
-msgstr ""
+msgstr "Werkt aan project"
 
 # localroles.py
 # default "Can manage project"
 msgid "title_projectmanager_role"
-msgstr ""
+msgstr "Kan project managen"
 
