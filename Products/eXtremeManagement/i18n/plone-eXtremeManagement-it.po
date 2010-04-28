@@ -17,107 +17,47 @@ msgstr ""
 "X-Poedit-Country: ITALY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-msgid "completed"
-msgstr "completato"
-
-msgid "open"
-msgstr "aperto"
-
-msgid "In progress"
-msgstr "In corso"
+msgid "Accept"
+msgstr "Accetta"
 
 msgid "Activate"
 msgstr "Attiva"
 
-msgid "Deactivate"
-msgstr "Disattiva"
-
-msgid "Complete"
-msgstr "Completa"
-
-msgid "estimated"
-msgstr "stimato"
-
-msgid "draft"
-msgstr "bozza"
-
-msgid "assigned"
-msgstr "assegnato"
-
-msgid "activated"
-msgstr "attivato"
-
-msgid "Accept"
-msgstr "Accetta"
+msgid "Active"
+msgstr "Attiova"
 
 msgid "Assign"
 msgstr "Assegna"
 
-msgid "Invoice"
-msgstr "Fattura"
-
-msgid "invoiced"
-msgstr "fatturato"
-
-msgid "Estimate"
-msgstr "Stima"
-
-msgid "CustomerFolder"
-msgstr "Cartella cliente"
-
-msgid "Project Folder"
-msgstr "Cartella progetto"
-
-msgid "Customer"
-msgstr "Cliente"
-
-msgid "Employee"
-msgstr "Impiegato"
-
-msgid "ProjectMember"
-msgstr "Membro del team"
-
-msgid "Project"
-msgstr "Progetto"
-
-msgid "Iteration"
-msgstr "Iterazione"
-
-msgid "Story"
-msgstr "Storia"
-
-msgid "Task"
-msgstr "Task"
-
-msgid "Customer Folder"
-msgstr "Cartella cliente"
-
-msgid "Project Member"
-msgstr "Membro del team"
-
-msgid "Time registration"
-msgstr "Tracciamento tempi"
-
-msgid "activate"
-msgstr "attiva"
-
-msgid "booking"
-msgstr "ore lavorate"
-
 msgid "Close"
 msgstr "Chiudi"
 
-msgid "complete"
-msgstr "completa"
+msgid "Complete"
+msgstr "Completa"
 
 msgid "Completed"
 msgstr "Completato"
 
-msgid "deactivate"
-msgstr "disattiva"
+msgid "Customer"
+msgstr "Cliente"
+
+msgid "Customer Folder"
+msgstr "Cartella cliente"
+
+msgid "CustomerFolder"
+msgstr "Cartella cliente"
+
+msgid "Deactivate"
+msgstr "Disattiva"
 
 msgid "Draft"
 msgstr "Bozza"
+
+msgid "Employee"
+msgstr "Impiegato"
+
+msgid "Estimate"
+msgstr "Stima"
 
 msgid "Estimated"
 msgstr "Stimata"
@@ -128,11 +68,20 @@ msgstr "Finisci"
 msgid "Improve"
 msgstr "Migliora"
 
+msgid "In progress"
+msgstr "In corso"
+
 msgid "In-progress"
 msgstr "In corso"
 
+msgid "Invoice"
+msgstr "Fattura"
+
 msgid "Invoiced"
 msgstr "Fatturata"
+
+msgid "Iteration"
+msgstr "Iterazione"
 
 msgid "Mark as completed"
 msgstr "Segna come completata"
@@ -149,11 +98,26 @@ msgstr "Deve essere stimata"
 msgid "Private"
 msgstr "Privato"
 
+msgid "Project"
+msgstr "Progetto"
+
+msgid "Project Folder"
+msgstr "Cartella progetto"
+
+msgid "Project Member"
+msgstr "Membro del team"
+
+msgid "ProjectMember"
+msgstr "Membro del team"
+
 msgid "Reactivate"
 msgstr "Riattiva"
 
 msgid "Reactivate this task"
 msgstr "Riattiva questa task"
+
+msgid "Reorder stories"
+msgstr "Riordina storie"
 
 msgid "Retract"
 msgstr "Ritira"
@@ -161,17 +125,53 @@ msgstr "Ritira"
 msgid "Start working"
 msgstr "Inizia la lavorazione"
 
+msgid "Story"
+msgstr "Storia"
+
 msgid "Submit for estimate"
 msgstr "Chiedi la stima"
+
+msgid "Task"
+msgstr "Task"
+
+msgid "Time registration"
+msgstr "Tracciamento tempi"
 
 msgid "To-do"
 msgstr "Da fare"
 
-msgid "Active"
-msgstr "Attiova"
+msgid "activate"
+msgstr "attiva"
 
-msgid "Reorder stories"
-msgstr "Riordina storie"
+msgid "activated"
+msgstr "attivato"
+
+msgid "assigned"
+msgstr "assegnato"
+
+msgid "booking"
+msgstr "ore lavorate"
+
+msgid "complete"
+msgstr "completa"
+
+msgid "completed"
+msgstr "completato"
+
+msgid "deactivate"
+msgstr "disattiva"
+
+msgid "draft"
+msgstr "bozza"
+
+msgid "estimated"
+msgstr "stimato"
+
+msgid "invoiced"
+msgstr "fatturato"
+
+msgid "open"
+msgstr "aperto"
 
 # localroles.py
 # default "Customer can track project"

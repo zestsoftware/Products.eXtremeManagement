@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement-es\n"
-"POT-Creation-Date: 2009-05-19 22:05+0000\n"
+"POT-Creation-Date: 2010-04-28 16:21+0000\n"
 "PO-Revision-Date: 2007-12-09 14:30-0300\n"
 "Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
 "Language-Team: Spanish\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "Add Tasks"
 msgstr ""
 
-#: ./portlets/project.py:101
+#: ./portlets/project.py:102
 msgid "Attachments"
 msgstr ""
 
@@ -42,7 +42,7 @@ msgstr ""
 msgid "Create tasks from issues"
 msgstr ""
 
-#: ./browser/releaseplan.py:227
+#: ./browser/releaseplan.py:236
 msgid "Drag/drop uids incorrect"
 msgstr ""
 
@@ -51,7 +51,7 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-#: ./portlets/project.py:99
+#: ./portlets/project.py:100
 msgid "Issues"
 msgstr ""
 
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Iterations"
 msgstr ""
 
-#: ./browser/releaseplan.py:241
+#: ./browser/releaseplan.py:250
 msgid "Move failed: story locked. Unlock the story to move it."
 msgstr ""
 
@@ -73,7 +73,7 @@ msgid "Note that only issues that aren't already mapped into this iteration will
 msgstr ""
 
 #. Default: "Offer"
-#: ./portlets/project.py:103
+#: ./portlets/project.py:104
 msgid "Offer"
 msgstr ""
 
@@ -81,8 +81,13 @@ msgstr ""
 msgid "Perform various maintenance tasks. If you know the totals are wrong, you can recalculate them here. This should normally not be needed, so do not touch this unless you know what you are doing.  Then again, it does not hurt, except that it takes a long time."
 msgstr ""
 
+#: ./portlets/project.py:98
+msgid "Project"
+msgstr ""
+
 #. Default: "Project Management"
 #: ./portlets/managers.pt:5
+#: ./portlets/managers.py:37
 msgid "Project Management"
 msgstr ""
 
@@ -99,6 +104,7 @@ msgid "Task added"
 msgstr ""
 
 #: ./browser/iterations.py:328
+#: ./browser/tasks.py:351
 msgid "Title is required"
 msgstr ""
 
@@ -108,6 +114,7 @@ msgid "add-task-in"
 msgstr ""
 
 #. Default: "Back to"
+#: ./skins/eXtremeManagement/booking_details.pt:27
 #: ./skins/eXtremeManagement/booking_month.pt:41
 msgid "back_to"
 msgstr "Volver a"
@@ -119,10 +126,13 @@ msgstr "Bookings por mes"
 
 #. Default: "Pending Stories"
 #: ./portlets/storyestimation.pt:6
+#: ./portlets/storyestimation.py:34
 msgid "box_stories"
 msgstr "User Stories Pendientes"
 
 #. Default: "Cannot Activate"
+#: ./browser/viewlets/templates/story_details_box.pt:25
+#: ./skins/eXtremeManagement/iteration_view.pt:69
 #: ./skins/eXtremeManagement/task_view.pt:73
 msgid "cannot_activate"
 msgstr "No se puede activar"
@@ -138,6 +148,7 @@ msgid "cannot_activate_tasks_msg"
 msgstr ""
 
 #. Default: "current month"
+#: ./skins/eXtremeManagement/booking_details.pt:30
 #: ./skins/eXtremeManagement/booking_month.pt:44
 msgid "current-month"
 msgstr "mes actual"
@@ -148,7 +159,9 @@ msgid "current_iteration_link"
 msgstr ""
 
 #. Default: "days"
-#: ./skins/eXtremeManagement/offer_view.pt:141
+#: ./browser/chart.py:152
+#: ./browser/viewlets/templates/story_details_box.pt:43
+#: ./skins/eXtremeManagement/offer_view.pt:144
 msgid "days"
 msgstr "días"
 
@@ -288,8 +301,8 @@ msgid "eXtremeManagement_help_name"
 msgstr "Ingrese el nombre de la compañía para este cliente"
 
 #. Default: "Enter your phone number."
-#: content/ProjectMember.py
 #: content/Customer.py
+#: content/ProjectMember.py
 msgid "eXtremeManagement_help_phone"
 msgstr "Ingrese su número de teléfono."
 
@@ -364,8 +377,8 @@ msgid "eXtremeManagement_label_fullname"
 msgstr "Nombre completo"
 
 #. Default: "Hours"
-#: content/Task.py
 #: content/Booking.py
+#: content/Task.py
 msgid "eXtremeManagement_label_hours"
 msgstr "Horas"
 
@@ -382,8 +395,8 @@ msgid "eXtremeManagement_label_manHours"
 msgstr "Horas hombre"
 
 #. Default: "Minutes"
-#: content/Task.py
 #: content/Booking.py
+#: content/Task.py
 msgid "eXtremeManagement_label_minutes"
 msgstr "Minutos"
 
@@ -393,8 +406,8 @@ msgid "eXtremeManagement_label_name"
 msgstr "Nombre"
 
 #. Default: "Phone"
-#: content/ProjectMember.py
 #: content/Customer.py
+#: content/ProjectMember.py
 msgid "eXtremeManagement_label_phone"
 msgstr "Teléfono"
 
@@ -409,7 +422,7 @@ msgid "eXtremeManagement_label_rawDifference"
 msgstr "Diferencia sin procesar"
 
 #. Default: "Estimate"
-#: ./browser/releaseplan.pt:30
+#: ./browser/releaseplan.pt:32
 #, fuzzy
 msgid "eXtremeManagement_label_rawEstimate"
 msgstr "Estimación sin procesar"
@@ -455,6 +468,7 @@ msgid "estimated_start_project"
 msgstr ""
 
 #. Default: "Go to"
+#: ./skins/eXtremeManagement/booking_details.pt:16
 #: ./skins/eXtremeManagement/booking_month.pt:30
 msgid "go_to"
 msgstr "Ir a"
@@ -480,6 +494,11 @@ msgstr ""
 msgid "head_by"
 msgstr ""
 
+#. Default: "Close Iteration"
+#: ./profiles/default/actions.xml
+msgid "head_close_iteration"
+msgstr ""
+
 #. Default "Description"
 msgid "head_description"
 msgstr ""
@@ -494,6 +513,11 @@ msgstr ""
 msgid "head_name"
 msgstr ""
 
+#. Default: "Projects"
+#: ./profiles/default/actions.xml
+msgid "head_projects"
+msgstr ""
+
 #. Default: "Invoiced this month"
 #: ./browser/invoicing.pt:60
 msgid "head_this_month"
@@ -503,13 +527,18 @@ msgstr ""
 msgid "head_time"
 msgstr ""
 
+#. Default: "Time Tracker"
+#: ./profiles/default/actions.xml
+msgid "head_timetracker"
+msgstr ""
+
 #. Default: "To invoice"
 #: ./portlets/managers.pt:17
 msgid "head_to_invoice"
 msgstr ""
 
 #. Default: "Unplanned stories"
-#: ./browser/releaseplan.pt:70
+#: ./browser/releaseplan.pt:76
 msgid "head_unplanned_stories"
 msgstr ""
 
@@ -519,7 +548,8 @@ msgid "header-create-tasks-from-issues"
 msgstr ""
 
 #. Default: "attached files and images"
-#: ./skins/eXtremeManagement/offer_view.pt:111
+#: ./skins/eXtremeManagement/offer_view.pt:114
+#: ./skins/eXtremeManagement/story_view.pt:43
 msgid "heading-attachements"
 msgstr ""
 
@@ -566,6 +596,7 @@ msgid "heading-related-xm-tasks"
 msgstr ""
 
 #. Default: "Stories"
+#: ./browser/iteration_planning.pt:26
 #: ./skins/eXtremeManagement/iteration_view.pt:92
 msgid "heading-stories"
 msgstr "User Stories"
@@ -661,6 +692,7 @@ msgid "label_add_iteration"
 msgstr ""
 
 #. Default: "Add task"
+#: ./browser/add_task.pt:21
 #: ./skins/eXtremeManagement/story_view.pt:101
 msgid "label_add_task"
 msgstr ""
@@ -696,6 +728,7 @@ msgid "label_current_iterations"
 msgstr ""
 
 #. Default: "Date completed"
+#: ./browser/finished.pt:21
 #: ./browser/invoicing.pt:25
 msgid "label_date_completed"
 msgstr ""
@@ -705,6 +738,11 @@ msgstr ""
 msgid "label_date_due"
 msgstr ""
 
+#. Default: "edit"
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:50
+msgid "label_edit"
+msgstr ""
+
 #. Default: "Estimated hours"
 #: ./browser/inprogress.pt:44
 msgid "label_estimated_hours"
@@ -712,10 +750,16 @@ msgstr ""
 
 #. Default: "Finished"
 #: ./portlets/iterations.pt:23
+msgid "label_finished"
+msgstr ""
+
+#. Default: "Finished iterations overview"
+#: ./browser/finished.pt:14
 msgid "label_finished_overview"
 msgstr ""
 
 #. Default: "Hours worked"
+#: ./browser/finished.pt:27
 #: ./browser/invoicing.pt:28
 msgid "label_hours_worked"
 msgstr ""
@@ -735,18 +779,25 @@ msgstr ""
 msgid "label_invoicing_overview"
 msgstr ""
 
+#. Default: "link"
+#: ./browser/releaseplan.pt:51
+msgid "label_link"
+msgstr ""
+
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/releaseplan.py:247
+#: ./browser/releaseplan.py:256
 msgid "label_moved_succesfully"
 msgstr ""
 
 #. Default: "Moved story '${story}' to the unplanned list."
-#: ./browser/releaseplan.py:252
+#: ./browser/releaseplan.py:261
 msgid "label_moved_to_unplanned_succesfully"
 msgstr ""
 
 #. Default: "New Iteration"
+#: ./browser/add_iteration.pt:14
 #: ./browser/close-iteration.pt:43
+#: ./browser/planned_iterations.pt:25
 msgid "label_new_iteration"
 msgstr ""
 
@@ -766,7 +817,7 @@ msgid "label_offer"
 msgstr ""
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/releaseplan.py:278
+#: ./browser/releaseplan.py:287
 msgid "label_order_updated_succesfully"
 msgstr ""
 
@@ -851,7 +902,9 @@ msgid "listingheader-time"
 msgstr "Tiempo"
 
 #. Default: "Total"
-#: ./skins/eXtremeManagement/booking_month.pt:76
+#: ./browser/inprogress.pt:54
+#: ./browser/invoicing.pt:81
+#: ./skins/eXtremeManagement/booking_details.pt:85
 msgid "listingheader-total"
 msgstr "Total"
 
@@ -862,6 +915,7 @@ msgid "listingheader-week-number"
 msgstr "Número de semana"
 
 #. Default: "Assignee(s)"
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:27
 #: ./skins/eXtremeManagement/task_view.pt:89
 msgid "listingheader_assignees"
 msgstr "Asignado(s)"
@@ -883,7 +937,9 @@ msgid "listingheader_enddate"
 msgstr "Fecha de fin"
 
 #. Default: "Initial estimate (days)"
-#: ./skins/eXtremeManagement/offer_view.pt:70
+#: ./browser/iteration_planning.pt:37
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:48
+#: ./browser/viewlets/templates/story_details_box.pt:37
 msgid "listingheader_estimate"
 msgstr ""
 
@@ -893,13 +949,21 @@ msgstr ""
 msgid "listingheader_estimate_hours"
 msgstr "Estimación (horas)"
 
+#. Default: "Estimated hours"
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:23
+msgid "listingheader_estimated_hours"
+msgstr ""
+
 #. Default: "Iteration"
+#: ./browser/finished.pt:24
 #: ./browser/inprogress.pt:38
+#: ./browser/invoicing.pt:22
 msgid "listingheader_iteration"
 msgstr "Iteración"
 
 #. Default: "Project"
 #: ./browser/inprogress.pt:35
+#: ./browser/invoicing.pt:19
 msgid "listingheader_projects"
 msgstr "Proyecto"
 
@@ -909,17 +973,22 @@ msgid "listingheader_startdate"
 msgstr "Fecha de inicio"
 
 #. Default: "Status"
-#: ./skins/eXtremeManagement/task_view.pt:63
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:46
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:26
+#: ./browser/viewlets/templates/story_details_box.pt:65
 #, fuzzy
 msgid "listingheader_state"
 msgstr "Estado"
 
 #. Default: "Story"
-#: ./skins/eXtremeManagement/offer_view.pt:67
+#: ./browser/iteration_planning.pt:35
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:44
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:20
 msgid "listingheader_story"
 msgstr "User Story"
 
-#. Default: "Tasks Estimate (hours)"
+#. Default: "Tasks estimate (hours)"
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:50
 #: ./browser/viewlets/templates/story_details_box.pt:47
 #, fuzzy
 msgid "listingheader_tasks_estimate"
@@ -932,6 +1001,7 @@ msgid "listingheader_title"
 msgstr "Título"
 
 #. Default: "Total Actual"
+#: ./browser/finished.pt:34
 #: ./skins/eXtremeManagement/iteration_view.pt:134
 msgid "listingheader_total_actual"
 msgstr "Total Real"
@@ -947,6 +1017,8 @@ msgid "listingheader_total_estimate"
 msgstr "Estimación Total"
 
 #. Default: "Worked hours"
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:24
+#: ./browser/viewlets/templates/story_details_box.pt:56
 #: ./skins/eXtremeManagement/task_view.pt:54
 msgid "listingheader_workedhours"
 msgstr ""
@@ -973,11 +1045,13 @@ msgstr "Siguiente"
 
 #. Default: "No stories published yet!"
 #: ./skins/eXtremeManagement/iteration_view.pt:154
+#: ./skins/eXtremeManagement/offer_view.pt:150
 msgid "no_stories_published"
 msgstr "¡Aún no hay User Stories publicados!"
 
 #. Default: "No tasks defined yet."
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:114
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:81
 msgid "no_tasks_defined"
 msgstr "Aún no hay tareas definidas."
 
@@ -1002,6 +1076,7 @@ msgid "previous"
 msgstr "Anterior"
 
 #. Default: "previous month"
+#: ./skins/eXtremeManagement/booking_details.pt:19
 #: ./skins/eXtremeManagement/booking_month.pt:33
 msgid "previous-month"
 msgstr "mes anterior"
@@ -1027,6 +1102,7 @@ msgid "resolve_conflicting_stories"
 msgstr ""
 
 #. Default: "rough story estimates"
+#: ./browser/chart.py:150
 #: ./browser/project_chart.pt:22
 msgid "rough story estimates"
 msgstr ""
@@ -1042,6 +1118,7 @@ msgid "subtitle_project_chart_overview"
 msgstr ""
 
 #. Default: "task estimates"
+#: ./browser/chart.py:150
 #: ./browser/project_chart.pt:23
 msgid "task estimates"
 msgstr ""
@@ -1077,7 +1154,9 @@ msgid "title_offer_stories"
 msgstr ""
 
 #. Default: "Total"
-#: ./skins/eXtremeManagement/offer_view.pt:138
+#: ./browser/viewlets/templates/manage_simple_storylist.pt:134
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:70
+#: ./skins/eXtremeManagement/offer_view.pt:141
 msgid "total"
 msgstr "Total"
 
@@ -1122,6 +1201,7 @@ msgid "weekday_wed"
 msgstr ""
 
 #. Default: "worked"
+#: ./browser/chart.py:150
 #: ./browser/project_chart.pt:24
 msgid "worked"
 msgstr ""
