@@ -48,7 +48,8 @@
               </form>
             </td>
             <td>
-              <a tal:attributes="href story/url">link </a>
+              <a tal:attributes="href story/url"
+                 i18n:translate="label_link">link </a>
               <span tal:replace="story/title"/>
             </td>
             <td tal:content="story/size_estimate"/>
@@ -93,7 +94,8 @@
               </form>
             </td>
             <td>
-              <a tal:attributes="href story/url">link </a>
+              <a tal:attributes="href story/url"
+                 i18n:translate="label_link">link </a>
               <span tal:replace="story/title"/>
             </td>
             <td tal:content="story/estimate"/>

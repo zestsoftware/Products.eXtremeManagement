@@ -48,6 +48,7 @@
            tal:content="task/title" />
         <a href="#" tal:attributes="href string:${task/url}/edit"
         ><img src="" title="edit"
+              i18n:attributes="title label_edit"
               tal:attributes="src string:${context/portal_url}/edit.gif" /></a>
       </td>
       <td tal:content="task/estimate" />
