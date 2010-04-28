@@ -124,6 +124,7 @@
   <permission-map name="Add portal content" acquired="False">
   </permission-map>
   <permission-map name="Copy or Move" acquired="False">
+   <permission-role>Employee</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Projectmanager</permission-role>
   </permission-map>

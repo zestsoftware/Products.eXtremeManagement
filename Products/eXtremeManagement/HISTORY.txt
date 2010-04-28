@@ -5,6 +5,10 @@ History
 2.0.3 (unreleased)
 ------------------
 
+- Give Employees the 'Copy or Move' permission also on closed Projects.
+  Refs http://plone.org/products/extreme-management-tool/issues/186
+  [maurits]
+
 - Also show Iterations in the 'for own account' state in the finished
   iterations overview, and show a link to that in the iterations
   portlet.  Fixes #178
