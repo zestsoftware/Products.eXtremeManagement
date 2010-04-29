@@ -5,6 +5,11 @@ History
 2.0.3 (unreleased)
 ------------------
 
+- Poi portlet: show more of the title of possible stories for creating
+  a PoiTask in.
+  Fixes http://plone.org/products/extreme-management-tool/issues/208
+  [maurits]
+
 - In the Project Links portlet, show a link to the first PoiTracker;
   fall back to an item with the id 'issues'.
   Fixes http://plone.org/products/extreme-management-tool/issues/207

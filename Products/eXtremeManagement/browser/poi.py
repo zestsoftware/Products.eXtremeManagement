@@ -175,7 +175,7 @@ class PoiView(XMBaseView):
             value.append(
                 dict(iterationid=story.getPhysicalPath()[-2],
                      uid=story.UID(),
-                     title=abbreviate(story.Title() or story.getId())))
+                     title=abbreviate(story.Title() or story.getId(), width=80)))
         return value
 
     def add_issue_to_story(self, story_or_uid, issue=None):
