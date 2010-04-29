@@ -5,6 +5,11 @@ History
 2.0.3 (unreleased)
 ------------------
 
+- In the Project Links portlet, show a link to the first PoiTracker;
+  fall back to an item with the id 'issues'.
+  Fixes http://plone.org/products/extreme-management-tool/issues/207
+  [maurits]
+
 - Show the simple tasklist in more cases, like when you view the
   global task_overview when you only have the Employee role locally on
   a Project.  Do show less detail then.

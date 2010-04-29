@@ -114,6 +114,13 @@ class Renderer(base.Renderer):
         """Return the url to the tracker, if available.
         We expect this call only occurs when self.project is not None
         """
+        cfilter = {'portal_type': 'PoiTracker'}
+        brains = self.project.getFolderContents(cfilter)
+        if brains and len(brains) > 0:
+            return brains[0].getURL()
+
+        # Fallback; this used to be the default case.
+        # See http://plone.org/products/extreme-management-tool/issues/207
         if 'issues' in self.project.objectIds():
             return self.project_url + '/issues'
 
