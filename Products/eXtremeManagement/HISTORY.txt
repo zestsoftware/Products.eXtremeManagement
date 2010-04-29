@@ -5,6 +5,12 @@ History
 2.0.3 (unreleased)
 ------------------
 
+- Show the simple tasklist in more cases, like when you view the
+  global task_overview when you only have the Employee role locally on
+  a Project.  Do show less detail then.
+  Fixes http://plone.org/products/extreme-management-tool/issues/202
+  [maurits]
+
 - Give Employees the 'Copy or Move' permission also on closed Projects.
   Refs http://plone.org/products/extreme-management-tool/issues/186
   [maurits]

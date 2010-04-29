@@ -7,8 +7,7 @@
             tools context/@@plone_tools;
             mtool tools/membership;
             checkPermission nocall:mtool/checkPermission;
-            can_view_details python:checkPermission('eXtremeManagement: View Details', context);"
-    condition="can_view_details">
+            can_view_details python:checkPermission('eXtremeManagement: View Details', context);">
 
   <table class="listing nosort tasklist_table"
          width="100%"
@@ -20,11 +19,13 @@
         <th class="nosort" i18n:translate="listingheader_story"
             tal:condition="show_story">Story</th>
         <th class="nosort" i18n:translate="listingheader_title">Title</th>
-        <th class="nosort" i18n:translate="listingheader_estimated_hours">Estimated hours</th>
-        <th class="nosort" i18n:translate="listingheader_workedhours">Worked hours</th>
-        <th class="nosort" i18n:translate="listingheader_diff_hours">Difference hours</th>
-        <th class="nosort" i18n:translate="listingheader_state">Status</th>
-        <th class="nosort" i18n:translate="listingheader_assignees">Assignee(s)</th>
+        <tal:details condition="can_view_details">
+          <th class="nosort" i18n:translate="listingheader_estimated_hours">Estimated hours</th>
+          <th class="nosort" i18n:translate="listingheader_workedhours">Worked hours</th>
+          <th class="nosort" i18n:translate="listingheader_diff_hours">Difference hours</th>
+          <th class="nosort" i18n:translate="listingheader_state">Status</th>
+          <th class="nosort" i18n:translate="listingheader_assignees">Assignee(s)</th>
+        </tal:details>
       </tr>
     </thead>
 
@@ -51,6 +52,7 @@
               i18n:attributes="title label_edit"
               tal:attributes="src string:${context/portal_url}/edit.gif" /></a>
       </td>
+      <tal:details condition="can_view_details">
       <td tal:content="task/estimate" />
       <td tal:content="task/actual" />
       <td tal:content="task/difference" />
@@ -64,6 +66,7 @@
           <br />
         </tal:assignees>
       </td>
+      </tal:details>
     </tr>
 
     <tr class="totalTasks">
@@ -72,10 +75,12 @@
           i18n:translate="total">
         Total
       </th>
+      <tal:details condition="can_view_details">
       <th tal:content="totals/estimate" />
       <th tal:content="totals/actual" />
       <th tal:content="totals/difference" />
       <th colspan="2">&nbsp;</th>
+      </tal:details>
     </tr>
   </table>
   <p class="discreet tasklist_table"
