@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement-es\n"
-"POT-Creation-Date: 2010-04-28 16:21+0000\n"
+"POT-Creation-Date: 2010-04-29 12:16+0000\n"
 "PO-Revision-Date: 2007-12-09 14:30-0300\n"
 "Last-Translator: Emanuel Sartor <emanuel@menttes.com>\n"
 "Language-Team: Spanish\n"
@@ -739,7 +739,7 @@ msgid "label_date_due"
 msgstr ""
 
 #. Default: "edit"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:50
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:51
 msgid "label_edit"
 msgstr ""
 
@@ -983,7 +983,7 @@ msgstr "Estado"
 #. Default: "Story"
 #: ./browser/iteration_planning.pt:35
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:44
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:20
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:19
 msgid "listingheader_story"
 msgstr "User Story"
 
@@ -995,7 +995,7 @@ msgid "listingheader_tasks_estimate"
 msgstr "Estimación de tareas (horas)"
 
 #. Default: "Title"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:22
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:21
 #, fuzzy
 msgid "listingheader_title"
 msgstr "Título"
@@ -1051,7 +1051,7 @@ msgstr "¡Aún no hay User Stories publicados!"
 
 #. Default: "No tasks defined yet."
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:114
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:81
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:86
 msgid "no_tasks_defined"
 msgstr "Aún no hay tareas definidas."
 
@@ -1155,7 +1155,7 @@ msgstr ""
 
 #. Default: "Total"
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:134
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:70
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:73
 #: ./skins/eXtremeManagement/offer_view.pt:141
 msgid "total"
 msgstr "Total"

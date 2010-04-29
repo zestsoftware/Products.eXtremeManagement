@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2010-04-28 16:21+0000\n"
+"POT-Creation-Date: 2010-04-29 12:16+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -799,7 +799,7 @@ msgid "label_date_due"
 msgstr ""
 
 #. Default: "edit"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:50
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:51
 msgid "label_edit"
 msgstr ""
 
@@ -1040,7 +1040,7 @@ msgstr "Stav"
 #. Default: "Story"
 #: ./browser/iteration_planning.pt:35
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:44
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:20
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:19
 msgid "listingheader_story"
 msgstr "Požadavek"
 
@@ -1051,7 +1051,7 @@ msgid "listingheader_tasks_estimate"
 msgstr ""
 
 #. Default: "Title"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:22
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:21
 #, fuzzy
 msgid "listingheader_title"
 msgstr "Název"
@@ -1107,7 +1107,7 @@ msgstr "Zatím nebyly zveřejněny žádné požadavky!"
 
 #. Default: "No tasks defined yet."
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:114
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:81
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:86
 msgid "no_tasks_defined"
 msgstr "Zatím nebyly zadány žádné úkoly."
 
@@ -1211,7 +1211,7 @@ msgstr ""
 
 #. Default: "Total"
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:134
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:70
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:73
 #: ./skins/eXtremeManagement/offer_view.pt:141
 msgid "total"
 msgstr "Celkem"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2010-04-28 16:21+0000\n"
+"POT-Creation-Date: 2010-04-29 12:16+0000\n"
 "PO-Revision-Date: 2010-04-28 18:26+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <xm@lists.zestsoftware.nl>\n"
@@ -798,7 +798,7 @@ msgid "label_date_due"
 msgstr "Einddatum"
 
 #. Default: "edit"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:50
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:51
 msgid "label_edit"
 msgstr "bewerken"
 
@@ -1038,7 +1038,7 @@ msgstr "Status"
 #. Default: "Story"
 #: ./browser/iteration_planning.pt:35
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:44
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:20
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:19
 msgid "listingheader_story"
 msgstr "User Story"
 
@@ -1050,7 +1050,7 @@ msgstr "Inschatting taken (uren)"
 
 ### iteration_view template ###
 #. Default: "Title"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:22
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:21
 msgid "listingheader_title"
 msgstr "Titel"
 
@@ -1105,7 +1105,7 @@ msgstr "Er zijn op dit moment geen stories gedefinieerd!"
 
 #. Default: "No tasks defined yet."
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:114
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:81
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:86
 msgid "no_tasks_defined"
 msgstr "Nog geen taken gedefinieerd."
 
@@ -1209,7 +1209,7 @@ msgstr "User stories in de offerte"
 
 #. Default: "Total"
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:134
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:70
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:73
 #: ./skins/eXtremeManagement/offer_view.pt:141
 msgid "total"
 msgstr "Totaal"

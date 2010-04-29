@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2010-04-28 16:21+0000\n"
+"POT-Creation-Date: 2010-04-29 12:16+0000\n"
 "PO-Revision-Date: Wed Feb  7 16:15:48 2007\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
@@ -724,7 +724,7 @@ msgid "label_date_due"
 msgstr ""
 
 #. Default: "edit"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:50
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:51
 msgid "label_edit"
 msgstr ""
 
@@ -964,7 +964,7 @@ msgstr ""
 #. Default: "Story"
 #: ./browser/iteration_planning.pt:35
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:44
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:20
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:19
 msgid "listingheader_story"
 msgstr ""
 
@@ -975,7 +975,7 @@ msgid "listingheader_tasks_estimate"
 msgstr ""
 
 #. Default: "Title"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:22
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:21
 msgid "listingheader_title"
 msgstr ""
 
@@ -1029,7 +1029,7 @@ msgstr ""
 
 #. Default: "No tasks defined yet."
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:114
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:81
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:86
 msgid "no_tasks_defined"
 msgstr ""
 
@@ -1131,7 +1131,7 @@ msgstr ""
 
 #. Default: "Total"
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:134
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:70
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:73
 #: ./skins/eXtremeManagement/offer_view.pt:141
 msgid "total"
 msgstr ""

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2010-04-28 16:21+0000\n"
+"POT-Creation-Date: 2010-04-29 12:16+0000\n"
 "PO-Revision-Date: 2010-04-05 20:48+0100\n"
 "Last-Translator: Simone Deponti <simone.deponti@abstract.it>\n"
 "Language-Team: Simone Deponti <simone.deponti@abstract.it>\n"
@@ -733,7 +733,7 @@ msgid "label_date_due"
 msgstr "Termine ultimo"
 
 #. Default: "edit"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:50
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:51
 msgid "label_edit"
 msgstr ""
 
@@ -974,7 +974,7 @@ msgstr "Stato"
 #. Default: "Story"
 #: ./browser/iteration_planning.pt:35
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:44
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:20
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:19
 msgid "listingheader_story"
 msgstr "Storia"
 
@@ -986,7 +986,7 @@ msgid "listingheader_tasks_estimate"
 msgstr "Stime task (ore)"
 
 #. Default: "Title"
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:22
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:21
 msgid "listingheader_title"
 msgstr "Titolo"
 
@@ -1041,7 +1041,7 @@ msgstr "Nessuna storia pubblicata al momento!"
 
 #. Default: "No tasks defined yet."
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:114
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:81
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:86
 msgid "no_tasks_defined"
 msgstr "Nessuna task definita al momento"
 
@@ -1145,7 +1145,7 @@ msgstr "Storie da offerta"
 
 #. Default: "Total"
 #: ./browser/viewlets/templates/manage_simple_storylist.pt:134
-#: ./browser/viewlets/templates/manage_simple_tasklist.pt:70
+#: ./browser/viewlets/templates/manage_simple_tasklist.pt:73
 #: ./skins/eXtremeManagement/offer_view.pt:141
 msgid "total"
 msgstr "Totale"
