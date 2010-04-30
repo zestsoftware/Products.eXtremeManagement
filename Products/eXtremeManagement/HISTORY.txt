@@ -2,7 +2,7 @@ History
 =======
 
 
-2.0.3 (unreleased)
+2.0.3 (2010-05-01)
 ------------------
 
 - Poi portlet: show more of the title of possible stories for creating
