@@ -2,7 +2,7 @@ History
 =======
 
 
-2.0.4 (unreleased)
+2.0.4 (2010-07-05)
 ------------------
 
 - Depend on Products.Poi<2.0dev to avoid pulling in Plone 4.
