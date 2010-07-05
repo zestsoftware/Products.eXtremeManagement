@@ -5,7 +5,9 @@ History
 2.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Depend on Products.Poi<2.0dev to avoid pulling in Plone 4.
+  Fixes http://plone.org/products/extreme-management-tool/issues/211
+  [maurits]
 
 
 2.0.3 (2010-05-01)
