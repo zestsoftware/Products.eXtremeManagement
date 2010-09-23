@@ -8,6 +8,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from kss.core import kssaction
 from plone.app.kss.plonekssview import PloneKSSView
 from zope.component import adapts
+from zope.component import getMultiAdapter
 from zope.interface import Interface
 from zope.cachedescriptors.property import Lazy
 from zope.publisher.interfaces.browser import IBrowserView
@@ -47,6 +48,8 @@ class TaskView(XMBaseView):
         else:
             # Should not happen (tm).
             estimate = -99.0
+        pas_member = getMultiAdapter((context, self.request),
+                                     name='pas_member')
         returnvalue = dict(
             title = context.Title(),
             description = context.Description(),
@@ -55,7 +58,7 @@ class TaskView(XMBaseView):
             actual = formatTime(actual),
             difference = formatTime(estimate - actual),
             review_state = self.workflow.getInfoFor(context, 'review_state'),
-            assignees = [{'niceName': context.poi_niceName(username=x),
+            assignees = [{'niceName': pas_member.info(x)['name_or_id'],
                           'username': x,
                           'active': True}
                          for x in context.getAssignees()],
