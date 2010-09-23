@@ -148,7 +148,8 @@ class TasksDetailedView(XMBaseView):
         task_list = []
         for brain in brains:
             info = self.taskbrain2dict(brain)
-            task_list.append(info)
+            if info:
+                task_list.append(info)
         if not sort_by_state:
             task_list.sort(
                 lambda a, b: cmp(a['story_title'], b['story_title']) or
@@ -184,7 +185,10 @@ class TasksDetailedView(XMBaseView):
         """Get a dict with info from this task brain.
         """
         # Get info about parent Story
-        obj = brain.getObject()
+        try:
+            obj = brain.getObject()
+        except (AttributeError, KeyError):
+            return {}
         story = obj.aq_parent
 
         estimate = brain.estimate

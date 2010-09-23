@@ -5,7 +5,9 @@ History
 2.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Avoid TraversalError in the xm.tracker when taskbrain2dict throws an
+  AttributeError for a brain that fails getting its object.
+  [maurits]
 
 
 2.0.4 (2010-07-05)
