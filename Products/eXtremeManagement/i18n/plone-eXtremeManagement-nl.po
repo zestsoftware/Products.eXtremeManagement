@@ -55,7 +55,7 @@ msgid "Draft"
 msgstr "Concept"
 
 msgid "Employee"
-msgstr "Medewerker"
+msgstr "Werknemer"
 
 msgid "Estimate"
 msgstr "Schatten"

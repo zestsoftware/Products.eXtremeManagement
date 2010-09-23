@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
 "POT-Creation-Date: 2010-04-29 12:16+0000\n"
-"PO-Revision-Date: 2010-04-28 18:26+0200\n"
+"PO-Revision-Date: 2010-09-23 18:48+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <xm@lists.zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
@@ -192,7 +192,7 @@ msgstr "De iteratie kon niet worden afgesloten omdat niet afgesloten user storie
 #. Default: "In the overview, you'll find for each employee how much billable he/she worked per month in %."
 #: ./browser/employees_overview.pt:16
 msgid "description_employees_overview"
-msgstr "In het overzicht vind u voor elke medewerker wat zijn percentage betaald werk is per maand."
+msgstr "In het overzicht vind u voor elke werknemer wat zijn percentage betaald werk is per maand."
 
 #. Default: "The new iteration is ${link}."
 #: ./browser/iteration-close-state.pt:20
@@ -514,7 +514,7 @@ msgstr "Postcode"
 #. Default: "Employees"
 #: ./portlets/managers.pt:11
 msgid "employees"
-msgstr "Medewerkers"
+msgstr "Werknemers"
 
 #. Default: "Estimated release date"
 #: ./skins/eXtremeManagement/offer_view.pt:35
@@ -640,7 +640,7 @@ msgstr "Boekingen per dag"
 #. Default: "Hours per employee"
 #: ./skins/eXtremeManagement/iteration_view.pt:123
 msgid "heading-hours-per-employee"
-msgstr "Uren per medewerker"
+msgstr "Uren per werknemer"
 
 #. Default: "My task list"
 #: ./skins/eXtremeManagement/task_overview.pt:17
@@ -703,7 +703,7 @@ msgstr "Er zijn stories die nog niet geactiveerd kunnen worden:"
 #. Default: "If selected, Members with a global role 'Employee' will appear in the assignees list of a Task."
 #: content/Project.py
 msgid "help_include_global_members"
-msgstr "Indien geselecteerd, zullen leden met de globale rol 'Employee' ('Medewerker') verschijnen in de lijst met personen aan wie een Taak toegewezen kan worden."
+msgstr "Indien geselecteerd, zullen leden met de globale rol 'Employee' ('Werknemer') verschijnen in de lijst met personen aan wie een Taak toegewezen kan worden."
 
 #. Default: "To quickly estimate all the stories in this iteration, use the"
 #: ./skins/eXtremeManagement/iteration_view.pt:73
@@ -826,7 +826,7 @@ msgstr "Gewerkte uren"
 #. Default: "Include global Employees"
 #: content/Project.py
 msgid "label_include_global_members"
-msgstr "Neem globale medewerkers mee"
+msgstr "Neem globale werknemers mee"
 
 #. Default: "In-progress"
 #: ./portlets/managers.pt:23
@@ -986,7 +986,7 @@ msgstr "Verschil"
 #. Default: "Employee"
 #: ./skins/eXtremeManagement/iteration_view.pt:131
 msgid "listingheader_employee"
-msgstr "Medewerker"
+msgstr "Werknemer"
 
 #. Default: "End date"
 #: ./skins/eXtremeManagement/iteration_view.pt:53
@@ -1195,7 +1195,7 @@ msgstr "Afsluiten van de iteratie afgebroken"
 #. Default: "Employees overview"
 #: ./browser/employees_overview.pt:13
 msgid "title_employees_overview"
-msgstr "Medewerkersoverzicht"
+msgstr "Werknemersoverzicht"
 
 #. Default: "Iteration closed"
 #: ./browser/iteration-close-state.pt:11
