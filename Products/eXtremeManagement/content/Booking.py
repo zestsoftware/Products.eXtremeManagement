@@ -72,7 +72,6 @@ class Booking(BaseContent):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (BaseContent.__implements__, )
     implements(IXMBooking)
 
     # This name appears in the 'add' box

@@ -80,7 +80,6 @@ class Task(BaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (BaseFolder.__implements__, )
     implements(IXMTask)
 
     # This name appears in the 'add' box

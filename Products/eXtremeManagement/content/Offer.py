@@ -56,7 +56,6 @@ class Offer(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (OrderedBaseFolder.__implements__, )
     implements(IXMOffer)
 
     # This name appears in the 'add' box
