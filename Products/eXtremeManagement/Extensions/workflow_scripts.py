@@ -3,6 +3,15 @@ import logging
 import transaction
 from Products.CMFCore.utils import getToolByName
 
+try:
+    # Plone 3 (Poi 1.2)
+    from Products.Poi.Extensions import poi_issue_workflow_scripts
+    from Products.Poi.Extensions import poi_response_workflow_scripts
+except ImportError:
+    # Plone 4 (Poi 2.0)
+    poi_issue_workflow_scripts = None
+    poi_response_workflow_scripts = None
+
 logger = logging.getLogger("eXtremeManagement workflow scripts")
 
 
@@ -118,3 +127,30 @@ def startIteration(self, state_change, **kw):
                             "not be activated." % (story.Title(),
                                                    review_state,
                                                    iteration.Title()))
+
+
+def sendInitialEmail(self, state_change, **kw):
+    if poi_issue_workflow_scripts is None:
+        # Plone 4
+        return
+    # Plone 3
+    return poi_issue_workflow_scripts.sendInitialEmail(
+        self, state_change, **kw)
+
+
+def sendResolvedMail(self, state_change, **kw):
+    if poi_issue_workflow_scripts is None:
+        # Plone 4
+        return
+    # Plone 3
+    return poi_issue_workflow_scripts.sendResolvedMailEmail(
+        self, state_change, **kw)
+
+
+def sendResponseEmail(self, state_change, **kw):
+    if poi_response_workflow_scripts is None:
+        # Plone 4
+        return
+    # Plone 3
+    return poi_response_workflow_scripts.sendResponseEmail(
+        self, state_change, **kw)
