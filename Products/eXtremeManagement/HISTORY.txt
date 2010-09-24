@@ -5,7 +5,9 @@ History
 2.1a2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- In the employees_overview make the Employee name a link to see the
+  task_overview for that Employee.  Patch by Yuri and Mauro.
+  [maurits]
 
 
 2.1a1 (2010-09-24)

@@ -27,8 +27,10 @@
           <tal:employees repeat="employee view/items">
           <tr tal:define="oddrow repeat/employee/odd"
             tal:attributes="class python:oddrow and 'odd' or 'even'">
-            <td tal:content="employee/name"
-               class="name-employee" />
+            <td class="name-employee">
+               <strong><a tal:attributes="href string:task_overview?memberid=${employee/id}"
+                          tal:content="employee/name" /></strong>
+            </td>
             <td tal:repeat="month employee/monthly_percentages">
               <a tal:attributes="href python:month['url']"
                  tal:content="python:month['percentage']">

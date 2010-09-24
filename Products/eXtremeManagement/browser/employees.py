@@ -55,13 +55,12 @@ class EmployeesView(BrowserView):
 
     @memoize
     def items(self):
-        context = aq_inner(self.context)
         ptool = self.tools.properties()
         hours_per_day = ptool.xm_properties.getProperty('hours_per_day')
         data = []
         employees = self.get_employees()
         for userid in employees:
-            empldict = {}
+            empldict = dict(id=userid)
             memberinfo = self.tools.membership().getMemberInfo(userid)
             if memberinfo and memberinfo is not None:
                 empldict['name'] = memberinfo['fullname'] or userid
@@ -106,8 +105,8 @@ class EmployeesView(BrowserView):
                         perc = 0.0
                     url = "%s/booking_month?memberid=%s&month=%r&year=%r" % (
                         self.site_url, userid, m.month, m.year)
-                    perc_dict = dict(percentage = fmt_perc_billable(perc),
-                                     url = url)
+                    perc_dict = dict(percentage=fmt_perc_billable(perc),
+                                     url=url)
                     results.append(perc_dict)
                 results.reverse()
                 empldict['monthly_percentages'] = results
