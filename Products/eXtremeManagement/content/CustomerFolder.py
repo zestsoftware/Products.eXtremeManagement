@@ -17,7 +17,6 @@ class CustomerFolder(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (OrderedBaseFolder.__implements__, )
     implements(IXMCustomerFolder)
 
     # This name appears in the 'add' box

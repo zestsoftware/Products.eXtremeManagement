@@ -236,7 +236,7 @@ November we added exactly 40 hours in week 45.
 Let's look at week 43 in oktober, at the end of which the DST kicks in.
 
     >>> week43 = okt.bookinglist[4]
-    >>> week43['week_start']
+    >>> str(week43['week_start'])  # Returns unicode in Plone 4
     'Oct 23, 2006'
     >>> week43['week_number']
     43

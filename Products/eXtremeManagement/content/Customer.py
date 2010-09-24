@@ -100,7 +100,6 @@ class Customer(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (OrderedBaseFolder.__implements__, )
     implements(IXMCustomer)
     archetype_name = 'Customer'
     portal_type = meta_type = 'Customer'

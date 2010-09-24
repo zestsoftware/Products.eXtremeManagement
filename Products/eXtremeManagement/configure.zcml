@@ -4,9 +4,6 @@
 
   <include file="permissions.zcml" />
 
-  <utility component="Products.eXtremeManagement.xmdomain"
-           name="eXtremeManagement" />
-
   <!-- include dependent packages -->
   <include package="xm.booking" />
   <include package="kss.plugin.cns" />

@@ -57,7 +57,6 @@ class Iteration(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (OrderedBaseFolder.__implements__, )
     implements(IXMIteration)
 
     # This name appears in the 'add' box

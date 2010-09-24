@@ -55,7 +55,6 @@ class ProjectMember(BaseContent):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (BaseContent.__implements__, )
     implements(IXMProjectMember)
 
     # This name appears in the 'add' box

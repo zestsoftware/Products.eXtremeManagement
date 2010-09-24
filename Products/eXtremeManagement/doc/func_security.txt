@@ -22,21 +22,14 @@ Let us log all exceptions, which is useful for debugging.
 In the initial tests, something went wrong with adding projects, so we're
 testing whether adding projects is allowed at all, first.
 
+    >>> from Products.eXtremeManagement.tests.utils import list_addable
     >>> self.setRoles(['Manager'])
-    >>> def list_addable(context):
-    ...     allowed = context.getAllowedTypes()
-    ...     addable = context.getAddableTypesInMenu(allowed)
-    ...     return [ad.Title() for ad in addable]
     >>> 'Project' in list_addable(self.portal)
     True
 
 We test the same with a project manager.
 
     >>> self.setRoles(['Projectmanager'])
-    >>> def list_addable(context):
-    ...     allowed = context.getAllowedTypes()
-    ...     addable = context.getAddableTypesInMenu(allowed)
-    ...     return [ad.Title() for ad in addable]
     >>> 'Project' in list_addable(self.portal)
     True
 

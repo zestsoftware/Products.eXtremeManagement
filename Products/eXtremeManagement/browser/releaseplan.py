@@ -58,10 +58,18 @@ class ReleaseplanView(ProjectView):
       ...                   getObject=lambda: None, UID='1234')
       >>> from pprint import pprint
       >>> result = view.iterationbrain2dict(brain)
+
+    On Plone 3, 'locked' is 0 or 1, on Plone 4 it is False or True.
+    Let's unify that and check the result.
+
+      >>> if result['locked'] == 0:
+      ...     result['locked'] = False
+      ... elif result['locked'] == 1:
+      ...     result['locked'] = True
       >>> pprint(result)
       {'brain': <Products.eXtremeManagement.browser.releaseplan.MockBrain ...>,
        'description': 'desc',
-       'locked': 0,
+       'locked': False,
        'stories': [],
        'title': 'title',
        'uid': '1234',

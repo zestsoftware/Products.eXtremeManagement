@@ -52,7 +52,6 @@ class Story(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (OrderedBaseFolder.__implements__, )
     implements(IXMStory)
 
     # This name appears in the 'add' box

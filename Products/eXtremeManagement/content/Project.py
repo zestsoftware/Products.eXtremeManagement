@@ -57,7 +57,6 @@ class Project(OrderedBaseFolder):
     """
     """
     security = ClassSecurityInfo()
-    __implements__ = (OrderedBaseFolder.__implements__, )
     implements(IXMProject)
 
     # This name appears in the 'add' box

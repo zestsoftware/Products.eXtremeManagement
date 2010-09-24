@@ -124,6 +124,6 @@
  </variable>
  <script script_id="sendResponseEmail"
          type="External Method" filename=""
-         module="Poi.poi_response_workflow_scripts"
+         module="eXtremeManagement.workflow_scripts"
          function="sendResponseEmail"/>
 </dc-workflow>
