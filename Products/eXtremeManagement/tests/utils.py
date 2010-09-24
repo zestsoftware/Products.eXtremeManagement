@@ -18,6 +18,12 @@ def createBooking(container, id=id, hours=0, minutes=0):
 
 
 def list_addable(context):
+    if hasattr(context, 'getAddableTypesInMenu'):
+        # Plone 3
+        addable = context.getAddableTypesInMenu(context.allowedContentTypes())
+        return u', '.join([ad.Title() for ad in addable])
+    # Plone 4.  This gives one test failure; there should be a better
+    # way to check this, preferably working in both Plone 3 and 4.
     menu = getUtility(IBrowserMenu, name='plone_contentmenu_factory',
                       context=context)
     menu_items = menu.getMenuItems(context, context.REQUEST)
