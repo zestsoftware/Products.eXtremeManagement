@@ -5,6 +5,11 @@ History
 2.1a2 (unreleased)
 ------------------
 
+- In the employees_overview also list members that are Employee
+  because they are in a group that has the Employee role.  Patch by
+  Yuri and Mauro.
+  [maurits]
+
 - In the employees_overview make the Employee name a link to see the
   task_overview for that Employee.  Patch by Yuri and Mauro.
   [maurits]

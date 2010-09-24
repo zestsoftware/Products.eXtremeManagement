@@ -138,5 +138,11 @@ class EmployeesView(BrowserView):
         for userid, loginname in roleman.listAssignedPrincipals('Employee'):
             if acl_users.getUser(userid):
                 employees.append(userid)
-        employees.sort()
+            elif acl_users.getGroup(userid):
+                for userid in acl_users.getGroup(userid).getMemberIds():
+                    if acl_users.getUser(userid):
+                        employees.append(userid)
+
+        # Manage duplicate entries and sorting:
+        employees = sorted(set(employees))
         return employees
