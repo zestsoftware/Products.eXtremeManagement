@@ -2,7 +2,7 @@ History
 =======
 
 
-2.1a1 (unreleased)
+2.1a1 (2010-09-24)
 ------------------
 
 - Added Plone 4 compatibility, while keeping Plone 3 compatibility.
