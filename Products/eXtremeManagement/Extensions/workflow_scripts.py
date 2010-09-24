@@ -143,7 +143,7 @@ def sendResolvedMail(self, state_change, **kw):
         # Plone 4
         return
     # Plone 3
-    return poi_issue_workflow_scripts.sendResolvedMailEmail(
+    return poi_issue_workflow_scripts.sendResolvedMail(
         self, state_change, **kw)
 
 
