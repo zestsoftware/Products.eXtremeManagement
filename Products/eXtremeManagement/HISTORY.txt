@@ -2,8 +2,13 @@ History
 =======
 
 
-2.0.5 (unreleased)
+2.1a1 (unreleased)
 ------------------
+
+- Added Plone 4 compatibility, while keeping Plone 3 compatibility.
+  May have a few rough edges and has two failing tests on Plone 4
+  (including one in xm.tracker), so use with care.
+  [maurits]
 
 - Avoid TraversalError in the xm.tracker when taskbrain2dict throws an
   AttributeError for a brain that fails getting its object.
