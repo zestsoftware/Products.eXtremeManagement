@@ -11,6 +11,12 @@ logger = logging.getLogger("eXtremeManagement")
 logger.debug('Start initialization of product.')
 XMMessageFactory = MessageFactory('eXtremeManagement')
 
+# Get KSS portal status messages translated correctly.  This is only
+# used in Plone 3; see configure.zcml.  Not sure yet if this is needed
+# in Plone 4.
+from Products.PlacelessTranslationService.utility import PTSTranslationDomain
+xmdomain = PTSTranslationDomain('eXtremeManagement')
+
 # Enable experimental.catalogqueryplan by importing it.
 try:
     import experimental.catalogqueryplan

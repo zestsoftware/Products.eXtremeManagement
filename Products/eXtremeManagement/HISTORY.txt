@@ -5,6 +5,10 @@ History
 2.1a2 (unreleased)
 ------------------
 
+- Get KSS portal status messages translated correctly again in Plone
+  3.  Not used in Plone 4; not sure yet if this is needed there.
+  [maurits]
+
 - In the employees_overview also list members that are Employee
   because they are in a group that has the Employee role.  Patch by
   Yuri and Mauro.

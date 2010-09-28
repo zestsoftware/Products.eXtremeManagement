@@ -4,6 +4,15 @@
 
   <include file="permissions.zcml" />
 
+  <!-- Fix translation of kss portal messages -->
+
+  <!-- Only working (and needed) in Plone 3.  Well, not sure if it is
+       needed in Plone 4 still, could not test it yet: -->
+  <utility
+      zcml:condition="not-installed plone.app.upgrade"
+      component="Products.eXtremeManagement.xmdomain"
+      name="eXtremeManagement" />
+
   <!-- include dependent packages -->
   <include package="xm.booking" />
   <include package="kss.plugin.cns" />
