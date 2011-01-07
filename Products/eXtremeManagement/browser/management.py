@@ -73,7 +73,7 @@ class IterationListBaseView(XMBaseView):
         estimate = brain.estimate
         actual = brain.actual_time
         obj = brain.getObject()
-        wf_id = 'eXtreme_Iteration_Workflow' # fallback
+        wf_id = 'eXtreme_Iteration_Workflow'  # fallback
         wfs = self.workflow.getWorkflowsFor(obj)
         if len(wfs):
             wf_id = wfs[0].id
@@ -83,19 +83,19 @@ class IterationListBaseView(XMBaseView):
             if item['action'] == 'complete':
                 completion_date = item['time']
         returnvalue = dict(
-            iteration_url = brain.getURL(),
-            iteration_title = brain.Title,
-            iteration_description = brain.Description,
-            icon = brain.getIcon,
-            man_hours = brain.getManHours,
-            raw_estimate = estimate,
-            estimate = formatTime(estimate),
-            raw_actual = actual,
-            actual = formatTime(actual),
-            start_date = obj.getStartDate(),
-            end_date = obj.getEndDate(),
-            completion_date = completion_date,
-            brain= brain,
+            iteration_url=brain.getURL(),
+            iteration_title=brain.Title,
+            iteration_description=brain.Description,
+            icon=brain.getIcon,
+            man_hours=brain.getManHours,
+            raw_estimate=estimate,
+            estimate=formatTime(estimate),
+            raw_actual=actual,
+            actual=formatTime(actual),
+            start_date=obj.getStartDate(),
+            end_date=obj.getEndDate(),
+            completion_date=completion_date,
+            brain=brain,
         )
         returnvalue.update(self.extra_dict(obj, brain))
         return returnvalue
@@ -104,9 +104,9 @@ class IterationListBaseView(XMBaseView):
         """Get a dict with info from this project brain.
         """
         returnvalue = dict(
-            url = brain.getURL(),
-            title = brain.Title,
-            description = brain.Description,
+            url=brain.getURL(),
+            title=brain.Title,
+            description=brain.Description,
         )
         return returnvalue
 
@@ -172,9 +172,9 @@ class InvoicingView(IterationListBaseView):
             info = self.iterationbrain2dict(iterationbrain)
             self._invoiced_total += float(iterationbrain.estimate)
             project = aq_parent(aq_inner(iterationbrain.getObject()))
-            project_info = dict(url = project.absolute_url(),
-                                title = project.Title(),
-                                description = project.Description())
+            project_info = dict(url=project.absolute_url(),
+                                title=project.Title(),
+                                description=project.Description())
             info.update(project_info)
             results.append(info)
 
@@ -241,9 +241,9 @@ class InProgressView(IterationListBaseView):
         """ Return a list on invoiced iterations
         """
         self.billable = self.request.get('type', 'billable')
-        cfilter = dict(portal_type = 'Iteration',
-                       review_state = 'in-progress',
-                       getBillableProject = self.viewing_billable())
+        cfilter = dict(portal_type='Iteration',
+                       review_state='in-progress',
+                       getBillableProject=self.viewing_billable())
         iterationbrains = self.catalog.searchResults(cfilter)
         results = []
         for iterationbrain in iterationbrains:
@@ -251,9 +251,9 @@ class InProgressView(IterationListBaseView):
             self.add_to_total(info)
             self._actual += info['raw_actual']
             project = aq_parent(aq_inner(iterationbrain.getObject()))
-            project_info = dict(url = project.absolute_url(),
-                                title = project.Title(),
-                                description = project.Description())
+            project_info = dict(url=project.absolute_url(),
+                                title=project.Title(),
+                                description=project.Description())
             info.update(project_info)
             results.append(info)
 
