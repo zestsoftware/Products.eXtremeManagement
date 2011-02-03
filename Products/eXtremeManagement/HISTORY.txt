@@ -2,7 +2,7 @@ History
 =======
 
 
-2.1a2 (unreleased)
+2.1a2 (2011-02-03)
 ------------------
 
 - Added upgrade step to recatalog the Stories, as their size_estimate
