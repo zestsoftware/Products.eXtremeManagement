@@ -1,3 +1,5 @@
+import logging
+
 from Products.ATContentTypes.lib.constraintypes import ENABLED
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import ISelectableConstrainTypes
@@ -119,6 +121,34 @@ def zap_old_xm_portlets(site, logger):
     for key in to_delete:
         del manager[key]
         logger.info("Removed old-style %s portlet", key)
+
+
+def recatalog_stories(site, logger=None):
+    """Recatalog all stories.
+
+    We want to fix the size_estimate, which was broken for Stories
+    added or changed after using xm.booking 2.0.
+
+    Actually, we want to reindex all content having the ISizeEstimate
+    interface, for good measure.
+    """
+    if logger is None:
+        # Called as upgrade step: define our own logger.
+        logger = logging.getLogger('eXtremeManagement')
+    catalog = getToolByName(site, 'portal_catalog')
+    from xm.booking.timing.interfaces import ISizeEstimate
+    iface = ISizeEstimate.__identifier__
+    brains = catalog.searchResults(object_provides=iface)
+    logger.info("Recataloging %d stories...", len(brains))
+    for num, brain in enumerate(brains):
+        try:
+            story = brain.getObject()
+        except (AttributeError, KeyError):
+            logger.warn("Could not get object for %s", brain.getURL())
+            continue
+        story.reindexObject()
+        if not num % 100:
+            logger.info("Recatalog progress %d (%d).", num, len(brains))
 
 
 def importVarious(context):

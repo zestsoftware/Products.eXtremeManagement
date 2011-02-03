@@ -22,4 +22,13 @@
       handler="Products.eXtremeManagement.setuphandlers.upgrade_from_16_to_20"
       profile="Products.eXtremeManagement:default"/>
 
+  <genericsetup:upgradeStep
+      zcml:condition="installed Products.GenericSetup.upgrade"
+      title="Recatalog Stories to fix their size_estimate"
+      description="The size_estimate in the catalog was broken when using xm.booking 2.0"
+      source="2100"
+      destination="2101"
+      handler="Products.eXtremeManagement.setuphandlers.recatalog_stories"
+      profile="Products.eXtremeManagement:default"/>
+
 </configure>

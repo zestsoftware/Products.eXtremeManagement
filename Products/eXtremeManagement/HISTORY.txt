@@ -5,6 +5,10 @@ History
 2.1a2 (unreleased)
 ------------------
 
+- Added upgrade step to recatalog the Stories, as their size_estimate
+  in the catalog was broken when using xm.booking 2.0.
+  [maurits]
+
 - Get KSS portal status messages translated correctly again in Plone
   3.  Not used in Plone 4; not sure yet if this is needed there.
   [maurits]
