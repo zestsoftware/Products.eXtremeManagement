@@ -9,7 +9,7 @@ long_description = (
     readme + '\n\n' + install + '\n\n' + authors + '\n\n' + history)
 
 setup(name='Products.eXtremeManagement',
-      version='2.1.a3.dev0',
+      version='2.1a3.dev0',
       description="Project administration which supports the eXtreme Programming methodology.",
       long_description=long_description,
       classifiers=[
