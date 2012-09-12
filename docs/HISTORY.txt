@@ -1,0 +1,917 @@
+Ancient history
+===============
+
+For more recent changes, see CHANGES.rst.
+
+
+2.0.4 (2010-07-05)
+------------------
+
+- Depend on Products.Poi<2.0dev to avoid pulling in Plone 4.
+  Fixes http://plone.org/products/extreme-management-tool/issues/211
+  [maurits]
+
+
+2.0.3 (2010-05-01)
+------------------
+
+- Poi portlet: show more of the title of possible stories for creating
+  a PoiTask in.
+  Fixes http://plone.org/products/extreme-management-tool/issues/208
+  [maurits]
+
+- In the Project Links portlet, show a link to the first PoiTracker;
+  fall back to an item with the id 'issues'.
+  Fixes http://plone.org/products/extreme-management-tool/issues/207
+  [maurits]
+
+- Show the simple tasklist in more cases, like when you view the
+  global task_overview when you only have the Employee role locally on
+  a Project.  Do show less detail then.
+  Fixes http://plone.org/products/extreme-management-tool/issues/202
+  [maurits]
+
+- Give Employees the 'Copy or Move' permission also on closed Projects.
+  Refs http://plone.org/products/extreme-management-tool/issues/186
+  [maurits]
+
+- Also show Iterations in the 'for own account' state in the finished
+  iterations overview, and show a link to that in the iterations
+  portlet.  Fixes #178
+  [maurits]
+
+- Fixed i18n inconsistencies.
+  [maurits]
+
+- Fixed hard-coded WF ID for iteration CTs.  This should fix #204.
+  http://plone.org/products/extreme-management-tool/issues/204/view
+  [seletz]
+
+- Added edit link+icon on manage_simple_tasklist table to have an
+  short link to to the edit form of the task. [jensens]
+
+- Title of story in offer_view is now a link to the story's view. [jensens] 
+
+- Started german translation. Refinement follows. [jensens] 
+
+- Fixed issue of disappearing iterations in the planned, finished, invoiced
+  and inprogress iteration view. Sorting on fields that have no value will
+  remove those items from the result. Alse the code has been refactored by
+  adding memoizes and moving portal_state to xmbase. [jladage]
+
+
+2.0.2 (2009-05-05)
+------------------
+
+- Added position:relative on #schedule-field to fix the overflow in IE7.
+  [laurens]
+
+- Removed schedule-bumber tag and css: it messed up IE7/IE8. [laurens]
+
+- css and additional html for iteration-slider. [laurens]
+
+- Fix several problems with automatically closing iterations:
+
+  - First check for duplicate story IDs in the new iteration.
+
+  - Remove bookings from new iteration instead of the current.
+
+  - Changed the permission for the close-iteration view to
+    AddIteration instead of Manage Portal.
+
+  [fred + mark]
+
+- Reinstated the xm.story.detailsbox provider as the canonical spot
+  for putting the story details box.  Previously it was there and in
+  the story_view.pt, which meant there were subtle differences when
+  creating a booking (provider was updated) and just viewing the page
+  (the story_view.pt was used).  All has been moved to the provider.
+  [maurits]
+
+- Allow starting a Task when it has no assignees, so Employees can
+  pick their Tasks.  We plan to create a view to make that picking
+  easier, or perhaps to bulk assign some tasks.  [maurits]
+
+- Refactor the tests so we can have doctests being unit tests. [mark]
+
+- Removed all traces of the show_task_count option for the story list,
+  as since the last commit it was always set to False.  [maurits+mike]
+
+- In the project view, show the totals of the current iteration(s).
+  In the simple story list, fix the colspan.  [maurits+mike]
+
+- Do not give Customers (or Contributors) any permissions on
+  bookings.  [maurits+mike]
+
+- For a Customer that is smart enough to traverse to a Task manually,
+  we only show the title and nothing more.  [maurits+mike]
+
+- Protect the Add task form in the story view with the Add Task
+  permission, so for example Customers are not shown this option.
+  [maurits+mike]
+
+- Do not show Customers the total estimated hours of all tasks in a
+  story.  [maurits+mike]
+
+- Do not show the task details in the expanded story view for
+  Customers.  [maurits+mike]
+
+- Rename 'Can track projects' to include 'customer' so that it is obvious
+  that this is the role to assign to customers who should have access to XM.
+  Updated several translations and added the translation labels for the
+  XM specific roles [laurens+fred]
+
+- Added permission xm.ViewDetails (eXtremeManagement: View Details).
+  In the rolemap.xml we give this permission to Manager,
+  Projectmanager and Employee.  The task list in the story view is now
+  protected with this permission.  [maurits+mike]
+
+- Added dependency on collective.autopermission.  [maurits+mike]
+
+- Do not give Contributors the Modify portal content permission in the
+  booking workflow.  Customers that for some reason also have the
+  Contributor role could edit bookings.  Note: needs an update of the
+  security settings in the portal_workflow.  [maurits+mike]
+
+- Fixed iteration closing tests by using properties.
+  Fixed 'TypeError: unindexable object' in iteration closing view.
+  [maurits]
+
+
+2.0.1 (2009-03-22)
+------------------
+
+- Fixed http://plone.org/products/extreme-management-tool/issues/168
+  In the planned iterations view you can now add new iterations [jladage]
+
+- Fixed http://plone.org/products/extreme-management-tool/issues/166 [jladage]
+
+- When viewing a task in a completed story would show you a login form. This
+  was caused by removing the modify portal content permission for manager
+  [jladage]
+
+- Fixed http://plone.org/products/extreme-management-tool/issues/167 [jladage]
+
+- Updated README.txt with the time tracker and iteration closing feature. [jladage]
+
+- Added setup.py with aliases to upload to pypi and plone.org [jladage]
+
+
+2.0 (2009-03-15)
+----------------
+
+- Project managers can now close an iteration and automate copying over unfinished
+  stories, including unfinished tasks. [jladage]
+
+- Updated Projects and Story workflows.  [maurits+jladage]
+
+- Fixed Typo in permission to guard editing the budget hours. [jladage]
+
+- Fixed bug in pending stories portlet. [maurits+jladage]
+
+- Added extra check in poi portlet to only show when there are open
+  issues.  Fixes issue 154.  [maurits]
+
+- Actually use the description textarea from the submitted add task
+  form.  [maurits]
+
+
+2.0rc2 (2009-01-26)
+-------------------
+
+- Only display transition warning icon when there are messages. [jladage]
+
+- Only display project portlet is there are any links to show. [jladage]
+
+- Minor changes to translations. [jladage]
+
+
+2.0rc1 (2009-01-25)
+-------------------
+
+- Fixed workflow messages in task view and add i18n. [jladage]
+
+- Added translations for the two templates in xm.booking [jladage]
+
+- Fixed issue 100, list of projects are loaded on DOM load. [reinout +
+  mark]
+
+- Show images and files from the story in the offer view.  [maurits+fred]
+
+- Fixed another part of issue 131: by committing subtransactions more
+  often, less ConflictErrors occur and their impact is less. This
+  should speed things up at least a bit. [reinout + mark]
+
+- Moved the startStory and startIteration scripts zo they are
+  triggered *before* the transition of the story/iteration. [reinout +
+  mark]
+
+- Gave our custom roles (Customer, Employee, Projectmanager) some of
+  the permissions defined by CMFEditions.  Case in point: on the Zest
+  projects site we started using versioning for Stories, and a
+  non-Manager/Owner could no longer edit a Story... [maurits]
+
+- Fixed issue 131 for changing the workflow state of a task in the
+  story view. Other workflow changed still need attention; they may be
+  the result of ConflictErrors. [reinout + mark]
+
+- Fixed issue 112, when reactivating a task in a completed story, the story is
+  set to ' in-progress'. [jladage]
+
+- Fixed issue 111, customers can now only view issue of their own trackers.
+  [jladage]
+
+- Fixed issue 113, customers and employees can now add files and images to the
+  story. [jladage]
+
+- Fixed issue 138, the person doing the transition will not receive an e-mail
+  notification. [jladage]
+
+- Fixed issue 120, Current Iterations table has now a column 'worked hours'
+  and updated translations. [jladage]
+
+- Fixed issue 134, releaseplan now uses id attributes that start with story-*
+  [jladage].
+
+- Fixed issue 136, the iteration portlet only displays links to current,
+  planned and finished iterations if there is something to show. [jladage]
+
+- Fixed issue 139, the dropdown with related tasks in the poi portlet has now
+  a fixed width. [jladage]
+
+- The listing of In-Progress iterations now has links for billable and
+  unbillable iterations. [jladage]
+
+- Added listing of iterations that have been invoiced this month. [jladage]
+
+- In the releaseplan you can now drag and drop stories to/from the unplanned
+  stories table. [jladage]
+
+
+2.0beta3 (2009-01-11)
+---------------------
+
+- Fixed bug in the 'my projects' listing in the project portlet. [jladage]
+
+
+2.0beta2 (2009-01-09)
+---------------------
+
+- Refactored the add_task KSS - it now collapses again. [simon]
+
+- Added totals to the finished iterations view and (total) estimate to
+  the planned iterations view. [reinout + mark]
+
+- Removed My task listing from iteration view, to allow role based caching.
+  [jladage]
+
+- Commenting has been disabled. [jladage]
+
+- Add task KSS is now also collapseable. [simon, fred]
+
+- Use plone_tools where possible, getting rid of getToolByName.
+
+
+
+2.0beta1 (2009-01-08)
+---------------------
+
+- Fixed translations
+
+- The my project dropdown now displays all active projects for ProjectManagers.
+  [jladage]
+
+- Removed personalized My todo list from iteration view. [jladage]
+
+- When no start or end date is provided, simply a dash is displayed. [jladage]
+
+- The release plan was guarded with Manage Portal permission, this is now
+  set to the View permission. [jladage]
+
+- The 'add task' link is now only displayed when the user has the correct
+  permission. [simon]
+
+- Removed the Project Administration templates and view. [jladage]
+
+- Removed the old update_hours_form, we now have the time tracker. [jladage]
+
+- Corrected the available method for the tasks portlet, so anonymous
+  doesn't see it. [jladage]
+
+- Added site action 'Projects' to link to the project website, this way
+  we are consistent with the time tracker site actions. [jladage]
+
+
+
+2.0alpha3 (2009-01-07)
+----------------------
+
+- The Add task form at the story view is now loaded using kss. By default no
+  assignee is selected.[jladage]
+
+- Updated the dutch translations.[jladage]
+
+- Added a link to a list of 'Planned iterations' to the iterations portlet.
+  [jladage]
+
+- Cleaned up a number of templates that are not used anymore,
+  project_administration, customer_view, etc. [jladage]
+
+- Current iteration link in the Iterations portlet now provides a correct URL.
+  In addition if two iterations are in the state 'in-progress' a status message
+  will guide you to the other iteration. [jladage]
+
+- Added view that lists finished (=invoiced or completed) iterations.
+  [reinout]
+
+- Setuphandlers.py now zaps several known old-style portlets.  [reinout]
+
+- Replaced story estimation portlet by a new-style one.  [reinout]
+
+- Removed obsolete portlet_my_projects portlet.  [reinout]
+
+- Added better documentation to portlets.xml, unified names/titles of portlets
+  in various places. [reinout]
+
+- Added new-style link-to-poi-issue portlet as replacement for part of the
+  old-style poi portlet. [reinout]
+
+- Added new-style poi_creation portlet as replacement for part of the
+  old-style poi portlet. [reinout]
+
+- Fixed possible DiscussionNotAllowed error when expanding a Story.
+  [maurits]
+
+- Now refreshing story details box provider when quick-adding a Task.
+  [maurits]
+
+- Changed story details box into a provider (viewlet manager without
+  viewlets) so we can refresh that provider with KSS.  [maurits]
+
+- Moved "eXtremeManagement: View Tracker" permission from xm.tracker
+  to Products.eXtremeManagement as we do not actually use that
+  permission in the xm.tracker package but only in actions.xml of
+  Products.eXtremeManagement.  This also means we do not have to have
+  a dependency on xm.tracker (at least currently). [maurits]
+
+- Fixed issue #127 - "Add task" widget breaks if there aren't Employees
+  http://plone.org/products/extreme-management-tool/issues/127
+  [maurits]
+
+- Renamed reorder_stories to releaseplan [jladage].
+
+- The time tracker is now guarded by a special permission. As a result only
+  users with the Projectmanager or Employee assigned globally will be able to
+  use the timetracker. [jladage]
+
+- The invoicing view now only shows projects that are billable. This change
+  requires that the getBillableProject index has to be reindexed manually [jladage]
+
+- Instead of sending an email to new assignees of a Task whenever that
+  Task is edited, only send an email when the Task gets transitioned
+  to the to-do state.  Also made the email sending more robust in the
+  face of special characters, like Czech.  This refs:
+  http://plone.org/products/extreme-management-tool/issues/92
+  http://plone.org/products/extreme-management-tool/issues/118
+  http://plone.org/products/extreme-management-tool/issues/124
+  [maurits]
+
+- Enable optional experimental.catalogqueryplan usage. This needed a fix in
+  some of the tests as experimental.catalogqueryplan caches daterange results
+  in REQUEST. Add the egg to buildout's egg list to get a speed increase.
+  [reinout]
+
+- Show the number of comments of a Story in the story details viewlet
+  (when expanding the story in the iteration view).  Fixes
+  http://plone.org/products/extreme-management-tool/issues/87
+  [maurits]
+
+- Employees overview: show the strict percentages and totals for the
+  week, meaning: count only the days in this month.  The totals and
+  percentages that really count the whole week are now available as a
+  tooltip.  This is pending refactoring into two views as Managers and
+  Employees have a different wish list here.  [maurits]
+
+- Moved employees_overview page here from xm.theme.  [maurits]
+
+- Fix: Only add the billable hours of a day to the week/month when
+  some work (billable or not) has been done on that day.  [maurits]
+
+- In the migration from ProjectFolders/CustomerFolders to normal
+  Folders, set the immediately addable types too.  Note that Customer
+  content type is not addable by default anymore, so in the migrated
+  CustomerFolder you can only add a Customer when you allow Customers
+  to be added globally.  [maurits]
+
+- Refactored KSS, CSS, JS and Python for workflow gadgets. Removed duplicated
+  ids (#task-list-for-story) in favour of existing class (.tasklist_table),
+  added KSS rebinding of workflow menus and stripped redundant CSS. [simon]
+
+- Added /inprogress view for managers that lists all in-progress iterations.
+  [reinout]
+
+- Added /invoicing view for managers that lists all invoicable
+  iterations. [reinout]
+
+- Removed almost all descriptions for Customer as they're useless ("enter
+  address" description for an "address" field). Some of the descriptions were
+  wrong anyway. Fixes
+  http://plone.org/products/extreme-management-tool/issues/71 [reinout]
+
+- Added checks whether start/endDate are set as toLocalizedTime(None) returns
+  today as value. So unset start/end dates looked like today. Fixes
+  http://plone.org/products/extreme-management-tool/issues/81 [reinout]
+
+- Corrected my CSS/KSS bug in the story workflow state changer, re:
+  http://plone.org/products/extreme-management-tool/issues/78 [simon]
+
+- Added more of our content types to the kupu collections and
+  linkables.  Fixes
+  http://plone.org/products/extreme-management-tool/issues/72
+  [maurits]
+
+- Add an empty entry to the xm.add_task_form viewlet. Now one can
+  quickly add tasks without having to assign anyone to it. [mark]
+
+
+2.0 alpha 2 (2008-09-17)
+------------------------
+
+- Fixed UnicodeDecodeError in the state change viewlet.  [maurits]
+
+- Cloned and tweaked the CSS for our clone of the Plone authoring
+  actionMenu.  [simon]
+
+
+2.0 alpha (2008-09-16)
+----------------------
+
+- Added 'locked status' logic so the release planning view can display it.
+  Cleaned up release planning view logic, icluding class generation.
+  Corrected relevant tests.
+
+- Added CSS and exception-hardening to our previous work on reorderable
+  stories - on failing to move a story we redirect to the story so it can be
+  fixed. [reinout+simon]
+
+- Made the eXtremeManagement PTSTranslationDomain available as
+  zope.i18n domain.  This makes portal status messages from kss
+  translatable again.  [maurits]
+
+- Got the actual drag/drop to work. Needs more work though. [reinout]
+
+- Started the view for reordering stories. [reinout+simon]
+
+- Made the review state of tasks in the simple task list overview be
+  a dropdown list with workflow transitioning via KSS, just like the
+  default Plone review state.  [maurits+simon]
+
+- @Lazy optimizations in browser/tasks.py. [reinout]
+
+- Show link to xm time tracker in site actions when the xm.tracker
+  package is available.  [maurits]
+
+- Include zcml of xm.tracker when the package is there.  [maurits]
+
+- Created @@xm_global_state view, with currently one method
+  has_tracker which is True when the xm.tracker package is
+  available.  [maurits]
+
+- Treating booking's description as webintelligenttext. [reinout]
+
+- Cleaned up redundancy in task_review template (issue #75).  [simon]
+
+- Merged fix from the time tracker branch (issue #75): Changed
+  task_overview template and tasks.py to display localised workflow
+  state labels.  [simon]
+
+- Merged fix from the time tracker branch: catch a divide by zero
+  error.  [reinout]
+
+- Merged the testing changes from the zest-timetracker branch.
+  [maurits]
+
+- Added Products.Poi to the install_requires in setup.py as Poi now
+  has eggs for both branch 1.1 and trunk.  [maurits]
+
+- made the print view for offer look nicer. Added new dutch translation.
+  [mirella]
+
+- Show attachments (Image, File, most importantly Story) in the
+  project view, but only when xm.theme is not available, as that has
+  a portlet and another view for this info.  (Merged from
+  branches/1.6, r69421 and r69426.)
+
+- Added tests for style conditions, which lead me to a bug in the logic. In
+  the booking_month view, in case someone worked less than 40 hours in a week
+  that total will be highligted. [jladage]
+
+- Fix a Plone 3.0 support issue in the javascript registry.[jladage]
+
+- fixed name typo in css [mirella]
+
+- minor css changes to booking_month.pt, added translations and
+  description for employees overview. Added odd color ad padding to
+  employees overview, generated i18ndude and added the missing dutch
+  translations and update_hours_form placed bookingsdate next to title.
+  <th> has nowrap and left/right padding.[mirella]
+
+- Now loading the zcml from kss.plugin.yuidnd automatically, so that
+  package does not need to be included in [instance]zcml of buildout.cfg
+  anymore. [maurits]
+
+
+1.6.1 (2008-07-31)
+------------------
+
+2008-07-30 - mirella
+
+  - removed hours/minutes from iteration view of start and enddate
+    of an iteration.
+
+2008-07-30 - jladage
+
+  - bookings per month now doesn't highlight days with less than 8 hours.
+    Instead it highlight if the hours per week is below 40 hours and if the
+    billable percentage for a week is below 50%.
+
+2008-07-23 - markvl
+
+  - Made the check for customers in the myprojects view more
+    robust. Employees which also have a customer role are no longer
+    seen as customers.
+
+2008-07-23 - mirella
+  - added translations
+  - show in iteration view the budget left in a row below the  total.
+  - removed actual hours and budget left hours from the table above the stories.
+  - fixed width of the table
+
+2008-07-17 - mirella
+  - changed width of storylist table in 97% for fixing IE7 problem of overlap.
+
+2008-07-17 - jladage
+
+  - Added migration for content types 'ProjectFolder' and 'CustomerFolder'
+    back to regular folders.
+  - Added a note about upgrading from older versions than 2.0.
+  - Marked all code related to the following content types with BBB for easy
+    cleanup in the next release.
+
+1.6 final (2008-07-16)
+----------------------
+
+- Official Release, no changes since rc10
+
+
+1.6 rc10 (2008-07-09)
+---------------------
+
+- Fixed name of permissions that had a rogue slash at the end.  Silly
+  me.  [maurits]
+
+- Fixed typos that referred to a different spelling of the
+  Projectmanager role.  [maurits]
+
+
+1.6 rc9 (2008-06-30)
+--------------------
+
+2008-06-26 - seletz
+
+  - browser/xm_kss.py: Only update story viewlets in story context.
+  - browser/viewlets/manager.py: delegate icon fetching to the view, and do it
+    there such that it only returns the icon name.  That fixes the
+    icon-of-iteration-is-not-found-if-site-is-named-plone bug.
+  - browser/xm_kss.py: Only update viewlet for task bookings if we're actually
+    in task context.  Otherwise we'll get a ComponentLookupError if the story
+    gets activated (tasks get automatically transitioned from new->activated).
+
+
+1.6 rc8 (2008-06-26)
+--------------------
+
+2008-06-26 - seletz
+
+  - skins/eXtremeManagement/story_view.pt: Render the task list even
+    if empty; otherwise the KSS-ified task adding cannot refresh the
+    task list.
+  - browser/xm_kss.py: fix comparsion of WF event states to fix a
+    ComponentLookupError if adding tasks using KSS in a story.
+  - added mr_savage and myself to the AUTHORS.txt (no CONTRIBUTORS.txt?)
+
+2008-06-23 - reinout
+
+  - 1.6 rc7 release
+
+2008-06-16 - mr_savage
+
+  - skins/task_overview.pt
+    changed tal to use urlparameter memberid when constructing links
+    to tasks in different states if param present in
+    request
+
+2008-06-16 - mr_savage
+
+  - skins/booking_details.pt
+    changed tal to use urlparameter memberid when constructing links
+    to previous / current month if param present in
+    request
+
+2008-06-16 - mr_savage
+
+  - skins/booking_year.pt
+    changed tal to use urlparameter memberid when constructing links
+    to previous / next year if param present in
+    request
+
+2008-06-16 - mr_savage
+
+  - skins/booking_month.pt
+    changed tal to use urlparameter memberid when constructing links
+    to booking_year, previous-month, current-month if param present in
+    request
+
+2008-06-13 - mr_savage
+
+  - browser/poi.py get_open_issues_in_project() now internally
+      calls a multi adapter ( context, request ) to get issues
+  - adapters.py
+      default implementation of IXMIssueGetter
+  - interfaces/xmissuegetter.py IXMIssueGetter interface
+  - configure.zcml
+       adapter registration
+
+2008-06-10 - mr_savage
+
+  - content/iteration.py set the default for the startDate to current
+    DateTime
+
+2008-06-06 - maurits
+
+  - Split single kss event handler on the IAfterTransitionEvent into a
+    story and task specific one.
+
+  - Used xm.AddTask in a few spots.
+
+  - Added permissions.zcml for defining permissions like xm.AddProject.
+
+  - Register event handler to update some viewlets on the story page
+    when that story gets a workflow transition.
+
+
+2008-06-06 - maurits + jladage
+
+  - Added getLayout method to Project.py.  This exists to please the
+    discussion form.  Needed because we do not mix in the
+    DynamicViewFTI class.  Note: this is also used by e.g. Stories by
+    using acquisition.
+
+
+2008-06-05 - maurits
+
+  - Do not load the details for all stories in the project or
+    iteration view.  Instead use KSS to show those details when
+    wanted.  eXtreme.js is no longer needed, but can't be properly
+    removed from the javascript registry with GenericSetup.
+
+  - Fixed own mistake in generateUniqueId where this would fail if
+    there were no tasks in the story yet.
+
+2008-05-20 - maurits
+
+  - Remove empty interfaces/IXMCustomer.py and accompanying Zope 3
+    bridge.
+
+  - Lots of pep8/pyflakes cleanup.
+
+  - Remove the unused migration functions from setuphandlers.py.
+
+2008-05-15 - maurits
+
+  - In install.py do not notify the quick installer that we have
+    installed our own GS profile; meanwhile there were three
+    references to eXtremeManagement, Products.eXtremeManagement and
+    profile-Products.eXtremeManagement in the quick installer in a
+    test site.
+
+  - Removed the upgrade profile for moving to 3.0 (that was removing a
+    few actions from content types) as it was confusing for developers
+    and now also for the quick installer.
+
+2008-05-14 - maurits
+
+  - Do not send task emails when updating the task schema, also when
+    not using the (commented out) method in setuphandlers.py.
+
+  - Fixed some bugs around bookings, mostly the detailed bookings view,
+    including fixing some test failures.
+
+2008-03-30 - jladage
+
+  - Added 'billableProject' field to the Project content type. A booking
+    will set the default value according to the projects value.
+
+  - Extended the month_booking view with percentage of billable work, excluded
+    double entries from previous months in total hours and greyed out those
+    cells. If the employee booked less than 8 hours a day it's marked red.
+
+2008-02-25 - jladage
+
+  - Refactored the QuickInstaller code to use Install.py again to make sure
+    our dependencies are installed correctly. Also move the GS profiles
+    of xm.booking and xm.portlets to this profile.
+
+2008-02-25 - mark
+
+  - Change in the iteration workflow so the sharing tab is not shown
+    for iterations and all content contained in them.
+
+2008-02-14 - mark and maurits
+
+  - Replaced the macros in the iteration and story views by providers.
+
+2008-01-28 - mark
+
+  - Make the add task KSS form more robust to also cope with a lack of
+    assignees.
+
+  - While we're at it: also add portal messages to provide feedback to
+    the user when the task is added and when there is no title.
+
+2008-01-21 - mark
+
+  - The offer view has its own browser view class now.
+
+  - In the offer view a story can be edited by a single click on the
+    pencil icon. (That is, is the user has the "Modify portal content"
+    permission on the stories.)
+
+2008-01-20 - jladage
+
+  - Up till now Customers had 'Delete object' and 'Copy and Move' permission
+    with a project. Also the new Offer content type was addable by Customer.
+    These security issues are now corrected. To update your site security,
+    reinstall the product and hit the "Update security setting" in the
+    portal_workflow.
+
+20080-01-14 - mark
+
+  - It is now also possible to directly assign someone to a task when
+    using the form at the bottom of the story view.
+
+  - Made several strings in page templates i18n aware.
+
+2008-01-14 - jladage
+
+  - Renamed non_iterations to attachment, because we filter our both
+    iterations and offers. Minor changes to the project view, including
+    translations
+
+2008-01-11 - joris and mark
+
+  - Additional content type: Offer.
+    To bundle all the initial stories when a project starts.
+
+2008-01-02 - maurits
+
+  - Bugfix: no bookings were shown for January in the booking month
+    overview.
+
+2007-12-21 - joris
+
+  - Moved the graph option from the config.py to the xm_properties
+    and optimistically renamed it project_chart in anticipation of
+    more charts
+
+  - Dynamically scale the labels for the y-axis so it shows human
+    readable steps like 1, 2, 5, 10, 20, ...
+
+2007-12-12 - joris
+
+  - Added charts to xm tool. Because this is the first release of charts
+    they are disabled by default in the code. To enable the graphs, set
+    GRAPHS to True in the config.py.
+
+  - There is now one view with a chart: the Project view has a estimated
+    hours and worked hours per iteration chart.
+
+2007-12-11 - mark
+
+  - Added a form to the bottom of the story view (using a viewlet) to
+    quickly add multiple tasks.
+
+  - Added a budget field to the project content type and show the hours left
+    on the iteration view (for open iterations).
+
+2007-10-30 - maurits
+
+  - Bugfix: DST bug in the week/month bookings overview and possibly
+    some more.  It adds a good number of tests for that as well.
+
+2007-06-18 - rocky
+
+  - Added UI information to display the reason why a story or task cannot
+    be "activated".
+
+  - Task details table refactored to float to the right along with the
+    new reason-task-cannot-be-activated details.
+
+  - Replaced assignee username information being displayed on the task view
+    with the "nicest" form of the user (ie full name if it exists, otherwise
+    username).
+
+  - Replaced booking "booked by" information being displayed on the task view
+    with the "nicest" form of the user (ie full name if it exists, otherwise
+    username).
+
+2007-05-04 - maurits
+
+  * Merge the mergeable parts of branches/1.2-events:
+
+  - 38656:40204: small start with event handler, big cleanup of tests,
+    add testbrowser tests, use IntDisplayList for Task/Booking
+    hours/minutes.
+
+  - 40226: only the part of this commit that changes doc/create.txt
+    and tests dir: manually fire event.
+
+  - 40256: use e.g. tasks.update(hours=5) instead of other ways to
+    update fields, which helps in triggering a reindex.
+
+  - 40417: add property sheet for eXtremeManagement with GenericSetup,
+    containing HOURS_PER_DAY and MAXIMUM_NOT_COMPLETED_PERCENTAGE that
+    used to be in AppConfig.py
+
+  - 41415:41483: improve the order of the install function and the
+    GenericSetup steps, moving functions from that quick installer to
+    GS.  Add property send_task_mails to our property sheet, which can
+    be set to False when updating the Task schema (which is done
+    during install).
+
+2007-05-03 - jladage
+
+  - Cleanup up license headers in all files
+
+  - Removed unused afterInstall and afterUninstall method
+
+  - Updated schema definitions for Customer, CustomerFolder and
+    ProjectMember.
+
+  - clean up getattrs for __implements__ of all types
+
+  - Move AppConfig.py code to config.py
+
+
+
+2006-05-05 - friessnegger
+
+  - content/story.py
+    getRawEstimate was accessing tasks by calling contentValues()
+    we also want to allow other content apart from tasks in
+    stories so i refactored the code in story
+    to use the new method getStoryTasks that is aware of that.
+
+  - skins/getStateSortedContent.py
+    set the filter on Story and Task objects, to make a story
+    containing other types than tasks beeing displayable.
+    since the script is also used in a project to display stories
+    i added  story as a type too.
+
+
+2006-04-06 - friessnegger
+
+  - tools/xmtool.py:
+    added filtering capability to ``getFilteredIssues``
+
+  - skins/xm_dashboard.pt
+    refactored dashboard using a script rather than the tools-method
+    to be able to call it anywhere in the portal and get all issues
+    and tasks in the current path.
+    dashboard only shows todo issues/tasks ('open', 'in-progress', ...)
+
+2006-03-10 - batlogg, friessnegger
+
+  - added support to assign members out of PAS to tasks
+
+  - refactored Task._get_assignees, Project.getMembers
+
+
+2005-10-23 - jladage
+
+  - Release 1.0
+
+  - fixed permission
+
+  - fixed workflows
+
+
+2005-09-23 - jladage
+
+  - Prepared initial release by merging the agx-itegration branch back to trunk.
+
+  - Added tests package and related classed to the model.
+
+  - Wrote more tests for Setup and Content Types.
+
+  - Fixed calculations
