@@ -1,0 +1,15 @@
+# Sample buildout.cfg.
+# Copy buildout.cfg.in to buildout.cfg and adapt to your situation.
+# Main choices are: plone 3 or plone 4, and use an extra Catalog.fs or not.
+
+[buildout]
+extends =
+## Enable either plone3.cfg or plone4.cfg.
+    plone3.cfg
+#    plone4.cfg
+## Enable catalog.cfg as extra when using an extra data.fs for the catalog.
+#    catalog.cfg
+
+[instance]
+# Use shared-blob=on when using catalog.cfg in combination with plone4.cfg:
+#shared-blob = on

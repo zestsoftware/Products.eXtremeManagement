@@ -5,6 +5,7 @@
 .mr.developer.cfg
 bin
 build
+buildout.cfg
 develop-eggs
 dist
 download
