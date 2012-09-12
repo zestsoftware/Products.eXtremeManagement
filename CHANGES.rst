@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.1a3 (unreleased)
+2.1a3 (2012-09-12)
 ------------------
 
 - Added zope.app.content as dependency.  Helps for Plone 4.2
