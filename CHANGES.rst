@@ -5,6 +5,10 @@ Changelog
 2.1a3 (unreleased)
 ------------------
 
+- Added zope.app.content as dependency.  Helps for Plone 4.2
+  compatibility.
+  [maurits]
+
 - Moved to github:
   https://github.com/zestsoftware/Products.eXtremeManagement
   [maurits]

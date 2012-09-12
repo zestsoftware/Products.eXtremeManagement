@@ -41,6 +41,7 @@ setup(name='Products.eXtremeManagement',
           'Products.Poi',
           'pygooglechart',
           'collective.autopermission',
+          'zope.app.content',
       ],
       entry_points="""
       # -*- Entry points: -*-
