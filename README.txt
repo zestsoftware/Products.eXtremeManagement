@@ -4,6 +4,10 @@ eXtreme Management Tool
 This application provides project administration which supports the
 eXtreme Programming Methodology.
 
+.. contents::
+  
+
+
 Content Types
 -------------
 

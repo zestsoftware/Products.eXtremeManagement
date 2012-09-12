@@ -1,5 +1,5 @@
-History
-=======
+Changelog
+=========
 
 
 2.1a3 (unreleased)
