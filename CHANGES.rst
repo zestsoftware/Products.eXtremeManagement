@@ -6,7 +6,7 @@ Changelog
 ------------------
 
 - Added zope.app.content as dependency.  Helps for Plone 4.2
-  compatibility.
+  compatibility.  But Plone 4 is not officially supported yet.
   [maurits]
 
 - Moved to github:
