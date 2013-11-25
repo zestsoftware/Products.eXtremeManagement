@@ -5,7 +5,9 @@ Changelog
 2.1a4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix longstanding bug in reloading of task-form provider.  When doing
+  a transition on a story, we now refresh the 'add task' part.
+  [maurits]
 
 
 2.1a3 (2012-09-12)

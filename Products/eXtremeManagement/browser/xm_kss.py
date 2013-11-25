@@ -48,8 +48,14 @@ class ViewletReloader(object):
             zope = self.view.getCommandSet('zope')
             zope.refreshProvider('.tasklist_table',
                                  'xm.tasklist.simple')
-            zope.refreshProvider('#add-task', 'xm.task_form')
-
+            # Remove expanded task form and button if it is there.
+            ksscore = self.view.getCommandSet('core')
+            selector1 = ksscore.getHtmlIdSelector('task-form-expanded')
+            ksscore.replaceHTML(selector1, u'<!-- Removed expanded task form -->')
+            selector2 = ksscore.getHtmlIdSelector('task-form-button')
+            ksscore.replaceHTML(selector2, u'<!-- Removed task form button -->')
+            # Refresh unexpanded task form.
+            zope.refreshProvider('#task-form', 'xm.task_form')
             # Refresh the details box provider
             zope.refreshProvider('.xm-details',
                                  'xm.story.detailsbox')
@@ -72,7 +78,7 @@ class KSSTaskForm(PloneKSSView):
         core = self.getCommandSet('core')
         zope = self.getCommandSet('zope')
         selector = core.getHtmlIdSelector('task-form')
-        zope.refreshProvider(selector, 'xm.task_form')
+        zope.refreshProvider(selector, 'xm.expanded_task_form')
 
 
 class KSSIterationForm(PloneKSSView):

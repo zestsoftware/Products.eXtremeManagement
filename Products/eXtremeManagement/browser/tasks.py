@@ -8,7 +8,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from kss.core import kssaction
 from plone.app.kss.plonekssview import PloneKSSView
 from zope.component import adapts
-from zope.component import getMultiAdapter, queryMultiAdapter
+from zope.component import queryMultiAdapter
 from zope.interface import Interface
 from zope.cachedescriptors.property import Lazy
 from zope.publisher.interfaces.browser import IBrowserView
@@ -163,7 +163,7 @@ class TasksDetailedView(XMBaseView):
         if not sort_by_state:
             task_list.sort(
                 lambda a, b: cmp(a['story_title'], b['story_title']) or
-                             cmp(a['title'], b['title']))
+                                cmp(a['title'], b['title']))
         info = dict(tasks = task_list,
                     totals = self.getTaskTotals(brains))
         return info
@@ -332,6 +332,15 @@ class TaskForm(Explicit):
         pass
 
     render = ViewPageTemplateFile("add_task.pt")
+
+
+class ExpandedTaskForm(Explicit):
+    adapts(Interface, IDefaultBrowserLayer, IBrowserView)
+
+    def update(self):
+        pass
+
+    render = ViewPageTemplateFile("add_expanded_task.pt")
 
 
 class Create(BrowserView):

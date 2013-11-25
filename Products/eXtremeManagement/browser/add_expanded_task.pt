@@ -1,0 +1,86 @@
+<div id="task-form" />
+<div id="task-form-expanded"
+     i18n:domain="eXtremeManagement"
+     tal:define="story_view context/@@story">
+  <span
+      style="display:none"
+      tal:condition="not:story_view/show_add_task_form">
+    No task add form.
+  </span>
+  <tal:addtask
+      condition="story_view/show_add_task_form">
+
+    <div class="visualClear"></div>
+
+    <form name="add_task"
+          method="post"
+          id="addtaskform"
+          action=""
+          tal:attributes="action string:${context/absolute_url}/@@xm_create_task">
+
+       <fieldset>
+          <legend i18n:translate="label_add_task">Add task</legend>
+
+          <input name="title"
+             value=""
+             type="text"
+             size="45"
+             id="new-task"
+			 tabindex="2" />
+
+              <!-- This should not be hardcoded -->
+			<select name="hours" id="hours">
+                <option selected="selected"
+                       value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                </select>
+                <span>:</span>
+
+                <select name="minutes" id="minutes">
+                  <option selected="selected"
+                          value="0">0</option>
+                  <option value="15">15</option>
+                  <option value="30">30</option>
+                  <option value="45">45</option>
+                </select>
+
+
+         <div class="visualClear"></div>
+         <div class="position-quick-task">
+            <textarea name="description"
+               rows="5"
+               id="new-task-description"
+			   tabindex="3"></textarea>
+
+            <select name="assignees"
+                    id="assignees"
+                    tal:define="assignees story_view/get_possible_assignees"
+                    tal:condition="assignees"
+                    multiple="multiple" size="7">
+              <tal:assignees repeat="assignee assignees">
+                <option value=""
+                        tal:attributes="value assignee/id"
+                        tal:content="assignee/name" />
+              </tal:assignees>
+            </select>
+         </div>
+
+            <input value="Add task"
+                   id="submit-task"
+                   i18n:attributes="value label_add_task;"
+                   type="submit"
+                   class="standalone"
+				   tabindex="4" />
+      </fieldset>
+   </form>
+   </tal:addtask>
+</div>

@@ -121,12 +121,20 @@
 
   <!-- kss action for adding a task -->
 
-  <!-- this content provider is called by a kss server-action to display the
-       form inline-->
+  <!-- This xm.expanded_task_form content provider is called by a kss
+       server-action to display the form inline.  Before this, the
+       xm.task_form provider is used for showing the closed form with
+       proper html ids and classes.  -->
   <zope:adapter
       name="xm.task_form"
       provides="zope.contentprovider.interfaces.IContentProvider"
       factory=".tasks.TaskForm"
+      />
+
+  <zope:adapter
+      name="xm.expanded_task_form"
+      provides="zope.contentprovider.interfaces.IContentProvider"
+      factory=".tasks.ExpandedTaskForm"
       />
 
   <page
