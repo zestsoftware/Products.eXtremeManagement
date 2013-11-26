@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.1a4 (unreleased)
+2.1a4 (2013-11-26)
 ------------------
 
 - Fix longstanding bug in reloading of task-form provider.  When doing
