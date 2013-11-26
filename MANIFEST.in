@@ -1,3 +1,4 @@
-recursive-include Products *
+graft Products
+graft docs
 include *
 global-exclude *.pyc
