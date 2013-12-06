@@ -188,8 +188,13 @@ def email_task_assignees(object, event, *args, **kwargs):
     estimate = IEstimate(object, None)
     if estimate is not None:
         estimate = estimate.hours
+    # We may have a customer as assignee of a PoiTask.  The ticket is
+    # assigned to her, but as she is an employee, she should not get
+    # an email.
+    valid_assignees = object._get_assignees().keys()
     recipients = [email_address_for_member(membership.getMemberById(a))
-                  for a in object.getAssignees() if a != member_id]
+                  for a in object.getAssignees() if a != member_id
+                  and a in valid_assignees]
 
     # Let's make sure all strings are unicode.
     values = dict(

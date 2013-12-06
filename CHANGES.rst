@@ -5,7 +5,11 @@ Changelog
 2.1a5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Do not send task emails to non-employees.  We may have a customer as
+  assignee of a PoiTask.  The ticket is assigned to her, but as she is
+  an employee, she should not get an email that she can work on the
+  task.
+  [maurits]
 
 
 2.1a4 (2013-11-26)
