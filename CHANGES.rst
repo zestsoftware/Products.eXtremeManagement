@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.1a5 (unreleased)
+2.1a5 (2013-12-06)
 ------------------
 
 - Do not send task emails to non-employees.  We may have a customer as
