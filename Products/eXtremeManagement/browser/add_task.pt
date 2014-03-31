@@ -1,5 +1,5 @@
 <tal:add-task define="checkPermission nocall:context/portal_membership/checkPermission"
               condition="python:checkPermission('eXtremeManagement: Add Task', context)">
-  <div id="task-form-button" i18n:translate="label_add_task">Add task</div>
+  <div id="task-form-button" i18n:domain="eXtremeManagement" i18n:translate="label_add_task">Add task</div>
 </tal:add-task>
 <div id="task-form" />
