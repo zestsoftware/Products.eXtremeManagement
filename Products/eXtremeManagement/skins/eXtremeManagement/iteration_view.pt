@@ -35,7 +35,8 @@
               <td>
                 <tal:manhours tal:condition="iteration/man_hours">
                   <span tal:replace="iteration/man_hours" />
-                  <span tal:define="hours_per_day portal/portal_properties/xm_properties/hours_per_day"
+                  <span tal:define="portal context/@@plone_portal_state/portal;
+                                    hours_per_day portal/portal_properties/xm_properties/hours_per_day"
                         tal:replace="python: '(%s days)' % str(iteration['man_hours']/hours_per_day)" />
                 </tal:manhours>
                 <span tal:omit-tag=""

@@ -5,7 +5,9 @@ Changelog
 2.1a6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix ``KeyError: portal`` on iteration view in Plone 4.
+  https://github.com/zestsoftware/Products.eXtremeManagement/issues/1
+  [maurits]
 
 
 2.1a5 (2013-12-06)
