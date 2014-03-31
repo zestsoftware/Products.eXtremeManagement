@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2010-04-29 12:16+0000\n"
+"POT-Creation-Date: 2014-03-31 11:03+0000\n"
 "PO-Revision-Date: 2010-04-05 20:48+0100\n"
 "Last-Translator: Simone Deponti <simone.deponti@abstract.it>\n"
 "Language-Team: Simone Deponti <simone.deponti@abstract.it>\n"
@@ -42,7 +42,7 @@ msgstr "Allegati"
 msgid "Create tasks from issues"
 msgstr "Crea task da report"
 
-#: ./browser/releaseplan.py:236
+#: ./browser/releaseplan.py:244
 msgid "Drag/drop uids incorrect"
 msgstr "Spostamento UIDs non supportato"
 
@@ -63,7 +63,7 @@ msgstr "Aggiunta Iterazione."
 msgid "Iterations"
 msgstr "Iterazioni"
 
-#: ./browser/releaseplan.py:250
+#: ./browser/releaseplan.py:258
 msgid "Move failed: story locked. Unlock the story to move it."
 msgstr "Spostamento fallito: la storia è in sola lettura. Rimuovere il blocco per spostarla."
 
@@ -98,12 +98,12 @@ msgstr "Link progetto"
 msgid "Related XM Tasks"
 msgstr "Task XM associate"
 
-#: ./browser/tasks.py:377
+#: ./browser/tasks.py:400
 msgid "Task added"
 msgstr "Task aggiunte"
 
 #: ./browser/iterations.py:328
-#: ./browser/tasks.py:351
+#: ./browser/tasks.py:374
 msgid "Title is required"
 msgstr "È necessario inserire un titolo"
 
@@ -131,7 +131,7 @@ msgstr "Aggiungi"
 
 #. Default: "Cannot Activate"
 #: ./browser/viewlets/templates/story_details_box.pt:25
-#: ./skins/eXtremeManagement/iteration_view.pt:69
+#: ./skins/eXtremeManagement/iteration_view.pt:70
 #: ./skins/eXtremeManagement/task_view.pt:73
 msgid "cannot_activate"
 msgstr "Attivazione non possibile"
@@ -574,7 +574,7 @@ msgid "heading-bookings-per-day"
 msgstr "Ore lavorate per giorno"
 
 #. Default: "Hours per employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:123
+#: ./skins/eXtremeManagement/iteration_view.pt:124
 msgid "heading-hours-per-employee"
 msgstr "Ore per risorsa"
 
@@ -590,7 +590,7 @@ msgstr "Task XM associate"
 
 #. Default: "Stories"
 #: ./browser/iteration_planning.pt:26
-#: ./skins/eXtremeManagement/iteration_view.pt:92
+#: ./skins/eXtremeManagement/iteration_view.pt:93
 msgid "heading-stories"
 msgstr "Storie"
 
@@ -630,7 +630,7 @@ msgid "help_close_iteration"
 msgstr "Per chiudere un'iterazione, muovi tutte le storie e task non complete alla prossima iterazione. Le seguenti storie sono ancora incomplete:"
 
 #. Default: "There are stories which cannot be activated:"
-#: ./skins/eXtremeManagement/iteration_view.pt:71
+#: ./skins/eXtremeManagement/iteration_view.pt:72
 msgid "help_estimate_stories"
 msgstr "Ci sono storie che non possono essere attivate:"
 
@@ -640,12 +640,12 @@ msgid "help_include_global_members"
 msgstr "Se selezionato, gli utenti del portale con ruolo 'Impiegato' appariranno nella lista dei possibili assegnatari di una task."
 
 #. Default: "To quickly estimate all the stories in this iteration, use the"
-#: ./skins/eXtremeManagement/iteration_view.pt:73
+#: ./skins/eXtremeManagement/iteration_view.pt:74
 msgid "help_iteration_planning"
 msgstr "Per stimare velocemente tutte le storie in questa iterazione, utilizza"
 
 #. Default: "Iteration planning view"
-#: ./skins/eXtremeManagement/iteration_view.pt:75
+#: ./skins/eXtremeManagement/iteration_view.pt:76
 msgid "help_iteration_planning_link"
 msgstr "Vista di pianificazione delle iterazioni"
 
@@ -686,7 +686,8 @@ msgid "label_add_iteration"
 msgstr "Aggiungi iterazione"
 
 #. Default: "Add task"
-#: ./browser/add_task.pt:21
+#: ./browser/add_expanded_task.pt:22
+#: ./browser/add_task.pt:3
 #: ./skins/eXtremeManagement/story_view.pt:101
 msgid "label_add_task"
 msgstr "Aggiungi task"
@@ -780,12 +781,12 @@ msgid "label_link"
 msgstr ""
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/releaseplan.py:256
+#: ./browser/releaseplan.py:264
 msgid "label_moved_succesfully"
 msgstr "Storia '${story}' spostata con successo nell'iterazione '${target}'."
 
 #. Default: "Moved story '${story}' to the unplanned list."
-#: ./browser/releaseplan.py:261
+#: ./browser/releaseplan.py:269
 msgid "label_moved_to_unplanned_succesfully"
 msgstr "Storia '${story}' Spostata con successo nella lista dei non pianificati."
 
@@ -812,7 +813,7 @@ msgid "label_offer"
 msgstr "Offerte"
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/releaseplan.py:287
+#: ./browser/releaseplan.py:295
 msgid "label_order_updated_succesfully"
 msgstr "La posizione della storia '${story}' All'interno dell'iterazione è stata cambiata."
 
@@ -837,7 +838,7 @@ msgid "label_release_plan"
 msgstr "Piano di rilascio"
 
 #. Default: "Remaining budget (hours)"
-#: ./skins/eXtremeManagement/iteration_view.pt:110
+#: ./skins/eXtremeManagement/iteration_view.pt:111
 msgid "label_remaining_budget"
 msgstr "Budget ore rimanente"
 
@@ -920,12 +921,12 @@ msgid "listingheader_diff_hours"
 msgstr "Differenza ore"
 
 #. Default: "Employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:131
+#: ./skins/eXtremeManagement/iteration_view.pt:132
 msgid "listingheader_employee"
 msgstr "Impiegato"
 
 #. Default: "End date"
-#: ./skins/eXtremeManagement/iteration_view.pt:53
+#: ./skins/eXtremeManagement/iteration_view.pt:54
 msgid "listingheader_enddate"
 msgstr "Data di termine"
 
@@ -960,7 +961,7 @@ msgid "listingheader_projects"
 msgstr "Progetto"
 
 #. Default: "Start date"
-#: ./skins/eXtremeManagement/iteration_view.pt:46
+#: ./skins/eXtremeManagement/iteration_view.pt:47
 msgid "listingheader_startdate"
 msgstr "Data di inizio"
 
@@ -992,17 +993,17 @@ msgstr "Titolo"
 
 #. Default: "Total Actual"
 #: ./browser/finished.pt:34
-#: ./skins/eXtremeManagement/iteration_view.pt:134
+#: ./skins/eXtremeManagement/iteration_view.pt:135
 msgid "listingheader_total_actual"
 msgstr "Totale reale"
 
 #. Default: "Total Difference"
-#: ./skins/eXtremeManagement/iteration_view.pt:136
+#: ./skins/eXtremeManagement/iteration_view.pt:137
 msgid "listingheader_total_difference"
 msgstr "Differenza totali"
 
 #. Default: "Total Estimate"
-#: ./skins/eXtremeManagement/iteration_view.pt:132
+#: ./skins/eXtremeManagement/iteration_view.pt:133
 msgid "listingheader_total_estimate"
 msgstr "Totale stime"
 
@@ -1034,7 +1035,7 @@ msgid "next"
 msgstr "Prossimo"
 
 #. Default: "No stories published yet!"
-#: ./skins/eXtremeManagement/iteration_view.pt:154
+#: ./skins/eXtremeManagement/iteration_view.pt:155
 #: ./skins/eXtremeManagement/offer_view.pt:150
 msgid "no_stories_published"
 msgstr "Nessuna storia pubblicata al momento!"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2010-04-29 12:16+0000\n"
+"POT-Creation-Date: 2014-03-31 11:03+0000\n"
 "PO-Revision-Date: 2010-09-23 18:48+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Nederlands <xm@lists.zestsoftware.nl>\n"
@@ -41,7 +41,7 @@ msgstr "Bijlagen"
 msgid "Create tasks from issues"
 msgstr "Taken maken voor issues"
 
-#: ./browser/releaseplan.py:236
+#: ./browser/releaseplan.py:244
 msgid "Drag/drop uids incorrect"
 msgstr "Drag/drop UIDs zijn incorrect"
 
@@ -62,7 +62,7 @@ msgstr "Iteratie toegevoegd."
 msgid "Iterations"
 msgstr "Iteraties"
 
-#: ./browser/releaseplan.py:250
+#: ./browser/releaseplan.py:258
 msgid "Move failed: story locked. Unlock the story to move it."
 msgstr "Het verplaatsen is mislukt: de user story is gelockt. Verhelp dit en verplaats de story daarna nogmaals."
 
@@ -98,12 +98,12 @@ msgstr "Project links"
 msgid "Related XM Tasks"
 msgstr "Gerelateerde taken"
 
-#: ./browser/tasks.py:377
+#: ./browser/tasks.py:400
 msgid "Task added"
 msgstr "Taak toegevoegd"
 
 #: ./browser/iterations.py:328
-#: ./browser/tasks.py:351
+#: ./browser/tasks.py:374
 msgid "Title is required"
 msgstr "Titel is verplicht"
 
@@ -131,7 +131,7 @@ msgstr "In te schatten user stories"
 
 #. Default: "Cannot Activate"
 #: ./browser/viewlets/templates/story_details_box.pt:25
-#: ./skins/eXtremeManagement/iteration_view.pt:69
+#: ./skins/eXtremeManagement/iteration_view.pt:70
 #: ./skins/eXtremeManagement/task_view.pt:73
 msgid "cannot_activate"
 msgstr "Kan niet starten"
@@ -638,7 +638,7 @@ msgid "heading-bookings-per-day"
 msgstr "Boekingen per dag"
 
 #. Default: "Hours per employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:123
+#: ./skins/eXtremeManagement/iteration_view.pt:124
 msgid "heading-hours-per-employee"
 msgstr "Uren per werknemer"
 
@@ -654,7 +654,7 @@ msgstr "Gerelateerde taken"
 
 #. Default: "Stories"
 #: ./browser/iteration_planning.pt:26
-#: ./skins/eXtremeManagement/iteration_view.pt:92
+#: ./skins/eXtremeManagement/iteration_view.pt:93
 msgid "heading-stories"
 msgstr "User stories"
 
@@ -696,7 +696,7 @@ msgid "help_close_iteration"
 msgstr "Hier kunt u de iteratie afronden door alle niet afgeronde user stories en taken naar de volgende iteratie verplaatsen. De onderstaande user stories zijn nog niet afgerond."
 
 #. Default: "There are stories which cannot be activated:"
-#: ./skins/eXtremeManagement/iteration_view.pt:71
+#: ./skins/eXtremeManagement/iteration_view.pt:72
 msgid "help_estimate_stories"
 msgstr "Er zijn stories die nog niet geactiveerd kunnen worden:"
 
@@ -706,12 +706,12 @@ msgid "help_include_global_members"
 msgstr "Indien geselecteerd, zullen leden met de globale rol 'Employee' ('Werknemer') verschijnen in de lijst met personen aan wie een Taak toegewezen kan worden."
 
 #. Default: "To quickly estimate all the stories in this iteration, use the"
-#: ./skins/eXtremeManagement/iteration_view.pt:73
+#: ./skins/eXtremeManagement/iteration_view.pt:74
 msgid "help_iteration_planning"
 msgstr "Om snel alle stories in deze iteratie in te schatten, gebruik de"
 
 #. Default: "Iteration planning view"
-#: ./skins/eXtremeManagement/iteration_view.pt:75
+#: ./skins/eXtremeManagement/iteration_view.pt:76
 msgid "help_iteration_planning_link"
 msgstr "iteratie planning view"
 
@@ -751,7 +751,8 @@ msgid "label_add_iteration"
 msgstr "Iteratie toevoegen"
 
 #. Default: "Add task"
-#: ./browser/add_task.pt:21
+#: ./browser/add_expanded_task.pt:22
+#: ./browser/add_task.pt:3
 #: ./skins/eXtremeManagement/story_view.pt:101
 msgid "label_add_task"
 msgstr "Taak toevoegen"
@@ -844,12 +845,12 @@ msgid "label_link"
 msgstr "link"
 
 #. Default: "Moved story '${story}' to iteration '${target}'."
-#: ./browser/releaseplan.py:256
+#: ./browser/releaseplan.py:264
 msgid "label_moved_succesfully"
 msgstr "User story '${story}' is verplaatst naar iteratie '${target}'."
 
 #. Default: "Moved story '${story}' to the unplanned list."
-#: ./browser/releaseplan.py:261
+#: ./browser/releaseplan.py:269
 msgid "label_moved_to_unplanned_succesfully"
 msgstr "User story '${story}' is verplaatst naar de lijst met ongeplande stories."
 
@@ -876,7 +877,7 @@ msgid "label_offer"
 msgstr "Offerte(s)"
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
-#: ./browser/releaseplan.py:287
+#: ./browser/releaseplan.py:295
 msgid "label_order_updated_succesfully"
 msgstr "Het veranderen van de volgorde is gelukt"
 
@@ -901,7 +902,7 @@ msgid "label_release_plan"
 msgstr "Release Plan"
 
 #. Default: "Remaining budget (hours)"
-#: ./skins/eXtremeManagement/iteration_view.pt:110
+#: ./skins/eXtremeManagement/iteration_view.pt:111
 msgid "label_remaining_budget"
 msgstr "Resterende uren"
 
@@ -984,12 +985,12 @@ msgid "listingheader_diff_hours"
 msgstr "Verschil"
 
 #. Default: "Employee"
-#: ./skins/eXtremeManagement/iteration_view.pt:131
+#: ./skins/eXtremeManagement/iteration_view.pt:132
 msgid "listingheader_employee"
 msgstr "Werknemer"
 
 #. Default: "End date"
-#: ./skins/eXtremeManagement/iteration_view.pt:53
+#: ./skins/eXtremeManagement/iteration_view.pt:54
 msgid "listingheader_enddate"
 msgstr "Einddatum"
 
@@ -1024,7 +1025,7 @@ msgid "listingheader_projects"
 msgstr "Project"
 
 #. Default: "Start date"
-#: ./skins/eXtremeManagement/iteration_view.pt:46
+#: ./skins/eXtremeManagement/iteration_view.pt:47
 msgid "listingheader_startdate"
 msgstr "Startdatum"
 
@@ -1056,17 +1057,17 @@ msgstr "Titel"
 
 #. Default: "Total Actual"
 #: ./browser/finished.pt:34
-#: ./skins/eXtremeManagement/iteration_view.pt:134
+#: ./skins/eXtremeManagement/iteration_view.pt:135
 msgid "listingheader_total_actual"
 msgstr "Totaal gewerkte uren"
 
 #. Default: "Total Difference"
-#: ./skins/eXtremeManagement/iteration_view.pt:136
+#: ./skins/eXtremeManagement/iteration_view.pt:137
 msgid "listingheader_total_difference"
 msgstr "Totaal verschil"
 
 #. Default: "Total Estimate"
-#: ./skins/eXtremeManagement/iteration_view.pt:132
+#: ./skins/eXtremeManagement/iteration_view.pt:133
 msgid "listingheader_total_estimate"
 msgstr "Totaal geschat"
 
@@ -1098,7 +1099,7 @@ msgid "next"
 msgstr "volgende"
 
 #. Default: "No stories published yet!"
-#: ./skins/eXtremeManagement/iteration_view.pt:154
+#: ./skins/eXtremeManagement/iteration_view.pt:155
 #: ./skins/eXtremeManagement/offer_view.pt:150
 msgid "no_stories_published"
 msgstr "Er zijn op dit moment geen stories gedefinieerd!"
