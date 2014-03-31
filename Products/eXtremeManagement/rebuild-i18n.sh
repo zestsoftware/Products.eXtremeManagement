@@ -30,4 +30,6 @@ echo "Reporting some statistics..."
 i18ndude find-untranslated  $TEMPLATE_FILES
 
 echo "Percentage done per language:"
-i18ndude chart -o /dev/null --pot i18n/$PROJECT.pot i18n/$PROJECT-*.po
+cd i18n
+i18ndude list --products $PROJECT
+cd ..
