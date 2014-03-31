@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.1a6 (unreleased)
+2.1a6 (2014-03-31)
 ------------------
 
 - Fix ``KeyError: portal`` on iteration view in Plone 4.
