@@ -119,7 +119,12 @@ class WorkflowGadget(PloneKSSView):
         uid_catalog = getToolByName(context, 'uid_catalog')
         brain = uid_catalog(UID=uid)[0]
         obj = brain.getObject()
-        obj.content_status_modify(action)
+        # This may give a UnicodeDecodeError if the title has
+        # non-ascii characters:
+        # obj.content_status_modify(action)
+        # So we do it manually, which is better anyway:
+        wftool = getToolByName(context, 'portal_workflow')
+        wftool.doActionFor(obj, action=action)
         if IXMStory.providedBy(self.context):
             # Only refresh content if the context is a Story,
             # otherwise you get too much tasks listed.

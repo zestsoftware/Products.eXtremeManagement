@@ -5,7 +5,11 @@ Changelog
 2.1a7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix possible ``UnicodeDecodeError`` when changing workflow state
+  with kss.  This happened if the title has a non-ascii character.
+  Fixes issue
+  https://github.com/zestsoftware/Products.eXtremeManagement/issues/2
+  [mno1]
 
 
 2.1a6 (2014-03-31)
