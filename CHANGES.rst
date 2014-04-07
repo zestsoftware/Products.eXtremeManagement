@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.1a7 (unreleased)
+2.1a7 (2014-04-07)
 ------------------
 
 - Fix possible ``UnicodeDecodeError`` when changing workflow state
