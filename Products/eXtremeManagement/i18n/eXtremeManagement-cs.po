@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2014-03-31 11:03+0000\n"
+"POT-Creation-Date: 2014-08-04 16:31+0000\n"
 "PO-Revision-Date: 2007-02-09 22:37+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Core Net Solutions, s.r.o. <info@corenet.cz>\n"
@@ -208,13 +208,18 @@ msgstr ""
 msgid "description_no_iterations_planned"
 msgstr ""
 
+#. Default: "No status problems"
+#: ./browser/statuscheck.pt:69
+msgid "description_no_status_problems"
+msgstr ""
+
 #. Default: "Nothing invoiced yet"
-#: ./browser/invoicing.pt:115
+#: ./browser/invoicing.pt:126
 msgid "description_nothing_invoiced"
 msgstr ""
 
 #. Default: "Nothing to invoice"
-#: ./browser/invoicing.pt:57
+#: ./browser/invoicing.pt:68
 msgid "description_nothing_to_invoice"
 msgstr ""
 
@@ -226,6 +231,11 @@ msgstr ""
 #. Default: "This view provides an overall plan for this project. You can prioritize stories by dragging them inside and between iterations."
 #: ./browser/releaseplan.pt:14
 msgid "description_releaseplan"
+msgstr ""
+
+#. Default: "List of iterations that are closed but still have open stories or tasks."
+#: ./browser/statuscheck.pt:17
+msgid "description_status_check"
 msgstr ""
 
 #. Default: "Detailed bookings"
@@ -577,8 +587,13 @@ msgstr ""
 msgid "head_projects"
 msgstr ""
 
+#. Default: "Status check"
+#: ./portlets/managers.pt:35
+msgid "head_status_check"
+msgstr ""
+
 #. Default: "Invoiced this month"
-#: ./browser/invoicing.pt:60
+#: ./browser/invoicing.pt:71
 msgid "head_this_month"
 msgstr ""
 
@@ -790,7 +805,8 @@ msgstr ""
 
 #. Default: "Date completed"
 #: ./browser/finished.pt:21
-#: ./browser/invoicing.pt:25
+#: ./browser/invoicing.pt:26
+#: ./browser/statuscheck.pt:29
 msgid "label_date_completed"
 msgstr ""
 
@@ -821,7 +837,8 @@ msgstr ""
 
 #. Default: "Hours worked"
 #: ./browser/finished.pt:27
-#: ./browser/invoicing.pt:28
+#: ./browser/invoicing.pt:29
+#: ./browser/statuscheck.pt:32
 msgid "label_hours_worked"
 msgstr ""
 
@@ -836,7 +853,7 @@ msgid "label_inprogress_overview"
 msgstr ""
 
 #. Default: "Invoicing overview"
-#: ./browser/invoicing.pt:13
+#: ./browser/invoicing.pt:14
 msgid "label_invoicing_overview"
 msgstr ""
 
@@ -877,6 +894,16 @@ msgstr ""
 msgid "label_offer"
 msgstr ""
 
+#. Default: "Open stories"
+#: ./browser/statuscheck.pt:35
+msgid "label_open_stories"
+msgstr ""
+
+#. Default: "Open tasks"
+#: ./browser/statuscheck.pt:38
+msgid "label_open_tasks"
+msgstr ""
+
 #. Default: "The position of story '${story}' in the iteration has been changed."
 #: ./browser/releaseplan.py:295
 msgid "label_order_updated_succesfully"
@@ -910,6 +937,16 @@ msgstr ""
 #. Default: "Scheduling"
 #: ./portlets/managers.pt:29
 msgid "label_scheduling"
+msgstr ""
+
+#. Default: "Status check"
+#: ./browser/statuscheck.pt:14
+msgid "label_status_check"
+msgstr ""
+
+#. Default: "Status correct"
+#: ./browser/invoicing.pt:32
+msgid "label_status_correct"
 msgstr ""
 
 #. Default: "Unbillable"
@@ -964,7 +1001,7 @@ msgstr "Čas"
 
 #. Default: "Total"
 #: ./browser/inprogress.pt:54
-#: ./browser/invoicing.pt:81
+#: ./browser/invoicing.pt:92
 #: ./skins/eXtremeManagement/booking_details.pt:85
 msgid "listingheader-total"
 msgstr ""
@@ -1015,13 +1052,14 @@ msgstr ""
 #. Default: "Iteration"
 #: ./browser/finished.pt:24
 #: ./browser/inprogress.pt:38
-#: ./browser/invoicing.pt:22
+#: ./browser/invoicing.pt:23
 msgid "listingheader_iteration"
 msgstr "Iterace"
 
 #. Default: "Project"
 #: ./browser/inprogress.pt:35
-#: ./browser/invoicing.pt:19
+#: ./browser/invoicing.pt:20
+#: ./browser/statuscheck.pt:23
 msgid "listingheader_projects"
 msgstr "Projekt"
 
@@ -1098,6 +1136,10 @@ msgstr ""
 #. Default: "Next"
 #: ./skins/eXtremeManagement/story_view.pt:23
 msgid "next"
+msgstr ""
+
+#: ./browser/invoicing.pt:59
+msgid "no"
 msgstr ""
 
 #. Default: "No stories published yet!"
@@ -1261,5 +1303,9 @@ msgstr ""
 #: ./browser/chart.py:150
 #: ./browser/project_chart.pt:24
 msgid "worked"
+msgstr ""
+
+#: ./browser/invoicing.pt:56
+msgid "yes"
 msgstr ""
 
