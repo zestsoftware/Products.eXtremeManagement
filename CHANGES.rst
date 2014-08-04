@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.1a8 (unreleased)
+2.1a8 (2014-08-04)
 ------------------
 
 - Add statuscheck page for all billable closed and invoiced iterations
