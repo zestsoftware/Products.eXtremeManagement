@@ -629,6 +629,11 @@ table.listing .actionMenu {
 td.right {
     text-align: right;
 }
+
+td.status_incorrect {
+    color: red;
+}
+
 /* Management project listings END */
 
 /* start story attachments*/

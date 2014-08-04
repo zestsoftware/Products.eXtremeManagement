@@ -9,6 +9,7 @@
   <body>
 
     <div metal:fill-slot="main"
+         tal:define="portal_url context/@@plone_portal_state/portal_url"
          id="invoicing-overview">
       <h1 i18n:translate="label_invoicing_overview">
         Invoicing overview
@@ -27,6 +28,9 @@
           </th>
           <th class="nosort" i18n:translate="label_hours_worked">
             Hours worked
+          </th>
+          <th class="nosort" i18n:translate="label_status_correct">
+            Status correct
           </th>
         </tr>
         <tal:iterations tal:repeat="item view/projectlist">
@@ -49,6 +53,13 @@
               class="right" />
           <td tal:content="item/actual"
               class="right" />
+          <td tal:condition="item/status_correct"
+              class="status_correct"
+              i18n:translate="">yes</td>
+          <td tal:condition="not:item/status_correct"
+              class="status_incorrect"
+              tal:attributes="title string:${item/open_stories} open stories and ${item/open_tasks} open tasks"
+              i18n:translate="">no</td>
         </tr>
 
         </tal:iterations>

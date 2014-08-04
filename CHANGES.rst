@@ -5,7 +5,9 @@ Changelog
 2.1a8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Check status of iterations that are to be invoiced.  In that list of
+  iterations, warn when there are still open stories or tasks.
+  [maurits]
 
 
 2.1a7 (2014-04-07)

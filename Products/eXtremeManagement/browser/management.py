@@ -82,6 +82,12 @@ class IterationListBaseView(XMBaseView):
         for item in history:
             if item['action'] == 'complete':
                 completion_date = item['time']
+        open_stories = len(self.catalog(
+            path=brain.getPath(), portal_type='Story',
+            review_state=['draft', 'estimated', 'in-progress', 'pending']))
+        open_tasks = len(self.catalog(
+            path=brain.getPath(), portal_type=['Task', 'PoiTask'],
+            review_state=['open', 'to-do']))
         returnvalue = dict(
             iteration_url=brain.getURL(),
             iteration_title=brain.Title,
@@ -96,6 +102,9 @@ class IterationListBaseView(XMBaseView):
             end_date=obj.getEndDate(),
             completion_date=completion_date,
             brain=brain,
+            open_stories=open_stories,
+            open_tasks=open_tasks,
+            status_correct=not bool(open_stories + open_tasks),
         )
         returnvalue.update(self.extra_dict(obj, brain))
         return returnvalue
