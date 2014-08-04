@@ -1,13 +1,13 @@
 # Ahmad Hadi <ahadi@zestsoftware.nl>, 2005
-# Maurits van Rees <m.van.rees@zestsoftware.nl>, 2006-2010
+# Maurits van Rees <m.van.rees@zestsoftware.nl>, 2006-2014
 # Jean-Paul Ladage <j.ladage@zestsoftware.nl>, 2009
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
 "POT-Creation-Date: 2014-08-04 16:31+0000\n"
-"PO-Revision-Date: 2010-09-23 18:48+0200\n"
+"PO-Revision-Date: 2014-08-04 18:31+0000\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
-"Language-Team: Nederlands <xm@lists.zestsoftware.nl>\n"
+"Language-Team: Zest Software <info@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -212,7 +212,7 @@ msgstr "Er zijn nog geen nieuwe iteraties geplant."
 #. Default: "No status problems"
 #: ./browser/statuscheck.pt:69
 msgid "description_no_status_problems"
-msgstr ""
+msgstr "Geen statusproblemen"
 
 #. Default: "Nothing invoiced yet"
 #: ./browser/invoicing.pt:126
@@ -237,7 +237,7 @@ msgstr "Hier ziet u de planning van het project. U kunt de stories prioriteren d
 #. Default: "List of iterations that are closed but still have open stories or tasks."
 #: ./browser/statuscheck.pt:17
 msgid "description_status_check"
-msgstr ""
+msgstr "Lijst van iteraties die gesloten zijn, maar nog open stories of taken hebben."
 
 #. Default: "Detailed bookings"
 #: ./portlets/portlet_tasks.pt:19
@@ -590,7 +590,7 @@ msgstr "Projecten"
 #. Default: "Status check"
 #: ./portlets/managers.pt:35
 msgid "head_status_check"
-msgstr ""
+msgstr "Statuscheck"
 
 #. Default: "Invoiced this month"
 #: ./browser/invoicing.pt:71
@@ -896,12 +896,12 @@ msgstr "Offerte(s)"
 #. Default: "Open stories"
 #: ./browser/statuscheck.pt:35
 msgid "label_open_stories"
-msgstr ""
+msgstr "Open stories"
 
 #. Default: "Open tasks"
 #: ./browser/statuscheck.pt:38
 msgid "label_open_tasks"
-msgstr ""
+msgstr "Open taken"
 
 #. Default: "The position of story '${story}' in the iteration has been changed."
 #: ./browser/releaseplan.py:295
@@ -941,12 +941,12 @@ msgstr "Planning"
 #. Default: "Status check"
 #: ./browser/statuscheck.pt:14
 msgid "label_status_check"
-msgstr ""
+msgstr "Statuscheck"
 
 #. Default: "Status correct"
 #: ./browser/invoicing.pt:32
 msgid "label_status_correct"
-msgstr ""
+msgstr "Status correct"
 
 #. Default: "Unbillable"
 #: ./browser/inprogress.pt:24
@@ -1138,7 +1138,7 @@ msgstr "volgende"
 
 #: ./browser/invoicing.pt:59
 msgid "no"
-msgstr ""
+msgstr "nee"
 
 #. Default: "No stories published yet!"
 #: ./skins/eXtremeManagement/iteration_view.pt:155
@@ -1305,5 +1305,5 @@ msgstr "gewerkt"
 
 #: ./browser/invoicing.pt:56
 msgid "yes"
-msgstr ""
+msgstr "ja"
 
