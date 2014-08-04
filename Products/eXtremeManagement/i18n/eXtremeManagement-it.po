@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2014-08-04 16:31+0000\n"
+"POT-Creation-Date: 2014-08-04 16:46+0000\n"
 "PO-Revision-Date: 2010-04-05 20:48+0100\n"
 "Last-Translator: Simone Deponti <simone.deponti@abstract.it>\n"
 "Language-Team: Simone Deponti <simone.deponti@abstract.it>\n"
@@ -1056,6 +1056,11 @@ msgstr "Ore lavorate"
 #: ./browser/viewlets/templates/manage_story_details.pt:18
 msgid "msg_number_of_comments_in_story"
 msgstr "${count} commenti in questa storia."
+
+#. Default: "${open_stories} open stories and ${open_tasks} open tasks"
+#: ./browser/management.py:93
+msgid "msg_status_warning"
+msgstr ""
 
 #. Default: "name"
 #: ./browser/project_chart.pt:21

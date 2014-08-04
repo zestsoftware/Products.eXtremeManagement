@@ -53,12 +53,12 @@
               class="right" />
           <td tal:content="item/actual"
               class="right" />
-          <td tal:condition="item/status_correct"
+          <td tal:condition="not:item/status_warning"
               class="status_correct"
               i18n:translate="">yes</td>
-          <td tal:condition="not:item/status_correct"
+          <td tal:condition="item/status_warning"
               class="status_incorrect"
-              tal:attributes="title string:${item/open_stories} open stories and ${item/open_tasks} open tasks"
+              tal:attributes="title item/status_warning"
               i18n:translate="">no</td>
         </tr>
 

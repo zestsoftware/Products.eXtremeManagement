@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2014-08-04 16:31+0000\n"
+"POT-Creation-Date: 2014-08-04 16:46+0000\n"
 "PO-Revision-Date: 2007-06-05 12:41-0500\n"
 "Last-Translator: Yves Moisan <ymoisan@groupesm.com>\n"
 "Language-Team: Yves Moisan <ymoisan@groupesm.com>\n"
@@ -1125,6 +1125,11 @@ msgstr ""
 #. Default: "${count} comment(s) in this story."
 #: ./browser/viewlets/templates/manage_story_details.pt:18
 msgid "msg_number_of_comments_in_story"
+msgstr ""
+
+#. Default: "${open_stories} open stories and ${open_tasks} open tasks"
+#: ./browser/management.py:93
+msgid "msg_status_warning"
 msgstr ""
 
 #. Default: "name"

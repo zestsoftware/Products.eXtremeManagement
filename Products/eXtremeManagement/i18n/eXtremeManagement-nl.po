@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2014-08-04 16:31+0000\n"
+"POT-Creation-Date: 2014-08-04 16:46+0000\n"
 "PO-Revision-Date: 2014-08-04 18:31+0000\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Zest Software <info@zestsoftware.nl>\n"
@@ -1120,6 +1120,11 @@ msgstr "Gewerkte uren"
 #: ./browser/viewlets/templates/manage_story_details.pt:18
 msgid "msg_number_of_comments_in_story"
 msgstr "${count} opmerking(en) in deze user story."
+
+#. Default: "${open_stories} open stories and ${open_tasks} open tasks"
+#: ./browser/management.py:93
+msgid "msg_status_warning"
+msgstr "${open_stories} open stories en ${open_tasks} open taken"
 
 #. Default: "name"
 #: ./browser/project_chart.pt:21

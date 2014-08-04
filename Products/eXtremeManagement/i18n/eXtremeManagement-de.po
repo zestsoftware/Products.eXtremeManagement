@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eXtremeManagement\n"
-"POT-Creation-Date: 2014-08-04 16:31+0000\n"
+"POT-Creation-Date: 2014-08-04 16:46+0000\n"
 "PO-Revision-Date: 2009-05-19 21:07+0100\n"
 "Last-Translator: Jens Klein <jens@bluedynamics.com>\n"
 "Language-Team: BlueDynamics Alliance <dev@bluedynamics.com>\n"
@@ -1057,6 +1057,11 @@ msgstr "Gearbeitete Stunden"
 #: ./browser/viewlets/templates/manage_story_details.pt:18
 msgid "msg_number_of_comments_in_story"
 msgstr "${count} Kommentar(e) für diese Anforderung."
+
+#. Default: "${open_stories} open stories and ${open_tasks} open tasks"
+#: ./browser/management.py:93
+msgid "msg_status_warning"
+msgstr ""
 
 #. Default: "name"
 #: ./browser/project_chart.pt:21

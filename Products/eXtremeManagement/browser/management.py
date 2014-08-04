@@ -2,6 +2,7 @@ from Acquisition import aq_inner, aq_parent
 from DateTime import DateTime
 import logging
 from plone.memoize.view import memoize
+from Products.eXtremeManagement import XMMessageFactory as _
 from Products.eXtremeManagement.browser.xmbase import XMBaseView
 from Products.eXtremeManagement.utils import formatTime
 
@@ -88,6 +89,14 @@ class IterationListBaseView(XMBaseView):
         open_tasks = len(self.catalog(
             path=brain.getPath(), portal_type=['Task', 'PoiTask'],
             review_state=['open', 'to-do']))
+        if open_stories or open_tasks:
+            status_warning = _(
+                u"msg_status_warning",
+                default=u"${open_stories} open stories and "
+                "${open_tasks} open tasks",
+                mapping=dict(open_stories=open_stories, open_tasks=open_tasks))
+        else:
+            status_warning = ''
         returnvalue = dict(
             iteration_url=brain.getURL(),
             iteration_title=brain.Title,
@@ -104,8 +113,9 @@ class IterationListBaseView(XMBaseView):
             brain=brain,
             open_stories=open_stories,
             open_tasks=open_tasks,
-            status_correct=not bool(open_stories + open_tasks),
+            status_warning=status_warning,
         )
+
         returnvalue.update(self.extra_dict(obj, brain))
         return returnvalue
 
@@ -282,6 +292,6 @@ class StatusCheckView(InvoicingView):
         """
         results = []
         for info in self.projectlist():
-            if not info['status_correct']:
+            if info['status_warning']:
                 results.append(info)
         return results
