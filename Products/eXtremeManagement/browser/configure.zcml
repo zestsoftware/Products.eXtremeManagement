@@ -194,6 +194,14 @@
       />
 
   <page
+      name="statuscheck"
+      class=".management.StatusCheckView"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="cmf.ManagePortal"
+      template="statuscheck.pt"
+      />
+
+  <page
       name="finished"
       class=".customer.FinishedIterationsView"
       for="Products.eXtremeManagement.interfaces.IXMProject"

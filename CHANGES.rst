@@ -5,6 +5,11 @@ Changelog
 2.1a8 (unreleased)
 ------------------
 
+- Add statuscheck page for all billable closed and invoiced iterations
+  and list them if they still have open stories or tasks.  Add this in
+  the management portlet.
+  [maurits]
+
 - Check status of iterations that are to be invoiced.  In that list of
   iterations, warn when there are still open stories or tasks.
   [maurits]

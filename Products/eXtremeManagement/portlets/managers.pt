@@ -31,6 +31,12 @@
       Scheduling
     </a>
   </dd>
+  <dd class="portletItem odd">
+    <a tal:attributes="href string:${view/site_url}/statuscheck"
+       i18n:translate="head_status_check">
+      Status check
+    </a>
+  </dd>
   <dd class="portletFooter">
     <span class="portletBottomLeft"></span>
     <span class="portletBottomRight"></span>

@@ -267,3 +267,21 @@ class InProgressView(IterationListBaseView):
             results.append(info)
 
         return self.sort_results(results)
+
+
+class StatusCheckView(InvoicingView):
+
+    iteration_review_state = ['completed', 'invoiced']
+    billable_only = True
+
+    @memoize
+    def problemlist(self):
+        """ Return a list of problematic iterations.
+
+        Closed iterations with open stories or tasks.
+        """
+        results = []
+        for info in self.projectlist():
+            if not info['status_correct']:
+                results.append(info)
+        return results

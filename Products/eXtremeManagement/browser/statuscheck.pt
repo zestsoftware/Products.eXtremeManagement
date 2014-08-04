@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="eXtremeManagement">
+  <head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border', 0)" />
+  </head>
+  <body>
+
+    <div metal:fill-slot="main"
+         tal:define="portal_url context/@@plone_portal_state/portal_url"
+         id="invoicing-overview">
+      <h1 i18n:translate="label_status_check">
+        Status check
+      </h1>
+      <p i18n:translate="description_status_check">
+        List of iterations that are closed but still have open stories or tasks.
+      </p>
+
+      <table class="listing" tal:condition="view/problemlist">
+        <tr>
+          <th class="nosort" i18n:translate="listingheader_projects">
+            Project
+          </th>
+          <th class="nosort" i18n:translate="listingheader_iteration">
+            Iteration
+          </th>
+          <th class="nosort" i18n:translate="label_date_completed">
+              Date completed
+          </th>
+          <th class="nosort" i18n:translate="label_hours_worked">
+            Hours worked
+          </th>
+          <th class="nosort" i18n:translate="label_open_stories">
+            Open stories
+          </th>
+          <th class="nosort" i18n:translate="label_open_tasks">
+            Open tasks
+          </th>
+        </tr>
+        <tal:iterations tal:repeat="item view/problemlist">
+        <tr>
+          <td>
+            <a tal:content="item/title"
+               tal:attributes="title item/description;
+                               href item/url;"/>
+          </td>
+          <td>
+            <a tal:content="item/iteration_title"
+               tal:attributes="title item/iteration_description;
+                               href item/iteration_url;"/>
+          </td>
+          <td tal:condition="not: item/completion_date"
+              class="right"> - </td>
+          <td tal:condition="item/completion_date"
+              tal:content="python:context.toLocalizedTime(item['completion_date'],
+                         long_format=0)"
+              class="right" />
+          <td tal:content="item/actual"
+              class="right" />
+          <td tal:content="item/open_stories" />
+          <td tal:content="item/open_tasks" />
+        </tr>
+
+        </tal:iterations>
+      </table>
+
+      <p tal:condition="not: view/problemlist"
+         i18n:translate="description_no_status_problems">No status problems</p>
+
+    </div>
+  </body>
+</html>
