@@ -1,6 +1,6 @@
 import datetime
 
-from Acquisition import aq_inner
+from Acquisition import aq_inner, aq_parent
 from Acquisition import Explicit
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
@@ -57,6 +57,27 @@ class TaskView(XMBaseView):
             # Plone 4
             nice_namer = lambda x: pas_member.info(x).get('name_or_id')
 
+        # Get info for previous and next links.  We only want tasks
+        # here, not for example images.
+        story = aq_parent(context)
+        tasks = story.getFolderContents()
+        num_tasks = len(tasks)
+        pos = story.getObjectPosition(context.id)
+        next = None
+        next_pos = pos + 1
+        while next_pos < num_tasks:
+            if tasks[next_pos].portal_type in ('Task', 'PoiTask'):
+                next = tasks[next_pos]
+                break
+            next_pos += 1
+        prev = None
+        prev_pos = pos - 1
+        while prev_pos >= 0:
+            if tasks[prev_pos].portal_type in ('Task', 'PoiTask'):
+                prev = tasks[prev_pos]
+                break
+            prev_pos -= 1
+
         returnvalue = dict(
             title = context.Title(),
             description = context.Description(),
@@ -69,6 +90,8 @@ class TaskView(XMBaseView):
                           'username': x,
                           'active': True}
                          for x in context.getAssignees()],
+            prev=prev,
+            next=next,
             )
         return returnvalue
 

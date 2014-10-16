@@ -5,7 +5,10 @@ Changelog
 2.1a9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Previous/next navigation for tasks: only point to Tasks (or
+  PoiTasks), not to images or files.  Fixes
+  https://github.com/zestsoftware/Products.eXtremeManagement/issues/5
+  [maurits]
 
 
 2.1a8 (2014-08-04)

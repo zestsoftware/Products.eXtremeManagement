@@ -10,11 +10,8 @@
           metal:define-macro="main"
           tal:define="view context/@@task;
                       task view/main;
-                      tasks python:context.aq_parent.getFolderContents();
-                      num_tasks python:len(tasks);
-                      pos context/getObjPositionInParent|python:-1;
-                      next python:pos != -1 and pos &lt; num_tasks-1 and tasks[pos+1];
-                      prev python:pos &gt; 0 and tasks[pos-1];
+                      next task/next;
+                      prev task/prev;
                       startable context/startable;
                       can_view_details python:checkPermission('eXtremeManagement: View Details', context);">
 
