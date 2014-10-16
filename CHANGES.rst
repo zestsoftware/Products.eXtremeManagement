@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.1a9 (unreleased)
+2.1a9 (2014-10-16)
 ------------------
 
 - Previous/next navigation for tasks: only point to Tasks (or
