@@ -25,7 +25,7 @@ def addCatalogIndexes(site, logger):
               ("getBookingDate", "DateIndex"),
               ("getBillableProject", "FieldIndex"),
               ("getEndDate", "DateIndex"),
-             )
+              )
     indexables = []
     for name, meta_type in wanted:
         if name not in indexes:

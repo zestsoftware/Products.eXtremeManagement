@@ -77,12 +77,12 @@ class BookingsDetailedView(XMBaseView):
         """Return a dict of the main stuff of this period.
         """
         month_info = dict(
-            month = self.month,
-            year = self.year,
-            raw_total = self.raw_total,
-            total = self.total,
-            perc_billable = self.fmt_perc_billable,
-            )
+            month=self.month,
+            year=self.year,
+            raw_total=self.raw_total,
+            total=self.total,
+            perc_billable=self.fmt_perc_billable,
+        )
         return month_info
 
     @Lazy
@@ -131,18 +131,18 @@ class BookingsDetailedView(XMBaseView):
         desc = pt('web_intelligent_plain_text_to_html', desc)
 
         returnvalue = dict(
-            booking_date = self.toLocalizedTime(bookingbrain.getBookingDate),
-            day_of_week = bookingbrain.getBookingDate.Day(),
-            project_title = project_title,
-            task_url = taskbrain.getURL(),
-            task_title = taskbrain.Title,
+            booking_date=self.toLocalizedTime(bookingbrain.getBookingDate),
+            day_of_week=bookingbrain.getBookingDate.Day(),
+            project_title=project_title,
+            task_url=taskbrain.getURL(),
+            task_title=taskbrain.Title,
             # base_view of a booking gets redirected to the task view,
             # which we do not want here.
-            booking_url = bookingbrain.getURL() + '/base_edit',
-            booking_title = bookingbrain.Title,
-            booking_description = desc,
-            booking_hours = formatTime(bookingbrain.actual_time),
-            creator = bookingbrain.Creator,
+            booking_url=bookingbrain.getURL() + '/base_edit',
+            booking_title=bookingbrain.Title,
+            booking_description=desc,
+            booking_hours=formatTime(bookingbrain.actual_time),
+            creator=bookingbrain.Creator,
         )
         return returnvalue
 
@@ -219,9 +219,9 @@ class WeekBookingOverview(BookingsDetailedView):
         # less than January of this year.
         while date.month() + 12 * date.year() <= self.month + 12 * self.year:
             weekinfo = dict(
-                week_number = date.week(),
-                week_start = ploneview.toLocalizedTime(date),
-                )
+                week_number=date.week(),
+                week_start=ploneview.toLocalizedTime(date),
+            )
             # Start the week cleanly
             day_of_week = 0
             daylist = []
@@ -342,13 +342,13 @@ class YearBookingOverview(XMBaseView):
         """Return a dict of the main stuff of this period.
         """
         returnvalue = dict(
-            base_year = self.base_year,
-            base_month = self.base_month,
-            prev_year = self.base_year - 1,
-            next_year = self.base_year + 1,
-            display_next_year = self.base_year < DateTime().year(),
-            total = self.total,
-            )
+            base_year=self.base_year,
+            base_month=self.base_month,
+            prev_year=self.base_year - 1,
+            next_year=self.base_year + 1,
+            display_next_year=self.base_year < DateTime().year(),
+            total=self.total,
+        )
         return returnvalue
 
     def update(self):
@@ -364,9 +364,9 @@ class YearBookingOverview(XMBaseView):
             bookview = WeekBookingOverview(context, request, **opts)
             main = bookview.main()
             month_info = dict(
-                main = main,
-                bookings = bookview.bookinglist,
-                )
+                main=main,
+                bookings=bookview.bookinglist,
+            )
             self.months_list.append(month_info)
             self.raw_total += main['raw_total']
 
@@ -393,16 +393,16 @@ class BookingView(XMBaseView):
         desc = pt('web_intelligent_plain_text_to_html', desc)
 
         returnvalue = dict(
-            title = context.title_or_id(),
-            description = desc,
-            actual = formatTime(actual),
-            booking_date = ploneview.toLocalizedTime(context.getBookingDate()),
-            billable = context.getBillable(),
-            creator = context.Creator(),
+            title=context.title_or_id(),
+            description=desc,
+            actual=formatTime(actual),
+            booking_date=ploneview.toLocalizedTime(context.getBookingDate()),
+            billable=context.getBillable(),
+            creator=context.Creator(),
             # base_view of a booking gets redirected to the task view,
             # which we do not want here.
-            url = context.absolute_url() + '/base_edit',
-            )
+            url=context.absolute_url() + '/base_edit',
+        )
         return returnvalue
 
 
@@ -429,7 +429,7 @@ class DayBookingOverview(XMBaseView):
                             "range": "minmax"},
             Creator=self.memberid,
             path=self.searchpath)
-        billable=0.0
+        billable = 0.0
         for bb in bookingbrains:
             if bb.getBillable:
                 billable += bb.actual_time

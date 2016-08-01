@@ -149,7 +149,8 @@ class IterationClosingView(BrowserView):
         submit = self.request.form.get('submit', None)
         form = self.request.form
         if form.get('cancel', None):
-            self.request.response.redirect(self.context.absolute_url()+'/view')
+            self.request.response.redirect(
+                self.context.absolute_url() + '/view')
             return ''
         elif form.get('close', None):
             return self.handle_close()

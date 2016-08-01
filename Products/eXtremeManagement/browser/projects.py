@@ -30,7 +30,7 @@ class Projects(XMBaseView):
         searchpath = projectbrain.getPath()
         # Search for Iterations that are ready to get invoiced
         return self.catalog.searchResults(portal_type='Iteration',
-                                                     path=searchpath)
+                                          path=searchpath)
 
     @memoize
     def projects(self):
@@ -41,8 +41,8 @@ class Projects(XMBaseView):
 class Scheduling(Projects):
     """Pan-project scheduling"""
 
-    weekcount = 14 # Number of weeks to display
-    weekpreroll = 2 # Number of weeks to show *before* the desired starting date
+    weekcount = 14  # Number of weeks to display
+    weekpreroll = 2  # Number of weeks to show *before* the desired starting date
     # Displayed width in pixels - declared here so we can calculate iteration
     # positions in code
     cellwidth = 16
@@ -51,7 +51,7 @@ class Scheduling(Projects):
         return int(time.mktime(dateobj.timetuple()))
 
     def displayrange(self):
-        return timedelta(self.weekcount*7)
+        return timedelta(self.weekcount * 7)
 
     def startingtimestamp(self):
         try:
@@ -63,7 +63,7 @@ class Scheduling(Projects):
     def startingdate(self, stamp=None):
         stamp = stamp or self.startingtimestamp()
         start = date.fromtimestamp(stamp)
-        monday = start - timedelta(self.weekpreroll*7)
+        monday = start - timedelta(self.weekpreroll * 7)
         while monday.weekday() != 0:
             monday -= timedelta(1)
         return monday
@@ -84,7 +84,7 @@ class Scheduling(Projects):
         weeks before and after the current date.
         """
         monday = self.startingdate()
-        return [monday + timedelta(i*7) for i in range(self.weekcount)]
+        return [monday + timedelta(i * 7) for i in range(self.weekcount)]
 
     def iterationsforproject(self, projectbrain):
         """Filter iterations based on the current date range and build a data
@@ -99,15 +99,17 @@ class Scheduling(Projects):
                 end = float(iteration.endDate)
                 if sdate < start and end < edate:
                     iterations.append(dict(
-                        uid = iteration.UID,
-                        title = iteration.Title(),
+                        uid=iteration.UID,
+                        title=iteration.Title(),
                         # only unstarted iterations can be moved...
-                        movable = time.time() < start,
-                        start = int((start - sdate) / 60 / 60 / 24)  * self.cellwidth,
-                        period = int((end - start) / 60 / 60 / 24) * self.cellwidth,
+                        movable=time.time() < start,
+                        start=int((start - sdate) / 60 / 60 / 24) * \
+                        self.cellwidth,
+                        period=int((end - start) / 60 / 60 / 24) * \
+                        self.cellwidth,
                     ))
             except TypeError:
-                pass # Probably empty iteration dates
+                pass  # Probably empty iteration dates
         return iterations
 
 
@@ -130,6 +132,7 @@ class MoveIteration(PloneKSSView):
         obj.startDate = DateTime(newd.year, newd.month, newd.day)
         # Maintain duration of iteration by setting endDate too
         obj.endDate = obj.startDate + duration
+
 
 class MyProjects(XMBaseView):
     """Return the projects that I have tasks in.
@@ -164,7 +167,7 @@ class MyProjects(XMBaseView):
             projectbrain = projectbrains[0]
             roles = member.getRolesInContext(projectbrain.getObject())
             if 'ProjectManager' in roles or 'Manager' in roles or \
-                'Customer' in roles and 'Employee' not in roles:
+                    'Customer' in roles and 'Employee' not in roles:
                 return projectbrains
 
             # Otherwise only show the projects with open tasks assigned to
@@ -174,10 +177,10 @@ class MyProjects(XMBaseView):
             for projectbrain in projectbrains:
                 searchpath = projectbrain.getPath()
                 taskbrains = self.catalog.searchResults(portal_type=['Task',
-                                                                'PoiTask'],
-                                                   getAssignees=memberid,
-                                                   review_state=states,
-                                                   path=searchpath)
+                                                                     'PoiTask'],
+                                                        getAssignees=memberid,
+                                                        review_state=states,
+                                                        path=searchpath)
                 if len(taskbrains) > 0:
                     plist.append(projectbrain)
             return plist
@@ -192,7 +195,7 @@ class ProjectView(XMBaseView):
         searchpath = '/'.join(context.getPhysicalPath())
         # Get a list of all projects
         projectbrains = self.catalog.searchResults(portal_type='Project',
-                                              path=searchpath)
+                                                   path=searchpath)
 
         plist = []
         for projectbrain in projectbrains:
@@ -206,8 +209,8 @@ class ProjectView(XMBaseView):
                 for iterationbrain in iterationbrains:
                     info = self.iterationbrain2dict(iterationbrain)
                     iteration_list.append(info)
-                info = dict(project = self.projectbrain2dict(projectbrain),
-                            iterations = iteration_list)
+                info = dict(project=self.projectbrain2dict(projectbrain),
+                            iterations=iteration_list)
                 plist.append(info)
         return plist
 
@@ -218,18 +221,18 @@ class ProjectView(XMBaseView):
         estimate = brain.estimate
         actual = brain.actual_time
         returnvalue = dict(
-            url = brain.getURL(),
-            title = brain.Title,
-            description = brain.Description,
-            icon = brain.getIcon,
-            man_hours = brain.getManHours,
-            estimate = formatTime(estimate),
-            actual = formatTime(actual),
-            difference = formatTime(estimate - actual),
-            review_state = review_state_id,
-            review_state_title = self.workflow.getTitleForStateOnType(
-                                 review_state_id, 'Iteration'),
-            brain= brain,
+            url=brain.getURL(),
+            title=brain.Title,
+            description=brain.Description,
+            icon=brain.getIcon,
+            man_hours=brain.getManHours,
+            estimate=formatTime(estimate),
+            actual=formatTime(actual),
+            difference=formatTime(estimate - actual),
+            review_state=review_state_id,
+            review_state_title=self.workflow.getTitleForStateOnType(
+                review_state_id, 'Iteration'),
+            brain=brain,
         )
         return returnvalue
 
@@ -237,22 +240,21 @@ class ProjectView(XMBaseView):
         """Get a dict with info from this project brain.
         """
         returnvalue = dict(
-            url = brain.getURL(),
-            title = brain.Title,
-            description = brain.Description,
+            url=brain.getURL(),
+            title=brain.Title,
+            description=brain.Description,
         )
         return returnvalue
-
 
     def main(self):
         """Get a dict with info from this context.
         """
         context = aq_inner(self.context)
         returnvalue = dict(
-            title = context.Title(),
-            description = context.Description(),
-            url = context.absolute_url(),
-            )
+            title=context.Title(),
+            description=context.Description(),
+            url=context.absolute_url(),
+        )
         return returnvalue
 
     def current_iterations(self):
@@ -313,8 +315,8 @@ class ProjectView(XMBaseView):
                                          name=u'plone')
             icon = plone_view.getIcon(offer_brains[0].getObject())
             for offer in offer_brains:
-                results.append(dict(brain = offer,
-                                    title = offer.Title,
-                                    url = offer.getURL,
-                                    icon = icon.html_tag()))
+                results.append(dict(brain=offer,
+                                    title=offer.Title,
+                                    url=offer.getURL,
+                                    icon=icon.html_tag()))
         return results

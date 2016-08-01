@@ -38,7 +38,7 @@ OUR_LINKABLE_TYPES = [
     'Customer',
     'ProjectFolder',
     'ProjectMember',
-    ]
+]
 
 OUR_COLLECTION_TYPES = [
     'Iteration',
@@ -51,6 +51,6 @@ OUR_COLLECTION_TYPES = [
     'Customer',
     'ProjectFolder',
     'ProjectMember',
-    ]
+]
 
 NEW_ROLES = ['Employee', 'Customer', 'Projectmanager']

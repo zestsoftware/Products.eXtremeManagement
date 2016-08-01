@@ -46,7 +46,6 @@ class GanttView(BrowserView):
 
     """
 
-
     project_crit = dict(portal_type='Project',
                         sort_on='sortable_title',
                         review_state=('active', 'private'))
@@ -72,7 +71,7 @@ class GanttView(BrowserView):
                                       **self.task_crit):
             estimate = getattr(taskbrain, 'estimate', 0.0)
             if not estimate or estimate <= 0 or \
-                   len(taskbrain.getAssignees) == 0:
+                    len(taskbrain.getAssignees) == 0:
                 continue
 
             h = float(taskbrain.estimate) / float(len(taskbrain.getAssignees))

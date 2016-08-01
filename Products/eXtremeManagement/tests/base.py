@@ -60,7 +60,6 @@ def xm_setup():
     import xm.tracker
     import collective.autopermission
 
-
     zcml.load_config('configure.zcml', Products.eXtremeManagement)
     zcml.load_config('configure.zcml', Products.Poi)
     zcml.load_config('configure.zcml', xm.booking)

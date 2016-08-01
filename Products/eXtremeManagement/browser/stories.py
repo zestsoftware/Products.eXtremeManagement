@@ -23,18 +23,18 @@ class StoryView(XMBaseView):
         stories = iteration.getFolderContents()
         num_stories = len(stories)
         pos = iteration.getObjectPosition(context.id)
-        next = pos < num_stories-1 and stories[pos+1]
-        prev = pos != 0 and stories[pos-1]
+        next = pos < num_stories - 1 and stories[pos + 1]
+        prev = pos != 0 and stories[pos - 1]
 
         returnvalue = dict(
-            title = context.Title(),
-            description = context.Description(),
-            cooked_body = context.CookedBody(),
-            rough_estimate = context.getRoughEstimate(),
-            review_state = self.workflow.getInfoFor(context, 'review_state'),
-            prev = prev,
-            next = next,
-            )
+            title=context.Title(),
+            description=context.Description(),
+            cooked_body=context.CookedBody(),
+            rough_estimate=context.getRoughEstimate(),
+            review_state=self.workflow.getInfoFor(context, 'review_state'),
+            prev=prev,
+            next=next,
+        )
         return returnvalue
 
     def totals(self):
@@ -54,10 +54,10 @@ class StoryView(XMBaseView):
             # Should not happen (tm).
             estimate = -99.0
         totals = dict(
-            estimate = formatTime(estimate),
-            actual = formatTime(actual),
-            difference = formatTime(estimate - actual),
-            )
+            estimate=formatTime(estimate),
+            actual=formatTime(actual),
+            difference=formatTime(estimate - actual),
+        )
         return totals
 
     def tasklist(self):
@@ -91,7 +91,7 @@ class StoryView(XMBaseView):
                 name = fullname and fullname.strip() or mId
             else:
                 name = mId
-            assignables.append(dict(id = mId, name = name))
+            assignables.append(dict(id=mId, name=name))
         return assignables
 
 

@@ -155,7 +155,6 @@ class testWorkflow(eXtremeManagementTestCase):
         self.tryAllowedTransition(self.iteration, 'iteration',
                                   'completed', 'invoice', 'invoiced')
 
-
         # Try some transactions that don't belong to the current state
         self.tryForbiddenTransition(self.iteration, 'invoiced', 'reactivate')
 
@@ -304,7 +303,7 @@ class testWorkflow(eXtremeManagementTestCase):
                                   'in-progress', 'complete', 'completed')
 
     def tryAllowedTransition(self, ctObject, ctId, originalState,
-                       workflowTransition, newState):
+                             workflowTransition, newState):
         """
         Test a transition.
         ctObject = Content Type object to perform the transition on

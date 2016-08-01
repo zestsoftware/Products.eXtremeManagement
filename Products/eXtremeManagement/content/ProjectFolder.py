@@ -14,6 +14,7 @@ ProjectFolder_schema = FolderSchema
 
 # BBB Can be removed in release 2.1
 
+
 class ProjectFolder(OrderedBaseFolder):
     """
     """

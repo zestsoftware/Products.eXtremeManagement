@@ -50,7 +50,7 @@ class Renderer(base.Renderer):
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)
         poi_view = getMultiAdapter((self.context, self.request),
-                                        name=u'xm-poi')
+                                   name=u'xm-poi')
         self.links = poi_view.links()
         self.stories = poi_view.stories_to_add_to()
 

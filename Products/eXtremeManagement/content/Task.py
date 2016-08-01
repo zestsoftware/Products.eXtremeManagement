@@ -138,7 +138,6 @@ class Task(BaseFolder):
         """
         return self.getMainText()
 
-
     security.declarePublic('startable')
 
     def startable(self):

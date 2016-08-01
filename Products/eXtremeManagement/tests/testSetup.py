@@ -67,7 +67,7 @@ class testSetup(eXtremeManagementTestCase):
         props_tool = getToolByName(self.portal, 'portal_properties')
         nav_props = props_tool.navtree_properties
         if nav_props.hasProperty(
-            'rolesSeeUnpublishedContent'):
+                'rolesSeeUnpublishedContent'):
             rolesSeeUnpublishedContent = nav_props.getProperty(
                 'rolesSeeUnpublishedContent')
             self.failUnless('Customer' in rolesSeeUnpublishedContent)

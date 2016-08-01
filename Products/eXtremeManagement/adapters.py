@@ -21,7 +21,7 @@ class XMIssueGetter(object):
         assert project.portal_type == 'Project', (
             "Failed to get associated project.")
         tools = getMultiAdapter((self.context, self.request),
-                                 name=u'plone_tools')
+                                name=u'plone_tools')
         catalog = tools.catalog()
         query = dict(portal_type='PoiIssue',
                      review_state=['in-progress', 'open',

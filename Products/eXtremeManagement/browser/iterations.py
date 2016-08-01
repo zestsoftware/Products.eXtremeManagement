@@ -61,18 +61,18 @@ class IterationView(XMBaseView):
         else:
             manhours = None
         returnvalue = dict(
-            title = context.Title(),
-            description = context.Description(),
-            man_hours = manhours,
-            start_date = ploneview.toLocalizedTime(context.getStartDate()),
-            end_date = ploneview.toLocalizedTime(context.getEndDate()),
-            estimate = formatTime(estimate),
-            size_estimate = size_estimate,
-            actual = formatTime(actual),
-            difference = formatTime(estimate - actual),
-            review_state = review_state,
-            budget_left = budget_left,
-            )
+            title=context.Title(),
+            description=context.Description(),
+            man_hours=manhours,
+            start_date=ploneview.toLocalizedTime(context.getStartDate()),
+            end_date=ploneview.toLocalizedTime(context.getEndDate()),
+            estimate=formatTime(estimate),
+            size_estimate=size_estimate,
+            actual=formatTime(actual),
+            difference=formatTime(estimate - actual),
+            review_state=review_state,
+            budget_left=budget_left,
+        )
         return returnvalue
 
     def stories(self, sort_by_state=True, locked_status=False):
@@ -127,24 +127,24 @@ class IterationView(XMBaseView):
         estimate = brain.estimate
         actual = brain.actual_time
         returnvalue = dict(
-            story_id = brain.getId,
-            uid = brain.UID,
-            url = brain.getURL(),
-            title = brain.Title,
-            description = brain.Description,
-            raw_estimate = estimate,
-            estimate = formatTime(estimate),
-            size_estimate = brain.size_estimate,
-            actual = formatTime(actual),
-            difference = formatTime(estimate - actual),
-            progress = progress,
-            review_state = review_state_id,
-            review_state_title = self.workflow.getTitleForStateOnType(
-                                 review_state_id, 'Story'),
-            is_completed = is_completed,
-            open_tasks = open_tasks,
-            completed_tasks = completed_tasks,
-            locked = locked,
+            story_id=brain.getId,
+            uid=brain.UID,
+            url=brain.getURL(),
+            title=brain.Title,
+            description=brain.Description,
+            raw_estimate=estimate,
+            estimate=formatTime(estimate),
+            size_estimate=brain.size_estimate,
+            actual=formatTime(actual),
+            difference=formatTime(estimate - actual),
+            progress=progress,
+            review_state=review_state_id,
+            review_state_title=self.workflow.getTitleForStateOnType(
+                review_state_id, 'Story'),
+            is_completed=is_completed,
+            open_tasks=open_tasks,
+            completed_tasks=completed_tasks,
+            locked=locked,
         )
         return returnvalue
 
@@ -210,7 +210,7 @@ class IterationView(XMBaseView):
         context = self.context
         if total > 0:
             try:
-                percentage = int(round(part/float(total)*100))
+                percentage = int(round(part / float(total) * 100))
             except TypeError:
                 return '??'
             portal_properties = getToolByName(context, 'portal_properties',
@@ -233,7 +233,7 @@ class IterationView(XMBaseView):
         hours_left = project.getBudgetHours()
         if not hours_left:
             return None
-        contentfilter = dict(portal_type = 'Iteration')
+        contentfilter = dict(portal_type='Iteration')
         iteration_brains = project.getFolderContents(contentfilter)
         for brain in iteration_brains:
             iteration = brain.getObject()
@@ -243,8 +243,8 @@ class IterationView(XMBaseView):
     def second_current_iteration(self):
         """Link to the other iteration that is in state in-progress"""
         project = aq_parent(aq_inner(self.context))
-        contentfilter = dict(portal_type = 'Iteration',
-                             review_state = 'in-progress')
+        contentfilter = dict(portal_type='Iteration',
+                             review_state='in-progress')
         brains = project.getFolderContents(contentfilter)
         # If we have multiple iterations in progress this return a link to it
         # In the template we will display a statusmessage.
@@ -296,7 +296,6 @@ class IterationList(Explicit):
     def update(self):
         pass
 
-
     render = ViewPageTemplateFile("iteration_list.pt")
 
 
@@ -307,14 +306,15 @@ class Create(BrowserView):
         form = self.request.form
         title = form.get('title', '')
         if title == '':
-            #status message
+            # status message
             return
         context = aq_inner(self.context)
         plone_utils = getToolByName(self.context, 'plone_utils')
         new_id = plone_utils.normalizeString(title)
         context.invokeFactory(type_name="Iteration", id=new_id, title=title)
         plone_utils.addPortalMessage(_(u'Iteration added.'))
-        self.request.response.redirect(context.absolute_url() + '/@@planned-iterations')
+        self.request.response.redirect(
+            context.absolute_url() + '/@@planned-iterations')
 
 
 class Add(PloneKSSView):
@@ -333,7 +333,9 @@ class Add(PloneKSSView):
         context.invokeFactory(type_name="Iteration", id=new_id, title=title)
         core = self.getCommandSet('core')
         zopecommands = self.getCommandSet('zope')
-        zopecommands.refreshProvider('#iterationlist', name = 'xm.iteration_list')
-        zopecommands.refreshProvider('#add-iteration', name = 'xm.iteration_form')
+        zopecommands.refreshProvider(
+            '#iterationlist', name='xm.iteration_list')
+        zopecommands.refreshProvider(
+            '#add-iteration', name='xm.iteration_form')
         plone_commands.issuePortalMessage(_(u'Iteration added.'),
                                           msgtype='info')

@@ -157,7 +157,7 @@ class PoiView(XMBaseView):
         tasks = self.context.getBRefs('task_issues')
         tasks = sorted(tasks,
                        lambda a, b: cmp(a.ModificationDate(),
-                                       b.ModificationDate()))
+                                        b.ModificationDate()))
         for task in tasks:
             value.append(
                 dict(iterationid=task.getPhysicalPath()[-3],

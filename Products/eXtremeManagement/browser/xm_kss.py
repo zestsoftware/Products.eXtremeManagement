@@ -51,9 +51,11 @@ class ViewletReloader(object):
             # Remove expanded task form and button if it is there.
             ksscore = self.view.getCommandSet('core')
             selector1 = ksscore.getHtmlIdSelector('task-form-expanded')
-            ksscore.replaceHTML(selector1, u'<!-- Removed expanded task form -->')
+            ksscore.replaceHTML(
+                selector1, u'<!-- Removed expanded task form -->')
             selector2 = ksscore.getHtmlIdSelector('task-form-button')
-            ksscore.replaceHTML(selector2, u'<!-- Removed task form button -->')
+            ksscore.replaceHTML(
+                selector2, u'<!-- Removed task form button -->')
             # Refresh unexpanded task form.
             zope.refreshProvider('#task-form', 'xm.task_form')
             # Refresh the details box provider

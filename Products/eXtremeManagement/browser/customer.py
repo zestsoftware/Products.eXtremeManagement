@@ -65,19 +65,19 @@ class IterationListBaseView(XMBaseView):
             if item['action'] == 'complete':
                 completion_date = item['time']
         returnvalue = dict(
-            url = brain.getURL(),
-            title = brain.Title,
-            description = brain.Description,
-            raw_estimate = estimate,
-            estimate = formatTime(estimate),
-            actual = formatTime(actual),
-            review_state = review_state_id,
-            review_state_title = self.workflow.getTitleForStateOnType(
-                                 review_state_id, 'Iteration'),
-            start_date = obj.getStartDate(),
-            end_date = obj.getEndDate(),
-            completion_date = completion_date,
-            brain= brain,
+            url=brain.getURL(),
+            title=brain.Title,
+            description=brain.Description,
+            raw_estimate=estimate,
+            estimate=formatTime(estimate),
+            actual=formatTime(actual),
+            review_state=review_state_id,
+            review_state_title=self.workflow.getTitleForStateOnType(
+                review_state_id, 'Iteration'),
+            start_date=obj.getStartDate(),
+            end_date=obj.getEndDate(),
+            completion_date=completion_date,
+            brain=brain,
         )
         returnvalue.update(self.extra_dict(obj, brain))
         return returnvalue
@@ -87,9 +87,9 @@ class IterationListBaseView(XMBaseView):
         """Get a dict with info from this project brain.
         """
         returnvalue = dict(
-            url = self.context.absolute_url(),
-            title = self.context.Title,
-            description = self.context.Description,
+            url=self.context.absolute_url(),
+            title=self.context.Title,
+            description=self.context.Description,
         )
         return returnvalue
 

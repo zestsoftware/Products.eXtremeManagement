@@ -27,12 +27,12 @@ def notify_completed(self, state_change, **kw):
     Has been disabled at the moment.
     """
     portal = self
-    obj=state_change.object
+    obj = state_change.object
 
 
 def tryToCompleteStory(self, state_change, **kw):
     portal = self
-    task=state_change.object
+    task = state_change.object
     story = task.aq_parent
     wf_tool = getToolByName(portal, 'portal_workflow')
     from Products.CMFCore.WorkflowCore import WorkflowException
@@ -69,7 +69,7 @@ def startStory(self, state_change, **kw):
     Give all open tasks in this story the to-do status.
     """
     portal = self
-    story=state_change.object
+    story = state_change.object
     # Tasks have statuses open, to-do or completed.
     # Open tasks need to be set to to-do.  The rest is fine.
     tasks = story.contentValues(filter={'portal_type': ['Task', 'PoiTask']})
@@ -94,7 +94,7 @@ def tryToCompleteIteration(self, state_change, **kw):
     Iteration itself can be set to complete.  Try that.
     """
     portal = self
-    story=state_change.object
+    story = state_change.object
     iteration = story.aq_parent
     wf_tool = getToolByName(portal, 'portal_workflow')
     if wf_tool.getInfoFor(iteration, 'review_state') == 'in-progress' and \
@@ -111,7 +111,7 @@ def startIteration(self, state_change, **kw):
     Give all estimated stories in this iteration the in-progress status.
     """
     portal = self
-    iteration=state_change.object
+    iteration = state_change.object
     stories = iteration.contentValues(filter={'portal_type': 'Story'})
     wf_tool = getToolByName(portal, 'portal_workflow')
     from Products.CMFCore.WorkflowCore import WorkflowException

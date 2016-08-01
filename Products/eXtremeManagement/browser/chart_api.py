@@ -109,8 +109,8 @@ class Chart(object):
         encodedData = ''
         for i in data:
             try:
-                if i>=0:
-                    index = (len(simpleEncoding)-1)*i / maxValue
+                if i >= 0:
+                    index = (len(simpleEncoding) - 1) * i / maxValue
                     encodedData += simpleEncoding[index]
                 else:
                     encodedData += '_'
@@ -171,8 +171,8 @@ class Chart(object):
         """
         width = size[0]
         height = size[1]
-        if width*height > 300000:
-            factor = (300000.0 / (width*height))**0.5
+        if width * height > 300000:
+            factor = (300000.0 / (width * height))**0.5
             width = int(factor * width)
             height = int(factor * height)
         if width > 1000:
@@ -275,7 +275,7 @@ def nice_axis_step(number):
     nice_steps = nice_step_generator()
     step = nice_steps.next()
     while(1):
-        if number/step < 10:
+        if number / step < 10:
             return step
         step = nice_steps.next()
 
@@ -303,9 +303,9 @@ def nice_step_generator():
     """
     order = 1
     while(1):
-        yield order*1
-        yield order*2
-        yield order*5
+        yield order * 1
+        yield order * 2
+        yield order * 5
         order *= 10
 
 

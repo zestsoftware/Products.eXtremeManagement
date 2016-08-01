@@ -185,7 +185,7 @@ class InvoicingView(IterationListBaseView):
             portal_type='Iteration',
             review_state='invoiced',
             modified={'query': start_of_month, 'range': 'min'},
-            )
+        )
         results = []
         for iterationbrain in iterationbrains:
             info = self.iterationbrain2dict(iterationbrain)

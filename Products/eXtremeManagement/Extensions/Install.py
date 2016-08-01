@@ -1,9 +1,10 @@
 import transaction
 from Products.CMFCore.utils import getToolByName
 
-PRODUCT_DEPENDENCIES = ('Poi',
-#                        'collective.indexing',
-                        )
+PRODUCT_DEPENDENCIES = (
+    'Poi',
+    #'collective.indexing',
+)
 
 
 def install(self, reinstall=False):

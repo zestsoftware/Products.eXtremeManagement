@@ -15,7 +15,7 @@ modules = (
     'browser.releaseplan',
     'emails',
     'utils',
-    )
+)
 
 OPTIONFLAGS = (doctest.ELLIPSIS |
                doctest.NORMALIZE_WHITESPACE)
@@ -38,9 +38,9 @@ def test_suite():
     # run the unit tests which are doctests
     for doc in list_doctests():
         suites.addTest(
-        doctestunit.DocFileSuite(
-            os.path.basename(doc),
-            package='Products.eXtremeManagement.doc',
-            optionflags=OPTIONFLAGS))
+            doctestunit.DocFileSuite(
+                os.path.basename(doc),
+                package='Products.eXtremeManagement.doc',
+                optionflags=OPTIONFLAGS))
 
     return suites

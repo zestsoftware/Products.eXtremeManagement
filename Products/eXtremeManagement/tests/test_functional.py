@@ -38,9 +38,9 @@ def setUp(test):
 def test_suite():
     filenames = list_doctests()
     suites = [Suite(os.path.basename(filename),
-               optionflags=OPTIONFLAGS,
-               package='Products.eXtremeManagement.doc',
-               setUp=setUp,
-               test_class=eXtremeManagementFunctionalTestCase)
+                    optionflags=OPTIONFLAGS,
+                    package='Products.eXtremeManagement.doc',
+                    setUp=setUp,
+                    test_class=eXtremeManagementFunctionalTestCase)
               for filename in filenames]
     return unittest.TestSuite(suites)

@@ -53,9 +53,9 @@ class Renderer(base.Renderer):
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)
         portal_state = getMultiAdapter((self.context, self.request),
-                                        name=u'plone_portal_state')
+                                       name=u'plone_portal_state')
         tools = getMultiAdapter((self.context, self.request),
-                                        name=u'plone_tools')
+                                name=u'plone_tools')
         self.site_url = portal_state.portal_url()
         self.portal = portal_state.portal()
         self.project = self._get_project()
@@ -72,7 +72,7 @@ class Renderer(base.Renderer):
         a project it returns None
         """
         try:
-            #If we are inside a project aqcuisition will find it
+            # If we are inside a project aqcuisition will find it
             project = aq_inner(self.context).getProject()
         except AttributeError:
             # Or raise an error, in which case we return None
@@ -83,8 +83,8 @@ class Renderer(base.Renderer):
     def current(self):
         path = '/'.join(self.project.getPhysicalPath())
         brains = self.catalog.searchResults(portal_type='Iteration',
-                                       review_state='in-progress',
-                                       path=path)
+                                            review_state='in-progress',
+                                            path=path)
         # By default return a link to the first iteration found.
         # Other iteration will return a link to the second one and is shown as
         # a status message

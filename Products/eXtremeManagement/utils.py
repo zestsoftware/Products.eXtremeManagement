@@ -39,7 +39,7 @@ def formatTime(time):
     """
     try:
         hours = int(time)
-        minutes = int(round((time - hours)*60))
+        minutes = int(round((time - hours) * 60))
     except ValueError:
         return '?:??'
     # Adjust for rounding:
@@ -172,7 +172,7 @@ def getNextYearMonth(year, month):
     """
     if month < 1 or month > 12:
         raise ValueError
-    nextyear = year + month/12
+    nextyear = year + month / 12
     nextmonth = (month % 12) + 1
     return (nextyear, nextmonth)
 

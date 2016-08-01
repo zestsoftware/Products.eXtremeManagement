@@ -5,7 +5,7 @@ Changelog
 2.1a10 (unreleased)
 -------------------
 
-- Minor package cleanup.  Added compatibility note in readme.  Briefly: works best in Plone 3.
+- Minor package cleanup and pep8.  Added compatibility note in readme.  Briefly: works best in Plone 3.
   [maurits]
 
 

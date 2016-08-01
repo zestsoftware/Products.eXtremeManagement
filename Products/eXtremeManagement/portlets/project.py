@@ -53,7 +53,7 @@ class Renderer(base.Renderer):
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)
         portal_state = getMultiAdapter((self.context, self.request),
-                                        name=u'plone_portal_state')
+                                       name=u'plone_portal_state')
         self.site_url = portal_state.portal_url()
         self.portal = portal_state.portal()
         self.project = self._get_project()
@@ -70,7 +70,7 @@ class Renderer(base.Renderer):
         a project it return site_url
         """
         try:
-            #If we are inside a project aqcuisition will find it
+            # If we are inside a project aqcuisition will find it
             project = aq_inner(self.context).getProject()
         except AttributeError:
             # Or raise an error, in which case we return None
@@ -105,7 +105,7 @@ class Renderer(base.Renderer):
             # if chart:
             #    results.append(dict(url=chart, title=_(u'Overview Chart')))
         for res in results:
-            row = (results.index(res)+1)%2 and 'odd' or 'even'
+            row = (results.index(res) + 1) % 2 and 'odd' or 'even'
             res['class'] = 'portletItem ' + row
         return results
 
@@ -152,7 +152,7 @@ class Renderer(base.Renderer):
         """ Return the url to the chart overview, if it has data"""
         try:
             chart = getMultiAdapter((self.project, self.request),
-                                            name=u'chart')
+                                    name=u'chart')
         except ComponentLookupError:
             return None
 

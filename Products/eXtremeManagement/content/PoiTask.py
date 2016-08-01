@@ -17,7 +17,7 @@ class PoiTask(Task):
                              allowed_types=('PoiIssue', ),
                              vocabulary='vocabulary_issues',
                              ),
-        ))
+    ))
 
     schema.moveField('issues', after='title')
     schema['mainText'].widget.visible = dict(edit=0, view=0)

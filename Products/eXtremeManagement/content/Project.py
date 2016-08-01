@@ -26,16 +26,16 @@ DefaultSchema = Schema((
             i18n_domain='eXtremeManagement'),
     ),
     BooleanField('includeGlobalMembers',
-        default = True,
-        languageIndependent = True,
-        widget = BooleanWidget(
-            description="If selected, Members with a global role 'Employee' "
-                        " will appear in the assignees list of a Task.",
-            description_msgid = "help_include_global_members",
-            label = "Include global Employees",
-            label_msgid = "label_include_global_members",
-            i18n_domain = "eXtremeManagement"),
-    ),
+                 default=True,
+                 languageIndependent=True,
+                 widget=BooleanWidget(
+                     description="If selected, Members with a global role 'Employee' "
+                     " will appear in the assignees list of a Task.",
+                     description_msgid="help_include_global_members",
+                     label="Include global Employees",
+                     label_msgid="label_include_global_members",
+                     i18n_domain="eXtremeManagement"),
+                 ),
     BooleanField(
         name='billableProject',
         default="True",
@@ -95,17 +95,17 @@ class Project(OrderedBaseFolder):
         portal = getToolByName(self, 'portal_url').getPortalObject()
         grp = getToolByName(self, 'portal_groups')
         pu = getToolByName(self, 'plone_utils')
-        memberIds=[]
+        memberIds = []
 
         def _appendGroupsAndUsers(currentIds, extraIds):
             extraUserids = []
             for id in extraIds:
                 groupdataobject = grp.getGroupById(id)
                 if groupdataobject:
-                    #this is a group, we need it's member ids
+                    # this is a group, we need it's member ids
                     extraUserids += groupdataobject.getMemberIds()
                 else:
-                    #this is a member, just append it's id
+                    # this is a member, just append it's id
                     extraUserids.append(id)
             for id in extraUserids:
                 if id not in currentIds:
@@ -119,9 +119,9 @@ class Project(OrderedBaseFolder):
         aquiredGroupsAndUsers = pu.getInheritedLocalRoles(self)
         for name, roles, type, id in aquiredGroupsAndUsers:
             if role in roles:
-                if type=='user':
+                if type == 'user':
                     memberIds.append(id)
-                elif type=='group':
+                elif type == 'group':
                     memberIds += grp.getGroupById(id).getMemberIds()
 
         if self.getIncludeGlobalMembers():

@@ -50,9 +50,9 @@ class Renderer(base.Renderer):
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)
         self.tools = getMultiAdapter((self.context, self.request),
-                                name=u'plone_tools')
+                                     name=u'plone_tools')
         portal_state = getMultiAdapter((self.context, self.request),
-                                        name=u'plone_portal_state')
+                                       name=u'plone_portal_state')
         self.anonymous = portal_state.anonymous()
         self.site_url = portal_state.portal_url()
         self.portal = portal_state.portal()

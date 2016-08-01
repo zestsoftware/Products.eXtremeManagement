@@ -114,13 +114,13 @@ class ReleaseplanView(ProjectView):
                                          locked_status=True)
         stories = self.update_stories(stories)
         returnvalue = dict(
-            url = brain.getURL(),
-            title = brain.Title,
-            description = brain.Description,
-            brain = brain,
-            stories = stories,
-            uid = brain.UID,
-            locked = wl_isLocked(iteration),
+            url=brain.getURL(),
+            title=brain.Title,
+            description=brain.Description,
+            brain=brain,
+            stories=stories,
+            uid=brain.UID,
+            locked=wl_isLocked(iteration),
         )
         return returnvalue
 
@@ -131,7 +131,7 @@ class ReleaseplanView(ProjectView):
             options = {'edit': 'story-draggable '}
             options.update(story)
             if story['review_state'] in (
-                'draft', 'completed', 'in-progress') or story['locked']:
+                    'draft', 'completed', 'in-progress') or story['locked']:
                 # Don't make me draggable
                 options['edit'] = ''
             story['class'] = format % options
@@ -240,7 +240,7 @@ class MoveStory(PloneKSSView):
         source, target, story = self.extract_objects(source_id,
                                                      target_id,
                                                      story_id)
-        if source == None: # The rest is also None.
+        if source == None:  # The rest is also None.
             plone.issuePortalMessage(_(u'Drag/drop uids incorrect'),
                                      msgtype='error')
             return
@@ -262,7 +262,7 @@ class MoveStory(PloneKSSView):
                 return
 
             msg = _(u'label_moved_succesfully',
-                default=u"Moved story '${story}' to iteration '${target}'.",
+                    default=u"Moved story '${story}' to iteration '${target}'.",
                     mapping={'story': story.Title(),
                              'target': target.Title()})
             if target_id == 'unplanned_stories':

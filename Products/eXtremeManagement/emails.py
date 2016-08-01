@@ -198,10 +198,10 @@ def email_task_assignees(object, event, *args, **kwargs):
 
     # Let's make sure all strings are unicode.
     values = dict(
-        task_url = safe_unicode(obj_url),
-        creator = safe_unicode(creator_address),
-        description = safe_unicode(description),
-        estimate = estimate)
+        task_url=safe_unicode(obj_url),
+        creator=safe_unicode(creator_address),
+        description=safe_unicode(description),
+        estimate=estimate)
 
     message = email_task_assignees_template % values
     logger.info(message)

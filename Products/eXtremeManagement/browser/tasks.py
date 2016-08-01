@@ -79,20 +79,20 @@ class TaskView(XMBaseView):
             prev_pos -= 1
 
         returnvalue = dict(
-            title = context.Title(),
-            description = context.Description(),
-            cooked_body = context.CookedBody(),
-            estimate = formatTime(estimate),
-            actual = formatTime(actual),
-            difference = formatTime(estimate - actual),
-            review_state = self.workflow.getInfoFor(context, 'review_state'),
-            assignees = [{'niceName': nice_namer(x),
-                          'username': x,
-                          'active': True}
-                         for x in context.getAssignees()],
+            title=context.Title(),
+            description=context.Description(),
+            cooked_body=context.CookedBody(),
+            estimate=formatTime(estimate),
+            actual=formatTime(actual),
+            difference=formatTime(estimate - actual),
+            review_state=self.workflow.getInfoFor(context, 'review_state'),
+            assignees=[{'niceName': nice_namer(x),
+                        'username': x,
+                        'active': True}
+                       for x in context.getAssignees()],
             prev=prev,
             next=next,
-            )
+        )
         return returnvalue
 
     def bookings(self):
@@ -135,15 +135,15 @@ class TaskView(XMBaseView):
                                       brain.Description)
 
         returnvalue = dict(
-            date = date,
+            date=date,
             # base_view of a booking gets redirected to the task view,
             # which we do not want here.
-            url = brain.getURL() + '/base_edit',
-            title = brain.Title,
-            description = desc,
-            actual = formatTime(brain.actual_time),
-            creator = brain.Creator,
-            billable = brain.getBillable,
+            url=brain.getURL() + '/base_edit',
+            title=brain.Title,
+            description=desc,
+            actual=formatTime(brain.actual_time),
+            creator=brain.Creator,
+            billable=brain.getBillable,
         )
         return returnvalue
 
@@ -186,9 +186,9 @@ class TasksDetailedView(XMBaseView):
         if not sort_by_state:
             task_list.sort(
                 lambda a, b: cmp(a['story_title'], b['story_title']) or
-                                cmp(a['title'], b['title']))
-        info = dict(tasks = task_list,
-                    totals = self.getTaskTotals(brains))
+                cmp(a['title'], b['title']))
+        info = dict(tasks=task_list,
+                    totals=self.getTaskTotals(brains))
         return info
 
     def portion(self, task):
@@ -208,10 +208,10 @@ class TasksDetailedView(XMBaseView):
         rawDifference = sum([(task.estimate - task.actual_time)
                              * self.portion(task) for task in tasks])
         totals = dict(
-            estimate = formatTime(rawEstimate),
-            actual = formatTime(rawActualHours),
-            difference = formatTime(rawDifference),
-            )
+            estimate=formatTime(rawEstimate),
+            actual=formatTime(rawActualHours),
+            difference=formatTime(rawDifference),
+        )
         return totals
 
     def taskbrain2dict(self, brain):
@@ -227,17 +227,17 @@ class TasksDetailedView(XMBaseView):
         estimate = brain.estimate
         actual = brain.actual_time
         returnvalue = dict(
-            url = brain.getURL(),
-            brain = brain,
-            UID = brain.UID,
-            title = brain.Title,
-            story_url = story.absolute_url(),
-            story_title = story.Title(),
-            description = brain.Description,
-            estimate = formatTime(estimate),
-            actual = formatTime(actual),
-            difference = formatTime(estimate - actual),
-            assignees = brain.getAssignees,
+            url=brain.getURL(),
+            brain=brain,
+            UID=brain.UID,
+            title=brain.Title,
+            story_url=story.absolute_url(),
+            story_title=story.Title(),
+            description=brain.Description,
+            estimate=formatTime(estimate),
+            actual=formatTime(actual),
+            difference=formatTime(estimate - actual),
+            assignees=brain.getAssignees,
         )
         return returnvalue
 
@@ -263,7 +263,7 @@ class MyTasksDetailedView(TasksDetailedView):
         self.stateTitle = workflow.getTitleForStateOnType(self.state, 'Task')
         states = ['open', 'to-do']
         self.possible_states = [{'id': id, 'title':
-            workflow.getTitleForStateOnType(id, 'Task')} for id in states]
+                                 workflow.getTitleForStateOnType(id, 'Task')} for id in states]
         try:
             self.possible_states.remove(self.state)
         except ValueError:
@@ -271,11 +271,11 @@ class MyTasksDetailedView(TasksDetailedView):
             # Might be 'all' since we treat that specially.
             pass
         self.filter = dict(
-            portal_type = ['Task', 'PoiTask'],
-            getAssignees = self.memberid,
-            review_state = self.state,
+            portal_type=['Task', 'PoiTask'],
+            getAssignees=self.memberid,
+            review_state=self.state,
             sort_on='getObjPositionInParent',
-            )
+        )
 
     def projects(self):
         # this one is quite expensive
@@ -319,7 +319,7 @@ class EmployeeTotalsView(TasksDetailedView):
         context = aq_inner(self.context)
         searchpath = '/'.join(context.getPhysicalPath())
 
-        filter = dict(searchpath = searchpath)
+        filter = dict(searchpath=searchpath)
         taskbrains = self.simple_tasklist(**filter)
 
         memberlist = []
@@ -338,11 +338,11 @@ class EmployeeTotalsView(TasksDetailedView):
             if rawEstimate > 0 or rawActualHours > 0:
                 rawDifference = rawEstimate - rawActualHours
                 info = dict(
-                    memberid = memberid,
-                    estimate = formatTime(rawEstimate),
-                    actual = formatTime(rawActualHours),
-                    difference = formatTime(rawDifference),
-                    )
+                    memberid=memberid,
+                    estimate=formatTime(rawEstimate),
+                    actual=formatTime(rawActualHours),
+                    difference=formatTime(rawDifference),
+                )
                 memberlist.append(info)
 
         return memberlist
@@ -413,7 +413,7 @@ class Add(PloneKSSView):
 
         # Refresh the add task form
         selector = core.getHtmlIdSelector('add-task')
-        zopecommands.refreshProvider(selector, name = 'xm.task_form')
+        zopecommands.refreshProvider(selector, name='xm.task_form')
 
         # Refresh the story details box provider
         zopecommands.refreshProvider('.xm-details',

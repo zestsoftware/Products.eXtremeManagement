@@ -14,7 +14,6 @@ class testStory(eXtremeManagementTestCase):
     def afterSetUp(self):
         pass
 
-
     def test_EstimateAndActual(self):
         """
         When a story has tasks, get their estimates.
@@ -163,7 +162,6 @@ class testStory(eXtremeManagementTestCase):
         self.failIf(story.completable())
         self.failIf(story.isCompleted())
 
-
     def test_generateUniqueId(self):
         # The generateUniqueId method is called when a content type
         # gets added to this story.
@@ -200,8 +198,6 @@ class testStory(eXtremeManagementTestCase):
         story.invokeFactory('PoiTask', '15')
         self.assertEqual(story.generateUniqueId('Task'), '16')
         self.assertEqual(story.generateUniqueId('PoiTask'), '16')
-
-
 
     def assertStoryBrainEquality(self, attribute, value, story=None):
         """Test equality of Story and storybrain from catalog.

@@ -2,6 +2,7 @@ from Products.eXtremeManagement.tests.base import eXtremeManagementTestCase
 
 from DateTime import DateTime
 
+
 class testIteration(eXtremeManagementTestCase):
     """ test-cases for class Iteration
     """
@@ -27,6 +28,7 @@ class testIteration(eXtremeManagementTestCase):
         self.failUnless(it.startDate.year() == ct.year())
         self.failUnless(it.startDate.month() == ct.month())
         self.failUnless(it.startDate.day() == ct.day())
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite

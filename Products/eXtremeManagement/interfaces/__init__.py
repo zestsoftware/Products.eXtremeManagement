@@ -22,7 +22,7 @@ our_interfaces = (
     IXMTask,
     IIssueTask,
     IXMBooking,
-    )
+)
 
 from zope.interface import alsoProvides
 from zope.app.content.interfaces import IContentType

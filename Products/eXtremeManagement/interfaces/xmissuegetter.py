@@ -11,4 +11,3 @@ class IXMIssueGetter(Interface):
     def get_issues():
         """Get a list of issue brains
         """
-

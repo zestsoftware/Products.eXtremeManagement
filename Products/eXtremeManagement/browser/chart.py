@@ -37,8 +37,8 @@ class ChartView(BrowserView):
         self.total_iterations = 0
         self.project = aq_inner(self.context).getProject()
         for it in self.get_iterations_generator():
-            self.total_iterations +=1
-            estim_total = int(self.get_total_estimate_iteration(it)+0.5)
+            self.total_iterations += 1
+            estim_total = int(self.get_total_estimate_iteration(it) + 0.5)
             estim_total_adapt = int((IEstimate(it).estimate / 8.0) + 0.5)
             work_total = int((IActualHours(it).actual_time / 8.0) + 0.5)
             self.table.append({'label': it.title_or_id(),
@@ -50,8 +50,8 @@ class ChartView(BrowserView):
     def total_budget(self):
         """ return total budget hours"""
         budgetString = self.project.getBudgetHours()
-        if len(string.strip(budgetString))>0:
-            return int(float(budgetString)+0.5)
+        if len(string.strip(budgetString)) > 0:
+            return int(float(budgetString) + 0.5)
         else:
             return None
 
@@ -61,7 +61,7 @@ class ChartView(BrowserView):
         xm_props = portal_properties.xm_properties
         if self.context.portal_type == 'Project':
             if (not hasattr(xm_props, 'project_chart')
-                or not xm_props.project_chart):
+                    or not xm_props.project_chart):
                 return False
             return self.total_iterations > 1
         return False
@@ -69,21 +69,21 @@ class ChartView(BrowserView):
     def get_iterations_generator(self):
         """ return a generator for all iterations having iter in their name"""
         return (i for i in self.context.contentValues()
-                if i.portal_type=='Iteration' and
+                if i.portal_type == 'Iteration' and
                 'iter' in i.title_or_id().lower())
 
     def get_total_estimate_iteration(self, iteration):
         """ sum of rough story estimates in an iteration """
-        #XXX FIX ME, I AM TOO TIME EXPENSIVE
+        # XXX FIX ME, I AM TOO TIME EXPENSIVE
         total = 0.0
 
         for story in (i for i in iteration.contentValues()
-                              if i.portal_type=='Story'):
+                      if i.portal_type == 'Story'):
             if ISizeEstimate.providedBy(story):
                 total += ISizeEstimate(story).size_estimate
         return total
 
-### Table & graph data per iteration methods
+# Table & graph data per iteration methods
 
     @memoize
     def labels(self):
@@ -110,7 +110,7 @@ class ChartView(BrowserView):
         cumul = []
         done = 0
         for work in self.estimate_stories_data():
-            cumul.append(work+done)
+            cumul.append(work + done)
             done += work
         return cumul
 
@@ -120,7 +120,7 @@ class ChartView(BrowserView):
         cumul = []
         done = 0
         for work in self.work_data():
-            cumul.append(work+done)
+            cumul.append(work + done)
             done += work
         return cumul
 
@@ -139,18 +139,19 @@ class ChartView(BrowserView):
                     max(self.work_data()))
 
         chart = SimpleLineChart(graph_width, graph_height,
-                                x_range=(1, x_max+1), y_range=(0, y_max+1))
+                                x_range=(1, x_max + 1), y_range=(0, y_max + 1))
 
         chart.add_data(self.estimate_stories_data())
         chart.add_data(self.estimate_tasks_data())
         chart.add_data(self.work_data())
 
-        chart.set_grid(0, 100.0/y_max+1, 5, 5)
+        chart.set_grid(0, 100.0 / y_max + 1, 5, 5)
         chart.set_colours(['FF0000', '00FF00', '0000FF'])
-        chart.set_legend([ _('rough story estimates'), _('task estimates'), _('worked') ])
+        chart.set_legend([_('rough story estimates'),
+                          _('task estimates'), _('worked')])
         chart.set_legend_position('b')
         chart.set_axis_labels(Axis.LEFT, ['', '', _('days')])
-        chart.set_axis_labels(Axis.BOTTOM, range(1, x_max+1))
-        chart.set_axis_range(Axis.LEFT, 0, y_max+1)
+        chart.set_axis_labels(Axis.BOTTOM, range(1, x_max + 1))
+        chart.set_axis_range(Axis.LEFT, 0, y_max + 1)
 
         return chart.get_url(data_class=ExtendedData)
