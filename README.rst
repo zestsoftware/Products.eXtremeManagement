@@ -10,12 +10,9 @@ eXtreme Programming Methodology.
 Compatibility
 -------------
 
-Version 2.1 works best on Plone 3, but adds rough support for Plone 4.  Several pages are ugly there.
-The original authors at Zest Software are no longer actively using this product and are not interested in updating it fully for Plone 4.
-But others are stepping up.  Contact us if you want to help.
-So handle with care on Plone 4, but on Plone 3 you should be fine.
+Version 3.0 is only compatible with Plone 4.
 
-Version 2.0 and lower only work on Plone 3.
+On Plone 3, please use version 2.1.
 
 
 Content Types
