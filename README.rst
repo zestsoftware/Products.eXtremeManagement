@@ -7,6 +7,11 @@ eXtreme Programming Methodology.
 .. contents::
 
 
+.. warning::
+
+  There might be a fork on the Plone collective which is more recent, please use that then.
+
+
 Compatibility
 -------------
 
