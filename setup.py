@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
-readme = open('README.txt').read().strip()
-install = open('INSTALL.txt').read().strip()
-authors = open('AUTHORS.txt').read().strip()
+readme = open('README.rst').read().strip()
+install = open('INSTALL.rst').read().strip()
+authors = open('AUTHORS.rst').read().strip()
 history = open('CHANGES.rst').read().strip()
 
 long_description = (
