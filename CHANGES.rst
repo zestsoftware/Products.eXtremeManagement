@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-2.1a10 (unreleased)
--------------------
+2.1 (2016-08-01)
+----------------
 
 - Minor package cleanup and pep8.  Added compatibility note in readme.  Briefly: works best in Plone 3.
   [maurits]
