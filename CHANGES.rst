@@ -5,7 +5,9 @@ Changelog
 3.0 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Tentatively drop support for Plone 3.  Proper Plone 4 support needs
+  a bit more work, but not by me.  There might be a fork on the Plone
+  collective which is more recent, please use that then.  [maurits]
 
 
 2.1 (2016-08-01)
