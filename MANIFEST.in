@@ -1,4 +1,4 @@
 graft Products
 graft docs
-include *
+include *.rst
 global-exclude *.pyc
