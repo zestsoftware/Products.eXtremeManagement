@@ -7,6 +7,16 @@ eXtreme Programming Methodology.
 .. contents::
 
 
+Compatibility
+-------------
+
+Version 2.1 works best on Plone 3, but adds rough support for Plone 4.  Several pages are ugly there.
+The original authors at Zest Software are no longer actively using this product and are not interested in updating it fully for Plone 4.
+But others are stepping up.  Contact us if you want to help.
+So handle with care on Plone 4, but on Plone 3 you should be fine.
+
+Version 2.0 and lower only work on Plone 3.
+
 
 Content Types
 -------------
@@ -105,4 +115,3 @@ When the iteration is finished, some stories might not be completed. Using the
 close iteration option from the 'action' dropdown allows you to select or
 create the next iteration and copy over all unfinished stories, including
 unfinished tasks.
-

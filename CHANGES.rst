@@ -5,7 +5,8 @@ Changelog
 2.1a10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Minor package cleanup.  Added compatibility note in readme.  Briefly: works best in Plone 3.
+  [maurits]
 
 
 2.1a9 (2014-10-16)
